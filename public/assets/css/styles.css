@@ -1,0 +1,179 @@
+/*Fonts*/
+
+/*font-family: 'Handlee', cursive;*/
+/*font-family: 'Patrick Hand', cursive;*/
+/*font-family: 'Roboto', sans-serif;*/
+/*font-family: 'Poppins', sans-serif;*/
+
+@font-face {
+    font-family: 'Handlee';
+    src: url("../fonts/Handlee/Handlee-Regular.ttf");
+}
+@font-face {
+    font-family: 'Patrick Hand';
+    src: url("../fonts/Patrick_Hand/PatrickHand-Regular.ttf");
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url("../fonts/Roboto/Roboto-Light.ttf");
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url("../fonts/Poppins/Poppins-ExtraLight.ttf");
+}
+
+/*Login Page*/
+.login-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to right bottom, #e2dcc8, #c3c4a5, #9eae86, #749a6d, #42855b);
+    /*background-image: linear-gradient(to right bottom, #e2dcc8, #bcaf9f, #95847a, #6e5c58, #483838);*/
+}
+
+.login-background{
+    padding: 0 3%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.login-left-container-top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #0F3D3E;
+}
+
+.login-background div img:first-child{
+    width: 100px;
+    border-radius: 50%;
+    margin-right: 15px;
+    filter: drop-shadow(0px 0px 5px #483838);
+}
+
+.login-background div div h2{
+    align-items: center;
+    justify-content: center;
+    font-family: 'Handlee', cursive;
+    font-size: 35px;
+}
+
+.login-quote{
+    font-family: 'Patrick Hand', cursive;
+    font-size: 50px;
+}
+
+.login-left-container-bottom{
+    justify-content: center;
+    text-align: center;
+    color: #0F3D3E;
+}
+
+.login-background-img {
+    width: 65%;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    filter: drop-shadow(0px 0px 5px #483838);
+}
+
+.form-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form{
+    width: 500px;
+    border-radius: 16px;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    margin: 20px;
+    background-image: linear-gradient(to left top, #e2dcc8, #d3d1b2, #c1c89d, #aabf8b, #90b77d);
+    text-align: center;
+    padding: 25px 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+}
+
+.login-form header{
+    font-size: 25px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.login-form form{
+    margin: 20px 0;
+}
+
+.login-form form .error-txt{
+    color: #721c24;
+    background: #f8d7da;
+    padding: 8px 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #f5c6cb;
+    display: none;
+}
+
+.login-form form .error-txt.active{
+    color: #721c24;
+    background: #f8d7da;
+    padding: 8px 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #f5c6cb;
+}
+
+.login-form form .field{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.login-form form .field input{
+    outline: none;
+}
+
+.login-form form .input input{
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form form .image input{
+    font-size: 17px;
+}
+
+.login-form form .button button{
+    margin-top: 13px;
+    height: 45px;
+    border: none;
+    font-size: 17px;
+    font-weight: 400;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-form .link{
+    text-align: center;
+    margin: 10px 0;
+    font-size: 17px;
+}
+
+.login-form .link a{
+    color: #333;
+    text-decoration: none;
+}
+
+.login-form .link a:hover{
+    text-decoration: underline;
+}
