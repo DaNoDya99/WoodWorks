@@ -12,7 +12,7 @@
     <div class="login-background">
         <div>
             <div class="login-left-container-top">
-                <img src="<?=ROOT?>/assets/images/logo.png" alt="Logo">
+                <img src="./assets/images/logo.png" alt="Logo">
                 <h2>WOODWORKS</h2>
             </div>
             <div class="login-left-container-bottom">
@@ -23,8 +23,11 @@
         <div class="form-container">
             <div class="login-form">
                 <header>Please Login</header>
+                <?php if(!empty($errors['email'])):?>
+                    <div class="error-txt"><?=$errors['email']?></div>
+                <?php endif;?>
+
                 <form method="post">
-                    <div class="error-txt"><?= $error[0] ?></div>
                     <div class="field input">
                         <label>Email Address</label>
                         <input type="email"  name="email" placeholder="Enter Your Email">

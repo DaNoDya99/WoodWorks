@@ -107,18 +107,8 @@
     margin: 20px 0;
 }
 
-.login-form form .error-txt{
-    color: #721c24;
-    background: #f8d7da;
-    padding: 8px 10px;
-    text-align: center;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #f5c6cb;
-    display: none;
-}
-
-.login-form form .error-txt.active{
+.error-txt{
+    margin-top: 10px;
     color: #721c24;
     background: #f8d7da;
     padding: 8px 10px;

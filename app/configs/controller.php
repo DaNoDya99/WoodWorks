@@ -14,4 +14,9 @@ class Controller
             echo "Could not find the view file ".$filename;
         }
     }
+
+    public function redirect($link){
+        header("location: ".ROOT."/".trim($link,"/"));
+        die;
+    }
 }
