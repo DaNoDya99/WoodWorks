@@ -2,41 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/Login1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/Signup.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/Employee.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/includes/footer.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/includes/header.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/includes/navbar.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/login1.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/signup.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Handlee/Handlee-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Handlee/OFL.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Patrick_Hand/OFL.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Patrick_Hand/PatrickHand-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Poppins/OFL.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Poppins/Poppins-ExtraLight.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-BlackItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-BoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-LightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-MediumItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Roboto/Roboto-ThinItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/login1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/javascript/login1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/configs/model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/Admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/admindashboard.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/configs/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/configs/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/configs/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/init.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/configs/models.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Login1.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Login1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Signup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Employee.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +60,7 @@
       <workItem from="1667357188533" duration="1496000" />
       <workItem from="1667396660134" duration="7563000" />
       <workItem from="1667445075321" duration="21062000" />
-      <workItem from="1667531101175" duration="22003000" />
+      <workItem from="1667531101175" duration="29346000" />
     </task>
     <servers />
   </component>
