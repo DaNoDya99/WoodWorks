@@ -152,8 +152,9 @@ form .name-details .field:first-child{
 }
 
 form .name-details .field input{
-    width: 100%;
+    width: 209px;
 }
+
 form .name-details .field:last-child{
      margin-left: 19px;
  }

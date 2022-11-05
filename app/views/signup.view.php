@@ -46,7 +46,7 @@
                 <div class="field input">
                     <label>Gender</label>
                     <select class="gender-select" name="Gender" id="gender">
-                        <option>-- Select Gender --</option>
+                        <option selected>-- Select Gender --</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
