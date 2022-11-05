@@ -137,6 +137,30 @@
     border-radius: 5px;
 }
 
+.login-form form .name-details{
+    display: flex;
+}
+
+form .name-details .field:first-child{
+    margin-right: 19px;
+}
+
+form .name-details .field input{
+    width: 100%;
+}
+form .name-details .field:last-child{
+     margin-left: 19px;
+ }
+
+.gender-select{
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
 .login-form form .image input{
     font-size: 17px;
 }
