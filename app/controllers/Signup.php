@@ -15,6 +15,8 @@ class Signup extends Controller
             }
         }
 
-        $this->view('signup');
+        $data['errors'] = $customer->errors;
+
+        $this->view('signup',$data);
     }
 }

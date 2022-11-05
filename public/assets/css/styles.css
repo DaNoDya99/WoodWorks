@@ -118,6 +118,12 @@
     border: 1px solid #f5c6cb;
 }
 
+.signup-error{
+    text-align: left;
+    font-size: 12px;
+    padding: 0 10px;
+}
+
 .login-form form .field{
     display: flex;
     position: relative;

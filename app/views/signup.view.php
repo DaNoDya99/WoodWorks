@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?=APPNAME?></title>
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles.css">
 </head>
 <body class="login-body">
 <div class="login-background">
@@ -23,8 +23,14 @@
     <div class="form-container">
         <div class="login-form">
             <header>Signup Now</header>
-            <?php if(!empty($errors['email'])):?>
-                <div class="error-txt"><?=$errors['email']?></div>
+            <?php if(!empty($errors)):?>
+                <div class="error-txt signup-error">
+                    <ul>
+                    <?php foreach ($errors as $key => $value):?>
+                        <li><?=$errors[$key]?></li>
+                    <?php endforeach;?>
+                    </ul>
+                </div>
             <?php endif;?>
             <form method="post">
                 <div class="name-details">
@@ -41,8 +47,8 @@
                     <label>Gender</label>
                     <select class="gender-select" name="Gender" id="gender">
                         <option>-- Select Gender --</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
                 </div>
                 <div class="field input">
