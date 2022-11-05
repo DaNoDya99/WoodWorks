@@ -1,23 +1,19 @@
 <?php
-require "../app/models/Employee.php";
+require "../app/models/Customer.php";
 
 class Signup extends Controller
 {
     public function index(){
 
-        $employee = new Employee();
+        $customer = new Customer();
 
-//        $post = [
-//            'EmployeeId' => 'M001',
-//            'Firstname' => 'Viharsha',
-//            'Lastname' => 'Jayathilake',
-//            'Email' => 'viharsha@yahoo.com',
-//            'Password' => password_hash('Manager@123',PASSWORD_DEFAULT),
-//            'Role' => 'Manager',
-//            'Contactno' => '0771542654'
-//        ];
-//
-//        $employee->insert($post);
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if($customer->validate($_POST))
+            {
+                $customer->insert($_POST);
+            }
+        }
 
         $this->view('signup');
     }

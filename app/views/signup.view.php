@@ -30,16 +30,16 @@
                 <div class="name-details">
                     <div class="field input">
                         <label>First Name</label>
-                        <input type="text" name="firstname" placeholder="First Name">
+                        <input type="text" name="Firstname" placeholder="First Name">
                     </div>
                     <div class="field input">
                         <label>Last Name</label>
-                        <input type="text" name="firstname" placeholder="First Name">
+                        <input type="text" name="Lastname" placeholder="First Name">
                     </div>
                 </div>
                 <div class="field input">
                     <label>Gender</label>
-                    <select class="gender-select" name="gender" id="gender">
+                    <select class="gender-select" name="Gender" id="gender">
                         <option>-- Select Gender --</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -47,29 +47,29 @@
                 </div>
                 <div class="field input">
                     <label>Email Address</label>
-                    <input type="email"  name="email" placeholder="Enter Your Email">
+                    <input type="email"  name="Email" placeholder="Enter Your Email">
                 </div>
                 <div class="field input">
                     <label>Password</label>
-                    <input type="password" name="password1" placeholder="Enter Your Password">
+                    <input type="password" name="Password" placeholder="Enter Your Password">
                 </div>
                 <div class="field input">
                     <label>Re-Type Password</label>
-                    <input type="password" name="password2" placeholder="Re-Type Your Password">
+                    <input type="password" name="Password2" placeholder="Re-Type Your Password">
                 </div>
                 <div class="field input">
                     <label>Address</label>
-                    <input type="text" name="address" placeholder="Enter Your Address">
+                    <input type="text" name="Address" placeholder="Enter Your Address">
                 </div>
                 <div class="field input">
                     <label>Contact</label>
-                    <input type="text" name="contact" placeholder="Enter Your Contact No">
+                    <input type="text" name="Mobileno" placeholder="Enter Your Contact No">
                 </div>
                 <div class="field button">
                     <button type="submit">Signup</button>
                 </div>
             </form>
-            <div class="link">Already have an account?<a href="#"> Login now</a></div>
+            <div class="link">Already have an account?<a href="<?=ROOT?>/login1"> Login now</a></div>
         </div>
     </div>
 </div>

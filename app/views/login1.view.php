@@ -30,17 +30,17 @@
                 <form method="post">
                     <div class="field input">
                         <label>Email Address</label>
-                        <input type="email"  name="email" placeholder="Enter Your Email">
+                        <input type="email"  name="Email" placeholder="Enter Your Email">
                     </div>
                     <div class="field input">
                         <label>Password</label>
-                        <input type="password" name="password" placeholder="Enter Your Password">
+                        <input type="password" name="Password" placeholder="Enter Your Password">
                     </div>
                     <div class="field button">
                         <button type="submit">Login</button>
                     </div>
                 </form>
-                <div class="link">Not yet signed up?<a href="#"> Signup now</a></div>
+                <div class="link">Not yet signed up?<a href="<?=ROOT?>/signup"> Signup now</a></div>
             </div>
         </div>
     </div>

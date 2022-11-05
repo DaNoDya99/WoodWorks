@@ -1,25 +1,35 @@
 <?php
 require "../app/models/Employee.php";
 require "../app/models/Auth.php";
+require "../app/models/Customer.php";
 
 class Login1 extends Controller
 {
     public function index(){
 
         $employee = new Employee();
+        $customer = new Customer();
+
         $data['error'] = [];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $result = $employee->where('email',$_POST['email']);
+            $result_emp = $employee->where('email',$_POST['Email']);
+            $result_cus = $customer->where('email',$_POST['Email']);
 
-            if($result)
+            if($result_emp)
             {
-                if(password_verify($_POST['password'],$result[0]->Password))
+                if(password_verify($_POST['Password'],$result_emp[0]->Password))
                 {
-                    if(strtolower($result[0]->Role) == 'admin'){
-                        Auth::authenticate($result[0]);
+                    if(strtolower($result_emp[0]->Role) == 'admin'){
+                        Auth::authenticate($result_emp[0]);
                         $this->redirect('admin');
                     }
+                }
+            } elseif ($result_cus){
+                if(password_verify($_POST['Password'],$result_cus[0]->Password))
+                {
+                    Auth::authenticate($result_cus[0]);
+                    $this->redirect('customer_home');
                 }
             }
 
