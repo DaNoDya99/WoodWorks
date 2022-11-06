@@ -6,8 +6,17 @@
     <div class="sidebar-body">
         <ul class="sidebar-items">
             <li class="sidebar-item">
-                <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/user.png" alt="Profile">
-                <h3>PROFILE</h3>
+                <a href="<?=ROOT?>/admin/dashboard">
+                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/dashboard.png" alt="Dashboard">
+                    <h3>DASHBOARD</h3>
+                </a>
+                <hr>
+            </li>
+            <li class="sidebar-item">
+                <a href="<?=ROOT?>/admin/profile">
+                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/user.png" alt="Profile">
+                    <h3>PROFILE</h3>
+                </a>
                 <hr>
             </li>
             <li class="sidebar-item">
@@ -18,13 +27,6 @@
             <li class="sidebar-item">
                 <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/inventory.png" alt="Profile">
                 <h3>INVENTORY</h3>
-                <hr>
-            </li>
-            <li class="sidebar-item">
-                <a href="<?=ROOT?>/login1">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/logout.png" alt="Profile">
-                    <h3>LOGOUT</h3>
-                </a>
             </li>
         </ul>
     </div>

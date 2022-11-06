@@ -10,6 +10,15 @@ class Admin extends Controller
             $this->redirect('login1');
         }
 
-        $this->view('admin');
+        $data['title'] = "DASHBOARD";
+
+        $this->view('admin/dashboard',$data);
+    }
+
+    public function profile()
+    {
+        $data['title'] = "PROFILE";
+
+        $this->view('admin/profile',$data);
     }
 }

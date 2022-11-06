@@ -20,7 +20,7 @@ class Login1 extends Controller
             {
                 if(password_verify($_POST['Password'],$result_emp[0]->Password))
                 {
-                    if(strtolower($result_emp[0]->Role) == 'admin'){
+                    if(strtolower($result_emp[0]->Role) == 'administrator'){
                         Auth::authenticate($result_emp[0]);
                         $this->redirect('admin');
                     }

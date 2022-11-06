@@ -22,6 +22,11 @@
     src: url("../fonts/Poppins/Poppins-ExtraLight.ttf");
 }
 
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url("../fonts/Poppins/Poppins-Light.ttf");
+}
+
 /*Login Page*/
 .login-body{
     display: flex;
@@ -301,3 +306,196 @@ form .name-details .field:last-child{
     text-decoration: none;
 }
 
+.dashboard-nav {
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item-user img{
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+}
+
+.nav-item-page-name h1{
+    font-family: 'Handlee', cursive;
+    font-size: 1.2vw;
+}
+
+.nav-item-user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-item-user h1{
+    font-family: 'Handlee', cursive;
+    font-size: 1.2vw;
+}
+
+.nav-item-user a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-vr{
+    border-left: 2px solid black;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.dashboard-body{
+    padding: 50px 15px 0;
+    display: flex;
+}
+
+/*Profile page*/
+.profile-details-section {
+    width: 50%;
+}
+
+.profile-img-section{
+    text-align: center;
+    justify-content: center;
+    width: 50%;
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.profile-img-section img{
+    width: 25%;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+}
+
+.wrapper{
+    max-width: 90%;
+    width: 100%;
+    padding: 25px 30px 30px 30px;
+    border-radius: 5px;
+    background: #F1F1F1;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+.wrapper nav{
+    position: relative;
+    width: 80%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-family: 'Handlee', cursive;
+    font-size: 1.5vw;
+}
+
+.wrapper nav label{
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    color: #749a6d;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.wrapper nav label:hover{
+    background: rgba(25, 91, 58, 0.3);
+}
+
+#overview:checked ~ nav label.overview,
+#edit:checked ~ nav label.edit-info{
+    color: #0F3D3E;
+}
+
+nav .slider{
+    position: absolute;
+    height: 100%;
+    width: 48%;
+    left: 5px;
+    bottom: 0;
+    z-index: 0;
+    border-radius: 5px;
+    background: rgba(23, 184, 104, 0.3);
+    transition: all 0.3s ease;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+#edit:checked ~ nav .slider{
+    left: 51%;
+}
+
+section .content{
+    display: none;
+    background: #F1F1F1;
+}
+
+#overview:checked ~ section .content-1,
+#edit:checked ~ section .content-2{
+    display: block;
+}
+
+section .content .title{
+    font-size: 21px;
+    font-weight: 500;
+    margin: 30px 0 10px 0;
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.profile-content-divider{
+    border-top: 2px solid #c1c89d;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.admin-profile-table{
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.admin-profile-table td{
+    padding: 5px 60px 5px 20px;
+}
+
+.admin-profile-edit-table{
+    font-family: 'Poppins-Light', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-profile-edit-table input{
+    padding: 5px 20px;
+    font-family: 'Poppins-Light', sans-serif;
+    font-size: 1vw;
+}
+
+.table-heading{
+    padding-right: 50px;
+}
+
+.profile-save-btn{
+    width: 20%;
+    margin-top: 13px;
+    height: 45px;
+    border: none;
+    font-size: 17px;
+    font-weight: 400;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content-2 form{
+    text-align: center;
+}
