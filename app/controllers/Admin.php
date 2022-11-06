@@ -10,7 +10,6 @@ class Admin extends Controller
             $this->redirect('login1');
         }
 
-//        Auth::logout();
         $this->view('admin');
     }
 }

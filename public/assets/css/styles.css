@@ -198,3 +198,106 @@ form .name-details .field:last-child{
 .login-form .link a:hover{
     text-decoration: underline;
 }
+
+/*Admin dashboard*/
+.admin{
+    margin: 0;
+    background-image: linear-gradient(to right bottom, #e2dcc8, #c3c4a5, #9eae86, #749a6d, #42855b);
+}
+
+.admin-body{
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    background-image: linear-gradient(to right bottom, #0f3d3e, #104f4a, #1a6153, #2b7358, #42855b);
+    border-bottom-right-radius: 50px;
+    filter: drop-shadow(0px 0px 5px #0F3D3E);
+}
+
+.dashboard{
+    width: 80%;
+}
+
+.sidebar-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.sidebar-header-img{
+    width: 25%;
+    height: 25%;
+    border-radius: 50px;
+    filter: drop-shadow(0px 0px 5px #100F0F);
+}
+
+.sidebar-header-name{
+    margin-left: 10px;
+    color: #c1c89d;
+    filter: drop-shadow(0px 0px 5px #100F0F);
+    font-family: 'Handlee', cursive;
+    font-size: 1.8vw;
+}
+
+.sidebar-body{
+    margin: 10% auto;
+}
+
+.sidebar-items{
+    text-align: center;
+    padding-inline-start: unset;
+}
+
+.sidebar-item-img{
+    width: 18%;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    transition: 0.5s;
+}
+
+.sidebar-item-img:hover{
+    width: 20%;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    transition: 0.5s;
+}
+
+.sidebar-item{
+    list-style: none;
+    text-align: unset;
+}
+
+.sidebar-item h3{
+    font-family: 'Handlee', cursive;
+    font-weight: 700;
+    color: #c3c4a5;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    font-size: 1vw;
+    transition: 0.5s;
+}
+
+.sidebar-item h3:hover{
+    font-family: 'Handlee', cursive;
+    font-weight: 700;
+    color: #c3c4a5;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    font-size: 1.2vw;
+    transition: 0.5s;
+}
+
+.sidebar-item hr{
+    border-top: 8px dotted #c1c89d;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+    width: 42%;
+    margin-bottom: 5%;
+}
+
+.sidebar-item a {
+    text-decoration: none;
+}
+
