@@ -40,4 +40,33 @@ class Model extends Database
         return $this->query($query,['value' => $value]);
     }
 
+    public function update($id,$data)
+    {
+        if(!empty($this->allowedColumns))
+        {
+            foreach ($data as $key => $value){
+                if(!in_array($key,$this->allowedColumns))
+                {
+                    unset($data[$key]);
+                }
+            }
+        }
+
+        $keys = array_keys($data);
+        $id = array_search($id,$data);
+
+        $query = "update ".$this->table." set ";
+        foreach ($keys as $key)
+        {
+            $query .= $key . "=:" . $key . ",";
+        }
+        $query = trim($query,",");
+        $query .= " where ".$id." = :".$id;
+
+//        show($query);
+//        show($data);
+
+
+        $this->query($query,$data);
+    }
 }
