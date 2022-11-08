@@ -5,7 +5,9 @@ class Signup extends Controller
 {
     public function index(){
 
+        $data['errors'] = [];
         $customer = new Customer();
+//        $driver = new Employee();
 
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
@@ -13,7 +15,22 @@ class Signup extends Controller
             {
                 $customer->insert($_POST);
             }
+
         }
+
+//        $post = [
+//            'EmployeeID' => 'M001',
+//            'Firstname' => 'Balakrishnan',
+//            'Lastname'	=> 'vishnugan',
+//            'Email' => 'vishnuganb@gmail.com',
+//            'Password' => password_hash('123',PASSWORD_DEFAULT),
+//            'Role'	=> 'Driver',
+//            'Contactno'=> '0760866820',
+//        ];
+
+        //$driver ->insert($post);
+
+        //$data['errors'] = $driver->errors;
 
         $data['errors'] = $customer->errors;
 

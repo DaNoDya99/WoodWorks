@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'Ubuntu-Regular';
+    src: url("../fonts/Ubuntu/Ubuntu-Regular.ttf");
+}
+.bdy{
+    margin: 0px;
+    padding: 0px;
+    background-image: url("../images/driver/loginBackground.png") ;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.signup-form{
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    background: rgba(101, 102, 114, 0.7);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+    border-radius: 05px;
+}
+
+.signup-form img{
+    width: 60%;
+    height: 50%;
+}
+
+.signup-form input{
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    height: 44px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.txt{
+    margin: 20px 0px;
+    border-radius: 05px;
+}
+
+.btn{
+    margin-top: 60px;
+    margin-bottom: 20px;
+    background: #487eb0;
+    color: #fff;
+    border-radius: 40px;
+    width: 280px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 18px;
+}
+
+.btn:hover{
+
+    transform: scale(0.96);
+
+}
+
+.signup-form a{
+    text-decoration: none;
+    color: greenyellow;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 10px;
+    transition: 0.5s;
+    display: block;
+}
+
+.signup-form a:hover{
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+

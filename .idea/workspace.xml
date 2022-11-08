@@ -2,18 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/javascript/admin-profile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/1667830455code2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/Designer_home.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/Driver_home.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/Login3.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/Logout3.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Driver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/designer_home.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/driver_home.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/login3.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/styles_login3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/loginBackground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/user.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/configs/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/configs/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/configs/model.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Employee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/profile.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/configs/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/init.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Signup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +33,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -54,15 +58,27 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/WoodWorks&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\woodworks\app\views" />
       <recent name="C:\xampp\htdocs\WoodWorks\app\views\admin" />
       <recent name="C:\xampp\htdocs\WoodWorks\app\views" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="login3.view.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/woodworks/app/views/login3.view.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.login3.view.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -81,6 +97,8 @@
       <workItem from="1667662384225" duration="6732000" />
       <workItem from="1667700385376" duration="38607000" />
       <workItem from="1667789489344" duration="28139000" />
+      <workItem from="1667848049516" duration="2447000" />
+      <workItem from="1667850566826" duration="20142000" />
     </task>
     <servers />
   </component>
