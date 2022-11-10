@@ -101,11 +101,17 @@ class Admin extends Controller
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row){
-            $_POST['Image'] = $folder."user.png";
-            $employee->insert($_POST);
-            $this->redirect('admin/employees');
+
+            if($employee->validate($_POST)) {
+                $destination = $folder."user.png";
+                copy(ROOT."assets/images/admin/user.png",$destination);
+                $_POST['Image'] = $destination;
+                $employee->insert($_POST);
+                $this->redirect('admin/employees');
+            }
         }
 
+        $data['errors'] = $employee->errors;
         $data['title'] = "ADD EMPLOYEE";
 
         $this->view('admin/add_employee',$data);

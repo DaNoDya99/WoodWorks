@@ -28,7 +28,18 @@
             <div class="emp-form-header">
                 <h1>Add Employee</h1>
             </div>
-            <form action="" method="post">
+
+            <?php if(!empty($errors)):?>
+                <div class="error-txt signup-error">
+                    <ul>
+                        <?php foreach ($errors as $key => $value):?>
+                            <li><?=$errors[$key]?></li>
+                        <?php endforeach;?>
+                    </ul>
+                </div>
+            <?php endif;?>
+
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="emp-form-field">
                     <label>Employee ID</label>
                     <input name="EmployeeID" type="text">
@@ -57,7 +68,6 @@
                         <option value="Cashier">Cashier</option>
                         <option value="Designer">Designer</option>
                         <option value="Driver">Driver</option>
-                        <option value="">Driver</option>
                     </select>
                 </div>
                 <div class="emp-form-field">

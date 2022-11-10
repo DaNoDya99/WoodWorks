@@ -695,7 +695,7 @@ section .content .title{
     border-radius: 10px;
     font-family: 'Poppins-Light', sans-serif;
     overflow-y: auto;
-    padding: 15px 0;
+    padding: 15px 10px;
 }
 
 .emp-form-body form{
@@ -747,4 +747,8 @@ section .content .title{
     width: 30px;
     height: 30px;
     margin: 0 10px;
+}
+
+.default-img{
+    display: none;
 }
