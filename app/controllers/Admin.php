@@ -95,11 +95,13 @@ class Admin extends Controller
             $this->redirect('login1');
         }
 
+        $folder = "uploads/images/";
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employee();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row){
+            $_POST['Image'] = $folder."user.png";
             $employee->insert($_POST);
             $this->redirect('admin/employees');
         }
