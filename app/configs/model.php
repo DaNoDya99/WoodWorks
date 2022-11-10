@@ -63,10 +63,13 @@ class Model extends Database
         $query = trim($query,",");
         $query .= " where ".$id." = :".$id;
 
-//        show($query);
-//        show($data);
-
 
         $this->query($query,$data);
+    }
+
+    public function findAll()
+    {
+        $query = "select * from $this->table";
+        return $this->query($query);
     }
 }

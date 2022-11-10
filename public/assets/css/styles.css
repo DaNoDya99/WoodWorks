@@ -207,6 +207,7 @@ form .name-details .field:last-child{
 
 /*Admin dashboard*/
 .admin{
+    height: 100vh;
     margin: 0;
     background-image: linear-gradient(to right bottom, #e2dcc8, #c3c4a5, #9eae86, #749a6d, #42855b);
 }
@@ -313,6 +314,9 @@ form .name-details .field:last-child{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 2px;
 }
 
 .nav-item-user img{
@@ -376,6 +380,8 @@ form .name-details .field:last-child{
 .wrapper{
     max-width: 90%;
     width: 100%;
+    max-height: 650px;
+    overflow-y: auto;
     padding: 25px 30px 30px 30px;
     border-radius: 5px;
     background: #F1F1F1;
@@ -548,4 +554,197 @@ section .content .title{
 
 .edit-btn-section label input{
     display: none;
+}
+
+/*Admin-Employees Page*/
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-height: 700px;
+    overflow-y: auto;
+    border: solid 3px black;
+    margin: 0 5px 5px 5px;
+    border-radius: 10px;
+}
+
+.card{
+    background: white;
+    width: 320px;
+    height: 430px;
+    margin: 10px;
+    border-radius: 15px;
+    filter: drop-shadow(0px 0px 1px black);
+    text-align: center;
+}
+
+.card-image{
+    background-color: #2b7358;
+    border-radius: 15px 15px 0 0;
+    height: 165px;
+    text-align: center;
+}
+
+.card-image img{
+    height: 150px;
+    width: 150px;
+    margin: 7.5px auto;
+    background-size: cover;
+    border-radius: 50%;
+    filter: drop-shadow(0px 0px 1px black);
+}
+
+.card p{
+    padding: 10px;
+}
+
+.card:hover{
+    cursor: pointer;
+    transform: scale(1.03);
+    transition: all 1s ease;
+}
+
+.card-table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-table tr td:first-child{
+    text-align: left;
+    font-family: 'Poppins-Light', sans-serif;
+    padding: 2px;
+    font-weight: bold;
+}
+
+.card-table tr td:last-child{
+    text-align: left;
+    font-size: .7vw;
+    font-family: 'Poppins-Light', sans-serif;
+    padding-left: 6px;
+}
+
+.card h2{
+    margin: 5px;
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.card-btns{
+    display: flex;
+    padding-top: 8px;
+    justify-content: space-around;
+}
+
+.card-btns button{
+    border-radius: 6px;
+    border: unset;
+    font-family: 'Poppins-Light', sans-serif;
+    font-weight: bold;
+    color: #e2dcc8;
+}
+
+.card-btns button:first-child{
+    background: #5ba49e;
+    width: 70px;
+    height: 40px;
+}
+
+.card-btns button:last-child{
+    background: #E64848;
+    width: 70px;
+    height: 40px;
+}
+
+.add-emp-bar{
+    height: 60px;
+    border: solid 2px black;
+    margin: 0 5px 5px 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.add-emp-bar button{
+    width:200px;
+    height: 50px;
+    border: solid 1.5px black;
+    border-radius: 7px;
+    font-family: 'Poppins-Light', sans-serif;
+    font-weight: bolder;
+    font-size: 1vw;
+}
+
+.add-emp-bar h1{
+    font-family: 'Poppins-Light', sans-serif;
+    font-weight: bolder;
+}
+
+/*Admin-Add Employee Page*/
+
+.emp-form-body{
+    margin: 0 auto;
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 700px;
+    border: solid 2px black;
+    border-radius: 10px;
+    font-family: 'Poppins-Light', sans-serif;
+    overflow-y: auto;
+    padding: 15px 0;
+}
+
+.emp-form-body form{
+    width: 100%;
+}
+
+.emp-form-field{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.emp-form-field input,select{
+    padding: 5px 20px;
+    font-family: 'Poppins-Light', sans-serif;
+    font-size: 1vw;
+    border-radius: 5px;
+    border: none;
+}
+
+.add-emp-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.add-emp-btn button{
+    width: 200px;
+    height: 50px;
+    border: solid 2px #e2dcc8;
+    border-radius: 7px;
+    font-family: 'Poppins-Light', sans-serif;
+    font-weight: bolder;
+    font-size: 1vw;
+    background-color: #100F0F;
+    color: #ffffff;
+}
+
+.go-back{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    padding-left: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.go-back img{
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
 }

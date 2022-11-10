@@ -17,6 +17,11 @@ class Employee extends Model
         'Image'
     ];
 
+    protected $beforeInsert = [
+            'hash_password',
+            'create_slug',
+        ];
+
     public function edit_validate($post,$id)
     {
         $this->errors = [];
@@ -57,4 +62,15 @@ class Employee extends Model
 
         return false;
     }
+
+    public function hash_password($DATA){
+        $DATA['Password'] = password_hash($DATA['Password'],PASSWORD_DEFAULT);
+        return $DATA;
+    }
+
+    public function create_slug($DATA){
+        $DATA['Slug'] = strtolower($DATA['Firstname'])."-".strtolower($DATA['Lastname']);
+        return $DATA;
+    }
+
 }

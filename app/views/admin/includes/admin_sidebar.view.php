@@ -20,13 +20,17 @@
                 <hr>
             </li>
             <li class="sidebar-item">
-                <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/employee.png" alt="Profile">
-                <h3>EMPLOYEES</h3>
-                <hr>
+                <a href="<?=ROOT?>/admin/employees">
+                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/employee.png" alt="Profile">
+                    <h3>EMPLOYEES</h3>
+                    <hr>
+                </a>
             </li>
             <li class="sidebar-item">
-                <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/inventory.png" alt="Profile">
-                <h3>INVENTORY</h3>
+                <a href="<?=ROOT?>/admin/inventory">
+                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/inventory.png" alt="Profile">
+                    <h3>INVENTORY</h3>
+                </a>
             </li>
         </ul>
     </div>

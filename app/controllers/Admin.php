@@ -50,6 +50,7 @@ class Admin extends Controller
                             $destination = $folder.time().$_FILES['Image']['name'];
                             move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
 
+//                            resize_image($destination);
                             $_POST['Image'] = $destination;
                             if(file_exists($row[0]->Image))
                             {
@@ -72,4 +73,52 @@ class Admin extends Controller
 
         $this->view('admin/profile',$data);
     }
+
+    public function employees($id=null)
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login1');
+        }
+
+        $employee = new Employee();
+
+        $data['rows'] = $employee->findAll();
+        $data['no_of_emp'] = count($data['rows']);
+        $data['title'] = "EMPLOYEES";
+
+        $this->view('admin/employees',$data);
+    }
+
+    public function add_employee($id=null)
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login1');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employee();
+        $data['row'] = $row = $employee->where('EmployeeID',$id);
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST' && $row){
+            $employee->insert($_POST);
+            $this->redirect('admin/employees');
+        }
+
+        $data['title'] = "ADD EMPLOYEE";
+
+        $this->view('admin/add_employee',$data);
+    }
+
+    public function inventory($id = null)
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login1');
+        }
+
+
+        $data['title'] = "INVENTORY";
+
+        $this->view('admin/inventory',$data);
+    }
+
 }
