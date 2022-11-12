@@ -16,7 +16,7 @@
         </div>
         <div class="nav-items">
             <ul>
-                <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_home">Home</a></li>
+                <li class="nav-item"><a href="<?=ROOT?>/customer_home">Home</a></li>
                 <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_profile">Shop</a></li>
                 <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_orders">Cart</a></li>
                 <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_cart">About</a></li>
@@ -25,13 +25,14 @@
         </div>
         <div class="nav-profile-section">
             <div class="nav-user-details">
-                <img src="<?=ROOT?>/assets/images/customer/user.png" alt="User">
-                <h1>Danodya</h1>
+                <img src="<?=ROOT?>/<?=Auth::getImage()?>" alt="User">
+                <h1>Welcome, <?=Auth::getFirstname()?></h1>
             </div>
             <div class="dropdown">
                 <button class="dropbtn">Account</button>
                 <div class="dropdown-content">
-                    <a href="<?=ROOT?>/reg_customer/customer_profile">Profile</a>
+                    <a href="#">My orders</a>
+                    <a href="<?=ROOT?>/customer_home/profile">Profile</a>
                     <a href="<?=ROOT?>/logout1">Logout</a>
                 </div>
             </div>

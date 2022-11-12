@@ -768,9 +768,9 @@ section .content .title{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 0 5px 5px 5px;
     border-radius: 10px;
     padding: 10px;
+
 }
 
 .dropbtn{
@@ -787,8 +787,9 @@ section .content .title{
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
+    margin-top: 100px;
 }
 
 .dropdown-content a{
@@ -803,7 +804,6 @@ section .content .title{
 }
 
 .dropdown:hover .dropdown-content{
-    margin: 140px 500px 0 0;
     display: block;
     position: absolute;
     left: 90%;
@@ -1146,3 +1146,207 @@ section .content .title{
 .footer-rights h2{
     margin: 20px 0 0 0;
 }
+
+/*Customer Profile page*/
+.cus-profile-body{
+    background-color: #e2dcc8;
+    height: 90vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.cus-profile-card{
+    width: 600px;
+    height: 680px;
+    max-width: 600px;
+    max-height: 800px;
+    background: #f9f9f9;
+    border-radius: 50px;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    transition: 0.5s ease;
+}
+
+.cus-profile-card:hover{
+    transform: scale(1.02);
+    transition: 0.5s ease;
+}
+
+.cus-profile-card h1{
+    margin: 0;
+}
+
+.cus-pro-img-sec{
+    text-align: center;
+}
+
+.cus-pro-img-sec img{
+    width: 200px;
+    border-radius: 50%;
+    filter: drop-shadow(0px 0px 3px black);
+    margin: 40px 10px 0 0;
+}
+
+.cus-pro-img-sec h1{
+    margin: 0;
+}
+
+.cus-pro-info hr{
+    width: 500px;
+    border-top: solid 2px #100F0F;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+
+.cus-pro-info table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cus-pro-info table tr th{
+    text-align: left;
+    width: 200px;
+    max-width: 200px;
+    padding: 15px 0;
+}
+
+.cus-pro-info table tr td{
+    max-width: 300px;
+    padding: 15px 0;
+}
+
+.edit-cus-pro-btn-sec{
+    text-align: center;
+}
+
+.edit-cus-pro-btn-sec button{
+    width: 200px;
+    height: 50px;
+    border: solid 2px #e2dcc8;
+    border-radius: 7px;
+    font-family: 'Poppins-Light', sans-serif;
+    font-weight: bolder;
+    font-size: 1vw;
+    background-color: #100F0F;
+    color: #ffffff;
+    margin: 20px 0;
+}
+
+.decorate-card{
+    width: 300px;
+    height: 550px;
+    transition: 0.5s ease;
+}
+
+.decorate-card img{
+    width: 300px;
+    height: 550px;
+    object-fit: cover;
+    border: solid 3px #100F0F;
+}
+
+.card-left img{
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+.card-right img{
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+
+.decorate-card:hover{
+    transform: scale(1.02);
+    transition: 0.5s ease;
+}
+
+.popup{
+    width: 650px;
+    height: 720px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding:0 30px 30px;
+    visibility: hidden;
+    transition: transform 0.5s ease;
+}
+
+.popup h2{
+    font-size: 30px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+
+.popup button{
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    background: #100F0F;
+    color: #f9f9f9;
+    border: 0;
+    border-radius: 5px;
+}
+
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.edit-cus-field{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 10px 0;
+}
+
+.edit-cus-field input{
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8vw;
+    background: #d4d4d4;
+}
+
+.edit-cus-field select{
+    height: 35px;
+    font-size: .8vw;
+    background: #d4d4d4;
+}
+
+.image-field{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.image-field img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    filter: drop-shadow(0px 0px 3px black);
+}
+
+.image-field label input{
+    display: none;
+}
+
+.image-field label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    background: #100F0F;
+    border-radius: 10px;
+    color: #f9f9f9;
+}
+
+
