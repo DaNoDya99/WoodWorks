@@ -10,6 +10,6 @@ class Customer_home extends Controller
             $this->redirect('login1');
         }
 
-        $this->view('customer_home');
+        $this->view('reg_customer/customer_home');
     }
 }

@@ -29,7 +29,7 @@ class Login1 extends Controller
                 if(password_verify($_POST['Password'],$result_cus[0]->Password))
                 {
                     Auth::authenticate($result_cus[0]);
-                    $this->redirect('customer_home');
+                    $this->redirect('/customer_home');
                 }
             }
 
