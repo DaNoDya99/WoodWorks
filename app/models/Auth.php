@@ -22,15 +22,30 @@ class Auth
     {
         if(!empty($_SESSION['USER_DATA']))
         {
-            return true;
+           return true;
         }
 
         return false;
     }
 
+    public static function checkPerson($role)
+    {
+        if (strtolower($_SESSION['USER_DATA'] -> Role) == $role){
+            return true;
+        }
+        return false;
+    }
+
+    public static function getCustomerID()
+    {
+            $query = "select CustomerID from customer";
+
+    }
+
     public static function __callStatic($name, $arguments)
     {
         $key = str_replace("get","",$name);
+        //print_r($key);
 
         if(!empty($_SESSION['USER_DATA']->$key))
         {

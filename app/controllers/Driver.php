@@ -1,6 +1,6 @@
 <?php
 
-class Driver_home extends Controller
+class Driver extends Controller
 {
     public function index()
     {
@@ -33,7 +33,7 @@ class Driver_home extends Controller
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employee();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
-        show($row);
+//        show($id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
         {
@@ -78,5 +78,38 @@ class Driver_home extends Controller
         $data['errors'] = $employee->errors;
 
         $this->view('driver/profile',$data);
+    }
+    public function order($id = null)
+    {
+        if(!Auth::logged_in()) {
+            $this->redirect('login3');
+        }
+        $id = $id ?? Auth::getCustomerID();
+        $customer = new Customer();
+        $data['row'] = $row = $customer->where('CustomerID',$id);
+//        show($_SESSION['USER_DATA']);
+        if(!empty($data['row'] ))
+        {
+            $i=0;
+            while($r = $row->fetch_assoc())
+            {
+
+                $i++;
+
+                echo "<tr>
+                             <td>{$i}</td>
+                             <td>{$r->CustomerID}</td>
+                      </tr>";
+
+            }
+        }
+        else
+        {
+            $customer->errors['order'] = "No orders Found.";
+        }
+
+        $data['errors'] = $customer->errors;
+        $data['title'] = "ORDERS";
+        $this->view('driver/order',$data);
     }
 }

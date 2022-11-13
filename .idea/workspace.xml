@@ -2,21 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/Designer_home.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/Driver_home.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/Login3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/Logout3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/Driver.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/designer_home.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/driver_home.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/login3.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/styles_login3.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/loginBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/Designer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/Driver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/designer/dashboard.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/designer/profile.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/driver/dashboard.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/driver/order.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/driver/profile.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/includes/designer_sidebar.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/includes/driver_sidebar.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/designer/dashboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/designer/design.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/designer/employee.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/designer/exit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/designer/inventory.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/designer/loginBackground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/designer/logout.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/designer/user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/dashboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/delivery.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/employee.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/exit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/inventory.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/logout.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/driver/order.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/1668062381user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/1668065477user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/1668065529employee.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/configs/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/init.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Designer_home.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Driver_home.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Login1.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Login1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Login3.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Login3.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/Signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Signup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designer_home.view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/driver_home.view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/styles_login3.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles_login3.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +121,9 @@
       <workItem from="1667700385376" duration="38607000" />
       <workItem from="1667789489344" duration="28139000" />
       <workItem from="1667848049516" duration="2447000" />
-      <workItem from="1667850566826" duration="20142000" />
+      <workItem from="1667850566826" duration="51918000" />
+      <workItem from="1668087340852" duration="17861000" />
+      <workItem from="1668265581976" duration="722000" />
     </task>
     <servers />
   </component>

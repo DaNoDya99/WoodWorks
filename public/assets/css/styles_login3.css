@@ -2,6 +2,27 @@
     font-family: 'Ubuntu-Regular';
     src: url("../fonts/Ubuntu/Ubuntu-Regular.ttf");
 }
+@font-face {
+    font-family: 'Handlee';
+    src: url("../fonts/Handlee/Handlee-Regular.ttf");
+}
+@font-face {
+    font-family: 'Patrick Hand';
+    src: url("../fonts/Patrick_Hand/PatrickHand-Regular.ttf");
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url("../fonts/Roboto/Roboto-Light.ttf");
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url("../fonts/Poppins/Poppins-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url("../fonts/Poppins/Poppins-Light.ttf");
+}
 .bdy{
     margin: 0px;
     padding: 0px;
@@ -77,4 +98,393 @@
     background: rgba(0, 0, 0, 0.3);
     color: #fff;
 }
+
+/*Driver dashboard, Designer dashboard*/
+.driver, .designer{
+    margin: 0;
+    background-image: linear-gradient(to right bottom, #e2dcc8, #c3c4a5, #9eae86, #749a6d, #42855b);
+}
+
+.driver-body, .designer-body{
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    background-image: linear-gradient(to right bottom, #0f3d3e, #104f4a, #1a6153, #2b7358, #42855b);
+    border-bottom-right-radius: 50px;
+    filter: drop-shadow(0px 0px 5px #0F3D3E);
+}
+
+.dashboard{
+    width: 80%;
+}
+
+.sidebar-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.sidebar-header-img{
+    width: 25%;
+    height: 25%;
+    border-radius: 50px;
+    filter: drop-shadow(0px 0px 5px #100F0F);
+}
+
+.sidebar-header-name{
+    margin-left: 10px;
+    color: #c1c89d;
+    filter: drop-shadow(0px 0px 5px #100F0F);
+    font-family: 'Handlee', cursive;
+    font-size: 1.8vw;
+}
+
+.sidebar-body{
+    margin: 10% auto;
+}
+
+.sidebar-items{
+    text-align: center;
+    padding-inline-start: unset;
+}
+
+.sidebar-item-img{
+    width: 18%;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    transition: 0.5s;
+}
+
+.sidebar-item-img:hover{
+    width: 20%;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    transition: 0.5s;
+}
+
+.sidebar-item{
+    list-style: none;
+    text-align: unset;
+}
+
+.sidebar-item h3{
+    font-family: 'Handlee', cursive;
+    font-weight: 700;
+    color: #c3c4a5;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    font-size: 1vw;
+    transition: 0.5s;
+}
+
+.sidebar-item h3:hover{
+    font-family: 'Handlee', cursive;
+    font-weight: 700;
+    color: #c3c4a5;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    font-size: 1.2vw;
+    transition: 0.5s;
+}
+
+.sidebar-item hr{
+    border-top: 8px dotted #c1c89d;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+    width: 42%;
+    margin-bottom: 5%;
+}
+
+.sidebar-item a {
+    text-decoration: none;
+}
+
+.dashboard-nav {
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item-user img{
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    border-radius: 50%;
+}
+
+.nav-item-page-name h1{
+    font-family: 'Handlee', cursive;
+    font-size: 1.2vw;
+}
+
+.nav-item-user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-item-user h1{
+    font-family: 'Handlee', cursive;
+    font-size: 1.2vw;
+}
+
+.nav-item-user a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-vr{
+    border-left: 2px solid black;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.dashboard-body{
+    padding: 50px 15px 0;
+    display: flex;
+}
+
+/*Profile page*/
+.profile-details-section {
+    width: 50%;
+}
+
+.profile-img-section{
+    text-align: center;
+    justify-content: center;
+    width: 50%;
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.profile-img-section img{
+    width: 200px;
+    height: 200px;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    border-radius: 50%;
+}
+
+.wrapper{
+    max-width: 90%;
+    width: 100%;
+    padding: 25px 30px 30px 30px;
+    border-radius: 5px;
+    background: #F1F1F1;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+.wrapper nav{
+    position: relative;
+    width: 80%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-family: 'Handlee', cursive;
+    font-size: 1.5vw;
+}
+
+.wrapper nav label{
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    color: #749a6d;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.wrapper nav label:hover{
+    background: rgba(25, 91, 58, 0.3);
+}
+
+#overview:checked ~ nav label.overview,
+#edit:checked ~ nav label.edit-info{
+    color: #0F3D3E;
+}
+
+nav .slider{
+    position: absolute;
+    height: 100%;
+    width: 48%;
+    left: 5px;
+    bottom: 0;
+    z-index: 0;
+    border-radius: 5px;
+    background: rgba(23, 184, 104, 0.3);
+    transition: all 0.3s ease;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+#edit:checked ~ nav .slider{
+    left: 51%;
+}
+
+section .content{
+    display: none;
+    background: #F1F1F1;
+}
+
+#overview:checked ~ section .content-1,
+#edit:checked ~ section .content-2{
+    display: block;
+}
+
+section .content .title{
+    font-size: 21px;
+    font-weight: 500;
+    margin: 30px 0 10px 0;
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.profile-content-divider{
+    border-top: 2px solid #c1c89d;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.driver-profile-table,.designer-profile-table{
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.driver-profile-table td,.designer-profile-table td{
+    padding: 5px 60px 5px 20px;
+}
+
+.driver-profile-edit-table,.designer-profile-edit-table{
+    font-family: 'Poppins-Light', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.driver-profile-edit-table input,.designer-profile-table input{
+    padding: 5px 20px;
+    font-family: 'Poppins-Light', sans-serif;
+    font-size: 1vw;
+}
+
+.table-heading{
+    padding-right: 50px;
+}
+
+.profile-save-btn{
+    width: 20%;
+    margin-top: 13px;
+    height: 45px;
+    border: none;
+    font-size: 17px;
+    font-weight: 400;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content-2 form{
+    text-align: center;
+}
+
+.edit-img-container{
+    justify-content: center;
+
+}
+
+.edit-img-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-img-section button{
+    width: 60px;
+}
+
+.edit-img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+}
+
+.edit-btn-section label:first-child{
+    margin: 0 10px;
+    padding: 5px 10px;
+    font-family: 'Poppins-Light', sans-serif;
+    font-size: 1vw;
+    background: #104f4a;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.edit-btn-section label:last-child{
+    margin: 0 10px;
+    padding: 5px 10px;
+    font-family: 'Poppins-Light', sans-serif;
+    font-size: 1vw;
+    background: #721c24;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.edit-btn-section label input{
+    display: none;
+}
+
+.deli-pict{
+    height: 70%;
+    width: 40%;
+    margin: 20px;
+    border-radius: 15px;
+    float:left;
+}
+
+.text{
+    text-align:center;
+    font-family: Ubuntu;
+    font-size: 25px;
+
+}
+
+.para{
+    text-align:justify;
+    padding:5px;
+    line-height:34px;
+    font-family: 'Ubuntu', sans-serif;
+
+}
+
+#deli-hed{
+
+    padding-left: 35px;
+    color: #487eb0;
+    font-size: 35px;
+    font-family: Ubuntu;
+
+}
+
+.tbox{
+    float:left;
+}
+
+.tabl, .th, .tr{
+    border: 1px solid black;
+    border-collapse:collapse;
+    margin-left: 20px;
+    padding: 12px;
+}
+
 

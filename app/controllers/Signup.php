@@ -7,7 +7,7 @@ class Signup extends Controller
 
         $data['errors'] = [];
         $customer = new Customer();
-//        $driver = new Employee();
+//        $designer = new Employee();
 
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
@@ -19,18 +19,18 @@ class Signup extends Controller
         }
 
 //        $post = [
-//            'EmployeeID' => 'M001',
+//            'EmployeeID' => 'M002',
 //            'Firstname' => 'Balakrishnan',
-//            'Lastname'	=> 'vishnugan',
-//            'Email' => 'vishnuganb@gmail.com',
+//            'Lastname'	=> 'pirashanthy',
+//            'Email' => 'pirashanthy@gmail.com',
 //            'Password' => password_hash('123',PASSWORD_DEFAULT),
-//            'Role'	=> 'Driver',
-//            'Contactno'=> '0760866820',
+//            'Role'	=> 'Designer',
+//            'Contactno'=> '0771234567',
 //        ];
 
-        //$driver ->insert($post);
+//        $designer ->insert($post);
 
-        //$data['errors'] = $driver->errors;
+//        $data['errors'] = $designer->errors;
 
         $data['errors'] = $customer->errors;
 
