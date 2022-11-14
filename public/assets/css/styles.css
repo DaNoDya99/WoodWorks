@@ -1131,8 +1131,8 @@ section .content .title{
 .footer{
     background-color: #0F3D3E;
     color: #e2dcc8;
-    height: 27vh;
     font-family: 'Poppins-Light', sans-serif;
+    padding: 1%;
 }
 
 .footer-body{
@@ -1148,7 +1148,7 @@ section .content .title{
 }
 
 .footer-rights h2{
-    margin: 20px 0 0 0;
+    margin: 0;
 }
 
 /*Customer Profile page*/
@@ -1362,12 +1362,32 @@ section .content .title{
     font-family: 'Poppins-Light', sans-serif;
 }
 
+.product-img{
+    display: flex;
+    flex-direction: row;
+}
+
 .product-img img {
     width: 400px;
     height: 400px;
     object-fit: cover;
     border-radius: 5px;
     border: solid 2px black;
+    margin-right: 1%;
+}
+
+.product-sub-img{
+    display: flex;
+    flex-direction: column;
+}
+
+.product-sub-img img{
+    width: 58%;
+    height: 48%;
+}
+
+.product-sub-img img:first-child{
+    margin-bottom: 2%;
 }
 
 .product-desc {
@@ -1375,5 +1395,51 @@ section .content .title{
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    padding: 10px 15px;
+    padding: 10px 30px;
+}
+
+.product-desc h1 , .product-desc h2{
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.product-desc h1{
+    color: #2b7358;
+}
+
+.product-details{
+    display: flex;
+    justify-content: space-around;
+}
+
+.product-detail{
+    color: #721c24;
+    font-weight: bolder;
+}
+
+.product-desc p {
+    text-align: justify;
+}
+
+.product-desc div:last-child{
+    display: flex;
+    justify-content: center;
+}
+
+.product-desc div button{
+    width: 70%;
+    height: 2.5rem;
+    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-size: 1vw;
+    background-color: #2b7358;
+    border-radius: 5px;
+    color: #f9f9f9;
+    border: solid 2px black;
+    transition: 0.5s ease;
+}
+
+.product-desc div button:hover{
+    transform: scale(1.02);
+    height: 2.6rem;
+    transition: 0.5s ease;
 }
