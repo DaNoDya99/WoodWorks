@@ -11,7 +11,10 @@ class Customer_home extends Controller
             $this->redirect('login1');
         }
 
-        $this->view('reg_customer/customer_home');
+        $furniture = new Furnitures();
+        $data['rows'] = $furniture->getNewFurniture(['ProductID','Name','Cost']);
+
+        $this->view('reg_customer/customer_home',$data);
     }
 
     public function profile($id = null){

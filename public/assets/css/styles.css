@@ -964,6 +964,10 @@ section .content .title{
     margin: 0;
 }
 
+.product-card h2{
+    font-size: 0.9vw;
+}
+
 .product-card-img img{
     width: 246px;
     height: 250px;
@@ -991,16 +995,16 @@ section .content .title{
 }
 
 .product-card div:last-child button{
-    width: 200px;
-    height: 50px;
+    width: 150px;
+    height: 40px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
     font-family: 'Poppins-Light', sans-serif;
     font-weight: bolder;
-    font-size: 1vw;
+    font-size: 0.9vw;
     background-color: #100F0F;
     color: #ffffff;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .latest-product-posts {
@@ -1349,4 +1353,27 @@ section .content .title{
     color: #f9f9f9;
 }
 
+.product-desc-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5% 10%;
+    background-color: #e2dcc8;
+    font-family: 'Poppins-Light', sans-serif;
+}
 
+.product-img img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: solid 2px black;
+}
+
+.product-desc {
+    width: 40%;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    padding: 10px 15px;
+}

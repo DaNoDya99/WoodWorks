@@ -22,11 +22,9 @@
             <h1>Check out our latest products</h1>
         </div>
         <div class="latest-product-posts">
-            <?php $this->view('reg_customer/includes/product_card'); ?>
-            <?php $this->view('reg_customer/includes/product_card'); ?>
-            <?php $this->view('reg_customer/includes/product_card'); ?>
-            <?php $this->view('reg_customer/includes/product_card'); ?>
-            <?php $this->view('reg_customer/includes/product_card'); ?>
+            <?php foreach($rows as $row): ?>
+                <?php $data['row'] = $row; $this->view('reg_customer/includes/product_card',$data); ?>
+            <?php endforeach; ?>
         </div>
     </section>
     <section class="customize-designs-section">

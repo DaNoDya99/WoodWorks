@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/controllers/Furniture.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/reg_customer/product.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/configs/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/configs/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/init.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Customer_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Customer_home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/customer_home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/customer_home.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,9 +81,9 @@
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\WoodWorks\app\views\reg_customer" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\customer" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\assets\fonts\Poppins" />
-      <recent name="C:\xampp\htdocs\WoodWorks\app\views\reg_customer" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\admin" />
       <recent name="C:\xampp\htdocs\WoodWorks\app\views\admin\includes" />
     </key>
@@ -109,7 +117,7 @@
       <workItem from="1668178574450" duration="3179000" />
       <workItem from="1668220885420" duration="23405000" />
       <workItem from="1668309479417" duration="3251000" />
-      <workItem from="1668413922765" duration="320000" />
+      <workItem from="1668413922765" duration="12799000" />
     </task>
     <servers />
   </component>

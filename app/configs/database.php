@@ -207,28 +207,30 @@ class Database
         $this->query($query);
 
         $query = "
-             	CREATE TABLE IF NOT EXISTS `furniture` (
-                 `ProductID` char(5) NOT NULL,
-                 `Category` varchar(15) NOT NULL,
-                 `Description` varchar(1024) NOT NULL,
-                 `Quantity` int(11) NOT NULL,
-                 `Cost` float NOT NULL,
-                 `Visibility` tinyint(1) NOT NULL,
-                 `Availability` tinyint(1) NOT NULL,
-                 `Warrenty_period` char(8) NOT NULL,
-                 `Wood_type` char(15) NOT NULL,
-                 `Discount_percentage` decimal(10,0) DEFAULT NULL,
-                 `SupplierID` char(5) NOT NULL,
-                 `Discount_given_by` char(5) DEFAULT NULL,
-                 PRIMARY KEY (`ProductID`),
-                 KEY `DiscountGiven` (`Discount_given_by`),
-                 KEY `ProductID` (`ProductID`),
-                 KEY `ProductID_2` (`ProductID`,`Category`,`Description`,`Quantity`,`Cost`,`Visibility`,`Availability`,`Warrenty_period`,`Wood_type`,`Discount_percentage`,`SupplierID`,`Discount_given_by`),
-                 KEY `Description` (`Description`),
-                 KEY `FurnitureSupplier` (`SupplierID`),
-                 CONSTRAINT `DiscountGiven` FOREIGN KEY (`Discount_given_by`) REFERENCES `employee` (`EmployeeID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-                 CONSTRAINT `FurnitureSupplier` FOREIGN KEY (`SupplierID`) REFERENCES `supplier` (`SupplierID`) ON DELETE NO ACTION ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+             	 	CREATE TABLE `furniture` (
+                     `ProductID` char(5) NOT NULL,
+                     `Name` varchar(50) NOT NULL,
+                     `Category` varchar(15) NOT NULL,
+                     `Description` varchar(1024) NOT NULL,
+                     `Quantity` int(11) NOT NULL,
+                     `Cost` decimal(10,0) NOT NULL,
+                     `Visibility` tinyint(1) NOT NULL,
+                     `Availability` tinyint(1) NOT NULL,
+                     `Warrenty_period` char(8) NOT NULL,
+                     `Wood_type` char(15) NOT NULL,
+                     `Discount_percentage` decimal(10,0) DEFAULT NULL,
+                     `SupplierID` char(5) NOT NULL,
+                     `Discount_given_by` char(5) DEFAULT NULL,
+                     `Date` datetime NOT NULL DEFAULT current_timestamp(),
+                     PRIMARY KEY (`ProductID`),
+                     KEY `DiscountGiven` (`Discount_given_by`),
+                     KEY `ProductID` (`ProductID`),
+                     KEY `ProductID_2` (`ProductID`,`Category`,`Description`,`Quantity`,`Cost`,`Visibility`,`Availability`,`Warrenty_period`,`Wood_type`,`Discount_percentage`,`SupplierID`,`Discount_given_by`),
+                     KEY `Description` (`Description`),
+                     KEY `FurnitureSupplier` (`SupplierID`),
+                     CONSTRAINT `DiscountGiven` FOREIGN KEY (`Discount_given_by`) REFERENCES `employee` (`EmployeeID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+                     CONSTRAINT `FurnitureSupplier` FOREIGN KEY (`SupplierID`) REFERENCES `supplier` (`SupplierID`) ON DELETE NO ACTION ON UPDATE CASCADE
+                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1
         ";
 
         $this->query($query);
