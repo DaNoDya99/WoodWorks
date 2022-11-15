@@ -31,36 +31,20 @@
             </div>
             <p>(Based on last 10 customer reviews)</p>
         </div>
-        <div class="comments-sec">
-            <div class="commenter-header">
-                <div class="commenter-info">
-                    <img src="<?=ROOT?>/assets/images/customer/user.png" alt="">
-                    <h2>Anonymous</h2>
+        <?php if(!empty($reviews)):?>
+            <?php foreach ($reviews as $review):?>
+                <div class="comments-sec">
+                    <div class="commenter-header">
+                        <div class="commenter-info">
+                            <img src="<?=ROOT?>/assets/images/customer/user.png" alt="">
+                            <h2><?=$review->Firstname?> <?=$review->Lastname?></h2>
+                        </div>
+                        <p><?=$review->Date?></p>
+                    </div>
+                    <p><?=$review->Reviews?></p>
                 </div>
-                <p>01/01/2022</p>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam fuga nesciunt odit quas, voluptates. Facilis nihil qui quibusdam. Accusamus architecto atque aut blanditiis cumque deserunt, doloremque dolores doloribus et excepturi labore minus pariatur perferendis porro praesentium quae sed similique, tempore temporibus ullam unde voluptate voluptatum. Eos nihil optio sint.</p>
-        </div>
-        <div class="comments-sec">
-            <div class="commenter-header">
-                <div class="commenter-info">
-                    <img src="<?=ROOT?>/assets/images/customer/user.png" alt="">
-                    <h2>Anonymous</h2>
-                </div>
-                <p>01/01/2022</p>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam fuga nesciunt odit quas, voluptates. Facilis nihil qui quibusdam. Accusamus architecto atque aut blanditiis cumque deserunt, doloremque dolores doloribus et excepturi labore minus pariatur perferendis porro praesentium quae sed similique, tempore temporibus ullam unde voluptate voluptatum. Eos nihil optio sint.</p>
-        </div>
-        <div class="comments-sec">
-            <div class="commenter-header">
-                <div class="commenter-info">
-                    <img src="<?=ROOT?>/assets/images/customer/user.png" alt="">
-                    <h2>Anonymous</h2>
-                </div>
-                <p>01/01/2022</p>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam fuga nesciunt odit quas, voluptates. Facilis nihil qui quibusdam. Accusamus architecto atque aut blanditiis cumque deserunt, doloremque dolores doloribus et excepturi labore minus pariatur perferendis porro praesentium quae sed similique, tempore temporibus ullam unde voluptate voluptatum. Eos nihil optio sint.</p>
-        </div>
+            <?php endforeach;?>
+        <?php endif;?>
     </div>
 </div>
 

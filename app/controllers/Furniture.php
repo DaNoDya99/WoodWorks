@@ -18,8 +18,22 @@ class Furniture extends Controller
             $this->redirect('login1');
         }
 
+        $allowedCols = [
+            'ratings.Rating',
+            'ratings.Reviews',
+            'ratings.Date',
+            'customer.Firstname',
+            'customer.Lastname',
+            'customer.Image'
+
+        ];
+
         $furniture = new Furnitures();
+        $review = new Reviews();
+
+
         $data['row'] = $furniture->viewFurniture($id);
+        $data['reviews'] = $review->getReview($allowedCols,$id);
 
 
         $this->view("reg_customer/product", $data);
