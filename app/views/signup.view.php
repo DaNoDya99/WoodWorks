@@ -20,7 +20,7 @@
             <img class="login-background-img" src="<?=ROOT?>/assets/images/login1.jpg" alt="Login Backgroound">
         </div>
     </div>
-    <div class="form-container">
+    <div class="form-container">    
         <div class="login-form">
             <header>Signup Now</header>
             <?php if(!empty($errors)):?>
