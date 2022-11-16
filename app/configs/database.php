@@ -144,6 +144,22 @@ class Database
         $this->query($query);
 
         $query = "
+             	CREATE TABLE IF NOT EXISTS `supplier` (
+                 `SupplierID` char(5) NOT NULL,
+                 `Firstname` char(30) NOT NULL,
+                 `Lastname` char(30) NOT NULL,
+                 `Contactno` char(10) NOT NULL,
+                 `Company_name` varchar(100) NOT NULL,
+                 PRIMARY KEY (`SupplierID`),
+                 KEY `Firstname` (`Firstname`),
+                 KEY `Lastname` (`Lastname`),
+                 KEY `SupplierID` (`SupplierID`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+        ";
+
+        $this->query($query);
+        
+        $query = "
              	CREATE TABLE IF NOT EXISTS `company_order` (
                  `OrderID` char(60) NOT NULL,
                  `OrderStatus` char(10) NOT NULL,
@@ -345,20 +361,6 @@ class Database
 
         $this->query($query);
 
-        $query = "
-             	CREATE TABLE IF NOT EXISTS `supplier` (
-                 `SupplierID` char(5) NOT NULL,
-                 `Firstname` char(30) NOT NULL,
-                 `Lastname` char(30) NOT NULL,
-                 `Contactno` char(10) NOT NULL,
-                 `Company_name` varchar(100) NOT NULL,
-                 PRIMARY KEY (`SupplierID`),
-                 KEY `Firstname` (`Firstname`),
-                 KEY `Lastname` (`Lastname`),
-                 KEY `SupplierID` (`SupplierID`)
-                ) ENGINE=InnoDB DEFAULT CHARSET=latin1
-        ";
-
-        $this->query($query);
+        
     }
 }
