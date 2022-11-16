@@ -207,7 +207,7 @@ class Database
         $this->query($query);
 
         $query = "
-             	 	CREATE TABLE `furniture` (
+             	 	CREATE TABLE IF NOT EXISTS `furniture` (
                      `ProductID` char(5) NOT NULL,
                      `Name` varchar(50) NOT NULL,
                      `Category` varchar(15) NOT NULL,
