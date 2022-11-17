@@ -36,10 +36,20 @@
     height: 100vh;
 }
 .login-right{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
     background:#0F3D3E;
     width:50%;
     height: 100vh;
     
+}
+
+.login-quote{
+  font-family: 'Patrick Hand', cursive;
+  font-size: 25px;
+  color: grey;
 }
 .login-image{
     width: 65%;
@@ -135,6 +145,7 @@ input[type="submit"]:hover{
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   color: #0F3D3E;
 }
 

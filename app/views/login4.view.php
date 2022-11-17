@@ -50,10 +50,17 @@
     <div class="login-right">
        <img class="login-image" src="<?=ROOT?>/assets/images/login4.jpg">
        
-    </div>
+    
+        <div class="login-right-container-bottom">
+                <h1 class="login-quote">Furniture is meant to be used and enjoyed.</h1>
+        </div>
+        </div>            
     </div>
 
     
 
 </body>
 </html>
+
+
+

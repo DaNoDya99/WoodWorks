@@ -1,8 +1,8 @@
-<?php $this->view('admin/includes/header') ?>
+<?php $this->view('manager/includes/header') ?>
 
 <body class="admin">
     <div class="admin-body">
-        <?php $this->view('admin/includes/admin_sidebar') ?>
+        <?php $this->view('manager/includes/manager_sidebar') ?>
         <div class="dashboard">
             <div class="dashboard-nav">
                 <div class="nav-item-page-name">
