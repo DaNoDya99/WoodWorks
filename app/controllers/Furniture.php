@@ -18,6 +18,10 @@ class Furniture extends Controller
             $this->redirect('login1');
         }
 
+        $customer = new Customer();
+        $cus_id = Auth::getCustomerID();
+
+
         $allowedCols = [
             'ratings.Rating',
             'ratings.Reviews',
@@ -32,10 +36,12 @@ class Furniture extends Controller
         $review = new Reviews();
 
 
-        $data['row'] = $furniture->viewFurniture($id);
+        $data['row'] = $customer->where('CustomerID',$cus_id);
+        $data['furniture'] = $furniture->viewFurniture($id);
         $data['reviews'] = $review->getReview($allowedCols,$id);
 
 
         $this->view("reg_customer/product", $data);
     }
+
 }

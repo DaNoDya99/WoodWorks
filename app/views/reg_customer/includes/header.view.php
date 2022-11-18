@@ -17,16 +17,16 @@
         <div class="nav-items">
             <ul>
                 <li class="nav-item"><a href="<?=ROOT?>/customer_home">Home</a></li>
-                <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_profile">Shop</a></li>
-                <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_orders">Cart</a></li>
+                <li class="nav-item"><a href="<?=ROOT?>/category">Shop</a></li>
+                <li class="nav-item"><a href="<?=ROOT?>/furniture/category">Cart</a></li>
                 <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_cart">About</a></li>
                 <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_logout">Contact</a></li>
             </ul>
         </div>
         <div class="nav-profile-section">
             <div class="nav-user-details">
-                <img src="<?=ROOT?>/<?=Auth::getImage()?>" alt="User">
-                <h1>Welcome, <?=Auth::getFirstname()?></h1>
+                <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="User">
+                <h1>Welcome, <?=$row[0]->Firstname?></h1>
             </div>
             <div class="dropdown">
                 <button class="dropbtn">Account</button>

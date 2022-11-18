@@ -25,7 +25,6 @@ class Reviews extends Model
         $query = trim($query,", ");
         $query .= " from ".$this->table." INNER JOIN customer ON ".$this->table.".CustomerID = customer.CustomerID WHERE ".$this->table.".ProductID = '$id';";
 
-//        show($query);die;
         return $this->query($query);
     }
 }

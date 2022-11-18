@@ -4,6 +4,8 @@ require "../app/models/Employee.php";
 
 class Admin extends Controller
 {
+    protected $message = '';
+
     public function index()
     {
         if(!Auth::logged_in())
@@ -104,13 +106,25 @@ class Admin extends Controller
 
             if($employee->validate($_POST)) {
                 $destination = $folder."user.png";
-                copy(ROOT."assets/images/admin/user.png",$destination);
+
+                if(!file_exists(ROOT."/assets/images/admin/user.png"))
+                {
+                    if(copy(ROOT."/assets/images/admin/user.png",$destination))
+                    {
+                        $this->message = "Image cannot be copied.";
+                    }else{
+                        $this->message = "Image copied successfully.";
+                    }
+                }
+
                 $_POST['Image'] = $destination;
+
                 $employee->insert($_POST);
                 $this->redirect('admin/employees');
             }
         }
 
+        $data['message'] = $this->message;
         $data['errors'] = $employee->errors;
         $data['title'] = "ADD EMPLOYEE";
 

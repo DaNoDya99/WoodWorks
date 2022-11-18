@@ -1,4 +1,4 @@
-<?php $this->view('reg_customer/includes/header'); ?>
+<?php $data['row'] = $row; $this->view('reg_customer/includes/header',$data); ?>
 
 <div class="product-view">
     <div class="product-desc-section">
@@ -10,13 +10,13 @@
             </div>
         </div>
         <div class="product-desc">
-            <h2><?=$row[0]->Name?></h2>
-            <h1>Rs. <?=$row[0]->Cost?>.00</h1>
-            <p>Wood Type : <?=$row[0]->Wood_type?></p>
-            <p><?=$row[0]->Description?></p>
+            <h2><?=$furniture[0]->Name?></h2>
+            <h1>Rs. <?=$furniture[0]->Cost?>.00</h1>
+            <p>Wood Type : <?=$furniture[0]->Wood_type?></p>
+            <p><?=$furniture[0]->Description?></p>
             <div class="product-details">
-                <p class="product-detail"><?=$row[0]->Availability == 1 ? "In Stock" : "Out of Stock";?></p>
-                <p class="product-detail"><?=$row[0]->Warrenty_period?> Warrenty</p>
+                <p class="product-detail"><?=$furniture[0]->Availability == 1 ? "In Stock" : "Out of Stock";?></p>
+                <p class="product-detail"><?=$furniture[0]->Warrenty_period?> Warrenty</p>
             </div>
             <div>
                 <button>Add to cart</button>
@@ -36,7 +36,7 @@
                 <div class="comments-sec">
                     <div class="commenter-header">
                         <div class="commenter-info">
-                            <img src="<?=ROOT?>/assets/images/customer/user.png" alt="">
+                            <img src="<?=ROOT?>/<?=$review->Image?>" alt="">
                             <h2><?=$review->Firstname?> <?=$review->Lastname?></h2>
                         </div>
                         <p><?=$review->Date?></p>

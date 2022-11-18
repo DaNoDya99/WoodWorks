@@ -1,4 +1,4 @@
-<?php $this->view('reg_customer/includes/header'); ?>
+<?php $data['row'] = $row; $this->view('reg_customer/includes/header',$data); ?>
 
 <div class="cus-profile-body">
     <div class="decorate-card card-left">
@@ -6,8 +6,8 @@
     </div>
     <div class="cus-profile-card">
         <div class="cus-pro-img-sec">
-            <img src="<?=ROOT?>/<?=Auth::getImage()?>" alt="No Profile">
-            <h1><?=Auth::getFirstname()?> <?=Auth::getLastname()?></h1>
+            <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="No Profile">
+            <h1><?=$row[0]->Firstname?> <?=$row[0]->Lastname?></h1>
         </div>
         <div class="cus-pro-info">
             <hr>
@@ -23,22 +23,27 @@
             <button onclick="openPopup()">Edit Profile</button>
 
             <div class="popup" id="popup">
-                <h2>Edit Profile</h2>
-                <form action="" method="post">
+                <div class="popup-heading">
+                    <h2>Edit Profile</h2>
+                    <img src="<?=ROOT?>/assets/images/customer/close.png" alt="Close" onclick="closePopup()">
+                </div>
+                <form method="post" enctype="multipart/form-data">
                     <div class="image-field">
-                        <img src="<?=ROOT?>/<?=Auth::getImage()?>" alt="No profile pic">
+                        <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="No profile pic">
                         <label>
                             Upload
                             <input onchange="load_image(this.files[0])" type="file" name="Image">
                         </label>
                     </div>
-                    <div class="edit-cus-field">
-                        <label>First Name</label>
-                        <input type="text" name="Firstname" value="<?=$row[0]->Firstname?>">
-                    </div>
-                    <div class="edit-cus-field">
-                        <label>Last Name</label>
-                        <input type="text" name="Lastname" value="<?=$row[0]->Lastname?>">
+                    <div class="name-field">
+                        <div class="edit-cus-field first-name">
+                            <label>First Name</label>
+                            <input type="text" name="Firstname" value="<?=$row[0]->Firstname?>">
+                        </div>
+                        <div class="edit-cus-field last-name">
+                            <label>Last Name</label>
+                            <input type="text" name="Lastname" value="<?=$row[0]->Lastname?>">
+                        </div>
                     </div>
                     <div class="edit-cus-field">
                         <label>Email</label>
@@ -70,14 +75,6 @@
     </div>
 </div>
 
-<script>
-    let popup = document.getElementById('popup');
-    function openPopup(){
-        popup.classList.add("open-popup");
-    }
-    function closePopup(){
-        popup.classList.remove("open-popup");
-    }
-</script>
+<script src="<?=ROOT?>/assets/javascript/customer_profile.js"></script>
 
 <?php $this->view('reg_customer/includes/footer'); ?>
