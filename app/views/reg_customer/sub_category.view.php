@@ -12,9 +12,13 @@
         </div>
         <div class="cat-products-body">
             <div class="cat-products">
-                <?php foreach ($furniture as $row):?>
-                    <?php $data['row'] = $row; $this->view('reg_customer/includes/product_card',$data); ?>
-                <?php endforeach;?>
+                <?php if(!empty($furniture)): ?>
+                    <?php foreach ($furniture as $row):?>
+                        <?php $data['row'] = $row; $this->view('reg_customer/includes/product_card',$data); ?>
+                    <?php endforeach;?>
+                <?php else: ?>
+                    <h1>No products to show.</h1>
+                <?php endif; ?>
             </div>
             <?php $pager->display()?>
         </div>
