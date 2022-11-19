@@ -18,10 +18,30 @@ class Furniture extends Controller
             $this->redirect('login1');
         }
 
+        $customer = new Customer();
+        $cus_id = Auth::getCustomerID();
+
+
+        $allowedCols = [
+            'ratings.Rating',
+            'ratings.Reviews',
+            'ratings.Date',
+            'customer.Firstname',
+            'customer.Lastname',
+            'customer.Image'
+
+        ];
+
         $furniture = new Furnitures();
-        $data['row'] = $furniture->viewFurniture($id);
+        $review = new Reviews();
+
+
+        $data['row'] = $customer->where('CustomerID',$cus_id);
+        $data['furniture'] = $furniture->viewFurniture($id);
+        $data['reviews'] = $review->getReview($allowedCols,$id);
 
 
         $this->view("reg_customer/product", $data);
     }
+
 }

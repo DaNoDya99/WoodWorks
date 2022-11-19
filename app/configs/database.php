@@ -144,6 +144,22 @@ class Database
         $this->query($query);
 
         $query = "
+             	CREATE TABLE IF NOT EXISTS `supplier` (
+                 `SupplierID` char(5) NOT NULL,
+                 `Firstname` char(30) NOT NULL,
+                 `Lastname` char(30) NOT NULL,
+                 `Contactno` char(10) NOT NULL,
+                 `Company_name` varchar(100) NOT NULL,
+                 PRIMARY KEY (`SupplierID`),
+                 KEY `Firstname` (`Firstname`),
+                 KEY `Lastname` (`Lastname`),
+                 KEY `SupplierID` (`SupplierID`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+        ";
+
+        $this->query($query);
+        
+        $query = "
              	CREATE TABLE IF NOT EXISTS `company_order` (
                  `OrderID` char(60) NOT NULL,
                  `OrderStatus` char(10) NOT NULL,
@@ -248,6 +264,33 @@ class Database
         $this->query($query);
 
         $query = "
+             	CREATE TABLE IF NOT EXISTS `order` (
+                 `OrderID` char(60) NOT NULL,
+                 `Payment_type` char(6) NOT NULL,
+                 `Total_amount` float NOT NULL,
+                 `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+                 `Deliver_method` char(8) NOT NULL,
+                 `Order_status` char(10) NOT NULL,
+                 `Address` varchar(200) NOT NULL,
+                 `CustomerID` char(60) NOT NULL,
+                 `DriverID` char(5) NOT NULL,
+                 PRIMARY KEY (`OrderID`),
+                 KEY `OrderID` (`OrderID`),
+                 KEY `Payment_type` (`Payment_type`),
+                 KEY `Total_amount` (`Total_amount`),
+                 KEY `Date` (`Date`),
+                 KEY `Deliver_method` (`Deliver_method`),
+                 KEY `Order_status` (`Order_status`),
+                 KEY `Address` (`Address`),
+                 KEY `CustomerID` (`CustomerID`),
+                 KEY `DriverID` (`DriverID`),
+                 CONSTRAINT `CustomerOrder` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+        ";
+
+        $this->query($query);
+
+        $query = "
             	CREATE TABLE IF NOT EXISTS `issues` (
                  `IssueID` char(60) NOT NULL,
                  `Problem_statement` varchar(1024) NOT NULL,
@@ -280,32 +323,6 @@ class Database
 
         $this->query($query);
 
-        $query = "
-             	CREATE TABLE IF NOT EXISTS `order` (
-                 `OrderID` char(60) NOT NULL,
-                 `Payment_type` char(6) NOT NULL,
-                 `Total_amount` float NOT NULL,
-                 `Date` timestamp NOT NULL DEFAULT current_timestamp(),
-                 `Deliver_method` char(8) NOT NULL,
-                 `Order_status` char(10) NOT NULL,
-                 `Address` varchar(200) NOT NULL,
-                 `CustomerID` char(60) NOT NULL,
-                 `DriverID` char(5) NOT NULL,
-                 PRIMARY KEY (`OrderID`),
-                 KEY `OrderID` (`OrderID`),
-                 KEY `Payment_type` (`Payment_type`),
-                 KEY `Total_amount` (`Total_amount`),
-                 KEY `Date` (`Date`),
-                 KEY `Deliver_method` (`Deliver_method`),
-                 KEY `Order_status` (`Order_status`),
-                 KEY `Address` (`Address`),
-                 KEY `CustomerID` (`CustomerID`),
-                 KEY `DriverID` (`DriverID`),
-                 CONSTRAINT `CustomerOrder` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=latin1
-        ";
-
-        $this->query($query);
 
         $query = "
              	CREATE TABLE IF NOT EXISTS `order_item` (
@@ -340,22 +357,6 @@ class Database
                  KEY `RateProduct` (`ProductID`),
                  CONSTRAINT `RateCustomer` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE CASCADE,
                  CONSTRAINT `RateProduct` FOREIGN KEY (`ProductID`) REFERENCES `furniture` (`ProductID`) ON DELETE NO ACTION ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=latin1
-        ";
-
-        $this->query($query);
-
-        $query = "
-             	CREATE TABLE IF NOT EXISTS `supplier` (
-                 `SupplierID` char(5) NOT NULL,
-                 `Firstname` char(30) NOT NULL,
-                 `Lastname` char(30) NOT NULL,
-                 `Contactno` char(10) NOT NULL,
-                 `Company_name` varchar(100) NOT NULL,
-                 PRIMARY KEY (`SupplierID`),
-                 KEY `Firstname` (`Firstname`),
-                 KEY `Lastname` (`Lastname`),
-                 KEY `SupplierID` (`SupplierID`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
         ";
 

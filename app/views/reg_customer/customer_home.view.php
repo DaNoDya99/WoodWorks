@@ -1,4 +1,4 @@
-<?php $this->view('reg_customer/includes/header'); ?>
+<?php $data['row'] = $row; $this->view('reg_customer/includes/header',$data); ?>
 
 <div>
     <section class="intro-section">
@@ -22,7 +22,7 @@
             <h1>Check out our latest products</h1>
         </div>
         <div class="latest-product-posts">
-            <?php foreach($rows as $row): ?>
+            <?php foreach($furnitures as $row): ?>
                 <?php $data['row'] = $row; $this->view('reg_customer/includes/product_card',$data); ?>
             <?php endforeach; ?>
         </div>
