@@ -91,6 +91,10 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
+    public function getAllImages($id)
+    {
+        $query = "select Image from furniture_image WHERE ProductID = '$id';";
 
-
+        return $this->query($query);
+    }
 }

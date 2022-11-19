@@ -3,11 +3,24 @@
 <div class="product-view">
     <div class="product-desc-section">
         <div class="product-img">
-            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="product image">
-            <div class="product-sub-img">
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="product image">
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="product image">
+            <div class="slide-show-container">
+                <div class="my-slides fade">
+                    <div class="number-text">1 / 3</div>
+                    <img src="<?=ROOT?>/<?=$images[0]->Image?>" alt="">
+                </div>
+                <div class="my-slides fade">
+                    <div class="number-text">2 / 3</div>
+                    <img src="<?=ROOT?>/<?=$images[1]->Image?>" alt="">
+                </div>
+                <div class="my-slides fade">
+                    <div class="number-text">3 / 3</div>
+                    <img src="<?=ROOT?>/<?=$images[2]->Image?>" alt="">
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094</a>
+                <a class="next" onclick="plusSlides(1)">&#10095</a>
             </div>
+            <br>
         </div>
         <div class="product-desc">
             <h2><?=$furniture[0]->Name?></h2>
@@ -48,4 +61,5 @@
     </div>
 </div>
 
+    <script src="<?=ROOT?>/assets/javascript/slider.js"></script>
 <?php $this->view('reg_customer/includes/footer'); ?>

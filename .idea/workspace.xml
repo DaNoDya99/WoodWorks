@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_1_P.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_1_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_1_S2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_2_P.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_3_P.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_4_P.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_5_P.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_6_P.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_7_P.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_8_P.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/javascript/slider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Customer_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Customer_home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Furniture.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Furniture.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Furnitures.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/sub_category.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/sub_category.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/product.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/product.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +119,7 @@
       <workItem from="1668569343996" duration="19936000" />
       <workItem from="1668656054706" duration="23816000" />
       <workItem from="1668741900173" duration="12938000" />
-      <workItem from="1668833352316" duration="8441000" />
+      <workItem from="1668833352316" duration="18364000" />
     </task>
     <servers />
   </component>
