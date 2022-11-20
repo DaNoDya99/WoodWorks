@@ -15,7 +15,15 @@ class Customer_home extends Controller
         $customer = new Customer();
         $id = Auth::getCustomerID();
         $data['row'] = $customer->where('CustomerID',$id);
-        $data['furnitures'] = $furniture->getNewFurniture(['ProductID','Name','Cost']);
+        $data['furnitures'] =$rows= $furniture->getNewFurniture(['ProductID','Name','Cost']);
+
+        foreach ($rows as $row)
+        {
+            if(!empty($furniture->getDisplayImage($row->ProductID)[0]->Image))
+            {
+                $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+            }
+        }
 
         $this->view('reg_customer/customer_home',$data);
     }

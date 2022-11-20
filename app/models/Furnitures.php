@@ -22,7 +22,7 @@ class Furnitures extends Model
         'Date'
     ];
 
-    public function getNewFurniture($fields = null,$limit = 2,$order = 'asc')
+    public function getNewFurniture($fields = null,$limit = 5,$order = 'asc')
     {
         $query = "select ";
 
@@ -67,12 +67,34 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
-    public function getFurnitures($category = null,$sub_cat = 'Side Table',$limit = 2,$offset){
+    public function getFurnitures($category = null,$sub_cat,$limit = 2,$offset){
 
         $query = "select ProductID, Name , Cost from furniture WHERE CategoryID = '$category' && Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
 
         return $this->query($query);
-
     }
 
+    public function getDisplayImage($ProductId = null)
+    {
+        $query = "
+             WITH cte as
+             (
+                 SELECT *,
+                  ROW_NUMBER()
+                  OVER (PARTITION BY ProductID) AS rn
+               FROM furniture_image WHERE ProductID = '$ProductId'
+             )
+            select * from cte
+            where rn = 1  
+        ";
+
+        return $this->query($query);
+    }
+
+    public function getAllImages($id)
+    {
+        $query = "select Image from furniture_image WHERE ProductID = '$id';";
+
+        return $this->query($query);
+    }
 }
