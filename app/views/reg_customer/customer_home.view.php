@@ -10,7 +10,9 @@
                 and creates a functional and comfortable design of your dream house
                 where you want to come back after a long working day. Turn your room with panto into a lot
                 more minimalist and modern with ease and speed.</h3>
-                <button>Shop now</button>
+                <a href="<?=ROOT?>/category">
+                    <button>Shop now</button>
+                </a>
             </div>
             <div class="intro-img">
                 <img src="<?=ROOT?>/assets/images/customer/intro.jpg" alt="Intro Image">

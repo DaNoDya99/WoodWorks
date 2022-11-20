@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/javascript/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_2_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_2_S2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_3_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_3_S2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_4_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_4_S2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_5_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_5_S2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_6_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_6_S2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_7_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_7_S2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_8_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_8_S2.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Furniture.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Furniture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Furnitures.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/product.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/product.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/customer_home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/customer_home.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +130,8 @@
       <workItem from="1668569343996" duration="19936000" />
       <workItem from="1668656054706" duration="23816000" />
       <workItem from="1668741900173" duration="12938000" />
-      <workItem from="1668833352316" duration="18364000" />
+      <workItem from="1668833352316" duration="20892000" />
+      <workItem from="1668918850197" duration="4088000" />
     </task>
     <servers />
   </component>
