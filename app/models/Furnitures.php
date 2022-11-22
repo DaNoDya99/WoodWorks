@@ -74,6 +74,13 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
+    public function getFurniture($id){
+
+        $query = "select Name , Cost from furniture WHERE ProductID = :ProductID; ";
+
+        return $this->query($query,['ProductID' => $id]);
+    }
+
     public function getDisplayImage($ProductId = null)
     {
         $query = "

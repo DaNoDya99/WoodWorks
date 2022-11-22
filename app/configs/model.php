@@ -37,6 +37,7 @@ class Model extends Database
     {
         $column = addslashes($column);
         $query = "select * from $this->table where $column = :value";
+
         return $this->query($query,['value' => $value]);
     }
 

@@ -15,13 +15,13 @@ class Database
         $statement = $con->prepare($query);
         if($statement){
             $check = $statement->execute($data);
+
             if($check) {
                 $mode = PDO::FETCH_OBJ;
                 if ($type != 'object') {
                     $mode = PDO::FETCH_ASSOC;
                 }
                 $result = $statement->fetchAll($mode);
-
                 if(is_array($result) && count($result)>0){
                     return $result;
                 }
