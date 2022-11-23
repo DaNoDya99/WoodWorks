@@ -1,17 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?=APPNAME?></title>
-    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles_login3.css">
+<?php $this->view('driver/includes/header') ?>
 
-</head>
 <body class="driver">
 <div class="driver-body">
-    <?php $this->view('includes/driver_sidebar') ?>
+    <?php $this->view('driver/includes/driver_sidebar') ?>
     <div class="dashboard">
         <div class="dashboard-nav">
             <div class="nav-item-page-name">
@@ -20,9 +11,9 @@
             <div class="nav-item-user">
                 <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="Profile picture">
                 <div class="nav-vr"></div>
-                <h1>Hi, <?=$row[0]->Firstname?></h1>
+                <h1>Hi, <?=ucfirst(substr(Auth::getFirstname(),0,1))?>.<?=Auth::getLastname()?></h1>
                 <div class="nav-vr"></div>
-                <a href="<?=ROOT?>/login3">
+                <a href="<?=ROOT?>/logout3">
                     <h1>Logout</h1>
                 </a>
             </div>
@@ -30,8 +21,8 @@
         <div class="dashboard-body">
             <div class="profile-img-section">
                 <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="">
-                <h1><?=$row[0]->Firstname?> <?=$row[0]->Lastname?></h1>
-                <h2><?=$row[0]->Role?></h2>
+                <h1><?=esc($row[0]->Firstname)?> <?=esc($row[0]->Lastname)?></h1>
+                <h2><?=esc($row[0]->Role)?></h2>
             </div>
             <div class="profile-details-section">
                 <div class="wrapper">
@@ -47,12 +38,12 @@
                             <div class="title">Profile Details</div>
                             <hr class="profile-content-divider">
                             <table class="driver-profile-table">
-                                <tr><td>Employee ID :</td><td><?=$row[0]->EmployeeID?></td></tr>
-                                <tr><td>First Name :</td><td><?=$row[0]->Firstname?></td></tr>
-                                <tr><td>Last Name :</td><td><?=$row[0]->Lastname?></td></tr>
-                                <tr><td>Email :</td><td><?=$row[0]->Email?></td></tr>
-                                <tr><td>Role :</td><td><?=$row[0]->Role?></td></tr>
-                                <tr><td>Contact No :</td><td><?=$row[0]->Contactno?></td></tr>
+                                <tr><td>Employee ID :</td><td><?=esc($row[0]->EmployeeID)?></td></tr>
+                                <tr><td>First Name :</td><td><?=esc($row[0]->Firstname)?></td></tr>
+                                <tr><td>Last Name :</td><td><?=esc($row[0]->Lastname)?></td></tr>
+                                <tr><td>Email :</td><td><?=esc($row[0]->Email)?></td></tr>
+                                <tr><td>Role :</td><td><?=esc($row[0]->Role)?></td></tr>
+                                <tr><td>Contact No :</td><td><?=esc($row[0]->Contactno)?></td></tr>
                                 <tr><td>Date :</td><td><?=$row[0]->Date?></td></tr>
                             </table>
                         </div>
@@ -103,5 +94,5 @@
 
 </div>
 </body>
-<script src="<?=ROOT?>/assets/javascript/driver-profile.js"></script>
+<script src="<?=ROOT?>/assets/javascript/driver/driver-profile.js"></script>
 </html>

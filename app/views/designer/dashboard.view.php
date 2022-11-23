@@ -1,16 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?=APPNAME?></title>
-    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles_login3.css">
-</head>
+<?php $this->view('designer/includes/header') ?>
+
 <body class="designer">
 <div class="designer-body">
-    <?php $this->view('includes/designer_sidebar') ?>
+    <?php $this->view('designer/includes/designer_sidebar') ?>
     <div class="dashboard">
         <div class="dashboard-nav">
             <div class="nav-item-page-name">
@@ -19,7 +11,7 @@
             <div class="nav-item-user">
                 <img src="<?=ROOT?>/assets/images/designer/user.png" alt="Profile picture">
                 <div class="nav-vr"></div>
-                <h1>Hi, <?=Auth::getFirstname()?></h1>
+                <h1>Hi, <?=ucfirst(substr(Auth::getFirstname(),0,1))?>.<?=Auth::getLastname()?></h1>
                 <div class="nav-vr"></div>
                 <a href="<?=ROOT?>/login3">
                     <h1>Logout</h1>

@@ -63,10 +63,37 @@ class Model extends Database
         $query = trim($query,",");
         $query .= " where ".$id." = :".$id;
 
-//        show($query);
-//        show($data);
-
 
         $this->query($query,$data);
+    }
+
+    public function findAll()
+    {
+        $query = "select * from $this->table";
+        return $this->query($query);
+    }
+
+    public function first($data)
+    {
+
+        $keys = array_keys($data);
+
+        $query = "select * from ".$this->table." where ";
+
+        foreach ($keys as $key)
+        {
+            $query .= $key."=:".$key." && ";
+        }
+
+        $query = trim($query,"&& "); // where clause says 1st record matches in the table
+        $query .= " order by id desc limit 1"; // But starting from the end of the table or latest record
+        $res = $this->query($query,$data);
+
+        if(is_array($res))
+        {
+            return $res[0];
+        }
+        return false;
+
     }
 }

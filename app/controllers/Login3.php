@@ -23,7 +23,7 @@ class Login3 extends Controller
 
                     if(strtolower($result_dri[0]->Role) == 'driver'){
                         Auth::authenticate($result_dri[0]);
-                        $this->redirect('Driver');
+                        $this->redirect('driver_home');
                     }
                 }
             }

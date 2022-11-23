@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles_login3.css">
-    <title><?=APPNAME?></title>
+    <title><?=ucfirst(App::$page)?> - <?=APPNAME?></title>
 </head>
 <body class="bdy">
 
@@ -20,7 +20,12 @@
 
         <input type="email" name="Email" placeholder="Enter Your Email" class="txt">
         <input type="password" name="Password" placeholder="Enter Your Password" class="txt">
-<!--        <input type="button" name="submit" value="LOGIN" class="btn">-->
+
+<!--        <div class="form-check">-->
+<!--            <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">-->
+<!--            <label class="form-check-label" >Remember me</label>-->
+<!--        </div>-->
+
         <button type="submit" class="btn">Login</button>
         <a href="#">Forget Password ?</a>
 

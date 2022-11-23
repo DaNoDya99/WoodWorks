@@ -12,9 +12,8 @@ class Auth
     public static function logout()
     {
         if(!empty($_SESSION['USER_DATA'])){
-            unset($_SESSION['USER_DATA']);
-            //session_unset();
-            //session_regenerate_id();
+            session_destroy();
+            show($_SESSION);
         }
     }
 
@@ -34,12 +33,6 @@ class Auth
             return true;
         }
         return false;
-    }
-
-    public static function getCustomerID()
-    {
-            $query = "select CustomerID from customer";
-
     }
 
     public static function __callStatic($name, $arguments)

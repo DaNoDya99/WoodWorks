@@ -16,7 +16,21 @@ class Login1 extends Controller
             $result_emp = $employee->where('email',$_POST['Email']);
             $result_cus = $customer->where('email',$_POST['Email']);
 
-            if($result_emp)
+            if($result_emp && $result_cus){
+                if(password_verify($_POST['Password'],$result_emp[0]->Password))
+                {
+                    if(strtolower($result_emp[0]->Role) == 'administrator'){
+                        Auth::authenticate($result_emp[0]);
+                        $this->redirect('admin');
+                    }
+                }elseif ($result_cus) {
+                    if (password_verify($_POST['Password'], $result_cus[0]->Password)) {
+                        Auth::authenticate($result_cus[0]);
+                        $this->redirect('/customer_home');
+                    }
+                }
+            }
+            elseif($result_emp)
             {
                 if(password_verify($_POST['Password'],$result_emp[0]->Password))
                 {
@@ -29,7 +43,7 @@ class Login1 extends Controller
                 if(password_verify($_POST['Password'],$result_cus[0]->Password))
                 {
                     Auth::authenticate($result_cus[0]);
-                    $this->redirect('customer_home');
+                    $this->redirect('/customer_home');
                 }
             }
 

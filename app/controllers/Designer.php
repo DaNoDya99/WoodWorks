@@ -24,7 +24,7 @@ class Designer extends Controller
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employee();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
-//        show($row);
+//        show($id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
         {
@@ -69,5 +69,191 @@ class Designer extends Controller
         $data['errors'] = $employee->errors;
 
         $this->view('designer/profile',$data);
+
     }
+    public function design()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login3');
+        }
+
+        $employee = new Employee();
+        $data['rows'] = $employee->query("SELECT * FROM design INNER JOIN design_images ON design.DesignID = design_images.DesignID;");
+
+        $data['title'] = "DESIGNS";
+        $this->view('designer/design',$data);
+
+    }
+
+    public function add_design($id=null)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login3');
+        }
+
+        $folder = "uploads/images/";
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employee();
+        $data['row'] = $row = $employee->where('EmployeeID', $id);
+        //show($row);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
+        {
+
+            if ($employee->validate($_POST))
+            {
+                $destination = $folder . "user.png";
+                copy(ROOT . "assets/images/designer/user.png", $destination);
+                $_POST['Image'] = $destination;
+                $employee->insert($_POST);
+                $this->redirect('designer/design');
+            }
+
+        }
+        $data['errors'] = $employee->errors;
+        $data['title'] = "ADD DESIGNS";
+
+        $this->view('designer/includes/add_design',$data);
+    }
+
+    public function add_new_design($id=null)
+    {
+
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login3');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employee();
+        $design = new Design();
+
+        $design_images = new Design_images();
+        $data['row'] = $row = $employee->where('EmployeeID',$id);
+        $data['design_row'] = $design_row = $design->first(['EmployeeID'=>$id]);
+        $designID = $design_row->DesignID;
+
+        if($_SERVER['REQUEST_METHOD'] == "POST" && $row) {
+
+            $images = $_FILES['images'];
+            $num_of_imgs = count($images['name']); //number of images
+            $_POST['EmployeeID'] = $id;
+
+            for ($i = 0; $i < $num_of_imgs; $i++)
+            {
+
+
+                $image_name = $images['name'][$i];
+                $tmp_name = $images['tmp_name'][$i];
+                $error = $images['error'][$i];
+
+
+                $folder = "uploads/designer/images/";
+
+                if (!file_exists($folder))
+                {
+                    mkdir($folder, 0777, true);
+                    file_put_contents($folder . "index.php", "<?php //silence");
+                    file_put_contents("uploads/designer/index.php", "<?php //silence");
+                }
+
+                if (!empty($image_name))
+                {
+
+                    if ($error === 0)
+                    {
+
+                        $img_ex = pathinfo($image_name, PATHINFO_EXTENSION);// image extension
+                        $img_ex_lc = strtolower($img_ex); // image extension lowercase
+                        $allowed_exs = array('jpg', 'jpeg', 'png');// allowed extensions
+
+                        if (in_array($img_ex_lc, $allowed_exs))
+                        {
+
+                            $new_img_name = uniqid('IMG-',true).'.'.$img_ex_lc;// unique image names
+                            $destination = $folder . time() . $new_img_name;
+
+                            move_uploaded_file($tmp_name, $destination);
+                            $design->insert($_POST);
+                            //$query = "INSERT INTO design_images (Image) VALUES (?)";
+                            $design_images->insert (['DesignID'=>$designID,'Image'=>$destination]);
+                            $this->redirect('designer/design');
+
+                        }
+                        else
+                        {
+                            $employee->errors['image'] = "This file type is not allowed";
+                        }
+                    }
+                    else
+                    {
+                        $employee->errors['image'] = "Could not upload image";
+                    }
+
+                }
+
+            }
+
+            $data['title'] = "Add Design";
+            $this->view('designer/design', $data);
+        }
+
+    }
+
+    public function uploadData()
+    {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login3');
+        }
+
+        if(isset($_POST['AddDesign']))
+        {
+
+            $images = $_FILES['images'];
+            $num_of_imgs = count($images['name']);
+
+            for ($i=0; $i<$num_of_imgs; $i++)
+            {
+                $image_name = $images['name'][$i];
+                $tmp_name = $images['tmp_name'][$i];
+                $error = $images['error'][$i];
+
+                if($error === 0)
+                {
+                    $img_ex = pathinfo($image_name,PATHINFO_EXTENSION);
+                    $img_ex_lc = strtolower($img_ex);
+                    $allowed_exs = array('jpg','jpeg','png');
+
+                    if(in_array($img_ex_lc,$allowed_exs))
+                    {
+
+                        $new_img_name = uniqid('IMG-',true).'.'.$img_ex_lc;
+                        $img_upload_path = 'uploads/designer/'.$new_img_name;
+
+//                        $sql = "INSERT INTO design_images (Image) VALUES (?)";
+//                        $stmt = $conn->prepare($sql);
+//                        $stmt->execute([$new_img_name]);
+
+                        move_uploaded_file($tmp_name,$img_upload_path);
+
+                        $this->redirect('designer/design');
+
+                    }else
+                    {
+                        $em = "You can't upload files of this type";
+                        header("Location: http://localhost/woodworks/public/designer/add_design?error=$em");
+                    }
+
+                }else{
+                    //error message
+                    $em = "Unknown Error Occurred while uploading";
+                    header("Location: http://localhost/woodworks/public/designer/add_design?error=$em");
+                }
+            }
+        }
+
+    }
+
 }
