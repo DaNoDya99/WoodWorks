@@ -52,4 +52,18 @@ class Carts extends Model
 
         return $text;
     }
+
+    public function updateTotalAmountToIncrease($cartID, $cost)
+    {
+         $query = "UPDATE `cart` SET Total_amount = (SELECT Total_amount FROM cart WHERE CartID = :CartID ) + :Cost WHERE CartID = :CartID;";
+
+         $this->query($query , ['CartID' => $cartID, 'Cost' => $cost]);
+    }
+
+    public function updateTotalAmountToDecrease($cartID, $cost)
+    {
+         $query = "UPDATE `cart` SET Total_amount = (SELECT Total_amount FROM cart WHERE CartID = :CartID ) - :Cost WHERE CartID = :CartID;";
+
+         $this->query($query , ['CartID' => $cartID, 'Cost' => $cost]);
+    }
 }

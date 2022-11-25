@@ -12,14 +12,21 @@
                             <td >
                                 <div class="cart-quantity">
                                     <div>
-                                        <img src="<?=ROOT?>/assets/images/customer/minus.png" alt="Minus" onclick="reduceQuantity()">
-                                        <input type="text" value="1">
-                                        <img src="<?=ROOT?>/assets/images/customer/plus.png" alt="Plus" onclick="increseQuantity()">
+                                        <a id="increase" href="<?=ROOT?>/cart/decreaseQuantity/<?=$row->CartID?>/<?=$row->ProductID?>/<?=$row->Quantity?>/<?=$row->Cost?>">
+                                            <img src="<?=ROOT?>/assets/images/customer/minus.png" alt="Minus"></a>
+                                        <input id="quantity" type="text" value="<?=$row->Quantity?>">
+                                        <a id="decrease" href="<?=ROOT?>/cart/increaseQuantity/<?=$row->CartID?>/<?=$row->ProductID?>/<?=$row->Quantity?>/<?=$row->Cost?>">
+                                            <img src="<?=ROOT?>/assets/images/customer/plus.png" alt="Plus"></a>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <p>Rs. <?=$row->Cost?>.00</p>
+                            </td>
+                            <td>
+                                <a href="<?=ROOT?>/customer_home/removeItem/<?=$row->CartID?>/<?=$row->ProductID?>/<?=$row->Cost?>/<?=$row->Quantity?>">
+                                    <img class="cart-close" src="<?=ROOT?>/assets/images/customer/close.png" alt="Closing button">
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -31,11 +38,17 @@
             <div class="cart-total">
                 <div>
                     <p>Total</p>
-                    <p>Rs. 50,000.00</p>
+                    <?php if(!empty($cart)): ?>
+                        <p>Rs. <?=$cart[0]->Total_amount?>.00</p>
+                    <?php else: ?>
+                        <p>Rs. 00.00</p>
+                    <?php endif; ?>
                 </div>
                 <button>Proceed to Payment</button>
             </div>
         </div>
     </div>
+
+    <script src="<?=ROOT?>/assets/javascript/cart.js"></script>
 
 <?php $this->view('reg_customer/includes/footer'); ?>

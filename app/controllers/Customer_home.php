@@ -124,9 +124,21 @@ class Customer_home extends Controller
             'Image' => $image[0]->Image
         ];
 
+        $cart->updateTotalAmountToIncrease($data['CartID'],$info[0]->Cost);
+
         $order_items->insert($data);
 
         $this->redirect("furniture/view_product/".$id);
+    }
+
+    public function removeItem($cartID,$productID,$cost,$quantity)
+    {
+        $cart = new Carts();
+        $order_item = new Order_Items();
+        $order_item->deleteItem($cartID,$productID);
+        $cart->updateTotalAmountToDecrease($cartID,$cost*$quantity);
+
+        $this->redirect('cart');
     }
 
 }

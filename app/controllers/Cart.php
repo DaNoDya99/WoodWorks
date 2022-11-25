@@ -35,4 +35,27 @@ class Cart extends Controller
 
         $this->view('reg_customer/cart',$data);
     }
+
+    public function increaseQuantity($cartID,$productID,$quantity,$cost)
+    {
+        $cart = new Carts();
+        $order_item = new Order_Items();
+        $order_item->updateQuantity($cartID,$productID,(int)$quantity + 1);
+        $cart->updateTotalAmountToIncrease($cartID,$cost);
+
+        $this->redirect('cart');
+    }
+
+    public function decreaseQuantity($cartID,$productID,$quantity,$cost)
+    {
+        $cart = new Carts();
+        $order_item = new Order_Items();
+        if($quantity > 1){
+            $order_item->updateQuantity($cartID,$productID,(int)$quantity-1);
+            $cart->updateTotalAmountToDecrease($cartID,$cost);
+        }
+
+
+        $this->redirect('cart');
+    }
 }
