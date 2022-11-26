@@ -1,37 +1,47 @@
 <div class="sidebar">
     <div class="sidebar-header">
-        <img class="sidebar-header-img" src="<?=ROOT?>/assets/images/logo.png" alt="Logo">
-        <h1 class="sidebar-header-name">WOODWORKS</h1>
+        <img class="sidebar-header-image" src="<?=ROOT?>/assets/images/logo.png">
+        <h1 class="sidebar-header-title">WOODWORKS</h1>
     </div>
+
     <div class="sidebar-body">
-        <ul class="sidebar-items">
-            <li class="sidebar-item">
-                <a href="<?=ROOT?>/admin/dashboard">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/dashboard.png" alt="Dashboard">
-                    <h3>DASHBOARD</h3>
-                </a>
-                <hr>
-            </li>
-            <li class="sidebar-item">
-                <a href="<?=ROOT?>/admin/profile">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/user.png" alt="Profile">
-                    <h3>PROFILE</h3>
-                </a>
-                <hr>
-            </li>
-            <li class="sidebar-item">
-                <a href="<?=ROOT?>/admin/employees">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/employee.png" alt="Profile">
-                    <h3>EMPLOYEES</h3>
-                    <hr>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="<?=ROOT?>/admin/inventory">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/inventory.png" alt="Profile">
-                    <h3>INVENTORY</h3>
-                </a>
-            </li>
+        <ul class="sidebar-body-items">
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/dashboard"><h3>DASHBOARD</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/posts"><h3>POSTS</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/orders"><h3>ORDERS</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/reports"><h3>REPORTS</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/discounts"><h3>DISCOUNTS</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/reviews"><h3>REVIEWS</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/issues"><h3>ISSUES</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/designs"><h3>DESIGNS</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/advertisements"><h3>ADVERTISEMENTS</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/chat"><h3>CHAT</h3></a></li>
+            </div>
+            <div class="sidebar-item">
+                <li><a href="<?=ROOT?>/manager/notifications"><h3>NOTIFICATIONS</h3></a></li>
+            </div>
+            
         </ul>
+        
     </div>
+
 </div>
