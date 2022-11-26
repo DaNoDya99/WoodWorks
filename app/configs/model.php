@@ -73,27 +73,12 @@ class Model extends Database
         return $this->query($query);
     }
 
-    public function first($data)
+    public function first($column,$value)
     {
 
-        $keys = array_keys($data);
-
-        $query = "select * from ".$this->table." where ";
-
-        foreach ($keys as $key)
-        {
-            $query .= $key."=:".$key." && ";
-        }
-
-        $query = trim($query,"&& "); // where clause says 1st record matches in the table
-        $query .= " order by id desc limit 1"; // But starting from the end of the table or latest record
-        $res = $this->query($query,$data);
-
-        if(is_array($res))
-        {
-            return $res[0];
-        }
-        return false;
+        $query = "select * from $this->table where $column = :value";
+        $query .= " order by Date desc limit 1";
+        return $this->query($query,['value' => $value]);
 
     }
 }

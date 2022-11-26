@@ -678,12 +678,13 @@ section .content .title{
     border: solid 3px black;
     margin: 0 5px 5px 5px;
     border-radius: 10px;
+    flex-direction: row;
 }
 
 .card{
     background: white;
-    width: 320px;
-    height: 430px;
+    width: 45%;
+    height: 450px;
     margin: 10px;
     border-radius: 15px;
     filter: drop-shadow(0px 0px 1px black);
@@ -693,7 +694,7 @@ section .content .title{
 .card-image{
     background-color: #2b7358;
     border-radius: 15px 15px 0 0;
-    height: 165px;
+    height: 200px;
     text-align: center;
 }
 
@@ -702,7 +703,7 @@ section .content .title{
     width: 150px;
     margin: 7.5px auto;
     background-size: cover;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     filter: drop-shadow(0px 0px 1px black);
 }
 
@@ -972,5 +973,65 @@ section .content .title{
     display: none;
 }
 
+/* Slider for Add New Design*/
 
+.slider_wrapper{
+    width: 440px;
+    margin:auto;
+}
+
+.slider_wrapper_inner{
+    display: flex;
+    width: 100%;
+}
+
+.slider_left{
+    flex: 0 0 10%;
+    transition: all 0.3s;
+}
+.slider_left:hover{
+    transform: translateX(-12px);
+}
+
+.slider_right{
+    flex: 0 0 10%;
+    transition: all 0.3s;
+}
+.slider_right:hover{
+    transform: translateX(12px);
+}
+
+.slider_images{
+    flex: 0 0 80%;
+    display: flex;
+    transition: all 1s ease;
+}
+
+.slider_images img{
+    flex: 0 0 400px;
+    width: 10%;
+}
+
+.slider_container{
+    overflow: hidden;
+    flex: 0 0 80%;
+}
+.slider_thumbs{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+.slider_thumbs img{
+    flex: 1;
+    width: 10%;
+    height: 40px; /* extra added */
+    border: solid thin #aaa;
+    cursor: pointer;
+    transition: opacity 0.5s;
+}
+.slider_thumbs img:hover{
+    opacity: 0.5;
+}
 

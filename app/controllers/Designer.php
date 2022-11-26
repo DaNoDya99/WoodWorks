@@ -131,8 +131,9 @@ class Designer extends Controller
 
         $design_images = new Design_images();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
-        $data['design_row'] = $design_row = $design->first(['EmployeeID'=>$id]);
-        $designID = $design_row->DesignID;
+        $data['design_row'] = $design_row = $design->first('EmployeeID',$id);
+        $designID = $design_row[0]->DesignID;
+//        show($design_row);
 
         if($_SERVER['REQUEST_METHOD'] == "POST" && $row) {
 
@@ -143,11 +144,9 @@ class Designer extends Controller
             for ($i = 0; $i < $num_of_imgs; $i++)
             {
 
-
                 $image_name = $images['name'][$i];
                 $tmp_name = $images['tmp_name'][$i];
                 $error = $images['error'][$i];
-
 
                 $folder = "uploads/designer/images/";
 
