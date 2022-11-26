@@ -133,6 +133,11 @@ class Customer_home extends Controller
 
     public function removeItem($cartID,$productID,$cost,$quantity)
     {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
         $cart = new Carts();
         $order_item = new Order_Items();
         $order_item->deleteItem($cartID,$productID);

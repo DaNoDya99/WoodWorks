@@ -17,7 +17,7 @@ class Order_Items extends Model
 
     public function getCustomerCartDetails($cart_id)
     {
-        $query = "SELECT `ProductID`, `Name`, `Quantity`, `Cost`, `OrderID`, cart.`CartID`, `Image`, Total_amount FROM `order_item` LEFT JOIN cart ON order_item.CartID = cart.CartID where order_item.CartID = :CartID;";
+        $query = "SELECT `ProductID`, `Name`, `Quantity`, `Cost`, `OrderID`, cart.`CartID`, `Image`, `Total_amount` FROM `order_item` LEFT JOIN cart ON order_item.CartID = cart.CartID where order_item.CartID = :CartID;";
 
         return $this->query($query,['CartID' => $cart_id]);
     }

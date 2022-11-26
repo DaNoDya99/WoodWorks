@@ -37,7 +37,7 @@ class Category extends Controller
         $sub_category = new Sub_Categories();
         $furniture = new Furnitures();
 
-        $limit = 10;
+        $limit = 8;
 
         $pager = new Pager($limit);
         $offset = $pager->offset;

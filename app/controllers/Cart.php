@@ -38,6 +38,12 @@ class Cart extends Controller
 
     public function increaseQuantity($cartID,$productID,$quantity,$cost)
     {
+
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
         $cart = new Carts();
         $order_item = new Order_Items();
         $order_item->updateQuantity($cartID,$productID,(int)$quantity + 1);
@@ -48,6 +54,11 @@ class Cart extends Controller
 
     public function decreaseQuantity($cartID,$productID,$quantity,$cost)
     {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
         $cart = new Carts();
         $order_item = new Order_Items();
         if($quantity > 1){
