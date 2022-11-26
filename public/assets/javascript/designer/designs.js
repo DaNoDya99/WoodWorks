@@ -1,38 +1,75 @@
-function load_image(file)
-{
-    for (var i = 0; i <=file.length - 1; i++)
+
+(function (window,document){
+
+    var cur_pos = 0;
+    var width = 400;
+    var slider_images_container = document.querySelector(".slider_images");
+    // var slider_container = document.querySelector(".slider_container");
+    // var width = slider_container.getBoundingClientRect().width;
+
+    var images = slider_images_container.querySelectorAll("img");
+    var total_images = (images.length-1) * -1;
+
+
+    var slider_thumbs_container = document.querySelector(".slider_thumbs");
+    slider_thumbs_container.innerHTML = slider_images_container.innerHTML;
+    // scale_images(slider_images_container,images,width);
+
+    window.move = function (direction)
     {
-        document.querySelector(".js-filename").innerHTML = document.querySelector(".js-filename").innerHTML +" "+file.item(i).name;
 
-        var mylink = window.URL.createObjectURL(file.item(i));
+        if(direction =='left')
+            cur_pos +=1;
+        if(direction =='right')
+            cur_pos -=1;
 
-        document.querySelector(".js-image-preview").src = mylink;
+        if(cur_pos > 0)
+            cur_pos = total_images;
+
+        if(cur_pos < total_images)
+            cur_pos = 0;
+
+        var translate = cur_pos * width;
+
+        slider_images_container.style.transform = "translateX("+translate+"px)";
+
     }
-    // "Selected Files: " +
-    // // GET THE FILE INPUT.
-    // var fi = document.getElementById('file');
-    //
-    // // VALIDATE OR CHECK IF ANY FILE IS SELECTED.
-    // if (fi.files.length > 0) {
-    //
-    //     // THE TOTAL FILE COUNT.
-    //     document.getElementById('fp').innerHTML =
-    //         'Total Files: <b>' + fi.files.length + '</b></br >';
-    //
-    //     // RUN A LOOP TO CHECK EACH SELECTED FILE.
-    //     for (var i = 0; i <= fi.files.length - 1; i++) {
-    //
-    //         var fname = fi.files.item(i).name;      // THE NAME OF THE FILE.
-    //         var fsize = fi.files.item(i).size;      // THE SIZE OF THE FILE.
-    //
-    //         // SHOW THE EXTRACTED DETAILS OF THE FILE.
-    //         document.getElementById('fp').innerHTML =
-    //             document.getElementById('fp').innerHTML + '<br /> ' +
-    //             fname + ' (<b>' + fsize + '</b> bytes)';
-    //     }
-    // }
-    // else {
-    //     alert('Please select a file.')
-    // }
 
-}
+    //add Event listeners
+    var thumbs= slider_thumbs_container.querySelectorAll("img");
+
+    for(var i = thumbs.length - 1 ;i >= 0; i--)
+    {
+        thumbs[i].addEventListener('click',thumb_clicked);
+    }
+
+    function thumb_clicked(e)
+    {
+        for (var i = thumbs.length - 1; i >=0; i--)
+        {
+            if(thumbs[i] === e.currentTarget)
+            {
+                cur_pos = i * -1;
+                window.move();
+                break;
+            }
+
+        }
+
+    }
+
+    function scale_images(slider_images_container,images,width)
+    {
+        for (var i = images.length - 1; i >= 0; i--)
+        {
+            images[i].style.width = width + "px";
+        }
+
+    }
+
+
+})(window,document);
+
+
+
+

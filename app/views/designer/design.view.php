@@ -24,13 +24,13 @@
             <a href="<?=ROOT?>/designer/add_design">
                 <button>Add New Design</button>
             </a>
-            <h1>No of designs : <?="hi"?></h1>
+<!--            <h1>No of designs : --><?//="hi"?><!--</h1>-->
         </div>
 
         <div>
             <section class="container">
                 <?php foreach ($rows as $row):?>
-                    <?php $data['row'] = $row; $this->view('designer/includes/design_card',$data) ?>
+                    <?php $data['row'] = $row; $this->view('designer/includes/design_card',$data ) ?>
                 <?php endforeach;?>
             </section>
         </div>
@@ -40,3 +40,4 @@
 
 </body>
 </html>
+<script src="<?=ROOT?>/assets/javascript/designer/designs.js" ></script>

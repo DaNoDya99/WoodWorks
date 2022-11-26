@@ -7,6 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?=APPNAME?></title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles_login3.css">
-    <script src="<?=ROOT?>/assets/javascript/designer/designs.js"></script>
-    <script src="<?=ROOT?>/assets/javascript/designer/add_designs.js"></script>
+<!--    <script src="--><?//=ROOT?><!--/assets/javascript/designer/designs.js"></script>-->
+
 </head>

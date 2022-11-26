@@ -675,7 +675,7 @@ section .content .title{
     flex-wrap: wrap;
     max-height: 700px;
     overflow-y: auto;
-    border: solid 3px black;
+    /*border: solid 3px black;*/
     margin: 0 5px 5px 5px;
     border-radius: 10px;
     flex-direction: row;
@@ -683,8 +683,8 @@ section .content .title{
 
 .card{
     background: white;
-    width: 45%;
-    height: 450px;
+    width: 50%;
+    height: 600px;
     margin: 10px;
     border-radius: 15px;
     filter: drop-shadow(0px 0px 1px black);
@@ -694,17 +694,17 @@ section .content .title{
 .card-image{
     background-color: #2b7358;
     border-radius: 15px 15px 0 0;
-    height: 200px;
+    height: 320px;
     text-align: center;
 }
 
 .card-image img{
-    height: 150px;
-    width: 150px;
-    margin: 7.5px auto;
+    height: 230px;
+    margin-top: 15px;
     background-size: cover;
     /*border-radius: 50%;*/
     filter: drop-shadow(0px 0px 1px black);
+
 }
 
 .card p{
@@ -774,7 +774,7 @@ section .content .title{
     flex-direction: row;
     align-items: center;
     justify-content: start;
-    justify-content: space-around;
+
 }
 
 .add-des-bar button{
@@ -798,11 +798,11 @@ section .content .title{
     font-weight: bolder;
 }
 
-/* Designer-Add Designs Page*/
+/* Designer-Add New Designs Page*/
 
 .des-form-body form{
     height: 80%;
-    width: 50%;
+    width: 70%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -826,27 +826,56 @@ section .content .title{
 }
 
 .designImage{
-    height: 60%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    /*display: flex;*/
+    /*flex-direction: column;*/
     justify-content: center;
+}
+
+.designImage p{
+    text-align: center;
+}
+
+#images{
+    width: 100%;
+    margin: auto;
+    /*position: relative;*/
+    display: flex;
+    object-fit: cover;
+    justify-content: center;
+    /*flex-wrap: wrap;*/
+    flex-direction: row;
 }
 
 .designImage img{
     justify-content: center;
-    height: 400px;
-    width: 200px;
+    height: 150px;
+    width: 100px;
     max-height: 210px;
     max-width: 210px;
     object-fit: cover;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
-.js-filename{
-   margin-bottom: 5px;
+figure{
+    width: 25%;
+}
 
+img{
+    width: 100%;
+}
+
+figcaption{
+    text-align: center;
+    font-size: 2.4vmin;
+    margin-top: 0.5vmin;
+    object-fit: cover;
+    width: 100%;
 }
 
 .edit-des-Ubtn-section{
@@ -939,6 +968,8 @@ section .content .title{
     transform: scale(0.97);
 }
 
+
+/*Back Button */
 .go-back{
     display: flex;
     flex-direction: row;
@@ -973,7 +1004,7 @@ section .content .title{
     display: none;
 }
 
-/* Slider for Add New Design*/
+/* Slider for Design Card*/
 
 .slider_wrapper{
     width: 440px;
