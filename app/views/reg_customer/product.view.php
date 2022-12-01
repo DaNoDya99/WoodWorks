@@ -32,7 +32,9 @@
                 <p class="product-detail"><?=$furniture[0]->Warrenty_period?> Warrenty</p>
             </div>
             <div>
-                <button>Add to cart</button>
+                <a href="<?=ROOT?>/customer_home/add_to_cart/<?=$furniture[0]->ProductID?>">
+                    <button>Add to cart</button>
+                </a>
             </div>
         </div>
     </div>

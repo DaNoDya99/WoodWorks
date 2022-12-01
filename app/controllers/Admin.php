@@ -13,6 +13,9 @@ class Admin extends Controller
             $this->redirect('login1');
         }
 
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employee();
+        $data['row'] = $employee->where('EmployeeID',$id);
         $data['title'] = "DASHBOARD";
 
         $this->view('admin/dashboard',$data);
@@ -24,7 +27,6 @@ class Admin extends Controller
         {
             $this->redirect('login1');
         }
-
 
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employee();
@@ -65,6 +67,8 @@ class Admin extends Controller
                         $employee->errors['image'] = "Could not upload image.";
                     }
                 }
+
+                $_POST['EmployeeID'] = $id;
                 $employee->update($id,$_POST);
                 $this->redirect('admin/profile/'.$id);
             }
@@ -83,7 +87,8 @@ class Admin extends Controller
         }
 
         $employee = new Employee();
-
+        $id = $id ?? Auth::getEmployeeID();
+        $data['row'] = $employee->where('EmployeeID',$id);
         $data['rows'] = $employee->findAll();
         $data['no_of_emp'] = count($data['rows']);
         $data['title'] = "EMPLOYEES";
@@ -137,7 +142,9 @@ class Admin extends Controller
             $this->redirect('login1');
         }
 
-
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employee();
+        $data['row'] = $employee->where('EmployeeID',$id);
         $data['title'] = "INVENTORY";
 
         $this->view('admin/inventory',$data);

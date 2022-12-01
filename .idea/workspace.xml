@@ -2,23 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_2_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_2_S2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_3_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_3_S2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_4_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_4_S2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_5_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_5_S2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_6_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_6_S2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_7_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_7_S2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_8_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_8_S2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/admin/sidebar.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/javascript/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/166948578186361236_1245496992308315_5110321701334286336_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_10_P.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_10_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_10_S2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_9_P.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_9_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_9_S2.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/customer_home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/customer_home.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Customer_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Customer_home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Signup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Furnitures.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Order_Items.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Order_Items.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/employees.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/employees.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/inventory.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/inventory.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/profile.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/profile.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/signup.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/signup.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/javascript/admin-profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/admin-profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/images/1669003719278855837_1860575477467127_4728710554742464884_n.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,10 +99,10 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images" />
+      <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\admin" />
+      <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\customer" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images\ST_2_P" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads" />
-      <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\customer" />
-      <recent name="C:\xampp\htdocs\WoodWorks\app\views\reg_customer" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -131,7 +141,16 @@
       <workItem from="1668656054706" duration="23816000" />
       <workItem from="1668741900173" duration="12938000" />
       <workItem from="1668833352316" duration="20892000" />
-      <workItem from="1668918850197" duration="4088000" />
+      <workItem from="1668918850197" duration="4183000" />
+      <workItem from="1668957945315" duration="558000" />
+      <workItem from="1668999873916" duration="3785000" />
+      <workItem from="1669043967713" duration="4590000" />
+      <workItem from="1669113164396" duration="16383000" />
+      <workItem from="1669178519580" duration="6941000" />
+      <workItem from="1669249604516" duration="2212000" />
+      <workItem from="1669339837641" duration="7611000" />
+      <workItem from="1669358408984" duration="1031000" />
+      <workItem from="1669449787823" duration="19057000" />
     </task>
     <servers />
   </component>

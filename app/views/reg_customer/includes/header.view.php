@@ -18,7 +18,7 @@
             <ul>
                 <li class="nav-item"><a href="<?=ROOT?>/customer_home">Home</a></li>
                 <li class="nav-item"><a href="<?=ROOT?>/category">Shop</a></li>
-                <li class="nav-item"><a href="<?=ROOT?>/furniture/category">Cart</a></li>
+                <li class="nav-item"><a href="<?=ROOT?>/cart">Cart</a></li>
                 <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_cart">About</a></li>
                 <li class="nav-item"><a href="<?=ROOT?>/reg_customer/customer_logout">Contact</a></li>
             </ul>

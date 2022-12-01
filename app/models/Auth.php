@@ -13,7 +13,7 @@ class Auth
     {
         if(!empty($_SESSION['USER_DATA'])){
             session_destroy();
-            show($_SESSION);
+//            show($_SESSION);
         }
     }
 

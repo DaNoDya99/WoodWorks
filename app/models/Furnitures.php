@@ -67,11 +67,18 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
-    public function getFurnitures($category = null,$sub_cat,$limit = 2,$offset){
-
+    public function getFurnitures($category = null,$sub_cat,$limit = 2,$offset)
+    {
         $query = "select ProductID, Name , Cost from furniture WHERE CategoryID = '$category' && Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
 
         return $this->query($query);
+    }
+
+    public function getFurniture($id){
+
+        $query = "select Name , Cost from furniture WHERE ProductID = :ProductID; ";
+
+        return $this->query($query,['ProductID' => $id]);
     }
 
     public function getDisplayImage($ProductId = null)

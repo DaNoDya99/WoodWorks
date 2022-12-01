@@ -1,6 +1,4 @@
 <?php
-require "../app/models/Auth.php";
-require "../app/models/Customer.php";
 
 class Customer_home extends Controller
 {
@@ -86,4 +84,66 @@ class Customer_home extends Controller
 
         $this->view('reg_customer/profile',$data);
     }
+
+    public function add_to_cart($id){
+
+        if(!Auth::logged_in()){
+            $this->redirect('login1');
+        }
+
+        $order = new Orders();
+        $furniture = new Furnitures();
+        $cart = new Carts();
+        $order_items = new Order_Items();
+        $cus_id = Auth::getCustomerID();
+        $orderID = '';
+
+        if(empty($cart->getCart($cus_id)))
+        {
+            $cart->setCart($cus_id);
+        }
+
+        if(empty($order->checkIsPreparing($cus_id)))
+        {
+            $orderID = $order->setOrder($cus_id);
+        }else
+        {
+            $orderID = $order->checkIsPreparing($cus_id)[0]->OrderID;
+        }
+
+        $info = $furniture->getFurniture($id);
+        $image = $furniture->getDisplayImage($id);
+
+        $data = [
+            'ProductID' => $id,
+            'Name' => $info[0]->Name,
+            'Quantity' => 1,
+            'Cost' => $info[0]->Cost,
+            'OrderID' => $orderID,
+            'CartID' => $cart->getCart($cus_id)[0]->CartID,
+            'Image' => $image[0]->Image
+        ];
+
+        $cart->updateTotalAmountToIncrease($data['CartID'],$info[0]->Cost);
+
+        $order_items->insert($data);
+
+        $this->redirect("furniture/view_product/".$id);
+    }
+
+    public function removeItem($cartID,$productID,$cost,$quantity)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $cart = new Carts();
+        $order_item = new Order_Items();
+        $order_item->deleteItem($cartID,$productID);
+        $cart->updateTotalAmountToDecrease($cartID,$cost*$quantity);
+
+        $this->redirect('cart');
+    }
+
 }
