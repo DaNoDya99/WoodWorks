@@ -57,5 +57,10 @@ class Furniture extends Controller
         {
             $this->redirect('login1');
         }
+
+        $furniture = new Furnitures();
+        $furniture->deleteFurniture($id);
+
+        $this->redirect('admin/inventory');
     }
 }

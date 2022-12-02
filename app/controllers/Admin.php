@@ -1,6 +1,4 @@
 <?php
-require "../app/models/Auth.php";
-require "../app/models/Employee.php";
 
 class Admin extends Controller
 {
@@ -14,7 +12,7 @@ class Admin extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $data['row'] = $employee->where('EmployeeID',$id);
         $data['title'] = "DASHBOARD";
 
@@ -29,7 +27,7 @@ class Admin extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
@@ -86,7 +84,7 @@ class Admin extends Controller
             $this->redirect('login1');
         }
 
-        $employee = new Employee();
+        $employee = new Employees();
         $id = $id ?? Auth::getEmployeeID();
         $data['row'] = $employee->where('EmployeeID',$id);
         $data['rows'] = $employee->findAll();
@@ -104,7 +102,7 @@ class Admin extends Controller
 
         $folder = "uploads/images/";
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row){
@@ -143,7 +141,7 @@ class Admin extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $furniture = new Furnitures();
         $data['row'] = $employee->where('EmployeeID', $id);
         $data['title'] = "INVENTORY";

@@ -111,4 +111,11 @@ class Furnitures extends Model
 
         return $this->query($query);
     }
+
+    public function deleteFurniture($id = null)
+    {
+        $query = "delete from furniture where ProductID = :ProductID;";
+
+        return $this->query($query,['ProductID' => $id]);
+    }
 }

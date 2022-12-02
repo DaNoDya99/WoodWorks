@@ -463,7 +463,7 @@ form .name-details .field:last-child{
 
 .card:hover{
     cursor: pointer;
-    transform: scale(1.03);
+    transform: scale(1.01);
     transition: all 1s ease;
 }
 
@@ -502,17 +502,18 @@ form .name-details .field:last-child{
     border: unset;
     font-family: 'Poppins-Light', sans-serif;
     font-weight: bold;
-    color: #e2dcc8;
+    color: #f9f9f9;
+    cursor: pointer;
 }
 
-.card-btns button:first-child{
-    background: #5ba49e;
+.card-btns a:first-child button{
+    background-color: #2b7358;
     width: 70px;
     height: 40px;
 }
 
-.card-btns button:last-child{
-    background: #E64848;
+.card-btns a:last-child button{
+    background-color: #d23542;
     width: 70px;
     height: 40px;
 }
@@ -543,7 +544,7 @@ form .name-details .field:last-child{
     font-weight: bolder;
 }
 
-/*Admin-Add Employee Page*/
+/*Admin-Add Employees Page*/
 
 .emp-form-body{
     margin: 0 auto;

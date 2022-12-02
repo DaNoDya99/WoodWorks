@@ -1,5 +1,5 @@
 <?php
-require "../app/models/Employee.php";
+require "../app/models/Employees.php";
 
 class Home extends Controller
 {
@@ -7,7 +7,7 @@ class Home extends Controller
 
         $db = new Database();
         $db->create_tables();
-//        $employee = new Employee();//object for the emplyee class
+//        $employee = new Employees();//object for the emplyee class
 //
 //        $post = [
 //            'EmployeeID' => 'A002',
