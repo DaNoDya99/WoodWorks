@@ -1990,3 +1990,64 @@ form .name-details .field:last-child{
     margin-bottom: 2em;
 }
 
+/*Chart*/
+.dashboard-container{
+    display: flex;
+}
+
+.chart-container{
+    position: relative;
+    height: 48%;
+    width: 96%;
+    margin: 1em;
+}
+
+.ofs-list{
+    width: 100%;
+    background-color: #f9f9f9;
+    margin: 1em .5em;
+    border-radius: 15px;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    max-height: 85vh;
+    text-align: center;
+    font-family: 'Poppins' , sans-serif;
+    padding: 0 1em;
+}
+
+.ofs-list table{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.ofs-list table tr th{
+    border-bottom: 2px solid #d2d2d2;
+}
+
+.list-table img{
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.list-table td{
+    text-align: center;
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.list-table tr th:last-child{
+    width: 35%;
+}
+
+.ofs-table-container{
+    max-height: 70vh;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.ofs-table-container::-webkit-scrollbar{
+    display: none;
+}

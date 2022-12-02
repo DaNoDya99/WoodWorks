@@ -49,6 +49,13 @@ class Furniture extends Controller
         {
             $this->redirect('login1');
         }
+
+        $emp_id = $emp_id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $data['row'] = $employee->where('EmployeeID',$emp_id);
+        $data['title'] = "Edit Furniture";
+
+        $this->view('admin/edit_furniture',$data);
     }
 
     public function remove($id = null)
