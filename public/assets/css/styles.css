@@ -107,6 +107,15 @@
     font-weight: bolder;
 }
 
+.login-form select{
+    background-color: #f9f9f9;
+}
+
+.signup{
+    max-height: 45em;
+    overflow-y: auto;
+}
+
 .login-form header{
     font-size: 25px;
     font-weight: 600;
@@ -425,7 +434,7 @@ form .name-details .field:last-child{
 .card{
     background: white;
     width: 320px;
-    height: 430px;
+    height: 450px;
     margin: 10px;
     border-radius: 15px;
     filter: drop-shadow(0px 0px 1px black);
@@ -612,6 +621,102 @@ form .name-details .field:last-child{
     display: none;
 }
 
+/*Inventory*/
+
+.inventory-table {
+    width: 85%;
+    margin: 1em auto;
+    padding: 1em 2em;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    font-family: 'Poppins-SemiBold' , sans-serif;
+    max-height: 80vh;
+}
+
+.inv-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid #d2d2d2;
+    padding: 1em 0;
+}
+
+.inv-header h1{
+    margin: 0;
+}
+
+.inv-form {
+    display: flex;
+    height: 30px;
+}
+
+.inv-form input{
+    border: 2px solid #d2d2d2;
+    font-family: 'Poppins-SemiBold' , sans-serif;
+    width: 20em;
+    border-radius: 3px;
+}
+
+.inv-form button{
+    border: 2px solid #d2d2d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3px;
+    width: 30px;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+}
+
+.inv-form img{
+    width: 15px;
+}
+
+.inv-details-tbl{
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.inventory-table table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inv-header-tr th{
+    border-bottom: 2px solid #d2d2d2;
+}
+
+.inventory-table table th:last-child{
+    width: 7em;
+}
+
+.inv-product{
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.inv-product img{
+    width: 4.5em;
+    height: 4.5em;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.inv-product td{
+    text-align: center;
+    padding: 1em 0 0 0 ;
+    vertical-align: middle;
+}
+
+.inv-product td:last-child div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inv-product td > * {
+    vertical-align: middle;
+}
+
 /*Registered Customer Home*/
 .reg-customer-body{
     margin: 0;
@@ -624,7 +729,6 @@ form .name-details .field:last-child{
     align-items: center;
     border-radius: 10px;
     padding: 10px;
-
 }
 
 .dropbtn{
@@ -632,8 +736,9 @@ form .name-details .field:last-child{
     border: none;
     cursor: pointer;
     border-radius: 10px;
-    background-color: white;
+    background-color: #f9f9f9;
     margin-top: 7px;
+    margin-bottom: 5px;
 }
 
 .dropdown-content{

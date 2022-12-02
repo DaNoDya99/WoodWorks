@@ -2,33 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/images/admin/sidebar.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/javascript/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/166948578186361236_1245496992308315_5110321701334286336_n.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_10_P.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_10_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_10_S2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_9_P.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_9_S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/ST_9_S2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/admin/search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/1669546938278855837_1860575477467127_4728710554742464884_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/1669556273278855837_1860575477467127_4728710554742464884_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/166955634786361236_1245496992308315_5110321701334286336_n.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Customer_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Customer_home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Signup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Furnitures.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Order_Items.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Order_Items.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/employees.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/employees.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/add_employee.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/add_employee.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/inventory.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/inventory.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/profile.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/profile.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/signup.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/signup.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/javascript/admin-profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/admin-profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1669003719278855837_1860575477467127_4728710554742464884_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/images/166861012186361236_1245496992308315_5110321701334286336_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/images/166948578186361236_1245496992308315_5110321701334286336_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/images/user.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +84,8 @@
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\admin" />
+      <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\customer" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images\ST_2_P" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads" />
@@ -150,7 +136,10 @@
       <workItem from="1669249604516" duration="2212000" />
       <workItem from="1669339837641" duration="7611000" />
       <workItem from="1669358408984" duration="1031000" />
-      <workItem from="1669449787823" duration="19057000" />
+      <workItem from="1669449787823" duration="19708000" />
+      <workItem from="1669522812425" duration="3227000" />
+      <workItem from="1669905086287" duration="608000" />
+      <workItem from="1669948991797" duration="7682000" />
     </task>
     <servers />
   </component>

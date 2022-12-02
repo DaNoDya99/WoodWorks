@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="form-container">    
-        <div class="login-form">
+        <div class="login-form signup">
             <header>Signup Now</header>
             <?php if(!empty($errors)):?>
                 <div class="error-txt signup-error">
