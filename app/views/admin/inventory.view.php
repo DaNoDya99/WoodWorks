@@ -34,16 +34,29 @@
                         <th>SKU</th>
                         <th>Image</th>
                         <th>Name</th>
+                        <th>Quantity</th>
                         <th>Price</th>
                         <th></th>
                     </tr>
-                    <tr class="inv-product">
-                        <td>P0001</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                        <td>Block Nomad Sofa</td>
-                        <td>Rs. 25000.00</td>
-                        <td><div><p>Edit</p> <p>Remove</p></div></td>
-                    </tr>
+                    <?php if(!empty($furniture)):?>
+                        <?php foreach($furniture as $row):?>
+                            <tr class="inv-product">
+                                <td><?=$row->ProductID?></td>
+                                <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image"></td>
+                                <td><?=$row->Name?></td>
+                                <td><?=$row->Quantity?></td>
+                                <td>Rs. <?=$row->Cost?>.00</td>
+                                <td>
+                                    <div>
+                                        <a href="<?=ROOT?>/furniture/edit/<?=$row->ProductID?>">Edit</a>
+                                        <a href="<?=ROOT?>/furniture/remove/<?=$row->ProductID?>">Remove</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+                    <?php else:?>
+                    <?php endif;?>
+
                 </table>
             </div>
         </div>

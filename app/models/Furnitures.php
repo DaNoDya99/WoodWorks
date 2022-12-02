@@ -104,4 +104,11 @@ class Furnitures extends Model
 
         return $this->query($query);
     }
+
+    public function getInventory()
+    {
+        $query = "select ProductID , Name , Quantity , Cost from furniture;";
+
+        return $this->query($query);
+    }
 }

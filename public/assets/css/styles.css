@@ -631,6 +631,7 @@ form .name-details .field:last-child{
     border-radius: 20px;
     font-family: 'Poppins-SemiBold' , sans-serif;
     max-height: 80vh;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
 }
 
 .inv-header{
@@ -675,6 +676,12 @@ form .name-details .field:last-child{
 .inv-details-tbl{
     overflow-y: auto;
     max-height: 70vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.inv-details-tbl::-webkit-scrollbar{
+    display: none;
 }
 
 .inventory-table table{
@@ -711,6 +718,18 @@ form .name-details .field:last-child{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.inv-product td:last-child div a{
+    font-family: 'Poppins-SemiBold' , sans-serif;
+}
+
+.inv-product td:last-child div a:first-child{
+    color: #2b7358;
+}
+
+.inv-product td:last-child div a:last-child{
+    color: #d23542;
 }
 
 .inv-product td > * {

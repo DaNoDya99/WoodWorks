@@ -138,14 +138,22 @@ class Admin extends Controller
 
     public function inventory($id = null)
     {
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login1');
         }
 
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employee();
-        $data['row'] = $employee->where('EmployeeID',$id);
+        $furniture = new Furnitures();
+        $data['row'] = $employee->where('EmployeeID', $id);
         $data['title'] = "INVENTORY";
+
+        $data['furniture'] = $rows = $furniture->getInventory();
+
+        foreach ($rows as $row)
+        {
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
 
         $this->view('admin/inventory',$data);
     }

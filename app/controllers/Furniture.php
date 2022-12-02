@@ -43,4 +43,19 @@ class Furniture extends Controller
         $this->view("reg_customer/product", $data);
     }
 
+    public function edit($id = null)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login1');
+        }
+    }
+
+    public function remove($id = null)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login1');
+        }
+    }
 }

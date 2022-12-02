@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/images/admin/search.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/1669546938278855837_1860575477467127_4728710554742464884_n.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/1669556273278855837_1860575477467127_4728710554742464884_n.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/images/166955634786361236_1245496992308315_5110321701334286336_n.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/add_employee.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/add_employee.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Furniture.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Furniture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Furnitures.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/inventory.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/inventory.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/signup.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/signup.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/166861012186361236_1245496992308315_5110321701334286336_n.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/166948578186361236_1245496992308315_5110321701334286336_n.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/user.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +132,7 @@
       <workItem from="1669449787823" duration="19708000" />
       <workItem from="1669522812425" duration="3227000" />
       <workItem from="1669905086287" duration="608000" />
-      <workItem from="1669948991797" duration="7682000" />
+      <workItem from="1669948991797" duration="11409000" />
     </task>
     <servers />
   </component>
