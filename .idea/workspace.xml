@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/admin/edit_furniture.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/javascript/chart.umd.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/javascript/chart.umd.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/admin/add_furniture.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/admin/No_image.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ad007398-5b70-4f93-ae64-b5cf7fc49f14.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ad007398-5b70-4f93-ae64-b5cf7fc49f14.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Furniture.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Furniture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Furnitures.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +63,7 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/xampp/htdocs/WoodWorks/public/assets/javascript",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -78,8 +81,8 @@
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images\default" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\WoodWorks\public\assets\javascript" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\admin" />
+      <recent name="C:\xampp\htdocs\WoodWorks\public\assets\javascript" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\customer" />
       <recent name="C:\xampp\htdocs\WoodWorks\public\uploads\images\ST_2_P" />
@@ -134,7 +137,9 @@
       <workItem from="1669522812425" duration="3227000" />
       <workItem from="1669905086287" duration="608000" />
       <workItem from="1669948991797" duration="11636000" />
-      <workItem from="1669975944217" duration="14803000" />
+      <workItem from="1669975944217" duration="15303000" />
+      <workItem from="1670041512092" duration="257000" />
+      <workItem from="1670041869733" duration="10798000" />
     </task>
     <servers />
   </component>

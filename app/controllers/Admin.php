@@ -156,4 +156,18 @@ class Admin extends Controller
         $this->view('admin/inventory',$data);
     }
 
+    public function add_furniture()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login1');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $furniture = new Furnitures();
+        $data['row'] = $employee->where('EmployeeID', $id);
+        $data['title'] = "ADD FURNITURE";
+
+        $this->view('admin/add_furniture',$data);
+    }
 }

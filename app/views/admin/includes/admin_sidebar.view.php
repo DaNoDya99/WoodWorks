@@ -21,6 +21,11 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a href="<?=ROOT?>/admin/add_furniture">
+                    <h3>ADD FURNITURE</h3>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a href="<?=ROOT?>/admin/profile">
                     <h3>PROFILE</h3>
                 </a>

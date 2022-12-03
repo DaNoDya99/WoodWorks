@@ -2051,3 +2051,126 @@ form .name-details .field:last-child{
 .ofs-table-container::-webkit-scrollbar{
     display: none;
 }
+
+/*Add furniture page*/
+
+.add-fur-form-container{
+    width: 70%;
+    background-color: #f9f9f9;
+    margin: 1em auto;
+    padding: 1em 1.5em;
+    border-radius: 15px;
+    font-family: 'Poppins-Light', sans-serif;
+    max-height: 80vh;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+}
+
+.add-fur-form-container h1{
+    margin: 0;
+    border-bottom: #cacaca 2px solid;
+}
+
+.add-fur-form{
+    padding: 1em 0;
+    max-height: 70vh;
+    width: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.add-fur-form::-webkit-scrollbar{
+    display: none;
+}
+
+.fur-img-upload-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fur-img img{
+    width: 10em;
+    height: 7em;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.fur-img img:nth-child(2){
+    margin: 0 .5em;
+}
+
+.fur-img-upload-container input{
+    display: none;
+}
+
+.fur-img-upload-container label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    background: #100F0F;
+    border-radius: 10px;
+    color: #f9f9f9;
+    cursor: pointer;
+}
+
+.add-fur-fields{
+    margin-top: 1em;
+    display: flex;
+    width: 100%;
+}
+
+.add-fur-field-set{
+    width: 50%;
+}
+
+.set-one{
+    margin-right: .5em;
+}
+
+.set-two{
+    margin-left: .5em;
+}
+
+.add-fur-field{
+    margin-top: .5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-fur-field input{
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.add-fur-field textarea{
+    border: 1px solid #ccc;
+    height: 15em;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.add-fur-btn{
+    text-align: center;
+    padding-top: 1em;
+}
+
+.add-fur-btn button{
+    width: 50%;
+    height: 2em;
+    border: none;
+    border-radius: 5px;
+    color: #f9f9f9;
+    background-color: #2b7358;
+    font-family: Poppins-SemiBold , sans-serif;
+    font-size: 1.3rem;
+    cursor: pointer;
+}

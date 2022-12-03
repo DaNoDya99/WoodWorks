@@ -9,6 +9,7 @@ class Furnitures extends Model
 	    'ProductID',
         'Name',
         'Category',
+        'Sub_category_name',
         'Description',
         'Quantity',
         'Cost',
@@ -22,7 +23,7 @@ class Furnitures extends Model
         'Date'
     ];
 
-    public function getNewFurniture($fields = null,$limit = 5,$order = 'asc')
+    public function getNewFurniture($fields = null,$limit = 5,$order = 'desc')
     {
         $query = "select ";
 
