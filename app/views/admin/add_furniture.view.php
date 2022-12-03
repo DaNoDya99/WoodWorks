@@ -24,13 +24,13 @@
                 <form class="add-fur-form" method="post" enctype="multipart/form-data">
                     <div class="fur-img-upload-container">
                         <div class="fur-img">
-                            <img src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="Product Image">
-                            <img src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="Product Image">
-                            <img src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="Product Image">
+                            <img id="first-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="Product Image">
+                            <img id="second-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="Product Image">
+                            <img id="third-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="Product Image">
                         </div>
                         <label>
                             upload
-                            <input type="file" name="Images[]" multiple>
+                            <input onchange="load_image(this.files)" type="file" name="Images[]" multiple>
                         </label>
                     </div>
                     <div class="add-fur-fields">
@@ -45,7 +45,7 @@
                             </div>
                             <div class="add-fur-field">
                                 <label>Category</label>
-                                <input type="text" name="Category" placeholder="Category">
+                                <input type="text" name="CategoryID" placeholder="Category">
                             </div>
                             <div class="add-fur-field">
                                 <label>Sub Category</label>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="add-fur-field">
                         <label>Description</label>
-                        <textarea placeholder="Description"></textarea>
+                        <textarea name="Description" placeholder="Description"></textarea>
                     </div>
                     <div class="add-fur-btn">
                         <button type="submit">ADD</button>
@@ -87,6 +87,9 @@
         </div>
     </div>
 </div>
+
+<script src="<?=ROOT?>/assets/javascript/add_furniture.js"></script>
+
 </body>
 </html>
 

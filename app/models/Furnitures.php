@@ -8,7 +8,7 @@ class Furnitures extends Model
     protected $allowedColumns = [
 	    'ProductID',
         'Name',
-        'Category',
+        'CategoryID',
         'Sub_category_name',
         'Description',
         'Quantity',
@@ -16,11 +16,16 @@ class Furnitures extends Model
         'Visibility',
         'Availability',
         'Warrenty_period',
-        'Wood_type ',
+        'Wood_type',
         'Discount_percentage',
         'SupplierID',
         'Discount_given_by',
         'Date'
+    ];
+
+    protected $beforeInsert = [
+        'set_availability',
+        'set_visibility'
     ];
 
     public function getNewFurniture($fields = null,$limit = 5,$order = 'desc')
@@ -118,5 +123,24 @@ class Furnitures extends Model
         $query = "delete from furniture where ProductID = :ProductID;";
 
         return $this->query($query,['ProductID' => $id]);
+    }
+
+    public function insertImages($productID,$images)
+    {
+        $query = "insert into furniture_image (`ProductID`, `Image`) values ('$productID','$images[0]'),('$productID','$images[1]'),('$productID','$images[2]');";
+
+        return $this->query($query);
+    }
+
+    public function set_availability($DATA)
+    {
+        $DATA['Availability'] = 1;
+        return $DATA;
+    }
+
+    public function set_visibility($DATA)
+    {
+        $DATA['Visibility'] = 1;
+        return $DATA;
     }
 }

@@ -168,6 +168,49 @@ class Admin extends Controller
         $data['row'] = $employee->where('EmployeeID', $id);
         $data['title'] = "ADD FURNITURE";
 
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $furniture->insert($_POST);
+
+            $folder = "uploads/images/";
+            $allowedFileType = ['image/jpeg','image/png'];
+            if(!file_exists($folder)){
+                mkdir($folder,0777,true);
+                file_put_contents($folder."index.php","<?php Access Denied.");
+                file_put_contents("uploads/index.php","<?php Access Denied.");
+            }
+            $images = array();
+
+            if(!empty($_FILES['Images']['name']))
+            {
+                if(count(array_unique($_FILES['Images']['error'])) === 1 && end($_FILES['Images']['error']) === 0)
+                {
+                    $flag = true;
+
+                    foreach ($_FILES['Images']['type'] as $type)
+                    {
+                        if(!in_array($type,$allowedFileType)){
+                            $flag = false;
+                        }
+                    }
+
+                    if($flag)
+                    {
+                        for ($i = 0; $i < 3; $i++)
+                        {
+                            $destination = $folder.time().$_FILES['Images']['name'][$i];
+                            $images[$i] = $destination;
+                            move_uploaded_file($_FILES['Images']['tmp_name'][$i],$destination);
+                        }
+
+                        $furniture->insertImages($_POST['ProductID'],$images);
+                    }
+                }
+            }
+
+
+        }
+
         $this->view('admin/add_furniture',$data);
     }
 }
