@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="sidebar-header">
-        <img class="sidebar-header-image" src="<?=ROOT?>/assets/images/logo.png">
-        <h1 class="sidebar-header-title">WOODWORKS</h1>
+        <img class="sidebar-header-img" src="<?=ROOT?>/assets/images/logo.png">
+        <h1 class="sidebar-header-name">WOODWORKS</h1>
     </div>
 
     <div class="sidebar-body">
