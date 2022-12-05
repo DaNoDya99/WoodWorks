@@ -47,9 +47,12 @@ class Category extends Controller
         $data['pager'] = $pager;
         $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$limit,$offset);
 
-        foreach ($data['furniture'] as $row)
+        if(!empty($data['furniture']))
         {
-            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+            foreach ($data['furniture'] as $row)
+            {
+                $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+            }
         }
 
         if(empty($sub_cat)){

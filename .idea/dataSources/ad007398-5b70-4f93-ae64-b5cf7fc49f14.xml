@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="woodworks@localhost">
-  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.39">
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.40">
     <root id="1">
       <DefaultCasing>lower/lower</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1273,9 +1273,9 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="358" parent="339" name="PRIMARY">
-      <ColNames>CustomerID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>CustomerID</UnderlyingIndexColNames>
     </key>
     <column id="359" parent="340" name="EmployeeID">
       <DataType>char(5)|0s</DataType>
@@ -1356,9 +1356,9 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="376" parent="340" name="PRIMARY">
-      <ColNames>EmployeeID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>EmployeeID</UnderlyingIndexColNames>
     </key>
   </database-model>
 </dataSource>

@@ -1,6 +1,6 @@
 <?php
 
-class Employee extends Model
+class Employees extends Model
 {
     public $errors = [];
     protected $table = "employee";
@@ -77,9 +77,9 @@ class Employee extends Model
         $this->errors = [];
 
         if(empty($data['EmployeeID'])){
-            $this->errors['EmployeeID'] = "Employee ID is required.";
+            $this->errors['EmployeeID'] = "Employees ID is required.";
         }elseif($this->where('EmployeeID',$data['EmployeeID'])){
-            $this->errors['EmployeeID'] = "Employee ID already exist.";
+            $this->errors['EmployeeID'] = "Employees ID already exist.";
         }
 
         if (empty($data['Firstname'])) {
@@ -118,6 +118,13 @@ class Employee extends Model
 
         return false;
 
+    }
+
+    public function deleteEmployee($id = null)
+    {
+        $query = "delete from employee where EmployeeID = :EmployeeID;";
+
+        return $this->query($query , ['EmployeeID' => $id]);
     }
 
 }

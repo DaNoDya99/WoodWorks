@@ -18,6 +18,48 @@
                 </a>
             </div>
         </div>
+        <div class="inventory-table">
+            <div class="inv-header">
+                <h1>Inventory</h1>
+                <form method="post" class="inv-form">
+                    <input type="search" name="product" placeholder="SKU / Name">
+                    <button type="submit">
+                        <img src="<?=ROOT?>/assets/images/admin/search.png" alt="">
+                    </button>
+                </form>
+            </div>
+            <div class="inv-details-tbl">
+                <table>
+                    <tr class="inv-header-tr">
+                        <th>SKU</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                    <?php if(!empty($furniture)):?>
+                        <?php foreach($furniture as $row):?>
+                            <tr class="inv-product">
+                                <td><?=$row->ProductID?></td>
+                                <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image"></td>
+                                <td><?=$row->Name?></td>
+                                <td><?=$row->Quantity?></td>
+                                <td>Rs. <?=$row->Cost?>.00</td>
+                                <td>
+                                    <div>
+                                        <a href="<?=ROOT?>/furniture/edit/<?=$row->ProductID?>">Edit</a>
+                                        <a href="<?=ROOT?>/furniture/remove/<?=$row->ProductID?>">Remove</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+                    <?php else:?>
+                    <?php endif;?>
+
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 </body>

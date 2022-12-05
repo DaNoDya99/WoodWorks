@@ -1,6 +1,4 @@
 <?php
-require "../app/models/Auth.php";
-require "../app/models/Employee.php";
 
 class Admin extends Controller
 {
@@ -14,7 +12,7 @@ class Admin extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $data['row'] = $employee->where('EmployeeID',$id);
         $data['title'] = "DASHBOARD";
 
@@ -29,7 +27,7 @@ class Admin extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
@@ -86,7 +84,7 @@ class Admin extends Controller
             $this->redirect('login1');
         }
 
-        $employee = new Employee();
+        $employee = new Employees();
         $id = $id ?? Auth::getEmployeeID();
         $data['row'] = $employee->where('EmployeeID',$id);
         $data['rows'] = $employee->findAll();
@@ -104,7 +102,7 @@ class Admin extends Controller
 
         $folder = "uploads/images/";
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row){
@@ -138,16 +136,81 @@ class Admin extends Controller
 
     public function inventory($id = null)
     {
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login1');
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
-        $data['row'] = $employee->where('EmployeeID',$id);
+        $employee = new Employees();
+        $furniture = new Furnitures();
+        $data['row'] = $employee->where('EmployeeID', $id);
         $data['title'] = "INVENTORY";
+
+        $data['furniture'] = $rows = $furniture->getInventory();
+
+        foreach ($rows as $row)
+        {
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
 
         $this->view('admin/inventory',$data);
     }
 
+    public function add_furniture()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login1');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $furniture = new Furnitures();
+        $data['row'] = $employee->where('EmployeeID', $id);
+        $data['title'] = "ADD FURNITURE";
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $furniture->insert($_POST);
+
+            $folder = "uploads/images/";
+            $allowedFileType = ['image/jpeg','image/png'];
+            if(!file_exists($folder)){
+                mkdir($folder,0777,true);
+                file_put_contents($folder."index.php","<?php Access Denied.");
+                file_put_contents("uploads/index.php","<?php Access Denied.");
+            }
+            $images = array();
+
+            if(!empty($_FILES['Images']['name']))
+            {
+                if(count(array_unique($_FILES['Images']['error'])) === 1 && end($_FILES['Images']['error']) === 0)
+                {
+                    $flag = true;
+
+                    foreach ($_FILES['Images']['type'] as $type)
+                    {
+                        if(!in_array($type,$allowedFileType)){
+                            $flag = false;
+                        }
+                    }
+
+                    if($flag)
+                    {
+                        for ($i = 0; $i < 3; $i++)
+                        {
+                            $destination = $folder.time().$_FILES['Images']['name'][$i];
+                            $images[$i] = $destination;
+                            move_uploaded_file($_FILES['Images']['tmp_name'][$i],$destination);
+                        }
+
+                        $furniture->insertImages($_POST['ProductID'],$images);
+                    }
+                }
+            }
+
+
+        }
+
+        $this->view('admin/add_furniture',$data);
+    }
 }

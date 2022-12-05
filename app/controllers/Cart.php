@@ -13,7 +13,7 @@ class Cart extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login1');
         }
 
         $data['row'] = $row = $this->getUser();
@@ -41,7 +41,7 @@ class Cart extends Controller
 
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login1');
         }
 
         $cart = new Carts();
@@ -56,7 +56,7 @@ class Cart extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login1');
         }
 
         $cart = new Carts();

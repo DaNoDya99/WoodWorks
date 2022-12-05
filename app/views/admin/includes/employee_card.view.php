@@ -12,7 +12,11 @@
             <tr><td>Date : </td><td><?=$row->Date?></td></tr>
         </table>
         <div class="card-btns">
-            <button>Update</button>
-            <button>Remove</button>
+            <a href="<?=ROOT?>/employee/edit/<?=$row->EmployeeID?>">
+                <button>Edit</button>
+            </a>
+            <a href="<?=ROOT?>/employee/delete/<?=$row->EmployeeID?>">
+                <button>Remove</button>
+            </a>
         </div>
     </div>
