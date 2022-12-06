@@ -12,4 +12,11 @@ class Categories extends Model
         'Date'
     ];
 
+    public function getCategories()
+    {
+        $query = "select CategoryID, Category_name from Categories order by CategoryID asc ;";
+
+        return $this->query($query);
+    }
+
 }

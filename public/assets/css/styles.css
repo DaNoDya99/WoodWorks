@@ -1997,7 +1997,7 @@ form .name-details .field:last-child{
 
 .chart-container{
     position: relative;
-    height: 48%;
+    height: 40vh;
     width: 96%;
     margin: 1em;
 }
@@ -2108,7 +2108,7 @@ form .name-details .field:last-child{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 200px;
     height: 40px;
     background: #100F0F;
     border-radius: 10px;
@@ -2147,6 +2147,18 @@ form .name-details .field:last-child{
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: 'Poppins-Light', sans-serif;
+    background-color: #f9f9f9;
+}
+
+.add-fur-field select{
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Poppins-Light', sans-serif;
+    background-color: #f9f9f9;
+    /*color: #6f7978;*/
 }
 
 .add-fur-field textarea{
