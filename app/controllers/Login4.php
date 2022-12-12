@@ -1,13 +1,11 @@
 <?php
-require "../app/models/Employee.php";
-require "../app/models/Auth.php";
 
 
 class Login4 extends Controller
 {
     public function index(){
 
-        $employee = new Employee();
+        $employee = new Employees();
         
         $data['error'] = [];
 

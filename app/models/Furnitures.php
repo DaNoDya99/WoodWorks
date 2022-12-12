@@ -143,4 +143,18 @@ class Furnitures extends Model
         $DATA['Visibility'] = 1;
         return $DATA;
     }
+
+    public function view_furniture_posts()
+    {
+        $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
+
+        return $this->query($query);
+    }
+
+    public function updateVisibility($id,$visibility)
+    {
+        $query = "update $this->table set Visibility = :Visibility where ProductID = :ProductID;";
+
+        return $this->query($query, ['Visibility' => $visibility, 'ProductID' => $id]);
+    }
 }

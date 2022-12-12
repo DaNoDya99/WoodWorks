@@ -5,7 +5,7 @@
     </div>
 
     <div class="sidebar-body">
-        <ul class="sidebar-body-items">
+        <ul class="sidebar-items">
             <div class="sidebar-item">
                 <li><a href="<?=ROOT?>/manager/dashboard"><h3>DASHBOARD</h3></a></li>
             </div>
@@ -18,9 +18,7 @@
             <div class="sidebar-item">
                 <li><a href="<?=ROOT?>/manager/reports"><h3>REPORTS</h3></a></li>
             </div>
-            <div class="sidebar-item">
-                <li><a href="<?=ROOT?>/manager/discounts"><h3>DISCOUNTS</h3></a></li>
-            </div>
+            
             <div class="sidebar-item">
                 <li><a href="<?=ROOT?>/manager/reviews"><h3>REVIEWS</h3></a></li>
             </div>
@@ -36,8 +34,9 @@
             <div class="sidebar-item">
                 <li><a href="<?=ROOT?>/manager/chat"><h3>CHAT</h3></a></li>
             </div>
+            
             <div class="sidebar-item">
-                <li><a href="<?=ROOT?>/manager/notifications"><h3>NOTIFICATIONS</h3></a></li>
+                <li><a href="<?=ROOT?>/manager/profile"><h3>PROFILE</h3></a></li>
             </div>
             
         </ul>
