@@ -137,7 +137,7 @@ class Customer_home extends Controller
         {
             $this->redirect('login');
         }
-
+        
         $cart = new Carts();
         $order_item = new Order_Items();
         $order_item->deleteItem($cartID,$productID);

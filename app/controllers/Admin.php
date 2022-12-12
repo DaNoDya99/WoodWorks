@@ -13,6 +13,14 @@ class Admin extends Controller
 
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employees();
+        $furniture = new Furnitures();
+
+        $data['furniture'] = $rows = $furniture->getOutOfStockFurniture();
+        foreach ($rows as $row)
+        {
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
+
         $data['row'] = $employee->where('EmployeeID',$id);
         $data['title'] = "DASHBOARD";
 
@@ -143,6 +151,9 @@ class Admin extends Controller
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employees();
         $furniture = new Furnitures();
+        $categories = new Categories();
+
+        $data['categories'] = $categories->getCategories();
         $data['row'] = $employee->where('EmployeeID', $id);
         $data['title'] = "INVENTORY";
 

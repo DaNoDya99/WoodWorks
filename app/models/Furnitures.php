@@ -89,19 +89,9 @@ class Furnitures extends Model
 
     public function getDisplayImage($ProductId = null)
     {
-        $query = "
-             WITH cte as
-             (
-                 SELECT *,
-                  ROW_NUMBER()
-                  OVER (PARTITION BY ProductID) AS rn
-               FROM furniture_image WHERE ProductID = '$ProductId'
-             )
-            select * from cte
-            where rn = 1  
-        ";
+        $query = "select Image from furniture_image where ProductId = :ProductId && Image like '%primary%';";
 
-        return $this->query($query);
+        return $this->query($query, ['ProductId' => $ProductId]);
     }
 
     public function getAllImages($id)
@@ -204,5 +194,12 @@ class Furnitures extends Model
         } else {
             return false;
         }
+    }
+
+    public function getOutOfStockFurniture()
+    {
+        $query = "select ProductID,Name from $this->table where Quantity = 0";
+
+        return $this->query($query);
     }
 }
