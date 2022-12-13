@@ -26,6 +26,11 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a href="<?=ROOT?>/admin/suppliers">
+                    <h3>SUPPLIERS</h3>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a href="<?=ROOT?>/admin/profile">
                     <h3>PROFILE</h3>
                 </a>

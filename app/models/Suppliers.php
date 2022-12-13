@@ -1,6 +1,6 @@
 <?php
 
-class SupplierModel extends Model
+class Suppliers extends Model
 {
     protected $table = "supplier";
     public $errors = [];

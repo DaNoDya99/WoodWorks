@@ -95,7 +95,17 @@ class Admin extends Controller
         $employee = new Employees();
         $id = $id ?? Auth::getEmployeeID();
         $data['row'] = $employee->where('EmployeeID',$id);
-        $data['rows'] = $employee->findAll();
+        $rows = $employee->findAll();
+        $data['rows'] = array();
+
+        for($i = 0;$i < count($rows); $i++)
+        {
+            if($rows[$i]->Role != "Administrator")
+            {
+                $data['rows'][] = $rows[$i];
+            }
+        }
+
         $data['no_of_emp'] = count($data['rows']);
         $data['title'] = "EMPLOYEES";
 
@@ -241,5 +251,22 @@ class Admin extends Controller
 
         $data['errors'] = $furniture->errors;
         $this->view('admin/add_furniture',$data);
+    }
+
+    public function suppliers()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login1');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $supplier = new Suppliers();
+
+        $data['row'] = $employee->where('EmployeeID',$id);
+        $data['suppliers'] = $supplier->findAll();
+        $data['title'] = "SUPPLIERS";
+
+        $this->view('admin/supplier',$data);
     }
 }

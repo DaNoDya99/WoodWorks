@@ -5,33 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/images/admin/filter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/admin/supplier.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Customer_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Customer_home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Furnitures.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/inventory.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/inventory.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/SupplierModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Suppliers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1670294026Bed_p.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1670294026bed_s1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1670294026bed_s2.jpgprimary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1670294096Bed_p.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1670294096bed_s1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1670294096primarybed_s2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1670343967Bed_p.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1670343967bed_s1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1670343967primarybed_s2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_10_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_10_P.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_1_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_1_P.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_2_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_2_P.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_3_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_3_P.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_4_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_4_P.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_5_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_5_P.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_6_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_6_P.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_7_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_7_P.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_8_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_8_P.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/ST_9_P.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/images/primaryST_9_P.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +153,9 @@
       <workItem from="1670340213792" duration="3741000" />
       <workItem from="1670414584213" duration="2629000" />
       <workItem from="1670845289148" duration="860000" />
-      <workItem from="1670858779298" duration="4854000" />
+      <workItem from="1670858779298" duration="5160000" />
+      <workItem from="1670896969446" duration="3530000" />
+      <workItem from="1670903303809" duration="5403000" />
     </task>
     <servers />
   </component>
