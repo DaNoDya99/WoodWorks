@@ -22,15 +22,33 @@
             <div class="add-fur-form-container">
                 <h1>Add Furniture</h1>
                 <form class="add-fur-form" method="post" enctype="multipart/form-data">
+
+                    <?php if(!empty($errors)):?>
+                        <div class="error-txt signup-error">
+                            <img class="close-error" src="<?=ROOT?>/assets/images/customer/close.png" alt="Close btn" onclick="close_error()">
+                            <ul>
+                                <?php foreach ($errors as $key => $value):?>
+                                    <li><?=$errors[$key]?></li>
+                                <?php endforeach;?>
+                            </ul>
+                        </div>
+                    <?php endif;?>
+
                     <div class="fur-img-upload-container">
                         <div class="fur-img">
                             <img id="first-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="Product Image">
+                        </div>
+                        <label>
+                            Primary Image
+                            <input onchange="load_image_primary(this.files)" type="file" name="PrimaryImage">
+                        </label>
+                        <div class="fur-img">
                             <img id="second-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="Product Image">
                             <img id="third-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="Product Image">
                         </div>
                         <label>
-                            upload
-                            <input onchange="load_image(this.files)" type="file" name="Images[]" multiple>
+                            Secondary Images
+                            <input onchange="load_image_secondary(this.files)" type="file" name="Images[]" multiple>
                         </label>
                     </div>
                     <div class="add-fur-fields">
@@ -45,11 +63,21 @@
                             </div>
                             <div class="add-fur-field">
                                 <label>Category</label>
-                                <input type="text" name="CategoryID" placeholder="Category">
+                                <select name="CategoryID">
+                                    <option value="" selected>-- Select Category --</option>
+                                    <?php foreach ($categories as $val): ?>
+                                        <option value="<?=$val->CategoryID ?>"><?=$val->CategoryID ?> - <?=$val->Category_name ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="add-fur-field">
                                 <label>Sub Category</label>
-                                <input type="text" name="Sub_category_name" placeholder="Sub Category">
+                                <select name="Sub_category_name">
+                                    <option selected>-- Select Sub-Category --</option>
+                                    <?php foreach ($sub_categories as $val): ?>
+                                        <option value="<?=$val->Sub_category_name?>"><?=$val->Sub_category_name?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="add-fur-field">
                                 <label>Quantity</label>
@@ -89,7 +117,7 @@
 </div>
 
 <script src="<?=ROOT?>/assets/javascript/add_furniture.js"></script>
-
+<script src="<?=ROOT?>/assets/javascript/script.js"></script>
 </body>
 </html>
 

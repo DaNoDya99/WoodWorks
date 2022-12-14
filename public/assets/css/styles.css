@@ -657,6 +657,18 @@ form .name-details .field:last-child{
     font-family: 'Poppins-SemiBold' , sans-serif;
     width: 20em;
     border-radius: 3px;
+    padding: 0 0 0 1em;
+}
+
+.inv-form select{
+    width: 15em;
+    border: 2px solid #d2d2d2;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    padding: 0 0 0 1em;
+    font-family: 'Poppins-SemiBold' , sans-serif;
+    color: #787878;
 }
 
 .inv-form button{
@@ -735,6 +747,71 @@ form .name-details .field:last-child{
 
 .inv-product td > * {
     vertical-align: middle;
+}
+
+/*Supplier*/
+
+.sup-container{
+    width: 70%;
+    background-color: #f9f9f9;
+    margin: 1em auto;
+    padding: 1em 1.5em;
+    border-radius: 15px;
+    max-height: 80vh;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+}
+
+.sup-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid #d2d2d2;
+    padding: 1em 0;
+}
+
+.sup-header h1{
+    margin: 0;
+    font-family: 'Poppins-SemiBold' , sans-serif;
+}
+
+.sup-header button{
+    width: 10em;
+    height: 2.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sup-table {
+    max-height: 70vh;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sup-table::-webkit-scrollbar{
+    display: none;
+}
+
+.sup-container table{
+    width: 100%;
+    font-family: 'Poppins-SemiBold', sans-serif;
+    border-collapse: collapse;
+}
+
+.sup-container table th{
+    border-bottom: 2px solid #d2d2d2;
+    padding-bottom: .8em;
+}
+
+.supplier-data{
+    text-align: center;
+    font-family: 'Poppins-Light', sans-serif;
+    padding: 0.5em 0;
 }
 
 /*Registered Customer Home*/
@@ -1997,7 +2074,7 @@ form .name-details .field:last-child{
 
 .chart-container{
     position: relative;
-    height: 48%;
+    height: 40vh;
     width: 96%;
     margin: 1em;
 }
@@ -2108,7 +2185,7 @@ form .name-details .field:last-child{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 200px;
     height: 40px;
     background: #100F0F;
     border-radius: 10px;
@@ -2147,6 +2224,18 @@ form .name-details .field:last-child{
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: 'Poppins-Light', sans-serif;
+    background-color: #f9f9f9;
+}
+
+.add-fur-field select{
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Poppins-Light', sans-serif;
+    background-color: #f9f9f9;
+    /*color: #6f7978;*/
 }
 
 .add-fur-field textarea{

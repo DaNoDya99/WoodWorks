@@ -13,6 +13,14 @@ class Admin extends Controller
 
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employees();
+        $furniture = new Furnitures();
+
+        $data['furniture'] = $rows = $furniture->getOutOfStockFurniture();
+        foreach ($rows as $row)
+        {
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
+
         $data['row'] = $employee->where('EmployeeID',$id);
         $data['title'] = "DASHBOARD";
 
@@ -87,7 +95,17 @@ class Admin extends Controller
         $employee = new Employees();
         $id = $id ?? Auth::getEmployeeID();
         $data['row'] = $employee->where('EmployeeID',$id);
-        $data['rows'] = $employee->findAll();
+        $rows = $employee->findAll();
+        $data['rows'] = array();
+
+        for($i = 0;$i < count($rows); $i++)
+        {
+            if($rows[$i]->Role != "Administrator")
+            {
+                $data['rows'][] = $rows[$i];
+            }
+        }
+
         $data['no_of_emp'] = count($data['rows']);
         $data['title'] = "EMPLOYEES";
 
@@ -143,6 +161,9 @@ class Admin extends Controller
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employees();
         $furniture = new Furnitures();
+        $categories = new Categories();
+
+        $data['categories'] = $categories->getCategories();
         $data['row'] = $employee->where('EmployeeID', $id);
         $data['title'] = "INVENTORY";
 
@@ -164,53 +185,88 @@ class Admin extends Controller
 
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employees();
+        $category = new Categories();
         $furniture = new Furnitures();
+        $sub_category = new Sub_Categories();
+
         $data['row'] = $employee->where('EmployeeID', $id);
         $data['title'] = "ADD FURNITURE";
+        $data['categories'] = $category->getCategories();
+        $data['sub_categories'] = $sub_category->getSubcategoryName();
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            $furniture->insert($_POST);
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $folder = "uploads/images/";
-            $allowedFileType = ['image/jpeg','image/png'];
-            if(!file_exists($folder)){
-                mkdir($folder,0777,true);
-                file_put_contents($folder."index.php","<?php Access Denied.");
-                file_put_contents("uploads/index.php","<?php Access Denied.");
-            }
-            $images = array();
+            if ($furniture->validate($_POST)) {
 
-            if(!empty($_FILES['Images']['name']))
-            {
-                if(count(array_unique($_FILES['Images']['error'])) === 1 && end($_FILES['Images']['error']) === 0)
-                {
-                    $flag = true;
+                $furniture->insert($_POST);
 
-                    foreach ($_FILES['Images']['type'] as $type)
-                    {
-                        if(!in_array($type,$allowedFileType)){
+                $folder = "uploads/images/";
+                $allowedFileType = ['image/jpeg', 'image/png'];
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                    file_put_contents($folder . "index.php", "<?php Access Denied.");
+                    file_put_contents("uploads/index.php", "<?php Access Denied.");
+                }
+                $images = array();
+
+                if (!empty($_FILES['Images']['name']) && !empty($_FILES['PrimaryImage']['name'])) {
+
+                    if (count(array_unique($_FILES['Images']['error'])) === 1 && end($_FILES['Images']['error']) === 0 && $_FILES['PrimaryImage']['error'] === 0) {
+
+                        $flag = true;
+
+                        foreach ($_FILES['Images']['type'] as $type) {
+                            if (!in_array($type, $allowedFileType)) {
+                                $flag = false;
+                            }
+                        }
+
+                        if (!in_array($_FILES['PrimaryImage']['type'], $allowedFileType)) {
                             $flag = false;
                         }
-                    }
 
-                    if($flag)
-                    {
-                        for ($i = 0; $i < 3; $i++)
-                        {
-                            $destination = $folder.time().$_FILES['Images']['name'][$i];
-                            $images[$i] = $destination;
-                            move_uploaded_file($_FILES['Images']['tmp_name'][$i],$destination);
+                        if ($flag) {
+                            for ($i = 0; $i < 2; $i++) {
+                                $destination = $folder . time() . $_FILES['Images']['name'][$i];
+                                $images[$i] = $destination;
+                                move_uploaded_file($_FILES['Images']['tmp_name'][$i], $destination);
+                            }
+                            $destination = $folder . time() . 'primary' . $_FILES['PrimaryImage']['name'];
+                            $images[2] = $destination;
+                            move_uploaded_file($_FILES['PrimaryImage']['tmp_name'], $destination);
+
+                            $furniture->insertImages($_POST['ProductID'], $images);
+                        } else{
+                            $furniture->errors['Image'] = "File type must be jpeg or png.";
                         }
-
-                        $furniture->insertImages($_POST['ProductID'],$images);
+                    }else{
+                        $furniture->errors['Image'] = "Error occurred in images.";
                     }
+                }else{
+                    $furniture->errors['Image'] = "Select primary and secondary images.";
                 }
             }
 
-
         }
 
+        $data['errors'] = $furniture->errors;
         $this->view('admin/add_furniture',$data);
+    }
+
+    public function suppliers()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login1');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $supplier = new Suppliers();
+
+        $data['row'] = $employee->where('EmployeeID',$id);
+        $data['suppliers'] = $supplier->findAll();
+        $data['title'] = "SUPPLIERS";
+
+        $this->view('admin/supplier',$data);
     }
 }

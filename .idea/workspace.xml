@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/javascript/add_furniture.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/admin/supplier.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Furnitures.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/add_furniture.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/add_furniture.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/SupplierModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Suppliers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/includes/admin_sidebar.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +61,10 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/WoodWorks/public/assets/javascript&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -135,7 +143,19 @@
       <workItem from="1669975944217" duration="15303000" />
       <workItem from="1670041512092" duration="257000" />
       <workItem from="1670041869733" duration="11516000" />
-      <workItem from="1670076459250" duration="9448000" />
+      <workItem from="1670076459250" duration="10328000" />
+      <workItem from="1670212774190" duration="1239000" />
+      <workItem from="1670228489373" duration="2082000" />
+      <workItem from="1670291491644" duration="2512000" />
+      <workItem from="1670298350682" duration="1683000" />
+      <workItem from="1670319241790" duration="395000" />
+      <workItem from="1670319774009" duration="2494000" />
+      <workItem from="1670340213792" duration="3741000" />
+      <workItem from="1670414584213" duration="2629000" />
+      <workItem from="1670845289148" duration="860000" />
+      <workItem from="1670858779298" duration="5160000" />
+      <workItem from="1670896969446" duration="3530000" />
+      <workItem from="1670903303809" duration="5403000" />
     </task>
     <servers />
   </component>

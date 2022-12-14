@@ -89,19 +89,9 @@ class Furnitures extends Model
 
     public function getDisplayImage($ProductId = null)
     {
-        $query = "
-             WITH cte as
-             (
-                 SELECT *,
-                  ROW_NUMBER()
-                  OVER (PARTITION BY ProductID) AS rn
-               FROM furniture_image WHERE ProductID = '$ProductId'
-             )
-            select * from cte
-            where rn = 1  
-        ";
+        $query = "select Image from furniture_image where ProductId = :ProductId && Image like '%primary%';";
 
-        return $this->query($query);
+        return $this->query($query, ['ProductId' => $ProductId]);
     }
 
     public function getAllImages($id)
@@ -144,6 +134,7 @@ class Furnitures extends Model
         return $DATA;
     }
 
+<<<<<<< HEAD
     public function view_furniture_posts()
     {
         $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
@@ -157,4 +148,74 @@ class Furnitures extends Model
 
         return $this->query($query, ['Visibility' => $visibility, 'ProductID' => $id]);
     }
+=======
+    public function validate($post)
+    {
+        $this->errors = [];
+
+        if(empty($post['ProductID'])){
+            $this->errors['ProductID'] = "SKU ID is required";
+        } elseif (strlen($post['ProductID']) != 5){
+            $this->errors['ProductID'] = "SKU ID must be 5 characters";
+        } elseif (!ctype_alnum($post['ProductID'])){
+            $this->errors['ProductID'] = "SKU ID must be alphanumeric";
+        } elseif ($this->where('ProductID',$post['ProductID'])){
+            $this->errors['ProductID'] = "SKU ID already exists";
+        }
+
+        if(empty($post['Name'])){
+            $this->errors['Name'] = "Name is required";
+        }
+
+        if(empty($post['CategoryID'])){
+            $this->errors['CategoryID'] = "Category is required";
+        }
+
+        if(empty($post['Sub_category_name'])){
+            $this->errors['Sub_category_name'] = "Sub Category is required";
+        }
+
+        if(empty($post['Description'])){
+            $this->errors['Description'] = "Description is required";
+        }
+
+        if(empty($post['Quantity'])){
+            $this->errors['Quantity'] = "Quantity is required";
+        } elseif (!ctype_digit($post['Quantity'])){
+            $this->errors['Quantity'] = "Quantity must be a number";
+        }
+
+        if(empty($post['Cost'])){
+            $this->errors['Cost'] = "Cost is required";
+        } elseif (!is_numeric($post['Cost'])){
+            $this->errors['Cost'] = "Cost must be a number";
+        }
+
+        if(empty($post['Warrenty_period'])){
+            $this->errors['Warrenty_period'] = "Warrenty Period is required";
+        }
+
+        if(empty($post['Wood_type'])){
+            $this->errors['Wood_type'] = "Wood Type is required";
+        }
+
+        if(empty($post['SupplierID'])){
+            $this->errors['SupplierID'] = "Supplier ID is required";
+        }
+
+        if(empty($this->errors))
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getOutOfStockFurniture()
+    {
+        $query = "select ProductID,Name from $this->table where Quantity = 0";
+
+        return $this->query($query);
+    }
+>>>>>>> 5c97eb68ed9fa1030bed7182faaa7e3fd2feee17
 }

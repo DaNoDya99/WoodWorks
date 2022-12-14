@@ -22,9 +22,20 @@
             <div class="inv-header">
                 <h1>Inventory</h1>
                 <form method="post" class="inv-form">
+                    <select name="Category">
+                        <option selected>-- Filter --</option>
+                        <?php foreach($categories as $row):?>
+                            <option value="<?=$row->Category_name?>"><?=$row->Category_name?></option>
+                        <?php endforeach;?>
+                    </select>
+                    <button type="submit">
+                        <img src="<?=ROOT?>/assets/images/admin/filter.png" alt="Filter">
+                    </button>
+                </form>
+                <form method="post" class="inv-form">
                     <input type="search" name="product" placeholder="SKU / Name">
                     <button type="submit">
-                        <img src="<?=ROOT?>/assets/images/admin/search.png" alt="">
+                        <img src="<?=ROOT?>/assets/images/admin/search.png" alt="Search">
                     </button>
                 </form>
             </div>

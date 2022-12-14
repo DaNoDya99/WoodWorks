@@ -94,51 +94,20 @@
                                 <th>Image</th>
                                 <th>Name</th>
                             </tr>
-                            <tr>
-                                <td>P0001</td>
-                                <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                                <td>Carta Side Table</td>
-                            </tr>
-                            <tr>
-                                <td>P0001</td>
-                                <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                                <td>Carta Side Table</td>
-                            </tr>
-                            <tr>
-                                <td>P0001</td>
-                                <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                                <td>Carta Side Table</td>
-                            </tr>
-                            <tr>
-                                <td>P0001</td>
-                                <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                                <td>Carta Side Table</td>
-                            </tr>
-                            <tr>
-                                <td>P0001</td>
-                                <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                                <td>Carta Side Table</td>
-                            </tr>
-                            <tr>
-                                <td>P0001</td>
-                                <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                                <td>Carta Side Table</td>
-                            </tr>
-                            <tr>
-                                <td>P0001</td>
-                                <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                                <td>Carta Side Table</td>
-                            </tr>
-                            <tr>
-                                <td>P0001</td>
-                                <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                                <td>Carta Side Table</td>
-                            </tr>
-                            <tr>
-                                <td>P0001</td>
-                                <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image"></td>
-                                <td>Carta Side Table</td>
-                            </tr>
+
+                            <?php if(!empty($furniture)): ?>
+                                <?php foreach ($furniture as $row): ?>
+
+                                    <tr>
+                                        <td><?=$row->ProductID?></td>
+                                        <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image"></td>
+                                        <td><?=$row->Name?></td>
+                                    </tr>
+
+                                <?php endforeach;?>
+                            <?php else: ?>
+                                <h1>No products to show.</h1>
+                            <?php endif; ?>
 
                         </table>
                     </div>
