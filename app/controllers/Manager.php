@@ -49,16 +49,7 @@ class Manager extends Controller
         $this->view('manager/reviews',$data);
     }
 
-    public function profile()
-    {
-        if(!Auth::logged_in())
-        {
-            $this->redirect('login4');
-        }
-
-        $data['title']="PROFILE";
-        $this->view('manager/profile',$data);
-    }
+    
 
     public function change_visibility($id,$status)
     {
@@ -80,63 +71,63 @@ class Manager extends Controller
         $this->redirect('manager/posts');
     }
 
-//     public function profile($id = null)
-//     {
-//         if(!Auth::logged_in())
-//         {
-//             $this->redirect('login4');
-//         }
+    public function profile($id = null)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login4');
+        }
 
-//         $id = $id ?? Auth::getEmployeeID();
-//         $employee = new Employees();
-//         $data['row'] = $row = $employee->where('EmployeeID',$id);
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $data['row'] = $row = $employee->where('EmployeeID',$id);
 
-//         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
-//         {
-//             $folder = "uploads/images/";
-//             if(!file_exists($folder)){
-//                 mkdir($folder,0777,true);
-//                 file_put_contents($folder."index.php","<?php Access Denied.");
-//                 file_put_contents("uploads/index.php","<?php Access Denied.");
-//             }
+        if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
+        {
+            $folder = "uploads/images/";
+            if(!file_exists($folder)){
+                mkdir($folder,0777,true);
+                file_put_contents($folder."index.php","<?php Access Denied.");
+                file_put_contents("uploads/index.php","<?php Access Denied.");
+            }
 
-//             if($employee->edit_validate($_POST,$id)){
-//                 $allowedFileType = ['image/jpeg','image/png'];
+            if($employee->edit_validate($_POST,$id)){
+                $allowedFileType = ['image/jpeg','image/png'];
 
 
-//                 if(!empty($_FILES['Image']['name']))
-//                 {
-//                     if($_FILES['Image']['error'] == 0)
-//                     {
-//                         if(in_array($_FILES['Image']['type'],$allowedFileType))
-//                         {
-//                             $destination = $folder.time().$_FILES['Image']['name'];
-//                             move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
+                if(!empty($_FILES['Image']['name']))
+                {
+                    if($_FILES['Image']['error'] == 0)
+                    {
+                        if(in_array($_FILES['Image']['type'],$allowedFileType))
+                        {
+                            $destination = $folder.time().$_FILES['Image']['name'];
+                            move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
 
-// //                            resize_image($destination);
-//                             $_POST['Image'] = $destination;
-//                             if(file_exists($row[0]->Image))
-//                             {
-//                                 unlink($row[0]->Image);
-//                             }
-//                         }else{
-//                             $employee->errors['image'] = "This file type is not allowed.";
-//                         }
-//                     }else{
-//                         $employee->errors['image'] = "Could not upload image.";
-//                     }
-//                 }
+//                            resize_image($destination);
+                            $_POST['Image'] = $destination;
+                            if(file_exists($row[0]->Image))
+                            {
+                                unlink($row[0]->Image);
+                            }
+                        }else{
+                            $employee->errors['image'] = "This file type is not allowed.";
+                        }
+                    }else{
+                        $employee->errors['image'] = "Could not upload image.";
+                    }
+                }
 
-//                 $_POST['EmployeeID'] = $id;
-//                 $employee->update($id,$_POST);
-//                 $this->redirect('manager/profile/'.$id);
-//             }
-//         }
+                $_POST['EmployeeID'] = $id;
+                $employee->update($id,$_POST);
+                $this->redirect('manager/profile/'.$id);
+            }
+        }
 
-//         $data['title'] = "PROFILE";
-//         $data['errors'] = $employee->errors;
+        $data['title'] = "PROFILE";
+        $data['errors'] = $employee->errors;
 
-//         $this->view('manager/profile',$data);
-//     }
-// 
+        $this->view('manager/profile',$data);
+    }
+
 }

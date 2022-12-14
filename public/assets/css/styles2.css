@@ -220,7 +220,7 @@ h2 {
   text-align: center;
   position: absolute;
   list-style: none inside none;
-  top: 15%;
+  top: 16%;
   width: 80%;
   /* padding-right: 1em; */
 }
@@ -229,9 +229,13 @@ h2 {
   background-color: #455452;
   text-align: unset;
   width: 90%;
+  height: 3em;
   padding: .8em 0;
   margin: .5em auto;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar-item h3{
@@ -412,4 +416,180 @@ h2 {
   padding-right: 6em;
 }
 
+/* .popup button{
+  width: 50%;
+  margin-top: 20px;
+  padding: 10px;
+  background: #100F0F;
+  color: #f9f9f9;
+  border: 0;
+  border-radius: 5px;
+}
+
+.open-popup{
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-heading{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.popup-heading img {
+  width: 15px;
+  height: 15px;
+}
+
+.edit-cus-field{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 10px 0;
+}
+
+.edit-cus-field input{
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8vw;
+  background: #d4d4d4;
+  padding-left: 1.7em;
+}
+
+.edit-cus-field select{
+  height: 35px;
+  font-size: .8vw;
+  background: #d4d4d4;
+} */
+
+/*popup*/
+
+/* .image-field{
+  width: 400px;
+} */
+
+.popup{
+    width: 30%;
+    background: #f9f9f9;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding:0 30px 30px;
+    visibility: hidden;
+    transition: transform 0.5s ease;
+}
+
+.manager-popup{
+  left:60%;
+  width:35%;
+}
+.open-popup{
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+.popup-heading{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.popup-heading img {
+  width: 15px;
+  height: 15px;
+}
+
+.image-field{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.manager-edit-img img{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  filter: drop-shadow(0px 0px 3px black);
+  margin-bottom: 2em;
+}
+
+.image-field label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 40px;
+  background-color: #100F0F;
+  border-radius: 10px;
+  color: #f9f9f9;
+}
+
+.image-field input{
+  display: none;
+}
+
+.name-field{
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-man-field{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 10px 0;
+
+}
+
+.edit-man-field input{
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8vw;
+  background: #d4d4d4;
+  padding-left: 1.7em;
+}
+
+.edit-man-field select{
+  height: 35px;
+  font-size: .8vw;
+  background: #d4d4d4;
+}
+.first-name, .last-name{
+  width: 48%;
+}
+.popup button{
+width: 50%;
+margin-top: 20px;
+padding: 10px;
+background: #100F0F;
+color: #f9f9f9;
+border: 0;
+border-radius: 5px;
+
+}
+
+.edit-cus-pro-btn-sec button{
+width: 200px;
+height: 50px;
+border: solid 2px #e2dcc8;
+border-radius: 7px;
+font-family: 'Poppins-Light', sans-serif;
+font-weight: bolder;
+font-size: 1vw;
+background-color: #100F0F;
+color: #ffffff;
+margin: 20px 0;
+}
 

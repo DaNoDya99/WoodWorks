@@ -31,9 +31,7 @@
             <div class="sidebar-item">
                 <li><a href="<?=ROOT?>/manager/advertisements"><h3>ADVERTISEMENTS</h3></a></li>
             </div>
-            <div class="sidebar-item">
-                <li><a href="<?=ROOT?>/manager/chat"><h3>CHAT</h3></a></li>
-            </div>
+            
             
             <div class="sidebar-item">
                 <li><a href="<?=ROOT?>/manager/profile"><h3>PROFILE</h3></a></li>

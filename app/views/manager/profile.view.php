@@ -1,8 +1,8 @@
-<!-- <?php $this->view('manager/includes/header') ?>
+<?php $this->view('manager/includes/header') ?>
 
 <body class="manager">
 <div class="manager-body">
-    <?php $this->view('manager/includes/admin_sidebar') ?>
+    <?php $this->view('manager/includes/manager_sidebar') ?>
     <div class="dashboard">
         <div class="dashboard-nav">
             <div class="nav-item-page-name">
@@ -53,20 +53,20 @@
                             </div>
                             <hr>
                             <div class="name-field">
-                                <div class="edit-cus-field first-name">
+                                <div class="edit-man-field first-name">
                                     <label>First Name</label>
                                     <input type="text" name="Firstname" value="<?=$row[0]->Firstname?>">
                                 </div>
-                                <div class="edit-cus-field last-name">
+                                <div class="edit-man-field last-name">
                                     <label>Last Name</label>
                                     <input type="text" name="Lastname" value="<?=$row[0]->Lastname?>">
                                 </div>
                             </div>
-                            <div class="edit-cus-field">
+                            <div class="edit-man-field">
                                 <label>Email</label>
                                 <input type="email" name="Email" value="<?=$row[0]->Email?>">
                             </div>
-                            <div class="edit-cus-field">
+                            <div class="edit-man-field">
                                 <label>Contact No</label>
                                 <input type="text" name="Contactno" value="<?=$row[0]->Contactno?>">
                             </div>
@@ -83,4 +83,4 @@
 </div>
 </body>
 <script src="<?=ROOT?>/assets/javascript/manager-profile.js"></script>
-</html> -->
+</html>

@@ -1,5 +1,5 @@
 let popup = document.getElementById('popup');
-let profile_card = document.querySelector('.admin-profile-card');
+let profile_card = document.querySelector('.manager-profile-card');
 let closeBtn = document.querySelector('.popup-heading img');
 
 function openPopup(){
