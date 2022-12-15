@@ -49,8 +49,9 @@ class supplier extends Controller
                 }
             }
             $user->update($row->SupplierID, $_POST);
-            redirect('supplier/profile/' . $row->SupplierID);
+            $this->redirect('supplier/profile/' . $row->SupplierID);
         }
         $this->view('supplier/profile', $data);
     }
+
 }

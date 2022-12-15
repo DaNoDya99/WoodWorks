@@ -21,8 +21,52 @@
             <div class="sup-container">
                 <div class="sup-header">
                     <h1>Suppliers</h1>
-                    <button>Add Supplier</button>
+                    <button onclick="openPopup()">Add Supplier</button>
                 </div>
+
+                <div class="popup sup-popup" id="popup">
+                    <div class="popup-heading">
+                        <h2>Add Supplier</h2>
+                        <img src="<?=ROOT?>/assets/images/customer/close.png" alt="Close" onclick="closePopup()">
+                    </div>
+                    <form class="add-sup-form" method="post">
+                        <div class="add-sup-field">
+                            <label>Employee ID</label>
+                            <input type="text" name="EmployeeID" placeholder="Employee ID">
+                        </div>
+
+                        <div class="name-field-sup">
+                            <div>
+                                <label>First Name</label>
+                                <input type="text" name="Firstname" placeholder="First Name">
+                            </div>
+                            <div>
+                                <label>Last Name</label>
+                                <input type="text" name="Lastname" placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="add-sup-field">
+                            <label>Email</label>
+                            <input type="text" name="Email" placeholder="Email">
+                        </div>
+                        <div class="add-sup-field">
+                            <label>Password</label>
+                            <input type="text" name="Password" placeholder="Password">
+                        </div>
+                        <div class="add-sup-field">
+                            <label>Contact</label>
+                            <input type="text" name="Contactno" placeholder="Contact">
+                        </div>
+                        <div class="add-sup-field">
+                            <label>Company Name</label>
+                            <input type="text" name="Company_name" placeholder="Company Name">
+                        </div>
+
+                        <button type="submit" onclick="closePopup()">Save</button>
+                    </form>
+                </div>
+
                 <div class="sup-table">
                     <table>
                         <tr>
@@ -55,4 +99,5 @@
     </div>
 </div>
 </body>
+<script src="<?=ROOT?>/assets/javascript/supplier.js"></script>
 </html>

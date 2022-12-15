@@ -420,128 +420,77 @@ form .name-details .field:last-child{
 
 /*Admin-Employees Page*/
 
-.container{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-height: 700px;
-    overflow-y: auto;
-    border: solid 3px black;
-    margin: 0 5px 5px 5px;
-    border-radius: 10px;
-}
-
-.card{
-    background: white;
-    width: 320px;
-    height: 450px;
-    margin: 10px;
+.emp-container{
+    width: 95%;
+    max-height: 80vh;
+    margin: 1em auto;
     border-radius: 15px;
-    filter: drop-shadow(0px 0px 1px black);
-    text-align: center;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    background-color: #f9f9f9;
+    padding: 1em;
 }
 
-.card-image{
-    background-color: #007148;
-    border-radius: 15px 15px 0 0;
-    height: 165px;
-    text-align: center;
-}
-
-.card-image img{
-    height: 150px;
-    width: 150px;
-    margin: 7.5px auto;
-    background-size: cover;
-    border-radius: 50%;
-    filter: drop-shadow(0px 0px 1px black);
-}
-
-.card p{
-    padding: 10px;
-}
-
-.card:hover{
-    cursor: pointer;
-    transform: scale(1.01);
-    transition: all 1s ease;
-}
-
-.card-table{
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.card-table tr td:first-child{
-    text-align: left;
-    font-family: 'Poppins-Light', sans-serif;
-    padding: 2px;
-    font-weight: bold;
-}
-
-.card-table tr td:last-child{
-    text-align: left;
-    font-size: .7vw;
-    font-family: 'Poppins-Light', sans-serif;
-    padding-left: 6px;
-}
-
-.card h2{
-    margin: 5px;
-    font-family: 'Poppins-Light', sans-serif;
-}
-
-.card-btns{
+.emp-header{
     display: flex;
-    padding-top: 8px;
-    justify-content: space-around;
-}
-
-.card-btns button{
-    border-radius: 6px;
-    border: unset;
-    font-family: 'Poppins-Light', sans-serif;
-    font-weight: bold;
-    color: #f9f9f9;
-    cursor: pointer;
-}
-
-.card-btns a:first-child button{
-    background-color: #2b7358;
-    width: 70px;
-    height: 40px;
-}
-
-.card-btns a:last-child button{
-    background-color: #d23542;
-    width: 70px;
-    height: 40px;
-}
-
-.add-emp-bar{
-    height: 60px;
-    border: solid 2px black;
-    margin: 0 5px 5px 5px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-around;
+    border-top: 2px solid #d4d4d4;
+    font-family: 'Poppins-SemiBold' , sans-serif;
 }
 
-.add-emp-bar button{
-    width:200px;
-    height: 50px;
-    border: solid 1.5px black;
-    border-radius: 7px;
+.emp-header button{
+    width: 100%;
+    background-color: #0F3D3E;
+    color: #f9f9f9;
     font-family: 'Poppins-Light', sans-serif;
-    font-weight: bolder;
-    font-size: 1vw;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 5px;
+    height: 2em;
+    cursor: pointer;
 }
 
-.add-emp-bar h1{
-    font-family: 'Poppins-Light', sans-serif;
-    font-weight: bolder;
+.emps {
+    max-height: 70vh;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+}
+
+.emps::-webkit-scrollbar{
+    display: none;
+}
+
+
+.emps table{
+    width: 100%;
+    font-family: Poppins-Light, sans-serif;
+    border-collapse: collapse;
+}
+
+.emps th{
+    font-size: 1.2rem;
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.emps td{
+    text-align: center;
+}
+
+.emps td:last-child a:first-child{
+    color: #0F3D3E;
+    margin-right: .5em;
+}
+
+.emps td:last-child a:last-child{
+    color: #d23542;
+    margin-left: .5em;
+}
+
+.emp-img img{
+    height: 5em;
+    width: 5em;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 /*Admin-Add Employees Page*/
@@ -749,6 +698,10 @@ form .name-details .field:last-child{
     vertical-align: middle;
 }
 
+.inv-fur-name{
+    width: 20%;
+}
+
 /*Supplier*/
 
 .sup-container{
@@ -812,6 +765,39 @@ form .name-details .field:last-child{
     text-align: center;
     font-family: 'Poppins-Light', sans-serif;
     padding: 0.5em 0;
+}
+
+.add-sup-form input{
+    width: 100%;
+    border: none;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #d4d4d4;
+    margin-bottom: 1em;
+}
+
+.add-sup-field{
+    text-align: left;
+}
+
+.name-field-sup{
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-field-sup div{
+    width: 49%;
+    text-align: left;
+}
+
+.name-field-sup input{
+    width: 100%;
+}
+
+.sup-popup button{
+    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-size: 1rem;
 }
 
 /*Registered Customer Home*/
@@ -2049,6 +2035,12 @@ form .name-details .field:last-child{
 .admin-popup{
     left: 60%;
     width: 35%;
+}
+
+.sup-popup{
+    left: 60%;
+    width: 30%;
+    font-family: 'Poppins-Light', sans-serif;
 }
 
 .admin-popup hr{

@@ -106,7 +106,11 @@ class Admin extends Controller
             }
         }
 
-        $data['no_of_emp'] = count($data['rows']);
+        foreach ($rows as $row)
+        {
+            $row->Date = explode(' ',$row->Date)[0];
+        }
+
         $data['title'] = "EMPLOYEES";
 
         $this->view('admin/employees',$data);
@@ -263,9 +267,18 @@ class Admin extends Controller
         $employee = new Employees();
         $supplier = new Suppliers();
 
+        if($_SERVER['REQUEST_METHOD'] == "POST")
+        {
+            if($supplier->validate($_POST))
+            {
+
+            }
+        }
+
         $data['row'] = $employee->where('EmployeeID',$id);
         $data['suppliers'] = $supplier->findAll();
         $data['title'] = "SUPPLIERS";
+        $data['errors'] = $supplier->errors;
 
         $this->view('admin/supplier',$data);
     }
