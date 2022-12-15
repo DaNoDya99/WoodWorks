@@ -10,7 +10,7 @@ $(document).ready(function () {
 
             for (var i in data) {
                 Count.push(data[i].numOrders);
-                Status.push(data[i].OrderStatus);
+                Status.push(data[i].Order_status);
                 colors.push(color());
             }
             // console.log(Count);

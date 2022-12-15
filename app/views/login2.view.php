@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+
         @font-face {
             font-family: Poppins;
             src: url(./assets/fonts/Poppins-Regular.ttf);
         }
-
         body {
             margin: 0;
             font-family: Poppins;
@@ -21,7 +21,7 @@
 
         .leftpanel {
 
-            background: url('./Rectangle6.png');
+            background: url('<?=ROOT?>/assets/images/cashier/Rectangle6.png');
             background-repeat: no-repeat;
             background-size: cover;
 
@@ -109,7 +109,8 @@
 <body>
     <div class="contactbar">
         <nav class="nav" style="display: grid; grid-template-columns:8fr 2fr">
-            <img src="./WOODWORKS.png" alt="">
+            <img src="<?=ROOT?>/assets/images/cashier/WOODWORKS.png" alt="">
+
             <div>
                 <ul>
                     <li>Login</li>

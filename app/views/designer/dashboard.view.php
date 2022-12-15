@@ -4,6 +4,7 @@
 <div class="designer-body">
     <?php $this->view('designer/includes/designer_sidebar') ?>
     <div class="dashboard">
+
         <div class="dashboard-nav">
             <div class="nav-item-page-name">
                 <h1><?= $title ?></h1>
@@ -18,24 +19,25 @@
                 </a>
             </div>
         </div>
-        <div class="content">
-            <h3 class="text">Welcome <?=Auth::getLastname()?></h3><br>
-            <hr><br>
-            <h3 id="deli-hed"> New Designs</h3><br>
-            <img class="deli-pict" src="<?=ROOT?>/assets/images/designer/design.jpg" alt="Delivery picture">
-            <p class="para">
-                “WoodWorks” is a management system for a furniture selling shop. “WoodWorks” has the
-                capability of buy furniture from the suppliers and sell for the customers. For customers if they
-                want to sell their used furniture then they can put an advertisement in the system. The
-                company provides the delivery service if the customers want it. There are designers who are
-                working for the system, provide new furniture designs for the company. “WoodWorks” is the
-                automated system for the shop which consist of an online ordering system, inventory
-                management system, report generating system and a delivery system. This system is intended
-                to maximize the revenue of the business and introduce an easy way to interact with the business
-                for both the customers and employees.
-            </p>
+
+        <div class="containers">
+
+            <div class="box" id="chart-container">
+                <canvas id="designerPie" width="100" height="100"> </canvas>
+            </div>
+
+            <div class="box" id="chart-container3"">
+                <canvas id="designerLine" height="400" width="300"></canvas>
+            </div>
+
+            <div class="box" id="chart-container2">
+                <canvas id="myBar" width="300" height="400"> </canvas>
+            </div>
+
         </div>
+
     </div>
 </div>
 </body>
+<?php $this->view('designer/includes/footer'); ?>
 </html>

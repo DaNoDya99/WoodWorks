@@ -19,26 +19,11 @@
             </div>
         </div>
 
-        <a class="go-back" href="<?=ROOT?>/designer/design">
-            <img src="<?=ROOT?>/assets/images/designer/back.png" alt="Back Button">
-            <h1>Back</h1>
-        </a>
-
         <div class="des-form-body">
-
-            <?php if(!empty($errors)):?>
-                <div class="error-txt signup-error">
-                    <ul>
-                        <?php foreach ($errors as $key => $value):?>
-                            <li><?=$errors[$key]?></li>
-                        <?php endforeach;?>
-                    </ul>
-                </div>
-            <?php endif;?>
 
             <form action="/woodworks/public/designer/add_new_design" method="post" enctype="multipart/form-data">
 
-                <h2>Add New Design</h2>
+                <h2>Add New Designs</h2>
 
                 <label id="designImage" >Design Images</label>
 
@@ -48,6 +33,13 @@
                     <p  id="num-of-files">Number of Images Chosen: None</p>
 
                 </div>
+
+                <?php if(!empty($errors['Description'])):?>
+                    <div class="error-txt"><?=$errors['Description']?></div>
+                <?php endif;?>
+                <?php if(!empty($errors['Name'])):?>
+                    <div class="error-txt"><?=$errors['Name']?></div>
+                <?php endif;?>
 
                 <div class="edit-des-Ubtn-section" id="edit-design">
                     <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
@@ -60,6 +52,11 @@
                     <label>
                         Delete Images
                     </label>
+                </div>
+
+                <div class="des_Name">
+                    <label>Design Name: </label>
+                    <input type="text" name="Name" placeholder="Enter Your Design Name" class="txt">
                 </div>
 
                 <div id="description">
@@ -77,6 +74,7 @@
     </div>
 </div>
 </body>
+<?php $this->view('designer/includes/footer'); ?>
 </html>
 <script src="<?=ROOT?>/assets/javascript/designer/add_designs.js" ></script>
 

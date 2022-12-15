@@ -7,25 +7,29 @@
         <ul class="sidebar-items">
             <li class="sidebar-item">
                 <a href="<?=ROOT?>/designer/dashboard">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/designer/dashboard.png" alt="Dashboard">
                     <h3>DASHBOARD</h3>
                 </a>
-                <hr>
+
             </li>
+
             <li class="sidebar-item">
-                <a href="<?=ROOT?>/designer/profile">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/designer/user.png" alt="Profile">
-                    <h3>PROFILE</h3>
+                <a href="<?=ROOT?>/designer/add_design">
+                    <h3>ADD DESIGNS</h3>
                 </a>
-                <hr>
             </li>
+
             <li class="sidebar-item">
                 <a href="<?=ROOT?>/designer/design">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/designer/design.png" alt="Designs">
                     <h3>DESIGNS</h3>
                 </a>
-                <hr>
             </li>
+
+            <li class="sidebar-item">
+                <a href="<?=ROOT?>/designer/profile">
+                    <h3>PROFILE</h3>
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>

@@ -37,6 +37,7 @@ class Model extends Database
     {
         $column = addslashes($column);
         $query = "select * from $this->table where $column = :value";
+
         return $this->query($query,['value' => $value]);
     }
 
@@ -73,12 +74,6 @@ class Model extends Database
         return $this->query($query);
     }
 
-    public function first($column,$value)
-    {
 
-        $query = "select * from $this->table where $column = :value";
-        $query .= " order by Date desc limit 1";
-        return $this->query($query,['value' => $value]);
 
-    }
 }

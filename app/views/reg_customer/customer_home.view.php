@@ -1,4 +1,4 @@
-<?php $this->view('reg_customer/includes/header'); ?>
+<?php $data['row'] = $row; $this->view('reg_customer/includes/header',$data); ?>
 
 <div>
     <section class="intro-section">
@@ -7,10 +7,12 @@
                 <h1>Create a home that defines who are you.</h1>
                 <h2>Beauty, Smooth & Elegant</h2>
                 <h3>Every home needs a cozy and warm atmosphere. Interior Design studio carefully considers every detail
-                and creates a functional and comfortable design of your dream house
-                where you want to come back after a long working day. Turn your room with panto into a lot
-                more minimalist and modern with ease and speed.</h3>
-                <button>Shop now</button>
+                    and creates a functional and comfortable design of your dream house
+                    where you want to come back after a long working day. Turn your room with panto into a lot
+                    more minimalist and modern with ease and speed.</h3>
+                <a href="<?=ROOT?>/category">
+                    <button>Shop now</button>
+                </a>
             </div>
             <div class="intro-img">
                 <img src="<?=ROOT?>/assets/images/customer/intro.jpg" alt="Intro Image">
@@ -22,11 +24,9 @@
             <h1>Check out our latest products</h1>
         </div>
         <div class="latest-product-posts">
-            <?php $this->view('reg_customer/includes/product_card'); ?>
-            <?php $this->view('reg_customer/includes/product_card'); ?>
-            <?php $this->view('reg_customer/includes/product_card'); ?>
-            <?php $this->view('reg_customer/includes/product_card'); ?>
-            <?php $this->view('reg_customer/includes/product_card'); ?>
+            <?php foreach($furnitures as $row): ?>
+                <?php $data['row'] = $row; $this->view('reg_customer/includes/product_card',$data); ?>
+            <?php endforeach; ?>
         </div>
     </section>
     <section class="customize-designs-section">

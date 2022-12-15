@@ -7,24 +7,20 @@
         <ul class="sidebar-items">
             <li class="sidebar-item">
                 <a href="<?=ROOT?>/driver_home/dashboard">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/driver/dashboard.png" alt="Dashboard">
                     <h3>DASHBOARD</h3>
                 </a>
-                <hr>
             </li>
-            <li class="sidebar-item">
-                <a href="<?=ROOT?>/driver_home/profile">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/driver/user.png" alt="Profile">
-                    <h3>PROFILE</h3>
-                </a>
-                <hr>
-            </li>
+
             <li class="sidebar-item">
                 <a href="<?=ROOT?>/driver_home/order">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/driver/order.png" alt="Orders">
                     <h3>ORDERS</h3>
                 </a>
-                <hr>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="<?=ROOT?>/driver_home/profile">
+                    <h3>PROFILE</h3>
+                </a>
             </li>
 
         </ul>

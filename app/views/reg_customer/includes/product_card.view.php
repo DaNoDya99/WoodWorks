@@ -1,11 +1,11 @@
-
-    <div class="product-card">
+<div class="product-card">
+    <a href="<?=ROOT?>/furniture/view_product/<?=$row->ProductID?>">
         <div class="product-card-img">
-            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Product Image">
+            <img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image">
         </div>
-        <h2>Table</h2>
         <div>
-            <h3>Rs. 15000.00</h3>
-            <button>Read More</button>
+            <h2><?=$row->Name?></h2>
+            <h3>Rs. <?=$row->Cost?></h3>
         </div>
-    </div>
+    </a>
+</div>

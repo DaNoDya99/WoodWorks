@@ -11,6 +11,8 @@ class Design extends Model
         'EmployeeID',
         'ManagerID',
         'Date',
+        'Name',
+        'Image',
 
     ];
 
@@ -18,12 +20,15 @@ class Design extends Model
         'make_design_id',
     ];
 
-    public function validate($post)
+    public function validate($data)
     {
         $this->errors = [];
 
-        if (empty($post['Description'])) {
+        if (empty($data['Description'])) {
             $this->errors['Description'] = "Description can not be empty";
+        }
+        if (empty($data['Name'])) {
+            $this->errors['Name'] = "Design Name can not be empty";
         }
         if (empty($this->errors)) {
             return true;
@@ -56,6 +61,73 @@ class Design extends Model
         }
 
         return $text;
+    }
+
+    public function getDesigns($limit = 2,$offset){
+
+        $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM design ORDER BY DesignID desc limit $limit offset $offset; ";
+        //SELECT * FROM design INNER JOIN design_image ON design.DesignID = design_image.DesignID ORDER BY design.DesignID desc limit $limit offset $offset;
+        //SELECT * FROM design d INNER JOIN (SELECT DISTINCT DesignID,Image FROM design_image) ou ON d.DesignID = ou.DesignID ORDER BY d.DesignID desc limit $limit offset $offset;
+        return $this->query($query);
+    }
+
+    public function viewDesign($id = null)
+    {
+        $query = "select ";
+
+        $fields = [
+            'DesignID',
+            'EmployeeID',
+            'Description',
+            'Name',
+            'ManagerID',
+            'Date',
+
+        ];
+
+        if(!empty($fields)){
+            foreach ($fields as $field){
+                $query .= $field.", ";
+            }
+        }
+
+        $query = trim($query,", ");
+        $query .= " from ".$this->table." where DesignID = '$id'";
+
+        return $this->query($query);
+    }
+
+    public function getDisplayImage($DesignID = null)
+    {
+        $query = "
+             WITH cte as
+             (
+                 SELECT *,
+                  ROW_NUMBER()
+                  OVER (PARTITION BY DesignID) AS rn
+               FROM design_image WHERE DesignID = '$DesignID'
+             )
+            select * from cte
+            where rn = 1  
+        ";
+
+        return $this->query($query);
+    }
+
+    public function getAllImages($id)
+    {
+        $query = "select Image from design_image WHERE DesignID = '$id';";
+
+        return $this->query($query);
+    }
+
+    public function first($column,$value)
+    {
+
+        $query = "select * from $this->table where $column = :value";
+        $query .= " order by Date desc limit 1";
+        return $this->query($query,['value' => $value]);
+
     }
 
 }

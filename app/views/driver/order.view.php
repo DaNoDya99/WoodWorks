@@ -33,6 +33,6 @@
         <?php $data['rows'] = $row; $this->view('driver/includes/order_table',$data) ?>
     </div>
 </div>
-
+<?php $this->view('driver/includes/footer'); ?>
 </body>
 </html>

@@ -108,10 +108,10 @@ class Driver_home extends Controller
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $OrderID =$_POST['OrderID'];
             $status =$_POST['status'];
-            $data['row'] = $order->query("UPDATE orders SET OrderStatus = '$status' WHERE OrderID = '$OrderID';");
+            $data['row'] = $order->query("UPDATE `order` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
 
         }
-        $data['row'] = $order->query("SELECT * FROM orders INNER JOIN customer ON orders.CustomerID = customer.CustomerID WHERE DeliveryMethod = 'Delivery' && DriverID = 'DR01';"); //&& OrderStatus = 'Processing'
+        $data['row'] = $order->query("SELECT * FROM `order` INNER JOIN `customer` ON order.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && `DriverID` = 'DR01';"); //&& OrderStatus = 'Processing'
         $this->view('driver/order',$data);
 
     }
@@ -151,7 +151,7 @@ class Driver_home extends Controller
 
         $order = new Order();
 
-        $rows =  $order->query("SELECT COUNT(OrderID) AS numOrders,OrderStatus FROM orders GROUP BY OrderStatus ");
+        $rows =  $order->query("SELECT COUNT(OrderID) AS numOrders,Order_status FROM `order` GROUP BY Order_status ");
 
         $data = array();
 
@@ -173,7 +173,7 @@ class Driver_home extends Controller
 
         $order = new Order();
 
-        $rows =  $order->query("Select cast(Date as date) AS Date, count(OrderID) AS numOrders from orders WHERE NOT OrderStatus = 'delivered' GROUP BY cast(Date as date)");
+        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `order` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
 
         $data = array();
 
@@ -195,7 +195,7 @@ class Driver_home extends Controller
 
         $order = new Order();
 
-        $rows =  $order->query("Select cast(Date as date) AS Date, count(OrderID) AS numOrders from orders WHERE OrderStatus = 'delivered' GROUP BY cast(Date as date) ORDER BY Date ASC");
+        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `order` WHERE Order_status = 'delivered' GROUP BY cast(Date as date) ORDER BY Date ASC");
 
         $data = array();
 

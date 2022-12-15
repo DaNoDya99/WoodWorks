@@ -43,4 +43,5 @@
     </div>
 </div>
 </body>
+<?php $this->view('driver/includes/footer'); ?>
 </html>
