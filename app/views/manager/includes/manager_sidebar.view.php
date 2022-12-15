@@ -18,10 +18,6 @@
             <div class="sidebar-item">
                 <li><a href="<?=ROOT?>/manager/reports"><h3>REPORTS</h3></a></li>
             </div>
-            
-            <div class="sidebar-item">
-                <li><a href="<?=ROOT?>/manager/reviews"><h3>REVIEWS</h3></a></li>
-            </div>
             <div class="sidebar-item">
                 <li><a href="<?=ROOT?>/manager/issues"><h3>ISSUES</h3></a></li>
             </div>

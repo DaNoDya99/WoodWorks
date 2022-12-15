@@ -27,4 +27,11 @@ class Reviews extends Model
 
         return $this->query($query);
     }
+
+    public function getReviewsForManager($id)
+    {
+        $query = "select Rating, Reviews, Date from $this->table where ProductID = :ProductID;";
+
+        return $this->query($query, ['ProductID'=>$id]);
+    }
 }

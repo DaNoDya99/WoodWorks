@@ -361,12 +361,17 @@ h2 {
   padding-top: 1em;
 }
 
-.posts td a {
+.posts td a:first-child {
   color: #d23542;
+  margin-right: .5em;
+}
+
+.posts td a:last-child {
+  color: #0F3D3E;
+  margin-left: .5em;
 }
 
 /*profle */
-
 .manager-profile-card{
   width: 50%;
   border-radius: 10px;
@@ -415,62 +420,6 @@ h2 {
 .manager-pro-info th{
   padding-right: 6em;
 }
-
-/* .popup button{
-  width: 50%;
-  margin-top: 20px;
-  padding: 10px;
-  background: #100F0F;
-  color: #f9f9f9;
-  border: 0;
-  border-radius: 5px;
-}
-
-.open-popup{
-  visibility: visible;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.popup-heading{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1em;
-}
-
-.popup-heading img {
-  width: 15px;
-  height: 15px;
-}
-
-.edit-cus-field{
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin: 10px 0;
-}
-
-.edit-cus-field input{
-  height: 35px;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.8vw;
-  background: #d4d4d4;
-  padding-left: 1.7em;
-}
-
-.edit-cus-field select{
-  height: 35px;
-  font-size: .8vw;
-  background: #d4d4d4;
-} */
-
-/*popup*/
-
-/* .image-field{
-  width: 400px;
-} */
 
 .popup{
     width: 30%;
@@ -593,3 +542,186 @@ color: #ffffff;
 margin: 20px 0;
 }
 
+.ads{
+  width: 80%;
+  margin: 1em auto;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+  padding: 1em;
+  max-height: 80vh;
+  height: 80vh;
+}
+
+.ads-heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid #d4d4d4;
+  margin-bottom: 1em;
+}
+
+.ads-heading button{
+  width: 7em;
+  height: 2.5em;
+  color: #f9f9f9;
+  background-color: #0F3D3E;
+  border: none;
+  border-radius: 5px;
+  font-family: Poppins-SemiBold , sans-serif;
+  font-size: 1rem;
+}
+
+.ads table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ad-table{
+  overflow-y: auto;
+  max-height: 65vh;
+  -ms-overflow-style: none;
+}
+
+.ad-table::-webkit-scrollbar{
+  display: none;
+}
+
+.ads th{
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.ad-details td{
+  text-align: center;
+}
+
+.ad-details td:last-child > * {
+  vertical-align: middle;
+}
+
+.ad-details td:last-child a:first-child{
+  margin-right: .5em;
+}
+
+.ad-details td:last-child a:last-child{
+  margin-left: .5em;
+}
+
+.ad-details img{
+  width: 4.5em;
+  height: 4.5em;
+  border-radius: 5px;
+}
+
+.dashbord-body{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.container{
+  background-color: #f9f9f9;
+  max-height: 80vh;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+  padding: 1em;
+  width: 22em;
+  border-radius: 10px;
+  box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+}
+
+.container h2{
+  color: #0F3D3E;
+  margin: 0;
+}
+
+.container table{
+ width: 100%;
+}
+
+.container table td{
+  text-align: center;
+}
+
+.container th{
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.review-container{
+  width: 80%;
+  margin: 1em auto;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+  padding: 1em;
+  max-height: 85vh;
+}
+
+.review-header{
+  display: flex;
+  justify-content: space-around;
+  padding: 0 1em;
+}
+
+.review-header img{
+  width: 20em;
+  height: 12em;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.reviews{
+  margin-top: 1em;
+  max-height: 50vh;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  padding: 0 1em;
+}
+
+.reviews::-webkit-scrollbar{
+  display: none;
+}
+
+.review div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review div h2{
+  margin: 0;
+  font-size: 1rem;
+}
+
+.review p{
+  text-align: justify;
+}
+
+.rate{
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins-Light', sans-serif;
+}
+
+.rate img{
+  width: 20px;
+  height: 20px;
+  margin-left: 1em;
+}
+
+.rate h1{
+  margin: 0;
+}
+
+.review-err{
+  display: flex;
+  justify-content: center;
+}
+
+.review-err h1{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 100;
+  font-size: 1.5rem;
+}

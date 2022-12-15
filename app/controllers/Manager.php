@@ -38,18 +38,6 @@ class Manager extends Controller
         $this->view('manager/posts',$data);
     }
 
-    public function reviews()
-    {
-        if(!Auth::logged_in())
-        {
-            $this->redirect('login4');
-        }
-
-        $data['title']="REVIEWS";
-        $this->view('manager/reviews',$data);
-    }
-
-    
 
     public function change_visibility($id,$status)
     {
@@ -130,4 +118,39 @@ class Manager extends Controller
         $this->view('manager/profile',$data);
     }
 
+    public function advertisements($id = null)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login4');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $data['row'] = $row = $employee->where('EmployeeID',$id);
+        $data['title'] = "ADVERTISEMENTS";
+
+        $this->view('manager/advertisements',$data);
+    }
+
+    public function reviews($id = null)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login4');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $furniture = new Furnitures();
+        $reviews = new Reviews();
+        $data['row'] = $row = $employee->where('EmployeeID',$id);
+
+        $data['furniture'] = $reviews->getReviewsForManager($id);
+        $data['image'] = $furniture->getDisplayImage($id);
+        $data['name'] = $furniture->getFurnitureName($id);
+        $data['title'] = $data['name'][0]->Name;
+
+        $this->view('manager/reviews',$data);
+    }
 }
