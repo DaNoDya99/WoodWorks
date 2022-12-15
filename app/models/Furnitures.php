@@ -134,6 +134,20 @@ class Furnitures extends Model
         return $DATA;
     }
 
+    public function view_furniture_posts()
+    {
+        $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
+
+        return $this->query($query);
+    }
+
+    public function updateVisibility($id,$visibility)
+    {
+        $query = "update $this->table set Visibility = :Visibility where ProductID = :ProductID;";
+
+        return $this->query($query, ['Visibility' => $visibility, 'ProductID' => $id]);
+    }
+
     public function validate($post)
     {
         $this->errors = [];
@@ -201,5 +215,12 @@ class Furnitures extends Model
         $query = "select ProductID,Name from $this->table where Quantity = 0";
 
         return $this->query($query);
+    }
+    
+    public function getFurnitureName($id = null)
+    {
+        $query = "select Name from $this->table where ProductID = :ProductID;";
+
+        return $this->query($query, ['ProductID' => $id]);
     }
 }
