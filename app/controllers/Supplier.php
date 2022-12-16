@@ -6,24 +6,24 @@ class supplier extends Controller
     public function index()
     {
         if (!Auth::logged_in()) {
-            redirect('Login2');
+            $this->redirect('Login2');
         }
         $orders = new CompanyOrderModel();
-        $data['orderdata'] = $orders->where(['SupplierID' => Auth::getSupplierID()]);
+        $data['orderdata'] = $orders->where('SupplierID', Auth::getSupplierID());
 
         $this->view('supplier/dash', $data);
     }
 
     public function profile($id = null)
     {
-      
+
         if (!Auth::logged_in()) {
-            redirect('Login2');
+            $this->redirect('Login2');
         }
         $id = $id ?? Auth::SupplierID();
 
-        $user = new SupplierModel();
-        $data['row'] = $row = $user->first(['SupplierID' => $id]);
+        $user = new Suppliers();
+        $data['row'] = $row = $user->where('SupplierID', $id);
         $_SESSION['USER_DATA'] = $row;
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $row) {
@@ -48,10 +48,9 @@ class supplier extends Controller
                     $user->errors['image'] = 'Error uploading file';
                 }
             }
-            $user->update($row->SupplierID, $_POST);
-            $this->redirect('supplier/profile/' . $row->SupplierID);
+            $user->update($row['SupplierID'], $_POST);
+            $this->redirect('supplier/profile/' . $row['SupplierID']);
         }
         $this->view('supplier/profile', $data);
     }
-
 }
