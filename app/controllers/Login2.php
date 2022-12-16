@@ -12,8 +12,7 @@ class Login2 extends Controller
 
             if ($row) {
                 if (password_verify($_POST['Password'], $row[0]->Password)) {
-                    Auth::authenticate($row);
-
+                    Auth::authenticate($row[0]);
                     $this->redirect('supplier');
                 }
             }
