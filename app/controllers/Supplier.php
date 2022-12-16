@@ -23,10 +23,11 @@ class supplier extends Controller
         $id = $id ?? Auth::SupplierID();
 
         $user = new Suppliers();
-        $data['row'] = $row = $user->where('SupplierID', $id);
+        $data['row'] = $row = $user->where('SupplierID', $id)[0];
         $_SESSION['USER_DATA'] = $row;
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $row) {
+
+
             $folder = 'uploads/images/';
             if (!file_exists($folder)) {
                 mkdir($folder, 0777, true);
@@ -48,9 +49,11 @@ class supplier extends Controller
                     $user->errors['image'] = 'Error uploading file';
                 }
             }
-            $user->update($row['SupplierID'], $_POST);
-            $this->redirect('supplier/profile/' . $row['SupplierID']);
+            $_POST['SupplierID'] = $id;
+            $user->update($row->SupplierID, $_POST);
+            $this->redirect('supplier/profile/' . $row->SupplierID);
         }
+
         $this->view('supplier/profile', $data);
     }
 }
