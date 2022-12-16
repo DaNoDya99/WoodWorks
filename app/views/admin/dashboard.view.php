@@ -24,15 +24,10 @@
                         <canvas id="myChart1" ></canvas>
                     </div>
 
-                    <div class="chart-container">
-                        <canvas id="myChart2" ></canvas>
-                    </div>
-
                     <script src="<?=ROOT?>/assets/javascript/chart.umd.js"></script>
 
                     <script>
                         const ctx1 = document.getElementById('myChart1');
-                        const ctx2 = document.getElementById('myChart2');
 
                         const labels = ['P0002', 'P0010','P0008','P0003','P0004','P0001','P0005'];
                         const data = {
@@ -82,8 +77,39 @@
                         };
 
                         new Chart(ctx1, config);
-                        new Chart(ctx2,config);
                     </script>
+                    <div class="emp-cus-count">
+                        <div class="count">
+                            <div>
+                                <h2># Employees</h2>
+                                <img src="<?=ROOT?>/assets/images/admin/employee.png" alt="Image">
+                            </div>
+                            <h1><?=$emp_cnt[0]->count?></h1>
+                        </div>
+                        <div class="count">
+                            <div>
+                                <h2># Suppliers</h2>
+                                <img src="<?=ROOT?>/assets/images/admin/supplier.png" alt="Image">
+                            </div>
+                            <h1><?=$sup_cnt[0]->count?></h1>
+                        </div>
+                    </div>
+                    <div class="emp-cus-count">
+                        <div class="count">
+                            <div>
+                                <h2># Furniture</h2>
+                                <img src="<?=ROOT?>/assets/images/admin/furnitures.png" alt="Image">
+                            </div>
+                            <h1><?=$fur_cnt[0]->count?></h1>
+                        </div>
+                        <div class="count">
+                            <div>
+                                <h2># Out of Stock Furniture</h2>
+                                <img src="<?=ROOT?>/assets/images/admin/out-of-stock.png" alt="Image">
+                            </div>
+                            <h1><?=$ots_fur_cnt[0]->count?></h1>
+                        </div>
+                    </div>
                 </div>
                 <div class="ofs-list">
                     <h1>Out Of Stock Furniture</h1>

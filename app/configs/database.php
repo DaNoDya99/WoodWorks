@@ -264,7 +264,7 @@ class Database
         $this->query($query);
 
         $query = "
-             	CREATE TABLE IF NOT EXISTS `order` (
+             	CREATE TABLE IF NOT EXISTS `orders` (
                  `OrderID` char(60) NOT NULL,
                  `Payment_type` char(6) NOT NULL,
                  `Total_amount` float NOT NULL,

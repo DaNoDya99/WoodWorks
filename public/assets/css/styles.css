@@ -493,6 +493,37 @@ form .name-details .field:last-child{
     border-radius: 5px;
 }
 
+.emp-cus-count{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.count{
+    width:38%;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    font-family: 'Poppins-Light', sans-serif;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    padding: .5em;
+    text-align: center;
+}
+
+.count div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.count img{
+    width: 40px;
+    height: 40px;
+}
+
+.count h1{
+    margin: 0;
+    font-size: 4rem;
+}
+
 /*Admin-Add Employees Page*/
 
 .emp-form-body{
@@ -2254,4 +2285,24 @@ form .name-details .field:last-child{
     font-family: Poppins-SemiBold , sans-serif;
     font-size: 1.3rem;
     cursor: pointer;
+}
+
+/*Landing Page*/
+
+.login-section{
+    display: flex;
+}
+
+.login-section div{
+    border-right: 2px solid black;
+    margin: 0 .5em;
+}
+
+.landing-nav{
+    padding: .5em 1em;
+}
+
+.login-section a{
+    text-decoration: none;
+    color: #100F0F;
 }

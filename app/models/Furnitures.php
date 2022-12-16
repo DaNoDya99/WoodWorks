@@ -223,4 +223,18 @@ class Furnitures extends Model
 
         return $this->query($query, ['ProductID' => $id]);
     }
+
+    public function getFurnitureCount()
+    {
+        $query = "select count('ProductID') as 'count' from $this->table;";
+
+        return $this->query($query);
+    }
+
+    public function getOTSCount()
+    {
+        $query = "select count('ProductID') as 'count' from $this->table where Quantity = 0;";
+
+        return $this->query($query);
+    }
 }

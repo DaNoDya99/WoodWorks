@@ -69,4 +69,11 @@ class Suppliers extends Model
         return $DATA;
     }
 
+    public function getSupplierCount()
+    {
+        $query = "select count('SupplierID') as 'count' from $this->table;";
+
+        return $this->query($query);
+    }
+
 }

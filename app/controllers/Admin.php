@@ -14,6 +14,7 @@ class Admin extends Controller
         $id = $id ?? Auth::getEmployeeID();
         $employee = new Employees();
         $furniture = new Furnitures();
+        $supplier = new Suppliers();
 
         $data['furniture'] = $rows = $furniture->getOutOfStockFurniture();
         foreach ($rows as $row)
@@ -23,6 +24,11 @@ class Admin extends Controller
 
         $data['row'] = $employee->where('EmployeeID',$id);
         $data['title'] = "DASHBOARD";
+        $data['emp_cnt'] = $employee->getEmployeeCount();
+        $data['sup_cnt'] = $supplier->getSupplierCount();
+        $data['fur_cnt'] = $furniture->getFurnitureCount();
+        $data['ots_fur_cnt'] = $furniture->getOTSCount();
+
 
         $this->view('admin/dashboard',$data);
     }
