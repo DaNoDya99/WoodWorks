@@ -12,7 +12,7 @@
 
 <body onload="timedelload()">
     <?php $this->view('supplier/supplier.header', $data) ?>
-
+   
 
 
     <div class="sec1">
@@ -37,7 +37,6 @@
                     <th>Order Status</th>
 
                 </tr>
-
                 <?php foreach ($data['orderdata'] as $order) : ?>
                     <tr>
                         <td><?= $order->OrderID ?></td>
