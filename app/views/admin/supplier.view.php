@@ -31,8 +31,8 @@
                     </div>
                     <form class="add-sup-form" method="post">
                         <div class="add-sup-field">
-                            <label>Employee ID</label>
-                            <input type="text" name="EmployeeID" placeholder="Employee ID">
+                            <label>Supplier ID</label>
+                            <input type="text" name="EmployeeID" placeholder="Supplier ID">
                         </div>
 
                         <div class="name-field-sup">
