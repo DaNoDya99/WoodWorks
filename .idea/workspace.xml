@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Logout1.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Logout1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Logout4.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Logout4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/supplier.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/supplier.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/1667895700WhatsApp Image 2022-11-08 at 1.50.26 PM.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/user.png" beforeDir="false" />
-    </list>
+    <list default="true" id="ccd7bc13-70bc-4d5d-b6c5-fb30bb51176c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -180,5 +173,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Modified Supplier Styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified Supplier Styles" />
   </component>
 </project>
