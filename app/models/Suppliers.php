@@ -13,6 +13,7 @@ class Suppliers extends Model
         'Password',
         'Contactno',
         'Company_name',
+        'Image'
     ];
 
     protected $beforeInsert = [
