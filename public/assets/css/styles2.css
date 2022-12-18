@@ -347,6 +347,15 @@ h2 {
 
 .posts table th{
   border-bottom: 2px solid #d2d2d2;
+
+}
+
+.posts table th:nth-child(3){
+  width:20%;
+}
+
+.posts table th:nth-child(6){
+  width:25%;
 }
 
 .posts tr td img{
@@ -381,6 +390,7 @@ h2 {
   font-family: 'Poppins-Light', sans-serif;
   box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
   padding: 1em 0;
+  
 }
 
 .manager-profile-card hr{
@@ -724,4 +734,68 @@ margin: 20px 0;
   font-family: 'Poppins', sans-serif;
   font-weight: 100;
   font-size: 1.5rem;
+}
+
+.discount-container{
+  width: 65%;
+  margin: 2em auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+  padding: 1em;
+}
+
+.discount-header{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1em;
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.discount-header div{
+  width: 45%;
+}
+
+.discount-header img{
+  width: 45%;
+  max-height: 15em;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.discount-header h2{
+  color: #d23542;
+}
+
+.discount-form{
+  display: flex;
+  justify-content: center;
+}
+
+.discount-form form{
+  width: 50%;
+  margin: 1em;
+  font-family: 'Poppins-Light', sans-serif;
+}
+
+.discount-form form div{
+  display: flex;
+  flex-direction: column;
+}
+
+.discount-form form button{
+  width: 100%;
+  background-color: #0F3D3E;
+  color: #f9f9f9;
+  border: none;
+  border-radius: 5px;
+  height: 1.8em;
+  font-size: 1.2rem;
+  margin-top: 1em;
+}
+
+.discount-form input{
+  height: 2.5em;
+  border: 2px solid #d4d4d4;
+  border-radius: 5px;
 }

@@ -223,4 +223,39 @@ class Furnitures extends Model
 
         return $this->query($query, ['ProductID' => $id]);
     }
+
+    public function view_furniture_orders()
+    {
+        $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
+
+        return $this->query($query);
+    }
+
+    public function view_furniture_designs()
+    {
+        $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
+
+        return $this->query($query);
+    }
+
+    public function view_furniture_issues()
+    {
+        $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
+
+        return $this->query($query);
+    }
+
+    public function getDiscounts($id)
+    {
+        $query = "select Name, Discount_percentage from $this->table where ProductID = :ProductID;";
+
+        return $this->query($query, ['ProductID'=>$id]);
+    }
+
+    public function updateDiscounts($id,$discount)
+    {
+        $query = "update $this->table set Discount_percentage = :Discount_percentage where ProductID = :ProductID;";
+
+        $this->query($query,['Discount_percentage' => $discount,'ProductID'=>$id]);
+    }
 }

@@ -27,48 +27,48 @@
                     <h2>Order Status</h2>
                     <table>
                         <tr>
-                        <th>OrderId</th>
+                        <th>ProductId</th>
                         <th>Status</th>
 
                         </tr>
 
                         <tr>
-                            <td>O0001</td>
+                            <td>P0001</td>
                             <td>Pending</td>
                         </tr>
 
                         <tr>
-                            <td>O0004</td>
+                            <td>P0004</td>
                             <td>Pending</td>
                         </tr>
 
                         <tr>
-                            <td>O0005</td>
+                            <td>P0005</td>
                             <td>Processing</td>
                         </tr>
 
                         <tr>
-                            <td>O0008</td>
+                            <td>P0008</td>
                             <td>Finished</td>
                         </tr>
 
                         <tr>
-                            <td>O0002</td>
+                            <td>P0002</td>
                             <td>Pending</td>
                         </tr>
 
                         <tr>
-                            <td>O0007</td>
+                            <td>P0007</td>
                             <td>Pending</td>
                         </tr>
 
                         <tr>
-                            <td>O0004</td>
+                            <td>P0004</td>
                             <td>Processing</td>
                         </tr>
 
                         <tr>
-                            <td>O0010</td>
+                            <td>P0010</td>
                             <td>Finished</td>
                         </tr>
                             
@@ -80,8 +80,44 @@
                     <h2>Out of stock furniture</h2>
                     <table>
                         <tr>
-                            <th>Category</th>
+                            <th>ProductId</th>
                             <th>Name</th>
+                        </tr>
+
+                        <tr>
+                            <td>P0011</td>
+                            <td>Stool</td>
+                        </tr>
+
+                        <tr>
+                            <td>P0012</td>
+                            <td>Bed</td>
+                        </tr>
+
+                        <tr>
+                            <td>P0015</td>
+                            <td>Chair</td>
+                        </tr>
+
+                        <tr>
+                            <td>P0009</td>
+                            <td>Table</td>
+                        </tr>
+                        <tr>
+                            <td>P0013</td>
+                            <td>Black stool</td>
+                        </tr>
+                        <tr>
+                            <td>P0014</td>
+                            <td>Kettle side table</td>
+                        </tr>
+                        <tr>
+                            <td>P0016</td>
+                            <td>Index stool</td>
+                        </tr>
+                        <tr>
+                            <td>P0018</td>
+                            <td>Side table</td>
                         </tr>
 
                         
@@ -96,8 +132,15 @@
                 <div class="container">
                     <h2>Advertisements</h2>
                     <table>
-                        <th>Date</th>
-                        <th>Name</th>
+                        <tr>
+                            <th>Number of unseen Advertisements</th>
+                        </tr>
+
+                        <tr>
+                            <th>20</th>
+                        </tr>
+                        
+                        
                     </table>
                 </div>
 
