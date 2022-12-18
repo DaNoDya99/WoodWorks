@@ -127,4 +127,11 @@ class Employees extends Model
         return $this->query($query , ['EmployeeID' => $id]);
     }
 
+    public function getEmployeeCount()
+    {
+        $query = "select count('EmployeeID') as 'count' from $this->table;";
+
+        return $this->query($query);
+    }
+
 }

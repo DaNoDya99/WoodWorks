@@ -44,7 +44,7 @@
                     <tr class="inv-header-tr">
                         <th>SKU</th>
                         <th>Image</th>
-                        <th>Name</th>
+                        <th class="inv-fur-name">Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th></th>
