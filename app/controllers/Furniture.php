@@ -70,4 +70,6 @@ class Furniture extends Controller
 
         $this->redirect('admin/inventory');
     }
+
+    
 }
