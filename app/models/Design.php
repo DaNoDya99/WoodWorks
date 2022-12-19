@@ -8,7 +8,7 @@ class Design extends Model
     protected $allowedColumns = [
         'DesignID',
         'Description',
-        'EmployeeID',
+        'DesignerID',
         'ManagerID',
         'Date',
         'Name',
@@ -84,7 +84,7 @@ class Design extends Model
 
         $fields = [
             'DesignID',
-            'EmployeeID',
+            'DesignerID',
             'Description',
             'Name',
             'ManagerID',

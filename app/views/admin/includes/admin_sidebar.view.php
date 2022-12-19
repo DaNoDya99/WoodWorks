@@ -7,29 +7,32 @@
         <ul class="sidebar-items">
             <li class="sidebar-item">
                 <a href="<?=ROOT?>/admin/dashboard">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/dashboard.png" alt="Dashboard">
                     <h3>DASHBOARD</h3>
                 </a>
-                <hr>
-            </li>
-            <li class="sidebar-item">
-                <a href="<?=ROOT?>/admin/profile">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/user.png" alt="Profile">
-                    <h3>PROFILE</h3>
-                </a>
-                <hr>
             </li>
             <li class="sidebar-item">
                 <a href="<?=ROOT?>/admin/employees">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/employee.png" alt="Profile">
                     <h3>EMPLOYEES</h3>
-                    <hr>
                 </a>
             </li>
             <li class="sidebar-item">
                 <a href="<?=ROOT?>/admin/inventory">
-                    <img class="sidebar-item-img" src="<?=ROOT?>/assets/images/admin/inventory.png" alt="Profile">
                     <h3>INVENTORY</h3>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="<?=ROOT?>/admin/add_furniture">
+                    <h3>ADD FURNITURE</h3>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="<?=ROOT?>/admin/suppliers">
+                    <h3>SUPPLIERS</h3>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="<?=ROOT?>/admin/profile">
+                    <h3>PROFILE</h3>
                 </a>
             </li>
         </ul>

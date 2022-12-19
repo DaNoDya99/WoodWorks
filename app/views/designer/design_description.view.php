@@ -65,7 +65,7 @@
                             <div class="design-detail">
                                 <table>
                                     <tr><th>Design Name : </th><td><?=$design[0]->Name?></td></tr>
-                                    <tr><th>Employee ID : </th><td><?=$design[0]->EmployeeID?></td></tr>
+                                    <tr><th>Designer ID : </th><td><?=$design[0]->DesignerID?></td></tr>
                                     <tr><th>Manager ID : </th><td><?=$design[0]->ManagerID?></td></tr>
                                     <tr><th>Date : </th><td><?=$design[0]->Date?></td></tr>
                                     <tr><th>Description : </th><td><?=$design[0]->Description?></td></tr>

@@ -5,8 +5,8 @@ class Login3 extends Controller
     public function index(){
 
 
-        $driver = new Employee();
-        $designer = new Employee();
+        $driver = new Employees();
+        $designer = new Employees();
 
         $data['error'] = [];
         $data['title'] = "Login"; // ?
@@ -48,7 +48,7 @@ class Login3 extends Controller
 //                $this->redirect('designer_home');
 //            }
 //        } else {
-            $this->view('login3',$data);
+        $this->view('login3',$data);
 //        }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require "../app/models/Employee.php";
+require "../app/models/Employees.php";
 require "../app/models/Auth.php";
 require "../app/models/Customer.php";
 
@@ -7,7 +7,7 @@ class Login1 extends Controller
 {
     public function index(){
 
-        $employee = new Employee();
+        $employee = new Employees();
         $customer = new Customer();
 
         $data['error'] = [];

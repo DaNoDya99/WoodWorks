@@ -12,7 +12,7 @@
 <div class="login-background">
     <div>
         <div class="login-left-container-top">
-            <img src="./assets/images/logo.png" alt="Logo">
+            <img class="logo" src="./assets/images/logo.png" alt="Logo">
             <h2>WOODWORKS</h2>
         </div>
         <div class="login-left-container-bottom">
@@ -21,10 +21,11 @@
         </div>
     </div>
     <div class="form-container">    
-        <div class="login-form">
+        <div class="login-form signup">
             <header>Signup Now</header>
             <?php if(!empty($errors)):?>
                 <div class="error-txt signup-error">
+                    <img class="close-error" src="<?=ROOT?>/assets/images/customer/close.png" alt="Close btn" onclick="close_error()">
                     <ul>
                     <?php foreach ($errors as $key => $value):?>
                         <li><?=$errors[$key]?></li>
@@ -79,6 +80,8 @@
         </div>
     </div>
 </div>
+
+<script src="<?=ROOT?>/assets/javascript/script.js"></script>
 
 </body>
 </html>

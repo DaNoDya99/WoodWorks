@@ -27,10 +27,10 @@
             <img src="./assets/images/login3/eye-close.png" id="eyeicon">
         </div>
 
-<!--        <div class="form-check">-->
-<!--            <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">-->
-<!--            <label class="form-check-label" >Remember me</label>-->
-<!--        </div>-->
+        <!--        <div class="form-check">-->
+        <!--            <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">-->
+        <!--            <label class="form-check-label" >Remember me</label>-->
+        <!--        </div>-->
 
         <button type="submit" class="btn">Login</button>
         <a href="#">Forget Password ?</a>

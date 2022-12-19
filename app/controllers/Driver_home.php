@@ -50,7 +50,7 @@ class Driver_home extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)

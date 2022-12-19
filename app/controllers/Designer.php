@@ -39,7 +39,7 @@ class Designer extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
@@ -123,7 +123,7 @@ class Designer extends Controller
             $this->redirect('login1');
         }
 
-        $employee = new Employee();
+        $employee = new Employees();
         $emp_id = Auth::getEmployeeID();
 
         $design = new Design();
@@ -146,7 +146,7 @@ class Designer extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID', $id);
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && $row)
@@ -170,7 +170,7 @@ class Designer extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employee();
+        $employee = new Employees();
         $design_images = new Design_image();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
@@ -183,7 +183,7 @@ class Designer extends Controller
 
                 $images = $_FILES['images'];
                 $num_of_imgs = count($images['name']); //number of images
-                $_POST['EmployeeID'] = $id;
+                $_POST['DesignerID'] = $id;
 
                 for ($i = 0; $i < $num_of_imgs; $i++) {
 
@@ -220,7 +220,7 @@ class Designer extends Controller
                                 }
                                 //$query = "INSERT INTO design_images (Image) VALUES (?)";
 
-                                $data['design_row'] = $design_row = $design->first('EmployeeID', $id);
+                                $data['design_row'] = $design_row = $design->first('DesignerID', $id);
                                 $designID = $design_row[0]->DesignID;
 
                                 $design_images->insert(['DesignID' => $designID, 'Image' => $destination]);
@@ -265,7 +265,7 @@ class Designer extends Controller
 
         $order = new Order();
 
-        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(DesignID) AS numDesigns FROM `design` WHERE EmployeeID = '$id' GROUP BY cast(Date as date) ORDER BY Date ASC");
+        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(DesignID) AS numDesigns FROM `design` WHERE DesignerID = '$id' GROUP BY cast(Date as date) ORDER BY Date ASC");
 
         $data = array();
 

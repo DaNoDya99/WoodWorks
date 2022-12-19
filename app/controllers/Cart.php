@@ -13,7 +13,7 @@ class Cart extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login1');
         }
 
         $data['row'] = $row = $this->getUser();
@@ -38,6 +38,12 @@ class Cart extends Controller
 
     public function increaseQuantity($cartID,$productID,$quantity,$cost)
     {
+
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login1');
+        }
+
         $cart = new Carts();
         $order_item = new Order_Items();
         $order_item->updateQuantity($cartID,$productID,(int)$quantity + 1);
@@ -48,6 +54,11 @@ class Cart extends Controller
 
     public function decreaseQuantity($cartID,$productID,$quantity,$cost)
     {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login1');
+        }
+
         $cart = new Carts();
         $order_item = new Order_Items();
         if($quantity > 1){

@@ -12,7 +12,7 @@
     <div class="login-background">
         <div>
             <div class="login-left-container-top">
-                <img src="./assets/images/logo.png" alt="Logo">
+                <img class="logo" src="./assets/images/logo.png" alt="Logo">
                 <h2>WOODWORKS</h2>
             </div>
             <div class="login-left-container-bottom">
@@ -24,7 +24,10 @@
             <div class="login-form">
                 <header>Please Login</header>
                 <?php if(!empty($errors['email'])):?>
-                    <div class="error-txt"><?=$errors['email']?></div>
+                    <div class="error-txt">
+                        <img class="close-error" src="<?=ROOT?>/assets/images/customer/close.png" alt="Close btn" onclick="close_error()">
+                        <?=$errors['email']?>
+                    </div>
                 <?php endif;?>
 
                 <form method="post">
@@ -46,5 +49,6 @@
     </div>
 
     <script src="<?=ROOT?>/assets/javascript/login1.js"></script>
+    <script src="<?=ROOT?>/assets/javascript/script.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@ class App
     public static $page = '_404';
 
     function __construct(){
-        $url = $this->getURL();
+        $url = $this->getURL(); //this in here represents App class
         $filename = "../app/controllers/".ucfirst($url[0]).".php";
         if(file_exists($filename)){
             require $filename;

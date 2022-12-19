@@ -31,6 +31,7 @@
 
             <?php if(!empty($errors)):?>
                 <div class="error-txt signup-error">
+                    <img class="close-error" src="<?=ROOT?>/assets/images/customer/close.png" alt="Close btn" onclick="close_error()">
                     <ul>
                         <?php foreach ($errors as $key => $value):?>
                             <li><?=$errors[$key]?></li>
@@ -81,5 +82,6 @@
         </div>
     </div>
 </div>
+<script src="<?=ROOT?>/assets/javascript/script.js"></script>
 </body>
 </html>
