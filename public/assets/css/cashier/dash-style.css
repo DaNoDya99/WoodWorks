@@ -110,7 +110,7 @@ body {
 .dashboard-nav {
     position: absolute;
     right: 0;
-    width: 73%;
+    width: 75%;
     padding: 5px 10px;
     display: flex;
     flex-direction: row;
@@ -300,6 +300,10 @@ hr {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0px 15px;
+    overflow: visible;
+    display: block;
+    height: 75vh;
+
 }
 
 h3 {}
@@ -310,7 +314,7 @@ h3 {}
 }
 
 .data table td {
-    /* border-bottom: 1px solid #ededed; */
+
     padding: 10px;
 }
 
@@ -322,12 +326,17 @@ tr {
 
     border-radius: 5px;
     border-bottom: 10px solid #ededed;
-    padding: 50px;
+
 }
 
-tr:hover {
-    box-shadow: 0px 0px 5px #455452;
+thead {
+    display: none;
+}
 
+tbody {
+    height: 75vh;
+    overflow: auto;
+    display: block;
 }
 
 input {
@@ -579,7 +588,7 @@ p {
 }
 
 .proceed {
-    
+
     transition: all 0.5s;
     background-color: #008f37;
     color: white;
@@ -596,9 +605,50 @@ p {
     background-color: #004c25;
 }
 
-.button{
+.button {
     box-sizing: border-box;
     position: absolute;
     width: 90%;
     bottom: 20px;
+}
+
+.payment {
+
+    position: absolute;
+    top: 50%;
+    visibility: visible;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    background-color: rgb(255, 255, 255);
+    height: 50vh;
+    border-radius: 10px;
+
+}
+
+.blur {
+
+    position: absolute;
+    visibility: hidden;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.302);
+    height: 100vh;
+    backdrop-filter: blur(10px);
+}
+
+.open-popup {
+    visibility: visible;
+
+
+}
+
+.paybutton{
+    background-color: #008f37;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
 }
