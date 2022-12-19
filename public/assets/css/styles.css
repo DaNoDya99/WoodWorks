@@ -186,8 +186,8 @@ form .name-details .field input{
 }
 
 form .name-details .field:last-child{
-     margin-left: 19px;
- }
+    margin-left: 19px;
+}
 
 .gender-select{
     height: 40px;
@@ -1580,7 +1580,7 @@ form .name-details .field:last-child{
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4}
+    from {opacity: .4}
     to {opacity: 1}
 }
 
@@ -2423,4 +2423,3 @@ form .name-details .field:last-child{
     object-position: right;
     border-radius: 15px;
 }
-

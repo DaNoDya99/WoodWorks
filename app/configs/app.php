@@ -4,6 +4,7 @@ class App
 {
     protected $contoller = '_404';
     protected  $method = 'index';
+    public static $page = '_404';
 
     function __construct(){
         $url = $this->getURL(); //this in here represents App class
@@ -11,6 +12,7 @@ class App
         if(file_exists($filename)){
             require $filename;
             $this->contoller = $url[0];
+            self::$page = $url[0];
             unset($url[0]);
         }else{
             require "../app/controllers/".$this->contoller.".php";
@@ -26,7 +28,7 @@ class App
         }
 
         $url = array_values($url);
-        call_user_func_array([$mycontroller,$this->method],$url);
+        call_user_func_array([$mycontroller,$this->method],$url); // ([object,method], parameters)
     }
 
     private function getURL(){

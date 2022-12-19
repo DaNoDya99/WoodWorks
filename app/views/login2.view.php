@@ -103,44 +103,44 @@
 </head>
 
 <body>
-    <div class="contactbar">
-        <nav class="nav" style="display: grid; grid-template-columns:8fr 2fr">
-            <img src="<?= ROOT ?>/assets/images/cashier/WOODWORKS.png" alt="">
-            <div>
-                <ul>
-                    <li>Login</li>
-                    <li>Register</li>
-                    <li>Cart</li>
+<div class="contactbar">
+    <nav class="nav" style="display: grid; grid-template-columns:8fr 2fr">
+        <img src="<?= ROOT ?>/assets/images/cashier/WOODWORKS.png" alt="">
+        <div>
+            <ul>
+                <li>Login</li>
+                <li>Register</li>
+                <li>Cart</li>
 
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="main">
-        <div class="grid-item leftpanel"></div>
-        <div class="grid-item mainbg ">
-            <div>
-                <div style="margin-top:50px;display: grid; justify-content:center ;width: 30vw;background-color: white; padding: 40px; border-radius: 10px; box-shadow: 0px 5px 10px rgba(107, 107, 107, 0.753);">
-                    <h1>Login</h1>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="main">
+    <div class="grid-item leftpanel"></div>
+    <div class="grid-item mainbg ">
+        <div>
+            <div style="margin-top:50px;display: grid; justify-content:center ;width: 30vw;background-color: white; padding: 40px; border-radius: 10px; box-shadow: 0px 5px 10px rgba(107, 107, 107, 0.753);">
+                <h1>Login</h1>
 
 
-                    <form action="" method="post" novalidate>
-                        <label for="email">Email</label><br>
-                        <input style="padding-left:10px ;" type="email" value="<?= set_value('Email') ?>" name="Email" id="email" required><br>
+                <form action="" method="post" novalidate>
+                    <label for="email">Email</label><br>
+                    <input style="padding-left:10px ;" type="email" value="<?= set_value('Email') ?>" name="Email" id="email" required><br>
 
-                        <br>
-                        <br>
-                        <label for="password">Password</label><br>
-                        <input style="padding-left:10px ;" type="password" name="Password" id="Password" value="<?= set_value('Password') ?>" required>
-                        <?php if (!empty($errors['Email'])) : ?>
-                            <small><?= $errors["Email"] ?></small>
-                        <?php endif; ?>
-                        <br><button type="submit">Login</button>
-                    </form>
-                </div>
+                    <br>
+                    <br>
+                    <label for="password">Password</label><br>
+                    <input style="padding-left:10px ;" type="password" name="Password" id="Password" value="<?= set_value('Password') ?>" required>
+                    <?php if (!empty($errors['Email'])) : ?>
+                        <small><?= $errors["Email"] ?></small>
+                    <?php endif; ?>
+                    <br><button type="submit">Login</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>

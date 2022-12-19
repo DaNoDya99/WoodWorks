@@ -6,6 +6,7 @@ spl_autoload_register(function($class_name)
     $class_name = array_pop($parts);
 
     require_once "../app/models/" .$class_name . ".php";
+
 });
 
 require "config.php";
