@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Orders - Woodworks</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cashier/style.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/supplier/style.css">
 
 </head>
 
 <body onload="timedelload()">
     <?php $this->view('supplier/supplier.header', $data) ?>
-
+   
 
 
     <div class="sec1">
@@ -21,66 +20,77 @@
     </div>
     <div class="sec2">
         <div class="data" id="panel">
+            <hr>
+            <div style="display:flex; justify-content:space-between">
+                <h3 style="font-weight:500;">Orders</h3>
 
-            <input  type="text" name="search" placeholder="Search for a product" id="">
-            <table style="display: block; font-size:14px; text-align:right; border:1px solid black;">
-                <thead style="display: table; width:100%;">
+                <input type="text" name="search" onkeyup="myFunction()" id="myInput" placeholder="Search Orders">
+
+
+            </div>
+
+            <table id="myTable">
+                <tr>
+                    <th>Payment Type</th>
+                    <th>Total Amount</th>
+                    <th>Date</th>
+                    <th>Delivery Method</th>
+                    <th>Order Status</th>
+                    <th>Address</th>
+                </tr>
+                <?php foreach ($data['orderdata'] as $order) : ?>
                     <tr>
-                        <th>SKU</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Quanitity</th>
-                        <th>Price</th>
-                        <th>Add</th>
-                        <th> </th>
+                        <td><?= $order->Payment_type ?></td>
+                        <td><?= $order->Total_amount ?></td>
+                        <td><?= $order->Deliver_method ?></td>
+                        <td><?= $order->Order_status ?></td>
+                        <td><?= $order->Address ?></td>
                     </tr>
-                </thead>
-                <tbody style="height: 400px; width:100%; display:block; overflow:auto;">
-
-                    <?php foreach ($data['products'] as $product) : ?>
-                        <tr>
-                            <td><?= $product->ProductID ?></td>
-                            
-                            <td><img style="width: 70px; border-radius:5px;" src="<?= ROOT ?>/<?= $product->image ?>" alt=""></td>
-                            <td style=" width:200px; word-wrap: break-word;"><?= $product->Name ?></td>
-                            <td><?= $product->Quantity ?></td>
-                            <td><?= $product->Cost ?></td>
-                            <td><button style="border-radius: 100px; border:0px; background-color: green; padding:10px; color:white; height:40px; width:40px;">+</button></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
+                <?php endforeach; ?>
             </table>
-        </div>
-    </div>
-    <div class="sec3">
-        <div class="panel2" style="color: white;">
-                        <h3>
-                            Orders
-                        </h3>
+            <script>
+                function myFunction() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[2];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+
+                function timedelload() {
+                    setTimeout(function() {
+                        document.getElementById("panel").style.opacity = 1;
+                        document.getElementById("panel").style.marginTop = "130px";
+                    }, 200);
+                }
+
+                function timedelexit() {
+                    setTimeout(function() {
+                        document.getElementById("panel").style.opacity = 0;
+                        document.getElementById("panel").style.marginTop = "150px";
+                    }, 200);
+                }
+
+                function delay(URL) {
+                    setTimeout(function() {
+                        window.location = URL
+                    }, 500);
+                }
+            </script>
 
         </div>
     </div>
 </body>
-<script>
-    function timedelload() {
-        setTimeout(function() {
-            document.getElementById("panel").style.opacity = 1;
-            document.getElementById("panel").style.marginTop = "75px";
-        }, 200);
-    }
-
-    function timedelexit() {
-        setTimeout(function() {
-            document.getElementById("panel").style.opacity = 0;
-            document.getElementById("panel").style.marginTop = "150px";
-        }, 200);
-    }
-
-    function delay(URL) {
-        setTimeout(function() {
-            window.location = URL
-        }, 500);
-    }
-</script>
 
 </html>
