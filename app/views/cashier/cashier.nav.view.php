@@ -5,7 +5,7 @@
             <a href="javascript:delay('<?= ROOT ?>/cashier')">
 
                 <div onclick="timedelexit()">
-                 Order List
+                    Order List
                 </div>
             </a>
         </li>
@@ -29,15 +29,13 @@
                 </div>
             </a>
         </li>
-        <!-- <li class="subnav">
-            <a href="javascript:delay('<?= ROOT ?>/supplier/editprofile')">
-                Edit Profile
-            </a>
-        </li> -->
-
     </ul>
 
 </nav>
 <script>
-
+    function delay(URL) {
+        setTimeout(function() {
+            window.location = URL
+        }, 100);
+    }
 </script>
