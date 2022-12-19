@@ -158,7 +158,7 @@ class Database
         ";
 
         $this->query($query);
-        
+
         $query = "
              	CREATE TABLE IF NOT EXISTS `company_order` (
                  `OrderID` char(60) NOT NULL,
@@ -182,6 +182,7 @@ class Database
              	CREATE TABLE IF NOT EXISTS `design` (
                  `DesignID` char(60) NOT NULL,
                  `Description` varchar(1024) NOT NULL,
+                 `Name` varchar(30) NOT NULL,
                  `DesgnerID` char(5) NOT NULL,
                  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
                  `ManagerID` char(5) DEFAULT NULL,
@@ -191,6 +192,7 @@ class Database
                  KEY `Date` (`Date`),
                  KEY `DesignID` (`DesignID`),
                  KEY `ManagerID` (`ManagerID`),
+                 KEY `Name` (`Name`),
                  CONSTRAINT `DesignerDesign` FOREIGN KEY (`DesgnerID`) REFERENCES `employee` (`EmployeeID`) ON DELETE CASCADE ON UPDATE CASCADE,
                  CONSTRAINT `VerifiedManager` FOREIGN KEY (`ManagerID`) REFERENCES `employee` (`EmployeeID`) ON DELETE NO ACTION ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
@@ -263,30 +265,30 @@ class Database
 
         $this->query($query);
 
-        $query = "
-             	CREATE TABLE IF NOT EXISTS `orders` (
-                 `OrderID` char(60) NOT NULL,
-                 `Payment_type` char(6) NOT NULL,
-                 `Total_amount` float NOT NULL,
-                 `Date` timestamp NOT NULL DEFAULT current_timestamp(),
-                 `Deliver_method` char(8) NOT NULL,
-                 `Order_status` char(10) NOT NULL,
-                 `Address` varchar(200) NOT NULL,
-                 `CustomerID` char(60) NOT NULL,
-                 `DriverID` char(5) NOT NULL,
-                 PRIMARY KEY (`OrderID`),
-                 KEY `OrderID` (`OrderID`),
-                 KEY `Payment_type` (`Payment_type`),
-                 KEY `Total_amount` (`Total_amount`),
-                 KEY `Date` (`Date`),
-                 KEY `Deliver_method` (`Deliver_method`),
-                 KEY `Order_status` (`Order_status`),
-                 KEY `Address` (`Address`),
-                 KEY `CustomerID` (`CustomerID`),
-                 KEY `DriverID` (`DriverID`),
-                 CONSTRAINT `CustomerOrder` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=latin1
-        ";
+//        $query = "
+//             	CREATE TABLE IF NOT EXISTS `orders` (
+//                 `OrderID` char(60) NOT NULL,
+//                 `Payment_type` char(6) NOT NULL,
+//                 `Total_amount` float NOT NULL,
+//                 `Date` timestamp NOT NULL DEFAULT current_timestamp(),
+//                 `Deliver_method` char(8) NOT NULL,
+//                 `Order_status` char(10) NOT NULL,
+//                 `Address` varchar(200) NOT NULL,
+//                 `CustomerID` char(60) NOT NULL,
+//                 `DriverID` char(5) NOT NULL,
+//                 PRIMARY KEY (`OrderID`),
+//                 KEY `OrderID` (`OrderID`),
+//                 KEY `Payment_type` (`Payment_type`),
+//                 KEY `Total_amount` (`Total_amount`),
+//                 KEY `Date` (`Date`),
+//                 KEY `Deliver_method` (`Deliver_method`),
+//                 KEY `Order_status` (`Order_status`),
+//                 KEY `Address` (`Address`),
+//                 KEY `CustomerID` (`CustomerID`),
+//                 KEY `DriverID` (`DriverID`),
+//                 CONSTRAINT `CustomerOrder` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE CASCADE
+//                ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+//        ";
 
         $this->query($query);
 

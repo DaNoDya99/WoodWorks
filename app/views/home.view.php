@@ -1,3 +1,4 @@
+
 <?php $this->view('includes/header'); ?>
 
 <div>
@@ -100,3 +101,4 @@
 
     <?php $this->view('reg_customer/includes/footer'); ?>
 </div>
+

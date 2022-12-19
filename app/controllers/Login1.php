@@ -50,7 +50,6 @@ class Login1 extends Controller
             $data['errors']['email'] = "Wrong email or password";
         }
 
-
         $this->view('login1',$data);
     }
 }

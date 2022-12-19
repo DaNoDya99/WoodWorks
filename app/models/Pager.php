@@ -13,6 +13,9 @@ class Pager
         $page_number = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $page_number = $page_number < 1 ? 1 : $page_number;
 
+//        $page_number = isset($_GET['page']) ? (int)$_GET['page']:1;
+//        $page_number = $page_number < 1 ? 1:$page_number;
+//        $offset = ($page_number - 1) * $limit;
 
         $this->page_start = $page_number - $extras;
         $this->page_end = $page_number + $extras;

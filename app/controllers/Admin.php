@@ -44,6 +44,7 @@ class Admin extends Controller
         $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
+
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
         {
             $folder = "uploads/images/";
@@ -138,6 +139,8 @@ class Admin extends Controller
             if($employee->validate($_POST)) {
                 $destination = $folder."user.png";
 
+                copy(ROOT."assets/images/admin/user.png",$destination);
+
                 if(!file_exists(ROOT."/assets/images/admin/user.png"))
                 {
                     if(copy(ROOT."/assets/images/admin/user.png",$destination))
@@ -154,6 +157,7 @@ class Admin extends Controller
                 $this->redirect('admin/employees');
             }
         }
+
 
         $data['message'] = $this->message;
         $data['errors'] = $employee->errors;
