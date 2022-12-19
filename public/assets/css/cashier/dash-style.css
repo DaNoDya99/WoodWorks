@@ -1,45 +1,41 @@
-
-
-.dashboard-nav {
-    position: absolute;
-    right: 0;
-    width: 75.5%;
-    padding: 5px 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border: 2px solid black;
-    border-radius: 5px;
-    margin: 2px;
-}
-
-.sec2{
+.sec2 {
     width: 100%;
 }
-.sec3{
+
+.sec3 {
     display: grid;
     background-color: #E1E1D0;
     width: 100%;
 }
 
 
-.data{
-    margin-left: 30px;
+.data {
+
     margin-top: 75px;
     width: 85%;
 }
 
-.panel2{
-    margin-top: 75px   ;
+.panel2 {
+    color: white;
+    margin-top: 75px;
     background-color: #203330;
-    width: 95%;
+    margin-right: 10px;
     border-radius: 12px;
-    margin-bottom: 20px ;
+    margin-bottom: 20px;
+    padding: 30px;
 
 }
 
-.data input{
+ul {
+    padding: 0;
+}
+
+ul li {
+    list-style-type: none;
+    padding: 0;
+}
+
+.data input {
     width: 100%;
     height: 40px;
     border-radius: 5px;
@@ -49,7 +45,7 @@
 }
 
 
-.admin-profile-card{
+.admin-profile-card {
     margin-top: 70px;
     height: 75vh;
     width: 50%;
@@ -58,11 +54,11 @@
 
     text-align: center;
     font-family: 'Poppins-Light', sans-serif;
-    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     padding: 1em 0;
 }
 
-.admin-profile-card hr{
+.admin-profile-card hr {
     width: 95%;
     border-left: none;
     border-top: none;
@@ -70,33 +66,34 @@
     border-bottom: 2px solid black;
 }
 
-.admin-pro-img-sec{
+.admin-pro-img-sec {
     padding: .5em 0;
 }
 
-.admin-pro-img-sec img{
+.admin-pro-img-sec img {
     height: 170px;
     width: 170px;
     border-radius: 50%;
     filter: drop-shadow(0px 0px 3px #100F0F);
 }
 
-.admin-pro-img-sec h1{
+.admin-pro-img-sec h1 {
     font-size: 1.8rem;
     margin: 0;
 }
 
-.admin-pro-info table{
+.admin-pro-info table {
     margin-left: auto;
     margin-right: auto;
 }
 
-.admin-pro-info th,td{
+.admin-pro-info th,
+td {
     text-align: left;
     padding-top: .8em;
 }
 
-.admin-pro-info th{
+.admin-pro-info th {
     padding-right: 6em;
 }
 
@@ -121,6 +118,7 @@ body {
     border: 2px solid black;
     border-radius: 5px;
     margin: 2px;
+    margin-left: 10px;
 }
 
 .nav-item-user img {
@@ -174,7 +172,7 @@ body {
     width: 14vw;
     padding-left: 5vw;
     margin-bottom: 30px;
-    border-radius:0px;
+    border-radius: 0px;
 }
 
 .sec1 nav {
@@ -194,6 +192,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
 
+    justify-items: center;
 }
 
 
@@ -270,22 +269,16 @@ a {
 }
 
 .data {
-
-
-    margin-top: 130px;
     background-color: white;
-    width: 90%;
-    margin-right: 30px;
     border-radius: 12px;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
     box-shadow: 0px 4px 31px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
+    align-items: center;
     padding: 30px;
     padding-top: 30px;
     transition: all 0.2s ease;
-
 
 
 
@@ -308,9 +301,7 @@ hr {
     border-spacing: 0px 15px;
 }
 
-h3 {
-    padding-left: 10px;
-}
+h3 {}
 
 .data table th {
     border-bottom: 1px solid #ededed;
@@ -560,4 +551,44 @@ p {
 
 .show {
     display: block;
+}
+
+.pos-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid #ededed60;
+
+}
+
+.pos-item div {
+    width: 200px;
+
+}
+
+.pos-item input {
+    width: 40px;
+    margin: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+.proceed {
+    transition: all 0.5s;
+    background-color: #008f37;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.proceed:hover {
+    cursor: pointer;
+    background-color: #004c25;
 }
