@@ -126,11 +126,7 @@
         }, 200);
     }
 
-    function delay(URL) {
-        setTimeout(function() {
-            window.location = URL
-        }, 500);
-    }
+   
 
     let popup = document.getElementById('popup');
     let profile_card = document.querySelector('.admin-profile-card');
