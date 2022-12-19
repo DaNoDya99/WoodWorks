@@ -34,7 +34,7 @@
                     </tr>
                     <tr class="ad-details">
                         <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
                         <td>Chair</td>
                         <td>Pending</td>
                         <td>
@@ -45,7 +45,7 @@
 
                     <tr class="ad-details">
                         <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
                         <td>Chair</td>
                         <td>Pending</td>
                         <td>
@@ -56,7 +56,7 @@
 
                     <tr class="ad-details">
                         <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
                         <td>Chair</td>
                         <td>Pending</td>
                         <td>
@@ -67,7 +67,7 @@
 
                     <tr class="ad-details">
                         <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
                         <td>Chair</td>
                         <td>Pending</td>
                         <td>
@@ -78,7 +78,7 @@
 
                     <tr class="ad-details">
                         <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
                         <td>Chair</td>
                         <td>Pending</td>
                         <td>
@@ -89,7 +89,7 @@
 
                     <tr class="ad-details">
                         <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
                         <td>Chair</td>
                         <td>Pending</td>
                         <td>
@@ -100,7 +100,7 @@
 
                     <tr class="ad-details">
                         <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
                         <td>Chair</td>
                         <td>Pending</td>
                         <td>
@@ -111,7 +111,7 @@
 
                     <tr class="ad-details">
                         <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
                         <td>Chair</td>
                         <td>Pending</td>
                         <td>

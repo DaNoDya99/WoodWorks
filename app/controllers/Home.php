@@ -4,6 +4,11 @@ class Home extends Controller
 {
     public function index(){
 
+        if(Auth::logged_in())
+        {
+            Auth::logout();
+        }
+
         $db = new Database();
         $db->create_tables();
 
@@ -90,5 +95,15 @@ class Home extends Controller
         }
 
         $this->view("sub_category",$data);
+    }
+
+    public function about()
+    {
+        $this->view('about');
+    }
+
+    public function contact()
+    {
+        $this->view('contact');
     }
 }

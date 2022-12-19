@@ -182,15 +182,7 @@ class Manager extends Controller
             $this->redirect('login4');
         }
 
-        $furniture = new Furnitures();
-        $rows = $furniture->view_furniture_issues();
-
-        foreach($rows as $row)
-        {
-            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
-        }
-
-        $data['furniture'] = $rows;
+        
         $data['title']="ISSUES";
 
         $this->view('manager/issues',$data);

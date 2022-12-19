@@ -303,7 +303,7 @@ h2 {
 }
 
 .dashboard-body{
-  padding: 50px 15px 0;
+  padding: 30px 15px 0;
   display: flex;
 }
 
@@ -798,4 +798,12 @@ margin: 20px 0;
   height: 2.5em;
   border: 2px solid #d4d4d4;
   border-radius: 5px;
+}
+
+.issue-table th:first-child{
+  width: 10em;
+}
+
+.issue-table td{
+  height: 5em;
 }
