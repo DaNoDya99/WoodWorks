@@ -7,9 +7,9 @@
                 <h1>Create a home that defines who are you.</h1>
                 <h2>Beauty, Smooth & Elegant</h2>
                 <h3>Every home needs a cozy and warm atmosphere. Interior Design studio carefully considers every detail
-                and creates a functional and comfortable design of your dream house
-                where you want to come back after a long working day. Turn your room with panto into a lot
-                more minimalist and modern with ease and speed.</h3>
+                    and creates a functional and comfortable design of your dream house
+                    where you want to come back after a long working day. Turn your room with panto into a lot
+                    more minimalist and modern with ease and speed.</h3>
                 <a href="<?=ROOT?>/category">
                     <button>Shop now</button>
                 </a>

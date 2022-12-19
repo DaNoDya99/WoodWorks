@@ -27,7 +27,6 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Quantity</th>
-                        <th>Price</th>
                         <th></th>
                     </tr>
                     <?php if(!empty($furniture)): ?>
@@ -37,9 +36,8 @@
                                 <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image"></td>
                                 <td><?=$row->Name?></td>
                                 <td><?=$row->Quantity?></td>
-                                <td>Rs <?=$row->Cost?>.00</td>
                                 <td>
-                                    <a href="<?=ROOT?>/manager/change_visibility/<?=$row->ProductID?>/<?=$row->Visibility?>"><?=($row->Visibility == 1) ? "Visible" : "Hidden";?></a>
+                                    <button>Order</button>  
                                 </td>  
                             </tr>
                         <?php endforeach; ?>

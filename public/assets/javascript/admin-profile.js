@@ -17,3 +17,4 @@ function load_image(file){
     mylink = window.URL.createObjectURL(file);
     document.querySelector(".image-field img").src = mylink;
 }
+

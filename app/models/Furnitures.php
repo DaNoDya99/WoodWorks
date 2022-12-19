@@ -238,6 +238,28 @@ class Furnitures extends Model
         return $this->query($query,['ProductID' => $id, 'Discount' =>$discount]);
     }
 
+
+    public function view_furniture_orders(){
+        $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
+
+        return $this->query($query);
+    }
+    public function view_furniture_issues(){
+        $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
+
+        return $this->query($query);
+
+
+    }
+
+
+    // public function view_furniture_designs(){
+    //     $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
+
+
+    // }
+
+
     public function getFurnitureCount()
     {
         $query = "select count(ProductID) as count from $this->table;";

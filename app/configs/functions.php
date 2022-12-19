@@ -34,6 +34,12 @@ function set_value($key, $default = '')
     return '';
 }
 
+
+function esc($str)
+{
+    return nl2br(htmlspecialchars($str));
+}
+
 function resize_image($filename,$max_size = 700)
 {
 
