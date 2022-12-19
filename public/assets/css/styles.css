@@ -2359,6 +2359,7 @@ form .name-details .field:last-child{
     border-radius: 5px;
     font-size: 1.3rem;
     height: 2em;
+    cursor: pointer;
 }
 
 .contact{
@@ -2391,20 +2392,35 @@ form .name-details .field:last-child{
 }
 
 .about-page{
+    padding: 0 5em;
     display: flex;
     justify-content: space-between;
 }
+
+.about-heading{
+    padding: 1em 2.5em;
+}
+
 .about-right{
     display: flex;
     width: 45%;
-
+    justify-content: space-between;
 }
 .about-left{
     width: 45%;
+}
 
+.about-left p{
+    text-align: justify;
+    font-size: 1.3rem;
+    margin: 0;
 }
 
 .about-right img{
-    width: 10em;
+    width: 14.5em;
+    height: 30em;
+    object-fit: cover;
+    object-position: right;
+    border-radius: 15px;
 }
 

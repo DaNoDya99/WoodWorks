@@ -10,7 +10,7 @@ if(Auth::logged_in()){
 ?>
 
 <div class="home-container">
-    <h1>About</h1>
+    <h1 class="about-heading">About</h1>
     <div class="about-page">
         <div class="about-left">
             <p>Welcome to our furniture store! We provide high-quality furniture for homes and offices for over 5 years. Our team of expert suppliers and designers are dedicated to creating pieces that are not only beautiful, but also built to last.
@@ -22,14 +22,9 @@ if(Auth::logged_in()){
             Thank you for considering us for your furniture needs. We look forward to helping you create the home or office of your dreams!</p>
         </div>
         <div class="about-right">
-            <img src="<?=ROOT?>/assets/images/customer/abt-img-1.jpg" alt="">
-            <img src="<?=ROOT?>/assets/images/customer/abt-img-3.jpg" alt="">
-            <img src="<?=ROOT?>/assets/images/customer/abt-img-2.jpg" alt="">
-
-
-
-
-
+            <img src="<?=ROOT?>/assets/images/customer/abt-img-1.jpg" alt="Display Image">
+            <img src="<?=ROOT?>/assets/images/customer/abt-img-3.jpg" alt="Display Image">
+            <img src="<?=ROOT?>/assets/images/customer/abt-img-2.jpg" alt="Display Image">
         </div>
     </div>
 </div>
