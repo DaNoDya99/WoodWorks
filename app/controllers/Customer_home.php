@@ -146,4 +146,31 @@ class Customer_home extends Controller
         $this->redirect('cart');
     }
 
+    public function about()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $customer = new Customer();
+        $id = Auth::getCustomerID();
+        $data['row'] = $row = $customer->where('CustomerID',$id);
+
+        $this->view('about',$data);
+    }
+
+    public function  contact()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $customer = new Customer();
+        $id = Auth::getCustomerID();
+        $data['row'] = $row = $customer->where('CustomerID',$id);
+
+        $this->view('contact',$data);
+    }
 }
