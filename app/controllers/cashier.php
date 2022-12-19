@@ -22,7 +22,7 @@ class cashier extends Controller
         $data['row'] = $row = $this->getUser();
 
         $cart = new Carts();
-        $cart_id = $cart->getCart($row[0]->EmployeeID)[0]->CartID;
+        $cart_id = $cart->getCart('5lhHfqCRtAdbMxdEl69oEq1F0ywitBClYh3fF927If44CB4eaXFKGSgp4K0k')[0]->CartID;
         $order_item = new Order_Items();
 
 
@@ -51,7 +51,6 @@ class cashier extends Controller
         $order_item = new Order_Items();
         $order_item->updateQuantity($cartID, $productID, (int)$quantity + 1);
         $cart->updateTotalAmountToIncrease($cartID, $cost);
-
         $this->redirect('cashier/dash');
     }
 
@@ -129,14 +128,14 @@ class cashier extends Controller
     public function add_to_cart($id)
     {
         if (!Auth::logged_in()) {
-            $this->redirect('login3');
+            $this->redirect('login7');
         }
 
         $order = new Orders_Supplier();
         $furniture = new Furnitures();
         $cart = new Carts();
         $order_items = new Order_Items();
-        $cus_id = Auth::getEmployeeID();
+        $cus_id = '5lhHfqCRtAdbMxdEl69oEq1F0ywitBClYh3fF927If44CB4eaXFKGSgp4K0k';
         $orderID = '';
 
         if (empty($cart->getCart($cus_id))) {
@@ -149,10 +148,13 @@ class cashier extends Controller
             $orderID = $order->checkIsPreparing($cus_id)[0]->OrderID;
         }
         $q = "Select * from order_item where CartID = :CartID and ProductID = :ProductID";
-        echo ($q);
         $res = $order_items->query($q, ['CartID' => $cart->getCart($cus_id)[0]->CartID, 'ProductID' => $id]);
+        $info = $furniture->getFurniture($id);
+
         if (!empty($res)) {
             $order_items->updateQuantity($cart->getCart($cus_id)[0]->CartID, $id, $res[0]->Quantity + 1);
+            $cart->updateTotalAmountToIncrease($cart->getCart($cus_id)[0]->CartID, $info[0]->Cost);
+
             $this->redirect("cashier/dash");
         }
 
