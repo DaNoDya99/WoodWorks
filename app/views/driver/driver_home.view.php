@@ -47,7 +47,7 @@
 <!--            </div>-->
 
             <div class="driver-tbox">
-
+                <h1>New Orders</h1>
                 <table class="driver-content-table">
                     <thead>
 
@@ -58,18 +58,15 @@
                     </thead>
                     <tbody>
                     <?php foreach ($rows as $row):?>
-
                         <tr class="orders-table-rows">
-                            <td><?=esc($row->Payment_type)?></td>
-                            <td><?=esc($row->Order_status)?></td>
-                            <?php
-                            $date = $row->Date;
-                            $newDate = date("d/m/Y", strtotime($date));
-                            ?>
-                            <td><?=$newDate?></td>
-
+                                    <td><?=esc($row->Payment_type)?></td>
+                                    <td><?=esc($row->Order_status)?></td>
+                                    <?php
+                                    $date = $row->Date;
+                                    $newDate = date("d/m/Y", strtotime($date));
+                                    ?>
+                                    <td><?=$newDate?></td>
                         </tr>
-
                     <?php endforeach;?>
                     </tbody>
                 </table>
