@@ -18,8 +18,8 @@
             <ul>
                 <li class="nav-item"><a href="<?=ROOT?>/">Home</a></li>
                 <li class="nav-item"><a href="<?=ROOT?>/home/category">Shop</a></li>
-                <li class="nav-item"><a href="<?=ROOT?>/">About</a></li>
-                <li class="nav-item"><a href="<?=ROOT?>/">Contact</a></li>
+                <li class="nav-item"><a href="<?=ROOT?>/home/about">About</a></li>
+                <li class="nav-item"><a href="<?=ROOT?>/home/contact">Contact</a></li>
             </ul>
         </div>
         <div class="login-section">

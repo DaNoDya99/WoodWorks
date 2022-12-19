@@ -153,4 +153,94 @@ class Manager extends Controller
 
         $this->view('manager/reviews',$data);
     }
+
+    public function orders()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login4');
+        }
+
+        $furniture = new Furnitures();
+        $rows = $furniture->view_furniture_orders();
+
+        foreach($rows as $row)
+        {
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
+
+        $data['furniture'] = $rows;
+        $data['title']="ORDERS";
+
+        $this->view('manager/orders',$data);
+    }
+
+    public function issues()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login4');
+        }
+
+        $furniture = new Furnitures();
+        $rows = $furniture->view_furniture_issues();
+
+        foreach($rows as $row)
+        {
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
+
+        $data['furniture'] = $rows;
+        $data['title']="ISSUES";
+
+        $this->view('manager/issues',$data);
+    }
+
+    public function designs()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login4');
+        }
+
+        $furniture = new Furnitures();
+        $rows = $furniture->view_furniture_designs();
+
+        foreach($rows as $row)
+        {
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
+
+        $data['furniture'] = $rows;
+        $data['title']="DESIGNS";
+
+        $this->view('manager/designs',$data);
+    }
+
+    public function discounts($id = null)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login4');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $furniture = new Furnitures();
+
+        $data['row'] = $row = $employee->where('EmployeeID',$id);
+
+        $data['furniture'] = $furniture->getDiscounts($id);
+        $data['image'] = $furniture->getDisplayImage($id);
+        $data['title'] = $data['furniture'][0]->Name;
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $furniture->updateDiscounts($id,$_POST['Discount_percentage']);
+            $this->redirect('manager/discounts/P0002');
+        }
+
+        $this->view('manager/discounts',$data);
+    }
+
 }

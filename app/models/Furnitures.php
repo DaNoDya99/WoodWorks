@@ -224,17 +224,17 @@ class Furnitures extends Model
         return $this->query($query, ['ProductID' => $id]);
     }
 
-    public function getFurnitureCount()
+    public function getDiscounts($id)
     {
-        $query = "select count('ProductID') as 'count' from $this->table;";
+        $query = "select Name, Discount_percentage from $this->table where ProductID = :ProductID";
 
-        return $this->query($query);
+        return $this->query($query,['ProductID'=>$id]);
     }
 
-    public function getOTSCount()
+    public function updateDiscounts($id, $discount)
     {
-        $query = "select count('ProductID') as 'count' from $this->table where Quantity = 0;";
+        $query = "update $this->table set Discount_percentage = :Discount where ProductID =:ProductID;";
 
-        return $this->query($query);
+        return $this->query($query,['ProductID' => $id, 'Discount' =>$discount]);
     }
 }
