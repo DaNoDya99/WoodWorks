@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="posts">
-                <h1 class="post-heading">Furniture Posts</h1>
+                <h1 class="post-heading">Furniture Orders</h1>
                 <div class="posts-table-container">
                 <table>
                     <tr>
