@@ -1,6 +1,6 @@
 <?php
 
-class Login3 extends Controller
+class Login7 extends Controller
 {
     public function index()
     {
@@ -19,6 +19,6 @@ class Login3 extends Controller
             $data['errors']['Email'] = "Wrong Email or Password";
         }
 
-        $this->view('login3', $data);
+        $this->view('login7', $data);
     }
 }
