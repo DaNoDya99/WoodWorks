@@ -195,15 +195,15 @@ class Manager extends Controller
             $this->redirect('login4');
         }
 
-        $furniture = new Furnitures();
-        $rows = $furniture->view_furniture_designs();
+        // $furniture = new Furnitures();
+        // $rows = $furniture->view_furniture_designs();
 
-        foreach($rows as $row)
-        {
-            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
-        }
+        // foreach($rows as $row)
+        // {
+        //     $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        // }
 
-        $data['furniture'] = $rows;
+        // $data['furniture'] = $rows;
         $data['title']="DESIGNS";
 
         $this->view('manager/designs',$data);

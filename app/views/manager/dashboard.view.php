@@ -20,8 +20,11 @@
 
                 
             </div>
+
+
             
             <div class="dashbord-body">
+
                 <div class="container">
          
                     <h2>Order Status</h2>
@@ -129,20 +132,23 @@
                     </table>
                 </div>
 
-                <div class="container">
-                    <h2>Advertisements</h2>
-                    <table>
-                        <tr>
-                            <th>Number of unseen Advertisements</th>
-                        </tr>
-
-                        <tr>
-                            <th>20</th>
-                        </tr>
-                        
-                        
-                    </table>
+                <div class="counts">
+                    <div class="ad-count">
+                        <div>
+                            <h2># New Advertisements</h2>
+                            <img src="<?=ROOT?>/assets/images/manager/billboard.png" alt="Image">
+                        </div>
+                        <h1>15</h1>
+                    </div>
+                    <div class="ad-count">
+                        <div>
+                            <h2># New Issues</h2>
+                            <img src="<?=ROOT?>/assets/images/manager/alert.png" alt="Image">
+                        </div>
+                        <h1>10</h1>
+                    </div>
                 </div>
+                
 
                 
             </div>
