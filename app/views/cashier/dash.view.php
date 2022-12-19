@@ -84,7 +84,7 @@
                     <p>Cart is empty</p>
                 <?php endif ?>
             </div>
-            <div>
+            <div class="button">
                 <button class="proceed">Proceed to Payment</button>
             </div>
 

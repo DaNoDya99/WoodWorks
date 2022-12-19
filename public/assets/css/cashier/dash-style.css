@@ -16,6 +16,7 @@
 }
 
 .panel2 {
+    position: relative;
     color: white;
     margin-top: 75px;
     background-color: #203330;
@@ -23,7 +24,7 @@
     border-radius: 12px;
     margin-bottom: 20px;
     padding: 30px;
-
+    box-sizing: border-box;
 }
 
 ul {
@@ -578,17 +579,26 @@ p {
 }
 
 .proceed {
+    
     transition: all 0.5s;
     background-color: #008f37;
     color: white;
-    padding: 10px;
+    padding: 20px;
     border-radius: 5px;
     border: 0;
     width: 100%;
     text-align: center;
+    font-size: 18px;
 }
 
 .proceed:hover {
     cursor: pointer;
     background-color: #004c25;
+}
+
+.button{
+    box-sizing: border-box;
+    position: absolute;
+    width: 90%;
+    bottom: 20px;
 }
