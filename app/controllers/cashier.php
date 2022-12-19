@@ -105,14 +105,34 @@ class cashier extends Controller
         }
         $this->view('cashier/profile', $data);
     }
+    public function inventory()
+    {
 
+        $products = new Furnitures();
+        $data['products'] = $products->getInventory();
+        foreach ($data['products'] as $product) {
+            $product->image = $products->getDisplayImage($product->ProductID)[0]->Image;
+        }
+
+
+
+        $this->view('cashier/inventory', $data);
+    }
+    public function billing()
+    {
+
+        $orders = new Orders_Supplier();
+        $data['orderdata'] = $orders->where(1, 1);
+
+        $this->view('cashier/orders', $data);
+    }
     public function add_to_cart($id)
     {
         if (!Auth::logged_in()) {
             $this->redirect('login3');
         }
 
-        $order = new Orders();
+        $order = new Orders_Supplier();
         $furniture = new Furnitures();
         $cart = new Carts();
         $order_items = new Order_Items();
@@ -128,7 +148,13 @@ class cashier extends Controller
         } else {
             $orderID = $order->checkIsPreparing($cus_id)[0]->OrderID;
         }
-
+        $q = "Select * from order_item where CartID = :CartID and ProductID = :ProductID";
+        echo ($q);
+        $res = $order_items->query($q, ['CartID' => $cart->getCart($cus_id)[0]->CartID, 'ProductID' => $id]);
+        if (!empty($res)) {
+            $order_items->updateQuantity($cart->getCart($cus_id)[0]->CartID, $id, $res[0]->Quantity + 1);
+            $this->redirect("cashier/dash");
+        }
 
         $info = $furniture->getFurniture($id);
         $image = $furniture->getDisplayImage($id);
