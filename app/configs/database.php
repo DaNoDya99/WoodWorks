@@ -182,6 +182,7 @@ class Database
              	CREATE TABLE IF NOT EXISTS `design` (
                  `DesignID` char(60) NOT NULL,
                  `Description` varchar(1024) NOT NULL,
+                 `Name` varchar(30) NOT NULL,
                  `DesgnerID` char(5) NOT NULL,
                  `Date` timestamp NOT NULL DEFAULT current_timestamp(),
                  `ManagerID` char(5) DEFAULT NULL,
@@ -191,6 +192,7 @@ class Database
                  KEY `Date` (`Date`),
                  KEY `DesignID` (`DesignID`),
                  KEY `ManagerID` (`ManagerID`),
+                 KEY `Name` (`Name`),
                  CONSTRAINT `DesignerDesign` FOREIGN KEY (`DesgnerID`) REFERENCES `employee` (`EmployeeID`) ON DELETE CASCADE ON UPDATE CASCADE,
                  CONSTRAINT `VerifiedManager` FOREIGN KEY (`ManagerID`) REFERENCES `employee` (`EmployeeID`) ON DELETE NO ACTION ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1

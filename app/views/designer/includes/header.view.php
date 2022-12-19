@@ -12,7 +12,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js" integrity="sha512-Tfw6etYMUhL4RTki37niav99C6OHwMDB2iBT5S5piyHO+ltK2YX8Hjy9TXxhE1Gm/TmAV0uaykSpnHKFIAif/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="<?=ROOT?>/assets/javascript/designer/barChart.js"></script>
-    <script src="<?=ROOT?>/assets/javascript/designer/pieChart.js"></script>
-    <script src="<?=ROOT?>/assets/javascript/designer/lineChart.js"></script>
 
 </head>

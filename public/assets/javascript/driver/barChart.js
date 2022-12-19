@@ -37,7 +37,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'No.(processing + dispatched) Orders and Dates',
+                            text: 'UnCompleted Orders and Dates',
                             color:'black',
                             font: {
                                 size: 15,

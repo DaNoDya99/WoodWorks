@@ -20,19 +20,37 @@
             </div>
         </div>
 
-        <div class="containers">
+        <div class="containers-designer-chart">
 
-            <div class="box" id="chart-container">
-                <canvas id="designerPie" width="100" height="100"> </canvas>
+            <div class="designer-box" id="chart-designer-container">
+                <canvas id="designerBar" width="300" height="400"></canvas>
             </div>
 
-            <div class="box" id="chart-container3"">
-                <canvas id="designerLine" height="400" width="300"></canvas>
+            <div class="designer-tbox">
+
+                    <table class="designer-content-table">
+                        <thead>
+
+                        <th class="th">Name</th>
+                        <th class="th">Image</th>
+                        <th class="th">Date</th>
+
+                        </thead>
+                        <tbody>
+                            <?php foreach ($rows as $row):?>
+
+                                <tr class="designs-table-rows">
+                                    <td><?=esc($row->Name)?></td>
+                                    <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Design Image"></td>
+                                    <td><?=$row->Date?></td>
+                                </tr>
+
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>
+
             </div>
 
-            <div class="box" id="chart-container2">
-                <canvas id="myBar" width="300" height="400"> </canvas>
-            </div>
 
         </div>
 

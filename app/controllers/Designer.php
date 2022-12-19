@@ -12,10 +12,25 @@ class Designer extends Controller
         }
 
         $data['title'] = "DASHBOARD";
+        $id = Auth::getEmployeeID();
+
+        $design = new Design();
+
+        $limit = 8;
+
+        $data['rows'] = $design->getDesign($limit);
+
+        if(!empty($data['rows'])) {
+
+            foreach ($data['rows'] as $row) {
+                $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
+            }
+        }
 
         $this->view('designer/dashboard',$data);
 
     }
+
     public function profile($id = null)
     {
         if(!Auth::logged_in())
@@ -236,51 +251,8 @@ class Designer extends Controller
         }
 
     }
-    public function pieData()
-    {
-        if(!Auth::logged_in())
-        {
-            $this->redirect('login3');
-        }
 
-        header('Content-Type: application/json');
-
-        $order = new Order();
-
-        $rows =  $order->query("SELECT COUNT(OrderID) AS numOrders,Order_status FROM `order` GROUP BY Order_status ");
-
-        $data = array();
-
-        foreach ($rows as $row){
-            $data[] = $row;
-        }
-
-        print json_encode($data);
-
-    }
     public function barData()
-    {
-        if(!Auth::logged_in())
-        {
-            $this->redirect('login3');
-        }
-
-        header('Content-Type: application/json');
-
-        $order = new Order();
-
-        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `order` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
-
-        $data = array();
-
-        foreach ($rows as $row){
-            $data[] = $row;
-        }
-
-        print json_encode($data);
-
-    }
-    public function lineData()
     {
         if(!Auth::logged_in())
         {

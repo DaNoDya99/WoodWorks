@@ -71,6 +71,13 @@ class Design extends Model
         return $this->query($query);
     }
 
+    public function getDesign($limit = 5){
+
+        $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM design ORDER BY DesignID desc limit $limit; ";
+
+        return $this->query($query);
+    }
+
     public function viewDesign($id = null)
     {
         $query = "select ";

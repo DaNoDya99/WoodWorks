@@ -9,7 +9,7 @@ $(document).ready(function () {
             var colors = [];
 
             for (var i in data) {
-                count.push(data[i].numOrders);
+                count.push(data[i].numDesigns);
                 date.push(data[i].Date);
                 colors.push(color());
             }
@@ -18,14 +18,14 @@ $(document).ready(function () {
             var chartdata = {
                 labels: date,
                 datasets: [{
-                    label: "Number of Orders",
+                    label: "Number of New Designs",
                     backgroundColor: colors,
                     data:count,
 
                 }]
             };
 
-            var ctx = $("#myBar");
+            var ctx = $("#designerBar");
 
             var barGraph = new Chart(ctx, {
                 type: 'bar',
@@ -37,7 +37,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'No.(processing + dispatched) Orders and Dates',
+                            text: 'Number of New Designs and Dates',
                             color:'black',
                             font: {
                                 size: 15,
@@ -49,7 +49,7 @@ $(document).ready(function () {
                         y: {
                             title: {
                                 display: true,
-                                text: 'Number of Orders',
+                                text: 'Number of Designs',
                                 color:'black',
                                 font: {
                                     size: 15,

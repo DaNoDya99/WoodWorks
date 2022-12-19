@@ -21,7 +21,8 @@ class Driver_home extends Controller
         $id = $id ?? Auth::getEmployeeID();
 
         $driver = new Driver();
-        $row = $driver->where("DriverID",$id);
+        $data['row']=$row = $driver->where("DriverID",$id);
+        //show($row[0]->Availability);
 
         if(empty($row[0]))
         {
@@ -30,10 +31,12 @@ class Driver_home extends Controller
             $this->redirect('driver_home');
 
         }
-        //show($row);
+        $order = new Order();
+        $query = "SELECT * FROM `order`  WHERE `DriverID` = '$id' order by DATE desc limit 10;";
+        $data['rows']= $rows = $order->query($query);
 
         $data['title'] = "DASHBOARD";
-        $data['availability'] = $row[0]->Availability;
+//        $data['availability'] = $row[0]->Availability;
 
         $this->view('driver/driver_home',$data);
 
@@ -103,6 +106,7 @@ class Driver_home extends Controller
         }
 
         $order = new Order();
+        $id = Auth::getEmployeeID();
         $data['title'] = "ORDERS";
 
         if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -111,7 +115,16 @@ class Driver_home extends Controller
             $data['row'] = $order->query("UPDATE `order` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
 
         }
-        $data['row'] = $order->query("SELECT * FROM `order` INNER JOIN `customer` ON order.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && `DriverID` = 'DR01';"); //&& OrderStatus = 'Processing'
+
+        $query = "SELECT OrderID,Payment_type,Total_amount,Order_status,order.Address,Firstname,Lastname,Mobileno,order.Date FROM `order` INNER JOIN `customer` ON order.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && `DriverID` = '$id';";//&& OrderStatus = 'Processing'
+        if(isset($_GET['designs_date']))
+        {
+            $designs_date = $_GET['designs_date'].'%';// don't care at the end
+            $query = ("SELECT * FROM `order` INNER JOIN `customer` ON order.CustomerID = customer.CustomerID WHERE (`Date` = '$designs_date') && `DriverID` = '$id';");
+        }
+
+        $data['row'] = $order->query($query);
+//        show($data['row']);
         $this->view('driver/order',$data);
 
     }
@@ -136,8 +149,9 @@ class Driver_home extends Controller
                 //$driver->query("UPDATE driver SET Availability='Available'WHERE DriverID = '$id';");
                 $driver->update($id,['DriverID'=>$id,'Availability'=>"Available"]);
             }
-            $this->redirect('driver_home');
+
         }
+        $this->redirect('driver_home');
     }
 
     public function pieData()
@@ -173,6 +187,7 @@ class Driver_home extends Controller
 
         $order = new Order();
 
+        //$rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `order` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
         $rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `order` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
 
         $data = array();

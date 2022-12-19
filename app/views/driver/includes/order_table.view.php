@@ -1,6 +1,23 @@
 <div class="tbox" >
     <div class="orders_view_header">
         <h1> ORDERS DETAILS</h1>
+        <form method="post" class="order-form">
+            <select name="Status">
+                <option selected>-- Filter --</option>
+                <?php foreach($rows as $row):?>
+                    <option value="<?=$row->Order_status?>"><?=$row->Order_status?></option>
+                <?php endforeach;?>
+            </select>
+            <button type="submit">
+                <img src="<?=ROOT?>/assets/images/designer/filter.png" alt="Filter">
+            </button>
+        </form>
+        <form class="order-form">
+            <input type="search" name="designs_date" placeholder="Date">
+            <button type="submit">
+                <img src="<?=ROOT?>/assets/images/designer/search.png" alt="Search">
+            </button>
+        </form>
     </div>
     <table class="content-table">
         <thead>
