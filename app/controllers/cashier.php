@@ -12,6 +12,9 @@ class cashier extends Controller
 
     public function index()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('Login7');
+        }
         $products = new Furnitures();
         $data['products'] = $products->getInventory();
         foreach ($data['products'] as $product) {
@@ -44,21 +47,26 @@ class cashier extends Controller
     {
 
         if (!Auth::logged_in()) {
-            $this->redirect('login1');
+            $this->redirect('login7');
         }
 
         $cart = new Carts();
         $order_item = new Order_Items();
         $order_item->updateQuantity($cartID, $productID, (int)$quantity + 1);
         $cart->updateTotalAmountToIncrease($cartID, $cost);
+        show($cost); die;
         $this->redirect('cashier/dash');
     }
     public function completebill(){
+        if (!Auth::logged_in()) {
+            $this->redirect('Login7');
+        }
         $cart = new Carts();
         $order_item = new Order_Items();
         $q = "DELETE FROM `order_item` WHERE CartID = :CartID;";
         $cart_id = $cart->getCart('5lhHfqCRtAdbMxdEl69oEq1F0ywitBClYh3fF927If44CB4eaXFKGSgp4K0k')[0]->CartID;
         $order_item->query($q,['CartID' => $cart_id]);
+
         $this->redirect('cashier/dash');
     }
 
@@ -66,7 +74,7 @@ class cashier extends Controller
     {
 
         if (!Auth::logged_in()) {
-            $this->redirect('login1');
+            $this->redirect('login7');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -113,7 +121,9 @@ class cashier extends Controller
     }
     public function inventory()
     {
-
+        if (!Auth::logged_in()) {
+            $this->redirect('Login7');
+        }
         $products = new Furnitures();
         $data['products'] = $products->getInventory();
         foreach ($data['products'] as $product) {
@@ -126,7 +136,9 @@ class cashier extends Controller
     }
     public function billing()
     {
-
+        if (!Auth::logged_in()) {
+            $this->redirect('Login2');
+        }
         $orders = new Orders_Supplier();
         $data['orderdata'] = $orders->where(1, 1);
 
@@ -182,6 +194,7 @@ class cashier extends Controller
         $cart->updateTotalAmountToIncrease($data['CartID'], $info[0]->Cost);
 
         $order_items->insert($data);
+        show($data);
 
         $this->redirect("cashier/dash");
     }
@@ -190,7 +203,7 @@ class cashier extends Controller
     {
 
         if (!Auth::logged_in()) {
-            $this->redirect('login1');
+            $this->redirect('login7');
         }
 
         $cart = new Carts();
@@ -207,7 +220,7 @@ class cashier extends Controller
     public function removeItem($cartID, $productID, $cost, $quantity)
     {
         if (!Auth::logged_in()) {
-            $this->redirect('login');
+            $this->redirect('login7');
         }
 
         $cart = new Carts();
