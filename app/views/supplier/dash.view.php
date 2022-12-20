@@ -9,10 +9,20 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/supplier/style.css">
 
 </head>
+<style>
+    table button {
+        background-color: #182422;
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
 
 <body onload="timedelload()">
     <?php $this->view('supplier/supplier.header', $data) ?>
-   
+
 
 
     <div class="sec1">
@@ -37,18 +47,23 @@
                     <th>Order Status</th>
 
                 </tr>
-                <?php foreach ($data['orderdata'] as $order) : ?>
+    <?php if (!empty($data['neworders'])) : ?>
+                <?php foreach ($data['neworders'] as $order) : ?>
                     <tr>
                         <td><?= $order->OrderID ?></td>
                         <td><?= $order->ProductID ?></td>
-                        <td><?= $order->Comment ?></td>
-                        <td><select>
-                                <option value=""> Pending</option>
-                                <option value=""> Accepted</option>
-                            </select>
-                        </td>
+                        <td><?= $order->Comments ?></td>
+                        <td <?php if ($order->OrderStatus == 'pending') : ?>style="color:red; font-weight:bold"<?php endif ?>><?= ucfirst($order->OrderStatus) ?></td>
+                        <td><a href="<?=ROOT?>/supplier/acceptOrder/<?= $order->OrderID?>"><button style="background-color: green;">Accept</button></a></td>
+                        <td><button style="background-color: red;">Reject</button></td>
+
                     </tr>
                 <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="5" style="text-align:center; font-size:30px; color:#4444">No Orders</td>
+                </tr>
+            <?php endif; ?>
             </table>
             <script>
                 function myFunction() {

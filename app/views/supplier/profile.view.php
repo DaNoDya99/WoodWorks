@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - Woodworks</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/supplier/style.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/styles.css">
+        
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/supplier/profile-style.css">
+
+
     <style>
     </style>
 </head>
@@ -20,92 +24,75 @@
     <div class="sec2" style="display: grid;">
 
 
-        <div class="data" id="panel">
+        <div class="dashboard-body">
 
-
-            <hr>
-            <h3 style="font-weight:500; margin-left:30px;">Profile</h3>
-            <div class="grid">
-
-                <div class="fields">
-                    <form method="POST" enctype="multipart/form-data">
-                        <div class="name-form" style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap:10px; grid-row-gap:15px">
-
-                            <div>
-                                <label for="First Name">First Name</label>
-                                <input class="form-textbox type=" text" name="Firstname" value="<?= set_value("Firstname", $row->Firstname) ?>" id="Firstname"><br>
-                                <?php if (!empty($errors['Firstname'])) : ?>
-                                    <small class="form-error"><?= $errors["Firstname"] ?></small>
-                                <?php endif; ?>
-                            </div>
-                            <div>
-                                <label for="Last Name">Last Name</label>
-                                <input class="form-textbox type=" text" name="Lastname" value="<?= set_value("Lastname", $row->Lastname) ?>" id="Lastname"><br>
-                                <?php if (!empty($errors['Lastname'])) : ?>
-                                    <small class="form-error"><?= $errors["Lastname"] ?></small>
-                                <?php endif; ?>
-                            </div>
-
-                            <!-- <div class="col1">
-
-                            <label for="emID"> Employee ID</label><br>
-                            <input class="form-textbox type=" text" name="SupplierID" value="<?= set_value(("SupplierID")) ?>" id="empID"><br>
-                            <?php if (!empty($errors['SupplierID'])) : ?>
-                                <small class="form-error"><?= $errors["SupplierID"] ?></small>
-                            <?php endif; ?>
-
-
-                        </div> -->
-                            <div class="col1">
-                                <label for="email">Email</label><br>
-                                <input class="form-textbox type=" email" name="Email" value="<?= set_value("Email", $row->Email) ?>" id="email"><br>
-                                <?php if (!empty($errors['Email'])) : ?>
-                                    <small class="form-error"><?= $errors["Email"] ?></small>
-                                <?php endif; ?>
-                            </div>
-
-
-                            <div class="col1">
-                                <label for="Contactno">Contact Number</label>
-                                <input class="form-textbox type=" tel" name="Contactno" value="<?= set_value("Contactno", $row->Contactno) ?>" id="contact"><br>
-                                <?php if (!empty($errors['Contactno'])) : ?>
-                                    <small class="form-error"><?= $errors["Contactno"] ?></small>
-                                <?php endif; ?>
-                            </div>
-                            <div style="grid-column-start:1 ; grid-column-end:3">
-
-                                <button type="submit">Submit</button>
-
-                            </div>
-
-
-                        </div>
-
+            <div class="admin-profile-card">
+                <div class="admin-pro-img-sec">
+                    <img src="<?= ROOT ?>/<?= $row[0]->Image ?>" alt="No Profile">
+                    <h1><?= $row[0]->Firstname ?> <?= $row[0]->Lastname ?></h1>
+                    <h2>Supplier</h2>
                 </div>
-                <div style="display:grid; grid-template-rows:auto auto auto; justify-items:center; ">
+                <hr>
+                <div class="admin-pro-info">
+                    <table>
+                        <tr>
+                            <th>Supplier ID : </th>
+                            <td><?= $row[0]->SupplierID ?></td>
+                        </tr>
+                        <tr>
+                            <th>Email : </th>
+                            <td><?= $row[0]->Email ?></td>
+                        </tr>
+                        <tr>
+                            <th>Contact No : </th>
+                            <td><?= $row[0]->Contactno ?></td>
+                        </tr>
+                        
+                    </table>
+                </div>
+                <hr>
+                <div class="edit-cus-pro-btn-sec">
+                    <button onclick="openPopup()">Edit Profile</button>
 
-                    <img class="Image" src="
-                   
-                    <?php if (empty($row->Image)) : ?>
-                        <?= ROOT ?>/assets/images/supplier/user.png 
-                    <?php else : ?>
-                    <?= ROOT ?>/<?= ($row->Image) ?>
-                    <?php endif; ?>
-                    " alt="">
-                    <div class="imagename">Selected File: None</div>
+                    <div class="popup admin-popup" id="popup">
+                        <div class="popup-heading">
+                            <h2>Edit Profile</h2>
+                            <img src="<?= ROOT ?>/assets/images/customer/close.png" alt="Close" onclick="closePopup()">
+                        </div>
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="image-field admin-edit-img">
+                                <img src="<?= ROOT ?>/<?= $row[0]->Image ?>" alt="No profile pic">
+                                <label>
+                                    Upload
+                                    <input onchange="load_image(this.files[0])" type="file" name="Image">
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="name-field">
+                                <div class="edit-cus-field first-name">
+                                    <label>First Name</label>
+                                    <input type="text" name="Firstname" value="<?= $row[0]->Firstname ?>">
+                                </div>
+                                <div class="edit-cus-field last-name">
+                                    <label>Last Name</label>
+                                    <input type="text" name="Lastname" value="<?= $row[0]->Lastname ?>">
+                                </div>
+                            </div>
+                            <div class="edit-cus-field">
+                                <label>Email</label>
+                                <input type="email" name="Email" value="<?= $row[0]->Email ?>">
+                            </div>
+                            <div class="edit-cus-field">
+                                <label>Contact No</label>
+                                <input type="text" name="Contactno" value="<?= $row[0]->Contactno ?>">
+                            </div>
 
-                    <div>
-                        <label style="display: inline-block; height:17px; width:100px; background-color:blue; color:white; text-align:center; border-radius:5px; padding:10px; margin-top:10px" title="Upload">
-                            <i>Upload</i>
-                            <input onchange="load_image(this.files[0])" type="file" name="image" style="display: none;">
-                        </label>
-                        <label style="display: inline-block; height:17px; width:100px; background-color:red; border-radius:5px; padding:10px; margin-top:10px; text-align:center; " title="Upload">
-                            <i>Delete</i>
-                        </label>
+                            <button type="submit" onclick="closePopup()">Save</button>
+                        </form>
                     </div>
                 </div>
-                </form>
             </div>
+
         </div>
     </div>
     </div>
@@ -137,9 +124,25 @@
         }, 200);
     }
 
-    function delay(URL) {
-        setTimeout(function() {
-            window.location = URL
-        }, 500);
+   
+
+    let popup = document.getElementById('popup');
+    let profile_card = document.querySelector('.admin-profile-card');
+    let closeBtn = document.querySelector('.popup-heading img');
+
+    function openPopup() {
+        popup.classList.add("open-popup");
+        profile_card.style.visibility = 'hidden';
+    }
+
+    function closePopup() {
+        popup.classList.remove("open-popup");
+        profile_card.style.visibility = 'visible';
+    }
+
+    function load_image(file) {
+        let mylink;
+        mylink = window.URL.createObjectURL(file);
+        document.querySelector(".image-field img").src = mylink;
     }
 </script>
