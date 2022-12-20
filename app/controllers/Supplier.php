@@ -9,51 +9,81 @@ class supplier extends Controller
             $this->redirect('Login2');
         }
         $orders = new CompanyOrderModel();
-        $data['orderdata'] = $orders->where('SupplierID', Auth::getSupplierID());
-
+        $data['neworders']=$orders->getneworders();
         $this->view('supplier/dash', $data);
+    }
+    public function accepted()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('Login2');
+        }
+        $orders = new CompanyOrderModel();
+        $data['acceptedorders']=$orders->getacceptedorders();
+
+        $this->view('supplier/accepted',$data);
+    }
+
+    public function acceptOrder($id)
+    {
+        $orders = new CompanyOrderModel();
+        $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'accepted']);
+        $this->redirect('supplier/dash');
+    }
+
+    public function CompleteOrder($id)
+    {
+        $orders = new CompanyOrderModel();
+        $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'complete']);
+        $this->redirect('supplier/accpeted');
     }
 
     public function profile($id = null)
     {
 
         if (!Auth::logged_in()) {
-            $this->redirect('Login2');
+            $this->redirect('login1');
         }
+
         $id = $id ?? Auth::SupplierID();
+        $supplier = new Suppliers();
+        $data['row'] = $row = $supplier->where('SupplierID', $id);
 
-        $user = new Suppliers();
-        $data['row'] = $row = $user->where('SupplierID', $id)[0];
-        $_SESSION['USER_DATA'] = $row;
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $row) {
-
-
-            $folder = 'uploads/images/';
+            $folder = "uploads/images/";
             if (!file_exists($folder)) {
                 mkdir($folder, 0777, true);
-                file_put_contents($folder . "index.php", "<?php //silence");
-                file_put_contents("uploads/index.php", "<?php //silence");
+                file_put_contents($folder . "index.php", "<?php Access Denied.");
+                file_put_contents("uploads/index.php", "<?php Access Denied.");
             }
 
-            $allowed = ['image/jpeg', 'image/png', 'image/jpg'];
-            if (!empty($_FILES['image']['name'])) {
-                if ($_FILES['image']['error'] == 0) {
-                    if (in_array($_FILES['image']['type'], $allowed)) {
-                        $destination = $folder . time() . $_FILES['image']['name'];
-                        move_uploaded_file($_FILES['image']['tmp_name'], $destination);
-                        $_POST['Image'] = $destination;
+            if ($supplier->edit_validate($_POST, $id)) {
+                $allowedFileType = ['image/jpeg', 'image/png'];
+
+
+                if (!empty($_FILES['Image']['name'])) {
+                    if ($_FILES['Image']['error'] == 0) {
+                        if (in_array($_FILES['Image']['type'], $allowedFileType)) {
+                            $destination = $folder . time() . $_FILES['Image']['name'];
+                            show(move_uploaded_file($_FILES['Image']['tmp_name'], $destination));
+                            die;
+                            //                            resize_image($destination);
+                            $_POST['Image'] = $destination;
+                            if (file_exists($row[0]->Image)) {
+                                unlink($row[0]->Image);
+                            }
+                        } else {
+                            $supplier->errors['image'] = "This file type is not allowed.";
+                        }
                     } else {
-                        $user->errors['image'] = 'Invalid file type';
+                        $supplier->errors['image'] = "Could not upload image.";
                     }
-                } else {
-                    $user->errors['image'] = 'Error uploading file';
                 }
-            }
-            $_POST['SupplierID'] = $id;
-            $user->update($row->SupplierID, $_POST);
-            $this->redirect('supplier/profile/' . $row->SupplierID);
-        }
 
+                $_POST['SupplierID'] = $id;
+                $supplier->update($id, $_POST);
+                $this->redirect('supplier/profile/' . $id);
+            }
+        }
         $this->view('supplier/profile', $data);
     }
 }
