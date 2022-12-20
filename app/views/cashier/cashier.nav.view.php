@@ -5,14 +5,14 @@
             <a href="javascript:delay('<?= ROOT ?>/cashier')">
 
                 <div onclick="timedelexit()">
-                    Order List
+                    New Bill
                 </div>
             </a>
         </li>
         <li>
             <a href="javascript:delay('<?= ROOT ?>/cashier/billing')">
                 <div onclick="timedelexit()">
-                    Order </div>
+                    Order History </div>
             </a>
         </li>
         <li>
