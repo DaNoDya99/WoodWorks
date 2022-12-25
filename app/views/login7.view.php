@@ -33,6 +33,7 @@
 
         .nav img {
             padding-left: 5vw;
+            padding-top: 20px;
             width: 14vw;
         }
 
@@ -62,7 +63,7 @@
         }
 
         .grid-item {
-            background-color: red;
+
             height: 100vh;
 
         }
@@ -78,6 +79,7 @@
             margin-bottom: 5px;
             height: 30px;
             width: 30vw;
+            margin-top: 5px;
             border-radius: 5px;
             border: 1px solid #18242279;
         }
@@ -99,48 +101,62 @@
         h1 {
             margin-top: 5px;
         }
+
+        .loginbutton{
+            width: 100%;
+            background-color: #007148;
+            border: 0px;
+            padding: 12px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+
+        }
+
+        .loginbutton:hover{
+            background-color: #005c3f;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
-    <div class="contactbar">
-        <nav class="nav" style="display: grid; grid-template-columns:8fr 2fr">
-            <img src="<?= ROOT ?>/assets/images/cashier/WOODWORKS.png" alt="">
-            <div>
-                <ul>
-                    <li>Login</li>
-                    <li>Register</li>
-                    <li>Cart</li>
+<div class="contactbar">
+    <nav class="nav" style="display: grid; grid-template-columns:8fr 2fr">
+        <img src="<?= ROOT ?>/assets/images/cashier/WOODWORKS.svg" alt="">
+        <!--        <div>-->
+        <!--            <ul>-->
+        <!--                <li>Login</li>-->
+        <!--                <li>Register</li>-->
+        <!--                <li>Cart</li>-->
+        <!---->
+        <!--            </ul>-->
+        <!--        </div>-->
+    </nav>
+</div>
+<div class="main">
+    <div class="grid-item leftpanel"></div>
+    <div class="grid-item mainbg ">
+        <div>
+            <div style="margin-top:50px;display: grid; justify-content:center ;width: 30vw;background-color: white; padding: 40px; border-radius: 10px; box-shadow: 0px 5px 10px rgba(107, 107, 107, 0.753);">
+                <h1>Login</h1>
+                <?php if (!empty($errors['Email'])) : ?>
+                    <div style=" display:flex; align-items:center; justify-content:center; border:1px solid #F3D8DA; width:100%; height:50px; background-color:#F3D8DA; margin-bottom:20px;"><small><?= $errors["Email"] ?></small></div>
+                <?php endif; ?>
 
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="main">
-        <div class="grid-item leftpanel"></div>
-        <div class="grid-item mainbg ">
-            <div>
-                <div style="margin-top:50px;display: grid; justify-content:center ;width: 30vw;background-color: white; padding: 40px; border-radius: 10px; box-shadow: 0px 5px 10px rgba(107, 107, 107, 0.753);">
-                    <h1>Login</h1>
+                <form action="" method="post" novalidate>
+                    <label for="email"><small>Email</small></label>
+                    <input style="padding-left:10px ;" type="email" value="<?= set_value('Email') ?>" name="Email" id="email" required><br>
 
-
-                    <form action="" method="post" novalidate>
-                        <label for="email">Email</label><br>
-                        <input style="padding-left:10px ;" type="email" value="<?= set_value('Email') ?>" name="Email" id="email" required><br>
-
-                        <br>
-                        <br>
-                        <label for="password">Password</label><br>
-                        <input style="padding-left:10px ;" type="password" name="Password" id="Password" value="<?= set_value('Password') ?>" required>
-                        <?php if (!empty($errors['Email'])) : ?>
-                            <small><?= $errors["Email"] ?></small>
-                        <?php endif; ?>
-                        <br><button type="submit">Login</button>
-                    </form>
-                </div>
+                    <br>
+                    <br>
+                    <label for="password"><small>Password</small></label>
+                    <input style="padding-left:10px ;" type="password" name="Password" id="Password" value="<?= set_value('Password') ?>" required>
+                    <br><button class="loginbutton" type="submit">Login</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>

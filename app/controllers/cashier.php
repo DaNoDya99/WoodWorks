@@ -89,7 +89,7 @@ class cashier extends Controller
                     if ($_FILES['Image']['error'] == 0) {
                         if (in_array($_FILES['Image']['type'], $allowedFileType)) {
                             $destination = $folder . time() . $_FILES['Image']['name'];
-                            show(move_uploaded_file($_FILES['Image']['tmp_name'], $destination));
+                            move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
                             die;
                             //                            resize_image($destination);
                             $_POST['Image'] = $destination;

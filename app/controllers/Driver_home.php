@@ -22,6 +22,8 @@ class Driver_home extends Controller
         $id = $id ?? Auth::getEmployeeID();
 
         $driver = new Driver();
+        $employee = new Employees();
+        $data['details'] = $employee->where('EmployeeID',$id);
         $data['row']=$row = $driver->where("DriverID",$id);
         //show($row[0]->Availability);
 
@@ -88,6 +90,7 @@ class Driver_home extends Controller
                         $employee->errors['image'] = "Could not upload image.";
                     }
                 }
+                $_POST['EmployeeID'] = $id;
                 $employee->update($id,$_POST);
                 $this->redirect('driver_home/profile/'.$id);
             }
@@ -107,7 +110,10 @@ class Driver_home extends Controller
         }
 
         $order = new Order();
+
         $id = Auth::getEmployeeID();
+        $employee = new Employees();
+        $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
         if($_SERVER['REQUEST_METHOD'] == "POST"){

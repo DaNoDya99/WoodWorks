@@ -1,109 +1,38 @@
-$(document).ready(function () {
-    $.ajax({
-        url: "http://localhost/woodworks/public/designer/barData",
-        method: "GET",
-        success: function (data) {
-            console.log(data);
-            var count = [];
-            var date = [];
-            var colors = [];
+const ctx = document.getElementById("designerBar");
 
-            for (var i in data) {
-                count.push(data[i].numDesigns);
-                date.push(data[i].Date);
-                colors.push(color());
-            }
-            // console.log(Count);
-            // console.log(Status);
-            var chartdata = {
-                labels: date,
-                datasets: [{
-                    label: "Number of New Designs",
-                    backgroundColor: colors,
-                    data:count,
-
-                }]
-            };
-
-            var ctx = $("#designerBar");
-
-            var barGraph = new Chart(ctx, {
-                type: 'bar',
-                data: chartdata,
-                options: {
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        title: {
-                            display: true,
-                            text: 'Number of New Designs and Dates',
-                            color:'black',
-                            font: {
-                                size: 15,
-                            },
-                        },
-
+let barChart = new Chart(ctx,{
+    type:'bar',
+    data:{
+        labels:["Rocking Chair","Bed","Sofa","Dining Tables","Book Shelf"],
+        datasets:[{
+            label:"Designs And Ratings",
+            fontsize:25,
+            backgroundColor:color(),
+            data:[2,4,5,1,3.5]
+        }]
+    },
+    options:{
+        plugins:{
+            legend:{
+                labels: {
+                    font: {
+                        size: 14,
+                        weight: 600,
                     },
-                    scales: {
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Number of Designs',
-                                color:'black',
-                                font: {
-                                    size: 15,
-                                },
-
-                            },
-                            ticks: {
-                                color:'black',
-                                font: {
-                                    size: 15,
-                                },
-                                precision: 0,
-
-                            },
-                            grid: {
-                                borderColor: 'black'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Dates',
-                                color:'black',
-                                font: {
-                                    size: 15,
-                                },
-                            },
-                            ticks: {
-                                color:'black',
-                                font: {
-                                    size: 15,
-                                },
-                            },
-                            grid: {
-                                borderColor: 'black'
-                            }
-                        },
-                    },
+                    color: 'black',
                 }
-            });
-        },
-        error: function (data) {
-            console.log(data);
+            }
         }
-    });
-
-    function color()
-    {
-        var r = Math.floor(Math.random() * 256);
-        var g = Math.floor(Math.random() * 256);
-        var b = Math.floor(Math.random() * 256);
-
-        var rgba = 'rgba(' + r + ',' + g + ',' + b + ',1.0)';
-        return rgba;
-
     }
 });
+
+function color()
+{
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+
+    var rgba = 'rgba(' + r + ',' + g + ',' + b + ',1.0)';
+    return rgba;
+
+}

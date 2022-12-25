@@ -64,7 +64,6 @@ class Model extends Database
         $query = trim($query,",");
         $query .= " where ".$id." = :".$id;
 
-
         $this->query($query,$data);
     }
 

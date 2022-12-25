@@ -34,7 +34,7 @@ class supplier extends Controller
     {
         $orders = new CompanyOrderModel();
         $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'complete']);
-        $this->redirect('supplier/accpeted');
+        $this->redirect('supplier/accepted');
     }
 
     public function profile($id = null)
@@ -64,8 +64,7 @@ class supplier extends Controller
                     if ($_FILES['Image']['error'] == 0) {
                         if (in_array($_FILES['Image']['type'], $allowedFileType)) {
                             $destination = $folder . time() . $_FILES['Image']['name'];
-                            show(move_uploaded_file($_FILES['Image']['tmp_name'], $destination));
-                            die;
+                            move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
                             //                            resize_image($destination);
                             $_POST['Image'] = $destination;
                             if (file_exists($row[0]->Image)) {

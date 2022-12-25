@@ -10,7 +10,7 @@
                 <h1><?= $title ?></h1>
             </div>
             <div class="nav-item-user">
-                <img src="<?=ROOT?>/assets/images/designer/user.png" alt="Profile picture">
+                <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="Profile picture">
                 <div class="nav-vr"></div>
                 <h1>Hi, <?=ucfirst(substr(Auth::getFirstname(),0,1))?>.<?=Auth::getLastname()?></h1>
                 <div class="nav-vr"></div>

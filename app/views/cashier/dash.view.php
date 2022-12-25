@@ -23,7 +23,7 @@
         <div class="data" id="panel">
 
             <input type="text" name="search" placeholder="Search for a product" id="myInput" onkeyup="myFunction()">
-            <table style="display: flex; font-size:14px; text-align:right; align-items:center; justify-content:center;">
+            <table style="display: flex; font-size:14px; text-align:right; align-items:center; justify-content:center;" id="myTable">
 
                 <tbody style=" display:block; overflow:auto;">
                     <?php foreach ($data['products'] as $product) : ?>

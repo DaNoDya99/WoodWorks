@@ -338,7 +338,7 @@ tr {
 }
 
 tr:hover {
-    box-shadow: 0px 0px 5px #455452;
+    /*box-shadow: 0px 0px 5px #455452;*/
 
 }
 

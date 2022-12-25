@@ -10,6 +10,11 @@
 </head>
 <body class="bdy">
 
+<div class="login3-logo">
+    <img class="login3-logo-img" src="<?=ROOT?>/assets/images/logo.png" alt="Logo">
+    <h1 class="login3-logo-name">WOODWORKS</h1>
+</div>
+
 <div class="login3-form">
     <img src="./assets/images/login3/user.png">
 

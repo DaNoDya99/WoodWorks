@@ -37,7 +37,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'UnCompleted Orders and Dates',
+                            text: 'Uncompleted Orders and Dates',
                             color:'black',
                             font: {
                                 size: 15,
