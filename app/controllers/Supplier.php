@@ -34,7 +34,7 @@ class supplier extends Controller
     {
         $orders = new CompanyOrderModel();
         $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'complete']);
-        $this->redirect('supplier/accepted');
+        $this->redirect('supplier/accpeted');
     }
 
     public function profile($id = null)
