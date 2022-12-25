@@ -9,7 +9,7 @@
                 <h1><?= $title ?></h1>
             </div>
             <div class="nav-item-user">
-                <img src="<?=ROOT?>/assets/images/driver/user.png" alt="Profile picture">
+                <img src="<?=ROOT?>/<?=$details[0]->Image?>" alt="Profile picture">
                 <div class="nav-vr"></div>
                 <h1>Hi, <?=ucfirst(substr(Auth::getFirstname(),0,1))?>.<?=Auth::getLastname()?></h1>
                 <div class="nav-vr"></div>
@@ -38,15 +38,15 @@
 
         <div class="containers">
 
-            <div class="box" id="chart-container">
+            <div class="box" id="chart-container" onclick="location.href='<?=ROOT?>/driver_home/order';">
                 <canvas id="myPie" width="100" height="100"> </canvas>
             </div>
 
-<!--            <div class="box" id="chart-container3"">-->
-<!--                <canvas id="myLine" height="400" width="300"></canvas>-->
-<!--            </div>-->
+            <!--            <div class="box" id="chart-container3"">-->
+            <!--                <canvas id="myLine" height="400" width="300"></canvas>-->
+            <!--            </div>-->
 
-            <div class="driver-tbox">
+            <div class="driver-tbox" onclick="location.href='<?=ROOT?>/driver_home/order';">
                 <h1>New Orders</h1>
                 <table class="driver-content-table">
                     <thead>
@@ -59,13 +59,13 @@
                     <tbody>
                     <?php foreach ($rows as $row):?>
                         <tr class="orders-table-rows">
-                                    <td><?=esc($row->Payment_type)?></td>
-                                    <td><?=esc($row->Order_status)?></td>
-                                    <?php
-                                    $date = $row->Date;
-                                    $newDate = date("d/m/Y", strtotime($date));
-                                    ?>
-                                    <td><?=$newDate?></td>
+                            <td><?=esc($row->Payment_type)?></td>
+                            <td><?=esc($row->Order_status)?></td>
+                            <?php
+                            $date = $row->Date;
+                            $newDate = date("d/m/Y", strtotime($date));
+                            ?>
+                            <td><?=$newDate?></td>
                         </tr>
                     <?php endforeach;?>
                     </tbody>
@@ -73,7 +73,7 @@
 
             </div>
 
-            <div class="box" id="chart-container2">
+            <div class="box" id="chart-container2" onclick="location.href='<?=ROOT?>/driver_home/order';">
                 <canvas id="myBar" width="300" height="400"> </canvas>
             </div>
 
