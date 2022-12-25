@@ -8,28 +8,10 @@
     <title>View Orders - Woodworks</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cashier/dash-style.css">
-<style>
-    .message{
 
-        visibility: hidden;
-        position: absolute;
-        color: white;
-        z-index: 99;
-        top : 50%;
-        left: 50%;
-        transform: translateX(-50%);
-        transform: translateY(-50%);
-        width: 400px;
-        height: 50px;
-        background-color: white;
-        color: black;
-        box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
-    }
-</style>
 </head>
 
 <body>
-
     <?php $this->view('supplier/supplier.header', $data) ?>
 
 
@@ -76,12 +58,12 @@
                                 </div>
                                 <div style="display:flex; justify-content:center;align-items:center;">
                                     <a href="<?= ROOT ?>/cashier/increaseQuantity/<?= $cart->CartID ?>/<?= $cart->ProductID ?>/<?= $cart->Quantity ?>/<?= $cart->Cost ?>"><img style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/add2.svg" alt=""></a>
-                                    <input type="text" style="margin-left:10px; margin-right:10px; text-align:center;" value="<?= $cart->Quantity ?>">
+                                    <input type="text" value="<?= $cart->Quantity ?>">
                                     <!-- <?= $cart->Quantity; ?> -->
                                     <a href="<?= ROOT ?>/cashier/decreaseQuantity/<?= $cart->CartID ?>/<?= $cart->ProductID ?>/<?= $cart->Quantity ?>/<?= $cart->Cost ?>"><img style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/minus.svg" alt=""></a>
 
                                 </div>
-                                <a href="<?= ROOT ?>/cashier/removeItem/<?= $cart->CartID ?>/<?= $cart->ProductID ?>/<?= $cart->Cost ?>/<?= $cart->Quantity ?>"><img width="16px" src="<?=ROOT?>/assets/images/cashier/cross.svg" alt=""></a>
+                                <a href="<?= ROOT ?>/cashier/removeItem/<?= $cart->CartID ?>/<?= $cart->ProductID ?>/<?= $cart->Cost ?>/<?= $cart->Quantity ?>">X</a>
                             </li>
 
 
@@ -91,8 +73,7 @@
                     <p style="">Cart is empty</p>
                 <?php endif ?>
             </div>
-            <div class="total_price" style="position: absolute; bottom:120px; font-size:30px; display:flex; justify-content:space-between; width:90%; box-sizing:border-box;">
-                <p>Total</p>
+            <div class="total_price" style="position: absolute; right:25px; bottom:120px; font-size:30px ">
                 <?php if (!empty($cart)) : ?>
                     <p>Rs. <?= $data['cart'][0]->Total_amount ?>.00</p>
                 <?php else : ?>
@@ -153,14 +134,6 @@
         popup1.classList.remove("open-popup");
         popup2.classList.remove("open-popup");
 
-    }
-    function message(){
-        document.getElementById('pop').style.visibility = "visible";
-
-
-        setTimeout(function(){
-            document.getElementById('pop').style.visibility = "hidden";
-        }, 2000);
     }
 </script>
 
