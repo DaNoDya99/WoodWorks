@@ -25,10 +25,6 @@ class supplier extends Controller
 
     public function acceptOrder($id)
     {
-
-        if (!Auth::logged_in()) {
-            $this->redirect('Login2');
-        }
         $orders = new CompanyOrderModel();
         $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'accepted']);
         $this->redirect('supplier/dash');
@@ -36,10 +32,6 @@ class supplier extends Controller
 
     public function CompleteOrder($id)
     {
-
-        if (!Auth::logged_in()) {
-            $this->redirect('Login2');
-        }
         $orders = new CompanyOrderModel();
         $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'complete']);
         $this->redirect('supplier/accepted');
