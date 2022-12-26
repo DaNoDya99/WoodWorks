@@ -11,12 +11,10 @@ class Login extends Controller
         $data['error'] = [];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $result_emp = $employee->where('email',$_POST['Email']);
-            $result_cus = $customer->where('email',$_POST['Email']);
-            $result_sup =  $supplier->where('email',$_POST['Email']);
-            show($result_emp);
-            show($result_cus);
-            show($result_sup);
+
+            $result_emp = $employee->where('Email',$_POST['Email']);
+            $result_cus = $customer->where('Email',$_POST['Email']);
+            $result_sup =  $supplier->where('Email',$_POST['Email']);
 
             if($result_emp && $result_cus){
                 if(password_verify($_POST['Password'],$result_emp[0]->Password))
