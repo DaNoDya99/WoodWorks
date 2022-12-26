@@ -6,8 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accepted Orders - Woodworks</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style.css">
-
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/supplier/style.css">
+    <style>
+        table button {
+            background-color: #182422;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body onload="timedelload()">
@@ -31,24 +40,30 @@
             <table id="myTable">
                 <tr>
                     <th>Order ID</th>
-                    <th>Product Description</th>
-                    <th>Additional Comments</th>
+                    <th>Product SKU</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
                     <th>Order Status</th>
 
                 </tr>
 
-                <?php foreach ($data['orderdata'] as $order) : ?>
+                <?php foreach ($data['acceptedorders'] as $order) : ?>
                     <tr>
                         <td><?= $order->OrderID ?></td>
                         <td><?= $order->ProductID ?></td>
-                        <td><?= $order->Comment ?></td>
-                        <td><button>
-                            Complete
-                        </button>
-                        <td><button>
-                            Cancel
-                        </button>
-                        </td>
+                        <td><?= $order->Quantity ?></td>
+                        <td><?= $order->Date ?></td>
+
+                        <td><?= ucfirst($order->OrderStatus) ?></td>
+                       <td> <?php if ($order->OrderStatus != 'complete') : ?>
+                            <a href="<?= ROOT ?>/supplier/CompleteOrder/<?= $order->OrderID ?>"><button style="background-color: green;">
+                                        Complete
+                                    </button></a>
+                                <button style="background-color: red;">
+                                    Cancel
+                                </button>
+                            
+                        <?php endif; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

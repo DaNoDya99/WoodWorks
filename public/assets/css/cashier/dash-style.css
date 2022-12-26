@@ -616,7 +616,7 @@ p {
 
     position: absolute;
     top: 50%;
-    visibility: visible;
+    visibility: hidden;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50vw;
@@ -643,12 +643,17 @@ p {
 }
 
 .paybutton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #008f37;
     color: white;
     padding: 20px;
     border-radius: 5px;
     border: 0;
-    width: 100%;
+    width: 200px;
+    height: 50px;
     text-align: center;
     font-size: 18px;
+    margin: 20px;
 }

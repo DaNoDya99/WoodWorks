@@ -28,6 +28,7 @@
 
             <div class="designer-tbox" onclick="location.href='<?=ROOT?>/designer/design';">
                 <h1>Newly Added Designs</h1>
+
                 <table class="designer-content-table">
                     <thead>
 

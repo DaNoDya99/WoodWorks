@@ -23,7 +23,7 @@
         <div class="data" id="panel">
 
             <input type="text" name="search" placeholder="Search for a product" id="myInput" onkeyup="myFunction()">
-            <table style="display: flex; font-size:14px; text-align:right; align-items:center; justify-content:center;">
+            <table style="display: flex; font-size:14px; text-align:right; align-items:center; justify-content:center;" id="myTable">
 
                 <tbody style=" display:block; overflow:auto;">
                     <?php foreach ($data['products'] as $product) : ?>
@@ -91,12 +91,12 @@
     <div class="blur" id="blur"></div>
     <div class="payment" id="popup" style="display: flex; justify-content:center; align-items:center; flex-direction:column">
         <h3>Please choose payment method</h3>
-        <div style="width: 100px;">
-            <div class="paybutton">Cash</div>
-            <div class="paybutton">Card</div>
+        <div style="display:flex;">
+           <a href="<?=ROOT?>/cashier/completebill"> <div class="paybutton">Cash</div></a>
+           <a href=""> <div class="paybutton">Card</div></a>
         </div>
 
-        <button onclick="closePopup()" class="exit">exit</button>
+        <button onclick="closePopup()" class="exit">Cancel</button>
     </div>
 </body>
 <script>

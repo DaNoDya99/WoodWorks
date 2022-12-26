@@ -229,7 +229,7 @@ class Manager extends Controller
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $furniture->updateDiscounts($id,$_POST['Discount_percentage']);
-            $this->redirect('manager/discounts/P0002');
+            $this->redirect('manager/discounts/'.$id);
         }
 
         $this->view('manager/discounts',$data);

@@ -122,7 +122,7 @@ class Employees extends Model
 
     public function deleteEmployee($id = null)
     {
-        $query = "delete from employee where EmployeeID = :EmployeeID;";
+        $query = "delete from $this->table where EmployeeID = :EmployeeID;";
 
         return $this->query($query , ['EmployeeID' => $id]);
     }
