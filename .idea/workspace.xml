@@ -5,53 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0736f84-0e4a-4b5e-84ed-db94d2b38740" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/customer/shopping-cart.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Login1.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Login2.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Login3.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Login4.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Login7.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Logout1.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Logout3.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Logout4.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/add_employee.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/add_employee.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/add_furniture.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/add_furniture.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/dashboard.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/edit_furniture.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/edit_furniture.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/employees.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/employees.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/inventory.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/inventory.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/profile.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/supplier.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/supplier.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designer/dashboard.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designer/dashboard.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designer/design.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designer/design.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designer/design_description.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designer/design_description.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designer/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designer/profile.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/driver/driver_home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/driver/driver_home.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/driver/order.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/driver/order.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/driver/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/driver/profile.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/includes/header.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/includes/header.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/login1.view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/login2.view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/login3.view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/login4.view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/login7.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/login.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/advertisements.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/advertisements.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/dashboard.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/dashboard.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/designs.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/designs.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/discounts.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/discounts.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/issues.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/issues.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/orders.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/orders.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/posts.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/posts.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/profile.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/reports.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/reports.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manager/reviews.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manager/reviews.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/includes/header.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/includes/header.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/supplier/supplier.header.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/supplier/supplier.header.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,9 +39,15 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\customer" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -93,7 +56,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672033736989</updated>
-      <workItem from="1672033738488" duration="2732000" />
+      <workItem from="1672033738488" duration="8325000" />
     </task>
     <servers />
   </component>

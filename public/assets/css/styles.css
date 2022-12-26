@@ -1029,14 +1029,15 @@ form .name-details .field:last-child{
 /*product card*/
 
 .product-card{
-    width: 250px;
-    height: 320px;
+    width: 265px;
+    max-height: 360px;
     background: #f9f9f9;
     border-radius: 12px;
     border: solid 2px black;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     margin: 15px;
+    position: relative;
 }
 
 .product-card a{
@@ -1054,7 +1055,9 @@ form .name-details .field:last-child{
 }
 
 .product-card h2{
-    font-size: .9rem;
+    font-size: 1rem;
+    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-weight: lighter;
 }
 
 .product-card-img img{
@@ -1063,6 +1066,69 @@ form .name-details .field:last-child{
     border-radius: 10px;
     margin: 2px;
     object-fit: cover;
+}
+
+.product-card-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .5em;
+}
+
+.product-card-details h3{
+    margin: 0;
+}
+
+.product-card-details div{
+    display: flex;
+    align-items: center;
+}
+
+.product-card-details div h3{
+    margin-left: .3em;
+}
+
+.product-card-details img{
+    width: .8em;
+    height: .8em;
+}
+
+.product-card-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 .5em;
+}
+
+.product-card-buttons img{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.product-card-buttons button{
+    margin: 0;
+    cursor: pointer;
+}
+
+.product-card-discount{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding-left: .5em;
+    top: 2.5%;
+    background-color: rgba(144, 144, 144, 0.5);
+    width: 50%;
+    height: 2em;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.product-card-discount p{
+    margin: 0;
+    font-family: 'Poppins-SemiBold', sans-serif;
+    color: #a70404;
+
 }
 
 .latest-section{
