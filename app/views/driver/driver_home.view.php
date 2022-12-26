@@ -29,7 +29,7 @@
                     </select>
                 </form>
                 <div class="nav-vr"></div>
-                <a href="<?=ROOT?>/logout3">
+                <a href="<?=ROOT?>/logout">
                     <h1>Logout</h1>
                 </a>
             </div>

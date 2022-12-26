@@ -1,25 +1,33 @@
 <div class="product-card">
-    <a href="<?=ROOT?>/furniture/view_product/<?=$row->ProductID?>">
+        <div class="product-card-discount">
+            <p>5% Discount</p>
+        </div>
         <div class="product-card-img">
             <img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image">
         </div>
         <div>
             <h2><?=$row->Name?></h2>
-            <h3>Rs. <?=$row->Cost?></h3>
-        </div>
-    </a>
-</div>
+            <div class="product-card-details">
+                <h3>Rs. <?=$row->Cost?>.00</h3>
+                <div>
+                    <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                    <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                    <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                    <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                    <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                    <h3>5.0</h3>
+                </div>
 
-<!---->
-<!--    <div class="product-card">-->
-<!--        <a href="--><?php //=ROOT?><!--/furniture/view_product/--><?php //=$row->ProductID?><!--">-->
-<!--            <div class="product-card-img">-->
-<!--                <img src="--><?php //=ROOT?><!--/--><?php //=$row->Image?><!--" alt="Product Image">-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <h2>--><?php //=$row->Name?><!--</h2>-->
-<!--                <h3>Rs. --><?php //=$row->Cost?><!--</h3>-->
-<!--            </div>-->
-<!--        </a>-->
-<!--    </div>-->
+            </div>
+            <div class="product-card-buttons">
+                <a href="<?=ROOT?>/furniture/view_product/<?=$row->ProductID?>">
+                    <button>More Details</button>
+                </a>
+                <a href="<?=ROOT?>/customer_home/add_to_cart/<?=$row->ProductID?>">
+                    <img src="<?=ROOT?>/assets/images/customer/shopping-cart.png" alt="Cart Image">
+                </a>
+            </div>
+        </div>
+
+</div>
 

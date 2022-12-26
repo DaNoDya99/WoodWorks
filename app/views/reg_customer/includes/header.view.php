@@ -33,7 +33,7 @@
                 <div class="dropdown-content">
                     <a href="#">My orders</a>
                     <a href="<?=ROOT?>/customer_home/profile">Profile</a>
-                    <a href="<?=ROOT?>/logout1">Logout</a>
+                    <a href="<?=ROOT?>/logout">Logout</a>
                 </div>
             </div>
         </div>

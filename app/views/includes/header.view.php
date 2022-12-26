@@ -27,7 +27,7 @@
                 <h2>Signup</h2>
             </a>
             <div></div>
-            <a href="<?=ROOT?>/login1">
+            <a href="<?=ROOT?>/login">
                 <h2>Login</h2>
             </a>
         </div>
