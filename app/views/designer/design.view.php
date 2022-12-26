@@ -14,7 +14,7 @@
                 <div class="nav-vr"></div>
                 <h1>Hi, <?=ucfirst(substr(Auth::getFirstname(),0,1))?>.<?=Auth::getLastname()?></h1>
                 <div class="nav-vr"></div>
-                <a href="<?=ROOT?>/logout3">
+                <a href="<?=ROOT?>/logout">
                     <h1>Logout</h1>
                 </a>
             </div>
