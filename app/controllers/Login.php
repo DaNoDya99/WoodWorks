@@ -11,6 +11,7 @@ class Login extends Controller
         $data['error'] = [];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
             $result_emp = $employee->where('Email',$_POST['Email']);
             $result_cus = $customer->where('Email',$_POST['Email']);
             $result_sup =  $supplier->where('Email',$_POST['Email']);
@@ -55,6 +56,7 @@ class Login extends Controller
             }
             elseif($result_emp)
             {
+                show($result_emp);
                 if(password_verify($_POST['Password'],$result_emp[0]->Password))
                 {
                     if(strtolower($result_emp[0]->Role) == 'administrator'){
@@ -78,7 +80,8 @@ class Login extends Controller
                         $this->redirect('cashier');
                     }
                 }
-            } elseif ($result_cus){
+            }
+            elseif ($result_cus){
                 if(password_verify($_POST['Password'],$result_cus[0]->Password))
                 {
                     Auth::authenticate($result_cus[0]);

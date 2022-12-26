@@ -42,9 +42,9 @@
                 <canvas id="myPie" width="100" height="100"> </canvas>
             </div>
 
-<!--            <div class="box" id="chart-container3"">-->
-<!--                <canvas id="myLine" height="400" width="300"></canvas>-->
-<!--            </div>-->
+            <!--            <div class="box" id="chart-container3"">-->
+            <!--                <canvas id="myLine" height="400" width="300"></canvas>-->
+            <!--            </div>-->
 
             <div class="driver-tbox" onclick="location.href='<?=ROOT?>/driver_home/order';">
                 <h1>New Orders</h1>
@@ -59,13 +59,13 @@
                     <tbody>
                     <?php foreach ($rows as $row):?>
                         <tr class="orders-table-rows">
-                                    <td><?=esc($row->Payment_type)?></td>
-                                    <td><?=esc($row->Order_status)?></td>
-                                    <?php
-                                    $date = $row->Date;
-                                    $newDate = date("d/m/Y", strtotime($date));
-                                    ?>
-                                    <td><?=$newDate?></td>
+                            <td><?=esc($row->Payment_type)?></td>
+                            <td><?=esc($row->Order_status)?></td>
+                            <?php
+                            $date = $row->Date;
+                            $newDate = date("d/m/Y", strtotime($date));
+                            ?>
+                            <td><?=$newDate?></td>
                         </tr>
                     <?php endforeach;?>
                     </tbody>

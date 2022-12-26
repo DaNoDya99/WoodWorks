@@ -28,26 +28,27 @@
 
             <div class="designer-tbox" onclick="location.href='<?=ROOT?>/designer/design';">
                 <h1>Newly Added Designs</h1>
-                    <table class="designer-content-table">
-                        <thead>
 
-                        <th class="th">Name</th>
-                        <th class="th">Image</th>
-                        <th class="th">Date</th>
+                <table class="designer-content-table">
+                    <thead>
 
-                        </thead>
-                        <tbody>
-                            <?php foreach ($rows as $row):?>
+                    <th class="th">Name</th>
+                    <th class="th">Image</th>
+                    <th class="th">Date</th>
 
-                                <tr class="designs-table-rows">
-                                    <td><?=esc($row->Name)?></td>
-                                    <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Design Image"></td>
-                                    <td><?=$row->Date?></td>
-                                </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($rows as $row):?>
 
-                            <?php endforeach;?>
-                        </tbody>
-                    </table>
+                        <tr class="designs-table-rows">
+                            <td><?=esc($row->Name)?></td>
+                            <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Design Image"></td>
+                            <td><?=$row->Date?></td>
+                        </tr>
+
+                    <?php endforeach;?>
+                    </tbody>
+                </table>
 
             </div>
 
