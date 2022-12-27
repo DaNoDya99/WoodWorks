@@ -23,12 +23,7 @@
 <body onload="timedelload()">
     <?php $this->view('supplier/supplier.header', $data) ?>
 
-
-
-    <div class="sec1">
-        <?php $this->view('supplier/supplier.nav', $data) ?>
-    </div>
-    <div class="sec2">
+    <div class="content">
         <div class="data" id="panel">
             <hr>
             <div style="display:flex; justify-content:space-between">
@@ -108,6 +103,6 @@
 
         </div>
     </div>
+<script src="<?= ROOT ?>/assets/javascript/header/header.js"></script>
 </body>
-
 </html>
