@@ -2489,3 +2489,11 @@ form .name-details .field:last-child{
     object-position: right;
     border-radius: 15px;
 }
+
+/*Registered Customer Payments*/
+
+.payment-container{
+    display: flex;
+    height: 95vh;
+    background-color: #c3c4a5;
+}

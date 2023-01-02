@@ -29,9 +29,6 @@ class Home extends Controller
 
     public function product($id = null)
     {
-        $customer = new Customer();
-        $cus_id = Auth::getCustomerID();
-
 
         $allowedCols = [
             'ratings.Rating',
@@ -46,7 +43,6 @@ class Home extends Controller
         $furniture = new Furnitures();
         $review = new Reviews();
 
-        $data['row'] = $customer->where('CustomerID',$cus_id);
         $data['furniture'] = $furniture->viewFurniture($id);
         $data['reviews'] = $review->getReview($allowedCols,$id);
         $data['images'] = $furniture->getAllImages($id);

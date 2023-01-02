@@ -1,7 +1,9 @@
 <div class="product-card">
+    <?php if(!empty($row->Discount_percentage)): ?>
         <div class="product-card-discount">
-            <p>5% Discount</p>
+            <p><?=$row->Discount_percentage?>% Discount</p>
         </div>
+    <?php endif; ?>
         <div class="product-card-img">
             <img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image">
         </div>
@@ -17,7 +19,6 @@
                     <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
                     <h3>5.0</h3>
                 </div>
-
             </div>
             <div class="product-card-buttons">
                 <a href="<?=ROOT?>/furniture/view_product/<?=$row->ProductID?>">
