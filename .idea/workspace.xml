@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0736f84-0e4a-4b5e-84ed-db94d2b38740" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/reg_customer/payment.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Customer_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Customer_home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Furniture.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Furniture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Furnitures.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Furnitures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Orders.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/includes/product_card.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/includes/product_card.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/cart.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/cart.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/payment.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/payment.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/javascript/login1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/place_order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/javascript/login3.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +21,28 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="a9a9506a-9f2c-4209-931a-c8568bbeef82" />
+        <option name="url" value="https://github.com/DaNoDya99/WoodWorks.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -64,7 +81,10 @@
       <updated>1672033736989</updated>
       <workItem from="1672033738488" duration="11026000" />
       <workItem from="1672677215728" duration="967000" />
-      <workItem from="1672678243567" duration="1373000" />
+      <workItem from="1672678243567" duration="1578000" />
+      <workItem from="1672976263161" duration="79000" />
+      <workItem from="1672976366074" duration="12900000" />
+      <workItem from="1673062961324" duration="7491000" />
     </task>
     <servers />
   </component>
