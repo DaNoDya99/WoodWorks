@@ -7,6 +7,10 @@ body {
 
 }
 
+hr{
+    margin-bottom: 10px;
+}
+
 .dashboard-nav {
     position: absolute;
     right: 0;
@@ -168,25 +172,19 @@ a {
 }
 
 .data {
-
-
-    margin-top: 130px;
+    margin-top: 10vh;
     background-color: white;
-    width: 90%;
+    height: 85vh;
     margin-right: 30px;
     border-radius: 12px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     box-shadow: 0px 4px 31px rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     padding: 30px;
     padding-top: 30px;
     transition: all 0.2s ease;
-
-
-
-
 }
 
 hr {
@@ -474,8 +472,7 @@ body {
     position: relative
 }
 
-.content,
-body {
+.content {
     min-height: 100vh
 }
 
@@ -500,6 +497,9 @@ body {
     width: 78px;
     background-color: #203330;
     transition: .5s
+}
+#btn:hover{
+    cursor: pointer;
 }
 
 #btn,
@@ -595,6 +595,7 @@ body {
 }
 
 .content {
+
     padding: 10px 10px 10px 30px;
     width: calc(100% - 78px);
     left: 78px;
@@ -613,6 +614,7 @@ p {
 }
 
 .sidebar ul li .tooltip {
+    position: absolute;
     height: 35px;
     left: 122px;
     top: 0;
@@ -694,8 +696,145 @@ p {
 }
 
 #btn2 {
+    position: absolute;
     left: 10px
 }
+
+
+.headerprime {
+    position: absolute;
+    width: 100%;
+
+}
+
+.headerprime .profile {
+    position: absolute;
+    top: 10px;
+    right: 35px;
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    padding: 5px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.headerprime .noti {
+    position: absolute;
+    top: 10px;
+    right: 300px;
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    padding: 5px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.headerprime .profile .image {
+
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+    /* background-color: #fff; */
+    border-radius: 50%;
+    /* border: 5px solid #fff; */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+.headerprime .noti .img {
+
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.image {
+    height: 25px;
+    width: 25px;
+}
+
+.headerprime .noti .carret {
+    width: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.headerprime .name-pos {
+    display: flex;
+    padding-left: 5px;
+    flex-direction: column;
+    width: 140px;
+}
+
+.headerprime .profile .carret {
+    width: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.headerprime .profile .name {
+    font-size: 18px;
+    font-weight: 600;
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+.headerprime .profile .position {
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+.headerprime .profile:active {
+    background-color: rgb(170, 170, 170);
+}
+
+.headerprime .noti:active {
+    background-color: rgb(170, 170, 170);
+}
+
+.headerprime li {
+    list-style: none;
+}
+
+.headerprime .profile .show {
+    opacity: 1 !important;
+    pointer-events: all !important;
+    visibility: visible !important;
+}
+
+.headerprime .profile #myDropdown {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    transition: all 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+    #myDropdown a{
+        color:#182422 ;
+    }
 
 @media screen and (max-width:700px) {
 
@@ -767,4 +906,15 @@ p {
     .scroll {
         overflow: hidden
     }
+
+    .headerprime .profile {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .headerprime .noti {
+        visibility: hidden;
+        opacity: 0;
+    }
+
 }
