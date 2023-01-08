@@ -115,6 +115,7 @@
             document.querySelector(".image-field img").src = mylink;
         }
     </script>
+<script src="<?= ROOT ?>/assets/javascript/header/header.js"></script>
 </body>
 
 </html>

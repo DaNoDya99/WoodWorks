@@ -87,6 +87,7 @@
             </script>
         </div>
     </div>
+    <script src="<?= ROOT ?>/assets/javascript/header/header.js"></script>
 </body>
 
 </html>
