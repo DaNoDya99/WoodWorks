@@ -17,5 +17,5 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
     define('DBUSER','root');
     define('DBPASS','');
     define('DBDRIVER','mysql');
-    define('ROOT','http://www.woodworks.com');
+    define('ROOT',$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].'/WoodWorks/public');
 }
