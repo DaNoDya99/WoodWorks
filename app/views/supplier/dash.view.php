@@ -20,10 +20,11 @@
     }
 </style>
 
-<body onload="timedelload()">
+<body>
     <?php $this->view('supplier/supplier.header', $data) ?>
 
     <div class="content">
+        
         <div class="data" id="panel">
             <hr>
             <div style="display:flex; justify-content:space-between">
@@ -56,7 +57,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="5" style="text-align:center; font-size:30px; color:#4444">No Orders</td>
+                    <td colspan="5" style="text-align:center; font-size:30px; color:#4444; height:60vh;">No Orders</td>
                 </tr>
             <?php endif; ?>
             </table>
@@ -80,25 +81,7 @@
                     }
                 }
 
-                function timedelload() {
-                    setTimeout(function() {
-                        document.getElementById("panel").style.opacity = 1;
-                        document.getElementById("panel").style.marginTop = "130px";
-                    }, 200);
-                }
-
-                function timedelexit() {
-                    setTimeout(function() {
-                        document.getElementById("panel").style.opacity = 0;
-                        document.getElementById("panel").style.marginTop = "150px";
-                    }, 200);
-                }
-
-                function delay(URL) {
-                    setTimeout(function() {
-                        window.location = URL
-                    }, 500);
-                }
+         
             </script>
 
         </div>
