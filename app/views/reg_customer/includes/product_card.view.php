@@ -1,6 +1,6 @@
 <div class="product-card">
     <?php if(!empty($row->Discount_percentage)): ?>
-        <div class="product-card-discount">
+        <div onclick="calDiscount()" class="product-card-discount">
             <p><?=$row->Discount_percentage?>% Discount</p>
         </div>
     <?php endif; ?>
@@ -31,4 +31,6 @@
         </div>
 
 </div>
+
+
 
