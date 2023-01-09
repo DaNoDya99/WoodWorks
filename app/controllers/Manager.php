@@ -8,7 +8,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         $data['title'] = "DASHBOARD";
@@ -195,15 +195,17 @@ class Manager extends Controller
             $this->redirect('login4');
         }
 
-        // $furniture = new Furnitures();
-        // $rows = $furniture->view_furniture_designs();
+        $design = new Design();
+        $rows = $design->getAllUnverifiedDesigns();
+        
 
-        // foreach($rows as $row)
-        // {
-        //     $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
-        // }
+        foreach($rows as $row)
+        {
+            $row->Date = explode(" ",$row->Date)[0];
+            $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
+        }
 
-        // $data['furniture'] = $rows;
+        $data['designs'] = $rows;
         $data['title']="DESIGNS";
 
         $this->view('manager/designs',$data);
