@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="e5197438-7cb1-4f72-8187-8b00aa5f47bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Login.php" afterDir="false" />
+=======
     <list default="true" id="d0736f84-0e4a-4b5e-84ed-db94d2b38740" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/public/assets/javascript/product_card.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/reg_customer/sub_category.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/sub_category.view.php" afterDir="false" />
+=======
+>>>>>>> 76b460847fadeb7c1a81f011cda449ba2f077012
+>>>>>>> b5bba13dce089bd198142db070497a33cd47d167
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,5 +96,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
