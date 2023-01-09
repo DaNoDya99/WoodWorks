@@ -33,6 +33,28 @@
     background-size: cover;
 }
 
+.login3-logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.login3-logo-img{
+    width: 7%;
+    height: 5%;
+    border-radius: 50%;
+    filter:drop-shadow(0px 0px 5px #100F0F);
+}
+
+.login3-logo-name{
+    margin-left: 10px;
+    color: #f9f9f9;
+    filter:drop-shadow(0px 0px 5px #100F0F);
+    font-family: Poppins-SemiBold, sans-serif;
+    font-size: 1.8vw;
+}
+
 .login3-form{
     width: 300px;
     padding: 20px;
@@ -309,7 +331,7 @@
     font-family: 'Poppins-SemiBold' , sans-serif;
     max-height: 80vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     float: right;
 }
@@ -328,10 +350,10 @@
 
 }
 
-.driver-content-table:hover{
-    transform: scale(1.05);
-    transition: .4s ease-in;
-}
+/*.driver-content-table:hover{*/
+/*    transform: scale(1.02);*/
+/*    transition: .4s ease-in;*/
+/*}*/
 
 .driver-content-table thead tr{
     color: black;
@@ -345,7 +367,11 @@
 .driver-content-table th,
 .driver-content-table td{
     text-align: center;
+    font-size: 1rem;
+}
 
+.driver-content-table tbody tr td{
+    padding-bottom: 1em;
 }
 
 .driver-content-table tbody tr{
@@ -380,7 +406,7 @@
     font-family: 'Poppins-SemiBold' , sans-serif;
     max-height: 80vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     float: right;
 }
@@ -771,6 +797,11 @@
     text-align: center;
     font-weight: bold;
     border-bottom: 1px solid #d2d2d2;
+}
+
+.content-table tbody tr td:first-child{
+    width: 20%;
+    word-break: break-all;
 }
 
 .content-table th,
@@ -1490,7 +1521,7 @@ figcaption{
 
 .design-detail td{
     /*font-family: 'Poppins-SemiBold' , sans-serif;*/
-    word-break: break-all;
+    word-break: break-word;
     padding-bottom: 5px;
     width:62%;
 }

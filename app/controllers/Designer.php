@@ -15,6 +15,8 @@ class Designer extends Controller
         $id = Auth::getEmployeeID();
 
         $design = new Design();
+        $employee = new Employees();
+        $data['row'] = $employee->where("EmployeeID",$id);
 
         $limit = 8;
 
@@ -101,6 +103,9 @@ class Designer extends Controller
         $data['pager'] = $pager;
 
         $design = new Design();
+        $employee = new Employees();
+        $id = $id ?? Auth::getEmployeeID();
+        $data['row'] = $employee->where("EmployeeID",$id);
         $data['rows'] = $design->getDesigns($limit,$offset);
 
         if(!empty($data['rows'])) {

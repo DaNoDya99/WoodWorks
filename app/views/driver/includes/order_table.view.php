@@ -39,7 +39,7 @@
                     <tr>
                         <td><?=esc($row->OrderID)?></td>
                         <td><?=esc($row->Payment_type)?></td>
-                        <td><?=esc($row->Total_amount)?></td>
+                        <td>Rs. <?=esc($row->Total_amount)?>.00</td>
                         <?php
                         $date = $row->Date;
                         $newDate = date("d/m/Y", strtotime($date));

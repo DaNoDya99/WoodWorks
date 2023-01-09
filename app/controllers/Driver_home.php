@@ -13,6 +13,7 @@ class Driver_home extends Controller
 //
 //        }
 //        $this->redirect('login3');
+
         if(!Auth::logged_in())
         {
             $this->redirect('login3');
@@ -21,6 +22,8 @@ class Driver_home extends Controller
         $id = $id ?? Auth::getEmployeeID();
 
         $driver = new Driver();
+        $employee = new Employees();
+        $data['details'] = $employee->where('EmployeeID',$id);
         $data['row']=$row = $driver->where("DriverID",$id);
         //show($row[0]->Availability);
 
@@ -32,7 +35,7 @@ class Driver_home extends Controller
 
         }
         $order = new Order();
-        $query = "SELECT * FROM `order`  WHERE `DriverID` = '$id' order by DATE desc limit 10;";
+        $query = "SELECT * FROM `orders`  WHERE `DriverID` = '$id' order by DATE desc limit 10;";
         $data['rows']= $rows = $order->query($query);
 
         $data['title'] = "DASHBOARD";
@@ -87,6 +90,7 @@ class Driver_home extends Controller
                         $employee->errors['image'] = "Could not upload image.";
                     }
                 }
+                $_POST['EmployeeID'] = $id;
                 $employee->update($id,$_POST);
                 $this->redirect('driver_home/profile/'.$id);
             }
@@ -106,21 +110,24 @@ class Driver_home extends Controller
         }
 
         $order = new Order();
+
         $id = Auth::getEmployeeID();
+        $employee = new Employees();
+        $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $OrderID =$_POST['OrderID'];
             $status =$_POST['status'];
-            $data['row'] = $order->query("UPDATE `order` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
+            $data['row'] = $order->query("UPDATE `orders` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
 
         }
 
-        $query = "SELECT OrderID,Payment_type,Total_amount,Order_status,order.Address,Firstname,Lastname,Mobileno,order.Date FROM `order` INNER JOIN `customer` ON order.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && `DriverID` = '$id';";//&& OrderStatus = 'Processing'
+        $query = "SELECT OrderID,Payment_type,Total_amount,Order_status,orders.Address,Firstname,Lastname,Mobileno,orders.Date FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && `DriverID` = '$id';";//&& OrderStatus = 'Processing'
         if(isset($_GET['designs_date']))
         {
             $designs_date = $_GET['designs_date'].'%';// don't care at the end
-            $query = ("SELECT * FROM `order` INNER JOIN `customer` ON order.CustomerID = customer.CustomerID WHERE (`Date` = '$designs_date') && `DriverID` = '$id';");
+            $query = ("SELECT * FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE (`Date` = '$designs_date') && `DriverID` = '$id';");
         }
 
         $data['row'] = $order->query($query);
@@ -165,7 +172,7 @@ class Driver_home extends Controller
 
         $order = new Order();
 
-        $rows =  $order->query("SELECT COUNT(OrderID) AS numOrders,Order_status FROM `order` GROUP BY Order_status ");
+        $rows =  $order->query("SELECT COUNT(OrderID) AS numOrders,Order_status FROM `orders` GROUP BY Order_status ");
 
         $data = array();
 
@@ -188,7 +195,7 @@ class Driver_home extends Controller
         $order = new Order();
 
         //$rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `order` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
-        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `order` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
+        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `orders` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
 
         $data = array();
 
@@ -210,7 +217,7 @@ class Driver_home extends Controller
 
         $order = new Order();
 
-        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `order` WHERE Order_status = 'delivered' GROUP BY cast(Date as date) ORDER BY Date ASC");
+        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `orders` WHERE Order_status = 'delivered' GROUP BY cast(Date as date) ORDER BY Date ASC");
 
         $data = array();
 

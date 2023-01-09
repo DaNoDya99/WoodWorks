@@ -2,33 +2,28 @@
     <img class="logo" src="<?= ROOT ?>/assets/images/supplier/WOODWORKS.svg" alt="">
     <ul>
         <li>
-            <a href="javascript:delay('<?= ROOT ?>/supplier')">
+            <a href="<?= ROOT ?>/supplier">
 
                 <div onclick="timedelexit()">
-                    View Orders
+                    New Orders
                 </div>
             </a>
         </li>
         <li>
-            <a href="javascript:delay('<?= ROOT ?>/supplier/accepted')">
+            <a href="<?= ROOT ?>/supplier/accepted">
                 <div onclick="timedelexit()">
-                    Accepted Orders
+                Order History
                 </div>
             </a>
         </li>
         <li>
-            <a href="javascript:delay('<?= ROOT ?>/supplier/profile')">
+            <a href="<?= ROOT ?>/supplier/profile">
                 <div onclick="timedelexit()">
                     View Profile
                 </div>
             </a>
         </li>
-        <li class="subnav">
-            <a href="javascript:delay('<?= ROOT ?>/supplier/editprofile')">
-                Edit Profile
-            </a>
-        </li>
-
+        
     </ul>
 
 </nav>

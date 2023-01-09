@@ -13,7 +13,7 @@
                     <div class="nav-vr"></div>
                     <h1>Hi, <?=Auth::getFirstname()?></h1>
                     <div class="nav-vr"></div>
-                    <a href="<?=ROOT?>/logout4">
+                    <a href="<?=ROOT?>/logout">
                         <h1>Logout</h1>
                     </a>
                 </div>
@@ -25,7 +25,7 @@
                 <div class="discount-header">
                     <div>
                         <h1><?=$furniture[0]->Name?></h1>
-                        <h2>Discount: <?=$furniture[0]->Discount_percentage?>%</h2>
+                        <h2>Discount: <?= !empty($furniture[0]->Discount_percentage) ? $furniture[0]->Discount_percentage : 0?>%</h2>
                     </div>
                     <img src="<?=ROOT?>/<?=$image[0]->Image?>" alt="Product Image">
                 </div>

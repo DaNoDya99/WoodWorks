@@ -16,12 +16,12 @@
             </a>
         </li>
         <li>
-        <li>
+        <!-- <li>
             <a href="javascript:delay('<?= ROOT ?>/cashier/inventory')">
                 <div onclick="timedelexit()">
                     Inventory </div>
             </a>
-        </li>
+        </li> -->
         <li>
             <a href="javascript:delay('<?= ROOT ?>/cashier/profile')">
                 <div onclick="timedelexit()">

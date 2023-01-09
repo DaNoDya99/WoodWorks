@@ -68,24 +68,24 @@
                     }
                 }
 
-                function timedelload() {
-                    setTimeout(function() {
-                        document.getElementById("panel").style.opacity = 1;
-                        document.getElementById("panel").style.marginTop = "130px";
-                    }, 200);
-                }
+                // function timedelload() {
+                //     setTimeout(function() {
+                //         document.getElementById("panel").style.opacity = 1;
+                //         document.getElementById("panel").style.marginTop = "130px";
+                //     }, 200);
+                // }
 
-                function timedelexit() {
-                    setTimeout(function() {
-                        document.getElementById("panel").style.opacity = 0;
-                        document.getElementById("panel").style.marginTop = "150px";
-                    }, 200);
-                }
+                // function timedelexit() {
+                //     setTimeout(function() {
+                //         document.getElementById("panel").style.opacity = 0;
+                //         document.getElementById("panel").style.marginTop = "150px";
+                //     }, 200);
+                // }
 
                 function delay(URL) {
                     setTimeout(function() {
                         window.location = URL
-                    }, 500);
+                    }, 0);
                 }
             </script>
 
