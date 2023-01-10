@@ -852,3 +852,9 @@ margin: 20px 0;
   width: 45px;
   height: 45px;
 }
+
+/* add advertisement popup */
+
+.advertisement-popup{
+  width: 90%;
+}
