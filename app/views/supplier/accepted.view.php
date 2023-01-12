@@ -19,11 +19,14 @@
     </style>
 </head>
 
-<body>
+<body onload="timedelload()">
     <?php $this->view('supplier/supplier.header', $data) ?>
 
+    <div class="sec1">
+        <?php $this->view('supplier/supplier.nav', $data) ?>
 
-    <div class="content">
+    </div>
+    <div class="sec2">
         <div class="data" id="panel">
             <hr>
             <div style="display:flex; justify-content:space-between">
@@ -52,16 +55,15 @@
                         <td><?= $order->Date ?></td>
 
                         <td><?= ucfirst($order->OrderStatus) ?></td>
-                        <td> <?php if ($order->OrderStatus != 'complete') : ?>
-                                <a href="<?= ROOT ?>/supplier/CompleteOrder/<?= $order->OrderID ?>"><button style="background-color: green;">
+                       <td> <?php if ($order->OrderStatus != 'complete') : ?>
+                            <a href="<?= ROOT ?>/supplier/CompleteOrder/<?= $order->OrderID ?>"><button style="background-color: green;">
                                         Complete
                                     </button></a>
                                 <button style="background-color: red;">
                                     Cancel
                                 </button>
-
-                            <?php endif; ?>
-                        </td>
+                            
+                        <?php endif; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </table>
@@ -84,10 +86,30 @@
                         }
                     }
                 }
+
+                function timedelload() {
+                    setTimeout(function() {
+                        document.getElementById("panel").style.opacity = 1;
+                        document.getElementById("panel").style.marginTop = "130px";
+                    }, 200);
+                }
+
+                function timedelexit() {
+                    setTimeout(function() {
+                        document.getElementById("panel").style.opacity = 0;
+                        document.getElementById("panel").style.marginTop = "150px";
+                    }, 200);
+                }
+
+                function delay(URL) {
+                    setTimeout(function() {
+                        window.location = URL
+                    }, 500);
+                }
             </script>
+
         </div>
     </div>
-    <script src="<?= ROOT ?>/assets/javascript/header/header.js"></script>
 </body>
 
 </html>
