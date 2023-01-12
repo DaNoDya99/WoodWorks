@@ -32,24 +32,93 @@
                         <th>Status</th>
                         <th></th>
                     </tr>
+                    <tr class="ad-details">
+                        <td>2022-12-14</td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
+                        <td>Chair</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Verify</a>
+                        </td>
+                    </tr>
 
-                    <?php if(!empty($designs)): ?>
-                        <?php foreach($designs as $row) : ?>
-                            <tr class="ad-details">
-                                <td><?= $row->Date ?></td>
-                                <td><img src="<?=ROOT?>/<?= $row->Image ?>" alt=""></td>
-                                <td><?= $row->Name ?></td>
-                                <td>
-                                    <a href="#">Details</a>
-                                    <a href="#">Verify</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                    <tr class="ad-details">
+                        <td>2022-12-14</td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
+                        <td>Chair</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Verify</a>
+                        </td>
+                    </tr>
 
-                    
+                    <tr class="ad-details">
+                        <td>2022-12-14</td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
+                        <td>Chair</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Verify</a>
+                        </td>
+                    </tr>
 
-                   
+                    <tr class="ad-details">
+                        <td>2022-12-14</td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
+                        <td>Chair</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Verify</a>
+                        </td>
+                    </tr>
+
+                    <tr class="ad-details">
+                        <td>2022-12-14</td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
+                        <td>Chair</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Verify</a>
+                        </td>
+                    </tr>
+
+                    <tr class="ad-details">
+                        <td>2022-12-14</td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
+                        <td>Chair</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Verify</a>
+                        </td>
+                    </tr>
+
+                    <tr class="ad-details">
+                        <td>2022-12-14</td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
+                        <td>Chair</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Verify</a>
+                        </td>
+                    </tr>
+
+                    <tr class="ad-details">
+                        <td>2022-12-14</td>
+                        <td><img src="<?=ROOT?>/assets/images/manager/design.jpg" alt=""></td>
+                        <td>Chair</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Verify</a>
+                        </td>
+                    </tr>
                 </table>
                 </div>
                 

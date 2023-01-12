@@ -8,7 +8,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         $data['title'] = "DASHBOARD";
@@ -126,22 +126,9 @@ class Manager extends Controller
         }
 
         $id = $id ?? Auth::getEmployeeID();
-        $advertisement = new Advertisements();
-
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            $_POST['ManagerID'] = $id;
-
-            if($advertisement->validate($_POST)){
-                $advertisement->insert($_POST);
-            }
-            
-        }
-
         $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ADVERTISEMENTS";
-        $data['errors'] = $advertisement->errors;
 
         $this->view('manager/advertisements',$data);
     }
@@ -208,17 +195,15 @@ class Manager extends Controller
             $this->redirect('login4');
         }
 
-        $design = new Design();
-        $rows = $design->getAllUnverifiedDesigns();
-        //create an object and call function using that object
+        // $furniture = new Furnitures();
+        // $rows = $furniture->view_furniture_designs();
 
-        foreach($rows as $row)
-        {
-            $row->Date = explode(" ",$row->Date)[0];
-            $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
-        }
+        // foreach($rows as $row)
+        // {
+        //     $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        // }
 
-        $data['designs'] = $rows;
+        // $data['furniture'] = $rows;
         $data['title']="DESIGNS";
 
         $this->view('manager/designs',$data);

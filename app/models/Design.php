@@ -137,8 +137,4 @@ class Design extends Model
 
     }
 
-    public function getAllUnverifiedDesigns(){
-        $query = "SELECT * FROM `design` WHERE ManagerID IS NULL;";
-        return $this->query($query);
-    }
 }

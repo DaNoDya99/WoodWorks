@@ -6,7 +6,7 @@ class Furniture extends Controller
 
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login1');
         }
 
     }
@@ -15,7 +15,7 @@ class Furniture extends Controller
 
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login1');
         }
 
         $customer = new Customer();
@@ -47,7 +47,7 @@ class Furniture extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login1');
         }
 
         $emp_id = $emp_id ?? Auth::getEmployeeID();
@@ -62,7 +62,7 @@ class Furniture extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login1');
         }
 
         $furniture = new Furnitures();
