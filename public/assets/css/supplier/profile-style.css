@@ -1,5 +1,5 @@
 body{
-    height: 100vh;
+    
     grid-template-columns: 1fr 2fr;
 
 }
@@ -176,7 +176,6 @@ body {
 
 .logo {
     width: 14vw;
-    padding-left: 5vw;
     margin-bottom: 30px;
     border-radius:0px;
 }
@@ -199,6 +198,8 @@ body {
     grid-template-columns: 1fr;
 
 }
+
+
 
 
 
@@ -564,4 +565,111 @@ p {
 
 .show {
     display: block;
+}
+popup{
+    width: 30%;
+    background: #f9f9f9;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding:0 30px 30px;
+    visibility: hidden;
+    transition: transform 0.5s ease;
+}
+
+.popup h2{
+    font-size: 30px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+
+.popup button{
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    background: #100F0F;
+    color: #f9f9f9;
+    border: 0;
+    border-radius: 5px;
+}
+
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.popup-heading img {
+    width: 15px;
+    height: 15px;
+}
+
+.edit-cus-field{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 10px 0;
+}
+
+.edit-cus-field input{
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8vw;
+    background: #d4d4d4;
+    padding-left: 1.7em;
+}
+
+.edit-cus-field select{
+    height: 35px;
+    font-size: .8vw;
+    background: #d4d4d4;
+}
+
+.name-field {
+    display: flex;
+    justify-content: space-between;
+}
+
+.first-name, .last-name{
+    width: 48%;
+}
+
+.image-field{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.image-field img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    filter: drop-shadow(0px 0px 3px black);
+}
+
+.image-field label input{
+    display: none;
+}
+
+.image-field label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    background: #100F0F;
+    border-radius: 10px;
+    color: #f9f9f9;
 }
