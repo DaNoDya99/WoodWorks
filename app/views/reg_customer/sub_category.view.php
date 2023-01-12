@@ -25,4 +25,5 @@
     </div>
 
     <script src="<?=ROOT?>/assets/javascript/customer_profile.js"></script>
+    <script src="<?=ROOT?>/assets/javascript/product_card.js"></script>
 <?php $this->view('reg_customer/includes/footer'); ?>

@@ -44,7 +44,9 @@
                         <p>Rs. 00.00</p>
                     <?php endif; ?>
                 </div>
-                <button>Proceed to Payment</button>
+                <a href="<?=ROOT?>/customer_home/payment">
+                    <button>Proceed to Payment</button>
+                </a>
             </div>
         </div>
     </div>

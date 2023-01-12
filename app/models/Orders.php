@@ -7,6 +7,10 @@ class Orders extends Model
 
     protected $allowedColumns = [
         'OrderID',
+       	'Firstname',
+        'Lastname',
+        'Email',
+        'Contactno',
         'Payment_type',
         'Total_amount',
         'Date',
