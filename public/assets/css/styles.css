@@ -3,7 +3,7 @@
 /*font-family: 'Handlee', cursive;*/
 /*font-family: 'Patrick Hand', cursive;*/
 /*font-family: 'Roboto', sans-serif;*/
-/*font-family: 'Poppins', sans-serif;*/
+/*font-family: 'Rubik', sans-serif;*/
 
 @font-face {
     font-family: 'Handlee';
@@ -21,18 +21,13 @@
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../fonts/Poppins/Poppins-ExtraLight.ttf");
+    font-family: 'Rubik';
+    src: url("../fonts/Rubik/Rubik-Regular.ttf");
 }
 
 @font-face {
-    font-family: 'Poppins-Light';
-    src: url("../fonts/Poppins/Poppins-Light.ttf");
-}
-
-@font-face {
-    font-family: 'Poppins-SemiBold';
-    src: url("../fonts/Poppins/Poppins-SemiBold.ttf");
+    font-family: 'Rubik-SemiBold';
+    src: url("../fonts/Rubik/Rubik-SemiBold.ttf");
 }
 
 
@@ -70,12 +65,12 @@
 .login-background div div h2 {
     align-items: center;
     justify-content: center;
-    font-family: Poppins-SemiBold, sans-serif;
+    font-family: Rubik-SemiBold, sans-serif;
     font-size: 35px;
 }
 
 .login-quote {
-    font-family: Poppins-SemiBold, sans-serif;
+    font-family: Rubik-SemiBold, sans-serif;
     font-size: 36px;
 }
 
@@ -106,7 +101,7 @@
     background-image: linear-gradient(to left top, #e2dcc8, #d3d1b2, #c1c89d, #aabf8b, #90b77d);
     text-align: center;
     padding: 25px 30px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: bolder;
 }
 
@@ -268,7 +263,7 @@ form .name-details .field:last-child {
 }
 
 .nav-item-page-name h1 {
-    font-family: Poppins-SemiBold, sans-serif;
+    font-family: Rubik-SemiBold, sans-serif;
     font-size: 1.2vw;
 }
 
@@ -279,7 +274,7 @@ form .name-details .field:last-child {
 }
 
 .nav-item-user h1 {
-    font-family: Poppins-SemiBold, sans-serif;
+    font-family: Rubik-SemiBold, sans-serif;
     font-size: 1.2vw;
 }
 
@@ -312,7 +307,7 @@ form .name-details .field:last-child {
     border-radius: 10px;
     background-color: #f9f9f9;
     text-align: center;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     padding: 1em 0;
 }
@@ -375,14 +370,14 @@ td {
     justify-content: space-between;
     align-items: center;
     border-top: 2px solid #d4d4d4;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
 }
 
 .emp-header button {
     width: 100%;
     background-color: #0F3D3E;
     color: #f9f9f9;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 1.3rem;
     border: none;
     border-radius: 5px;
@@ -403,7 +398,7 @@ td {
 
 .emps table {
     width: 100%;
-    font-family: Poppins-Light, sans-serif;
+    font-family: Rubik, sans-serif;
     border-collapse: collapse;
 }
 
@@ -443,7 +438,7 @@ td {
     width: 38%;
     border-radius: 10px;
     background-color: #f9f9f9;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     padding: .5em;
     text-align: center;
@@ -476,7 +471,7 @@ td {
     max-height: 650px;
     border: solid 2px black;
     border-radius: 10px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     overflow-y: auto;
     padding: 15px 10px;
     background-color: #f9f9f9;
@@ -495,7 +490,7 @@ td {
 .emp-form-field input,
 select {
     padding: 5px 20px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 1vw;
     border-radius: 5px;
     border: none;
@@ -512,7 +507,7 @@ select {
     height: 50px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: bolder;
     font-size: 1vw;
     background-color: #100F0F;
@@ -527,7 +522,7 @@ select {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik', sans-serif;
     padding-left: 20px;
     text-decoration: none;
     color: black;
@@ -551,7 +546,7 @@ select {
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     max-height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
@@ -575,7 +570,7 @@ select {
 
 .inv-form input {
     border: 2px solid #d2d2d2;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     width: 20em;
     border-radius: 3px;
     padding: 0 0 0 1em;
@@ -588,7 +583,7 @@ select {
     background-color: #f9f9f9;
     font-size: 1rem;
     padding: 0 0 0 1em;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     color: #787878;
 }
 
@@ -632,7 +627,7 @@ select {
 }
 
 .inv-product {
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .inv-product img {
@@ -655,7 +650,7 @@ select {
 }
 
 .inv-product td:last-child div a {
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
 }
 
 .inv-product td:last-child div a:first-child {
@@ -696,7 +691,7 @@ select {
 
 .sup-header h1 {
     margin: 0;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
 }
 
 .sup-header button {
@@ -706,7 +701,7 @@ select {
     border-radius: 5px;
     background-color: #0F3D3E;
     color: #f9f9f9;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     font-size: 1rem;
     cursor: pointer;
 }
@@ -724,7 +719,7 @@ select {
 
 .sup-container table {
     width: 100%;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     border-collapse: collapse;
 }
 
@@ -735,7 +730,7 @@ select {
 
 .supplier-data {
     text-align: center;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     padding: 0.5em 0;
 }
 
@@ -768,7 +763,7 @@ select {
 }
 
 .sup-popup button {
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     font-size: 1rem;
 }
 
@@ -831,7 +826,7 @@ select {
     align-items: center;
     border-radius: 10px;
     padding: 0 10px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     background-color: #f9f9f9;
 }
@@ -900,7 +895,7 @@ select {
 .intro-section {
     background: linear-gradient(10deg, #100F0F 30%, #0F3D3E 20%);
     height: 70vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .intro-body {
@@ -927,7 +922,7 @@ select {
     font-size: 2.5vw;
     margin: 0 0 10px 0;
     font-weight: bolder;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     color: #E2DCC8;
     -webkit-text-stroke: 1px black;
 }
@@ -949,7 +944,7 @@ select {
     height: 50px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: bolder;
     font-size: 1vw;
     background-color: #100F0F;
@@ -977,7 +972,7 @@ select {
     border-radius: 12px;
     border: solid 2px black;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik', sans-serif;
     margin: 15px;
     position: relative;
 }
@@ -999,7 +994,7 @@ h3 {
 
 .product-card h2 {
     font-size: 1rem;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     font-weight: lighter;
 }
 
@@ -1069,7 +1064,7 @@ h3 {
 
 .product-card-discount p {
     margin: 0;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     color: #a70404;
 
 }
@@ -1090,7 +1085,7 @@ h3 {
     font-size: 2vw;
     margin: 0 0 10px 0;
     font-weight: bolder;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
 }
 
 .product-card div:last-child button {
@@ -1098,7 +1093,7 @@ h3 {
     height: 40px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: bolder;
     font-size: 0.9vw;
     background-color: #100F0F;
@@ -1150,14 +1145,14 @@ h3 {
 .customizing-desc h2 {
     font-size: 2.5vw;
     color: #E2DCC8;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     margin-bottom: 5%;
     margin-top: 0;
 }
 
 .customizing-desc p {
     font-size: 1.2vw;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     text-align: justify;
     color: #E2DCC8;
 }
@@ -1167,7 +1162,7 @@ h3 {
     height: 50px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: bolder;
     font-size: 1vw;
     background-color: #100F0F;
@@ -1197,7 +1192,7 @@ h3 {
 }
 
 .choose-heading {
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 2vw;
     text-align: center;
 }
@@ -1226,7 +1221,7 @@ h3 {
 
 .choose-des {
     margin-left: 10px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .choose-des h2,
@@ -1238,7 +1233,7 @@ h3 {
 .footer {
     background-color: #0F3D3E;
     color: #e2dcc8;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     padding: 1%;
 }
 
@@ -1264,7 +1259,7 @@ h3 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     padding: 2em 0;
 }
 
@@ -1328,7 +1323,7 @@ h3 {
     height: 50px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: bolder;
     font-size: 1vw;
     background-color: #100F0F;
@@ -1505,7 +1500,7 @@ h3 {
 
 .product-view {
     background-color: #e2dcc8;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     padding: 2em 0;
 }
 
@@ -1650,7 +1645,7 @@ h3 {
 .product-desc div button {
     width: 70%;
     height: 2.5rem;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     font-size: 1.2rem;
     background-color: #2b7358;
     border-radius: 5px;
@@ -1785,13 +1780,13 @@ h2 {
 
 .category-body {
     text-align: center;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     background-color: #c3c4a5;
     padding: 3em 0;
 }
 
 .category-body h1 {
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     font-size: 3rem;
 }
 
@@ -1836,7 +1831,7 @@ h2 {
 }
 
 .sub-category-body {
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     background-color: #E2E2CF;
     display: flex;
 }
@@ -1882,7 +1877,7 @@ h2 {
     align-items: center;
     justify-content: center;
     color: #f9f9f9;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     font-size: 1rem;
 }
 
@@ -1906,7 +1901,7 @@ h2 {
     display: flex;
     list-style: none;
     justify-content: center;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
 }
 
 .pagination li {
@@ -1960,7 +1955,7 @@ h2 {
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     padding: 1em 2em;
     overflow-y: auto;
-    font-family: Poppins, sans-serif;
+    font-family: Rubik, sans-serif;
     text-align: center;
 }
 
@@ -1975,7 +1970,7 @@ h2 {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 3px;
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
 }
 
 .cart tr {
@@ -2029,7 +2024,7 @@ h2 {
     height: 2em;
     margin: 0 1em;
     text-align: center;
-    font-family: Poppins-SemiBold, sans-serif;
+    font-family: Rubik-SemiBold, sans-serif;
     border: none;
     border-radius: 5px;
 }
@@ -2039,7 +2034,7 @@ h2 {
     color: #f9f9f9;
     padding: 1em 2em;
     border-radius: 10px;
-    font-family: Poppins-SemiBold, sans-serif;
+    font-family: Rubik-SemiBold, sans-serif;
     margin-top: 2em;
 }
 
@@ -2059,7 +2054,7 @@ h2 {
     margin-top: 1em;
     border-radius: 5px;
     color: #f9f9f9;
-    font-family: Poppins-SemiBold, sans-serif;
+    font-family: Rubik-SemiBold, sans-serif;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.5s ease;
@@ -2072,7 +2067,7 @@ h2 {
 }
 
 .cart-error {
-    font-family: 'Poppins-SemiBold', sans-serif;
+    font-family: 'Rubik-SemiBold', sans-serif;
     font-size: 1.5rem;
 }
 
@@ -2096,7 +2091,7 @@ h2 {
 .sup-popup {
     left: 60%;
     width: 30%;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .admin-popup hr {
@@ -2135,7 +2130,7 @@ h2 {
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     max-height: 85vh;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik', sans-serif;
     padding: 0 1em;
 }
 
@@ -2159,7 +2154,7 @@ h2 {
 
 .list-table td {
     text-align: center;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .list-table tr th:last-child {
@@ -2185,7 +2180,7 @@ h2 {
     margin: 1em auto;
     padding: 1em 1.5em;
     border-radius: 15px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     max-height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
@@ -2271,7 +2266,7 @@ h2 {
     padding: 0 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     background-color: #f9f9f9;
 }
 
@@ -2281,7 +2276,7 @@ h2 {
     padding: 0 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     background-color: #f9f9f9;
     /*color: #6f7978;*/
 }
@@ -2292,7 +2287,7 @@ h2 {
     font-size: 16px;
     border-radius: 5px;
     padding: 10px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .add-fur-btn {
@@ -2307,7 +2302,7 @@ h2 {
     border-radius: 5px;
     color: #f9f9f9;
     background-color: #2b7358;
-    font-family: Poppins-SemiBold, sans-serif;
+    font-family: Rubik-SemiBold, sans-serif;
     font-size: 1.3rem;
     cursor: pointer;
 }
@@ -2336,7 +2331,7 @@ h2 {
     min-height: 90vh;
     background-color: #c3c4a5;
     padding: 1em 3em;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .contact-form {
@@ -2368,7 +2363,7 @@ h2 {
     font-size: 1rem;
     border-radius: 5px;
     border: #d4d4d4 2px solid;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .contact-form form div {
@@ -2454,7 +2449,7 @@ h2 {
 /*Registered Customer Payments*/
 
 .payment-container{
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik', sans-serif;
     display: flex;
     height: 95vh;
     background-color: #c3c4a5;
@@ -2509,7 +2504,7 @@ h2 {
     color: #f9f9f9;
     background-color: #1b5b51;
     border: none;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold' , sans-serif;
     font-size: 1.2rem;
     border-radius: 5px;
     cursor: pointer;
