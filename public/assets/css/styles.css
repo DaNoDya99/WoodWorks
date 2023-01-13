@@ -824,24 +824,23 @@ select {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-radius: 10px;
+    
     padding: 0 10px;
     font-family: 'Rubik', sans-serif;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
-    background-color: #f9f9f9;
+    background-color: #203330;
 }
 
 .nav-brand {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 20px;
 }
 
 .nav-brand img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: solid 2px black;
+    height: 15px;
+
 }
 
 .nav-brand h1 {
@@ -857,6 +856,7 @@ select {
 }
 
 .nav-items ul {
+    padding: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -869,7 +869,7 @@ select {
 
 .nav-items ul li a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .nav-profile-section {
@@ -893,9 +893,16 @@ select {
 }
 
 .intro-section {
-    background: linear-gradient(10deg, #100F0F 30%, #0F3D3E 20%);
-    height: 70vh;
+ 
+    height: 100vh;
+    background-image: url(../images/customer/intro.png);
+    background-size: cover;
+    background-position: center center;
     font-family: 'Rubik', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .intro-body {
@@ -2311,20 +2318,26 @@ h2 {
 
 .login-section {
     display: flex;
+    margin-right:40px ;
+
 }
 
 .login-section div {
-    border-right: 2px solid black;
+    border-right: 2px solid rgb(255, 255, 255);
     margin: 0 .5em;
 }
 
 .landing-nav {
     padding: .5em 1em;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 }
 
 .login-section a {
     text-decoration: none;
-    color: #100F0F;
+    color: #fff;
+    padding-left: 20px;
 }
 
 .home-container {
@@ -2627,4 +2640,32 @@ h2 {
     transform: scale(1);
     visibility: visible;
 
+}
+
+.intro-title{
+    font-family: 'Rubik-SemiBold';
+    font-size: 2.0rem;
+    margin: 0;
+    color: #fff;
+}
+
+.intro-para{
+    font-family: 'Rubik';
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: center;
+    margin: 20px;
+}
+
+.intro-section button{
+    width: 10em;
+    height: 2.5em;
+    background-color: #1b5b51;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Rubik-SemiBold';
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 20px;
 }

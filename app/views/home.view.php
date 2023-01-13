@@ -3,22 +3,9 @@
 
 <div>
     <section class="intro-section">
-        <div class="intro-body">
-            <div class="intro-headings">
-                <h1>Create a home that defines who are you.</h1>
-                <h2>Beauty, Smooth & Elegant</h2>
-                <h3>Every home needs a cozy and warm atmosphere. Interior Design studio carefully considers every detail
-                    and creates a functional and comfortable design of your dream house
-                    where you want to come back after a long working day. Turn your room with panto into a lot
-                    more minimalist and modern with ease and speed.</h3>
-                <a href="<?=ROOT?>/home/category">
-                    <button>Shop now</button>
-                </a>
-            </div>
-            <div class="intro-img">
-                <img src="<?=ROOT?>/assets/images/customer/intro.jpg" alt="Intro Image">
-            </div>
-        </div>
+       <div class="intro-title"><h1>Welcome to Woodworks Furniture</h1></div>
+       <div class="intro-para"><p>At Woodworks Furniture, we believe in reliable quality<br> and service that is affordable to the customer</p></div>
+        <button>Shop Now</button>
     </section>
     <section class="latest-section">
         <div class="latest-headings">

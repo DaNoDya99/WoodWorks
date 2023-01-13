@@ -11,8 +11,8 @@
 <header>
     <nav class="nav-bar landing-nav">
         <div class="nav-brand">
-            <img src="<?=ROOT?>/assets/images/logo.png" alt="Logo">
-            <h1>WOODWORKS</h1>
+        <img src="<?=ROOT?>/assets/images/WOODWORKS.svg" alt="Logo">
+            <!-- <h1>WOODWORKS</h1> -->
         </div>
         <div class="nav-items ">
             <ul>
@@ -24,11 +24,10 @@
         </div>
         <div class="login-section">
             <a href="<?=ROOT?>/signup">
-                <h2>Signup</h2>
+                Signup
             </a>
-            <div></div>
             <a href="<?=ROOT?>/login">
-                <h2>Login</h2>
+                Login
             </a>
         </div>
     </nav>
