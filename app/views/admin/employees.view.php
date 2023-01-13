@@ -4,23 +4,10 @@
 <body class="admin">
 <div class="admin-body">
 
-    <?php $this->view('admin/includes/admin_sidebar') ?>
+    <?php $this->view('admin/includes/admin.header') ?>
 
-    <div class="dashboard">
-        <div class="dashboard-nav">
-            <div class="nav-item-page-name">
-                <h1><?= $title ?></h1>
-            </div>
-            <div class="nav-item-user">
-                <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="Profile picture">
-                <div class="nav-vr"></div>
-                <h1>Hi, <?=Auth::getFirstname()?></h1>
-                <div class="nav-vr"></div>
-                <a href="<?=ROOT?>/logout">
-                    <h1>Logout</h1>
-                </a>
-            </div>
-        </div>
+    <div class="content">
+        
         <div class="emp-container">
             <div class="emp-header">
                 <h1>Employees</h1>
