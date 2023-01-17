@@ -271,5 +271,19 @@ class Manager extends Controller
         $this->view('manager/reports',$data);
     }
 
+    public function chat()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+
+        $data['row'] = $employee->where('EmployeeID',$id);
+        $data['title'] = "CHAT";
+
+        $this->view('manager/chat',$data);
+    }
 
 }

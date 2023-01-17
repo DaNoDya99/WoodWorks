@@ -8,7 +8,7 @@ class Admin extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -37,7 +37,7 @@ class Admin extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -96,7 +96,7 @@ class Admin extends Controller
     public function employees($id=null)
     {
         if(!Auth::logged_in()){
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $employee = new Employees();
@@ -126,7 +126,7 @@ class Admin extends Controller
     public function add_employee($id=null)
     {
         if(!Auth::logged_in()){
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $folder = "uploads/images/";
@@ -169,7 +169,7 @@ class Admin extends Controller
     public function inventory($id = null)
     {
         if (!Auth::logged_in()) {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -194,7 +194,7 @@ class Admin extends Controller
     public function add_furniture()
     {
         if (!Auth::logged_in()) {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -270,7 +270,7 @@ class Admin extends Controller
     public function suppliers()
     {
         if (!Auth::logged_in()) {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
