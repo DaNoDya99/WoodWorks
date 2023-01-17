@@ -80,6 +80,14 @@
                 <span class="tooltip">Suppliers</span>
             </li>
             <li>
+                <a href="<?= ROOT ?>/admin/chat">
+
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chat-circle-plain-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                        Chat</span>
+                </a>
+                <span class="tooltip">Chat</span>
+            </li>
+            <li>
                 <a href="<?= ROOT ?>/admin/profile">
 
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/user-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
@@ -87,6 +95,7 @@
                 </a>
                 <span class="tooltip">Edit Profile</span>
             </li>
+
         </ul>
     </div>
     <script src="<?= ROOT ?>/assets/javascript/header/header.js"></script>
