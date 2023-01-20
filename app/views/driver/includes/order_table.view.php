@@ -9,17 +9,17 @@
                 <?php endforeach;?>
             </select>
             <button type="submit">
-                <img src="<?=ROOT?>/assets/images/designer/filter.png" alt="Filter">
+                <img src="<?=ROOT?>/assets/images/driver/filter.png" alt="Filter">
             </button>
         </form>
         <form class="order-form">
-            <input type="search" name="designs_date" placeholder="Date">
-            <button type="submit">
-                <img src="<?=ROOT?>/assets/images/designer/search.png" alt="Search">
+            <input type="search" name="orders_items"  id="myInput" placeholder="Orders details">
+            <button type="submit" name="order_date">
+                <img src="<?=ROOT?>/assets/images/driver/search.png" alt="Search">
             </button>
         </form>
     </div>
-    <table class="content-table">
+    <table class="content-table" id="myTable">
         <thead>
 
             <th class="th">Order ID</th>
@@ -72,4 +72,6 @@
         </tbody>
     </table>
 </div>
+
+
 

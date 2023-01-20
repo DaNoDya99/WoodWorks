@@ -56,7 +56,7 @@ class Login extends Controller
             }
             elseif($result_emp)
             {
-                show($result_emp);
+//                show($result_emp);
                 if(password_verify($_POST['Password'],$result_emp[0]->Password))
                 {
                     if(strtolower($result_emp[0]->Role) == 'administrator'){

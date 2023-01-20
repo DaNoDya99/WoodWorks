@@ -18,9 +18,10 @@ class Orders extends Model
         'Is_preparing'
     ];
 
-    public function getOrder($id)
+    public function findOrders($column,$value)
     {
-        return $this->where('CustomerID',$id);
+        $query = "select * from $this->table where $column = :value order by DATE desc limit 10";
+        return $this->query($query,['value'=>$value]);
     }
 
     public function checkIsPreparing($id)
