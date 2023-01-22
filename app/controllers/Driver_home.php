@@ -120,23 +120,25 @@ class Driver_home extends Controller
         if(isset($_POST['status'])){//$_SERVER['REQUEST_METHOD'] == "POST"
             $OrderID =$_POST['OrderID'];
             $status =$_POST['status'];
-            $data['row'] = $order->query("UPDATE `orders` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
-
+            //$data['row'] = $order->query("UPDATE `orders` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
+            $data['row'] = $order->update_status($OrderID,['Order_status'=>$status]);
         }
 
-        $query = "SELECT OrderID,Payment_type,Total_amount,Order_status,orders.Address,Firstname,Lastname,Mobileno,orders.Date FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && `DriverID` = '$id';";//&& OrderStatus = 'Processing'
+        //$query = "SELECT OrderID,Payment_type,Total_amount,Order_status,orders.Address,Firstname,Lastname,Mobileno,orders.Date FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && `DriverID` = '$id';";//&& OrderStatus = 'Processing'
+        $data['row'] = $order->displayOrders('DriverID',$id);
 
         if(isset($_GET['orders_items']))
         {
                 $orders_items = $_GET['orders_items'];// don't care at the end
                 //$query = ("SELECT * FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE `Date` = '$designs_date' && `DriverID` = '$id';");
                 //$query = ("SELECT * FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE (`orders`.`Date` = '$orders_date' AND `orders`.`DriverID` = '$id');");
-                $query = ("SELECT OrderID,Payment_type,Total_amount,Order_status,orders.Address,Firstname,Lastname,Mobileno,orders.Date FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE DATE_FORMAT(orders.Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or orders.Address like '%$orders_items%' or orders.Total_amount like '%$orders_items%' AND `orders`.`DriverID` = '$id'LIMIT 25");
+                //$query = ("SELECT OrderID,Payment_type,Total_amount,Order_status,orders.Address,Firstname,Lastname,Mobileno,orders.Date FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE DATE_FORMAT(orders.Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or orders.Address like '%$orders_items%' or orders.Total_amount like '%$orders_items%' AND `orders`.`DriverID` = '$id'LIMIT 15");
 
+                $data['row'] = $order->searchOrdersDetails('DriverID',$id,$orders_items);
+                //$this->view('driver/order',$data);
         }
 
-        $data['row'] = $order->query($query);
-//        show($data['row']);
+//        $data['row'] = $order->query($query);
         $this->view('driver/order',$data);
 
     }
@@ -177,8 +179,8 @@ class Driver_home extends Controller
 
         $order = new Orders();
 
-        $rows =  $order->query("SELECT COUNT(OrderID) AS numOrders,Order_status FROM `orders` GROUP BY Order_status ");
-
+        //$rows =  $order->query("SELECT COUNT(OrderID) AS numOrders,Order_status FROM `orders` GROUP BY Order_status ");
+        $rows =  $order->pieGraph();
         $data = array();
 
         foreach ($rows as $row){
@@ -198,10 +200,9 @@ class Driver_home extends Controller
         header('Content-Type: application/json');
 
         $order = new Orders();
-
+        
         //$rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `orders` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
-        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `orders` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
-
+        $rows =  $order->barGraph();
         $data = array();
 
         foreach ($rows as $row){
