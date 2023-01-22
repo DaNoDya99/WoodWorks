@@ -30,7 +30,7 @@ class Model extends Database
         $query = "insert into ".$this->table;
         $query .= " (".implode(",",$keys) .") values (:".implode(",:",$keys) .")";
 
-        $this->query($query,$data);
+        return ($this->query($query,$data));
     }
 
     public function where($column,$value)
