@@ -1,12 +1,21 @@
 <div class="tbox" >
     <div class="orders_view_header">
         <h1> ORDERS DETAILS</h1>
-        <form method="post" class="order-form">
-            <select name="Status">
-                <option selected>-- Filter --</option>
-                <?php foreach($rows as $row):?>
-                    <option value="<?=$row->Order_status?>"><?=$row->Order_status?></option>
-                <?php endforeach;?>
+        <form method="post" class="order-form" action="/woodworks/public/driver_home/order" hidden>
+            <select onchange="this.form.submit()" name="Status">
+                <option>-- Filter --</option>
+                <?php
+                    $arr = array("Processing", "Dispatched", "Delivered");
+
+                    foreach ($arr as $value) {
+                        if ($value == $_POST['Status']) {
+                            echo "<option value=$value selected>$value</option>";
+                        } else {
+                            echo "<option value=$value>$value</option>";
+                        }
+                    }
+                ?>
+
             </select>
             <button type="submit">
                 <img src="<?=ROOT?>/assets/images/driver/filter.png" alt="Filter">

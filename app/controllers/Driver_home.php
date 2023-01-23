@@ -130,12 +130,26 @@ class Driver_home extends Controller
         if(isset($_GET['orders_items']))
         {
                 $orders_items = $_GET['orders_items'];// don't care at the end
-                //$query = ("SELECT * FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE `Date` = '$designs_date' && `DriverID` = '$id';");
-                //$query = ("SELECT * FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE (`orders`.`Date` = '$orders_date' AND `orders`.`DriverID` = '$id');");
                 //$query = ("SELECT OrderID,Payment_type,Total_amount,Order_status,orders.Address,Firstname,Lastname,Mobileno,orders.Date FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE DATE_FORMAT(orders.Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or orders.Address like '%$orders_items%' or orders.Total_amount like '%$orders_items%' AND `orders`.`DriverID` = '$id'LIMIT 15");
 
-                $data['row'] = $order->searchOrdersDetails('DriverID',$id,$orders_items);
-                //$this->view('driver/order',$data);
+                $data['row'] = $result = $order->searchOrdersDetails('DriverID',$id,$orders_items);
+                if(empty($result))
+                {
+                    $this->redirect('driver_home/order');
+                }
+               
+        }
+
+        if(isset($_POST['Status'])){
+            $status =$_POST['Status'];
+            if($status=="-- Filter --"){
+                $this->redirect('driver_home/order');
+            }
+            else
+            {
+                $data['row'] = $order->filterStatus('Order_status',$status,$id);
+            }
+
         }
 
 //        $data['row'] = $order->query($query);
@@ -200,7 +214,7 @@ class Driver_home extends Controller
         header('Content-Type: application/json');
 
         $order = new Orders();
-        
+
         //$rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `orders` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
         $rows =  $order->barGraph();
         $data = array();
