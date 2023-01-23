@@ -13,6 +13,7 @@ class Database
         $con = $this->connect();
 
         $statement = $con->prepare($query);
+
         if($statement){
             $check = $statement->execute($data);
 

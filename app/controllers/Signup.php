@@ -29,7 +29,7 @@ class Signup extends Controller
 
                 $_POST['Image'] = $destination;
                 $customer->insert($_POST);
-                $this->redirect('login1');
+                $this->redirect('Login');
             }
         }
 

@@ -25,7 +25,7 @@ class Login extends Controller
                     }
                     if(strtolower($result_emp[0]->Role) == 'manager'){
                         Auth::authenticate($result_emp[0]);
-                        $this->redirect('manager');
+                        $this->redirect('manager');//here manager is the name of the contro;;er
                     }
                     if(strtolower($result_emp[0]->Role) == 'driver'){
                         Auth::authenticate($result_emp[0]);

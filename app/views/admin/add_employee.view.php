@@ -2,23 +2,9 @@
 
 <body class="admin">
 <div class="admin-body">
-    <?php $this->view('admin/includes/admin_sidebar') ?>
-    <div class="dashboard">
-        <div class="dashboard-nav">
-            <div class="nav-item-page-name">
-                <h1><?= $title ?></h1>
-            </div>
-            <div class="nav-item-user">
-                <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="Profile picture">
-                <div class="nav-vr"></div>
-                <h1>Hi, <?=$row[0]->Firstname?></h1>
-                <div class="nav-vr"></div>
-                <a href="<?=ROOT?>/logout">
-                    <h1>Logout</h1>
-                </a>
-            </div>
-        </div>
-
+    <?php $this->view('admin/includes/admin.header') ?>
+    <div class="dashboard content">
+    
         <a class="go-back" href="<?=ROOT?>/admin/employees">
             <img src="<?=ROOT?>/assets/images/admin/back.png" alt="Back Button">
             <h1>Back</h1>
