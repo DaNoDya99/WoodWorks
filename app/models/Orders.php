@@ -22,9 +22,68 @@ class Orders extends Model
         'Is_preparing'
     ];
 
-    public function getOrder($id)
+    public function findOrders($column,$value)
     {
-        return $this->where('CustomerID',$id);
+        $query = "select * from $this->table where $column = :value order by DATE desc limit 10";
+        return $this->query($query,['value'=>$value]);
+    }
+
+    public function displayOrders($column,$value)
+    {
+        $query = "select OrderID,Payment_type,Total_amount,Order_status,$this->table.Address,Firstname,Lastname,Mobileno,$this->table.Date from $this->table INNER JOIN `customer` ON $this->table.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && $column = :value ";
+        return $this->query($query,['value'=>$value]);
+    }
+
+    public function searchOrdersDetails($column,$value,$orders_items)
+    {
+        $query = "select OrderID,Payment_type,Total_amount,Order_status,$this->table.Address,Firstname,Lastname,Mobileno,$this->table.Date from $this->table INNER JOIN `customer` ON $this->table.CustomerID = customer.CustomerID WHERE DATE_FORMAT($this->table.Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or $this->table.Address like '%$orders_items%' or $this->table.Total_amount like '%$orders_items%' AND $column = :value LIMIT 15 ";
+        return $this->query($query,['value'=>$value]);
+
+    }
+
+    public function filterStatus($column,$value,$id)
+    {
+        $query = "select OrderID,Payment_type,Total_amount,Order_status,$this->table.Address,Firstname,Lastname,Mobileno,$this->table.Date from $this->table INNER JOIN `customer` ON $this->table.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && $column = :value  && $this->table.`DriverID` = '$id' limit 15";
+        return $this->query($query,['value'=>$value]);
+    }
+
+    public function pieGraph()
+    {
+        $query = "SELECT COUNT(OrderID) AS numOrders,Order_status FROM $this->table GROUP BY Order_status ";
+        return $this->query($query);
+    }
+
+    public function barGraph()
+    {
+        $query = "SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM $this->table WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)";
+        return $this->query($query);
+    }
+
+    public function update_status($OrderID,$data)
+    {
+        if(!empty($this->allowedColumns))
+        {
+            foreach ($data as $key => $value){
+                if(!in_array($key,$this->allowedColumns))
+                {
+                    unset($data[$key]);
+                }
+            }
+        }
+
+        $keys = array_keys($data);
+        //$OrderID = array_search($OrderID,$data);
+        $data['OrderID'] = $OrderID;
+
+        $query = "update ".$this->table." set ";
+        foreach ($keys as $key)
+        {
+            $query .= $key . "=:" . $key . ",";
+        }
+        $query = trim($query,",");
+        $query .= " where OrderID = :OrderID";
+
+        $this->query($query,$data);
     }
 
     public function checkIsPreparing($id)

@@ -14,5 +14,6 @@
     <script src="<?=ROOT?>/assets/javascript/driver/barChart.js"></script>
     <script src="<?=ROOT?>/assets/javascript/driver/pieChart.js"></script>
     <script src="<?=ROOT?>/assets/javascript/driver/lineChart.js"></script>
+    <script src="<?=ROOT?>/assets/javascript/driver/order_search.js"></script>
 
 </head>
