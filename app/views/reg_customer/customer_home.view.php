@@ -103,40 +103,18 @@
             <span>Manager</span>
             <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize">
         </div>
-        <div class="cus-chat-section">
-            <div class="cus-sending">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio</p>
-            </div>
-            <div class="cus-incoming">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio</p>
-            </div>
-            <div class="cus-sending">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio</p>
-            </div>
-            <div class="cus-incoming">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio</p>
-            </div>
-            <div class="cus-sending">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio</p>
-            </div>
-            <div class="cus-incoming">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio</p>
-            </div>
-            <div class="cus-sending">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio</p>
-            </div>
-            <div class="cus-incoming">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio</p>
-            </div>
+        <div class="cus-chat-section" id="chat">
+
         </div>
         <div class="cus-send-msg-sec">
-            <input type="text" name="message" placeholder="Write Something">
-            <button type="submit"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
+            <input type="text" id="message" placeholder="Write Something">
+            <button type="button" id="button"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
         </div>
     </div>
 
-    <?php $this->view('reg_customer/includes/footer'); ?>
+    <script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
+    <script src="<?=ROOT?>/assets/javascript/customer_chat.js"></script>
 </div>
 
-</body>
-</html>
+<?php $this->view('reg_customer/includes/footer'); ?>
+

@@ -187,4 +187,5 @@ class Customer_home extends Controller
 
         $this->view('reg_customer/payment',$data);
     }
+
 }
