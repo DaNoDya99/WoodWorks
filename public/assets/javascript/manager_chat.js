@@ -22,14 +22,17 @@ $(document).ready(() => {
                     type: 'POST',
                     url: "http://localhost/WoodWorks/public/Message/sendMsg2",
                     data : {message: msg},
-                    success: function (data)
-                    {
+                    success: (data) => {
 
                     }
                 }
             )
         }
+
+        $("#message").val('');
+
     })
+
 
 });
 
@@ -43,6 +46,7 @@ function load_messages()
             $('#msgs').html(data)
         }
     });
+
 
     refresh = true;
 }
@@ -58,5 +62,15 @@ function load_messages()
                     $('#msgs').html(data)
                 }
             })
+
+            $.ajax({
+                type: 'GET',
+                url: "http://localhost/WoodWorks/public/Message/getManagerChats",
+                dataType: 'html',
+                success: (data) => {
+                    $('#contacts').html(data)
+                }
+            });
         }
+
     },3000);

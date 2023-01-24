@@ -25,14 +25,15 @@ $(document).ready(() => {
                     type: 'POST',
                     url: "http://localhost/WoodWorks/public/Message/sendMsg",
                     data : {message: msg},
-                    success: function (data)
-                    {
+                    success: (data) => {
 
                     }
                 }
             )
         }
-
+        const chat = $('#chat');
+        chat.scrollTo(0,chat.scrollHeight);
+        $("#message").val('')
     });
 
     setInterval(() => {
@@ -46,6 +47,9 @@ $(document).ready(() => {
                 )
             }
         })
+
+        const chat = $('#chat');
+        chat.scrollTo(0,chat.scrollHeight);
     },3000);
 
 });

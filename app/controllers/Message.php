@@ -63,7 +63,21 @@ class Message extends Controller
         if(!empty($chats))
         {
             foreach ($chats as $chat){
+                $latest = $Message->getLatestMsg("ch002","ch001");
+
                 $chat->image = $Message->getChatUserImage($chat->CustomerID)[0]->Image;
+                $chat->latest = $latest[0]->message;
+
+                $time = explode(' ',$latest[0]->date)[1];
+                $time = explode(':',$time);
+
+                if($time[0] > 12){
+                    $chat->time = ($time[0] - 12).":".$time[1]." P.M";
+                }elseif ($time[0] == 12){
+                    $chat->time = "12:".$time[1]." P.M";
+                }else{
+                    $chat->time = $time[0].":".$time[1]." P.M";
+                }
             }
 
             foreach ($chats as $chat)
@@ -73,10 +87,10 @@ class Message extends Controller
                             <div class='contact-latest'>
                                 <div>
                                     <h3>".$chat->username."</h3>
-                                    <h3>10.00 A.M</h3>
+                                    <h3>$chat->time</h3>
                                 </div>
                                 <div>
-                                    <p>Hello, how are you.</p>
+                                    <p>$chat->latest</p>
                                     <span>1</span>
                                 </div>
                             </div>

@@ -64,4 +64,11 @@ class Messages extends Model
 
         return $this->query($query,['id' => $id]);
     }
+
+    public function getLatestMsg($sender, $receiver)
+    {
+        $query = "SELECT `message`, `date` FROM `messages` WHERE (sender = :sender AND receiver = :receiver) OR (sender = :receiver AND receiver = :sender) ORDER BY date DESC LIMIT 1; ";
+
+        return $this->query($query,['sender' => $sender, 'receiver' => $receiver]);
+    }
 }
