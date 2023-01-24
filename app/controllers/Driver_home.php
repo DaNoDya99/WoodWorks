@@ -137,7 +137,7 @@ class Driver_home extends Controller
                 {
                     $this->redirect('driver_home/order');
                 }
-               
+
         }
 
         if(isset($_POST['Status'])){
