@@ -44,9 +44,15 @@ class Message extends Controller
             {
                 if($msg->sender == 'ch002')
                 {
-                    $str = $str."<div  class='cus-sending'><p>".$msg->message."</p></div>";
+                    $str = $str."<div  class='cus-sending'>
+                                    <p>".$msg->message."</p>
+                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
+                                </div>";
                 }else{
-                    $str = $str."<div  class='cus-incoming'><p>".$msg->message."</p></div>";
+                    $str = $str."<div  class='cus-incoming'>
+                                    <p>".$msg->message."</p>
+                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
+                                 </div>";
                 }
             }
         }
@@ -114,9 +120,15 @@ class Message extends Controller
             {
                 if($msg->sender == 'ch001')
                 {
-                    $str = $str."<div  class='sending'><p>".$msg->message."</p></div>";
+                    $str = $str."<div  class='sending'>
+                                    <p>".$msg->message."</p>
+                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
+                                </div>";
                 }else{
-                    $str = $str."<div  class='incoming'><p>".$msg->message."</p></div>";
+                    $str = $str."<div  class='incoming'>
+                                    <p>".$msg->message."</p>
+                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
+                                 </div>";
                 }
             }
         }

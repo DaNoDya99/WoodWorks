@@ -1052,6 +1052,12 @@ margin: 20px 0;
   padding: .5em;
 }
 
+.sending p:last-child,.incoming p:last-child{
+  text-align: right;
+  font-size: .8rem;
+  padding-right: .5em;
+}
+
 .sending{
   max-width: 45%;
   margin-left: 55%;

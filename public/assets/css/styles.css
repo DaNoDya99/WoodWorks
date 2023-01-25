@@ -1349,6 +1349,12 @@ h3 {
     border-bottom-right-radius: 1em;
 }
 
+.cus-sending p:last-child,.cus-incoming p:last-child{
+    text-align: right;
+    font-size: .75rem;
+    padding-right: .5em;
+}
+
 /*Customer Profile page*/
 .cus-profile-body {
     background-color: #e2dcc8;

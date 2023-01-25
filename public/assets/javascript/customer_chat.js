@@ -31,9 +31,6 @@ $(document).ready(() => {
                 }
             )
         }
-        const chat = $('#chat');
-        chat.scrollTo(0,chat.scrollHeight);
-        $("#message").val('')
     });
 
     setInterval(() => {
@@ -47,9 +44,6 @@ $(document).ready(() => {
                 )
             }
         })
-
-        const chat = $('#chat');
-        chat.scrollTo(0,chat.scrollHeight);
     },3000);
 
 });

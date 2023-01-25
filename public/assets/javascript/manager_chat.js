@@ -1,6 +1,5 @@
 var refresh = false;
 
-
 $(document).ready(() => {
     $.ajax({
         type: 'GET',
@@ -33,25 +32,6 @@ $(document).ready(() => {
 
     })
 
-
-});
-
-function load_messages()
-{
-    $.ajax({
-        type: 'GET',
-        url: "http://localhost/WoodWorks/public/Message/getMessages2",
-        dataType: 'html',
-        success: (data) => {
-            $('#msgs').html(data)
-        }
-    });
-
-
-    refresh = true;
-}
-
-
     setInterval(() => {
         if(refresh){
             $.ajax({
@@ -73,4 +53,24 @@ function load_messages()
             });
         }
 
-    },3000);
+    },2000);
+
+});
+
+function load_messages()
+{
+    $.ajax({
+        type: 'GET',
+        url: "http://localhost/WoodWorks/public/Message/getMessages2",
+        dataType: 'html',
+        success: (data) => {
+            $('#msgs').html(data)
+        }
+    });
+
+
+    refresh = true;
+}
+
+
+
