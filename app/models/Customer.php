@@ -14,7 +14,8 @@ class Customer extends Model
         'Password',
         'Address',
         'Mobileno',
-        'Image'
+        'Image',
+        'status'
     ];
 
     protected $beforeInsert = [
@@ -131,5 +132,10 @@ class Customer extends Model
         }
 
         return false;
+    }
+
+    public function activate_profile(){
+        // show($_SESSION['email']);
+        $this->update($_SESSION['email'],['status' => 1, 'Email' => $_SESSION['email']]);
     }
 }
