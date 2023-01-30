@@ -98,8 +98,23 @@
         </div>
     </section>
 
-    <?php $this->view('reg_customer/includes/footer'); ?>
+    <div class="cus-chat">
+        <div class="chat-header">
+            <span>Manager</span>
+            <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize">
+        </div>
+        <div class="cus-chat-section" id="chat">
+
+        </div>
+        <div class="cus-send-msg-sec">
+            <input type="text" id="message" placeholder="Write Something">
+            <button type="button" id="button"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
+        </div>
+    </div>
+
+    <script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
+    <script src="<?=ROOT?>/assets/javascript/customer_chat.js"></script>
 </div>
 
-</body>
-</html>
+<?php $this->view('reg_customer/includes/footer'); ?>
+
