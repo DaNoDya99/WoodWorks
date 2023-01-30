@@ -26,7 +26,6 @@
 
                 <input type="text" name="search" onkeyup="myFunction()" id="myInput" placeholder="Search Orders">
 
-
             </div>
 
             <table id="myTable">

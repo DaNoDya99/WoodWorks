@@ -1,4 +1,3 @@
-
 (function (window,document){
 
     var cur_pos = 0;

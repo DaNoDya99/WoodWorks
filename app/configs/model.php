@@ -71,7 +71,5 @@ class Model extends Database
         $query = "select * from $this->table";
         return $this->query($query);
     }
-
-
-
+    
 }

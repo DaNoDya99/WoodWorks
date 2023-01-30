@@ -1260,6 +1260,103 @@ h3 {
     margin: 0;
 }
 
+.cus-chat{
+    position: fixed;
+    right: 15px;
+    top: 50%;
+    width: 25em;
+    height: 28em;
+    background-color: #d4d4d4;
+    border-radius: 10px;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    font-family: 'Poppins-Light', sans-serif;
+}
+
+.chat-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #c3c4a5;
+    color: #0F3D3E;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 1em;
+    font-family: 'Poppins-SemiBold', sans-serif;
+    font-size: 1rem;
+}
+
+.chat-header img{
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+}
+
+.cus-chat-section{
+    padding: 0 .5em;
+    margin: .5em 0;
+    height: 70%;
+    max-height: 70%;
+    overflow-y: auto;
+}
+
+.cus-send-msg-sec{
+    display: flex;
+    padding:  .5em;
+    justify-content: space-between;
+}
+
+.cus-send-msg-sec button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.cus-send-msg-sec input{
+    width: 84%;
+    border: none;
+    border-radius: 7px;
+    font-family: 'Poppins-SemiBold', sans-serif;
+    padding-left: 1em;
+}
+
+.cus-send-msg-sec button img{
+    width: 3.5em;
+}
+
+.cus-incoming p, .cus-sending p{
+    font-size: .9rem;
+    margin: .5em;
+}
+
+.cus-incoming{
+    width: 70%;
+    text-align: justify;
+    background-color: #e5f4f4;
+    border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+}
+
+.cus-sending{
+    width: 70%;
+    margin-left: 30%;
+    text-align: justify;
+    background-color: #f9f9f9;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.cus-sending p:last-child,.cus-incoming p:last-child{
+    text-align: right;
+    font-size: .75rem;
+    padding-right: .5em;
+}
+
 /*Customer Profile page*/
 .cus-profile-body {
     background-color: #e2dcc8;

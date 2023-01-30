@@ -22,7 +22,7 @@
         <div class="chat">
             <div class="chats">
                 <div class="chat-owner-details">
-                    <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
+                    <img src='<?=ROOT?>/assets/images/manager/viharsha.jpeg'>
                     <div>
                         <h2>Viharsha Jayathilake</h2>
                         <h3>Manager</h3>
@@ -34,163 +34,7 @@
                         <button type="submit"><img src="<?=ROOT?>/assets/images/admin/search.png" alt="Search"></button>
                     </div>
                 </form>
-                <div class="contacts">
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>Viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <img src="<?=ROOT?>/assets/images/manager/viharsha.jpeg">
-                        <div class="contact-latest">
-                            <div>
-                                <h3>Viharsha Jayathilake</h3>
-                                <h3>10.00 A.M</h3>
-                            </div>
-                            <div>
-                                <p>Hello, how are you.</p>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="contacts" id="contacts">
 
                 </div>
             </div>
@@ -200,50 +44,14 @@
                         <img src="<?=ROOT?>/assets/images/manager/danodya.jpg">
                         <h2>Danodya Supun</h2>
                     </div>
-                    <div class="chat-msg-container">
-                        <div class="sending">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="incoming">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="sending">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="incoming">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="sending">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="incoming">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="sending">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="incoming">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="sending">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="incoming">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="sending">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
-                        <div class="incoming">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolor doloribus fuga id, incidunt ipsum iure modi optio qui quibusdam, quisquam. A consequuntur eius exercitationem ipsa quisquam tenetur voluptatum!</p>
-                        </div>
+                    <div id="msgs" class="chat-msg-container">
 
                     </div>
                     <div class="send-msg">
                         <form>
                             <div>
-                                <input type="text" name="Message" placeholder="Write Something">
-                                <button type="submit"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
+                                <input type="text" id="message" placeholder="Write Something">
+                                <button type="button" id="btn"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
                             </div>
                         </form>
                     </div>
@@ -257,5 +65,5 @@
 
 </div>
 
-</body>
-</html>
+<script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
+<script src="<?=ROOT?>/assets/javascript/manager_chat.js"></script>
