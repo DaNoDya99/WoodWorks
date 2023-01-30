@@ -73,7 +73,7 @@
 
                         <td><?=esc($row->Address)?></td>
                         <td><?=esc($row->Firstname)?> <?=esc($row->Lastname)?></td>
-                        <td><?=esc($row->Mobileno)?></td>
+                        <td><?=esc($row->Contactno)?></td>
                     </tr>
 
                 </form>

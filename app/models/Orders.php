@@ -30,20 +30,20 @@ class Orders extends Model
 
     public function displayOrders($column,$value)
     {
-        $query = "select OrderID,Payment_type,Total_amount,Order_status,$this->table.Address,Firstname,Lastname,Mobileno,$this->table.Date from $this->table INNER JOIN `customer` ON $this->table.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && $column = :value ";
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value ";
         return $this->query($query,['value'=>$value]);
     }
 
     public function searchOrdersDetails($column,$value,$orders_items)
     {
-        $query = "select OrderID,Payment_type,Total_amount,Order_status,$this->table.Address,Firstname,Lastname,Mobileno,$this->table.Date from $this->table INNER JOIN `customer` ON $this->table.CustomerID = customer.CustomerID WHERE DATE_FORMAT($this->table.Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or $this->table.Address like '%$orders_items%' or $this->table.Total_amount like '%$orders_items%' AND $column = :value LIMIT 15 ";
+        $query = "select OrderID,Payment_type,Total_amount,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or Address like '%$orders_items%' or Total_amount like '%$orders_items%' AND $column = :value LIMIT 15 ";
         return $this->query($query,['value'=>$value]);
 
     }
 
     public function filterStatus($column,$value,$id)
     {
-        $query = "select OrderID,Payment_type,Total_amount,Order_status,$this->table.Address,Firstname,Lastname,Mobileno,$this->table.Date from $this->table INNER JOIN `customer` ON $this->table.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && $column = :value  && $this->table.`DriverID` = '$id' limit 15";
+        $query = "select OrderID,Payment_type,Total_amount,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && $column = :value  && `DriverID` = '$id' limit 15";
         return $this->query($query,['value'=>$value]);
     }
 
