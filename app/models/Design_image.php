@@ -25,5 +25,11 @@ class Design_image extends Model
         return false;
     }
 
+    public function deleteImage($id = null)
+    {
+        $query = "delete from $this->table where DesignID = :DesignID;";
+
+        return $this->query($query,['DesignID' => $id]);
+    }
 
 }

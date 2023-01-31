@@ -121,6 +121,8 @@ class Design extends Model
         return $this->query($query);
     }
 
+
+
     public function getAllImages($id)
     {
         $query = "select Image from design_image WHERE DesignID = '$id';";
@@ -141,4 +143,14 @@ class Design extends Model
         $query = "SELECT * FROM `design` WHERE ManagerID IS NULL;";
         return $this->query($query);
     }
+
+    public function deleteDesign($id = null)
+    {
+        $query = "delete from $this->table where DesignID = :DesignID;";
+
+        return $this->query($query,['DesignID' => $id]);
+    }
+
+
+
 }

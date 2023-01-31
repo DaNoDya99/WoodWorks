@@ -28,7 +28,12 @@
 
                 <div class="design-btns">
                     <button>Update</button>
-                    <button>Remove</button>
+
+
+                    <form action="<?=ROOT?>/designer/remove_add_design/<?=$data['design'][0]->DesignID?>" method="post">
+                        <input type="submit" name="delete_btn" value="Remove">
+                    </form>
+<!--                    <button>Remove</button>-->
                 </div>
 
             </div>
@@ -78,6 +83,7 @@
                 </div>
             </div>
         </div>
+
     </body>
 
     <script src="<?=ROOT?>/assets/javascript/designer/slider.js"></script>
