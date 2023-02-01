@@ -7,4 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?=APPNAME?></title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles2.css">
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/header.css">
+
 </head>
