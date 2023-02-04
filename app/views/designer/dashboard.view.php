@@ -3,11 +3,11 @@
 <body class="designer">
     <?php $this->view('designer/includes/designer_header') ?>
 
-<div class="designer-body">
+<div class="content designer-body">
     <div class="dashboard">
 
 
-        <div class="content containers-designer-chart " >
+        <div class="containers-designer-chart " >
 
             <div class="designer-box" id="chart-designer-container" onclick="location.href='<?=ROOT?>/designer/design';">
                 <canvas id="designerBar" width="300" height="400"></canvas>
