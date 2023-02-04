@@ -38,7 +38,7 @@
                         <form>
                             <div>
                                 <input type="text" id="message" placeholder="Write Something">
-                                <button type="button" id="btn"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
+                                <button type="button" id="button"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
                             </div>
                         </form>
                     </div>
