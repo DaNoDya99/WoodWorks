@@ -786,9 +786,10 @@ select {
     border: none;
     cursor: pointer;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    color: #f9f9f9;
     margin-top: 7px;
     margin-bottom: 5px;
+    background-color: #203330;
 }
 
 .dropdown-content {
@@ -882,6 +883,7 @@ select {
     display: flex;
     flex-direction: row;
     align-items: center;
+    color: #f9f9f9;
 }
 
 .nav-user-details img {
