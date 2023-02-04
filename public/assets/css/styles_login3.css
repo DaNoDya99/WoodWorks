@@ -1612,6 +1612,22 @@ design-desc div button:hover{
     cursor: pointer;
 }
 
+.design-btns input{
+    border-radius: 6px;
+    border: unset;
+    font-family: 'Poppins-Light', sans-serif;
+    font-weight: bold;
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.design-btns input:last-child{
+    background: #E64848;
+    width: 70px;
+    height: 40px;
+}
+
 .design-btns button:first-child{
     background: #5ba49e;
     width: 70px;

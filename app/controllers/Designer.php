@@ -3,7 +3,6 @@
 class Designer extends Controller
 {
 
-
     public function index()
     {
         if(!Auth::logged_in())
@@ -255,6 +254,25 @@ class Designer extends Controller
 
         }
 
+    }
+
+    public function remove_add_design($id=null)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $design = new Design();
+        $design_images = new Design_image();
+
+        if(isset($_POST['delete_btn'])){
+            $design->deleteDesign($id);
+            $design_images->deleteImage($id);
+            $this->redirect('designer/design');
+        }
+
+        $this->redirect('designer/design');
     }
 
     public function barData()
