@@ -85,10 +85,10 @@ class Customer_home extends Controller
         $this->view('reg_customer/profile',$data);
     }
 
-    public function add_to_cart($id){
+    public function add_to_cart($id,$cost){
 
         if(!Auth::logged_in()){
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $order = new Orders();
@@ -118,7 +118,7 @@ class Customer_home extends Controller
             'ProductID' => $id,
             'Name' => $info[0]->Name,
             'Quantity' => 1,
-            'Cost' => $info[0]->Cost,
+            'Cost' => $cost,
             'OrderID' => $orderID,
             'CartID' => $cart->getCart($cus_id)[0]->CartID,
             'Image' => $image[0]->Image
