@@ -50,7 +50,7 @@
 
             <li>
                 <a href="<?= ROOT ?>/manager/posts">
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/person-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/post-sign-message-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                     Posts</span>
                 </a>
                 <span class="tooltip">Posts</span>
@@ -58,7 +58,7 @@
 
             <li>
                 <a href="<?= ROOT ?>/manager/orders">
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/warehouse-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/order-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Orders</span>
                 </a>
                 <span class="tooltip">Orders</span>
@@ -66,7 +66,7 @@
             <li>
                 <a href="<?= ROOT ?>/manager/reports">
 
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chair-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/report-barchart-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Reports</span>
                 </a>
                 <span class="tooltip">Reports</span>
@@ -74,7 +74,7 @@
             <li>
                 <a href="<?= ROOT ?>/manager/issues">
 
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/boxes-packing-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/issue-type-incident-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Issues</span>
                 </a>
                 <span class="tooltip">Issues</span>
@@ -82,7 +82,7 @@
             <li>
                 <a href="<?= ROOT ?>/manager/designs">
 
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chat-circle-plain-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/design-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Designs</span>
                 </a>
                 <span class="tooltip">Designs</span>
@@ -90,7 +90,7 @@
             <li>
                 <a href="<?= ROOT ?>/manager/advertisements">
 
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/user-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/advertisement-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Advertisements </span>
                 </a>
                 <span class="tooltip">Advertisements</span>
@@ -98,7 +98,7 @@
             <li>
                 <a href="<?= ROOT ?>/manager/chat">
 
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/user-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chat-circle-plain-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Chat </span>
                 </a>
                 <span class="tooltip">Chat</span>
