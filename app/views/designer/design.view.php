@@ -5,8 +5,6 @@
 <div class="content designer-body">
     <div class="dashboard">
 
-       
-
         <div class="des_category-body">
             <h1>Your Designs</h1>
             <div class="des_categories">

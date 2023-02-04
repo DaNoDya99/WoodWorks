@@ -3,10 +3,7 @@
     <?php $this->view('designer/includes/designer_header') ?>
         <div class="content designer-body">
             <div class="dashboard">
-            <!-- <div class="dashboard-nav">
-
-            </div> -->
-
+  
             <div class="add-des-bar">
 
                 <a class="go-back" href="<?=ROOT?>/designer/design">
