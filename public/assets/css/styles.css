@@ -854,6 +854,7 @@ select {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 30px;
 }
 
 .nav-items ul {
@@ -968,22 +969,24 @@ select {
 }
 
 .latest-section {
-    background-color: #F1F1F1;
+    background-color: #203330;
+    color: white;
     padding: 10px 20px;
 }
 
 /*product card*/
 
 .product-card {
+    padding: 10px;
     width: 265px;
     max-height: 360px;
     background: #f9f9f9;
     border-radius: 12px;
-    border: solid 2px black;
-    text-align: center;
+    color: black;
     font-family: 'Rubik', sans-serif;
     margin: 15px;
     position: relative;
+    padding-bottom  : 40px;
 }
 
 .product-card a {
@@ -994,17 +997,18 @@ select {
 .product-card h2,
 h3 {
     margin: 0;
+    /* padding-bottom: 10px; */
 }
 
 .product-card-img {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .product-card h2 {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-family: 'Rubik-SemiBold', sans-serif;
-    font-weight: lighter;
+
 }
 
 .product-card-img img {
@@ -1017,40 +1021,84 @@ h3 {
 
 .product-card-details {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 .5em;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;    
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    
+
+
 }
 
 .product-card-details h3 {
     margin: 0;
+    font-size: 1.4rem;
+    padding-bottom: 15px;
+
 }
 
 .product-card-details div {
     display: flex;
     align-items: center;
+    padding-bottom: 10px;
 }
 
-.product-card-details div h3 {
-    margin-left: .3em;
+.product-card-details .cost {
+    position: absolute;
+    bottom: 10px;
+    
+}
+
+.product-card-details .catergory{
+    font-size: 1.0rem;
+    color: #787878;
+    font-family: 'Rubik', sans-serif;
 }
 
 .product-card-details img {
     width: .8em;
     height: .8em;
 }
+.card-pair{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
 
+}
 .product-card-buttons {
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-between;
     padding: 0 .5em;
 }
 
 .product-card-buttons img {
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    opacity: 0.5;
+
+
+
+}
+.product-card-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50px;
+    padding: 10px;
+    margin: 5px;
+    background-color: rgb(219, 219, 219);
+
 }
 
 .product-card-buttons button {
@@ -1129,7 +1177,7 @@ h3 {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: #0F3D3E;
+    background-color: #203330;
 }
 
 .customizing-img {
@@ -1153,7 +1201,7 @@ h3 {
 
 .customizing-desc h2 {
     font-size: 2.5vw;
-    color: #E2DCC8;
+    color: #ffffff;
     font-family: 'Rubik-SemiBold', sans-serif;
     margin-bottom: 5%;
     margin-top: 0;
@@ -1161,9 +1209,9 @@ h3 {
 
 .customizing-desc p {
     font-size: 1.2vw;
-    font-family: 'Rubik-SemiBold', sans-serif;
+    font-family: 'Rubik-', sans-serif;
     text-align: justify;
-    color: #E2DCC8;
+    color: #ffffff;
 }
 
 .customizing-desc button {
@@ -1180,7 +1228,7 @@ h3 {
 }
 
 .about {
-    background-color: #c3c4a5;
+    background-color: #E0E0CE;
 }
 
 .about .customizing-desc {
@@ -1192,7 +1240,7 @@ h3 {
 }
 
 .about .customizing-desc h2 {
-    color: #0F3D3E;
+    color: #343434;
 }
 
 .why-choose {
@@ -1240,10 +1288,15 @@ h3 {
 }
 
 .footer {
-    background-color: #0F3D3E;
-    color: #e2dcc8;
+    background-color: #203330;
+    color: #ffffff;
     font-family: 'Rubik', sans-serif;
     padding: 1%;
+}
+
+
+.footer-img{
+    width: 300px;
 }
 
 .footer-body {
@@ -1256,6 +1309,7 @@ h3 {
 
 .footer-rights {
     text-align: center;
+    margin: 30px;
 }
 
 .footer-rights h2 {
@@ -1887,8 +1941,8 @@ h2 {
 .category-body {
     text-align: center;
     font-family: 'Rubik', sans-serif;
-    background-color: #c3c4a5;
-    padding: 3em 0;
+    background-color: #E0E0CE;
+    padding: 5em 0;
 }
 
 .category-body h1 {
@@ -1929,17 +1983,18 @@ h2 {
     width: 100%;
     height: 85%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .category-card p {
-    margin: 0;
+    margin: 5px;
 }
 
 .sub-category-body {
     font-family: 'Rubik-SemiBold', sans-serif;
     background-color: #E2E2CF;
     display: flex;
+    padding-top: 60px;
 }
 
 .sub-cat-sidebar {
