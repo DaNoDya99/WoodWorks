@@ -2,7 +2,6 @@
     <img id="btn2" src="bars-solid.svg" style="width: 20px; margin:10px;" alt="">
     <img src="WOODWORKSmobile.svg" class="logomobile" alt="">
 </div>
-
 <div class="headerprime">
     <div class="profile" onclick="dropdown()">
         <img class="image" src="<?= ROOT ?>/<?= Auth::getImage() ?>" alt="">
@@ -64,16 +63,6 @@
             </a>
             <span class="tooltip">Designs</span>
         </li>
-
-        <li>
-            <a href="<?= ROOT ?>/designer/chat">
-
-                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chat-circle-plain-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
-                        Chat </span>
-            </a>
-            <span class="tooltip">Chat</span>
-        </li>
-
         <li>
             <a href="<?= ROOT ?>/designer/profile">
 

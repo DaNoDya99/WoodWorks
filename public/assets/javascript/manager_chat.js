@@ -10,7 +10,7 @@ $(document).ready(() => {
         }
     });
 
-    $('#btn').click(() => {
+    $('#button').click(() => {
 
         const msg = $("#message").val();
 

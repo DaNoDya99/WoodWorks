@@ -265,4 +265,9 @@ class Furnitures extends Model
 
         return $this->query($query);
     }
+
+    public function getDiscount()
+    {
+
+    }
 }

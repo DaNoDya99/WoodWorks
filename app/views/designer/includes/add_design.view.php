@@ -1,65 +1,67 @@
 <?php $this->view('designer/includes/header') ?>
 
 <body class="designer">
-<div class="designer-body">
-    <?php $this->view('designer/includes/designer_header') ?>
-    <div class="content dashboard">
+    <div class="designer-body">
+        <?php $this->view('designer/includes/designer_header') ?>
+        <div class="content dashboard">
 
-        <div class="des-form-body">
 
-            <form action="/woodworks/public/designer/add_new_design" method="post" enctype="multipart/form-data">
+            <div class="des-form-body">
 
-                <h2>Add New Designs</h2>
+                <form action="/woodworks/public/designer/add_new_design" method="post" enctype="multipart/form-data">
 
-                <label id="designImage" >Design Images</label>
+                    <h2>Add New Designs</h2>
 
-                <div class="designImage">
+                    <label id="designImage">Design Images</label>
 
-                    <div id="images"></div>
-                    <p  id="num-of-files">Number of Images Chosen: None</p>
+                    <div class="designImage">
 
-                </div>
+                        <div id="images"></div>
+                        <p id="num-of-files">Number of Images Chosen: None</p>
 
-                <?php if(!empty($errors['Description'])):?>
-                    <div class="error-txt"><?=$errors['Description']?></div>
-                <?php endif;?>
-                <?php if(!empty($errors['Name'])):?>
-                    <div class="error-txt"><?=$errors['Name']?></div>
-                <?php endif;?>
+                    </div>
 
-                <div class="edit-des-Ubtn-section" id="edit-design">
-                    <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
-                    <label for="file-input">
-                        Upload Images
-                    </label>
-                </div>
+                    <?php if (!empty($errors['Description'])) : ?>
+                        <div class="error-txt"><?= $errors['Description'] ?></div>
+                    <?php endif; ?>
+                    <?php if (!empty($errors['Name'])) : ?>
+                        <div class="error-txt"><?= $errors['Name'] ?></div>
+                    <?php endif; ?>
 
-                <div class="edit-des-Dbtn-section" id="edit-design">
-                    <label>
-                        Delete Images
-                    </label>
-                </div>
+                    <div class="edit-des-Ubtn-section" id="edit-design">
+                        <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
+                        <label for="file-input">
+                            Upload Images
+                        </label>
+                    </div>
 
-                <div class="des_Name">
-                    <label>Design Name: </label>
-                    <input type="text" name="Name" placeholder="Enter Your Design Name" class="txt">
-                </div>
+                    <div class="edit-des-Dbtn-section" id="edit-design">
+                        <label>
+                            Delete Images
+                        </label>
+                    </div>
 
-                <div id="description">
-                    <label>Description :</label><textarea name="Description" class="form-control" ></textarea>
-                </div>
+                    <div class="des_Name">
+                        <label>Design Name: </label>
+                        <input type="text" name="Name" placeholder="Enter Your Design Name" class="txt">
+                    </div>
 
-                <div class="add-des-btn">
-                    <button  type="submit" name="AddDesign">Add Design</button>
-                </div>
+                    <div id="description">
+                        <label>Description :</label><textarea name="Description" class="form-control"></textarea>
+                    </div>
 
-            </form>
+                    <div class="add-des-btn">
+                        <button type="submit" name="AddDesign">Add Design</button>
+                    </div>
+
+                </form>
+
+            </div>
 
         </div>
-
     </div>
-</div>
 </body>
 
 
-
+</html>
+<script src="<?= ROOT ?>/assets/javascript/designer/add_designs.js"></script>

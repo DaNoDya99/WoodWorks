@@ -1,6 +1,6 @@
 <div class="product-card">
     <?php if(!empty($row->Discount_percentage)): ?>
-        <div onclick="calDiscount()" class="product-card-discount">
+        <div class="product-card-discount">
             <p><?=$row->Discount_percentage?>% Discount</p>
         </div>
     <?php endif; ?>
@@ -10,7 +10,14 @@
         <div>
             <h2><?=$row->Name?></h2>
             <div class="product-card-details">
-                <h3>Rs. <?=$row->Cost?>.00</h3>
+                <?php if(!empty($row->Discount_percentage)): ?>
+                    <div class="product-cost">
+                        <h3 class="product-cost-strike">Rs. <?=$row->Cost?>.00</h3>
+                        <h3 class="product-cost-dis">Rs. <?=$row->Cost*(100-$row->Discount_percentage)/100?>.00</h3>
+                    </div>
+                <?php else: ?>
+                    <h3>Rs. <?=$row->Cost?>.00</h3>
+                <?php endif; ?>
                 <div>
                     <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
                     <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
@@ -21,7 +28,7 @@
                 </div>
             </div>
             <div class="product-card-buttons">
-                <a href="<?=ROOT?>/furniture/view_product/<?=$row->ProductID?>">
+                <a id="PID" href="<?=ROOT?>/furniture/view_product/<?=$row->ProductID?>">
                     <button>More Details</button>
                 </a>
                 <a href="<?=ROOT?>/customer_home/add_to_cart/<?=$row->ProductID?>">
@@ -32,5 +39,6 @@
 
 </div>
 
+<script src="<?=ROOT?>/assets/javascript/product_card.js"></script>
 
 

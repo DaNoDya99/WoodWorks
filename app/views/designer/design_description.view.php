@@ -5,6 +5,7 @@
 
             <div class="content dashboard">
 
+
             <div class="add-des-bar">
 
                 <a class="go-back" href="<?=ROOT?>/designer/design">
@@ -73,3 +74,4 @@
     </body>
 
     <script src="<?=ROOT?>/assets/javascript/designer/slider.js"></script>
+<!-- <?php $this->view('designer/includes/footer'); ?> -->
