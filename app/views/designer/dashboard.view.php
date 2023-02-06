@@ -1,7 +1,8 @@
 <?php $this->view('designer/includes/header') ?>
 
 <body class="designer">
-<?php $this->view('designer/includes/designer_header') ?>
+    <?php $this->view('designer/includes/designer_header') ?>
+
 <div class="content designer-body">
     <div class="dashboard">
 

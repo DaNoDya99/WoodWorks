@@ -1,11 +1,9 @@
 <?php $this->view('designer/includes/header'); ?>
     <body class="designer">
-        <div class="designer-body">
-        <?php $this->view('designer/includes/designer_header') ?>
-
-            <div class="content dashboard">
-
-
+    <?php $this->view('designer/includes/designer_header') ?>
+        <div class="content designer-body">
+            <div class="dashboard">
+  
             <div class="add-des-bar">
 
                 <a class="go-back" href="<?=ROOT?>/designer/design">
@@ -74,3 +72,4 @@
     </body>
 
     <script src="<?=ROOT?>/assets/javascript/designer/slider.js"></script>
+<!-- <?php $this->view('designer/includes/footer'); ?> -->

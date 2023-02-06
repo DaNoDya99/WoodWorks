@@ -11,8 +11,8 @@
 <header>
     <nav class="nav-bar">
         <div class="nav-brand">
-            <img src="<?=ROOT?>/assets/images/logo.png" alt="Logo">
-            <h1>WOODWORKS</h1>
+            <img src="<?=ROOT?>/assets/images/WOODWORKS.svg" alt="Logo">
+            <!-- <h1>WOODWORKS</h1> -->
         </div>
         <div class="nav-items">
             <ul>

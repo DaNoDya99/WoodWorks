@@ -5,6 +5,7 @@
     <?php $this->view('designer/includes/designer_header') ?>
     <div class="content dashboard">
 
+        
 
         <div class="dashboard-body">
             <div class="designer-profile-card">

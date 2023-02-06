@@ -101,7 +101,7 @@ td {
 body {
     font-family: Arial;
     display: grid;
-    grid-template-columns: 1fr 2fr 1.5fr;
+    grid-template-columns: 2fr 1.5fr;
     margin: 0;
 
 
@@ -169,12 +169,6 @@ body {
     width: 20px;
 }
 
-.logo {
-    width: 14vw;
-    padding-left: 5vw;
-    margin-bottom: 30px;
-    border-radius: 0px;
-}
 
 .sec1 nav {
     padding-top: 50px;
