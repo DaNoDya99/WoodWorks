@@ -1,18 +1,17 @@
-<?php $this->view('manager/includes/header') ?>
+<?php $this->view('designer/includes/header') ?>
 
-
-<body class="manager">
-<?php $this->view('manager/includes/manager_header') ?>
-    <div class="content manager-body">
+<body class="designer">
+<?php $this->view('designer/includes/designer_header') ?>
+<div class="content designer-body">
     <div class="dashboard">
-        
+
         <div class="chat">
             <div class="chats">
                 <div class="chat-owner-details">
-                    <img src='<?=ROOT?>/assets/images/manager/viharsha.jpeg'>
+                    <img src='<?=ROOT?>/assets/images/designer/Nisura.png'>
                     <div>
-                        <h2>Viharsha Jayathilake</h2>
-                        <h3>Manager</h3>
+                        <h2>Nisura Indisa</h2>
+                        <h3>Designer</h3>
                     </div>
                 </div>
                 <form>
@@ -28,7 +27,7 @@
             <div class="chat-contact">
                 <div class="chat-messages">
                     <div class="chat-msg-header">
-                        <img src="<?=ROOT?>/assets/images/manager/danodya.jpg">
+                        <img src="<?=ROOT?>/assets/images/designer/danodya.jpg">
                         <h2>Danodya Supun</h2>
                     </div>
                     <div id="msgs" class="chat-msg-container">
@@ -44,13 +43,13 @@
                     </div>
                 </div>
             </div>
+
         </div>
-
-
 
     </div>
 
 </div>
 
+
 <script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
-<script src="<?=ROOT?>/assets/javascript/manager_chat.js"></script>
+<script src="<?=ROOT?>/assets/javascript/designer_chat.js"></script>
