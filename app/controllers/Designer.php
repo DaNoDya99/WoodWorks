@@ -275,6 +275,21 @@ class Designer extends Controller
         $this->redirect('designer/design');
     }
 
+    public function chat()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+
+        $data['row'] = $employee->where('EmployeeID',$id);
+        $data['title'] = "CHAT";
+
+        $this->view('designer/chat',$data);
+    }
+
     public function barData()
     {
         if(!Auth::logged_in())
