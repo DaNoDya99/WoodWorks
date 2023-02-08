@@ -93,6 +93,7 @@
 
     <?php $this->view('reg_customer/includes/footer'); ?>
 </div>
+
 <script type="text/javascript">
     function scrolltoId(){
 var access = document.getElementById("aboutus");

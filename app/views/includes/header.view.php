@@ -15,15 +15,14 @@
                 <a href="<?= ROOT ?>/">
                     <img src="<?= ROOT ?>/assets/images/WOODWORKS.svg" alt="Logo"></a>
                 <!-- <h1>WOODWORKS</h1> -->
-
-                <div class="nav-items ">
-                    <ul>
-                        <!-- <li class="nav-item"><a href="<?= ROOT ?>/">Home</a></li> -->
-                        <li class="nav-item"><a href="javascript: scrolltoId()">About</a></li>
-                        <li class="nav-item"><a href="<?= ROOT ?>/home/contact">Contact</a></li>
-                        <li class="nav-item"><a href="<?= ROOT ?>/home/category">Shop</a></li>
-                    </ul>
-                </div>
+            </div>
+            <div class="nav-items ">
+                <ul>
+                    <li class="nav-item"><a href="<?= ROOT ?>/">Home</a></li>
+                    <li class="nav-item"><a href="<?= ROOT ?>/home/category">Shop</a></li>
+                    <li class="nav-item"><a href="javascript: scrolltoId()">About</a></li>
+                    <li class="nav-item"><a href="<?= ROOT ?>/home/contact">Contact</a></li>
+                </ul>
             </div>
             <div class="login-section">
                 <a href="<?= ROOT ?>/signup">
