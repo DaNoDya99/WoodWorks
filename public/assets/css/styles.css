@@ -3040,5 +3040,34 @@ h2 {
     font-size: 1.2rem;
     cursor: pointer;
     margin: 20px;
+}
 
+/*Your orders page*/
+
+.orders-container{
+    height: 95vh;
+    background-color: #c3c4a5;
+    display: flex;
+    padding: 2em 1em;
+    justify-content: space-between;
+}
+
+.orders, .order{
+    height: 85vh;
+    max-height: 85vh;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    width: 35%;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    padding: .5em;
+    font-family: 'Rubik', sans-serif;
+}
+
+.order{
+    width: 60%;
+}
+
+.order-details{
+    display: flex;
+    justify-content: space-between;
 }

@@ -189,4 +189,18 @@ class Customer_home extends Controller
         $this->view('reg_customer/payment',$data);
     }
 
+    public function orders()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $customer = new Customer();
+        $id = Auth::getCustomerID();
+        $data['row'] = $row = $customer->where('CustomerID',$id);
+
+        $this->view('reg_customer/orders',$data);
+    }
+
 }
