@@ -31,7 +31,7 @@
             <div class="dropdown">
                 <button class="dropbtn">Account</button>
                 <div class="dropdown-content">
-                    <a href="#">My orders</a>
+                    <a href="<?=ROOT?>/customer_home/orders">My orders</a>
                     <a href="<?=ROOT?>/customer_home/profile">Profile</a>
                     <a href="<?=ROOT?>/logout">Logout</a>
                 </div>
