@@ -1,30 +1,52 @@
 @font-face {
-    font-family: 'Ubuntu-Regular';
-    src: url("../fonts/Ubuntu/Ubuntu-Regular.ttf");
-}
-@font-face {
-    font-family: 'Handlee';
-    src: url("../fonts/Handlee/Handlee-Regular.ttf");
-}
-@font-face {
-    font-family: 'Patrick Hand';
-    src: url("../fonts/Patrick_Hand/PatrickHand-Regular.ttf");
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url("../fonts/Roboto/Roboto-Light.ttf");
-}
-@font-face {
-    font-family: 'Poppins';
-    src: url("../fonts/Poppins/Poppins-ExtraLight.ttf");
+    font-family: 'Rubik';
+    src: url("../fonts/Rubik/Rubik-Regular.ttf");
 }
 
 @font-face {
-    font-family: 'Poppins-Light';
-    src: url("../fonts/Poppins/Poppins-Light.ttf");
+    font-family: 'Rubik-SemiBold';
+    src: url("../fonts/Rubik/Rubik-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Bold';
+    src: url("../fonts/Rubik/Rubik-Bold.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Black';
+    src: url("../fonts/Rubik/Rubik-Black.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Italic';
+    src: url("../fonts/Rubik/Rubik-Italic.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Medium';
+    src: url("../fonts/Rubik/Rubik-Medium.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Light';
+    src: url("../fonts/Rubik/Rubik-Light.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Thin';
+    src: url("../fonts/Rubik/Rubik-Thin.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-ExtraBold';
+    src: url("../fonts/Rubik/Rubik-ExtraBold.ttf");
 }
 
 /* Login Page for Designer and Driver*/
+body{
+    font-family: 'Rubik' !important;
+}
 .bdy{
     margin: 0px;
     padding: 0px;
@@ -51,7 +73,7 @@
     margin-left: 10px;
     color: #f9f9f9;
     filter:drop-shadow(0px 0px 5px #100F0F);
-    font-family: Poppins-SemiBold, sans-serif;
+    font-family: 'Rubik';
     font-size: 1.8vw;
 }
 
@@ -81,7 +103,7 @@
     box-sizing: border-box;
     outline: none;
     border: none;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Rubik';
 }
 
 .login3-inputBox2 {
@@ -101,7 +123,7 @@
     box-sizing: border-box;
     outline: none;
     border: none;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Rubik';
 
 }
 .login3-inputBox2 img{
@@ -136,7 +158,7 @@
 .login3-form a{
     text-decoration: none;
     color: greenyellow;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Rubik';
     padding: 10px;
     transition: 0.5s;
     display: block;
@@ -202,7 +224,7 @@
 }
 
 .nav-item-page-name h1{
-    font-family: Poppins-SemiBold , sans-serif;
+    font-family: 'Rubik-SemiBold';
     font-size: 1.2vw;
 }
 
@@ -213,7 +235,7 @@
 }
 
 .nav-item-user h1{
-    font-family: Poppins-SemiBold , sans-serif;
+    font-family: 'Rubik-SemiBold';
     font-size: 1.2vw;
 }
 
@@ -244,7 +266,10 @@
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold';
+    position: absolute;
+    right: 380px;
+    top: 20px;
 }
 
 .select-available:focus,
@@ -257,7 +282,7 @@
     background: #f9f9f9;
     font-weight: bold;
     border-radius: 0px;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold';
 }
 
 .driver-tbox{
@@ -266,7 +291,7 @@
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold';
     max-height: 80vh;
     display: flex;
     flex-direction: column;
@@ -313,12 +338,12 @@
 }
 
 .driver-content-table tbody tr{
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     word-break: break-all;
 }
 
 .orders-table-rows{
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
 }
 
 .orders-table-rows img{
@@ -341,7 +366,7 @@
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik';
     max-height: 80vh;
     display: flex;
     flex-direction: column;
@@ -384,12 +409,12 @@
 }
 
 .designer-content-table tbody tr{
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     word-break: break-all;
 }
 
 .designs-table-rows{
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
 }
 
 .designs-table-rows img{
@@ -414,7 +439,7 @@
     background-color: #f9f9f9;
     margin: 0 auto;
     text-align: center;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     /*padding: 1em 0;*/
     padding: 3px;
@@ -467,7 +492,7 @@
     background-color: #f9f9f9;
     margin: 0 auto;
     text-align: center;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     /*padding: 1em 0;*/
     padding: 3px;
@@ -523,7 +548,7 @@
     height: 50px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     font-weight: bolder;
     font-size: 1vw;
     background-color: #100F0F;
@@ -656,7 +681,7 @@
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold';
     max-height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
 }
@@ -676,7 +701,7 @@
 
 .order-form input{
     border: 2px solid #d2d2d2;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold';
     width: 20em;
     border-radius: 3px;
     padding: 0 0 0 1em;
@@ -689,7 +714,7 @@
     background-color: #f9f9f9;
     font-size: 1rem;
     padding: 0 0 0 1em;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold';
     color: #787878;
 }
 
@@ -750,7 +775,7 @@
 
 .content-table tbody tr{
     /*border-bottom: 1px solid #dddddd;*/
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
 }
 
 /*.content-table tbody tr:nth-of-type(even){*/
@@ -986,14 +1011,14 @@
     max-height: 700px;
     max-width: 90%;
     border-radius: 10px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Rubik';
     padding: 5px;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     background: #f9f9f9;
 }
 
 #designImage{
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     font-weight: bold;
     font-size: 15px;
     display: flex;
@@ -1084,7 +1109,7 @@ figcaption{
     margin: auto;
     padding: 5px;
     cursor: pointer;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold';
     font-size: 1vw;
     background: #104f4a;
     border-radius: 5px;
@@ -1107,7 +1132,7 @@ figcaption{
     cursor: pointer;
     margin: auto;
     padding: 5px;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold';
     font-size: 1vw;
     background: #721c24;
     border-radius: 5px;
@@ -1129,7 +1154,7 @@ figcaption{
     width: 55%;
 }
 #description label{
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik';
     font-weight: bold;
     font-size: 15px;
     justify-content: center;
@@ -1153,7 +1178,7 @@ figcaption{
     height: 50px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     font-weight: bolder;
     font-size: 1vw;
     background-color: #100F0F;
@@ -1174,7 +1199,7 @@ figcaption{
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik';
     padding-left: 20px;
     text-decoration: none;
     color: black;
@@ -1195,7 +1220,7 @@ figcaption{
 .footer{
     background-color: #0F3D3E;
     color: #e2dcc8;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     padding: 1%;
 }
 
@@ -1219,7 +1244,7 @@ figcaption{
 
 .des_category-body{
     text-align: center;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     background-color: #E0E0CE;
     padding: 3em 0;
     /*border: 1px solid white;*/
@@ -1232,7 +1257,7 @@ figcaption{
 }
 
 .des_category-body h1 {
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik';
     font-size: 3rem;
     font-weight: bolder;
     /*text-shadow: 2px 2px #007148;*/
@@ -1263,6 +1288,7 @@ figcaption{
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     margin: 0 2em 2em 2em;
     border-radius: 10px;
+    padding-bottom: 10px;
 }
 
 .des_category-card:hover {
@@ -1279,13 +1305,15 @@ figcaption{
 
 .des_category-card p{
     margin: 0;
+    padding-left: 75px;
+
 }
 
 .pagination ul{
     display: flex;
     list-style: none;
     justify-content: center;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik';
 }
 
 .pagination li {
@@ -1326,7 +1354,7 @@ figcaption{
 
 .design-view{
     background-color: #E2E2CF;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     padding: 2em 0;
     display: flex;
     flex-direction: row;
@@ -1458,7 +1486,7 @@ figcaption{
 }
 
 .design-detail td{
-    /*font-family: 'Poppins-SemiBold' , sans-serif;*/
+    /*font-family: 'Rubik';*/
     word-break: break-word;
     padding-bottom: 5px;
     width:62%;
@@ -1467,7 +1495,7 @@ figcaption{
 .design-desc div button{
     width: 70%;
     height: 2.5rem;
-    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-family: 'Rubik-SemiBold';
     font-size: 1.2rem;
     background-color: #2b7358;
     border-radius: 5px;
@@ -1543,7 +1571,7 @@ design-desc div button:hover{
 .design-btns button{
     border-radius: 6px;
     border: unset;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     font-weight: bold;
     color: white;
     margin-right: 10px;
@@ -1553,7 +1581,7 @@ design-desc div button:hover{
 .design-btns input{
     border-radius: 6px;
     border: unset;
-    font-family: 'Poppins-Light', sans-serif;
+    font-family: 'Rubik';
     font-weight: bold;
     color: white;
     margin-right: 10px;
