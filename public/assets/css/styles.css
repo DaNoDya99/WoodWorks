@@ -2760,3 +2760,153 @@ h2 {
     visibility: visible;
 
 }
+
+/*Categories*/
+.cat-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cat-section{
+    width: 50%;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 1em;
+    height: 82.6vh;
+    max-height: 82.6vh;
+    overflow-y: auto;
+    margin-top: 1.5em;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.cat-collapse{
+    padding: .7em 1.5em;
+    margin: .2em 1em;
+    border: #d4d4d4 2px solid;
+    border-radius: 7px;
+}
+
+.cat-collapse img{
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.sub-categories{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 1.5em;
+}
+
+.sub-category{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.sub-category img{
+    width: 3em;
+    height: 3em;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 2em;
+}
+
+.cat-forms{
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.add-category-form{
+    height: 40vh;
+    max-height: 40vh;
+    background-color: #f9f9f9;
+    margin-top: 1.5em;
+    width: 97.5%;
+    border-radius: 15px;
+    padding: 1em;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.form-content{
+    display: flex;
+}
+
+.cat-img{
+    width: 40%;
+    height: 37vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat-img img{
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.cat-img input{
+    display: none;
+}
+
+.cat-img label{
+    margin-top: 1em;
+    width: 40%;
+    background-color: #100F0F;
+    color: #f9f9f9;
+    border-radius: 5px;
+    height: 2em;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.cat-inputs{
+    width: 60%;
+    height: 100%;
+    padding: 1em;
+    margin: auto 0;
+}
+
+.cat-inputs input,.cat-inputs select{
+    width: 100%;
+}
+
+.submit-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-btn button{
+    margin-top: 1.5em;
+    height: 2.5em;
+    width: 35%;
+    font-size: 1.1rem;
+    border: none;
+    color: #f9f9f9;
+    background-color: #0F3D3E;
+    border-radius: 10px;
+}
+
+.cat-from-field{
+    margin: .5em;
+}
+
+.cat-from-field input, .cat-from-field select{
+    height: 2.5em;
+    margin-top: .5em;
+    border: #d4d4d4 2px solid;
+    border-radius: 7px;
+    padding-left: 1em;
+}
+
+.cat-from-field select{
+    background-color: #ffffff;
+    font-size: .8rem;
+    color: #5b5b5b;
+}

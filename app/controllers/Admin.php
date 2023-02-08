@@ -292,4 +292,22 @@ class Admin extends Controller
 
         $this->view('admin/supplier',$data);
     }
+
+    public function categories(){
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+
+
+        $data['row'] = $employee->where('EmployeeID',$id);
+
+        $data['title'] = "SUPPLIERS";
+
+
+        $this->view('admin/categories',$data);
+    }
 }

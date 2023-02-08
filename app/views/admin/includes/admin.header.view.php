@@ -80,12 +80,12 @@
                 <span class="tooltip">Suppliers</span>
             </li>
             <li>
-                <a href="<?= ROOT ?>/admin/chat">
+                <a href="<?= ROOT ?>/admin/categories">
 
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chat-circle-plain-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
-                        Chat</span>
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/category-variety-random-shuffle-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                        Product Categories</span>
                 </a>
-                <span class="tooltip">Chat</span>
+                <span class="tooltip">Categories</span>
             </li>
             <li>
                 <a href="<?= ROOT ?>/admin/profile">
