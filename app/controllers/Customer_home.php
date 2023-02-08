@@ -125,7 +125,7 @@ class Customer_home extends Controller
             'Image' => $image[0]->Image
         ];
 
-        $cart->updateTotalAmountToIncrease($data['CartID'],$info[0]->Cost);
+        $cart->updateTotalAmountToIncrease($data['CartID'],$data['Cost']);
 
         $order_items->insert($data);
 

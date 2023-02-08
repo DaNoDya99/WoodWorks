@@ -2065,6 +2065,10 @@ h2 {
     padding-top: 60px;
 }
 
+.reg-sub-cat{
+    padding-top: unset;
+}
+
 .sub-cat-sidebar {
     display: flex;
     flex-direction: column;
