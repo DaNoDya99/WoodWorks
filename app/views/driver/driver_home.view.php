@@ -5,21 +5,7 @@
     <?php $this->view('driver/includes/driver_header') ?>
     <div class="content dashboard">
 
-        <form method="post" action="<?=ROOT?>/driver_home/availability">
-            <select name="Availability" required onchange="this.form.submit()" class="select-available">
-                <?php
-                $arr = array("Available", "Not Available");
 
-                foreach ($arr as $value) {
-                    if ($value == esc($row[0]->Availability)) {
-                        echo "<option value=$value selected>$value</option>";
-                    } else {
-                        echo "<option value=$value>$value</option>";
-                    }
-                }
-                ?>
-            </select>
-        </form>
 
         <div class="containers">
 
