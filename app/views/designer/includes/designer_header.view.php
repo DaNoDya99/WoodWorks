@@ -50,7 +50,7 @@
 
         <li>
             <a href="<?= ROOT ?>/designer/add_design">
-                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/person-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/card-add-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                     Add Designs</span>
             </a>
             <span class="tooltip">Add Designs</span>
@@ -58,7 +58,7 @@
 
         <li>
             <a href="<?= ROOT ?>/designer/design">
-                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/warehouse-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/design-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                     Designs</span>
             </a>
             <span class="tooltip">Designs</span>
@@ -76,7 +76,7 @@
         <li>
             <a href="<?= ROOT ?>/designer/profile">
 
-                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chair-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/user-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
                     Edit Profile</span>
             </a>
             <span class="tooltip">Edit Profile </span>

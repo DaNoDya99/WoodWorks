@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="edit-des-Dbtn-section" id="edit-design">
-                        <label>
+                        <label onclick="location.reload();">
                             Delete Images
                         </label>
                     </div>
