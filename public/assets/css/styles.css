@@ -43,7 +43,9 @@
     src: url("../fonts/Rubik/Rubik-ExtraBold.ttf");
 }   
 
-
+body{
+    font-family: 'Rubik';
+}
 /*Login Page*/
 .login-body {
     display: flex;
