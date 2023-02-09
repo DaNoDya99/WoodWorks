@@ -3,7 +3,7 @@
 <div class="orders-container">
     <div class="orders">
         <h1>Order History</h1>
-        <div class="order-details">
+        <div class="order-details selected-order">
             <div class="lhs-details">
                 <h4 class="lhs-details-item">#d45efg5</h4>
                 <span class="lhs-details-item">Rs. 110500.00</span>

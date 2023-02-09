@@ -76,7 +76,7 @@
                     <button type="submit">Signup</button>
                 </div>
             </form>
-            <div class="link">Already have an account?<a href="<?=ROOT?>/login1"> Login now</a></div>
+            <div class="link">Already have an account?<a href="<?=ROOT?>/login"> Login now</a></div>
         </div>
     </div>
 </div>

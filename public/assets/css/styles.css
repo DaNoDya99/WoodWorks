@@ -2324,8 +2324,9 @@ h2 {
 }
 
 .sup-popup {
-    left: 60%;
+    left: 50%;
     width: 30%;
+    top: 150%;
     font-family: 'Rubik', sans-serif;
 }
 
@@ -3065,6 +3066,10 @@ h2 {
     font-family: 'Rubik', sans-serif;
 }
 
+.selected-order{
+    background-color: #d4d4d4;
+}
+
 .order{
     width: 60%;
 }
@@ -3261,6 +3266,13 @@ h2 {
 
 .ordered-product-details-lhs{
     width: 70%;
+}
+
+#myChart1{
+    background-color: #f9f9f9;
+    padding: 1em;
+    border-radius: 15px;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
 
 
