@@ -76,7 +76,7 @@
         <li>
             <a href="<?= ROOT ?>/driver_home/profile">
 
-                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chair-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/user-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
                     Edit Profile</span>
             </a>
             <span class="tooltip">Edit Profile </span>
