@@ -8,10 +8,11 @@
             <div class="ads">
                 <div class="ads-heading">
                     <h1>Pending Designs</h1>
-                    <button>All Designs</button>
+                    <a href="<?=ROOT?>/manager/all_designs"><button>All Designs</button></a>
                 </div>
                 <div class="ad-table">
                 <table>
+
                     <tr>
                         <th>Date</th>
                         <th>Image</th>
@@ -27,15 +28,12 @@
                                 <td><img src="<?=ROOT?>/<?= $row->Image ?>" alt=""></td>
                                 <td><?= $row->Name ?></td>
                                 <td>
-                                    <a href="#">Details</a>
-                                    <a href="#">Verify</a>
+                                    <a href="<?=ROOT?>/manager/design_details/<?= $row->DesignID ?>">Details</a>
+                                    <a href="<?=ROOT?>/manager/verify/<?=$row->DesignID?>">Verify</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
-
-                    
-
                    
                 </table>
                 </div>
