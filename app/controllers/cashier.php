@@ -47,10 +47,10 @@ class cashier extends Controller
             $this->redirect('login1');
         }
 
-        $cart = new Carts();
-        $order_item = new Order_Items();
-        $order_item->updateQuantity($cartID, $productID, (int)$quantity + 1);
-        $cart->updateTotalAmountToIncrease($cartID, $cost);
+        // $cart = new Carts();
+        // $order_item = new Order_Items();
+        // $order_item->updateQuantity($cartID, $productID, (int)$quantity + 1);
+        // $cart->updateTotalAmountToIncrease($cartID, $cost);
         $this->redirect('cashier/dash');
     }
     public function completebill(){
