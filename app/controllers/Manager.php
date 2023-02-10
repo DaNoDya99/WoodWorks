@@ -21,7 +21,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         $furniture = new Furnitures();
@@ -43,7 +43,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         if($status == 1)
@@ -63,7 +63,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -122,7 +122,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -150,7 +150,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -171,7 +171,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         $furniture = new Furnitures();
@@ -192,7 +192,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         
@@ -205,7 +205,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         $design = new Design();
@@ -228,7 +228,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -254,7 +254,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login4');
+            $this->redirect('login');
         }
 
         // $furniture = new Furnitures();
