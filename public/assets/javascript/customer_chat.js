@@ -1,3 +1,11 @@
+const  btn = $("#chat-btn");
+const  cus_chat = $("#cus-chat");
+
+function openChat(){
+    btn.style.visibility = 'hidden';
+    cus_chat.style.visibility = 'visible';
+}
+
 $(document).ready(() => {
 
     $.ajax(

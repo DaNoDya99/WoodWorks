@@ -1361,6 +1361,11 @@ h3 {
     font-family: 'Poppins-Light', sans-serif;
 }
 
+/*.chat-visibility{*/
+/*    transform: scale(0.1);*/
+/*    visibility: hidden;*/
+/*}*/
+
 .chat-header{
     display: flex;
     align-items: center;
@@ -3275,8 +3280,20 @@ h2 {
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
 
+.chat-btn{
+    position: fixed;
+    top: 85%;
+    left: 93%;
+    border-radius: 100%;
+    width: 6em;
+    height: 6em;
+    border: none;
+}
 
-
-
+.chat-btn img{
+    width: 5em;
+    height: 5em;
+    display: none;
+}
 
 

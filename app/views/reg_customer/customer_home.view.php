@@ -98,7 +98,7 @@
         </div>
     </section>
 
-    <div class="cus-chat">
+    <div class="cus-chat chat-visibility" id = "cus-chat">
         <div class="chat-header">
             <span>Manager</span>
             <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize">
@@ -111,6 +111,12 @@
             <button type="button" id="button"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
         </div>
     </div>
+
+
+<!--        <button class="chat-btn" id="chat-btn" onclick="openChat()">-->
+<!--            <img src="--><?php //=ROOT?><!--/assets/images/customer/chat-circle-svgrepo-com.svg" alt="">-->
+<!--        </button>-->
+
 
     <script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
     <script src="<?=ROOT?>/assets/javascript/customer_chat.js"></script>
