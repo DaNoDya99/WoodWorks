@@ -108,7 +108,7 @@ body{
     justify-content: center;
 }
 
-.login-form {
+/* .login-form {
     width: 500px;
     border-radius: 16px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
@@ -118,16 +118,16 @@ body{
     padding: 25px 30px;
     font-family: 'Rubik', sans-serif;
     font-weight: bolder;
-}
+} */
 
 .login-form select {
     background-color: #f9f9f9;
 }
 
-.signup {
+/* .signup {
     max-height: 45em;
     overflow-y: auto;
-}
+} */
 
 .login-form header {
     font-size: 25px;
@@ -167,29 +167,31 @@ body{
     padding: 0 10px;
 }
 
+/* 
 .login-form form .field {
     display: flex;
     position: relative;
     flex-direction: column;
     margin-bottom: 10px;
-}
+} */
 
 .login-form form .field input {
     outline: none;
 }
 
+/* 
 .login-form form .input input {
     height: 40px;
     font-size: 16px;
     padding: 0 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
+} */
 
-.login-form form .name-details {
+/* .name-details {
     display: flex;
-}
-
+} */
+/* 
 form .name-details .field:first-child {
     margin-right: 19px;
 }
@@ -200,7 +202,7 @@ form .name-details .field input {
 
 form .name-details .field:last-child {
     margin-left: 19px;
-}
+} */
 
 .gender-select {
     height: 40px;
@@ -505,11 +507,11 @@ td {
 .emp-form-field input,
 select {
     padding: 5px 20px;
-    font-family: 'Rubik', sans-serif;
+    /* font-family: 'Poppins-Light', sans-serif; */
     font-size: 1vw;
     border-radius: 5px;
-    border: none;
-    background-color: #d4d4d4;
+    /* border: none; */
+    /* background-color: #d4d4d4; */
 }
 
 .add-emp-btn {
@@ -2690,8 +2692,8 @@ h2 {
 
 /*Registered Customer Payments*/
 
-.payment-container{
-    font-family: 'Rubik', sans-serif;
+.payment-container {
+    font-family: 'Poppins-Light', sans-serif;
     display: flex;
     height: 95vh;
     background-color: #c3c4a5;
@@ -2700,7 +2702,7 @@ h2 {
     justify-content: space-around;
 }
 
-.payment-items{
+.payment-items {
     width: 40%;
     background-color: #f9f9f9;
     max-height: 40em;
@@ -2710,7 +2712,7 @@ h2 {
     scrollbar-width: none;
 }
 
-.payment-details{
+.payment-details {
     width: 40%;
     background-color: #0F3D3E;
     color: #f9f9f9;
@@ -2718,86 +2720,86 @@ h2 {
     padding: 1em 2em;
 }
 
-.payment-details div{
+.payment-details div {
     display: flex;
     justify-content: space-between;
 }
 
-.payment-details h1{
+.payment-details h1 {
     margin-bottom: 2em;
 }
 
-.payment-details div:nth-child(2){
+.payment-details div:nth-child(2) {
     margin-bottom: 1.5em;
 }
 
-.payment-details div:nth-child(3){
+.payment-details div:nth-child(3) {
     border-bottom: 2px solid #f9f9f9;
     padding-bottom: 2em;
 }
 
-.payment-details div:nth-child(4){
+.payment-details div:nth-child(4) {
     margin: 1em 0;
 }
 
-.payment-details button{
+.payment-details button {
     width: 100%;
     height: 2em;
     color: #f9f9f9;
     background-color: #1b5b51;
     border: none;
-    font-family: 'Rubik-SemiBold' , sans-serif;
+    font-family: 'Poppins-SemiBold', sans-serif;
     font-size: 1.2rem;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.payment-items table{
+.payment-items table {
     width: 100%;
 }
 
-.payment-items tr{
+.payment-items tr {
     margin: .5em 0;
 }
 
-.payment-items td{
+.payment-items td {
     text-align: center;
     margin: .5em 0;
 }
 
-.payment-items img{
+.payment-items img {
     width: 80px;
     height: 80px;
     border-radius: 3px;
     object-fit: cover;
 }
 
-.payment-popup{
+.payment-popup {
     width: 90%;
 }
 
-.payment-checkout{
+.payment-checkout {
     display: flex;
     justify-content: space-between;
 }
 
-.checkout-details{
+.checkout-details {
     width: 50%;
     text-align: left;
 }
 
-.field{
+.field {
     display: flex;
     flex-direction: column;
     text-align: left;
 }
 
-.field label{
+.field label {
     font-size: .9rem;
     margin: .5em 0
 }
 
-.field input{
+.field input {
     border: 2px #d4d4d4 solid;
     height: 2.2em;
     border-radius: 5px;
@@ -2807,31 +2809,31 @@ h2 {
     width: 48%;
 }
 
-.checkout-details-field label{
+.checkout-details-field label {
     font-size: .9rem;
     margin: .5em 0;
 }
 
-.checkout-details-field input{
+.checkout-details-field input {
     border: 2px #d4d4d4 solid;
     height: 2.2em;
     border-radius: 5px;
 }
 
-.card-fields{
+.card-fields {
     display: flex;
     justify-content: space-between;
 }
 
-.card-field{
+.card-field {
     margin-top: .4em;
 }
 
-.card-field label{
+.card-field label {
     font-size: .9rem;
 }
 
-.card-field select{
+.card-field select {
     background-color: #ffffff;
     border: 2px solid #d4d4d4;
     height: 2.6em;
@@ -2840,28 +2842,28 @@ h2 {
     margin-top: .5em;
 }
 
-.card-field input{
+.card-field input {
     border: 2px #d4d4d4 solid;
     height: 2.2em;
     border-radius: 5px;
 }
 
-.promo{
+.promo {
     align-items: center;
 }
 
-.add-promo{
+.add-promo {
     font-size: 2rem;
     cursor: pointer;
 }
 
-.promo-field{
+.promo-field {
     transform: scale(.1);
     visibility: hidden;
     transition: transform 0.5s ease;
 }
 
-.open-promo-field{
+.open-promo-field {
     width: 98%;
     height: 2.2em;
     border: 2px solid #d4d4d4;
@@ -2871,8 +2873,78 @@ h2 {
 
 }
 
-/*Categories*/
-.cat-container{
+.leftpanel {
+
+    background: url('../../assets/images/cashier/Rectangle6.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.nav {
+    position: fixed;
+    align-items: center;
+    width: 100vw;
+    padding: 20px;
+    margin-top: 0px;
+
+}
+
+.nav img {
+    padding-left: 5vw;
+    padding-top: 20px;
+    width: 14vw;
+}
+
+/* .contactbar {
+    position: fixed;
+    top: 0;
+    height: 40px;
+    width: 100vw;
+    background-color: #182422;
+} */
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 5vw;
+}
+
+.nav li {
+    padding-left: 3vw;
+}
+
+.main {
+    display: grid;
+    /* column-gap: 50px; */
+    grid-template-columns: 2fr 5fr;
+}
+
+.grid-item {
+
+    height: 100vh;
+
+}
+
+.mainbg {
+    background-color: #E2E2CF;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-field input {
+    margin-bottom: 5px;
+    height: 30px;
+    min-width: 0;
+    width: 30vw;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #18242279;
+}
+
+.name-details {
     display: flex;
     justify-content: space-between;
 }
@@ -3280,3 +3352,78 @@ h2 {
 
 
 
+.name-details input {
+    width: 100%;
+}
+
+form button {
+    font-size: 15px;
+    background-color: #182422;
+    color: white;
+    width: 80px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+label {
+    color: rgb(59, 59, 59);
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+.loginbutton {
+    width: 100%;
+    background-color: #007148;
+    border: 0px;
+    padding: 12px;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+
+}
+
+.loginbutton:hover {
+    background-color: #005c3f;
+    cursor: pointer;
+}
+
+/* Sign Up Page From */
+
+.signup .inline-input {
+    display: flex;
+    min-width: 0;
+}
+
+.signup .inline-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup .input-field {
+    /* flex:1; */
+}
+
+.signup .input-field input {
+    width: 25vw;
+}
+
+.signup .inline-input input {
+    width: 11.5vw;
+}
+
+
+
+.input-field select {
+    width: 26vw;
+    margin-bottom: 5px;
+    height: 30px;
+    min-width: 0;
+    padding-left: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid #18242279;
+}

@@ -30,7 +30,7 @@ class Model extends Database
         $query = "insert into ".$this->table;
         $query .= " (".implode(",",$keys) .") values (:".implode(",:",$keys) .")";
 
-        $this->query($query,$data);
+        return ($this->query($query,$data));
     }
 
     public function where($column,$value)
@@ -52,9 +52,17 @@ class Model extends Database
             }
         }
 
-        $keys = array_keys($data);
-        $id = array_search($id,$data);
+         if(property_exists($this,'beforeInsert'))
+        {
+            foreach($this->beforeInsert as $func)
+            {
+                $data = $this->$func($data);
+            }
+        }
 
+        $keys = array_keys($data);
+       
+        $id = array_search($id,$data);
         $query = "update ".$this->table." set ";
         foreach ($keys as $key)
         {
@@ -62,7 +70,6 @@ class Model extends Database
         }
         $query = trim($query,",");
         $query .= " where ".$id." = :".$id;
-
         $this->query($query,$data);
     }
 
