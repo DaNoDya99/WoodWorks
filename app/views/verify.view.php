@@ -38,7 +38,11 @@
                     <form action="" method="post" novalidate class="signup" style="">
                         <a href="<?=ROOT?>/verify/sendOTP">Send Code</a>
                         <p>Enter the code sent to the provided email</p>
-                        <p><?= $data['msg'] ?></p>
+                        <p>
+                            <?php if(isset($data['msg'])){
+                                show($data['msg']);
+                            } ?>
+                            </p>
                         <div class="input-field">
                             <!-- <label for="Email"><small>OTP Code</small></label><br> -->
                             <input style="padding-left:10px ;" type="text" name="otp" id="email" placeholder="Enter OTP Code" required><br>
