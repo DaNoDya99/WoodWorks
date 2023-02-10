@@ -26,7 +26,7 @@
         <div class="nav-profile-section">
             <div class="nav-user-details">
                 <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="User">
-                <h1>Welcome, <?=$row[0]->Firstname?></h1>
+                <p>Welcome, <?=$row[0]->Firstname?></p>
             </div>
             <div class="dropdown">
                 <button class="dropbtn">Account</button>

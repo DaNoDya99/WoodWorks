@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?=APPNAME?></title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles2.css">
+<!--    <link rel="stylesheet" href="--><?php //=ROOT?><!--/assets/css/style4.css">-->
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/header.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/table.css">
+
 
 </head>

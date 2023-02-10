@@ -7,7 +7,7 @@
             <img class="image" src="<?= ROOT ?>/<?= Auth::getImage() ?>" alt="">
             <div class="name-pos">
                 <p class="name"><?= Auth::getFirstname() . " " . Auth::getLastname() ?></p>
-                <span class="position">Supplier</span>
+                <span class="position">Cashier</span>
             </div>
 
             <img class="carret" src="<?= ROOT ?>/assets/images/header/caret-down-solid.svg" alt="">
@@ -41,23 +41,30 @@
         </div>
         <ul>
             <li>
-                <a href="<?=ROOT?>/supplier/dash">
+                <a href="<?=ROOT?>/cashier/dash">
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/house-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
-                        View Orders</span>
+                        Point of Sales</span>
                 </a>
-                <span class="tooltip">View Orders</span>
+                <span class="tooltip">Point of Sales</span>
             </li>
 
             <li>
-            <a href="<?=ROOT?>/supplier/accepted">
+            <a href="<?=ROOT?>/cashier/inventory">
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/check-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Accepted Orders</span>
                 </a>
                 <span class="tooltip">Accepted Orders</span>
             </li>
+            <li>
+            <a href="<?=ROOT?>/cashier/billing">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/clock-rotate-left-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                        Order History</span>
+                </a>
+                <span class="tooltip">Order History</span>
+            </li>
 
             <li>
-            <a href="<?=ROOT?>/supplier/profile">
+            <a href="<?=ROOT?>/cashier/profile">
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/user-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Edit Profile</span>
                 </a>
@@ -65,3 +72,4 @@
             </li>
         </ul>
     </div>
+<script src="<?= ROOT ?>/assets/javascript/header/header.js"></script>
