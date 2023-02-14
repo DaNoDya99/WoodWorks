@@ -98,10 +98,10 @@
         </div>
     </section>
 
-    <div class="cus-chat chat-visibility" id = "cus-chat">
+    <div class="cus-chat" id = "cus-chat">
         <div class="chat-header">
             <span>Manager</span>
-            <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize">
+            <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize" onclick="closeChat()">
         </div>
         <div class="cus-chat-section" id="chat">
 
@@ -112,11 +112,15 @@
         </div>
     </div>
 
+    <img class="chat-btn" id="chat-btn" src="<?=ROOT?>/assets/images/customer/chat-circle-svgrepo-com.svg" alt="" onclick="openChat()">
 
-<!--        <button class="chat-btn" id="chat-btn" onclick="openChat()">-->
-<!--            <img src="--><?php //=ROOT?><!--/assets/images/customer/chat-circle-svgrepo-com.svg" alt="">-->
-<!--        </button>-->
+    <div class="manager-chat-selector" id="">
+        <h3>Manager</h3>
+    </div>
 
+    <div class="designer-chat-selector">
+        <h3>Designer</h3>
+    </div>
 
     <script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
     <script src="<?=ROOT?>/assets/javascript/customer_chat.js"></script>

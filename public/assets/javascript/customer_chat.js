@@ -1,9 +1,14 @@
-const  btn = $("#chat-btn");
-const  cus_chat = $("#cus-chat");
+let cus_chat = document.getElementById("cus-chat");
+let chat_btn = document.getElementById("chat-btn");
 
 function openChat(){
-    btn.style.visibility = 'hidden';
-    cus_chat.style.visibility = 'visible';
+    cus_chat.style.visibility = "visible";
+    chat_btn.style.visibility = "hidden";
+}
+
+function closeChat(){
+    cus_chat.style.visibility = "hidden";
+    chat_btn.style.visibility = "visible";
 }
 
 $(document).ready(() => {
