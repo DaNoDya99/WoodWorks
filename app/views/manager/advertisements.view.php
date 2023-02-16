@@ -25,6 +25,7 @@
                             </div>
                         <?php endif; ?>
 
+
                         <form method="post">
                             <div>
                                 <label>Product Name</label>
@@ -89,8 +90,8 @@
                         <td>Rs. 15000.00</td>
                         <td>Pending</td>
                         <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
+                            <a href="<?=ROOT?>/manager/advertisement_details/">Details</a>
+                            
                         </td>
                     </tr>
 
@@ -101,8 +102,7 @@
                         <td>Rs. 15000.00</td>
                         <td>Pending</td>
                         <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
+                            <a href="<?=ROOT?>/manager/advertisement_details/">Details</a>
                         </td>
                     </tr>
 
@@ -113,8 +113,7 @@
                         <td>Rs. 15000.00</td>
                         <td>Pending</td>
                         <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
+                            <a href="<?=ROOT?>/manager/advertisement_details/">Details</a>
                         </td>
                     </tr>
 
@@ -125,8 +124,7 @@
                         <td>Rs. 15000.00</td>
                         <td>Pending</td>
                         <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
+                            <a href="<?=ROOT?>/manager/advertisement_details/">Details</a>
                         </td>
                     </tr>
 
@@ -137,8 +135,7 @@
                         <td>Rs. 15000.00</td>
                         <td>Pending</td>
                         <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
+                            <a href="<?=ROOT?>/manager/advertisement_details/">Details</a>
                         </td>
                     </tr>
 
@@ -149,8 +146,7 @@
                         <td>Rs. 15000.00</td>
                         <td>Pending</td>
                         <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
+                            <a href="<?=ROOT?>/manager/advertisement_details/">Details</a>
                         </td>
                     </tr>
 
@@ -161,8 +157,7 @@
                         <td>Rs. 15000.00</td>
                         <td>Pending</td>
                         <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
+                            <a href="<?=ROOT?>/manager/advertisement_details/">Details</a>
                         </td>
                     </tr>
 
@@ -173,8 +168,7 @@
                         <td>Rs. 15000.00</td>
                         <td>Pending</td>
                         <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
+                            <a href="<?=ROOT?><?=ROOT?>/manager/advertisement_details/ ?>">Details</a>
                         </td>
                     </tr>
                 </table>

@@ -857,6 +857,17 @@ margin: 20px 0;
   width: 90%;
 }
 
+/* .cat-inputs{
+  width: 60%;
+  height: 100%;
+  padding: 1em;
+  margin: auto 0;
+}
+
+.cat-inputs input,.cat-inputs select{
+  width: 100%;
+} */
+
 /*Chat*/
 .chat{
   display: flex;

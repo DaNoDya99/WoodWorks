@@ -334,5 +334,27 @@ class Manager extends Controller
         $this->view('manager/all_designs',$data);
     }
 
+    public function advertisement_details($id=null)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        // $id = $id ?? Auth::getEmployeeID();
+        // $employee = new Employees();
+
+        // $advertisement = new Advertisements();
+        // $data['advertisement'] = $advertisement->viewAdvertisement($id);
+        
+        // $data['row'] = $employee->where('EmployeeID',$id);
+        // $data['title'] = "Advertisment Details";
+
+        $this->view('manager/advertisement_details');
+    }
+
+    
+
+
+
 
 }

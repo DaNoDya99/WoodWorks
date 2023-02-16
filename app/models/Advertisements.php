@@ -89,6 +89,35 @@ class Advertisements extends model
         return $text;
     }
 
+    // public function viewAdvertisement($id = null)
+    // {
+    //     $query = "select ";
+
+    //     $fields = [
+    //         'AdvetisementID',
+    //         'Date',
+    //         'Product_name',
+    //         'CategoryID',
+    //         'Sub_category_name',
+    //         'Quantity',
+    //         'Description',
+    //         'Price',
+    //         'ManagerID' 
+
+    //     ];
+
+    //     if(!empty($fields)){
+    //         foreach ($fields as $field){
+    //             $query .= $field.", ";
+    //         }
+    //     }
+
+    //     $query = trim($query,", ");
+    //     $query .= " from ".$this->table." where AdvetisementID = '$id'";
+
+    //     return $this->query($query);
+    // }
+
 
     
 }

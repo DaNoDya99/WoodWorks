@@ -29,7 +29,6 @@
                                 <td><?= $row->Name ?></td>
                                 <td>
                                     <a href="<?=ROOT?>/manager/design_details/<?= $row->DesignID ?>">Details</a>
-                                    <a href="<?=ROOT?>/manager/verify/<?=$row->DesignID?>">Verify</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
