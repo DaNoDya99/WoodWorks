@@ -1,76 +1,21 @@
-var refresh = false;
+let contacts = document.getElementById("contacts");
 
-$(document).ready(() => {
-    $.ajax({
-        type: 'GET',
-        url: "http://localhost/WoodWorks/public/Message/getManagerChats",
-        dataType: 'html',
-        success: (data) => {
-            $('#contacts').html(data)
-        }
-    });
-
-    $('#button').click(() => {
-
-        const msg = $("#message").val();
-
-        if(msg !== '')
+setInterval(() => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET","http://localhost/WoodWorks/public/message/getManagerChats",true);
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE)
         {
-            $.ajax(
-                {
-                    type: 'POST',
-                    url: "http://localhost/WoodWorks/public/Message/sendMsg2",
-                    data : {message: msg},
-                    success: (data) => {
-
-                    }
-                }
-            )
+            if(xhr.status === 200)
+            {
+                let data = xhr.response;
+                contacts.innerHTML = data;
+                console.log(data);
+            }
         }
-
-        $("#message").val('');
-
-    })
-
-    setInterval(() => {
-        if(refresh){
-            $.ajax({
-                type: 'GET',
-                url: "http://localhost/WoodWorks/public/Message/getMessages2",
-                dataType: 'html',
-                success: (data) => {
-                    $('#msgs').html(data)
-                }
-            })
-
-            $.ajax({
-                type: 'GET',
-                url: "http://localhost/WoodWorks/public/Message/getManagerChats",
-                dataType: 'html',
-                success: (data) => {
-                    $('#contacts').html(data)
-                }
-            });
-        }
-
-    },2000);
-
-});
-
-function load_messages()
-{
-    $.ajax({
-        type: 'GET',
-        url: "http://localhost/WoodWorks/public/Message/getMessages2",
-        dataType: 'html',
-        success: (data) => {
-            $('#msgs').html(data)
-        }
-    });
-
-
-    refresh = true;
-}
+    }
+    xhr.send();
+},500)
 
 
 

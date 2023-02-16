@@ -52,5 +52,4 @@
 
 </div>
 
-<script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
 <script src="<?=ROOT?>/assets/javascript/manager_chat.js"></script>

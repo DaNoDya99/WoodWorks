@@ -53,4 +53,22 @@ class Messages extends Model
         $query = "SELECT * FROM messages WHERE (sender = '$sender' AND receiver = '$receiver') OR (sender = '$receiver' AND receiver = '$sender') ORDER BY date ASC;";
         return $this->query($query);
     }
+
+    public function getManagerChats()
+    {
+        $query = "SELECT DISTINCT(chats.chatID),chats.username, chats.customerID FROM chats INNER JOIN messages ON chats.chatID = messages.sender WHERE messages.receiver = 3;";
+        return $this->query($query);
+    }
+
+    public function getLatestMessage($sender,$receiver)
+    {
+        $query = "SELECT messages.message, messages.date FROM messages WHERE (messages.sender = :sender AND messages.receiver = :receiver) OR (messages.sender = :receiver AND messages.receiver = :sender) ORDER BY messages.date DESC LIMIT 1;";
+        return $this->query($query, ['sender' => $sender, 'receiver' => $receiver]);
+    }
+
+    public function getChatUserImage($id)
+    {
+        $query = "SELECT Image FROM customer WHERE CustomerID = :CustomerID;";
+        return $this->query($query, ['CustomerID' => $id]);
+    }
 }
