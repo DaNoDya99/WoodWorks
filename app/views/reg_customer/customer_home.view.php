@@ -103,7 +103,7 @@
             <span>Manager</span>
             <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize" onclick="closeChat()">
         </div>
-        <div class="cus-chat-section" id="chat">
+        <div class="cus-chat-section" id="chat-manager">
 
         </div>
         <div class="cus-send-msg-sec">
@@ -120,7 +120,7 @@
             <span>Designer</span>
             <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize" onclick="closeChat()">
         </div>
-        <div class="cus-chat-section" id="chat">
+        <div class="cus-chat-section" id="chat-designer">
 
         </div>
         <div class="cus-send-msg-sec">

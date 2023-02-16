@@ -55,7 +55,7 @@ class Message extends Controller
         {
             foreach ($msgs as $msg)
             {
-                if($msg->sender == $_POST['sender'])
+                if($msg->sender != $id)
                 {
                     $str = $str."<div  class='cus-sending'>
                                     <p>".$msg->message."</p>

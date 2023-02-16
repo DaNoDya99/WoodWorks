@@ -7,6 +7,8 @@ let button_manager = document.getElementById("button-manager");
 let button_designer = document.getElementById("button-designer");
 let chat_form_1 = document.getElementById("chat-form-1");
 let chat_form_2 = document.getElementById("chat-form-2");
+let chat_manager = document.getElementById("chat-manager");
+let chat_designer = document.getElementById("chat-designer");
 
 function openChat(){
     manager.style.visibility = "visible";
@@ -73,3 +75,30 @@ button_designer.onclick = () => {
     xhr.send(formData);
 }
 
+setInterval(() => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET","http://localhost/WoodWorks/public/message/getCustomerMessages/3");
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                let data = xhr.response;
+                chat_manager.innerHTML = data;
+            }
+        }
+    }
+    xhr.send();
+},500)
+
+setInterval(() => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET","http://localhost/WoodWorks/public/message/getCustomerMessages/4");
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                let data = xhr.response;
+                chat_designer.innerHTML = data;
+            }
+        }
+    }
+    xhr.send();
+},500)
