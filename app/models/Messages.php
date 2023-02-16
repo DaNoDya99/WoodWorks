@@ -71,4 +71,10 @@ class Messages extends Model
         $query = "SELECT Image FROM customer WHERE CustomerID = :CustomerID;";
         return $this->query($query, ['CustomerID' => $id]);
     }
+
+    public function getChatUserDetails($id)
+    {
+        $query = "SELECT chats.username, chats.status, customer.Image FROM chats INNER JOIN customer ON chats.customerID = customer.CustomerID WHERE chats.customerID = :CustomerID; ";
+        return $this->query($query, ['CustomerID' => $id]);
+    }
 }

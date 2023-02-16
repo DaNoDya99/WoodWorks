@@ -18,8 +18,6 @@ class Message extends Controller
         $_POST['sender'] = $Message->getChatID(Auth::getCustomerID())[0]->chatID;
 
         $Message->insert($_POST);
-
-
     }
 
     public function sendMsgToDesigner()
@@ -102,7 +100,7 @@ class Message extends Controller
 
            foreach ($chats as $chat)
            {
-               $str = $str."<div class='contact' id='chat' onclick='load_messages()'>
+               $str = $str."<div class='contact' id='chat' cus_id=".$chat->customerID." onclick='load_messages(this.getAttribute(`cus_id`))'>
                            <img src='http://localhost/WoodWorks/public/".$chat->image."'>
                            <div class='contact-latest'>
                                <div>
@@ -121,5 +119,61 @@ class Message extends Controller
        echo $str;
    }
 
-   
+   public function getManagerMessages($id)
+   {
+         $Message = new Messages();
+         $msgs = $Message->getMessages(3,$Message->getChatID($id)[0]->chatID);
+         $chatDetails = $Message->getChatUserDetails($id)[0];
+
+         $str = " <div class='chat-msg-header'>
+                    <img src='http://localhost/WoodWorks/public/".$chatDetails->Image."'>
+                    <h2>".$chatDetails->username."</h2>
+                  </div>
+                    <div class='chat-msg-container'>";
+
+         if(!empty($msgs))
+         {
+              foreach ($msgs as $msg)
+              {
+                if($msg->sender == 3)
+                {
+                    $str = $str."<div  class='sending'>
+                                    <p>".$msg->message."</p>
+                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
+                                </div>";
+                }else{
+                    $str = $str."<div  class='incoming'>
+                                    <p>".$msg->message."</p>
+                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
+                                 </div>";
+                }
+              }
+         }
+
+            $str = $str." </div>
+                    <div class='send-msg'>
+                        <form id='chat-manager-from'>
+                            <div>
+                                <input type='text' placeholder='Write Something'>
+                                <button type='submit' id='button'><img src='http://localhost/WoodWorks/public/assets/images/manager/telegram-desktop-svgrepo-com.svg'></button>
+                            </div>
+                        </form>
+                    </div>";
+
+         echo $str;
+   }
+
+   function sendMsgsToCustomer($id= null)
+   {
+       if(!Auth::logged_in())
+       {
+           $this->redirect('login');
+       }
+
+       $Message = new Messages();
+       $_POST['sender'] = 3;
+       $_POST['receiver'] = $Message->getChatID($id)[0]->chatID;
+
+       $Message->insert($_POST);
+   }
 }
