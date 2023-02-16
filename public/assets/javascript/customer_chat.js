@@ -3,6 +3,10 @@ let dis_chat = document.getElementById("dis-chat");
 let chat_btn = document.getElementById("chat-btn");
 let manager = document.getElementById("manager-chat-selector");
 let designer = document.getElementById("designer-chat-selector");
+let button_manager = document.getElementById("button-manager");
+let button_designer = document.getElementById("button-designer");
+let chat_form_1 = document.getElementById("chat-form-1");
+let chat_form_2 = document.getElementById("chat-form-2");
 
 function openChat(){
     manager.style.visibility = "visible";
@@ -33,54 +37,40 @@ function openDesignerChat(){
     chat_btn.style.visibility = "hidden";
 }
 
+chat_form_1.onsubmit = (e) => {
+    e.preventDefault();
+}
 
-$(document).ready(() => {
+chat_form_2.onsubmit = (e) => {
+    e.preventDefault();
+}
 
-    $.ajax(
-        {
-            type: 'GET',
-            url: "http://localhost/WoodWorks/public/Message/getMessages",
-            dataType: 'html',
-            success: function (data)
-            {
-                $("#chat").html(
-                    data
-                )
+button_manager.onclick = () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost/WoodWorks/public/message/sendMsgToManager",true);
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+
             }
         }
-    )
+    }
+    let formData = new FormData(chat_form_1);
+    xhr.send(formData);
+}
 
-    $("#button").click( () => {
-
-        const msg = $("#message").val();
-
-        if(msg !== '')
-        {
-            $.ajax(
-                {
-                    type: 'POST',
-                    url: "http://localhost/WoodWorks/public/Message/sendMsg",
-                    data : {message: msg},
-                    success: (data) => {
-
-                    }
-                }
-            )
-        }
-    });
-
-    setInterval(() => {
-        $.ajax({
-            type: 'GET',
-            url: "http://localhost/WoodWorks/public/Message/getMessages",
-            dataType: 'html',
-            success: (data) => {
-                $("#chat").html(
-                    data
-                )
+button_designer.onclick = () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost/WoodWorks/public/message/sendMsgToDesigner",true);
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                let data = xhr.response;
+                console.log(data);
             }
-        })
-    },3000);
-
-});
+        }
+    }
+    let formData = new FormData(chat_form_2);
+    xhr.send(formData);
+}
 
