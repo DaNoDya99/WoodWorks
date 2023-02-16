@@ -26,22 +26,9 @@
                 </div>
             </div>
             <div class="chat-contact">
-                <div class="chat-messages">
-                    <div class="chat-msg-header">
-                        <img src="<?=ROOT?>/assets/images/manager/danodya.jpg">
-                        <h2>Danodya Supun</h2>
-                    </div>
-                    <div id="msgs" class="chat-msg-container">
+                <div class="chat-messages" id="msgs">
 
-                    </div>
-                    <div class="send-msg">
-                        <form>
-                            <div>
-                                <input type="text" id="message" placeholder="Write Something">
-                                <button type="button" id="button"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
-                            </div>
-                        </form>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -52,5 +39,4 @@
 
 </div>
 
-<script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
 <script src="<?=ROOT?>/assets/javascript/manager_chat.js"></script>

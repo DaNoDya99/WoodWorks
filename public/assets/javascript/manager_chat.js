@@ -1,75 +1,77 @@
-var refresh = false;
+let contacts = document.getElementById("contacts");
+let button = document.getElementById("button");
+let form = document.getElementById("chat-manager-form");
+let user = '';
 
-$(document).ready(() => {
-    $.ajax({
-        type: 'GET',
-        url: "http://localhost/WoodWorks/public/Message/getManagerChats",
-        dataType: 'html',
-        success: (data) => {
-            $('#contacts').html(data)
-        }
-    });
+// form.onsubmit = (e) => {
+//     e.preventDefault();
+// }
 
-    $('#button').click(() => {
-
-        const msg = $("#message").val();
-
-        if(msg !== '')
+setInterval(() => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET","http://localhost/WoodWorks/public/message/getManagerChats",true);
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE)
         {
-            $.ajax(
+            if(xhr.status === 200)
+            {
+                contacts.innerHTML = xhr.response;
+            }
+        }
+    }
+    xhr.send();
+},500)
+
+function load_messages(id){
+    user = id;
+    let messages = document.getElementById("msgs");
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET","http://localhost/WoodWorks/public/message/getManagerMessages/"+id,true);
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE)
+        {
+            if(xhr.status === 200)
+            {
+                messages.innerHTML = xhr.response;
+            }
+        }
+    }
+    xhr.send();
+}
+
+
+setInterval(() => {
+    if(user !== ''){
+        let messages = document.getElementById("msgs");
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET","http://localhost/WoodWorks/public/message/getManagerMessages/"+user,true);
+        xhr.onload = () => {
+            if(xhr.readyState === XMLHttpRequest.DONE)
+            {
+                if(xhr.status === 200)
                 {
-                    type: 'POST',
-                    url: "http://localhost/WoodWorks/public/Message/sendMsg2",
-                    data : {message: msg},
-                    success: (data) => {
-
-                    }
+                    messages.innerHTML = xhr.response;
                 }
-            )
+            }
         }
+        xhr.send();
+    }
+},500);
 
-        $("#message").val('');
+button.onclick = () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","http://localhost/WoodWorks/public/message/sendMsgsToCustomer/"+user,true);
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE)
+        {
+            if(xhr.status === 200)
+            {
 
-    })
-
-    setInterval(() => {
-        if(refresh){
-            $.ajax({
-                type: 'GET',
-                url: "http://localhost/WoodWorks/public/Message/getMessages2",
-                dataType: 'html',
-                success: (data) => {
-                    $('#msgs').html(data)
-                }
-            })
-
-            $.ajax({
-                type: 'GET',
-                url: "http://localhost/WoodWorks/public/Message/getManagerChats",
-                dataType: 'html',
-                success: (data) => {
-                    $('#contacts').html(data)
-                }
-            });
+            }
         }
-
-    },2000);
-
-});
-
-function load_messages()
-{
-    $.ajax({
-        type: 'GET',
-        url: "http://localhost/WoodWorks/public/Message/getMessages2",
-        dataType: 'html',
-        success: (data) => {
-            $('#msgs').html(data)
-        }
-    });
-
-
-    refresh = true;
+    }
+    let formData = new FormData(form);
+    xhr.send(formData);
 }
 
 

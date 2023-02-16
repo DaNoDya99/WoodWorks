@@ -1352,13 +1352,14 @@ h3 {
 .cus-chat{
     position: fixed;
     right: 15px;
-    top: 50%;
+    top: 40%;
     width: 25em;
     height: 28em;
     background-color: #d4d4d4;
     border-radius: 10px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     font-family: 'Poppins-Light', sans-serif;
+    visibility: hidden;
 }
 
 .chat-header{
@@ -1388,11 +1389,12 @@ h3 {
     overflow-y: auto;
 }
 
-.cus-send-msg-sec{
+.cus-send-msg-sec form{
     display: flex;
     padding:  .5em;
     justify-content: space-between;
 }
+
 
 .cus-send-msg-sec button{
     display: flex;
@@ -3275,8 +3277,41 @@ h2 {
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
 
+.chat-btn{
+    position: fixed;
+    top: 85%;
+    left: 93%;
+    border-radius: 100%;
+    width: 6em;
+    height: 6em;
+    border: none;
+    visibility: visible;
+}
 
+.chat-btn img{
+    width: 5em;
+    height: 5em;
+    display: none;
+}
 
+.manager-chat-selector, .designer-chat-selector{
+    background-color: #f9f9f9;
+    position: fixed;
+    left: 85%;
+    width: 8%;
+    height: 2.5em;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
 
+.manager-chat-selector{
+    top: 84%;
+}
 
+.designer-chat-selector{
+    top: 89%;
+}
 
