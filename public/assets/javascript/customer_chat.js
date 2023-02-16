@@ -65,8 +65,7 @@ button_designer.onclick = () => {
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-                let data = xhr.response;
-                console.log(data);
+
             }
         }
     }

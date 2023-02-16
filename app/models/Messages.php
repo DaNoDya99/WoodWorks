@@ -49,4 +49,8 @@ class Messages extends Model
         return $this->query($query);
     }
 
+    public function getMessages($sender,$receiver){
+        $query = "SELECT * FROM messages WHERE (sender = '$sender' AND receiver = '$receiver') OR (sender = '$receiver' AND receiver = '$sender') ORDER BY date ASC;";
+        return $this->query($query);
+    }
 }

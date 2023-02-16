@@ -39,36 +39,40 @@ class Message extends Controller
         echo $_POST['message'];
     }
 
+    public function getCustomerMessages($id = null)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
 
+        $Message = new Messages();
+        $msgs = $Message->getMessages($id,$Message->getChatID(Auth::getCustomerID())[0]->chatID);
 
+        $str = "";
 
-//    public function getMessages()
-//    {
-//        $Message = new Messages();
-//        $msgs = $Message->getMessages('ch001','ch002');
-//
-//        $str = "";
-//
-//        if(!empty($msgs)){
-//            foreach ($msgs as $msg)
-//            {
-//                if($msg->sender == 'ch002')
-//                {
-//                    $str = $str."<div  class='cus-sending'>
-//                                    <p>".$msg->message."</p>
-//                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
-//                                </div>";
-//                }else{
-//                    $str = $str."<div  class='cus-incoming'>
-//                                    <p>".$msg->message."</p>
-//                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
-//                                 </div>";
-//                }
-//            }
-//        }
-//
-//        echo $str;
-//    }
+        if(!empty($msgs))
+        {
+            foreach ($msgs as $msg)
+            {
+                if($msg->sender == $_POST['sender'])
+                {
+                    $str = $str."<div  class='cus-sending'>
+                                    <p>".$msg->message."</p>
+                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
+                                </div>";
+                }else{
+                    $str = $str."<div  class='cus-incoming'>
+                                    <p>".$msg->message."</p>
+                                    <p>".date("jS M Y H:i:s",strtotime($msg->date))."</p>
+                                 </div>";
+                }
+            }
+        }
+
+        echo $str;
+    }
+    
 //
 //    public function getManagerChats()
 //    {
