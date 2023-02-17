@@ -105,7 +105,7 @@ class Designer extends Controller
         $employee = new Employees();
         $id = $id ?? Auth::getEmployeeID();
         $data['row'] = $employee->where("EmployeeID",$id);
-        $data['rows'] = $design->getDesigns($limit,$offset);
+        $data['rows'] = $design->getDesigns($offset,$limit);
 
         if(!empty($data['rows'])) {
 

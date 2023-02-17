@@ -1001,20 +1001,53 @@ body{
 
 /* Designer-Add New Designs Page*/
 
-.des-form-body form{
+.des-form-body{
     width: 70%;
-    height: 80%;
+    background-color: #f9f9f9;
     margin: 1em auto;
+    padding: 1em 1.5em;
+    border-radius: 15px;
+    font-family: 'Rubik', sans-serif;
+    max-height: 80vh;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+
+}
+
+.add-des-form{
+    /*width: 70%;*/
+    /*height: 80%;*/
+    /*margin: 1em auto;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*max-height: 700px;*/
+    /*max-width: 90%;*/
+    /*border-radius: 10px;*/
+    /*font-family: 'Rubik';*/
+    /*padding: 5px;*/
+    /*box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );*/
+    /*background: #f9f9f9;*/
+    padding: 1em 0;
+    max-height: 74vh;
+    width: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.des-form-body h2{
+    margin: 0;
+    border-bottom: #cacaca 2px solid;
+}
+
+.add-des-form::-webkit-scrollbar {
+    display: none;
+}
+
+.des-img-upload-container{
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    max-height: 700px;
-    max-width: 90%;
-    border-radius: 10px;
-    font-family: 'Rubik';
-    padding: 5px;
-    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    background: #f9f9f9;
 }
 
 #designImage{
@@ -1022,8 +1055,10 @@ body{
     font-weight: bold;
     font-size: 15px;
     display: flex;
-    height: 5%;
+    /*height: 5%;*/
+    padding-top: 5px;
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 .designImage{
@@ -1032,9 +1067,12 @@ body{
     /*display: flex;*/
     /*flex-direction: column;*/
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 .designImage p{
+    padding-top: 10px;
+    margin-top: 5px;
     text-align: center;
     font-weight: bold;
 }
@@ -1051,9 +1089,9 @@ body{
 }
 
 .designImage img{
-    justify-content: center;
-    height: 150px;
-    width: 100px;
+    width: 10em;
+    height: 7em;
+    border-radius: 10px;
     max-height: 210px;
     max-width: 210px;
     object-fit: cover;
@@ -1064,27 +1102,39 @@ body{
     flex-direction: row;
 }
 
+.designImage img:nth-child(2) {
+    margin: 0 .5em;
+}
+
 .des_Name{
-    width: 475px;
-    display: flex;
-    align-items: center;
+    /*width: 475px;*/
+    /*display: flex;*/
+    /*width: 475px;*/
+    /*align-items: center;*/
+    /*margin-top: 1em;*/
+    /*display: flex;*/
+    /*width: 100%;*/
+    /*margin-left: 13em;*/
+    margin: auto;
+    height: 25%;
+    width: 55%;
 }
 
 .des_Name label{
     font-weight: bold;
+    /*margin-right: 0.5em;*/
 }
 
 .des_Name input{
-    width: 70%;
-    height: 36px;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background: #ffffff;
-    align-items: center;
-    margin-left: 10px;
-    padding-left: 10px;
-    box-sizing: border-box;
-    font-weight: bold;
-
+    font-family: 'Rubik', sans-serif;
+    background: #f9f9f9;
+    padding:0 10px;
+    margin-top: 0px;
 }
 
 figure{
@@ -1160,10 +1210,20 @@ figcaption{
     justify-content: center;
 }
 
-.form-control{
+#description textarea{
+    border: 1px solid #ccc;
+    height: 5em;
     width: 100%;
-    height: 50px;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Rubik', sans-serif;
 }
+
+/*.form-control{*/
+/*    width: 100%;*/
+/*    height: 50px;*/
+/*}*/
 
 .add-des-btn{
     height: 20%;
