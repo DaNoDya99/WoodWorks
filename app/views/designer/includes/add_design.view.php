@@ -22,7 +22,7 @@
                                     <img id="second-img" src="<?= ROOT ?>/assets/images/designer/No_image.jpg" alt="Design Image">
                                     <img id="third-img" src="<?= ROOT ?>/assets/images/designer/No_image.jpg" alt="Design Image">
                                 </div>
-                                <p id="num-of-files">Number of Images Chosen: None</p>
+                                <p id="num-of-files">Number of Images Chosen: None<br><b>You need to choose three images</b></p>
 
                             </div>
                         </div>
@@ -37,9 +37,7 @@
 
                     <div class="edit-des-Ubtn-section" id="edit-design">
                         <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
-                        <label for="file-input">
-                            Upload Images
-                        </label>
+                        <label for="file-input"> Upload Images </label>
                     </div>
 
                     <div class="edit-des-Dbtn-section" id="edit-design">

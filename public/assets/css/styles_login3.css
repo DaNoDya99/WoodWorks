@@ -1028,7 +1028,7 @@ body{
     /*box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );*/
     /*background: #f9f9f9;*/
     padding: 1em 0;
-    max-height: 74vh;
+    max-height: 76vh;
     width: 100%;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -1074,7 +1074,9 @@ body{
     padding-top: 10px;
     margin-top: 5px;
     text-align: center;
-    font-weight: bold;
+    font-family: 'Rubik', sans-serif;
+    /*font-weight: bold;*/
+    padding-left: 70px;
 }
 
 #images{
@@ -1154,20 +1156,21 @@ figcaption{
 }
 
 .edit-des-Ubtn-section{
-    height: 3%;
-    width: 20%;
+    height: 2em;
+    width: 25%;
     margin: auto;
     padding: 5px;
     cursor: pointer;
     font-family: 'Rubik-SemiBold';
-    font-size: 1vw;
+    font-size: 1.1rem;
     background: #104f4a;
     border-radius: 5px;
     align-items: center;
-    color: #ffffff;
+    color: #f9f9f9;
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 .edit-des-Ubtn-section label{
     cursor: pointer;
@@ -1177,17 +1180,17 @@ figcaption{
 }
 
 .edit-des-Dbtn-section{
-    height: 3%;
-    width: 20%;
+    height: 2em;
+    width: 25%;
     cursor: pointer;
     margin: auto;
     padding: 5px;
     font-family: 'Rubik-SemiBold';
-    font-size: 1vw;
+    font-size: 1.1rem;
     background: #721c24;
     border-radius: 5px;
     align-items: center;
-    color: #ffffff;
+    color: #f9f9f9;
     display: flex;
     flex-direction: column;
 }
