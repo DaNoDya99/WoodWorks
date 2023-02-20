@@ -945,6 +945,14 @@ margin: 20px 0;
   -ms-overflow-style: none;
 }
 
+#contacts-1{
+
+}
+
+#contacts-2{
+
+}
+
 .contact{
   display: flex;
   align-items: center;
@@ -1013,9 +1021,14 @@ margin: 20px 0;
   margin-top: 1em;
 }
 
+#chat-manager-form{
+  visibility: hidden;
+}
+
 .send-msg form div{
   display: flex;
   justify-content: space-between;
+  padding: 0 0.5em;
 }
 
 .send-msg input{
@@ -1078,6 +1091,13 @@ margin: 20px 0;
   border-top-right-radius: 1em;
   border-bottom-left-radius: 1em;
   text-align: justify;
+}
+
+#select-contact{
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  visibility: visible;
 }
 
 /* Reports */
@@ -1232,6 +1252,10 @@ margin: 20px 0;
   background-color: #0F3D3E;
 }
 
-.design-reject{
-  background-color: #d23542;
+.active{
+  display: unset;
+}
+
+.remove{
+  display: none;
 }
