@@ -45,59 +45,6 @@ ul li {
     margin-bottom: 10px;
 }
 
-
-.admin-profile-card {
-    margin-top: 70px;
-    height: 75vh;
-    width: 50%;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-
-    text-align: center;
-    font-family: 'Poppins-Light', sans-serif;
-    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
-    padding: 1em 0;
-}
-
-.admin-profile-card hr {
-    width: 95%;
-    border-left: none;
-    border-top: none;
-    border-right: none;
-    border-bottom: 2px solid black;
-}
-
-.admin-pro-img-sec {
-    padding: .5em 0;
-}
-
-.admin-pro-img-sec img {
-    height: 170px;
-    width: 170px;
-    border-radius: 50%;
-    filter: drop-shadow(0px 0px 3px #100F0F);
-}
-
-.admin-pro-img-sec h1 {
-    font-size: 1.8rem;
-    margin: 0;
-}
-
-.admin-pro-info table {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.admin-pro-info th,
-td {
-    text-align: left;
-    padding-top: .8em;
-}
-
-.admin-pro-info th {
-    padding-right: 6em;
-}
-
 body {
     font-family: Arial;
     display: grid;

@@ -90,7 +90,7 @@
             <li>
                 <a href="<?= ROOT ?>/manager/advertisements">
 
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/advertisement-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/rectangle-ad-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Advertisements </span>
                 </a>
                 <span class="tooltip">Advertisements</span>

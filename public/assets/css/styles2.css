@@ -1125,8 +1125,8 @@ margin: 20px 0;
   background-color: #0F3D3E;
   color: #f9f9f9;
   border: none;
-  border-radius: 5px;
-  height: 1.8em;
+  padding: 15px 5px;
+  border-radius: 10px;
   font-size: 1.2rem;
   margin-top: 1em;
 }
@@ -1251,3 +1251,267 @@ margin: 20px 0;
 .design-accept{
   background-color: #0F3D3E;
 }
+
+
+.design-reject{
+  background-color: #d23542;
+}
+
+
+
+/* Reports */
+.report-form {
+  background-color: #ffffff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 30px;
+  padding: 40px
+}
+
+.report-form input{
+  height: 40px;
+  border-radius:5px;
+  padding: 20px;
+  font-family: 'Rubik', serif;
+  border: 1px solid #0F3D3E;
+}
+
+.report-date{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.report-type{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.report-type div{
+  width: 50%;
+}
+.report-type select {
+  width: 100%;
+  height: 40px;
+  border-radius:5px;
+  padding: 10px;
+  font-family: 'Rubik', serif;
+  border: 1px solid #0F3D3E;
+
+}
+.form-fields{
+  display: flex;
+  width: 100%;
+
+  flex-direction: column;
+}
+.report-date{
+  display: grid;
+  height: 20vh;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.report-from, .report-to {
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+.report-from input,.report-to input{
+  width: 100%;
+  height: 40px;
+  border-radius:5px;
+  padding: 20px;
+  font-family: 'Rubik', serif;
+  border: 1px solid #0F3D3E;
+}
+
+        .design-card-container{
+          width: 98%;
+          height: 80vh;
+          max-height: 80vh;
+          margin-top: 1em;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          overflow-y: auto;
+        }
+
+.design-card{
+  background-color: #f9f9f9;
+  width: 15em;
+  height: 40em;
+  max-height: 17.82em;
+  border-radius: 10px;
+  margin: .5em;
+  text-align: center;
+}
+
+.design-card img{
+  width: 14.5em;
+  height: 14.5em;
+  object-fit: cover;
+  border-radius: 7px;
+  margin-top: .25em;
+}
+
+/* Design Details Page */
+
+.design-details-container{
+  width: 97%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+
+.design-image-slider{
+  position: relative;
+  width: 49%;
+}
+
+.design-image-slider h2{
+  position: absolute;
+  bottom: 17em;
+  padding-left: .7em;
+}
+
+.design-details{
+  width: 49%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 1em;
+  max-height: 35em;
+}
+
+.design-image-slider img{
+  width: 100%;
+  height: 30em;
+  max-height: 35em;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.design-details p{
+  margin: 1.5em 0;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: #f9f9f9;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: #898989;
+
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev{
+  left: 0;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: #100F0F;
+}
+
+.designs-btn-container {
+  margin-top: 3em;
+  padding: 0 8em;
+  display: flex;
+  justify-content: space-between;
+}
+.generated-report{
+  margin-top: 20px;
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%, 0);*/
+}
+
+
+.col {
+  text-align: left;
+}
+
+.col-id {
+  width: 10%;
+}
+
+.headercol {
+
+  font-weight: 600;
+  color: #182422;
+  font-size: 14px;
+  text-align: left;
+}
+
+.col-name {
+  width: 10%;
+}
+
+.col-qty {
+  width: 10%;
+}
+
+.col-cost {
+  width: 10%;
+  /* text-align: right; */
+}
+
+.col-quantity {
+  width: 15%;
+}
+
+.col-cat{
+  /*width: 15%;*/
+
+}
+.col-img {
+  /*width: 15%;*/
+}
+
+.col-add {
+  /*width: 10%;*/
+  /*text-align: center;*/
+}
+.col-revenue {
+  width: 10%;
+/*text-align: center;*/
+}
+
+.generated-report{
+  margin-top: 20px;
+}
+
+.thead{
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+/*#panel{*/
+/*  display: none;*/
+/*  width: 100vw;*/
+/*}*/
+

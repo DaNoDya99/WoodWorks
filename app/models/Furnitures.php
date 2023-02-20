@@ -6,7 +6,7 @@ class Furnitures extends Model
     protected $table = "furniture";
 
     protected $allowedColumns = [
-	    'ProductID',
+        'ProductID',
         'Name',
         'CategoryID',
         'Sub_category_name',
@@ -28,19 +28,19 @@ class Furnitures extends Model
         'set_visibility'
     ];
 
-    public function getNewFurniture($fields = null,$limit = 5,$order = 'desc')
+    public function getNewFurniture($fields = null, $limit = 5, $order = 'desc')
     {
         $query = "select ";
 
-        if(!empty($fields)){
-            foreach ($fields as $field){
-                $query .= $field.", ";
+        if (!empty($fields)) {
+            foreach ($fields as $field) {
+                $query .= $field . ", ";
             }
         }
 
-        $query = trim($query,", ");
+        $query = trim($query, ", ");
 
-        $query .= " from ".$this->table." order by date $order limit $limit";
+        $query .= " from " . $this->table . " order by date $order limit $limit";
 
         return $this->query($query);
     }
@@ -61,30 +61,31 @@ class Furnitures extends Model
             'Discount_percentage'
         ];
 
-        if(!empty($fields)){
-            foreach ($fields as $field){
-                $query .= $field.", ";
+        if (!empty($fields)) {
+            foreach ($fields as $field) {
+                $query .= $field . ", ";
             }
         }
 
-        $query = trim($query,", ");
-        $query .= " from ".$this->table." where ProductID = '$id'";
+        $query = trim($query, ", ");
+        $query .= " from " . $this->table . " where ProductID = '$id'";
 
         return $this->query($query);
     }
 
-    public function getFurnitures($category = null,$sub_cat,$limit = 2,$offset)
+    public function getFurnitures($sub_cat, $offset, $limit = 2, $category = null,)
     {
         $query = "select ProductID, Name , Cost, Discount_percentage from furniture WHERE CategoryID = '$category' && Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
 
         return $this->query($query);
     }
 
-    public function getFurniture($id){
+    public function getFurniture($id)
+    {
 
         $query = "select Name , Cost from furniture WHERE ProductID = :ProductID; ";
 
-        return $this->query($query,['ProductID' => $id]);
+        return $this->query($query, ['ProductID' => $id]);
     }
 
     public function getDisplayImage($ProductId = null)
@@ -103,7 +104,7 @@ class Furnitures extends Model
 
     public function getInventory()
     {
-        $query = "select ProductID , Name , Quantity , Cost from furniture;";
+        $query = "select ProductID , Name , Quantity , Cost, CategoryID from furniture;";
 
         return $this->query($query);
     }
@@ -112,10 +113,10 @@ class Furnitures extends Model
     {
         $query = "delete from furniture where ProductID = :ProductID;";
 
-        return $this->query($query,['ProductID' => $id]);
+        return $this->query($query, ['ProductID' => $id]);
     }
 
-    public function insertImages($productID,$images)
+    public function insertImages($productID, $images)
     {
         $query = "insert into furniture_image (`ProductID`, `Image`) values ('$productID','$images[0]'),('$productID','$images[1]'),('$productID','$images[2]');";
 
@@ -141,7 +142,7 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
-    public function updateVisibility($id,$visibility)
+    public function updateVisibility($id, $visibility)
     {
         $query = "update $this->table set Visibility = :Visibility where ProductID = :ProductID;";
 
@@ -152,58 +153,57 @@ class Furnitures extends Model
     {
         $this->errors = [];
 
-        if(empty($post['ProductID'])){
+        if (empty($post['ProductID'])) {
             $this->errors['ProductID'] = "SKU ID is required";
-        } elseif (strlen($post['ProductID']) != 5){
+        } elseif (strlen($post['ProductID']) != 5) {
             $this->errors['ProductID'] = "SKU ID must be 5 characters";
-        } elseif (!ctype_alnum($post['ProductID'])){
+        } elseif (!ctype_alnum($post['ProductID'])) {
             $this->errors['ProductID'] = "SKU ID must be alphanumeric";
-        } elseif ($this->where('ProductID',$post['ProductID'])){
+        } elseif ($this->where('ProductID', $post['ProductID'])) {
             $this->errors['ProductID'] = "SKU ID already exists";
         }
 
-        if(empty($post['Name'])){
+        if (empty($post['Name'])) {
             $this->errors['Name'] = "Name is required";
         }
 
-        if(empty($post['CategoryID'])){
+        if (empty($post['CategoryID'])) {
             $this->errors['CategoryID'] = "Category is required";
         }
 
-        if(empty($post['Sub_category_name'])){
+        if (empty($post['Sub_category_name'])) {
             $this->errors['Sub_category_name'] = "Sub Category is required";
         }
 
-        if(empty($post['Description'])){
+        if (empty($post['Description'])) {
             $this->errors['Description'] = "Description is required";
         }
 
-        if(empty($post['Quantity'])){
+        if (empty($post['Quantity'])) {
             $this->errors['Quantity'] = "Quantity is required";
-        } elseif (!ctype_digit($post['Quantity'])){
+        } elseif (!ctype_digit($post['Quantity'])) {
             $this->errors['Quantity'] = "Quantity must be a number";
         }
 
-        if(empty($post['Cost'])){
+        if (empty($post['Cost'])) {
             $this->errors['Cost'] = "Cost is required";
-        } elseif (!is_numeric($post['Cost'])){
+        } elseif (!is_numeric($post['Cost'])) {
             $this->errors['Cost'] = "Cost must be a number";
         }
 
-        if(empty($post['Warrenty_period'])){
+        if (empty($post['Warrenty_period'])) {
             $this->errors['Warrenty_period'] = "Warrenty Period is required";
         }
 
-        if(empty($post['Wood_type'])){
+        if (empty($post['Wood_type'])) {
             $this->errors['Wood_type'] = "Wood Type is required";
         }
 
-        if(empty($post['SupplierID'])){
+        if (empty($post['SupplierID'])) {
             $this->errors['SupplierID'] = "Supplier ID is required";
         }
 
-        if(empty($this->errors))
-        {
+        if (empty($this->errors)) {
             return true;
         } else {
             return false;
@@ -216,7 +216,7 @@ class Furnitures extends Model
 
         return $this->query($query);
     }
-    
+
     public function getFurnitureName($id = null)
     {
         $query = "select Name from $this->table where ProductID = :ProductID;";
@@ -228,28 +228,28 @@ class Furnitures extends Model
     {
         $query = "select Name, Discount_percentage from $this->table where ProductID = :ProductID";
 
-        return $this->query($query,['ProductID'=>$id]);
+        return $this->query($query, ['ProductID' => $id]);
     }
 
     public function updateDiscounts($id, $discount)
     {
         $query = "update $this->table set Discount_percentage = :Discount where ProductID =:ProductID;";
 
-        return $this->query($query,['ProductID' => $id, 'Discount' =>$discount]);
+        return $this->query($query, ['ProductID' => $id, 'Discount' => $discount]);
     }
 
 
-    public function view_furniture_orders(){
+    public function view_furniture_orders()
+    {
         $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
 
         return $this->query($query);
     }
-    public function view_furniture_issues(){
+    public function view_furniture_issues()
+    {
         $query = "select ProductID, Name, Quantity, Cost, Visibility from $this->table";
 
         return $this->query($query);
-
-
     }
 
     public function getFurnitureCount()
@@ -268,6 +268,5 @@ class Furnitures extends Model
 
     public function getDiscount()
     {
-
     }
 }
