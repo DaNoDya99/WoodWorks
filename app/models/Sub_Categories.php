@@ -17,4 +17,11 @@ class Sub_Categories extends Model
 
         return $this->query($query);
     }
+
+    public function getSubCategoriesByCatID($id)
+    {
+        $query = "select Sub_category_name, Image from $this->table where CategoryID = :CategoryID;";
+
+        return $this->query($query,['CategoryID' => $id]);
+    }
 }

@@ -304,9 +304,21 @@ class Admin extends Controller
 
 
         $data['row'] = $employee->where('EmployeeID',$id);
-
         $data['title'] = "SUPPLIERS";
 
+        $category = new Categories();
+        $sub_category = new Sub_Categories();
+
+        $rows = $category->getCategories();
+
+        foreach ($rows as $row)
+        {
+            $row->sub_categories = $sub_category->getSubCategoriesByCatID($row->CategoryID);
+        }
+
+        $data['categories'] = $rows;
+
+        show($rows);
 
         $this->view('admin/categories',$data);
     }

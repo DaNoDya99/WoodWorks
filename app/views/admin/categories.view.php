@@ -7,31 +7,25 @@
         <div class="cat-section">
             <h1>Categories</h1>
             <div class="cat-subcat-container">
-                <div class="cat-collapse">
-                    <h3>Living Room</h3>
-                    <div id="sub-categories" class="sub-categories">
-                        <div class="sub-category">
-                            <img  src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Chair">
-                            <span>Chairs</span>
-                        </div>
-                        <div class="sub-category">
-                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Chair">
-                            <span>Chairs</span>
-                        </div>
-                        <div class="sub-category">
-                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Chair">
-                            <span>Chairs</span>
-                        </div>
-                        <div class="sub-category">
-                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Chair">
-                            <span>Chairs</span>
-                        </div>
-                        <div class="sub-category">
-                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Chair">
-                            <span>Chairs</span>
+                <?php foreach($categories as $category): ?>
+                    <div class="cat-collapse">
+                        <h3><?=$category->Category_name?></h3>
+                        <div id="sub-categories" class="sub-categories">
+                            <?php if(!empty($category->sub_categories)): ?>
+                                <?php foreach($category->sub_categories as $sub_cat): ?>
+                                    <div class="sub-category">
+                                        <img  src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Chair">
+                                        <span><?= $sub_cat->Sub_category_name ?></span>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <div class="sub-category">
+                                    <span>No Sub Categories</span>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
         <div class="cat-forms">
