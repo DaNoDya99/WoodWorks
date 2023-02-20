@@ -9,13 +9,24 @@
             <div class="cat-subcat-container">
                 <?php foreach($categories as $category): ?>
                     <div class="cat-collapse">
-                        <h3><?=$category->CategoryID?> - <?=$category->Category_name?></h3>
+                        <div class="cat-heading">
+                            <h3><?=$category->CategoryID?> - <?=$category->Category_name?></h3>
+                            <div class="cat-btns">
+                                <button><img src="<?=ROOT?>/assets/images/admin/edit-4-svgrepo-com.svg" alt=""></button>
+                                <button><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
+                            </div>
+                        </div>
+
                         <div id="sub-categories" class="sub-categories">
                             <?php if(!empty($category->sub_categories)): ?>
                                 <?php foreach($category->sub_categories as $sub_cat): ?>
                                     <div class="sub-category">
                                         <img  src="<?=ROOT?>/<?=$sub_cat->Image?>" alt="Chair">
                                         <span><?= $sub_cat->Sub_category_name ?></span>
+                                        <div class="sub-cat-btns">
+                                            <button><img src="<?=ROOT?>/assets/images/admin/edit-4-svgrepo-com.svg" alt=""></button>
+                                            <button><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
+                                        </div>
                                     </div>
                                 <?php endforeach; ?>
                             <?php else: ?>
