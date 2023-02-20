@@ -2910,8 +2910,9 @@ h2 {
 }
 
 .sub-category{
-    width: 30%;
+    width: 33%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-top: 5px;
 }
@@ -2921,7 +2922,7 @@ h2 {
     height: 3em;
     border-radius: 5px;
     object-fit: cover;
-    margin-right: 2em;
+    margin-right: 1em;
 }
 
 .cat-forms{
@@ -3007,6 +3008,51 @@ h2 {
 
 .cat-from-field{
     margin: .5em;
+}
+
+.cat-heading{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cat-btns button{
+    width: 2em;
+    height: 2em;
+    border: none;
+    border-radius: 3px;
+}
+
+.sub-cat-btns{
+    margin-right: .5em;
+}
+
+.sub-cat-btns button img{
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 auto;
+}
+
+.sub-cat-btns button{
+    width: 1.7em;
+    height: 1.7em;
+    border: none;
+    border-radius: 3px;
+}
+
+.sub-cat-btns button:first-child{
+    background-color: #2b7358;
+}
+
+.sub-cat-btns button:last-child{
+    background-color: #a00505;
+}
+
+.cat-btns button:first-child{
+    background-color: #2b7358;
+}
+
+.cat-btns button:last-child{
+    background-color: #a00505;
 }
 
 .cat-from-field input, .cat-from-field select{
