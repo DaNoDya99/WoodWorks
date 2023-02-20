@@ -9,18 +9,18 @@
             <div class="cat-subcat-container">
                 <?php foreach($categories as $category): ?>
                     <div class="cat-collapse">
-                        <h3><?=$category->Category_name?></h3>
+                        <h3><?=$category->CategoryID?> - <?=$category->Category_name?></h3>
                         <div id="sub-categories" class="sub-categories">
                             <?php if(!empty($category->sub_categories)): ?>
                                 <?php foreach($category->sub_categories as $sub_cat): ?>
                                     <div class="sub-category">
-                                        <img  src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Chair">
+                                        <img  src="<?=ROOT?>/<?=$sub_cat->Image?>" alt="Chair">
                                         <span><?= $sub_cat->Sub_category_name ?></span>
                                     </div>
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <div class="sub-category">
-                                    <span>No Sub Categories</span>
+                                    <span>No Sub Categories Yet!</span>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -31,13 +31,13 @@
         <div class="cat-forms">
             <div class="add-category-form">
                 <h2>Add Category</h2>
-                <form enctype="multipart/form-data" >
+                <form enctype="multipart/form-data" id="category-form" method="post">
                     <div class="form-content">
                         <div class="cat-img">
-                            <img src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="No Image">
+                            <img id="cat-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="No Image">
                             <label>
                                 Upload
-                                <input onchange="load_image_secondary(this.files)" type="file" name="Images">
+                                <input onchange="load_cat_image(this.files[0])" type="file" name="Image">
                             </label>
                         </div>
                         <div class="cat-inputs">
@@ -50,7 +50,7 @@
                                 <input type="text" name="Category_name" placeholder="Enter Category Name">
                             </div>
                             <div class="submit-btn">
-                                <button type="submit">Add Category</button>
+                                <button id="category-btn" type="submit">Add Category</button>
                             </div>
                         </div>
                     </div>
@@ -58,29 +58,31 @@
             </div>
             <div class="add-category-form">
                 <h2>Add Sub-Category</h2>
-                <form enctype="multipart/form-data" >
+                <form enctype="multipart/form-data" id="sub-category-form" method="post">
                     <div class="form-content">
                         <div class="cat-img">
-                            <img src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="No Image">
+                            <img id="subcat-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="No Image">
                             <label>
                                 Upload
-                                <input onchange="load_image_secondary(this.files)" type="file" name="Images">
+                                <input onchange="load_subcat_image(this.files[0])" type="file" name="Image">
                             </label>
                         </div>
                         <div class="cat-inputs">
                             <div class="cat-from-field">
                                 <label>Category ID</label>
-                                <select name="Category_ID">
+                                <select name="CategoryID">
                                     <option selected>-- Select Category --</option>
-                                    <option value="C001">C001 - Living Room</option>
+                                    <?php foreach($categories as $category): ?>
+                                        <option value="<?=$category->CategoryID?>"><?=$category->CategoryID?> - <?=$category->Category_name?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="cat-from-field">
                                 <label>Sub-Category Name</label>
-                                <input type="text" name="Category_name" placeholder="Enter Sub-Category Name">
+                                <input type="text" name="Sub_category_name" placeholder="Enter Sub-Category Name">
                             </div>
                             <div class="submit-btn">
-                                <button type="submit">Add Sub-Category</button>
+                                <button id="sub-category-btn" type="submit">Add Sub-Category</button>
                             </div>
                         </div>
                     </div>
