@@ -17,21 +17,7 @@
             <li><a href="<?= ROOT ?>/logout">Logout</a></li>
         </div>
     </div>
-    <form method="post" action="<?=ROOT?>/driver_home/availability">
-        <select name="Availability" required onchange="this.form.submit()" class="select-available">
-            <?php
-            $arr = array("Available", "Not Available");
 
-            foreach ($arr as $value) {
-                if ($value == esc($row[0]->Availability)) {
-                    echo "<option value=$value selected>$value</option>";
-                } else {
-                    echo "<option value=$value>$value</option>";
-                }
-            }
-            ?>
-        </select>
-    </form>
     <div class="noti">
         <div class="img">
             <img class="image" style="" src="<?= ROOT ?>/assets/images/header/bell.svg" alt="">

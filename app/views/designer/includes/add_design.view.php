@@ -7,9 +7,22 @@
 
             <div class="des-form-body">
 
+                <h1>Add New Designs</h1>
+
                 <form class="add-des-form" action="/woodworks/public/designer/add_new_design" method="post" enctype="multipart/form-data">
 
-                    <h2>Add New Designs</h2>
+                    <!--  This is  error message   -->
+                    <?php if (!empty($errors)) : ?>
+                        <div class="error-txt signup-error">
+                            <img class="close-error" src="<?= ROOT ?>/assets/images/designer/close.png" alt="Close btn" onclick="close_error()">
+                            <ul>
+                                <?php foreach ($errors as $key => $value) : ?>
+                                    <li><?= $errors[$key] ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="des-img-upload-container">
                         <div class="des-img">
 
@@ -28,12 +41,7 @@
                         </div>
                     </div>
 
-                    <?php if (!empty($errors['Description'])) : ?>
-                        <div class="error-txt"><?= $errors['Description'] ?></div>
-                    <?php endif; ?>
-                    <?php if (!empty($errors['Name'])) : ?>
-                        <div class="error-txt"><?= $errors['Name'] ?></div>
-                    <?php endif; ?>
+
 
                     <div class="edit-des-Ubtn-section" id="edit-design">
                         <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
@@ -67,7 +75,6 @@
         </div>
     </div>
 </body>
-
-
-</html>
+<script src="<?= ROOT ?>/assets/javascript/script.js"></script>
 <script src="<?= ROOT ?>/assets/javascript/designer/add_designs.js"></script>
+</html>

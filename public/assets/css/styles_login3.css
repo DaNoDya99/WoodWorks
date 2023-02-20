@@ -181,6 +181,21 @@ body{
     border: 1px solid #f5c6cb;
 }
 
+.close-error {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.signup-error {
+    text-align: left;
+    font-size: 12px;
+    padding: 0 10px;
+}
+
 /*DriverModel dashboard, Designer dashboard and sidebars*/
 .driver, .designer{
     height: 100vh;
@@ -251,7 +266,7 @@ body{
 }
 
 .dashboard-body{
-    padding: 50px 15px 0;
+    padding: 30px 15px 0;
     display: flex;
 }
 
@@ -286,7 +301,7 @@ body{
 }
 
 .driver-tbox{
-    width: 25%;
+    width: 30%;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
@@ -297,6 +312,13 @@ body{
     flex-direction: column;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     float: right;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.driver-tbox::-webkit-scrollbar{
+    display: none;
 }
 
 .driver-tbox table{
@@ -441,8 +463,8 @@ body{
     text-align: center;
     font-family: 'Rubik';
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    /*padding: 1em 0;*/
-    padding: 3px;
+    padding: 1em 0;
+    /*padding: 3px;*/
 }
 
 .driver-profile-card hr{
@@ -483,6 +505,11 @@ body{
     padding-right: 6em;
 }
 
+.driver-popup{
+    width:35%;
+    top: 5%;
+}
+
 
 /*Designer profile page*/
 .designer-profile-card{
@@ -494,8 +521,7 @@ body{
     text-align: center;
     font-family: 'Rubik';
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    /*padding: 1em 0;*/
-    padding: 3px;
+    padding: 1em 0;
 }
 
 .designer-profile-card hr{
@@ -536,6 +562,11 @@ body{
     padding-right: 6em;
 }
 
+.designer-popup{
+    width:35%;
+    top: 5%;
+}
+
 
 /* profile edit page */
 
@@ -563,7 +594,7 @@ body{
     border-radius: 10px;
     position: absolute;
     top: 0;
-    left: 60%;
+    left: 50%;
     transform: translate(-50%, -50%) scale(0.1);
     text-align: center;
     padding:0 30px 30px;
@@ -673,9 +704,6 @@ body{
 
 .tbox{
 
-    /*width: 100% ;*/
-    /*height: auto;*/
-    /*background: #ffffff;*/
     width: 85%;
     margin: 1em auto;
     padding: 1em 2em;
@@ -684,6 +712,13 @@ body{
     font-family: 'Rubik-SemiBold';
     max-height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.tbox::-webkit-scrollbar {
+    display: none;
 }
 
 .orders_view_header{
@@ -774,17 +809,8 @@ body{
 }
 
 .content-table tbody tr{
-    /*border-bottom: 1px solid #dddddd;*/
     font-family: 'Rubik';
 }
-
-/*.content-table tbody tr:nth-of-type(even){*/
-/*    background-color: #D3D3D3;*/
-/*}*/
-
-/*.content-table tbody tr:last-of-type{*/
-/*    border-bottom: 2px solid #203330;*/
-/*}*/
 
 .select{
     padding: 8px 12px;
@@ -806,6 +832,23 @@ body{
     background: #262626;
 }
 
+.order-btn-sec{
+    text-align: center;
+}
+
+.order-btn-sec button{
+    width: 75px;
+    height: 30px;
+    border: solid 2px #e2dcc8;
+    border-radius: 7px;
+    font-family: 'Rubik';
+    font-weight: bolder;
+    font-size: 0.8vw;
+    background-color: #100F0F;
+    color: #ffffff;
+    margin: 20px 0;
+    cursor: pointer;
+}
 
 /* Driver Availability */
 
@@ -1013,31 +1056,18 @@ body{
 
 }
 
+.des-form-body h1{
+    margin: 0;
+    border-bottom: #cacaca 2px solid;
+}
+
 .add-des-form{
-    /*width: 70%;*/
-    /*height: 80%;*/
-    /*margin: 1em auto;*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-items: center;*/
-    /*max-height: 700px;*/
-    /*max-width: 90%;*/
-    /*border-radius: 10px;*/
-    /*font-family: 'Rubik';*/
-    /*padding: 5px;*/
-    /*box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );*/
-    /*background: #f9f9f9;*/
     padding: 1em 0;
-    max-height: 76vh;
+    max-height: 70vh;
     width: 100%;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
-}
-
-.des-form-body h2{
-    margin: 0;
-    border-bottom: #cacaca 2px solid;
 }
 
 .add-des-form::-webkit-scrollbar {
@@ -1064,8 +1094,6 @@ body{
 .designImage{
     height: 100%;
     width: 90%;
-    /*display: flex;*/
-    /*flex-direction: column;*/
     justify-content: center;
     padding-bottom: 10px;
 }
@@ -1109,14 +1137,6 @@ body{
 }
 
 .des_Name{
-    /*width: 475px;*/
-    /*display: flex;*/
-    /*width: 475px;*/
-    /*align-items: center;*/
-    /*margin-top: 1em;*/
-    /*display: flex;*/
-    /*width: 100%;*/
-    /*margin-left: 13em;*/
     margin: auto;
     height: 25%;
     width: 55%;
@@ -1134,7 +1154,7 @@ body{
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: 'Rubik', sans-serif;
-    background: #f9f9f9;
+    background-color: #f9f9f9;
     padding:0 10px;
     margin-top: 0px;
 }
@@ -1215,18 +1235,14 @@ figcaption{
 
 #description textarea{
     border: 1px solid #ccc;
-    height: 5em;
+    height: 8em;
     width: 100%;
     font-size: 16px;
     border-radius: 5px;
     padding: 10px;
     font-family: 'Rubik', sans-serif;
+    background-color: #f9f9f9;
 }
-
-/*.form-control{*/
-/*    width: 100%;*/
-/*    height: 50px;*/
-/*}*/
 
 .add-des-btn{
     height: 20%;

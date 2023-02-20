@@ -39,6 +39,7 @@
             <th class="th">Customer Address</th>
             <th class="th">Customer Name</th>
             <th class="th">Customer Mobile No</th>
+            <th class="th"></th>
 
         </thead>
         <tbody>
@@ -74,13 +75,53 @@
                         <td><?=esc($row->Address)?></td>
                         <td><?=esc($row->Firstname)?> <?=esc($row->Lastname)?></td>
                         <td><?=esc($row->Contactno)?></td>
+                        <td>
+                            <div class ="order-btn-sec">
+                                <button onclick="openPopup(event)">More</button>
+                            </div>
+                        </td>
                     </tr>
 
                 </form>
             <?php endforeach;?>
         </tbody>
     </table>
+
+    <div class="popup driver-popup" id="popup">
+        <div class="popup-heading">
+            <h2>MORE DETAILS</h2>
+            <img src="<?=ROOT?>/assets/images/driver/close.png" alt="Close" onclick="closePopup()">
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            <?php
+
+                $order_items = new Order_Items();
+                $orderID = $row->OrderID;
+                $results = $order_items->where('OrderID', $orderID);
+
+            ?>
+            <div class="image-field driver-edit-img">
+            </div>
+            <hr>
+            <div class="name-field">
+                <div class="edit-cus-field last-name">
+                    <label>Product Name</label>
+                    <?=$results[0]->Name?>
+                </div>
+            </div>
+            <div class="edit-cus-field">
+                <label>Quantity</label>
+                <?=$results[0]->Quantity?>
+            </div>
+            <div class="edit-cus-field">
+                <label>Cost</label>
+                <?=$results[0]->Cost?>
+            </div>
+        </form>
+    </div>
+
 </div>
+
 
 
 

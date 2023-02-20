@@ -189,71 +189,67 @@ class Designer extends Controller
                 $num_of_imgs = count($images['name']); //number of images
                 $_POST['DesignerID'] = $id;
 
+                //loop through all images
                 for ($i = 0; $i < $num_of_imgs; $i++) {
 
                     $image_name = $images['name'][$i];
                     $tmp_name = $images['tmp_name'][$i];
                     $error = $images['error'][$i];
 
-
                     $folder = "uploads/designer/images/";
 
+                    //check if folder exists
                     if (!file_exists($folder)) {
                         mkdir($folder, 0777, true);
                         file_put_contents($folder . "index.php", "<?php //silence");
                         file_put_contents("uploads/designer/index.php", "<?php //silence");
                     }
 
+                    //check if there is an image
                     if (!empty($image_name)) {
 
-                        if ($error === 0) {
+                        //check if there is no error
+                        // $error === 0 means no error
+                        if (count(array_unique($_FILES['images']['error'])) === 1 && end($_FILES['images']['error']) === 0) {
 
                             $img_ex = pathinfo($image_name, PATHINFO_EXTENSION);// image extension
                             $img_ex_lc = strtolower($img_ex); // image extension lowercase
                             $allowed_exs = array('jpg', 'jpeg', 'png');// allowed extensions
 
+//                           show($img_ex_lc);
+
                             if (in_array($img_ex_lc, $allowed_exs)) {
 
                                 $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;// unique image names
-                                $destination = $folder . time() . $new_img_name;
-//                            show($new_img_name);
-                                move_uploaded_file($tmp_name, $destination);
+                                $destination = $folder . time() . $new_img_name;// image destination
+                                move_uploaded_file($tmp_name, $destination);// move image to destination
 
+                                //insert into database
                                 if ($i == 0) {
                                     $design->insert($_POST); // it must run only one time
                                 }
-                                //$query = "INSERT INTO design_images (Image) VALUES (?)";
-
                                 $data['design_row'] = $design_row = $design->first('DesignerID', $id);
                                 $designID = $design_row[0]->DesignID;
 
                                 $design_images->insert(['DesignID' => $designID, 'Image' => $destination]);
-//                            $this->redirect('designer/design');
 
                             } else {
-                                $employee->errors['image'] = "This file type is not allowed";
+                                $design->errors['image'] = "This file type is not allowed";
                             }
                         } else {
-                            $employee->errors['image'] = "Could not upload image";
+                            $design->errors['image'] = "Could not upload image";
                         }
-
+                    }else {
+                        $design->errors['image'] = "Please select the images";
                     }
 
                 }
 
-                $data['title'] = "Add Design";
-                $this->redirect('designer/design');
-                $this->view('designer/design', $data);
-            }
-            else
-            {
-                $data['title'] = "Add Design";
-                $data['errors'] = $design->errors;
-                $this->view('designer/includes/add_design',$data);
             }
 
         }
-
+        $data['errors'] = $design->errors;
+        $this->view('designer/includes/add_design',$data);
     }
 
     public function remove_add_design($id=null)

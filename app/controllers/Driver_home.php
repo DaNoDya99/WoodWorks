@@ -152,7 +152,6 @@ class Driver_home extends Controller
 
         }
 
-//        $data['row'] = $order->query($query);
         $this->view('driver/order',$data);
 
     }
@@ -170,6 +169,7 @@ class Driver_home extends Controller
         $row = $driver->where("DriverID",$id);
 
         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
             if (strtolower($row[0]->Availability) == "available") {
                 //$driver->query("UPDATE driver SET Availability='Not Available' WHERE DriverID = '$id';");
                 $driver->update($id,['DriverID'=>$id,'Availability'=>"Not Available"]);
@@ -177,7 +177,7 @@ class Driver_home extends Controller
                 //$driver->query("UPDATE driver SET Availability='Available'WHERE DriverID = '$id';");
                 $driver->update($id,['DriverID'=>$id,'Availability'=>"Available"]);
             }
-
+//            $this->redirect('driver_home');
         }
         $this->redirect('driver_home');
     }

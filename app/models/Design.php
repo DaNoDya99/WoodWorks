@@ -24,11 +24,11 @@ class Design extends Model
     {
         $this->errors = [];
 
-        if (empty($data['Description'])) {
-            $this->errors['Description'] = "Description can not be empty";
-        }
         if (empty($data['Name'])) {
             $this->errors['Name'] = "Design Name can not be empty";
+        }
+        if (empty($data['Description'])) {
+            $this->errors['Description'] = "Description can not be empty";
         }
         if (empty($this->errors)) {
             return true;

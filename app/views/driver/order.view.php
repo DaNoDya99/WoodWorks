@@ -20,4 +20,6 @@
 </div>
 
 </body>
+<script src="<?=ROOT?>/assets/javascript/driver/order_details.js"></script>
+
 </html>
