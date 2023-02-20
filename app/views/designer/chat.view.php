@@ -30,8 +30,10 @@
                         <img src="<?=ROOT?>/assets/images/designer/danodya.jpg">
                         <h2>Danodya Supun</h2>
                     </div>
-                    <div id="msgs" class="chat-msg-container">
+                    <div class="chat-msg-container">
+                        <div id="msgs">
 
+                        </div>
                     </div>
                     <div class="send-msg">
                         <form>

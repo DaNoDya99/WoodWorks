@@ -108,7 +108,7 @@
         </div>
         <div class="cus-send-msg-sec">
             <form id="chat-form-1">
-                <input type="text" id="message" name="message" placeholder="Write Something">
+                <input type="text" id="field" name="message" placeholder="Write Something">
                 <button type="submit" id="button-manager"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
             </form>
 
