@@ -1251,11 +1251,3 @@ margin: 20px 0;
 .design-accept{
   background-color: #0F3D3E;
 }
-
-.active{
-  display: unset;
-}
-
-.remove{
-  display: none;
-}
