@@ -318,8 +318,6 @@ class Admin extends Controller
 
         $data['categories'] = $rows;
 
-        show($rows);
-
         $this->view('admin/categories',$data);
     }
 }
