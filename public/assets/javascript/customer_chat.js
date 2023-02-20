@@ -9,6 +9,9 @@ let chat_form_1 = document.getElementById("chat-form-1");
 let chat_form_2 = document.getElementById("chat-form-2");
 let chat_manager = document.getElementById("chat-manager");
 let chat_designer = document.getElementById("chat-designer");
+let field = document.getElementById("field");
+let countPrev = 0;
+let count = 0;
 
 function openChat(){
     manager.style.visibility = "visible";
@@ -53,7 +56,7 @@ button_manager.onclick = () => {
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-
+                field.value = "";
             }
         }
     }
@@ -67,7 +70,7 @@ button_designer.onclick = () => {
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-
+                field.value = "";
             }
         }
     }
@@ -81,8 +84,15 @@ setInterval(() => {
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-                let data = xhr.response;
-                chat_manager.innerHTML = data;
+
+                    countPrev = chat_manager.childElementCount;
+                    chat_manager.innerHTML = xhr.response;
+                    count = chat_manager.childElementCount;
+
+                    if(countPrev < count){
+                        chat_manager.scrollTop = chat_manager.scrollHeight;
+                    }
+
             }
         }
     }
@@ -95,8 +105,15 @@ setInterval(() => {
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-                let data = xhr.response;
-                chat_designer.innerHTML = data;
+
+                countPrev = chat_designer.childElementCount;
+                chat_designer.innerHTML = xhr.response;
+                count = chat_designer.childElementCount;
+
+                if(countPrev < count){
+                    chat_designer.scrollTop = chat_designer.scrollHeight;
+                }
+
             }
         }
     }

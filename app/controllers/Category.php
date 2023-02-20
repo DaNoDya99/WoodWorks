@@ -62,4 +62,106 @@ class Category extends Controller
 
         $this->view("reg_customer/sub_category",$data);
     }
+
+    public function addCategory()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $category = new Categories();
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if($category->validate($_POST))
+            {
+                if(!empty($_FILES["Image"]['name']))
+                {
+                    $folder = "uploads/images/";
+                    if(!file_exists($folder)){
+                        mkdir($folder,0777,true);
+                        file_put_contents($folder."index.php","<?php Access Denied.");
+                        file_put_contents("uploads/index.php","<?php Access Denied.");
+                    }
+
+                    $allowedFileType = ['image/jpeg','image/png'];
+
+                    if($_FILES['Image']['error'] == 0)
+                    {
+                        if(in_array($_FILES['Image']['type'],$allowedFileType))
+                        {
+                            $destination = $folder.time().$_FILES['Image']['name'];
+                            move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
+
+                            $_POST['Image'] = $destination;
+                            $category->insert($_POST);
+                        }else{
+                            $category->errors['image'] = "This file type is not allowed.";
+                        }
+                    }else{
+                        $category->errors['image'] = "Could not upload image.";
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    public function addSubcategory()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $sub_category = new Sub_Categories();
+
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if($sub_category->validate($_POST))
+            {
+                if(!empty($_FILES["Image"]['name']))
+                {
+                    $folder = "uploads/images/";
+                    if(!file_exists($folder)){
+                        mkdir($folder,0777,true);
+                        file_put_contents($folder."index.php","<?php Access Denied.");
+                        file_put_contents("uploads/index.php","<?php Access Denied.");
+                    }
+
+                    $allowedFileType = ['image/jpeg','image/png'];
+
+                    if($_FILES['Image']['error'] == 0)
+                    {
+                        if(in_array($_FILES['Image']['type'],$allowedFileType))
+                        {
+                            $destination = $folder.time().$_FILES['Image']['name'];
+                            move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
+
+                            $_POST['Image'] = $destination;
+                            echo json_encode($_POST);
+                            $sub_category->insert($_POST);
+                        }else{
+                            $sub_category->errors['image'] = "This file type is not allowed.";
+                        }
+                    }else{
+                        $sub_category->errors['image'] = "Could not upload image.";
+                    }
+                }
+            }
+        }
+    }
+
+    public function deleteCategory()
+    {
+
+    }
+
+    public function deleteSubCategory()
+    {
+
+    }
 }
