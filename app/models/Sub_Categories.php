@@ -52,4 +52,10 @@ class Sub_Categories extends Model
 
         return false;
     }
+
+    public function deleteSubCategory($id)
+    {
+        $query = "delete from $this->table where Sub_category_name = :Sub_category_name;";
+        return $this->query($query,['Sub_category_name' => $id]);
+    }
 }

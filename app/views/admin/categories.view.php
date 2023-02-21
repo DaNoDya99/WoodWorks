@@ -13,7 +13,7 @@
                             <h3><?=$category->CategoryID?> - <?=$category->Category_name?></h3>
                             <div class="cat-btns">
                                 <button><img src="<?=ROOT?>/assets/images/admin/edit-4-svgrepo-com.svg" alt=""></button>
-                                <button><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
+                                <button onclick="deleteCategory('<?=$category->CategoryID?>')"><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
                             </div>
                         </div>
 

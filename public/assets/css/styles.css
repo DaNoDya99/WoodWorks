@@ -3077,6 +3077,10 @@ h2 {
     border-radius: 7px;
 }
 
+.cat-deletion{
+    background-color: #ae1c1c;
+}
+
 .cat-from-field input, .cat-from-field select{
     height: 2.5em;
     margin-top: .5em;
