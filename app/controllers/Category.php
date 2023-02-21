@@ -197,9 +197,22 @@ class Category extends Controller
         }
     }
 
-    public function deleteCategory()
+    public function deleteCategory($id)
     {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
 
+        $category = new Categories();
+
+        $row = $category->getCategoryByID($id);
+        unlink($row[0]->Image);
+        $category->deleteCategory($id);
+
+        echo "<div class='cat-success cat-deletion'>
+                  <h2>Category Deleted Successfully!</h2>
+              </div>";
     }
 
     public function deleteSubCategory()

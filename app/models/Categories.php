@@ -47,4 +47,16 @@ class Categories extends Model
         return false;
     }
 
+    public function deleteCategory($id)
+    {
+        $query = "delete from $this->table where CategoryID = :CategoryID;";
+        return $this->query($query,['CategoryID' => $id]);
+    }
+
+    public function getCategoryByID($id)
+    {
+        $query = "select * from $this->table where CategoryID = :CategoryID;";
+        return $this->query($query,['CategoryID' => $id]);
+    }
+
 }

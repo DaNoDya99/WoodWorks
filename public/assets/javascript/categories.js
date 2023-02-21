@@ -60,3 +60,20 @@ function load_subcat_image(file){
     mylink = window.URL.createObjectURL(file);
     document.querySelector("#subcat-img").src = mylink;
 }
+
+function deleteCategory(id){
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost/WoodWorks/public/category/deleteCategory/'+id, true);
+    xhr.onload = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                response.innerHTML = xhr.response;
+                setTimeout(() => {
+                    response.innerHTML = "";
+                    location.reload();
+                }, 3000);
+            }
+        }
+    }
+    xhr.send();
+}
