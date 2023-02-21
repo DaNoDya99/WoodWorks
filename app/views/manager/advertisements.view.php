@@ -90,93 +90,11 @@
                         <td>Pending</td>
                         <td>
                             <a href="#">Details</a>
-                            <a href="#">Verify</a>
+                           
                         </td>
                     </tr>
 
-                    <tr class="ad-details">
-                        <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
-                        <td>Chair</td>
-                        <td>Rs. 15000.00</td>
-                        <td>Pending</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
-                        </td>
-                    </tr>
-
-                    <tr class="ad-details">
-                        <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
-                        <td>Chair</td>
-                        <td>Rs. 15000.00</td>
-                        <td>Pending</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
-                        </td>
-                    </tr>
-
-                    <tr class="ad-details">
-                        <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
-                        <td>Chair</td>
-                        <td>Rs. 15000.00</td>
-                        <td>Pending</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
-                        </td>
-                    </tr>
-
-                    <tr class="ad-details">
-                        <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
-                        <td>Chair</td>
-                        <td>Rs. 15000.00</td>
-                        <td>Pending</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
-                        </td>
-                    </tr>
-
-                    <tr class="ad-details">
-                        <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
-                        <td>Chair</td>
-                        <td>Rs. 15000.00</td>
-                        <td>Pending</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
-                        </td>
-                    </tr>
-
-                    <tr class="ad-details">
-                        <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
-                        <td>Chair</td>
-                        <td>Rs. 15000.00</td>
-                        <td>Pending</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
-                        </td>
-                    </tr>
-
-                    <tr class="ad-details">
-                        <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
-                        <td>Chair</td>
-                        <td>Rs. 15000.00</td>
-                        <td>Pending</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Verify</a>
-                        </td>
-                    </tr>
+                    
                 </table>
                 </div>
                 

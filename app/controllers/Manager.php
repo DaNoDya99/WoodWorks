@@ -195,9 +195,10 @@ class Manager extends Controller
             $this->redirect('login');
         }
 
-        
         $data['title']="ISSUES";
 
+        $issue = new Issues();
+        $data['issue'] = $issue->get_issue();
         $this->view('manager/issues',$data);
     }
 

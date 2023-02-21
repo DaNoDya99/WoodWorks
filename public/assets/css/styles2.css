@@ -803,11 +803,18 @@ margin: 20px 0;
 }
 
 .issue-table th:first-child{
-  width: 10em;
+  width: 10%;
 }
+
 
 .issue-table td{
   height: 5em;
+}
+
+.issue_table-head{
+  width:10%;
+  overflow: hidden;
+
 }
 
 .posts-table-container button{
