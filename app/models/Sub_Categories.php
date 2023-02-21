@@ -29,21 +29,21 @@ class Sub_Categories extends Model
     {
         $this->errors = [];
 
-//        if(empty($data['Sub_category_name']))
-//        {
-//            $this->errors['Sub_category_name'] = "Sub category name is required";
-//        }elseif (!preg_match("/^[a-zA-Z]+$/",trim($data['Sub_category_name'])))
-//        {
-//            $this->errors['Sub_category_name'] = "Sub category name can only have letters.";
-//        }
-//
-//        if(empty($data['CategoryID']))
-//        {
-//            $this->errors['CategoryID'] = "Category ID is required";
-//        }elseif (!preg_match("/^[a-zA-Z0-9]+$/",trim($data['CategoryID'])))
-//        {
-//            $this->errors['CategoryID'] = "Category ID can only have letters and numbers.";
-//        }
+        if(empty($data['Sub_category_name']))
+        {
+            $this->errors['Sub_category_name'] = "Sub category name is required";
+        }elseif (!preg_match("/^[a-zA-Z]+$/",trim($data['Sub_category_name'])))
+        {
+            $this->errors['Sub_category_name'] = "Sub category name can only have letters.";
+        }
+
+        if(empty($data['CategoryID']))
+        {
+            $this->errors['CategoryID'] = "Category ID is required";
+        }elseif (!preg_match("/^[a-zA-Z0-9]+$/",trim($data['CategoryID'])))
+        {
+            $this->errors['CategoryID'] = "Category ID can only have letters and numbers.";
+        }
 
         if(empty($this->errors))
         {
