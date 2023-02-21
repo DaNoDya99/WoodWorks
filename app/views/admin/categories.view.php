@@ -104,6 +104,10 @@
     </div>
 </div>
 
+<div class="cat-response" id="response">
+
+</div>
+
 </body>
 
 <script src="<?=ROOT?>/assets/javascript/categories.js"></script>
