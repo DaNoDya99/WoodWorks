@@ -12,6 +12,9 @@ class cashier extends Controller
 
     public function index()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
         $products = new Furnitures();
         $data['products'] = $products->getInventory();
         foreach ($data['products'] as $product) {
@@ -22,19 +25,23 @@ class cashier extends Controller
         $data['row'] = $row = $this->getUser();
 
         $cart = new Carts();
-        $cart_id = $cart->getCart('5lhHfqCRtAdbMxdEl69oEq1F0ywitBClYh3fF927If44CB4eaXFKGSgp4K0k')[0]->CartID;
-        $order_item = new Order_Items();
+
+        if (!empty($_SESSION['CustomerID'])) {
+            $cart_id = $cart->getCart($_SESSION['CustomerID'])[0]->CartID;
+            $order_item = new Order_Items();
 
 
-        if (empty($cart->getCart($row[0]->EmployeeID))) {
-            $cart->setCart($row[0]->EmployeeID);
+            if (empty($cart->getCart($_SESSION['CustomerID']))) {
+                $cart->setCart($_SESSION['CustomerID']);
+            }
+
+            $data['cart'] = $order_item->getCustomerCartDetails($cart_id);
+
+            if (empty($data['cart'])) {
+                $data['error'] = "The cart is empty.";
+            }
         }
 
-        $data['cart'] = $order_item->getCustomerCartDetails($cart_id);
-
-        if (empty($data['cart'])) {
-            $data['error'] = "The cart is empty.";
-        }
 
 
         $this->view('cashier/dash', $data);
@@ -53,12 +60,13 @@ class cashier extends Controller
         // $cart->updateTotalAmountToIncrease($cartID, $cost);
         $this->redirect('cashier/dash');
     }
-    public function completebill(){
+    public function completebill()
+    {
         $cart = new Carts();
         $order_item = new Order_Items();
         $q = "DELETE FROM `order_item` WHERE CartID = :CartID;";
         $cart_id = $cart->getCart('5lhHfqCRtAdbMxdEl69oEq1F0ywitBClYh3fF927If44CB4eaXFKGSgp4K0k')[0]->CartID;
-        $order_item->query($q,['CartID' => $cart_id]);
+        $order_item->query($q, ['CartID' => $cart_id]);
         $this->redirect('cashier/dash');
     }
 
@@ -124,6 +132,30 @@ class cashier extends Controller
 
         $this->view('cashier/inventory', $data);
     }
+
+    public function test()
+    {
+        $customer = new Customer();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $folder = "uploads/images/";
+            $_POST['Password'] = password_hash('testpass', PASSWORD_DEFAULT);
+            $_POST['Lastname'] = 'Indisa';
+            $_POST['Password2'] = $_POST['Password'];
+            $_POST['Role'] = 'Customer';
+            $_POST['Status'] = '0';
+            $_POST['Mobileno'] = $_POST['contact'];
+            $_POST['Gender'] = 'Male';
+            $_POST['Email'] = 'aj@gmail.com';
+            // show($_POST);
+
+            if ($customer->validate($_POST)) {
+                $customer->insert($_POST);
+            }
+            $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
+            echo $_SESSION['CustomerID'];
+        }
+    }
+
     public function billing()
     {
 
@@ -142,7 +174,7 @@ class cashier extends Controller
         $furniture = new Furnitures();
         $cart = new Carts();
         $order_items = new Order_Items();
-        $cus_id = '5lhHfqCRtAdbMxdEl69oEq1F0ywitBClYh3fF927If44CB4eaXFKGSgp4K0k';
+        $cus_id = $_SESSION['CustomerID'];
         $orderID = '';
 
         if (empty($cart->getCart($cus_id))) {

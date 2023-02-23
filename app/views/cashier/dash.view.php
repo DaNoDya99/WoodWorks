@@ -1,9 +1,33 @@
 <?php $this->view('cashier/includes/header') ?>
 <div class="content pos-body">
+    <div class="details-overlay" id="details-overlay">
+        <div class="details-input">
+            <form id="my-form" action="">
+                <div>
+                    <label for="name">Customer Name</label>
+                    <input type="text" id="name" name="Firstname">
+                    <label for="contact">Contact Number</label>
+                    <input type="tel" id="contact" name="contact">
+                </div>
+                <div>
+                    <label for="address">Address</label><br>
+                    <textarea type="textarea" id="address" height="200px" name="Address"></textarea>
+                </div>
+                <button type="submit" class="exit">Submit</button>
+
+            </form>
+
+        </div>
+
+        <button onclick="closeNewBillPopup()" class="exit">Cancel</button>
+
+    </div>
     <div class="sec2">
+        <button class="new-order-button" onclick="openNewBillPopup()">New Bill</button>
         <div class="data" id="panel">
 
             <input type="text" name="search" placeholder="Search for a product" id="myInput" onkeyup="myFunction()">
+
             <table class="pos-table" id="myTable">
                 <thead class="thead">
                     <tr>
@@ -94,6 +118,8 @@
     <button onclick="closePopup()" class="exit">Cancel</button>
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 <script>
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
@@ -116,6 +142,7 @@
 
     let popup1 = document.getElementById('popup');
     let popup2 = document.getElementById('blur');
+    let popup3 = document.getElementById('details-overlay');
     let profile_card = document.querySelector('.admin-profile-card');
     let closeBtn = document.querySelector('.exit');
 
@@ -130,6 +157,36 @@
         popup2.classList.remove("open-popup");
 
     }
+
+    function openNewBillPopup() {
+        popup3.classList.add("open-popup");
+        popup2.classList.add("open-popup");
+
+    }
+
+    function closeNewBillPopup() {
+        popup3.classList.remove("open-popup");
+        popup2.classList.remove("open-popup");
+
+    }
+
+    $('#my-form').submit(function(event) {
+        event.preventDefault(); // prevent default form submission behavior
+
+        var formData = $(this).serialize(); // serialize the form data
+
+        $.ajax({
+            type: 'POST',
+            url: '<?= ROOT ?>/cashier/test',
+            data: formData,
+            success: function(response) {
+                alert(response);
+            },
+            error: function(xhr, status, error) {
+                // handle error response
+            }
+        });
+    });
 </script>
 
 </html>

@@ -1,9 +1,9 @@
-
 body {
     font-family: 'Rubik';
     margin: 0;
     background-color: #E0E0CE;
 }
+
 /* Point of Sales */
 .pos-body {
     display: grid;
@@ -74,6 +74,7 @@ body {
     height: 75vh;
 
 }
+
 .pos-table {
     display: flex;
     font-size: 14px;
@@ -139,10 +140,11 @@ select {
     width: 15%;
 }
 
-.col-cat{
+.col-cat {
     width: 15%;
 
 }
+
 .col-img {
     width: 15%;
 }
@@ -316,14 +318,14 @@ label {
 /*}*/
 
 .inventory-data {
-/*    background-color: white;*/
+    /*    background-color: white;*/
     width: 80% !important;
-/*    border-radius: 12px;*/
-/*    box-shadow: 0px 4px 31px rgba(0, 0, 0, 0.05);*/
-/*    margin-bottom: 20px;*/
-/*    padding: 30px;*/
-/*    padding-top: 30px;*/
-/*    transition: all 0.2s ease;*/
+    /*    border-radius: 12px;*/
+    /*    box-shadow: 0px 4px 31px rgba(0, 0, 0, 0.05);*/
+    /*    margin-bottom: 20px;*/
+    /*    padding: 30px;*/
+    /*    padding-top: 30px;*/
+    /*    transition: all 0.2s ease;*/
 }
 
 /*.inventory-data table {*/
@@ -369,3 +371,65 @@ label {
 /*.inventory-data .col-name{*/
 /*    width: 20%;*/
 /*}*/
+
+/* Cashier POS */
+
+.details-overlay {
+    visibility: hidden;
+    height: 60vh;
+    width: 50vw;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 10px rgb(67, 67, 67);
+    border-radius: 15px;
+}
+
+
+.details-input {
+padding: 30px;
+   
+
+
+    
+}
+.details-input  form{
+    display: flex;
+    margin-left: 0;
+    flex-direction: column;
+}
+
+.details-input input {
+    margin: 10px;
+    height: 45px;
+    font-size: 20px;
+    padding: 15px;
+}
+.details-input textarea {
+    margin: 10px;
+    height: 150px;
+    width: 100%;
+    font-size: 20px;
+    padding: 15px;
+}
+
+.details-input label {
+    font-size: 15px;
+
+}
+
+.new-order-button {
+    background-color: #008f37;
+    color: white;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 0;
+    width: 100px;
+    height: 35px;
+    text-align: center;
+    font-size: 18px;
+}
