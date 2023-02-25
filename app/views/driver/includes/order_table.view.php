@@ -44,7 +44,7 @@
         </thead>
         <tbody>
             <?php foreach ($rows as $row):?>
-                <form method="post" action="/woodworks/public/driver_home/order" hidden>
+                <form method="post" action="<?=ROOT?>/driver_home/order" hidden>
                     <input type="text" name="OrderID" value="<?=$row->OrderID?>" hidden>
                     <tr>
                         <td><?=esc($row->OrderID)?></td>
@@ -77,7 +77,32 @@
                         <td><?=esc($row->Contactno)?></td>
                         <td>
                             <div class ="order-btn-sec">
-                                <button onclick="openPopup(event)">More</button>
+                                <a href="<?=ROOT?>/driver_home/details/<?=$row->OrderID?>"><button >More</button></a>
+                                <div class="popup driver-popup" id="popup">
+                                    <div class="popup-heading">
+                                        <h2>MORE DETAILS</h2>
+                                        <img src="<?=ROOT?>/assets/images/driver/close.png" alt="Close" onclick="closePopup()">
+                                    </div>
+                                    <form method="post"  enctype="multipart/form-data">
+<!--                                        <input type="submit" id="detail-form" name="details">-->
+                                        <hr>
+                                        <div class="name-field">
+                                            <div class="edit-cus-field last-name">
+                                                <label>Product Name</label>
+                                                <?= esc($row->Name)?>
+                                            </div>
+                                        </div>
+                                        <div class="edit-cus-field">
+                                            <label>Quantity</label>
+                                            <?= esc($row->quantity)?>
+                                        </div>
+                                        <div class="edit-cus-field">
+                                            <label>Cost</label>
+                                            <?=  esc($row->cost) ?>
+                                        </div>
+
+                                    </form>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -86,40 +111,6 @@
             <?php endforeach;?>
         </tbody>
     </table>
-
-    <div class="popup driver-popup" id="popup">
-        <div class="popup-heading">
-            <h2>MORE DETAILS</h2>
-            <img src="<?=ROOT?>/assets/images/driver/close.png" alt="Close" onclick="closePopup()">
-        </div>
-        <form method="post" enctype="multipart/form-data">
-            <?php
-
-                $order_items = new Order_Items();
-                $orderID = $row->OrderID;
-                $results = $order_items->where('OrderID', $orderID);
-
-            ?>
-            <div class="image-field driver-edit-img">
-            </div>
-            <hr>
-            <div class="name-field">
-                <div class="edit-cus-field last-name">
-                    <label>Product Name</label>
-                    <?=$results[0]->Name?>
-                </div>
-            </div>
-            <div class="edit-cus-field">
-                <label>Quantity</label>
-                <?=$results[0]->Quantity?>
-            </div>
-            <div class="edit-cus-field">
-                <label>Cost</label>
-                <?=$results[0]->Cost?>
-            </div>
-        </form>
-    </div>
-
 </div>
 
 
