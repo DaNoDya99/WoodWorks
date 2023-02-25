@@ -3055,6 +3055,32 @@ h2 {
     background-color: #a00505;
 }
 
+.cat-response{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    width: 20%;
+}
+
+.cat-success{
+    background-color: #17c330;
+    color: #f9f9f9;
+    padding: 1em;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.cat-errors{
+    background-color: #e6b2b2;
+    color: #940b0b;
+    padding: 1em 2em;
+    border-radius: 7px;
+}
+
+.cat-deletion{
+    background-color: #ae1c1c;
+}
+
 .cat-from-field input, .cat-from-field select{
     height: 2.5em;
     margin-top: .5em;

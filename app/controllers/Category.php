@@ -102,8 +102,29 @@ class Category extends Controller
                     }else{
                         $category->errors['image'] = "Could not upload image.";
                     }
+                }else{
+                    $category->errors['image'] = "Please select an image.";
                 }
             }
+        }
+
+        if(empty($category->errors))
+        {
+            echo "<div class='cat-success'>
+                    <h3>Sub Category Added Successfully.</h3>
+                  </div>";
+        }else{
+            $stm = "<div class='cat-errors''>
+                        <ul>";
+            foreach ($category->errors as $error)
+            {
+                $stm .= "<li>".$error."</li>";
+            }
+
+            $stm .= "</ul>
+                    </div>";
+
+            echo $stm;
         }
 
 
@@ -150,14 +171,48 @@ class Category extends Controller
                     }else{
                         $sub_category->errors['image'] = "Could not upload image.";
                     }
+                }else{
+                    $sub_category->errors['image'] = "Please select an image.";
                 }
             }
         }
+
+        if(empty($sub_category->errors))
+        {
+            echo "<div class='cat-success'>
+                    <h3>Sub Category Added Successfully.</h3>
+                  </div>";
+        }else{
+            $stm = "<div class='cat-errors''>
+                        <ul>";
+            foreach ($sub_category->errors as $error)
+            {
+                $stm .= "<li>".$error."</li>";
+            }
+
+            $stm .= "</ul>
+                    </div>";
+
+            echo $stm;
+        }
     }
 
-    public function deleteCategory()
+    public function deleteCategory($id)
     {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
 
+        $category = new Categories();
+
+        $row = $category->getCategoryByID($id);
+        unlink($row[0]->Image);
+        $category->deleteCategory($id);
+
+        echo "<div class='cat-success cat-deletion'>
+                  <h2>Category Deleted Successfully!</h2>
+              </div>";
     }
 
     public function deleteSubCategory()

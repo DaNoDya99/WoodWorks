@@ -2,6 +2,7 @@ let category_form = document.getElementById('category-form');
 let sub_category_form = document.getElementById('sub-category-form');
 let cat_btn = document.getElementById('category-btn');
 let sub_cat_btn = document.getElementById('sub-category-btn');
+let response = document.getElementById('response');
 
 sub_category_form.onsubmit = (e) => {
     e.preventDefault();
@@ -17,8 +18,12 @@ cat_btn.onclick = () => {
     xhr.onload = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                let data = xhr.response;
-                console.log(data);
+                response.innerHTML = xhr.response;
+                setTimeout(() => {
+                    response.innerHTML = "";
+                    location.reload();
+                }, 3000);
+
             }
         }
     }
@@ -32,8 +37,11 @@ sub_cat_btn.onclick = () => {
     xhr.onload = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                let data = xhr.response;
-                console.log(data);
+                response.innerHTML = xhr.response;
+                setTimeout(() => {
+                    response.innerHTML = "";
+                    location.reload();
+                }, 3000);
             }
         }
     }
@@ -51,4 +59,21 @@ function load_subcat_image(file){
     let mylink;
     mylink = window.URL.createObjectURL(file);
     document.querySelector("#subcat-img").src = mylink;
+}
+
+function deleteCategory(id){
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost/WoodWorks/public/category/deleteCategory/'+id, true);
+    xhr.onload = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                response.innerHTML = xhr.response;
+                setTimeout(() => {
+                    response.innerHTML = "";
+                    location.reload();
+                }, 3000);
+            }
+        }
+    }
+    xhr.send();
 }
