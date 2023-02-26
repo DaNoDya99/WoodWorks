@@ -12,7 +12,7 @@
                         <div class="cat-heading">
                             <h3><?=$category->CategoryID?> - <?=$category->Category_name?></h3>
                             <div class="cat-btns">
-                                <button><img src="<?=ROOT?>/assets/images/admin/edit-4-svgrepo-com.svg" alt=""></button>
+                                <button onclick="openEditCatPopup('<?=$category->CategoryID?>','<?=$category->Category_name?>','<?=$category->Image?>')"><img src="<?=ROOT?>/assets/images/admin/edit-4-svgrepo-com.svg" alt=""></button>
                                 <button onclick="deleteCategory('<?=$category->CategoryID?>')"><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
                             </div>
                         </div>
@@ -24,8 +24,7 @@
                                         <img  src="<?=ROOT?>/<?=$sub_cat->Image?>" alt="Chair">
                                         <span><?= $sub_cat->Sub_category_name ?></span>
                                         <div class="sub-cat-btns">
-                                            <button><img src="<?=ROOT?>/assets/images/admin/edit-4-svgrepo-com.svg" alt=""></button>
-                                            <button><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
+                                            <button  onclick="openEditSubCatPopup()"><img src="<?=ROOT?>/assets/images/admin/customize-svgrepo-com.svg" alt=""></button>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
@@ -102,6 +101,53 @@
 
         </div>
     </div>
+</div>
+
+<div class="edit-cat" id="edit-cat">
+    <img class="close-btn" onclick="closeEditCatPopup()" src="<?=ROOT?>/assets/images/customer/close.png" alt="">
+    <h2 id="edit-cat-header"></h2>
+    <form id="edit-cat-form">
+        <div class="sub-cat-img">
+            <img id="edit-cat-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="No Image">
+            <label>
+                Upload
+                <input onchange="load_edit_cat_image(this.files[0])" type="file" name="Image">
+            </label>
+        </div>
+        <div class="sub-cat-fields">
+            <div class="field">
+                <label>Change category name</label>
+                <input id="cat-field" type="text" name="Category_name" value="">
+            </div>
+            <div class="sub-cat-btn">
+                <button id="edit-cat-btn" type="submit">Change</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="edit-sub-cat">
+    <h1>Side Tables</h1>
+    <button class="delete-sub-cat"><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
+    <img class="close-btn" onclick="closeEditSubCatPopup()" src="<?=ROOT?>/assets/images/customer/close.png" alt="">
+    <form method="post">
+        <div class="sub-cat-img">
+            <img id="sub-cat-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="No Image">
+            <label>
+                Upload
+                <input onchange="load_cat_image(this.files[0])" type="file" name="Image">
+            </label>
+        </div>
+        <div class="sub-cat-fields">
+            <div class="field">
+                <label>Change sub category name</label>
+                <input id="cat-field" type="text" name="Sub_category_name" value="">
+            </div>
+            <div class="sub-cat-btn">
+                <button type="submit">Change</button>
+            </div>
+        </div>
+    </form>
 </div>
 
 <div class="cat-response" id="response">

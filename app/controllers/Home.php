@@ -37,7 +37,6 @@ class Home extends Controller
             'customer.Firstname',
             'customer.Lastname',
             'customer.Image'
-
         ];
 
         $furniture = new Furnitures();
