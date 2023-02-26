@@ -3037,14 +3037,7 @@ h2 {
     height: 1.7em;
     border: none;
     border-radius: 3px;
-}
-
-.sub-cat-btns button:first-child{
-    background-color: #2b7358;
-}
-
-.sub-cat-btns button:last-child{
-    background-color: #a00505;
+    background-color: #4495d8;
 }
 
 .cat-btns button:first-child{
@@ -3087,6 +3080,49 @@ h2 {
     border: #d4d4d4 2px solid;
     border-radius: 7px;
     padding-left: 1em;
+}
+
+#edit-cat{
+    position: absolute;
+    width: 40%;
+    padding: 1em 2em;
+    background-color: #f9f9f9;
+    top: 20%;
+    left: 30%;
+    border-radius: 10px;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    visibility: hidden;
+}
+
+.close-btn{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.edit-cat h2{
+    padding-bottom: .5em;
+    border-bottom: #d4d4d4 2px solid;
+}
+
+#edit-cat-form,#edit-cat-btn{
+    margin-top: 1em;
+}
+
+#edit-cat-form input{
+    padding-left: 0.5em;
+}
+
+#edit-cat-btn{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    font-weight: bold;
 }
 
 .cat-from-field select {
@@ -3387,3 +3423,98 @@ h2 {
     top: 89%;
 }
 
+/*Edit sub category*/
+
+#edit-sub-cat{
+    width: 40%;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    padding: 2em;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    visibility: hidden;
+}
+
+#edit-sub-cat h1{
+    margin: 0;
+    border-bottom: #d4d4d4 2px solid;
+}
+
+#edit-sub-cat form{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-cat form{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub-cat-img{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sub-cat-img img{
+    width: 8em;
+    height: 8em;
+    border-radius: 10px;
+}
+
+.sub-cat-img label input{
+    display: none;
+}
+
+.sub-cat-img label{
+    width: 5em;
+    margin-top: 1em;
+    padding: .5em;
+    text-align: center;
+    background-color: #100F0F;
+    color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.sub-cat-fields{
+    width: 75%;
+}
+
+.sub-cat-btn{
+    text-align: center;
+}
+
+.sub-cat-btn button{
+    width: 20%;
+    padding: .5em;
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border-radius: 7px;
+    border: none;
+    margin-top: 1.5em;
+    font-weight: bold;
+}
+
+.edit-subcat-header{
+    display: flex;
+}
+
+.delete-sub-cat{
+    position: relative;
+    bottom: 2.8em;
+    left: 27%;
+    background-color: #a00505;
+    border: none;
+    border-radius: 5px;
+    height: 2.4em;
+    width: 2.4em;
+}
+
+.delete-sub-cat img{
+    height: 2.2em;
+    width: 2.2em;
+}
