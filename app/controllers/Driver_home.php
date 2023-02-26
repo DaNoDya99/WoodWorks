@@ -164,23 +164,17 @@ class Driver_home extends Controller
 
     }
 
-    public function details($id = null)
+    public function details($id=null)
     {
 
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
-        show($id);
-        die;
+
         $order_items = new Order_Items();
-        $OrderID =$_POST['OrderID'];
-        $data['results']=$results = $order_items->where('OrderID', $OrderID);
-        if (!empty($results)) {
-            $data['product_name'] = $results[0]->Name ?? '';
-            $data['cost'] = $results[0]->Cost ?? '';
-            $data['quantity'] = $results[0]->Quantity ?? '';
-        }
-        $this->view('driver/order',$data);
+        $OrderID = $id;
+        $data['rows']= $order_items->where('OrderID', $OrderID);
+        $this->view('driver/order_details',$data);
 
     }
 

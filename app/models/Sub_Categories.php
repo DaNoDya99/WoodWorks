@@ -8,6 +8,7 @@ class Sub_Categories extends Model
     protected $allowedColumns = [
 	    'CategoryID',
         'Sub_category_name',
+        'Image',
         'Date',
     ];
 

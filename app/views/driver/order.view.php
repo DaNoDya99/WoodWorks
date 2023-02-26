@@ -18,8 +18,5 @@
         <?php $data['rows'] = $row; $this->view('driver/includes/order_table',$data) ?>
     </div>
 </div>
-
 </body>
-<script src="<?=ROOT?>/assets/javascript/driver/order_details.js"></script>
-
 </html>

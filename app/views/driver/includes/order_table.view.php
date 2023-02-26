@@ -30,7 +30,7 @@
     </div>
     <table class="content-table" id="myTable">
         <thead>
-
+        <tr>
             <th class="th">Order ID</th>
             <th class="th">Payment Type</th>
             <th class="th">Total Amount</th>
@@ -40,7 +40,7 @@
             <th class="th">Customer Name</th>
             <th class="th">Customer Mobile No</th>
             <th class="th"></th>
-
+        </tr>
         </thead>
         <tbody>
             <?php foreach ($rows as $row):?>
@@ -77,41 +77,16 @@
                         <td><?=esc($row->Contactno)?></td>
                         <td>
                             <div class ="order-btn-sec">
-                                <a href="<?=ROOT?>/driver_home/details/<?=$row->OrderID?>"><button >More</button></a>
-                                <div class="popup driver-popup" id="popup">
-                                    <div class="popup-heading">
-                                        <h2>MORE DETAILS</h2>
-                                        <img src="<?=ROOT?>/assets/images/driver/close.png" alt="Close" onclick="closePopup()">
-                                    </div>
-                                    <form method="post"  enctype="multipart/form-data">
-<!--                                        <input type="submit" id="detail-form" name="details">-->
-                                        <hr>
-                                        <div class="name-field">
-                                            <div class="edit-cus-field last-name">
-                                                <label>Product Name</label>
-                                                <?= esc($row->Name)?>
-                                            </div>
-                                        </div>
-                                        <div class="edit-cus-field">
-                                            <label>Quantity</label>
-                                            <?= esc($row->quantity)?>
-                                        </div>
-                                        <div class="edit-cus-field">
-                                            <label>Cost</label>
-                                            <?=  esc($row->cost) ?>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
+                                <button type="button" id="order-btn" onclick="location.href='<?=ROOT?>/driver_home/details/<?=$row->OrderID?>'">More</button>
                         </td>
                     </tr>
-
                 </form>
             <?php endforeach;?>
         </tbody>
     </table>
 </div>
+
+
 
 
 
