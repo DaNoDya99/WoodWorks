@@ -24,7 +24,7 @@
                                         <img  src="<?=ROOT?>/<?=$sub_cat->Image?>" alt="Chair">
                                         <span><?= $sub_cat->Sub_category_name ?></span>
                                         <div class="sub-cat-btns">
-                                            <button  onclick="openEditSubCatPopup()"><img src="<?=ROOT?>/assets/images/admin/customize-svgrepo-com.svg" alt=""></button>
+                                            <button  onclick="openEditSubCatPopup('<?=$category->CategoryID?>','<?= $sub_cat->Sub_category_name ?>','<?=$sub_cat->Image?>')"><img src="<?=ROOT?>/assets/images/admin/customize-svgrepo-com.svg" alt=""></button>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
@@ -127,24 +127,24 @@
 </div>
 
 <div id="edit-sub-cat">
-    <h1>Side Tables</h1>
-    <button class="delete-sub-cat"><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
+    <h1 id="edit-sub-cat-header"></h1>
+    <button class="delete-sub-cat" onclick="deleteSubCategory()"><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
     <img class="close-btn" onclick="closeEditSubCatPopup()" src="<?=ROOT?>/assets/images/customer/close.png" alt="">
-    <form method="post">
+    <form id="edit-sub-cat-form" method="post">
         <div class="sub-cat-img">
-            <img id="sub-cat-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="No Image">
+            <img id="edit-sub-cat-img" src="<?=ROOT?>/assets/images/admin/No_image.jpg" alt="No Image">
             <label>
                 Upload
-                <input onchange="load_cat_image(this.files[0])" type="file" name="Image">
+                <input onchange="load_edit_sub_cat_image(this.files[0])" type="file" name="Image">
             </label>
         </div>
         <div class="sub-cat-fields">
             <div class="field">
                 <label>Change sub category name</label>
-                <input id="cat-field" type="text" name="Sub_category_name" value="">
+                <input id="sub-cat-field" type="text" name="Sub_category_name" value="">
             </div>
             <div class="sub-cat-btn">
-                <button type="submit">Change</button>
+                <button id="edit-sub-cat-btn" type="submit">Change</button>
             </div>
         </div>
     </form>
