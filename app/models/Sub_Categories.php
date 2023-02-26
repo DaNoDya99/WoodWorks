@@ -33,9 +33,9 @@ class Sub_Categories extends Model
         if(empty($data['Sub_category_name']))
         {
             $this->errors['Sub_category_name'] = "Sub category name is required";
-        }elseif (!preg_match("/^[a-zA-Z]+$/",trim($data['Sub_category_name'])))
+        }elseif (!preg_match("/^[a-zA-Z ]+$/",trim($data['Sub_category_name'])))
         {
-            $this->errors['Sub_category_name'] = "Sub category name can only have letters.";
+            $this->errors['Sub_category_name'] = "Sub category name can only have letters and spaces.";
         }
 
         if(empty($data['CategoryID']))

@@ -18,7 +18,7 @@ class Category extends Controller
 
         $categories = new Categories();
         $data['row'] = $this->getUser();
-        $data['categories'] = $categories->findAll();
+        $data['categories'] = $categories->findAll();;
 
         $this->view("reg_customer/category",$data);
     }
@@ -218,5 +218,70 @@ class Category extends Controller
     public function deleteSubCategory()
     {
 
+    }
+
+    public function editCategory($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $category = new Categories();
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if($category->edit_validate($_POST))
+            {
+                if(!empty($_FILES["Image"]['name']))
+                {
+                    $folder = "uploads/images/";
+                    if(!file_exists($folder)){
+                        mkdir($folder,0777,true);
+                        file_put_contents($folder."index.php","<?php Access Denied.");
+                        file_put_contents("uploads/index.php","<?php Access Denied.");
+                    }
+
+                    $allowedFileType = ['image/jpeg','image/png'];
+
+                    if($_FILES['Image']['error'] == 0)
+                    {
+                        if(in_array($_FILES['Image']['type'],$allowedFileType))
+                        {
+                            $destination = $folder.time().$_FILES['Image']['name'];
+                            move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
+                            unlink($category->getCategoryImage($id)[0]->Image);
+
+                            $_POST['Image'] = $destination;
+                            $category->updateCategoryWithImage($_POST,$id);
+                        }else{
+                            $category->errors['image'] = "This file type is not allowed.";
+                        }
+                    }else{
+                        $category->errors['image'] = "Could not upload image.";
+                    }
+                }else{
+                    $category->updateCategoryName($_POST['Category_name'],$id);
+                }
+            }
+        }
+
+        if(empty($category->errors))
+        {
+            echo "<div class='cat-success'>
+                    <h3>Category Edited Successfully.</h3>
+                  </div>";
+        }else{
+            $stm = "<div class='cat-errors''>
+                        <ul>";
+            foreach ($category->errors as $error)
+            {
+                $stm .= "<li>".$error."</li>";
+            }
+
+            $stm .= "</ul>
+                    </div>";
+
+            echo $stm;
+        }
     }
 }
