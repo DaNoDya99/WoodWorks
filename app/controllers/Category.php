@@ -215,9 +215,20 @@ class Category extends Controller
               </div>";
     }
 
-    public function deleteSubCategory()
+    public function deleteSubCategory($id,$name)
     {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
 
+        $sub_category = new Sub_Categories();
+        unlink($sub_category->getSubCategoryImage($name,$id)[0]->Image);
+        $sub_category->deleteSubCategory($id,$name);
+
+        echo "<div class='cat-success cat-deletion'>
+                  <h2>Sub Category Deleted Successfully!</h2>
+              </div>";
     }
 
     public function editCategory($id)
@@ -274,6 +285,71 @@ class Category extends Controller
             $stm = "<div class='cat-errors''>
                         <ul>";
             foreach ($category->errors as $error)
+            {
+                $stm .= "<li>".$error."</li>";
+            }
+
+            $stm .= "</ul>
+                    </div>";
+
+            echo $stm;
+        }
+    }
+
+    public function editSubCategory($id,$name)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $sub_category = new Sub_Categories();
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if($sub_category->edit_validate($_POST))
+            {
+                if(!empty($_FILES["Image"]['name']))
+                {
+                    $folder = "uploads/images/";
+                    if(!file_exists($folder)){
+                        mkdir($folder,0777,true);
+                        file_put_contents($folder."index.php","<?php Access Denied.");
+                        file_put_contents("uploads/index.php","<?php Access Denied.");
+                    }
+
+                    $allowedFileType = ['image/jpeg','image/png'];
+
+                    if($_FILES['Image']['error'] == 0)
+                    {
+                        if(in_array($_FILES['Image']['type'],$allowedFileType))
+                        {
+                            $destination = $folder.time().$_FILES['Image']['name'];
+                            move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
+                            unlink($sub_category->getSubCategoryImage($name,$id)[0]->Image);
+
+                            $_POST['Image'] = $destination;
+                            $sub_category->updateSubCategoryWithImage($_POST,$name,$id);
+                        }else{
+                            $sub_category->errors['image'] = "This file type is not allowed.";
+                        }
+                    }else{
+                        $sub_category->errors['image'] = "Could not upload image.";
+                    }
+                }else{
+                    $sub_category->updateSubCategoryName($_POST['Sub_category_name'],$name,$id);
+                }
+            }
+        }
+
+        if(empty($sub_category->errors))
+        {
+            echo "<div class='cat-success'>
+                    <h3>Sub Category Edited Successfully.</h3>
+                  </div>";
+        }else{
+            $stm = "<div class='cat-errors''>
+                        <ul>";
+            foreach ($sub_category->errors as $error)
             {
                 $stm .= "<li>".$error."</li>";
             }
