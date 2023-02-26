@@ -24,11 +24,11 @@ class Design extends Model
     {
         $this->errors = [];
 
-        if (empty($data['Description'])) {
-            $this->errors['Description'] = "Description can not be empty";
-        }
         if (empty($data['Name'])) {
             $this->errors['Name'] = "Design Name can not be empty";
+        }
+        if (empty($data['Description'])) {
+            $this->errors['Description'] = "Description can not be empty";
         }
         if (empty($this->errors)) {
             return true;
@@ -63,7 +63,7 @@ class Design extends Model
         return $text;
     }
 
-    public function getDesigns($limit = 2,$offset){
+    public function getDesigns($offset,$limit = 2){
 
         $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM design ORDER BY DesignID desc limit $limit offset $offset; ";
         //SELECT * FROM design INNER JOIN design_image ON design.DesignID = design_image.DesignID ORDER BY design.DesignID desc limit $limit offset $offset;

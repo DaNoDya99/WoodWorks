@@ -1,9 +1,10 @@
 <?php $this->view('driver/includes/header') ?>
 
-<body class="designer">
-<div class="designer-body">
-    <?php $this->view('driver/includes/driver_header') ?>
-    <div class="content dashboard">
+<body class="driver">
+<?php $this->view('driver/includes/driver_header') ?>
+<div class="content driver-body">
+
+    <div class="dashboard">
 
         <div class="dashboard-body">
             <div class="driver-profile-card">
