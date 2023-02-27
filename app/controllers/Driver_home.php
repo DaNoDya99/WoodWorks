@@ -25,7 +25,6 @@ class Driver_home extends Controller
         $employee = new Employees();
         $data['details'] = $employee->where('EmployeeID',$id);
         $data['row']=$row = $driver->where("DriverID",$id);
-        //show($row[0]->Availability);
 
         if(empty($row[0]))
         {
@@ -35,12 +34,15 @@ class Driver_home extends Controller
 
         }
         $order = new Orders();
-//        $query = "SELECT * FROM `orders`  WHERE `DriverID` = '$id' orders by DATE desc limit 10;";
-//        $data['rows']= $rows = $order->query($query);
 
         $data['rows']= $rows = $order->findOrders('DriverID',$id);
+
+        if(isset($_POST['vehicle'])){
+            $vehicle =$_POST['vehicle'];
+            $driver->update_type($id,['Vehicle_type'=>$vehicle]);
+        }
+
         $data['title'] = "DASHBOARD";
-//        $data['availability'] = $row[0]->Availability;
 
         $this->view('driver/driver_home',$data);
 
@@ -116,7 +118,6 @@ class Driver_home extends Controller
         $employee = new Employees();
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
-//        $order_items = new Order_Items();
 
         if(isset($_POST['status'])){//$_SERVER['REQUEST_METHOD'] == "POST"
             $OrderID =$_POST['OrderID'];
@@ -124,14 +125,6 @@ class Driver_home extends Controller
             //$data['row'] = $order->query("UPDATE `orders` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
             $data['row'] = $order->update_status($OrderID,['Order_status'=>$status]);
         }
-
-//        if(isset($_POST['details'])) {
-//
-//            $OrderID = $_POST['OrderID'];
-//            $data['row'] = $order_items->where('OrderID', $OrderID);
-////            show($data['row']);
-//
-//        }
 
         $data['row'] = $order->displayOrders('DriverID',$id);
 

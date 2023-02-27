@@ -16,6 +16,7 @@ class Orders extends Model
         'Date',
         'Deliver_method',
         'Order_status',
+        'Vehicle_type',
         'Address',
         'CustomerID',
         'DriverID',
@@ -24,7 +25,7 @@ class Orders extends Model
 
     public function findOrders($column,$value)
     {
-        $query = "select * from $this->table where $column = :value order by DATE desc limit 10";
+        $query = "select * from $this->table where $column = :value order by DATE desc limit 4";
         return $this->query($query,['value'=>$value]);
     }
 

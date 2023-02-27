@@ -7,6 +7,8 @@ class Design extends Model
 
     protected $allowedColumns = [
         'DesignID',
+        'Height',
+        'Width',
         'Description',
         'DesignerID',
         'ManagerID',
@@ -26,6 +28,12 @@ class Design extends Model
 
         if (empty($data['Name'])) {
             $this->errors['Name'] = "Design Name can not be empty";
+        }
+        if (empty($data['Height'])) {
+            $this->errors['Height'] = "Height can not be empty";
+        }
+        if (empty($data['Width'])) {
+            $this->errors['Width'] = "Width can not be empty";
         }
         if (empty($data['Description'])) {
             $this->errors['Description'] = "Description can not be empty";
@@ -66,8 +74,6 @@ class Design extends Model
     public function getDesigns($offset,$limit = 2){
 
         $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM design ORDER BY DesignID desc limit $limit offset $offset; ";
-        //SELECT * FROM design INNER JOIN design_image ON design.DesignID = design_image.DesignID ORDER BY design.DesignID desc limit $limit offset $offset;
-        //SELECT * FROM design d INNER JOIN (SELECT DISTINCT DesignID,Image FROM design_image) ou ON d.DesignID = ou.DesignID ORDER BY d.DesignID desc limit $limit offset $offset;
         return $this->query($query);
     }
 
@@ -85,6 +91,8 @@ class Design extends Model
         $fields = [
             'DesignID',
             'DesignerID',
+            'Height',
+            'Width',
             'Description',
             'Name',
             'ManagerID',

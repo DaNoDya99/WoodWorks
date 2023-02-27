@@ -321,6 +321,16 @@ body{
     display: none;
 }
 
+.driver-tbox hr{
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid #cacaca;
+}
+
 .driver-tbox table{
     width: 100%;
     border-collapse: collapse;
@@ -334,11 +344,6 @@ body{
     cursor: pointer;
 
 }
-
-/*.driver-content-table:hover{*/
-/*    transform: scale(1.02);*/
-/*    transition: .4s ease-in;*/
-/*}*/
 
 .driver-content-table thead tr{
     color: black;
