@@ -862,6 +862,14 @@ margin: 20px 0;
 
 .advertisement-popup{
   width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.advertisement-popup::-webkit-scrollbar{
+  display: none;
 }
 
 /*Chat*/
@@ -1517,8 +1525,79 @@ margin: 20px 0;
   top: 0;
   background-color: white;
 }
-/*#panel{*/
-/*  display: none;*/
-/*  width: 100vw;*/
-/*}*/
 
+.refur-fur-img-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.refur-fur-img-container input{
+  display: none;
+}
+
+.refur-fur-img-container label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  width: 10em;
+  background-color: #100F0F;
+  color: #f9f9f9;
+  height: 2.5em;
+  font-family: 'Rubik' 'sans-serif' ;
+}
+
+.refur-fur-img-container img{
+  width: 10em;
+  height: 10em;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.refur-fur-img{
+  display: flex;
+}
+
+.refur-fur-img img:first-child{
+  margin-right: 1em;
+}
+
+.fields-container{
+  display: flex;
+  justify-content: space-between;
+  margin: 2em 0 1em 0;
+}
+
+.fields-left,.fields-right{
+  text-align: left;
+  width: 49%;
+  font-family: 'Rubik' 'sans-serif' ;
+}
+
+.fields-left input, .fields-right input{
+  height: 40px;
+  font-size: 1rem;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-family: 'Rubik' 'sans-serif' ;
+  padding-left: 1em;
+  width: 100%;
+}
+
+.ref-description{
+  text-align: left;
+}
+
+.ref-description textarea{
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 15em;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: 'Rubik' 'sans-serif' ;
+  background-color: #f9f9f9;
+}
