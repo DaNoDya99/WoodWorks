@@ -54,9 +54,45 @@ class Sub_Categories extends Model
         return false;
     }
 
-    public function deleteSubCategory($id)
+    public function edit_validate($data)
     {
-        $query = "delete from $this->table where Sub_category_name = :Sub_category_name;";
-        return $this->query($query,['Sub_category_name' => $id]);
+        $this->errors = [];
+
+        if(empty($data['Sub_category_name']))
+        {
+            $this->errors['Sub_category_name'] = "Sub category name is required";
+        }elseif (!preg_match("/^[a-zA-Z ]+$/",trim($data['Sub_category_name'])))
+        {
+            $this->errors['Sub_category_name'] = "Sub category name can only have letters and spaces.";
+        }
+
+        if(empty($this->errors))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function deleteSubCategory($id,$name)
+    {
+        $query = "delete from $this->table where Sub_category_name = :Sub_category_name && CategoryID = :CategoryID;";
+        return $this->query($query,['Sub_category_name' => $name,'CategoryID' => $id]);
+    }
+
+    public function getSubCategoryImage($name,$id)
+    {
+        $query = "select Image from $this->table where Sub_category_name = :Sub_category_name && CategoryID = :CategoryID;";
+        return $this->query($query,['Sub_category_name' => $name,'CategoryID' => $id]);
+    }
+
+    public function updateSubCategoryWithImage($data,$name,$id){
+        $query = "update $this->table set Sub_category_name = :Sub_category_name_new, Image = :Image where Sub_category_name = :Sub_category_name && CategoryID = :CategoryID;";
+        return $this->query($query,['Sub_category_name_new' => $data['Sub_category_name'],'Sub_category_name' => $name,'Image' => $data['Image'],'CategoryID' => $id]);
+    }
+
+    public function updateSubCategoryName($name_new,$name,$id){
+        $query = "update $this->table set Sub_category_name = :Sub_category_name_new where Sub_category_name = :Sub_category_name && CategoryID = :CategoryID;";
+        return $this->query($query,['Sub_category_name_new' => $name_new,'Sub_category_name' => $name,'CategoryID' => $id]);
     }
 }

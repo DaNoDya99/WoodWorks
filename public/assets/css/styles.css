@@ -3506,7 +3506,7 @@ h2 {
 .delete-sub-cat{
     position: relative;
     bottom: 2.8em;
-    left: 27%;
+    left: 35%;
     background-color: #a00505;
     border: none;
     border-radius: 5px;
@@ -3517,4 +3517,25 @@ h2 {
 .delete-sub-cat img{
     height: 2.2em;
     width: 2.2em;
+}
+
+#sub-cat-field{
+    padding-left: .5em;
+}
+
+.cat-deletion-btns{
+    display: flex;
+    justify-content: center;
+    gap: 40%;
+    margin-top: 1em;
+}
+
+.cat-deletion-btns button{
+    width: 20%;
+    padding: .5em;
+    background-color: #ae1c1c;
+    color: #f9f9f9;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
 }
