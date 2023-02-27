@@ -5,36 +5,29 @@ class Advertisements extends model
     protected $table = "advertisement";
 
     protected  $allowedColumns = [
-        'AdvetisementID',
+        'AdvertisementID',
         'Date',
         'Product_name',
-        'CategoryID',
-        'Sub_category_name',
         'Quantity',
         'Description',
         'Price',
-        'ManagerID'                  
-    ];
-
-    protected $beforeInsert = [
-        'make_advertisement_id'
+        'Manager'                  
     ];
 
     public function validate($post){
         $this->errors = [];
 
+        if(empty($post['AdvertisementID'])){
+            $this->errors['AdvertisementID'] = "Product ID is required.";
+        }elseif(!preg_match("/^[A-Z0-9]+$/",trim($post['AdvertisementID']))){
+            $this->errors['AdvertisementID'] = "Product ID should only have capital letters and numbers.";
+        }
+
         if(empty($post['Product_name'])){
             $this->errors['Product_name'] = "Product name is required.";
             
-        } 
-
-        if(empty($post['CategoryID'])){
-            $this->errors['CategoryID'] = "Category ID is required.";
-
-        }
-
-        if(empty($post['Sub_category_name'])){
-            $this->errors['Sub_category_name'] = "Subcategory name is required.";
+        }elseif(!preg_match("/^[A-Za-z ]+$/",trim($post['Product_name']))){
+            $this->errors['Product_name'] = "Product name should only have letters.";
         }
 
         if(empty($post['Quantity']))
@@ -63,32 +56,11 @@ class Advertisements extends model
 
     }
 
-    public function make_advertisement_id($DATA){
+    public function insertImages($productID, $images)
+    {
+        $query = "insert into advertisements_image (`AdvertisementID`, `Image`) values ('$productID','$images[0]'),('$productID','$images[1]'),('$productID','$images[2]');";
 
-        $advertisementID = $this->random_string(60);
-        $result = $this->where('AdvertisementID',$advertisementID);
-        while ($result){
-            $advertisementID = $this->random_string(60);
-            $result = $this->where('AdvertisementID',$advertisementID);   
-        }
-
-        $DATA['AdvertisementID'] = $advertisementID;
-
-        return $DATA;
+        return $this->query($query);
     }
 
-    public function random_string($length){
-        $array = array(0,1,2,3,4,5,6,7,8,9,'A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
-        $text = "";
-        for($x=0;$x<$length;$x++)
-        {
-            $random = rand(0,61);
-            $text .= $array[$random];
-        }
-
-        return $text;
-    }
-
-
-    
 }

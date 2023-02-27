@@ -128,15 +128,6 @@ class Manager extends Controller
         $id = $id ?? Auth::getEmployeeID();
         $advertisement = new Advertisements();
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            $_POST['ManagerID'] = $id;
-
-            if($advertisement->validate($_POST)){
-                $advertisement->insert($_POST);
-            }
-            
-        }
 
         $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
@@ -195,9 +186,10 @@ class Manager extends Controller
             $this->redirect('login');
         }
 
-        
         $data['title']="ISSUES";
 
+        $issue = new Issues();
+        $data['issue'] = $issue->get_issue();
         $this->view('manager/issues',$data);
     }
 
