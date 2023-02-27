@@ -89,12 +89,26 @@ function load_subcat_image(file){
 }
 
 function deleteCategory(id){
+    cat_id = id;
+
+    response.innerHTML = "<div class='cat-success cat-deletion'>\n" +
+        "        <h2>Do you really want to delete this?</h2>\n" +
+        "        <div class=\"cat-deletion-btns\">\n" +
+        "            <button onclick=\"confirmDeleteCategory()\">Yes</button>\n" +
+        "            <button onclick=\"closeDeleteCatPopup()\">No</button>\n" +
+        "        </div>\n" +
+        "    </div>"
+
+}
+
+function confirmDeleteCategory(){
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost/WoodWorks/public/category/deleteCategory/'+id, true);
+    xhr.open('GET', 'http://localhost/WoodWorks/public/category/deleteCategory/'+cat_id, true);
     xhr.onload = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 response.innerHTML = xhr.response;
+                cat_id = '';
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
@@ -187,6 +201,18 @@ edit_sub_cat_btn.onclick = () => {
 }
 
 function deleteSubCategory(){
+    response.innerHTML = "<div class='cat-success cat-deletion'>\n" +
+        "        <h2>Do you really want to delete this?</h2>\n" +
+        "        <div class=\"cat-deletion-btns\">\n" +
+        "            <button onclick=\"confirmDeleteSubCategory()\">Yes</button>\n" +
+        "            <button onclick=\"closeDeleteCatPopup()\">No</button>\n" +
+        "        </div>\n" +
+        "    </div>"
+
+
+}
+
+function confirmDeleteSubCategory(){
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/category/deleteSubCategory/'+sub_cat_id+'/'+sub_cat_name, true);
     xhr.onload = () => {
@@ -201,4 +227,9 @@ function deleteSubCategory(){
         }
     }
     xhr.send();
+}
+
+function closeDeleteCatPopup()
+{
+    response.innerHTML = "";
 }

@@ -3522,3 +3522,20 @@ h2 {
 #sub-cat-field{
     padding-left: .5em;
 }
+
+.cat-deletion-btns{
+    display: flex;
+    justify-content: center;
+    gap: 40%;
+    margin-top: 1em;
+}
+
+.cat-deletion-btns button{
+    width: 20%;
+    padding: .5em;
+    background-color: #ae1c1c;
+    color: #f9f9f9;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
