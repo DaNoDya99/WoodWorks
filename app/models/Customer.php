@@ -132,4 +132,9 @@ class Customer extends Model
 
         return false;
     }
+
+    public function getCustDetails($customerID){
+        $result = $this->where('CustomerID',$customerID);
+        return $result;
+    }
 }

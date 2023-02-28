@@ -27,6 +27,8 @@ class cashier extends Controller
         $cart = new Carts();
 
         if (!empty($_SESSION['CustomerID'])) {
+            $customer = new Customer();
+            $_SESSION['CustomerDetails'] = $customer->where('CustomerID', $_SESSION['CustomerID']);
             $cart_id = $cart->getCart($_SESSION['CustomerID'])[0]->CartID;
             $order_item = new Order_Items();
 
@@ -139,20 +141,18 @@ class cashier extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $folder = "uploads/images/";
             $_POST['Password'] = password_hash('testpass', PASSWORD_DEFAULT);
-            $_POST['Lastname'] = 'Indisa';
             $_POST['Password2'] = $_POST['Password'];
             $_POST['Role'] = 'Customer';
-            $_POST['Status'] = '0';
             $_POST['Mobileno'] = $_POST['contact'];
-            $_POST['Gender'] = 'Male';
-            $_POST['Email'] = 'aj@gmail.com';
-            // show($_POST);
-
+            $_POST['Gender'] = "Male";
             if ($customer->validate($_POST)) {
                 $customer->insert($_POST);
+                echo json_encode(['success' => 'Customer added successfully.']);
+            } else {
+                echo json_encode($customer->errors);
             }
+
             $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
-            echo $_SESSION['CustomerID'];
         }
     }
 

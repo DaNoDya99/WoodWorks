@@ -1,11 +1,18 @@
 <?php $this->view('cashier/includes/header') ?>
+<div id="message-overlay">
+    <p id="status-message"></p>
+</div>
 <div class="content pos-body">
     <div class="details-overlay" id="details-overlay">
         <div class="details-input">
             <form id="my-form" action="">
                 <div>
-                    <label for="name">Customer Name</label>
+                    <label for="Firstname">First Name</label>
                     <input type="text" id="name" name="Firstname">
+                    <label for="Lastname">Last Name</label>
+                    <input type="text" id="name" name="Lastname">
+                    <label for="Email">E-Mail</label>
+                    <input type="tel" id="contact" name="Email">
                     <label for="contact">Contact Number</label>
                     <input type="tel" id="contact" name="contact">
                 </div>
@@ -13,17 +20,24 @@
                     <label for="address">Address</label><br>
                     <textarea type="textarea" id="address" height="200px" name="Address"></textarea>
                 </div>
-                <button type="submit" class="exit">Submit</button>
+                <div style="display:flex;">
+                    <button type="submit" class="exit">Submit</button>
+                    <button type="button" onclick="closeNewBillPopup()" class="exit">Cancel</button>
+                </div>
+
 
             </form>
 
         </div>
 
-        <button onclick="closeNewBillPopup()" class="exit">Cancel</button>
 
     </div>
     <div class="sec2">
-        <button class="new-order-button" onclick="openNewBillPopup()">New Bill</button>
+
+        <div>
+            <button class="new-order-button" onclick="openNewBillPopup()">New Bill</button>
+            <button class="clrbtn" onclick="resetForm()">Clear Bill</button>
+        </div>
         <div class="data" id="panel">
 
             <input type="text" name="search" placeholder="Search for a product" id="myInput" onkeyup="myFunction()">
@@ -57,9 +71,11 @@
     </div>
     <div class="sec3">
         <div class="panel2">
-            <h3 style="margin-bottom:40px ;">
-                Orders
-            </h3>
+            <div class="info" style="padding:10px;width:100%; height:100px; background-color:#34524D; border-radius:10px; color:white;">
+                <p>Customer ID:</p>
+                <p>Customer Name:</p>
+                <p>Order Number:</p>
+            </div>
 
             <div style="height: 500px;">
                 <?php if (!empty($data['cart'])) : ?>
@@ -170,22 +186,105 @@
 
     }
 
-    $('#my-form').submit(function(event) {
-        event.preventDefault(); // prevent default form submission behavior
+    function resetForm() {
+        document.getElementById("myForm").reset();
+    }
 
-        var formData = $(this).serialize(); // serialize the form data
+    const form = document.querySelector('form');
+    const clrbtn = document.querySelector('.clrbtn');
 
-        $.ajax({
-            type: 'POST',
-            url: '<?= ROOT ?>/cashier/test',
-            data: formData,
-            success: function(response) {
-                alert(response);
-            },
-            error: function(xhr, status, error) {
-                // handle error response
-            }
-        });
+    // fetch('/tasks')
+    //     .then(response => response.json())
+    //     .then(tasks => {
+    //         // Render the list of tasks
+    //         tasks.forEach(task => {
+    //             const li = document.createElement('li');
+    //             li.textContent = task.title;
+    //             taskList.appendChild(li);
+    //         });
+    //     })
+    //     .catch(error => console.error(error));
+
+    // form.addEventListener('click', () => {
+
+
+    //     const formData = new FormData(form);
+
+    //     fetch('<?= ROOT ?>/cashier/test', {
+    //             method: 'POST',
+    //             body: formData
+    //         })
+    //         .then(data => data.json())
+    //         .then(data => console.log(data))
+
+    //         .catch(error => console.log(error));
+    // });
+
+
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('<?= ROOT ?>/cashier/test', {
+                method: 'POST',
+                body: formData
+            })
+
+
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('message-overlay').style.top = '-100px';
+                console.log(data);
+                if (data.success) {
+                    document.getElementById('status-message').innerHTML = data.success;
+                    document.getElementById('message-overlay').style.top = '100px';
+                } else {
+                    const overlay = document.getElementById('message-overlay');
+                    if (data.Email) {
+                        const newParagraph1 = document.createElement('p');
+                        newParagraph1.classList.add('EmailError');
+                        newParagraph1.textContent = data.Email;
+                        overlay.appendChild(newParagraph1);
+
+                        document.getElementById('message-overlay').style.top = '100px';
+                        document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
+                    }
+                    if (data.Firstname) {
+                        const newParagraph2 = document.createElement('p');
+                        newParagraph2.textContent = data.Firstname;
+                        overlay.appendChild(newParagraph2);
+                        document.getElementById('message-overlay').style.top = '100px';
+                        document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
+                    }
+                    if (data.Lastname) {
+                        const newParagraph3 = document.createElement('p');
+                        newParagraph3.textContent = data.Lastame;
+                        overlay.appendChild(newParagraph3);
+                        document.getElementById('message-overlay').style.top = '100px';
+                        document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
+                    }
+                    // if (data.Address) {
+                    //     document.getElementById('status-message').innerHTML += data.Address;
+                    //     document.getElementById('message-overlay').style.top = '100px';
+                    //     document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
+                    // }
+                    if (data.Mobileno) {
+                        const newParagraph3 = document.createElement('p');
+                        newParagraph3.textContent = data.Mobileno;
+                        overlay.appendChild(newParagraph3);
+                        document.getElementById('message-overlay').style.top = '100px';
+                        document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
+                    }
+                }
+                setTimeout(function() {
+                    document.getElementById('message-overlay').style.top = '-100px';
+                }, 4000);
+
+            })
+            .catch(error => console.log(error));
+
     });
 </script>
 
