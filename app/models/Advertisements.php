@@ -70,10 +70,34 @@ class Advertisements extends model
         return $this->query($query, ['AdvertisementID' => $AdvertisementID]);//define :AdvertisementID
     }
 
+    public function getSecondaryImages($AdvertisementID = null)
+    {
+        $query = "select Image from advertisements_image where AdvertisementID = :AdvertisementID && Image not like '%primary%';";
+
+        return $this->query($query, ['AdvertisementID' => $AdvertisementID]);//define :AdvertisementID
+    }
+
     public function getReFurDetails()
     {
         $query = "SELECT * FROM `advertisement`;";
         return $this->query($query);
     }
 
+    public function getRefurnishedFurniture($id = null)
+    {
+        $query = "select * from advertisement where AdvertisementID = :AdvertisementID;";
+        return $this->query($query,['AdvertisementID' => $id]);
+    }
+
+    public function getRefurnishedFurnitureImages($id = null)
+    {
+        $query = "select Image from advertisements_image where AdvertisementID = :AdvertisementID;";
+        return $this->query($query,['AdvertisementID' => $id]);
+    }
+
+    public function getRefurnishedFurnityreById($id = null)
+    {
+        $query = "SELECT * FROM $this->table WHERE AdvertisementID = :AdvertisementID;";
+        return $this->query($query,['AdvertisementID' => $id]);
+    }
 }

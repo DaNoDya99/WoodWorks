@@ -97,7 +97,7 @@
                                 <td><?= $row->Quantity ?></td>
                                 <td>Rs. <?= $row->Price ?>.00</td>
                                 <td>
-                                    <a href="#">Details</a> 
+                                    <a href="<?= ROOT ?>/advertisement/details/<?= $row->AdvertisementID ?>">Details</a> 
                                 </td>
                             </tr>
                         <?php endforeach; ?>

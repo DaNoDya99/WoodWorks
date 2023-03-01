@@ -85,4 +85,20 @@ class Advertisement extends Controller{
             echo "<h1>Furniture successfully added.</h1>";
         }
     }
+
+    public function details($id=null)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $advertisements = new Advertisements(); 
+
+        $data['primary_image'] = $advertisements->getDisplayImage($id);
+        $data['secondary_images'] = $advertisements->getSecondaryImages($id);
+        $data['furniture'] = $advertisements->getRefurnishedFurnityreById($id)[0];
+
+        $this->view('manager/refurnished_fur_details',$data);
+    }
 }

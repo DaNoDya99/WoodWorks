@@ -286,24 +286,6 @@ class Manager extends Controller
         $this->view('manager/chat',$data);
     }
 
-    public function design_details($id=null)
-    {
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-        $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employees();
-
-        $design = new Design();
-        $data['designs'] = $design->viewDesign($id);
-        
-        $data['row'] = $employee->where('EmployeeID',$id);
-        $data['title'] = "Design Details";
-
-        $this->view('manager/design_details',$data);
-    }
-
     public function verify($id=null)
     {
         if (!Auth::logged_in()) {
@@ -325,11 +307,15 @@ class Manager extends Controller
             $this->redirect('login');
         }
 
-        $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employees();
+        $designs = new Design();
+        $rows = $designs->getDesignsCardDetails();
 
-        $data['row'] = $employee->where('EmployeeID',$id);
-        $data['title'] = "Designs";
+        foreach($rows as $row)
+        {
+            $row->Image = $designs->getDesignPrimaryImage($row->DesignID)[0]->Image;
+        }
+
+        $data['designs'] = $rows;
 
         $this->view('manager/all_designs',$data);
     }

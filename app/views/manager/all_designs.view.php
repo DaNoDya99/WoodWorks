@@ -5,63 +5,21 @@
     
     <div class="content manager-body">
         <div class="design-card-container">
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
-           
-            <div class='design-card'>
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                <h3>Study Table</h3>
-            </div>
+
+            <?php foreach($designs as $row): ?>
+                <a href="<?=ROOT?>/designer/design_details/<?=$row->DesignID?>">
+                    <div class='design-card'>
+                        <img src="<?=ROOT?>/<?=$row->Image?>" alt="">
+                        <h3><?=$row->Name?></h3>
+                    </div>
+                </a>
+                
+            <?php endforeach; ?>
            
         </div>
         
     </div>
+
+    <script src="<?=ROOT?>/assets/javascript/all_designs.js"></script>
 </body>
 </html>
