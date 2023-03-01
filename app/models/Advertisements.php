@@ -63,4 +63,17 @@ class Advertisements extends model
         return $this->query($query);
     }
 
+    public function getDisplayImage($AdvertisementID = null)
+    {
+        $query = "select Image from advertisements_image where AdvertisementID = :AdvertisementID && Image like '%primary%';";
+
+        return $this->query($query, ['AdvertisementID' => $AdvertisementID]);//define :AdvertisementID
+    }
+
+    public function getReFurDetails()
+    {
+        $query = "SELECT * FROM `advertisement`;";
+        return $this->query($query);
+    }
+
 }

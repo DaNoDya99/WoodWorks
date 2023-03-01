@@ -81,6 +81,8 @@ class Advertisement extends Controller{
 
             $stm .= "</ul>";
             echo $stm;
+        }else{
+            echo "<h1>Furniture successfully added.</h1>";
         }
     }
 }
