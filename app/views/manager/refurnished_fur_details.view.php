@@ -12,27 +12,16 @@
                 </div>
             </div>
             <div class = "ref-fur-details">
-                <h1><?=$details->Name?></h1>
-                <span><?=$details->DesignID?></span>
-                <h2><?=$details->DesignerID?></h2>
-                <p>
-                    <?=$details->Description?>
-                </p>
-
-                <div class="designs-btns">
-                    <button onclick="acceptDesign('<?=$details->DesignID?>')">Accept</button>
-                    <button onclick="rejectDesign('<?=$details->DesignID?>')">Reject</button>
-                </div>
+                <h1><?=$furniture->Product_name?></h1>
+                <span><?=$furniture->AdvertisementID?></span>
+                <h2>Rs. <?=$furniture->Price?>.00</h2>
+                <h2>Quantity: <?=$furniture->Quantity?></h2>
+                <pre>
+                    <?=$furniture->Description?>
+                </pre>
             </div>
         </div>
     </div>
-
-    <div id='response'>
-
-    </div>
-
-    
-
-    <script src="<?=ROOT?>/assets/javascript/design_details.js"></script>
+    <script src="<?=ROOT?>/assets/javascript/slider.js"></script>
 </body>
 </html>

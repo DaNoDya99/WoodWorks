@@ -314,4 +314,63 @@ class Designer extends Controller
         print json_encode($data);
 
     }
+
+    public function design_details($id=null)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+
+        $design = new Design();
+        $data['designs'] = $design->viewDesign($id);
+
+        $data['primary_image'] = $design->getDesignPrimaryImage($id);
+        $data['secondary_images'] = $design->getDesignSecondaryImages($id);
+
+        $data['details'] = $design->getDesignDetailsByID($id)[0];
+        
+        $this->view('manager/design_details',$data);
+    }
+
+    public function acceptDesign($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $design = new Design();
+        $emp_id = Auth::getEmployeeID();
+
+        if(!$design->acceptDesign($id,$emp_id)){
+            echo "<div class='design-response'>
+                        <h2>Design Accepted Successfully!</h2>
+                    </div>";
+        }else{
+            echo "<div class='design-response error'>
+                        <h2>Error Occured!</h2>
+                    </div>";
+        }
+    }
+
+    public function rejectDesign($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $design = new Design();
+        $emp_id = Auth::getEmployeeID();
+
+        if(!$design->rejectDesign($id,$emp_id)){
+            echo "<div class='design-response'>
+                    <h2>Design Rejected Successfully!</h2>
+                </div>";
+        }else{
+            echo "<div class='design-response error'>
+                    <h2>Error Occured!</h2>
+                  </div>";
+        }
+    }
+
 }
