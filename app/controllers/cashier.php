@@ -56,10 +56,10 @@ class cashier extends Controller
             $this->redirect('login1');
         }
 
-        // $cart = new Carts();
-        // $order_item = new Order_Items();
-        // $order_item->updateQuantity($cartID, $productID, (int)$quantity + 1);
-        // $cart->updateTotalAmountToIncrease($cartID, $cost);
+        $cart = new Carts();
+        $order_item = new Order_Items();
+        $order_item->updateQuantity($cartID, $productID, (int)$quantity + 1);
+        $cart->updateTotalAmountToIncrease($cartID, $cost);
         $this->redirect('cashier/dash');
     }
     public function completebill()
@@ -153,6 +153,18 @@ class cashier extends Controller
             }
 
             $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
+        }
+    }
+    public function loadCustomer()
+    {
+        $customer = new Customer();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
+            if (!empty($_SESSION['CustomerID'])) {
+                echo json_encode(['success' => 'Customer added successfully.']);
+            } else {
+                echo json_encode(['error' => 'Customer not found.']);
+            }
         }
     }
 

@@ -5,14 +5,27 @@
 <div class="content pos-body">
     <div class="details-overlay" id="details-overlay">
         <div class="details-input">
-            <form id="my-form" action="">
+            <h2>Enter customer details</h2>
+            <hr>
+            <div>
+                <div>
+                    <input type="radio" id="existing" name="customer-type" value="existing" onclick="toggleCustomerForm()">
+                    <label for="existing">Existing Customer</label>
+                </div>
+                <div>
+                    <input type="radio" id="new" name="customer-type" value="new" onclick="toggleCustomerForm()">
+                    <label for="new">New Customer</label>
+                </div>
+
+            </div>
+            <form style="display:none" id="new-customer-form" action="">
                 <div>
                     <label for="Firstname">First Name</label>
                     <input type="text" id="name" name="Firstname">
                     <label for="Lastname">Last Name</label>
                     <input type="text" id="name" name="Lastname">
                     <label for="Email">E-Mail</label>
-                    <input type="tel" id="contact" name="Email">
+                    <input type="email" id="contact" name="Email">
                     <label for="contact">Contact Number</label>
                     <input type="tel" id="contact" name="contact">
                 </div>
@@ -20,18 +33,39 @@
                     <label for="address">Address</label><br>
                     <textarea type="textarea" id="address" height="200px" name="Address"></textarea>
                 </div>
-                <div style="display:flex;">
+                <div style="display:flex; grid-column-gap:10px;">
                     <button type="submit" class="exit">Submit</button>
                     <button type="button" onclick="closeNewBillPopup()" class="exit">Cancel</button>
                 </div>
-
-
             </form>
-
+            <form style="display:none" id="old-customer-form" action="">
+                <div>
+                    <label for="Email">E-Mail</label><br>
+                    <input type="email" id="contact" name="Email">
+                </div>
+                <div style="display:flex; grid-column-gap:10px;">
+                    <button type="submit" class="exit">Submit</button>
+                    <button type="button" onclick="closeNewBillPopup()" class="exit">Cancel</button>
+                </div>
+            </form>
         </div>
-
-
     </div>
+
+    <script>
+        function toggleCustomerForm() {
+            var existing = document.getElementById("existing").checked;
+            var customerForm = document.getElementById("new-customer-form");
+            var emailForm = document.getElementById("old-customer-form");
+            if (existing) {
+                customerForm.style.display = "none";
+                emailForm.style.display = "block";
+            } else {
+                customerForm.style.display = "block";
+                emailForm.style.display = "none";
+            }
+        }
+    </script>
+
     <div class="sec2">
 
         <div>
@@ -86,14 +120,15 @@
                                     <?= $cart->Name; ?><br>
                                     <small><?= $cart->ProductID; ?></small>
                                 </div>
-                                <div style="display:flex; justify-content:center;align-items:center;">
+                                <div style="display:flex; justify-content:space-around;align-items:center;">
                                     <a href="<?= ROOT ?>/cashier/increaseQuantity/<?= $cart->CartID ?>/<?= $cart->ProductID ?>/<?= $cart->Quantity ?>/<?= $cart->Cost ?>"><img style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/add2.svg" alt=""></a>
                                     <input type="text" value="<?= $cart->Quantity ?>">
                                     <!-- <?= $cart->Quantity; ?> -->
                                     <a href="<?= ROOT ?>/cashier/decreaseQuantity/<?= $cart->CartID ?>/<?= $cart->ProductID ?>/<?= $cart->Quantity ?>/<?= $cart->Cost ?>"><img style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/minus.svg" alt=""></a>
-
+                                    <p><?= $cart->Cost * $cart->Quantity ?></p>
                                 </div>
-                                <a href="<?= ROOT ?>/cashier/removeItem/<?= $cart->CartID ?>/<?= $cart->ProductID ?>/<?= $cart->Cost ?>/<?= $cart->Quantity ?>">X</a>
+
+                                <a href="<?= ROOT ?>/cashier/removeItem/<?= $cart->CartID ?>/<?= $cart->ProductID ?>/<?= $cart->Cost ?>/<?= $cart->Quantity ?>"><img style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/x.svg" alt=""></a>
                             </li>
 
 
@@ -190,7 +225,8 @@
         document.getElementById("myForm").reset();
     }
 
-    const form = document.querySelector('form');
+    const form1 = document.getElementById('new-customer-form');
+    const form2 = document.getElementById('old-customer-form');
     const clrbtn = document.querySelector('.clrbtn');
 
     // fetch('/tasks')
@@ -222,10 +258,10 @@
 
 
 
-    form.addEventListener('submit', (e) => {
+    form1.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const formData = new FormData(form);
+        const formData = new FormData(form1);
 
         fetch('<?= ROOT ?>/cashier/test', {
                 method: 'POST',
@@ -277,6 +313,31 @@
                         document.getElementById('message-overlay').style.top = '100px';
                         document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
                     }
+                }
+                setTimeout(function() {
+                    document.getElementById('message-overlay').style.top = '-100px';
+                }, 4000);
+
+            })
+            .catch(error => console.log(error));
+
+    });
+    form2.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form2);
+
+        fetch('<?= ROOT ?>/cashier/loadCustomer', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('message-overlay').style.top = '-100px';
+                console.log(data);
+                if (data.success) {
+                    document.getElementById('status-message').innerHTML = data.success;
+                    document.getElementById('message-overlay').style.top = '100px';
                 }
                 setTimeout(function() {
                     document.getElementById('message-overlay').style.top = '-100px';
