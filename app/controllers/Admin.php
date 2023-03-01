@@ -320,4 +320,31 @@ class Admin extends Controller
 
         $this->view('admin/categories',$data);
     }
+
+    public function delivery()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+
+        $data['row'] = $employee->where('EmployeeID',$id);
+        $data['title'] = "DELIVERY";
+
+        $orders = new Orders();
+        $rows = $orders->getNewOrders();
+
+        foreach ($rows as $row)
+        {
+            $row->Date = explode(" ",$row->Date)[0];
+        }
+
+        $data['']
+
+        $this->view('admin/delivery',$data);
+    }
+
+
 }

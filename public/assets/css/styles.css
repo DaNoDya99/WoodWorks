@@ -3539,3 +3539,75 @@ h2 {
     font-weight: bold;
     font-size: 1rem;
 }
+
+/*Delivery orders*/
+
+.delivery-orders-container{
+    width: 90%;
+    background-color: #f9f9f9;
+    margin: 2em auto;
+    height: 85vh;
+    border-radius: 15px;
+    padding: 1em;
+    font-family: 'Rubik', sans-serif;
+}
+
+.delivery-orders-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.delivery-orders-table tr th:first-child{
+    max-width: 15em;
+    width: 15em;
+    overflow-y: hidden;
+}
+
+.delivery-orders-table tr td{
+    text-align: center;
+}
+
+.delivery-orders-table tr td:last-child{
+    width: 8em;
+}
+
+.delivery-popup{
+    width: 80%;
+    /*top: 50%;*/
+}
+
+.delivery-order-items {
+    margin: .5em 1em;
+    height: 35vh;
+    border-radius: 10px;
+    background-color: #d4d4d4;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: .5em;
+    overflow-y: auto;
+}
+
+.deliver-order-item{
+    height: 16.5vh;
+}
+
+.deliver-order-details h2{
+    margin: 0;
+}
+
+.delivery-orders-table tr td:last-child button{
+    width: 7em;
+    border: none;
+    border-radius: 5px;
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    font-weight: bolder;
+    padding: 1em;
+}
+
+.order-id{
+    width: 10em;
+    max-width: 10em;
+    overflow: hidden;
+}
