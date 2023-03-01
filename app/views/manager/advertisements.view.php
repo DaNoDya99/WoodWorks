@@ -88,16 +88,26 @@
                         <th>Price</th>
                         <th></th>
                     </tr>
-                    <tr class="ad-details">
-                        <td>2022-12-14</td>
-                        <td><img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt=""></td>
-                        <td>Chair</td>
-                        <td>Rs. 15000.00</td>
-                        <td>
-                            <a href="#">Details</a>
-                           
-                        </td>
-                    </tr>
+                    <?php if(!empty($advertisements)): ?>
+                        <?php foreach($advertisements as $row): ?>
+                            <tr class="ad-details">
+                                <td><?= $row->Date ?></td>
+                                <td><img src="<?=ROOT?>/<?= $row->Image ?>" alt=""></td>
+                                <td><?= $row->Product_name ?></td>
+                                <td><?= $row->Quantity ?></td>
+                                <td>Rs. <?= $row->Price ?>.00</td>
+                                <td>
+                                    <a href="#">Details</a> 
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td>No Refurnished Furniture To Show.</td>
+                        </tr>
+                    <?php endif; ?>
+                    
+                    
 
                     
                 </table>

@@ -127,12 +127,20 @@ class Manager extends Controller
 
         $id = $id ?? Auth::getEmployeeID();
         $advertisement = new Advertisements();
-
+        
 
         $employee = new Employees();
-        $data['row'] = $row = $employee->where('EmployeeID',$id);
+        $data['row'] = $employee->where('EmployeeID',$id);
         $data['title'] = "ADVERTISEMENTS";
-        $data['errors'] = $advertisement->errors;
+        $rows = $advertisement->getReFurDetails();
+
+        foreach($rows as $row)
+        {
+            $row->Image = $advertisement->getDisplayImage($row->AdvertisementID)[0]->Image;
+            $row->Date = explode(" ",$row->Date)[0];
+        }
+
+        $data['advertisements'] = $rows;
 
         $this->view('manager/advertisements',$data);
     }
