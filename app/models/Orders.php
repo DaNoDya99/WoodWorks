@@ -129,4 +129,11 @@ class Orders extends Model
 
         return $text;
     }
+
+    public function getNewOrders()
+    {
+        $query = "select * from $this->table where DriverId= 'null';";
+        return $this->query($query);
+    }
+
 }
