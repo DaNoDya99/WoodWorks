@@ -18,16 +18,16 @@
                     <?php if(!empty($issue)): ?>
                         <?php foreach($issue as $data): ?>
                             <tr>
-                                <td><?= $data->OrderID ?></td>
+                                <td class="order-ID"><?= $data->OrderID ?></td>
                                 <td><?= $data->Problem_statement ?></td>
                                 <td>
-                                    <a href="#">Details</a>
+                                    <a href="<?= ROOT ?>/issue/get_issues_details/<?= $data->IssueID ?>">Details</a>
                                     <a href="#">Response</a>
                                 </td>  
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <h1>empty</h1>
+                        <h1>Empty.</h1>
                     <?php endif; ?>
                     
                     

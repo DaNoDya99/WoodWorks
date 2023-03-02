@@ -211,12 +211,15 @@ class Manager extends Controller
         $design = new Design();
         $rows = $design->getAllUnverifiedDesigns();
         //create an object and call function using that object
-
-        foreach($rows as $row)
+        if(!empty($rows))
+        {
+            foreach($rows as $row)
         {
             $row->Date = explode(" ",$row->Date)[0];
             $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
         }
+        }
+        
 
         $data['designs'] = $rows;
         $data['title']="DESIGNS";

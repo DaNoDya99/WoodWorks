@@ -33,6 +33,8 @@
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr><td>No Pending Designs.</td></tr>
                     <?php endif; ?>
                    
                 </table>
