@@ -341,7 +341,7 @@ class Admin extends Controller
             $row->Date = explode(" ",$row->Date)[0];
         }
 
-        $data['']
+        $data['orders'] = $rows;
 
         $this->view('admin/delivery',$data);
     }
