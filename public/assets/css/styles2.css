@@ -818,6 +818,12 @@ margin: 20px 0;
 
 }
 
+.order-ID{
+  width:10em;
+  max-width: 10em;
+  overflow:hidden;
+}
+
 .posts-table-container button{
   width: 7em;
   height: 2.5em;

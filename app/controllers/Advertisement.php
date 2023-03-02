@@ -2,13 +2,7 @@
 
 class Advertisement extends Controller{
 
-    public function index(){
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
-        $data = array();
-        $this->view('advertisements',$data);
-    }
+    
 
     public function insertRefurnishedFurniture(){
         
