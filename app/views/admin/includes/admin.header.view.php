@@ -55,7 +55,6 @@
                 </a>
                 <span class="tooltip">Employees</span>
             </li>
-
             <li>
                 <a href="<?= ROOT ?>/admin/inventory">
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/warehouse-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
@@ -63,6 +62,14 @@
                 </a>
                 <span class="tooltip">Inventory</span>
             </li>
+            <li>
+                <a href="<?= ROOT ?>/admin/delivery">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/free_icon_1.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                        Deliveries</span>
+                </a>
+                <span class="tooltip">Deliveries</span>
+            </li>
+
             <li>
                 <a href="<?= ROOT ?>/admin/add_furniture">
 

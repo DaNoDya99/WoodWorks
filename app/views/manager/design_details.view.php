@@ -2,26 +2,37 @@
 
 <body class="manager">
 <?php $this->view('manager/includes/manager_header') ?>
-    <div class="content manager-body ">
-        <div class="design-details-container">
-            <div class="design-image-slider">
-                <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="Design Image">
-                <h2>1/3</h2>
-
-                <a class="prev" onclick="plusSlides(-1)">&#10094</a>
-                <a class="next" onclick="plusSlides(1)">&#10095</a>
+    <div class="manager-body content">
+        <div class="ref-fur-container">
+            <div class="ref-fur-slider">
+                <img class="ref-fur-primary-img" src="<?=ROOT?>/<?= $primary_image[0]->Image?>" alt="">
+                <div class="ref-fur-secondary-imgs">
+                    <img src="<?=ROOT?>/<?= $secondary_images[0]->Image?>" alt="">
+                    <img src="<?=ROOT?>/<?= $secondary_images[1]->Image?>" alt="">
+                </div>
             </div>
-            <div class="design-details">
-                <h1>Wooden Study Table</h1>
-                <span>DES00027</span>
-                <p>Flaunting the contemporary vibes with sleek designing, the Mcbeth dining table comes with four spacious storage drawers and an extra dose of elegance. To serve for many years, this dining table is crafted from Sheesham wood. The wooden grained patterns are making the table more attractive and beautiful, it is further available in different wooden finishes</p>
-            
-                <div class="designs-btn-container">
-                    <button class="design-accept">Accept</button>
-                    <button class="design-reject">Reject</button>
+            <div class = "ref-fur-details">
+                <h1><?=$details->Name?></h1>
+                <span><?=$details->DesignID?></span>
+                <h2><?=$details->DesignerID?></h2>
+                <p>
+                    <?=$details->Description?>
+                </p>
+
+                <div class="designs-btns">
+                    <button onclick="acceptDesign('<?=$details->DesignID?>')">Accept</button>
+                    <button onclick="rejectDesign('<?=$details->DesignID?>')">Reject</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div id='response'>
+
+    </div>
+
+    
+
+    <script src="<?=ROOT?>/assets/javascript/design_details.js"></script>
 </body>
 </html>

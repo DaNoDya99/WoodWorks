@@ -15,7 +15,7 @@ class Design extends Model
         'Date',
         'Name',
         'Image',
-
+        'Status'
     ];
 
     protected $beforeInsert = [
@@ -148,7 +148,7 @@ class Design extends Model
     }
 
     public function getAllUnverifiedDesigns(){
-        $query = "SELECT * FROM `design` WHERE ManagerID IS NULL;";
+        $query = "SELECT * FROM $this->table WHERE Status = 'pending';";
         return $this->query($query);
     }
 
@@ -160,5 +160,42 @@ class Design extends Model
     }
 
 
+    public function getDesignsCardDetails(){
+        $query = "SELECT DesignID, Name FROM $this->table;";
 
+        return $this->query($query);
+    }
+
+    public function getDesignPrimaryImage($id = null)
+    {
+        $query = "select Image from design_image where DesignID = :DesignID && Image like '%primary%';";
+
+        return $this->query($query,['DesignID' => $id]);
+    }
+
+    public function getDesignSecondaryImages($id = null)
+    {
+        $query = "select Image from design_image where DesignID = :DesignID && Image not like '%primary%';";
+
+        return $this->query($query,['DesignID' => $id]);
+    }
+
+    public function getDesignDetailsByID($id)
+    {
+        $query = "select * from $this->table where DesignID = :DesignID;";
+
+        return $this->query($query,['DesignID'=>$id]);
+    }
+
+    public function acceptDesign($id,$emp){
+        $query = 'update design set Status = :Status, ManagerID = :ManagerID where DesignID = :DesignID;';
+
+        return $this->query($query,['Status' => 'accepted','DesignID' => $id, 'ManagerID' => $emp]);
+    }
+
+    public function rejectDesign($id,$emp){
+        $query = 'update design set Status = :Status, ManagerID = :ManagerID where DesignID = :DesignID;';
+
+        return $this->query($query,['Status' => 'rejected','DesignID' => $id, 'ManagerID' => $emp]);
+    }
 }

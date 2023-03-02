@@ -130,4 +130,25 @@ class Orders extends Model
 
         return $text;
     }
+
+    public function getNewOrders()
+    {
+        $query = "select * from $this->table where DriverId= 'null';";
+        return $this->query($query);
+    }
+
+    public function getOrderDetails($id = null)
+    {
+        $query = "SELECT * FROM `order_item` WHERE OrderID = :OrderID;";
+
+        return $this->query($query, ['OrderID' => $id]);
+    }
+
+    public function deliveryOrderDetails($id = null)
+    {
+        $query = "SELECT OrderID, Contactno,Address,Total_amount FROM orders WHERE OrderID = :OrderID;";
+
+        return $this->query($query,['OrderID' => $id]);
+    }
+
 }
