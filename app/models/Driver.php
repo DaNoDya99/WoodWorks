@@ -29,7 +29,12 @@ class Driver extends Model
         return false;
     }
 
+    public function availableDrivers()
+    {
+        $query = "SELECT * FROM $this->table WHERE Availability = :Availability;";
 
+        return $this->query($query,['Availability' => 'Available']);
+    }
 
 
 }
