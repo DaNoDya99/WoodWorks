@@ -248,4 +248,36 @@ class Driver_home extends Controller
         print json_encode($data);
 
     }
+
+    public function available_drivers()
+    {
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+
+        }
+
+        $driver = new Driver();
+        $rows = $driver->availableDrivers();
+
+        $str = "<option selected>-- Assign Driver --</option>";
+
+        foreach ($rows as $row){
+            $str .= "<option value='".$row->DriverID."'>".$row->DriverID." - ".$row->Availability."</option>";
+        }
+
+        echo $str;
+    }
+
+    public function assign_driver($orderId, $driverId){
+
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+
+        }
+
+        $order = new Orders();
+        $order->assignDriver($orderId,$driverId);
+        
+    }
+
 }

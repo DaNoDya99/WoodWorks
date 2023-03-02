@@ -147,7 +147,15 @@ class Orders extends Model
     {
         $query = "SELECT OrderID, Contactno,Address,Total_amount FROM orders WHERE OrderID = :OrderID;";
 
-        return $this->query($query,['OrderID' => $id]);
+        return $this->query($query, ['OrderID' => $id]);
+    }
+
+
+    public function assignDriver($orderID, $driverID)
+    {
+        $query = 'UPDATE `orders` SET DriverID= :DriverID WHERE OrderID = :OrderID;';
+
+        return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID]);
     }
 
 }
