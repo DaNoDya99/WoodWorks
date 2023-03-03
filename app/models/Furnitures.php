@@ -95,6 +95,12 @@ class Furnitures extends Model
         return $this->query($query, ['ProductId' => $ProductId]);
     }
 
+    public function getSecondaryImages($id = null){
+        $query = "select Image from furniture_image where ProductId = :ProductId && Image not like '%primary%';";
+
+        return $this->query($query, ['ProductId' => $id]);
+    }
+
     public function getAllImages($id)
     {
         $query = "select Image from furniture_image WHERE ProductID = '$id';";
@@ -268,5 +274,12 @@ class Furnitures extends Model
 
     public function getDiscount()
     {
+    }
+
+    public function getFurnitureByID($id)
+    {
+        $query = "SELECT * FROM $this->table WHERE ProductID = :ProductID;";
+
+        return $this->query($query, ['ProductID' => $id]);
     }
 }

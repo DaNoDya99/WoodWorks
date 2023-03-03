@@ -668,8 +668,11 @@ select {
     font-family: 'Rubik-SemiBold', sans-serif;
 }
 
-.inv-product td:last-child div a:first-child {
+.inv-product td:last-child span {
     color: #2b7358;
+    text-decoration: underline;
+    font-weight: bolder;
+    cursor: pointer;
 }
 
 .inv-product td:last-child div a:last-child {
@@ -2508,6 +2511,10 @@ h2 {
     background-color: #f9f9f9;
 }
 
+.edit-fur{
+    text-align: left;
+}
+
 .add-fur-field select {
     height: 40px;
     font-size: 16px;
@@ -3627,4 +3634,16 @@ h2 {
     width: 10em;
     max-width: 10em;
     overflow: hidden;
+}
+
+#driver{
+    font-size: 1rem;
+    text-align: center;
+}
+.edit-furniture-popup{
+    width: 90%;
+}
+
+#edit-fur-save{
+    background-color: #0F3D3E;
 }
