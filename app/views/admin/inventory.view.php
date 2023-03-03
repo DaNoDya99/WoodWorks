@@ -45,7 +45,7 @@
                                     <td>Rs. <?= $row->Cost ?>.00</td>
                                     <td>
                                         <div>
-                                            <a href="<?= ROOT ?>/furniture/edit/<?= $row->ProductID ?>">Edit</a>
+                                            <span onclick="openPopup('<?=$row->ProductID?>')">Edit</span>
                                             <a href="<?= ROOT ?>/furniture/remove/<?= $row->ProductID ?>">Remove</a>
                                         </div>
                                     </td>
@@ -57,8 +57,30 @@
                     </table>
                 </div>
             </div>
+            <div class="popup edit-furniture-popup" id="popup">
+                <div class="popup-heading">
+                    <h2>Chorus Bed - P0001</h2>
+                    <img src="<?=ROOT?>/assets/images/customer/close.png" alt="Close" onclick="closePopup()">
+                </div>
+
+                <form id="edit-fur-form" class="add-fur-form" method="post" enctype="multipart/form-data">
+
+                    <?php if (!empty($errors)) : ?>
+                        <div class="error-txt signup-error">
+                            <img class="close-error" src="<?= ROOT ?>/assets/images/customer/close.png" alt="Close btn" onclick="close_error()">
+                            <ul>
+                                <?php foreach ($errors as $key => $value) : ?>
+                                    <li><?= $errors[$key] ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+
+                </form>
+
+            </div>
         </div>
     </div>
 </body>
-
+<script src="<?=ROOT?>/assets/javascript/edit_furniture.js"></script>
 </html>

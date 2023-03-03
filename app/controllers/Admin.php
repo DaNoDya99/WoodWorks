@@ -335,16 +335,20 @@ class Admin extends Controller
 
         $orders = new Orders();
         $rows = $orders->getNewOrders();
+        $data = array();
 
-        foreach ($rows as $row)
+        if(!empty($rows))
         {
-            $row->Date = explode(" ",$row->Date)[0];
+            foreach ($rows as $row)
+            {
+                $row->Date = explode(" ",$row->Date)[0];
+            }
+
+            $data['orders'] = $rows;
         }
 
-        $data['orders'] = $rows;
 
         $this->view('admin/delivery',$data);
     }
-
 
 }
