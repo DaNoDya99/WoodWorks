@@ -302,4 +302,5 @@ class Furnitures extends Model
 
         return $this->query($query);
     }
+
 }

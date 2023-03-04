@@ -67,16 +67,10 @@
 
             <form id="add-fur-form" class="add-fur-form add-inv-fur-form" method="post" enctype="multipart/form-data">
 
-                <?php if (!empty($errors)) : ?>
-                    <div class="error-txt signup-error">
-                        <img class="close-error" src="<?= ROOT ?>/assets/images/customer/close.png" alt="Close btn" onclick="close_error()">
-                        <ul>
-                            <?php foreach ($errors as $key => $value) : ?>
-                                <li><?= $errors[$key] ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
+                <div id="errors">
+
+                </div>
+
 
                 <div class="add-inv-fur-imgs-container">
                     <div class="add-inv-fur-imgs">
@@ -179,11 +173,14 @@
                 </div>
 
                 <div class="add-fur-btn">
-                    <button type="submit">ADD</button>
+                    <button onclick="addFurniture()" type="submit">ADD</button>
                 </div>
 
-
             </form>
+
+        </div>
+
+        <div class="cat-response" id="response">
 
         </div>
 
