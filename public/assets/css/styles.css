@@ -563,6 +563,7 @@ select {
     border-radius: 20px;
     font-family: 'Rubik-SemiBold', sans-serif;
     max-height: 80vh;
+    height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
 
@@ -668,8 +669,11 @@ select {
     font-family: 'Rubik-SemiBold', sans-serif;
 }
 
-.inv-product td:last-child div a:first-child {
+.inv-product td:last-child span {
     color: #2b7358;
+    text-decoration: underline;
+    font-weight: bolder;
+    cursor: pointer;
 }
 
 .inv-product td:last-child div a:last-child {
@@ -2508,6 +2512,10 @@ h2 {
     background-color: #f9f9f9;
 }
 
+.edit-fur{
+    text-align: left;
+}
+
 .add-fur-field select {
     height: 40px;
     font-size: 16px;
@@ -3361,6 +3369,7 @@ h2 {
 }
 
 .row4{
+    margin-top: .5em;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -3626,4 +3635,16 @@ h2 {
     width: 10em;
     max-width: 10em;
     overflow: hidden;
+}
+
+#driver{
+    font-size: 1rem;
+    text-align: center;
+}
+.edit-furniture-popup{
+    width: 90%;
+}
+
+#edit-fur-save{
+    background-color: #0F3D3E;
 }

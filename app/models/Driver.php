@@ -30,13 +30,12 @@ class Driver extends Model
         return false;
     }
 
+
     public function update_type($DriverID,$data)
     {
-        if(!empty($this->allowedColumns))
-        {
-            foreach ($data as $key => $value){
-                if(!in_array($key,$this->allowedColumns))
-                {
+        if (!empty($this->allowedColumns)) {
+            foreach ($data as $key => $value) {
+                if (!in_array($key, $this->allowedColumns)) {
                     unset($data[$key]);
                 }
             }
@@ -45,16 +44,22 @@ class Driver extends Model
         $keys = array_keys($data);
         $data['DriverID'] = $DriverID;
 
-        $query = "update ".$this->table." set ";
-        foreach ($keys as $key)
-        {
+        $query = "update " . $this->table . " set ";
+        foreach ($keys as $key) {
             $query .= $key . "=:" . $key . ",";
         }
-        $query = trim($query,",");
+        $query = trim($query, ",");
         $query .= " where DriverID = :DriverID";
 
-        $this->query($query,$data);
+        $this->query($query, $data);
     }
 
+    public function availableDrivers()
+    {
+        $query = "SELECT * FROM $this->table WHERE Availability = :Availability;";
+
+        return $this->query($query,['Availability' => 'Available']);
+
+    }
 
 }

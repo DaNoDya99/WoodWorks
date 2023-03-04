@@ -133,8 +133,8 @@ class Orders extends Model
 
     public function getNewOrders()
     {
-        $query = "select * from $this->table where DriverId= 'null';";
-        return $this->query($query);
+        $query = "select * from $this->table where DriverId= 'null' && Is_preparing = :Is_preparing;";
+        return $this->query($query,['Is_preparing' => 0]);
     }
 
     public function getOrderDetails($id = null)
@@ -148,7 +148,15 @@ class Orders extends Model
     {
         $query = "SELECT OrderID, Contactno,Address,Total_amount FROM orders WHERE OrderID = :OrderID;";
 
-        return $this->query($query,['OrderID' => $id]);
+        return $this->query($query, ['OrderID' => $id]);
+    }
+
+
+    public function assignDriver($orderID, $driverID)
+    {
+        $query = 'UPDATE `orders` SET DriverID= :DriverID WHERE OrderID = :OrderID;';
+
+        return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID]);
     }
 
 }
