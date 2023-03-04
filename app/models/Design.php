@@ -13,7 +13,7 @@ class Design extends Model
         'Date',
         'Name',
         'Image',
-
+        'Status'
     ];
 
     protected $beforeInsert = [
@@ -24,11 +24,11 @@ class Design extends Model
     {
         $this->errors = [];
 
-        if (empty($data['Description'])) {
-            $this->errors['Description'] = "Description can not be empty";
-        }
         if (empty($data['Name'])) {
             $this->errors['Name'] = "Design Name can not be empty";
+        }
+        if (empty($data['Description'])) {
+            $this->errors['Description'] = "Description can not be empty";
         }
         if (empty($this->errors)) {
             return true;
@@ -63,7 +63,7 @@ class Design extends Model
         return $text;
     }
 
-    public function getDesigns($limit = 2,$offset){
+    public function getDesigns($offset,$limit = 2){
 
         $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM design ORDER BY DesignID desc limit $limit offset $offset; ";
         //SELECT * FROM design INNER JOIN design_image ON design.DesignID = design_image.DesignID ORDER BY design.DesignID desc limit $limit offset $offset;
@@ -121,6 +121,8 @@ class Design extends Model
         return $this->query($query);
     }
 
+
+
     public function getAllImages($id)
     {
         $query = "select Image from design_image WHERE DesignID = '$id';";
@@ -138,7 +140,54 @@ class Design extends Model
     }
 
     public function getAllUnverifiedDesigns(){
-        $query = "SELECT * FROM `design` WHERE ManagerID IS NULL;";
+        $query = "SELECT * FROM $this->table WHERE Status = 'pending';";
         return $this->query($query);
+    }
+
+    public function deleteDesign($id = null)
+    {
+        $query = "delete from $this->table where DesignID = :DesignID;";
+
+        return $this->query($query,['DesignID' => $id]);
+    }
+
+
+    public function getDesignsCardDetails(){
+        $query = "SELECT DesignID, Name FROM $this->table;";
+
+        return $this->query($query);
+    }
+
+    public function getDesignPrimaryImage($id = null)
+    {
+        $query = "select Image from design_image where DesignID = :DesignID && Image like '%primary%';";
+
+        return $this->query($query,['DesignID' => $id]);
+    }
+
+    public function getDesignSecondaryImages($id = null)
+    {
+        $query = "select Image from design_image where DesignID = :DesignID && Image not like '%primary%';";
+
+        return $this->query($query,['DesignID' => $id]);
+    }
+
+    public function getDesignDetailsByID($id)
+    {
+        $query = "select * from $this->table where DesignID = :DesignID;";
+
+        return $this->query($query,['DesignID'=>$id]);
+    }
+
+    public function acceptDesign($id,$emp){
+        $query = 'update design set Status = :Status, ManagerID = :ManagerID where DesignID = :DesignID;';
+
+        return $this->query($query,['Status' => 'accepted','DesignID' => $id, 'ManagerID' => $emp]);
+    }
+
+    public function rejectDesign($id,$emp){
+        $query = 'update design set Status = :Status, ManagerID = :ManagerID where DesignID = :DesignID;';
+
+        return $this->query($query,['Status' => 'rejected','DesignID' => $id, 'ManagerID' => $emp]);
     }
 }

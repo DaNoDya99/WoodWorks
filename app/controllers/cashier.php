@@ -47,10 +47,10 @@ class cashier extends Controller
             $this->redirect('login1');
         }
 
-        $cart = new Carts();
-        $order_item = new Order_Items();
-        $order_item->updateQuantity($cartID, $productID, (int)$quantity + 1);
-        $cart->updateTotalAmountToIncrease($cartID, $cost);
+        // $cart = new Carts();
+        // $order_item = new Order_Items();
+        // $order_item->updateQuantity($cartID, $productID, (int)$quantity + 1);
+        // $cart->updateTotalAmountToIncrease($cartID, $cost);
         $this->redirect('cashier/dash');
     }
     public function completebill(){
@@ -90,7 +90,7 @@ class cashier extends Controller
                         if (in_array($_FILES['Image']['type'], $allowedFileType)) {
                             $destination = $folder . time() . $_FILES['Image']['name'];
                             move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
-                            die;
+
                             //                            resize_image($destination);
                             $_POST['Image'] = $destination;
                             if (file_exists($row[0]->Image)) {

@@ -11,8 +11,8 @@
 <header>
     <nav class="nav-bar">
         <div class="nav-brand">
-            <img src="<?=ROOT?>/assets/images/logo.png" alt="Logo">
-            <h1>WOODWORKS</h1>
+            <img src="<?=ROOT?>/assets/images/WOODWORKS.svg" alt="Logo">
+            <!-- <h1>WOODWORKS</h1> -->
         </div>
         <div class="nav-items">
             <ul>
@@ -26,12 +26,12 @@
         <div class="nav-profile-section">
             <div class="nav-user-details">
                 <img src="<?=ROOT?>/<?=$row[0]->Image?>" alt="User">
-                <h1>Welcome, <?=$row[0]->Firstname?></h1>
+                <p>Welcome, <?=$row[0]->Firstname?></p>
             </div>
             <div class="dropdown">
                 <button class="dropbtn">Account</button>
                 <div class="dropdown-content">
-                    <a href="#">My orders</a>
+                    <a href="<?=ROOT?>/customer_home/orders">My orders</a>
                     <a href="<?=ROOT?>/customer_home/profile">Profile</a>
                     <a href="<?=ROOT?>/logout">Logout</a>
                 </div>

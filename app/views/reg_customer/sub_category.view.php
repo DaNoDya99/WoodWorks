@@ -1,6 +1,6 @@
 <?php $data['row'] = $row; $this->view('reg_customer/includes/header',$data); ?>
 
-    <div class="sub-category-body">
+    <div class="sub-category-body reg-sub-cat">
         <div class="sub-cat-sidebar">
             <?php foreach ($sub_categories as $sub_category): ?>
                 <div class="sub-cat">
@@ -25,5 +25,5 @@
     </div>
 
     <script src="<?=ROOT?>/assets/javascript/customer_profile.js"></script>
-    <script src="<?=ROOT?>/assets/javascript/product_card.js"></script>
+
 <?php $this->view('reg_customer/includes/footer'); ?>

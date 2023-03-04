@@ -13,7 +13,7 @@ class Customer_home extends Controller
         $customer = new Customer();
         $id = Auth::getCustomerID();
         $data['row'] = $customer->where('CustomerID',$id);
-        $data['furnitures'] =$rows= $furniture->getNewFurniture(['ProductID','Name','Cost']);
+        $data['furnitures'] =$rows= $furniture->getNewFurniture(['ProductID','Name','Cost','Sub_category_name']);
 
         foreach ($rows as $row)
         {
@@ -22,6 +22,7 @@ class Customer_home extends Controller
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
             }
         }
+
 
         $this->view('reg_customer/customer_home',$data);
     }
@@ -85,10 +86,10 @@ class Customer_home extends Controller
         $this->view('reg_customer/profile',$data);
     }
 
-    public function add_to_cart($id){
+    public function add_to_cart($id,$cost){
 
         if(!Auth::logged_in()){
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $order = new Orders();
@@ -118,13 +119,13 @@ class Customer_home extends Controller
             'ProductID' => $id,
             'Name' => $info[0]->Name,
             'Quantity' => 1,
-            'Cost' => $info[0]->Cost,
+            'Cost' => $cost,
             'OrderID' => $orderID,
             'CartID' => $cart->getCart($cus_id)[0]->CartID,
             'Image' => $image[0]->Image
         ];
 
-        $cart->updateTotalAmountToIncrease($data['CartID'],$info[0]->Cost);
+        $cart->updateTotalAmountToIncrease($data['CartID'],$data['Cost']);
 
         $order_items->insert($data);
 
@@ -186,6 +187,20 @@ class Customer_home extends Controller
         $data['row'] = $row = $customer->where('CustomerID',$id);
 
         $this->view('reg_customer/payment',$data);
+    }
+
+    public function orders()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $customer = new Customer();
+        $id = Auth::getCustomerID();
+        $data['row'] = $row = $customer->where('CustomerID',$id);
+
+        $this->view('reg_customer/orders',$data);
     }
 
 }

@@ -1,4 +1,4 @@
-    <div class="header">
+<div class="header">
         <img id="btn2" src="bars-solid.svg" style="width: 20px; margin:10px;" alt="">
         <img src="WOODWORKSmobile.svg" class="logomobile" alt="">
     </div>
@@ -7,7 +7,7 @@
             <img class="image" src="<?= ROOT ?>/<?= Auth::getImage() ?>" alt="">
             <div class="name-pos">
                 <p class="name"><?= Auth::getFirstname() . " " . Auth::getLastname() ?></p>
-                <span class="position">Supplier</span>
+                <span class="position">Cashier</span>
             </div>
 
             <img class="carret" src="<?= ROOT ?>/assets/images/header/caret-down-solid.svg" alt="">
@@ -43,9 +43,9 @@
             <li>
                 <a href="<?=ROOT?>/supplier/dash">
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/house-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
-                        View Orders</span>
+                        Supply Orders</span>
                 </a>
-                <span class="tooltip">View Orders</span>
+                <span class="tooltip">Supply Orders</span>
             </li>
 
             <li>
@@ -55,7 +55,7 @@
                 </a>
                 <span class="tooltip">Accepted Orders</span>
             </li>
-
+           
             <li>
             <a href="<?=ROOT?>/supplier/profile">
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/user-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
@@ -65,3 +65,4 @@
             </li>
         </ul>
     </div>
+<script src="<?= ROOT ?>/assets/javascript/header/header.js"></script>

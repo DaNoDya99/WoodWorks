@@ -44,31 +44,48 @@ class Messages extends Model
         return $text;
     }
 
-    public function getMessages($sender,$receiver)
-    {
-        $query = "SELECT `messageID`, `sender`, `receiver`, `message`, `date`, `seen` FROM `messages` WHERE (sender= :sender AND receiver= :receiver) OR (sender= :receiver AND receiver= :sender) ORDER BY date; ";
+    public function getChatID($id){
+        $query = "SELECT chatID FROM chats WHERE customerID = '$id';";
+        return $this->query($query);
+    }
 
-        return $this->query($query,['sender' => $sender, 'receiver' => $receiver]);
+    public function getMessages($sender,$receiver){
+        $query = "SELECT * FROM messages WHERE (sender = '$sender' AND receiver = '$receiver') OR (sender = '$receiver' AND receiver = '$sender') ORDER BY date ASC;";
+        return $this->query($query);
     }
 
     public function getManagerChats()
     {
-        $query = "SELECT DISTINCT messages.sender, messages.receiver, chats.username,chats.CustomerID FROM `messages` INNER JOIN `chats` ON messages.sender = chats.chatID WHERE messages.receiver = :receiver; ";
+        $query = "SELECT DISTINCT(chats.chatID),chats.username, chats.customerID FROM chats INNER JOIN messages ON chats.chatID = messages.sender WHERE messages.receiver = 3";
+        return $this->query($query);
+    }
 
-        return $this->query($query,['receiver' => 'ch001']);
+    public function getLatestMessage($sender,$receiver)
+    {
+        $query = "SELECT messages.message, messages.date FROM messages WHERE (messages.sender = :sender AND messages.receiver = :receiver) OR (messages.sender = :receiver AND messages.receiver = :sender) ORDER BY messages.date DESC LIMIT 1;";
+        return $this->query($query, ['sender' => $sender, 'receiver' => $receiver]);
     }
 
     public function getChatUserImage($id)
     {
-        $query = "SELECT Image from customer where CustomerID = :id;";
-
-        return $this->query($query,['id' => $id]);
+        $query = "SELECT Image FROM customer WHERE CustomerID = :CustomerID;";
+        return $this->query($query, ['CustomerID' => $id]);
     }
 
-    public function getLatestMsg($sender, $receiver)
+    public function getChatUserDetails($id)
     {
-        $query = "SELECT `message`, `date` FROM `messages` WHERE (sender = :sender AND receiver = :receiver) OR (sender = :receiver AND receiver = :sender) ORDER BY date DESC LIMIT 1; ";
+        $query = "SELECT chats.username, chats.status, customer.Image FROM chats INNER JOIN customer ON chats.customerID = customer.CustomerID WHERE chats.customerID = :CustomerID; ";
+        return $this->query($query, ['CustomerID' => $id]);
+    }
 
-        return $this->query($query,['sender' => $sender, 'receiver' => $receiver]);
+    public function searchChatUserByName($name)
+    {
+        $query = "SELECT chats.chatID, chats.username, chats.status, chats.customerID FROM chats INNER JOIN messages ON chats.chatID = messages.messageID WHERE chats.username LIKE '%$name%' AND (messages.sender = 3 OR messages.receiver = 3);";
+        return $this->query($query);
+    }
+
+    public function checkIfMessagesExists($id){
+        $query = "SELECT * FROM messages WHERE sender = '$id' OR receiver = '$id';";
+        return $this->query($query);
     }
 }

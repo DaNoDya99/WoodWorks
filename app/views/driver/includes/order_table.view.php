@@ -30,7 +30,7 @@
     </div>
     <table class="content-table" id="myTable">
         <thead>
-
+        <tr>
             <th class="th">Order ID</th>
             <th class="th">Payment Type</th>
             <th class="th">Total Amount</th>
@@ -39,11 +39,12 @@
             <th class="th">Customer Address</th>
             <th class="th">Customer Name</th>
             <th class="th">Customer Mobile No</th>
-
+            <th class="th"></th>
+        </tr>
         </thead>
         <tbody>
             <?php foreach ($rows as $row):?>
-                <form method="post" action="/woodworks/public/driver_home/order" hidden>
+                <form method="post" action="<?=ROOT?>/driver_home/order" hidden>
                     <input type="text" name="OrderID" value="<?=$row->OrderID?>" hidden>
                     <tr>
                         <td><?=esc($row->OrderID)?></td>
@@ -73,14 +74,20 @@
 
                         <td><?=esc($row->Address)?></td>
                         <td><?=esc($row->Firstname)?> <?=esc($row->Lastname)?></td>
-                        <td><?=esc($row->Mobileno)?></td>
+                        <td><?=esc($row->Contactno)?></td>
+                        <td>
+                            <div class ="order-btn-sec">
+                                <button type="button" id="order-btn" onclick="location.href='<?=ROOT?>/driver_home/details/<?=$row->OrderID?>'">More</button>
+                        </td>
                     </tr>
-
                 </form>
             <?php endforeach;?>
         </tbody>
     </table>
 </div>
+
+
+
 
 
 

@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php $this->view('cashier/includes/header') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile - Woodworks</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/styles.css">
-        
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cashier/profile-style.css">
-
-
-    <style>
-    </style>
-</head>
-
-<body onload="timedelload()">
-    <?php $this->view('supplier/supplier.header', $data) ?>
-
-    <div class="sec1">
-        <?php $this->view('cashier/cashier.nav', $data) ?>
-    </div>
-    <div class="sec2" style="display: grid;">
+    <div class="content" style="display: grid;">
 
 
         <div class="dashboard-body">
