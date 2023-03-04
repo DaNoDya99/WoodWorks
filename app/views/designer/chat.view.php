@@ -16,7 +16,7 @@
                 </div>
                 <form>
                     <div class="chats-search">
-                        <input type="text" id="search" name="chat" placeholder="Search">
+                        <input id="search" type="text" name="chat" placeholder="Search">
                         <button type="submit"><img src="<?=ROOT?>/assets/images/designer/search.png" alt="Search"></button>
                     </div>
                 </form>
@@ -32,15 +32,15 @@
                     <div class="chat-msg-header" id="header">
                         <span id="select-contact">Please select a contact.</span>
                     </div>
-                    <div class="chat-msg-container" id="msgs">
+                    <div class="chat-msg-container" id="msg">
 
                     </div>
                 </div>
                 <div class="send-msg">
                     <form id='chat-designer-form'>
                         <div>
-                            <input type="text" id="message" placeholder="Write Something">
-                            <button type="button" id="button"><img src="<?=ROOT?>/assets/images/designer/telegram-desktop-svgrepo-com.svg"></button>
+                            <input type="text" name="message" id="field" placeholder="Write Something">
+                            <button type='submit' id='button'><img src="<?=ROOT?>/assets/images/designer/telegram-desktop-svgrepo-com.svg"></button>
                         </div>
                     </form>
                 </div>

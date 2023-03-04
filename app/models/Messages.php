@@ -60,6 +60,12 @@ class Messages extends Model
         return $this->query($query);
     }
 
+    public function getDesignerChats()
+    {
+        $query = "SELECT DISTINCT(chats.chatID),chats.username, chats.customerID FROM chats INNER JOIN messages ON chats.chatID = messages.sender WHERE messages.receiver = 4";
+        return $this->query($query);
+    }
+
     public function getLatestMessage($sender,$receiver)
     {
         $query = "SELECT messages.message, messages.date FROM messages WHERE (messages.sender = :sender AND messages.receiver = :receiver) OR (messages.sender = :receiver AND messages.receiver = :sender) ORDER BY messages.date DESC LIMIT 1;";
@@ -80,7 +86,7 @@ class Messages extends Model
 
     public function searchChatUserByName($name)
     {
-        $query = "SELECT chats.chatID, chats.username, chats.status, chats.customerID FROM chats INNER JOIN messages ON chats.chatID = messages.messageID WHERE chats.username LIKE '%$name%' AND (messages.sender = 3 OR messages.receiver = 3);";
+        $query = "SELECT chats.chatID, chats.username, chats.status, chats.customerID FROM chats INNER JOIN messages ON chats.chatID = messages.messageID WHERE chats.username LIKE '%$name%' AND (messages.sender = 3 OR messages.receiver = 3 OR messages.sender = 4 OR messages.receiver = 4);";
         return $this->query($query);
     }
 

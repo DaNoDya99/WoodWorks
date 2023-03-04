@@ -4,7 +4,7 @@ let button = document.getElementById("button");
 let form = document.getElementById("chat-designer-form");
 let select_contact = document.getElementById("select_contact");
 let search = document.getElementById("search");
-let messages = document.getElementById("msgs");
+let messages = document.getElementById("msg");
 let field = document.getElementById("field");
 let user = '';
 let countPrev = 0;
@@ -12,7 +12,7 @@ let count = 0;
 
 setInterval(() => {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET","http://localhost/WoodWorks/public/message/getManagerChats",true);
+    xhr.open("GET","http://localhost/WoodWorks/public/message/getDesignerChats",true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE)
         {
@@ -28,7 +28,7 @@ setInterval(() => {
 function load_messages(id){
     user = id;
     let xhr = new XMLHttpRequest();
-    xhr.open("GET","http://localhost/WoodWorks/public/message/getManagerMessages/"+id,true);
+    xhr.open("GET","http://localhost/WoodWorks/public/message/getDesignerMessages/"+id,true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE)
         {
@@ -46,7 +46,7 @@ function load_messages(id){
 
 function load_header(){
     let xhr = new XMLHttpRequest();
-    xhr.open("GET","http://localhost/WoodWorks/public/message/getManagerMessagesHeader/"+user,true);
+    xhr.open("GET","http://localhost/WoodWorks/public/message/getDesignerMessagesHeader/"+user,true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE)
         {
@@ -67,7 +67,7 @@ setInterval(() => {
 
         load_header();
 
-        xhr.open("GET","http://localhost/WoodWorks/public/message/getManagerMessages/"+user,true);
+        xhr.open("GET","http://localhost/WoodWorks/public/message/getDesignerMessages/"+user,true);
         xhr.onload = () => {
             if(xhr.readyState === XMLHttpRequest.DONE)
             {
@@ -119,7 +119,7 @@ search.onkeyup = () => {
     }
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST","http://localhost/WoodWorks/public/message/searchManagerChats",true);
+    xhr.open("POST","http://localhost/WoodWorks/public/message/searchDesignerChats",true);
     xhr.onload = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {

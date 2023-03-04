@@ -14,6 +14,8 @@ class Orders extends Model
         'Payment_type',
         'Total_amount',
         'Date',
+        'Dispatched_date',
+        'Delivered_date',
         'Deliver_method',
         'Order_status',
         'Vehicle_type',
