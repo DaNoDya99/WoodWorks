@@ -71,7 +71,7 @@
             </li>
 
             <li>
-                <a href="<?= ROOT ?>/admin/add_furniture">
+                <a href="<?= ROOT ?>/admin/inventory">
 
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/warehouse-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Inventory</span>

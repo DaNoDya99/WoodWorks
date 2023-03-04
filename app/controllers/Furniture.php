@@ -112,7 +112,7 @@ class Furniture extends Controller
                     </div>
                     <div class='add-fur-field edit-fur'>
                         <label>Quantity</label>
-                        <input type='text' name='Quantity' placeholder='Quantity' value='".$fur[0]->Quantity."'>
+                        <input type='text' name='Quantity' placeholder='Quantity' value='".$fur[0]->Quantity."' disabled>
                     </div>
                 </div>
                 <div class='add-fur-field-set set-two'>

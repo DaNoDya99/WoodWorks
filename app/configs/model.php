@@ -68,7 +68,7 @@ class Model extends Database
 
     public function findAll()
     {
-        $query = "select * from $this->table";
+        $query = "select * from $this->table;";
         return $this->query($query);
     }
     
