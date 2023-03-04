@@ -16,42 +16,37 @@
                 </div>
                 <form>
                     <div class="chats-search">
-                        <input type="text" name="chat" placeholder="Search">
-                        <button type="submit"><img src="<?=ROOT?>/assets/images/admin/search.png" alt="Search"></button>
+                        <input type="text" id="search" name="chat" placeholder="Search">
+                        <button type="submit"><img src="<?=ROOT?>/assets/images/designer/search.png" alt="Search"></button>
                     </div>
                 </form>
-                <div class="contacts" id="contacts">
+                <div class="contacts" id="contacts-1">
+
+                </div>
+                <div class="contacts" id="contacts-2">
 
                 </div>
             </div>
             <div class="chat-contact">
                 <div class="chat-messages">
-                    <div class="chat-msg-header">
-                        <img src="<?=ROOT?>/assets/images/designer/danodya.jpg">
-                        <h2>Danodya Supun</h2>
+                    <div class="chat-msg-header" id="header">
+                        <span id="select-contact">Please select a contact.</span>
                     </div>
-                    <div class="chat-msg-container">
-                        <div id="msgs">
+                    <div class="chat-msg-container" id="msgs">
 
+                    </div>
+                </div>
+                <div class="send-msg">
+                    <form id='chat-designer-form'>
+                        <div>
+                            <input type="text" id="message" placeholder="Write Something">
+                            <button type="button" id="button"><img src="<?=ROOT?>/assets/images/designer/telegram-desktop-svgrepo-com.svg"></button>
                         </div>
-                    </div>
-                    <div class="send-msg">
-                        <form>
-                            <div>
-                                <input type="text" id="message" placeholder="Write Something">
-                                <button type="button" id="button"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
-                            </div>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
 
         </div>
-
     </div>
-
 </div>
-
-
-<script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
 <script src="<?=ROOT?>/assets/javascript/designer_chat.js"></script>
