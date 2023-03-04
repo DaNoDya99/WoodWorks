@@ -321,6 +321,16 @@ body{
     display: none;
 }
 
+.driver-tbox hr{
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid #cacaca;
+}
+
 .driver-tbox table{
     width: 100%;
     border-collapse: collapse;
@@ -334,11 +344,6 @@ body{
     cursor: pointer;
 
 }
-
-/*.driver-content-table:hover{*/
-/*    transform: scale(1.02);*/
-/*    transition: .4s ease-in;*/
-/*}*/
 
 .driver-content-table thead tr{
     color: black;
@@ -751,6 +756,8 @@ body{
     padding: 0 0 0 1em;
     font-family: 'Rubik-SemiBold';
     color: #787878;
+    cursor: pointer;
+
 }
 
 .order-form button{
@@ -785,7 +792,6 @@ body{
     overflow: hidden;
     overflow-y: scroll;
     max-height: 70vh;
-
 }
 
 .content-table thead tr{
@@ -1775,9 +1781,11 @@ design-desc div button:hover{
     height: 40px;
 }
 
+/* Chat */
+
 .chat{
     display: flex;
-    width: 90%;
+    width: 100%;
     margin: 1em auto;
     border-radius: 10px;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
@@ -1788,7 +1796,7 @@ design-desc div button:hover{
     width: 30%;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    height: 85vh;
+    height: 88vh;
 }
 
 .chat-contact{
@@ -1930,9 +1938,14 @@ design-desc div button:hover{
     margin-top: 1em;
 }
 
+#chat-designer-form{
+    visibility: hidden;
+}
+
 .send-msg form div{
     display: flex;
     justify-content: space-between;
+    padding: 0 0.5em;
 }
 
 .send-msg input{
@@ -1995,4 +2008,11 @@ design-desc div button:hover{
     border-top-right-radius: 1em;
     border-bottom-left-radius: 1em;
     text-align: justify;
+}
+
+#select-contact{
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    visibility: visible;
 }

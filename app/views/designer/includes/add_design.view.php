@@ -41,8 +41,6 @@
                         </div>
                     </div>
 
-
-
                     <div class="edit-des-Ubtn-section" id="edit-design">
                         <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
                         <label for="file-input"> Upload Images </label>
@@ -57,6 +55,16 @@
                     <div class="des_Name">
                         <label>Design Name :</label>
                         <input type="text" name="Name" placeholder="Enter Your Design Name" class="txt">
+                    </div>
+
+                    <div class="des_Name">
+                        <label>Height :</label>
+                        <input type="text" name="Height" placeholder='100" (254 cm)' class="txt">
+                    </div>
+
+                    <div class="des_Name">
+                        <label>Width :</label>
+                        <input type="text" name="Width" placeholder='100" (254 cm)' class="txt">
                     </div>
 
                     <div id="description">

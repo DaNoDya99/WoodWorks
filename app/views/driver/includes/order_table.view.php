@@ -56,22 +56,21 @@
                         ?>
                         <td><?=$newDate?></td>
 
-                            <td>
-                                <select name="status" required onchange="this.form.submit()" class="select">
-                                    <?php
-                                        $arr = array("Processing", "Dispatched", "Delivered");
+                        <td>
+                            <select name="status" required onchange="this.form.submit()" class="select">
+                                <?php
+                                    $arr = array("Processing", "Dispatched", "Delivered");
 
-                                        foreach ($arr as $value) {
-                                            if ($value == esc($row->Order_status)) {
-                                                echo "<option value=$value selected>$value</option>";
-                                            } else {
-                                                echo "<option value=$value>$value</option>";
-                                            }
+                                    foreach ($arr as $value) {
+                                        if ($value == esc($row->Order_status)) {
+                                            echo "<option value=$value selected>$value</option>";
+                                        } else {
+                                            echo "<option value=$value>$value</option>";
                                         }
-                                        ?>
-                                </select>
-                            </td>
-
+                                    }
+                                    ?>
+                            </select>
+                        </td>
                         <td><?=esc($row->Address)?></td>
                         <td><?=esc($row->Firstname)?> <?=esc($row->Lastname)?></td>
                         <td><?=esc($row->Contactno)?></td>
