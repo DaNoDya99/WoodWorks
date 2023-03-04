@@ -42,21 +42,7 @@ class Furniture extends Controller
 
         $this->view("reg_customer/product", $data);
     }
-
-
-
-    public function remove($id = null)
-    {
-        if(!Auth::logged_in())
-        {
-            $this->redirect('login');
-        }
-
-        $furniture = new Furnitures();
-        $furniture->deleteFurniture($id);
-
-        $this->redirect('admin/inventory');
-    }
+    
 
     public function details($id){
 
@@ -158,6 +144,127 @@ class Furniture extends Controller
         ";
 
         echo $stm;
+    }
+
+    public function filter()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $furniture = new Furnitures();
+
+        if($_POST['Category'] != "-- All --")
+        {
+            $rows = $furniture->filterFurniture(trim($_POST['Category']," "));
+        }else{
+            $rows = $furniture->getInventory();
+        }
+
+        if(empty($rows))
+        {
+            echo "<tr><td colspan='6' style='text-align: center;'>No Products Found</td></tr>";
+            return;
+        }
+
+        foreach ($rows as $row){
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
+
+        $str = "
+            <tr class='inv-header-tr'>
+                            <th>SKU</th>
+                            <th>Image</th>
+                            <th class='inv-fur-name'>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>    
+            " ;
+
+
+        foreach ($rows as $row){
+            $str .= "<tr class='inv-product'>
+                        <td>".$row->ProductID."</td>
+                        <td><img src='".ROOT."/".$row->Image."' alt=''></td>
+                        <td>".$row->Name."</td>
+                        <td>".$row->Quantity."</td>
+                        <td>Rs.".$row->Cost.".00</td>
+                        <td>
+                            <div>
+                                <span onclick='openPopup(`".$row->ProductID."`)'>Edit</span>
+                            </div>
+                       </td>
+                    </tr>";
+
+        }
+
+        echo $str;
+
+    }
+
+    public function search()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $furniture = new Furnitures();
+        $rows = '';
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $search = trim($_POST['product']);
+
+            if($search[0] == 'P' && preg_match('/[0-9]/', substr($search, 1)))
+            {
+                $rows = $furniture->searchFurnitureByID($search);
+            }else if(preg_match('/[a-zA-Z ]/', $search)){
+                $rows = $furniture->searchFurnitureByName($search);
+            }
+        }
+
+        if(empty($rows))
+        {
+            echo "<tr><td colspan='6' style='text-align: center;'>No Products Found</td></tr>";
+        }else{
+            foreach ($rows as $row){
+                $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+            }
+
+            $str = "
+            <tr class='inv-header-tr'>
+                            <th>SKU</th>
+                            <th>Image</th>
+                            <th class='inv-fur-name'>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>    
+            " ;
+
+
+            foreach ($rows as $row){
+                $str .= "<tr class='inv-product'>
+                        <td>".$row->ProductID."</td>
+                        <td><img src='".ROOT."/".$row->Image."' alt=''></td>
+                        <td>".$row->Name."</td>
+                        <td>".$row->Quantity."</td>
+                        <td>Rs.".$row->Cost.".00</td>
+                        <td>
+                            <div>
+                                <span onclick='openPopup(`".$row->ProductID."`)'>Edit</span>
+                            </div>
+                       </td>
+                    </tr>";
+
+            }
+
+            echo $str;
+        }
+
+
     }
     
 }

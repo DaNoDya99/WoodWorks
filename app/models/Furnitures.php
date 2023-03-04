@@ -73,7 +73,7 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
-    public function getFurnitures($sub_cat, $offset, $limit = 2, $category = null,)
+    public function getFurnitures($category ,$sub_cat,$limit = 2,$offset)
     {
         $query = "select ProductID, Name , Cost, Discount_percentage from furniture WHERE CategoryID = '$category' && Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
 
@@ -281,5 +281,25 @@ class Furnitures extends Model
         $query = "SELECT * FROM $this->table WHERE ProductID = :ProductID;";
 
         return $this->query($query, ['ProductID' => $id]);
+    }
+
+    public function filterFurniture($id){
+        $query = "SELECT ProductID,Name,Quantity,Cost FROM furniture WHERE CategoryID = :CategoryID;";
+
+        return $this->query($query,['CategoryID' => $id]);
+    }
+
+    public function searchFurnitureByID($id)
+    {
+        $query = "SELECT ProductID,Name,Quantity,Cost FROM $this->table WHERE ProductID = :ProductID;";
+
+        return $this->query($query, ['ProductID' => $id]);
+    }
+
+    public function searchFurnitureByName($name)
+    {
+        $query = "SELECT ProductID,Name,Quantity,Cost FROM $this->table WHERE Name like '%$name%';";
+
+        return $this->query($query);
     }
 }

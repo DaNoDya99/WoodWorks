@@ -166,7 +166,7 @@ class Admin extends Controller
         $this->view('admin/add_employee',$data);
     }
 
-    public function inventory($id = null)
+    public function furniture($id = null)
     {
         if (!Auth::logged_in()) {
             $this->redirect('login');
@@ -188,7 +188,7 @@ class Admin extends Controller
             $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
         }
 
-        $this->view('admin/inventory',$data);
+        $this->view('admin/furniture',$data);
     }
 
     public function add_furniture()

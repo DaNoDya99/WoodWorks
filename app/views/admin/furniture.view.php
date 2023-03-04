@@ -6,27 +6,27 @@
         <div class="dashboard content">
             <div class="inventory-table">
                 <div class="inv-header">
-                    <h1>Inventory</h1>
-                    <form method="post" class="inv-form">
+                    <h1>Furniture Store</h1>
+                    <form id="search-by-cat-form" method="post" class="inv-form">
                         <select name="Category">
-                            <option selected>-- Filter --</option>
+                            <option selected>-- All --</option>
                             <?php foreach ($categories as $row) : ?>
-                                <option value="<?= $row->Category_name ?>"><?= $row->Category_name ?></option>
+                                <option value="<?=$row->CategoryID?>"><?= $row->Category_name ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <button type="submit">
+                        <button onclick="filterProducts()" type="submit">
                             <img src="<?= ROOT ?>/assets/images/admin/filter.png" alt="Filter">
                         </button>
                     </form>
-                    <form method="post" class="inv-form">
+                    <form id="search-form" method="post" class="inv-form">
                         <input type="search" name="product" placeholder="SKU / Name">
-                        <button type="submit">
+                        <button type="submit" onclick="searchProducts()">
                             <img src="<?= ROOT ?>/assets/images/admin/search.png" alt="Search">
                         </button>
                     </form>
                 </div>
                 <div class="inv-details-tbl">
-                    <table>
+                    <table id="table">
                         <tr class="inv-header-tr">
                             <th>SKU</th>
                             <th>Image</th>
@@ -46,7 +46,6 @@
                                     <td>
                                         <div>
                                             <span onclick="openPopup('<?=$row->ProductID?>')">Edit</span>
-                                            <a href="<?= ROOT ?>/furniture/remove/<?= $row->ProductID ?>">Remove</a>
                                         </div>
                                     </td>
                                 </tr>
