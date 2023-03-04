@@ -1,3 +1,14 @@
+let popup = document.getElementById('popup');
+let closeBtn = document.querySelector('.popup-heading img');
+
+function openAddFurPopup(){
+    popup.classList.add("open-popup");
+}
+
+function closePopup(){
+    popup.classList.remove("open-popup");
+}
+
 function load_image_primary(file)
 {
     let mylink = window.URL.createObjectURL(file[0]);

@@ -115,4 +115,11 @@ class Suppliers extends Model
 
         return $this->query($query);
     }
+
+    public function getSuppliersWithComanyName()
+    {
+        $query = "SELECT SupplierID, Company_name FROM $this->table";
+
+        return $this->query($query);
+    }
 }

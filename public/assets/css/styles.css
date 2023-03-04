@@ -2547,7 +2547,7 @@ h2 {
     border: none;
     border-radius: 5px;
     color: #f9f9f9;
-    background-color: #2b7358;
+    background-color: #0F3D3E;
     font-family: Rubik-SemiBold, sans-serif;
     font-size: 1.3rem;
     cursor: pointer;
@@ -3648,3 +3648,176 @@ h2 {
 #edit-fur-save{
     background-color: #0F3D3E;
 }
+
+/*Inventory*/
+
+.inventory-table-container{
+    width: 100%;
+    background-color: #f9f9f9;
+    margin: 1em auto;
+    height: 85vh;
+    border-radius: 15px;
+    padding: 1em;
+    font-family: 'Rubik', sans-serif;
+}
+
+.inv-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inv-table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+#add-furniture-btn{
+    width: 10em;
+    padding: .5em;
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border-radius: 7px;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.inv-table tr td{
+    text-align: center;
+    padding-bottom: .5em;
+}
+
+.add-fur-inv-popup{
+    width: 99%;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    max-height: 90vh;
+    height: 90vh;
+}
+
+.inv-table-btns{
+    display: flex;
+    justify-content: center;
+    gap: 15%;
+}
+
+.inv-table-btns img{
+    height: 1.8em;
+    width: 1.8em;
+}
+
+.inv-table-btns button{
+    height: 2.2em;
+    width: 2.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+}
+
+.inv-table-btns button:first-child{
+    background-color: #2b7358;
+}
+
+.inv-table-btns button:last-child{
+    background-color: #a00505;
+}
+
+.add-inv-fur-imgs-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-inv-fur-imgs{
+    width: 40%;
+}
+
+.add-inv-fur-imgs div:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+.add-inv-fur-imgs div:last-child{
+
+}
+
+.add-inv-fur-imgs label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    background: #100F0F;
+    border-radius: 10px;
+    color: #f9f9f9;
+    cursor: pointer;
+}
+
+.add-inv-fur-imgs input{
+    display: none;
+}
+
+.add-inv-fur-imgs img{
+    width: 12em;
+    height: 8em;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.add-fur-img-container-inputs{
+    width: 58%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-inv-fur-secondary-imgs{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.inv-fields-left, .inv-fields-right{
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.add-inv-fur-rest{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.rest{
+    width: 33%;
+}
+
+.add-inv-fur-form{
+    max-height: 78vh;
+}
+
+.add-inv-fur-form input{
+    padding-left: .5em;
+}
+
+.add-inv-fur-form select{
+    background-color: #ffffff;
+    border: 2px solid #d4d4d4;
+    height: 2.2em;
+    font-size: .85rem;
+    color: #7c7c7c;
+}
+
+.add-inv-fur-form textarea{
+    padding: .5em;
+    border: 2px solid #d4d4d4;
+    border-radius: 5px;
+    resize: none;
+}
+
