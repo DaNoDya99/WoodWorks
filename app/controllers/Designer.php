@@ -7,7 +7,7 @@ class Designer extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $data['title'] = "DASHBOARD";
@@ -36,7 +36,7 @@ class Designer extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -93,7 +93,7 @@ class Designer extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $limit = 3;
@@ -124,7 +124,7 @@ class Designer extends Controller
 
         if(!Auth::logged_in())
         {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $employee = new Employees();
@@ -146,7 +146,7 @@ class Designer extends Controller
 
         if (!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -170,7 +170,7 @@ class Designer extends Controller
 
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -184,8 +184,8 @@ class Designer extends Controller
 
             if ($design->validate($_POST)) {
 
-
                 $images = $_FILES['images'];
+                $pdf_file = $_FILES['pdfFile-input'];
                 $num_of_imgs = count($images['name']); //number of images
                 $_POST['DesignerID'] = $id;
 
@@ -216,22 +216,64 @@ class Designer extends Controller
                             $img_ex_lc = strtolower($img_ex); // image extension lowercase
                             $allowed_exs = array('jpg', 'jpeg', 'png');// allowed extensions
 
-//                           show($img_ex_lc);
-
                             if (in_array($img_ex_lc, $allowed_exs)) {
 
                                 $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;// unique image names
                                 $destination = $folder . time() . $new_img_name;// image destination
                                 move_uploaded_file($tmp_name, $destination);// move image to destination
 
+
                                 //insert into database
                                 if ($i == 0) {
-                                    $design->insert($_POST); // it must run only one time
+
+                                    //upload pdf file
+                                    $pdf_file_name = $pdf_file['name'];
+                                    $pdf_tmp_name = $pdf_file['tmp_name'];
+                                    $pdf_error = $pdf_file['error'];
+                                    $pdf_folder = "uploads/designer/pdf/";
+
+                                    if (!file_exists($pdf_folder)) {
+                                        mkdir($pdf_folder, 0777, true);
+                                        file_put_contents($pdf_folder . "index.php", "<?php //silence");
+                                        file_put_contents("uploads/designer/index.php", "<?php //silence");
+                                    }
+
+                                    if (!empty($pdf_file_name)) {
+                                        if ($pdf_error === 0) {
+                                            $pdf_ex = pathinfo($pdf_file_name, PATHINFO_EXTENSION); // pdf extension
+                                            $pdf_ex_lc = strtolower($pdf_ex); // pdf extension lowercase
+                                            $allowed_exs = array('pdf'); // allowed extensions
+
+                                            if (in_array($pdf_ex_lc, $allowed_exs)) {
+                                                $new_pdf_name = uniqid('PDF-', true) . '.' . $pdf_ex_lc; // unique pdf name
+                                                $pdf_destination = $pdf_folder . time() . $new_pdf_name; // pdf destination
+                                                move_uploaded_file($pdf_tmp_name, $pdf_destination); // move pdf to destination
+
+                                                $design->insert($_POST); // it must run only one time
+                                                $data['design_row'] = $design_row = $design->first('DesignerID', $id);
+                                                $designID = $design_row[0]->DesignID;
+                                                $design->update_pdf(['DesignID' => $designID], ['Pdf' => $pdf_destination]);
+
+                                            } else {
+                                                $design->errors['pdf'] = "This file type is not allowed. Please select pdf file";
+                                            }
+                                        } else {
+                                            $design->errors['pdf'] = "Could not upload pdf file";
+                                        }
+                                    } else {
+                                        $design->errors['pdf'] = "Please select the pdf file";
+                                    }
+
                                 }
                                 $data['design_row'] = $design_row = $design->first('DesignerID', $id);
-                                $designID = $design_row[0]->DesignID;
+                                if(!empty($design_row))
+                                {
+                                    $designID = $design_row[0]->DesignID;
 
-                                $design_images->insert(['DesignID' => $designID, 'Image' => $destination]);
+                                    $design_images->insert(['DesignID' => $designID, 'Image' => $destination]);
+                                }else{
+                                    $design->errors['pdf'] = "Please upload the pdf file";
+                                }
 
                             } else {
                                 $design->errors['image'] = "This file type is not allowed";

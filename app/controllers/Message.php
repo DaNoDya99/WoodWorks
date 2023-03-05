@@ -189,6 +189,8 @@ class Message extends Controller
         echo $str;
     }
 
+    /*Designer*/
+    //Designer Chats
     public function getDesignerChats()
     {
         $Message = new Messages();
@@ -236,6 +238,7 @@ class Message extends Controller
         echo $str;
     }
 
+    //Designer Messages Header
     public function getDesignerMessagesHeader($id)
     {
         $Message = new Messages();
@@ -247,6 +250,7 @@ class Message extends Controller
         echo $str;
     }
 
+    //Designer Search Chats
     public function searchDesignerChats()
     {
 
@@ -279,6 +283,7 @@ class Message extends Controller
         echo $str;
     }
 
+    //Designer Messages
     public function getDesignerMessages($id)
     {
         $Message = new Messages();

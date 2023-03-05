@@ -5,6 +5,9 @@
     var numOfFiles = document.getElementById("num-of-files");
     var input = document.getElementById('file-input');
 
+    const pdfFileInput = document.getElementById('pdfFile-input');
+    const pdfPreview = document.getElementById('pdf-preview');
+
     window.preview = function () {
         if (input.files.length === 3) {
 
@@ -44,8 +47,7 @@
         }
 
     }
+
+
 })(window,document);
-
-
-
 

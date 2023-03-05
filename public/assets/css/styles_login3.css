@@ -716,14 +716,9 @@ body{
     border-radius: 20px;
     font-family: 'Rubik-SemiBold';
     max-height: 80vh;
+    height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
 
-.tbox::-webkit-scrollbar {
-    display: none;
 }
 
 .orders_view_header{
@@ -734,6 +729,10 @@ body{
     padding: 1em 0;
 }
 
+.orders_view_header h1{
+    margin: 0;
+}
+
 .order-form {
     display: flex;
     height: 30px;
@@ -741,7 +740,7 @@ body{
 
 .order-form input{
     border: 2px solid #d2d2d2;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Rubik-SemiBold', sans-serif;
     width: 20em;
     border-radius: 3px;
     padding: 0 0 0 1em;
@@ -754,7 +753,7 @@ body{
     background-color: #f9f9f9;
     font-size: 1rem;
     padding: 0 0 0 1em;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Rubik-SemiBold', sans-serif;
     color: #787878;
     cursor: pointer;
 
@@ -775,8 +774,15 @@ body{
     width: 15px;
 }
 
-.orders_view_header h1{
-    margin: 0;
+.order-details-tbl {
+    overflow-y: auto;
+    max-height: 70vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.order-details-tbl::-webkit-scrollbar {
+    display: none;
 }
 
 .tbox table{
@@ -1186,6 +1192,17 @@ body{
     padding-bottom: 10px;
 }
 
+#designPdf{
+    font-family: 'Rubik';
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    margin: 10px;
+    padding-top: 5px;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
 .designImage{
     height: 100%;
     width: 90%;
@@ -1199,7 +1216,8 @@ body{
     text-align: center;
     font-family: 'Rubik', sans-serif;
     /*font-weight: bold;*/
-    padding-left: 70px;
+    /*padding-left: 70px;*/
+    justify-content: center;
 }
 
 #images{
@@ -1235,6 +1253,7 @@ body{
     margin: auto;
     height: 25%;
     width: 55%;
+    padding-top: 20px;
 }
 
 .des_Name label{
@@ -1270,12 +1289,20 @@ figcaption{
     width: 100%;
 }
 
+.but-img-upload-container{
+    margin: auto;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .edit-des-Ubtn-section{
     height: 2em;
     width: 25%;
+    cursor: pointer;
     margin: auto;
     padding: 5px;
-    cursor: pointer;
     font-family: 'Rubik-SemiBold';
     font-size: 1.1rem;
     background: #104f4a;
@@ -1284,8 +1311,6 @@ figcaption{
     color: #f9f9f9;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    margin-bottom: 10px;
 }
 .edit-des-Ubtn-section label{
     cursor: pointer;
@@ -1296,7 +1321,7 @@ figcaption{
 
 .edit-des-Dbtn-section{
     height: 2em;
-    width: 25%;
+    width: 36%;
     cursor: pointer;
     margin: auto;
     padding: 5px;
