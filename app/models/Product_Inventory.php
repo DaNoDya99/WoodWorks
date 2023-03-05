@@ -18,4 +18,66 @@ class Product_Inventory extends Model
         'Updated_at',
     ];
 
+    public function validate($data)
+    {
+        $this->errors = [];
+
+        if (empty($data['ProductID'])) {
+            $this->errors['ProductID'] = 'ProductID is required';
+        }elseif (!preg_match('/^[A-Z0-9]*$/', $data['ProductID'])) {
+            $this->errors['ProductID'] = 'ProductID must be the format of P0001';
+        }
+
+        if (empty($data['Quantity'])) {
+            $this->errors['Quantity'] = 'Quantity is required';
+        } elseif (preg_match('/[^0-9]/', $data['Quantity'])) {
+            $this->errors['Quantity'] = 'Quantity must be numbers only';
+        }
+
+        if (empty($data['Reorder_point'])) {
+            $this->errors['Reorder_point'] = 'Reorder point is required';
+        } elseif (preg_match('/[^0-9]/', $data['Reorder_point'])) {
+            $this->errors['Reorder_point'] = 'Reorder point must be numbers only';
+        }
+
+        if (empty($data['Cost'])) {
+            $this->errors['Cost'] = 'Cost is required';
+        } elseif (preg_match('/[^0-9.]/', $data['Cost'])) {
+            $this->errors['Cost'] = 'Cost must be numbers only';
+        }
+
+        if (empty($data['Retail_price'])) {
+            $this->errors['Retail_price'] = 'Retail price is required';
+        } elseif (preg_match('/[^0-9.]/', $data['Retail_price'])) {
+            $this->errors['Retail_price'] = 'Retail price must be numbers only';
+        }
+
+        $status = ['In Stock', 'Out of Stock'];
+
+        if (empty($data['Status'])) {
+            $this->errors['Status'] = 'Status is required';
+        } elseif (!in_array($data['Status'], $status)) {
+            $this->errors['Status'] = 'Status must be In Stock or Out of Stock';
+        }
+
+        if(empty($data['Created_at'])) {
+            $this->errors['Created_at'] = 'Created at is required';
+        } elseif (!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $data['Created_at'])) {
+            $this->errors['Created_at'] = 'Created at must be the format of YYYY-MM-DD';
+        }
+
+        if(empty($data['Updated_at'])) {
+            $this->errors['Updated_at'] = 'Updated at is required';
+        } elseif (!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $data['Updated_at'])) {
+            $this->errors['Updated_at'] = 'Updated at must be the format of YYYY-MM-DD';
+        }
+
+
+        if(empty($this->errors)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
