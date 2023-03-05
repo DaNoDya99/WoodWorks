@@ -26,7 +26,7 @@
                     <div class="des-img-upload-container">
                         <div class="des-img">
 
-                            <label id="designImage">Design Images</label>
+                            <label id="designImage">Design Images & Design Details Pdf Document</label>
 
                             <div class="designImage">
 
@@ -35,36 +35,33 @@
                                     <img id="second-img" src="<?= ROOT ?>/assets/images/designer/No_image.jpg" alt="Design Image">
                                     <img id="third-img" src="<?= ROOT ?>/assets/images/designer/No_image.jpg" alt="Design Image">
                                 </div>
-                                <p id="num-of-files">Number of Images Chosen: None<br><b>You need to choose three images</b></p>
+                                <div id="pdf-preview"></div>
+                                <p id="num-of-files">Number of Images Chosen: None<br><b>You need to choose three images and one pdf document</b></p>
 
                             </div>
                         </div>
                     </div>
 
-                    <div class="edit-des-Ubtn-section" id="edit-design">
-                        <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
-                        <label for="file-input"> Upload Images </label>
-                    </div>
+                    <div class="but-img-upload-container">
+                        <div class="edit-des-Ubtn-section" id="edit-design">
+                            <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
+                            <label for="file-input"> Upload Images</label>
+                        </div>
+                        <div class="edit-des-Ubtn-section" id="edit-design">
 
-                    <div class="edit-des-Dbtn-section" id="edit-design">
-                        <label onclick="location.reload();">
-                            Delete Images
-                        </label>
+                            <input type="file" onchange="showPdfPreview()" style="display: none" name="pdfFile-input" id="pdfFile-input">
+                            <label for="pdfFile-input">Upload Pdf</label>
+                        </div>
+                        <div class="edit-des-Dbtn-section" id="edit-design">
+                            <label onclick="location.reload();">
+                                Delete Images & Pdf
+                            </label>
+                        </div>
                     </div>
 
                     <div class="des_Name">
                         <label>Design Name :</label>
                         <input type="text" name="Name" placeholder="Enter Your Design Name" class="txt">
-                    </div>
-
-                    <div class="des_Name">
-                        <label>Height :</label>
-                        <input type="text" name="Height" placeholder='100" (254 cm)' class="txt">
-                    </div>
-
-                    <div class="des_Name">
-                        <label>Width :</label>
-                        <input type="text" name="Width" placeholder='100" (254 cm)' class="txt">
                     </div>
 
                     <div id="description">
@@ -85,4 +82,5 @@
 </body>
 <script src="<?= ROOT ?>/assets/javascript/script.js"></script>
 <script src="<?= ROOT ?>/assets/javascript/designer/add_designs.js"></script>
+<script src="<?= ROOT ?>/assets/javascript/designer/add_pdf.js"></script>
 </html>

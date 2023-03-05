@@ -7,11 +7,10 @@ class Design extends Model
 
     protected $allowedColumns = [
         'DesignID',
-        'Height',
-        'Width',
         'Description',
         'DesignerID',
         'ManagerID',
+        'Pdf',
         'Date',
         'Name',
         'Image',
@@ -29,20 +28,14 @@ class Design extends Model
         if (empty($data['Name'])) {
             $this->errors['Name'] = "Design Name can not be empty";
         }
-        if (empty($data['Height'])) {
-            $this->errors['Height'] = "Height can not be empty";
-        }
-        if (empty($data['Width'])) {
-            $this->errors['Width'] = "Width can not be empty";
-        }
         if (empty($data['Description'])) {
             $this->errors['Description'] = "Description can not be empty";
         }
         if (empty($this->errors)) {
             return true;
+        } else {
+            return false;
         }
-
-        return false;
     }
 
     public function make_design_id($DATA){
@@ -91,8 +84,6 @@ class Design extends Model
         $fields = [
             'DesignID',
             'DesignerID',
-            'Height',
-            'Width',
             'Description',
             'Name',
             'ManagerID',
@@ -129,7 +120,32 @@ class Design extends Model
         return $this->query($query);
     }
 
+    public function update_pdf($where, $data)
+    {
+        if(!empty($this->allowedColumns))
+        {
+            foreach ($data as $key => $value){
+                if(!in_array($key,$this->allowedColumns))
+                {
+                    unset($data[$key]);
+                }
+            }
+        }
 
+        $keys = array_keys($data);
+        $id = array_search($where['DesignID'], $where);
+
+        $query = "update ".$this->table." set ";
+        foreach ($keys as $key)
+        {
+            $query .= $key . "=:" . $key . ",";
+        }
+        $query = trim($query,",");
+        $query .= " where DesignID = :id";
+
+        $data['id'] = $where['DesignID'];
+        $this->query($query,$data);
+    }
 
     public function getAllImages($id)
     {
