@@ -19,4 +19,5 @@
     </div>
 </div>
 </body>
+<script src="<?=ROOT?>/assets/javascript/driver/orders_tabs.js"></script>
 </html>
