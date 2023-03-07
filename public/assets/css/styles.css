@@ -44,7 +44,7 @@
 }
 
 body {
-    font-family: 'Rubik';
+    font-family: 'Rubik', sans-serif;
 }
 
 /*Login Page*/
@@ -125,10 +125,9 @@ body {
     background-color: #f9f9f9;
 }
 
-/* .signup {
-    max-height: 45em;
-    overflow-y: auto;
-} */
+ .signup {
+     width: 400px;
+        }
 
 .login-form header {
     font-size: 25px;
@@ -2952,9 +2951,10 @@ h2 {
 
 .input-field input {
     margin-bottom: 5px;
-    height: 30px;
-    min-width: 0;
-    width: 30vw;
+    height: 40px;
+    font-size: 14px;
+    /* width: 100%; */
+    box-sizing: border-box;
     margin-top: 5px;
     border-radius: 5px;
     border: 1px solid #18242279;
@@ -3580,9 +3580,11 @@ form button {
 
 label {
     color: rgb(59, 59, 59);
+    font-size: 18px;
 }
 
 h1 {
+    box-sizing: border-box;
     margin-top: 5px;
 }
 
@@ -3590,10 +3592,10 @@ h1 {
     width: 100%;
     background-color: #007148;
     border: 0px;
-    padding: 12px;
+    font-size: 16px;
+    height: 40px;
     margin-top: 30px;
     transition: all 0.3s ease;
-
 }
 
 .loginbutton:hover {
@@ -3606,9 +3608,13 @@ h1 {
 .signup .inline-input {
     display: flex;
     min-width: 0;
+    justify-content: space-between;
 }
 
-.signup .inline-input {}
+.signup .inline-input {
+    display: flex;
+    grid-column-gap: 10px;
+}
 
 .edit-cat form {
     margin-top: 1em;
@@ -3617,14 +3623,25 @@ h1 {
 }
 
 .signup .input-field {
-    /* flex:1; */
+    grid-column-gap: 50px;
+    flex:1;
+    margin-top: 10px;
+    /* display: flex; */
+    flex-direction: column;
 }
 
 .signup .input-field input {
-    width: 25vw;
+    width: 100%;
 }
 
 .signup .inline-input input {
+    width: 100%;
+}
+.signup2 .input-field input {
+    width: 25vw;
+}
+
+.signup2 .inline-input input {
     width: 11.5vw;
 }
 

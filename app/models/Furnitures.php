@@ -73,7 +73,7 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
-    public function getFurnitures($category ,$sub_cat,$limit = 2,$offset)
+    public function getFurnitures($category ,$sub_cat,$offset,$limit = 2)
     {
         $query = "select ProductID, Name , Cost, Discount_percentage from furniture WHERE CategoryID = '$category' && Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
 

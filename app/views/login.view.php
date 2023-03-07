@@ -143,7 +143,9 @@
                         <br>
                         <label for="password"><small>Password</small></label>
                         <input style="padding-left:10px ;" type="password" name="Password" id="Password" value="<?= set_value('Password') ?>" required>
-                        <br><button class="loginbutton" type="submit">Login</button>
+
+                        <p>Don't have an account? <a href="<?=ROOT?>/signup">Sign up</a></p>
+                        <button class="loginbutton" type="submit">Login</button>
                     </form>
                 </div>
             </div>

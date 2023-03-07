@@ -77,7 +77,8 @@ class Login extends Controller
 
                 if (password_verify($_POST['Password'], $result_cus[0]->Password)) {
                     if ($result_cus[0]->status == '0') {
-                        $data['errors']['otp'] = 'Your account is not activated yet. <a href="/resend_otp">Activate Now</a>';
+                        $_SESSION['Email'] = $result_cus[0]->Email;
+                        $this->redirect('verify');
                     } else {
                         Auth::authenticate($result_cus[0]);
                         $this->redirect('/customer_home');
@@ -92,7 +93,7 @@ class Login extends Controller
         $this->view('login', $data);
     }
 
-    public function resendotp(){
-
+    public function resendotp()
+    {
     }
 }

@@ -17,14 +17,13 @@ class Otp extends Model
 
     public function setOTP($id) //generate an OTP and save it to the database
     {
-        $res = $this->where('Email', 'nisuraindisa2000@gmail.com');
+        $res = $this->where('Email', $id);
 
 
         if ($res) { // if otp has been sent previously , generate new otp and send to email
             $email = $res[0]->Email;
             $otp =  rand(100000, 999999);
             $this->update($email, ['Email' => $email, 'otpCode' => $otp, 'TimeCreated' => date('Y-m-d H:i:s')]);
-            return $otp;
         } else { // else generate new otp and add to table
             $email = $id;
             $otp = rand(100000, 999999);
@@ -34,8 +33,8 @@ class Otp extends Model
                 'otpCode' => $otp,
                 'TimeCreated' => $date,
             ]);
-            return $otp;
         }
+        return $otp;
     }
 
 
@@ -59,6 +58,7 @@ class Otp extends Model
                 return TRUE;
             }
         }
+        return FALSE;
     }
 
     public function hash_otp($data)

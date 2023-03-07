@@ -10,7 +10,6 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
             padding: 0;
             background-color: #E2E2CF;
         }
@@ -27,24 +26,31 @@
         <div class="grid-item leftpanel"></div>
         <div class="grid-item mainbg ">
             <div>
-                <div style="margin-top:50px;display: grid; justify-content:center ;width: 30vw;background-color: white; padding: 40px; border-radius: 10px; box-shadow: 0px 5px 10px rgba(107, 107, 107, 0.753);">
-                    <h1>Verify</h1>
+                <div style="display: grid; justify-content:center ;width: 400px;background-color: white; padding: 40px; border-radius: 10px; box-shadow: 0px 5px 10px rgba(107, 107, 107, 0.753);">
+                    <h1>Verify your E-mail</h1>
                     <?php if (!empty($errors)) : ?>
-                        <div style=" display:flex; align-items:center; justify-content:center; border:1px solid #F3D8DA; width:100%; height:50px; background-color:#F3D8DA; margin-bottom:20px;"><small>
+                        <div style=" display:flex; align-items:center; justify-content:center; border:1px solid #F3D8DA; width:100%; height:50px; background-color:#F3D8DA; margin-bottom:20px;">
+                            <small>
                                 <?= $errors['otp'] ?>
-                            </small></div>
+                            </small>
+                        </div>
                     <?php endif; ?>
-
                     <form action="" method="post" novalidate class="signup" style="">
-                        <a href="<?=ROOT?>/verify/sendOTP">Send Code</a>
-                        <p>Enter the code sent to the provided email</p>
+                        <a href="<?= ROOT ?>/verify/sendOTP">Send Code</a>
+                        <p>To use shop at WoodWorks, enter the code in the email we sent to <strong><?= $_SESSION['Email'] ?></strong>.
+                            This helps keep your account secure.
+                            <br><br>
+                            No email in your inbox or spam folder? Let’s resend it.
+                            <br><br>
+                            Wrong address? Log out to sign in with a different email. If you mistyped your email when
+                            signing up, create a new account.
+                        </p>
                         <p>
-                            <?php if(isset($data['msg'])){
+                            <?php if (isset($data['msg'])) {
                                 show($data['msg']);
                             } ?>
-                            </p>
+                        </p>
                         <div class="input-field">
-                            <!-- <label for="Email"><small>OTP Code</small></label><br> -->
                             <input style="padding-left:10px ;" type="text" name="otp" id="email" placeholder="Enter OTP Code" required><br>
                         </div>
                         <button class="loginbutton" type="submit">Proceed</button>

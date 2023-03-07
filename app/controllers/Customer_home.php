@@ -4,91 +4,88 @@ class Customer_home extends Controller
 {
     public function index()
     {
-        if(!Auth::logged_in())
-        {
-            $this->redirect('login1');
+        if (!Auth::logged_in()) {
+            
+            //check if email is verified
+            if (!Auth::email_verified()) {
+                $this->redirect('verify_email');
+            }
+            $this->redirect('login');
         }
-
         $furniture = new Furnitures();
         $customer = new Customer();
         $id = Auth::getCustomerID();
-        $data['row'] = $customer->where('CustomerID',$id);
-        $data['furnitures'] =$rows= $furniture->getNewFurniture(['ProductID','Name','Cost','Sub_category_name']);
+        $data['row'] = $customer->where('CustomerID', $id);
+        $data['furnitures'] = $rows = $furniture->getNewFurniture(['ProductID', 'Name', 'Cost', 'Sub_category_name']);
 
-        foreach ($rows as $row)
-        {
-            if(!empty($furniture->getDisplayImage($row->ProductID)[0]->Image))
-            {
+        foreach ($rows as $row) {
+            if (!empty($furniture->getDisplayImage($row->ProductID)[0]->Image)) {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
             }
         }
 
 
-        $this->view('reg_customer/customer_home',$data);
+        $this->view('reg_customer/customer_home', $data);
     }
 
-    public function profile($id = null){
+    public function profile($id = null)
+    {
 
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login1');
         }
 
         $customer = new Customer();
         $id = Auth::getCustomerID();
-        $data['row'] = $row = $customer->where('CustomerID',$id);
+        $data['row'] = $row = $customer->where('CustomerID', $id);
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
-        {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $row) {
             $folder = "uploads/images/";
-            if(!file_exists($folder)){
-                mkdir($folder,0777,true);
-                file_put_contents($folder."index.php","<?php Access Denied.");
-                file_put_contents("uploads/index.php","<?php Access Denied.");
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+                file_put_contents($folder . "index.php", "<?php Access Denied.");
+                file_put_contents("uploads/index.php", "<?php Access Denied.");
             }
 
-            if($customer->edit_validate($_POST))
-            {
-                $allowedFileType = ['image/jpeg','image/png'];
+            if ($customer->edit_validate($_POST)) {
+                $allowedFileType = ['image/jpeg', 'image/png'];
 
 
-                if(!empty($_FILES['Image']['name']))
-                {
-                    if($_FILES['Image']['error'] == 0)
-                    {
-                        if(in_array($_FILES['Image']['type'],$allowedFileType))
-                        {
-                            $destination = $folder.time().$_FILES['Image']['name'];
-                            move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
+                if (!empty($_FILES['Image']['name'])) {
+                    if ($_FILES['Image']['error'] == 0) {
+                        if (in_array($_FILES['Image']['type'], $allowedFileType)) {
+                            $destination = $folder . time() . $_FILES['Image']['name'];
+                            move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
 
-//                            resize_image($destination);
+                            //                            resize_image($destination);
                             $_POST['Image'] = $destination;
-                            if(file_exists($row[0]->Image))
-                            {
+                            if (file_exists($row[0]->Image)) {
                                 unlink($row[0]->Image);
                             }
-                        }else{
+                        } else {
                             $customer->errors['image'] = "This file type is not allowed.";
                         }
-                    }else{
+                    } else {
                         $customer->errors['image'] = "Could not upload image.";
                     }
                 }
 
                 $_POST['CustomerID'] = $id;
 
-                $customer->update($id,$_POST);
-                $this->redirect('customer_home/profile/'.$id);
+                $customer->update($id, $_POST);
+                $this->redirect('customer_home/profile/' . $id);
             }
         }
 
         $data['errors'] = $customer->errors;
 
-        $this->view('reg_customer/profile',$data);
+        $this->view('reg_customer/profile', $data);
     }
 
-    public function add_to_cart($id,$cost){
+    public function add_to_cart($id, $cost)
+    {
 
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
@@ -99,16 +96,13 @@ class Customer_home extends Controller
         $cus_id = Auth::getCustomerID();
         $orderID = '';
 
-        if(empty($cart->getCart($cus_id)))
-        {
+        if (empty($cart->getCart($cus_id))) {
             $cart->setCart($cus_id);
         }
 
-        if(empty($order->checkIsPreparing($cus_id)))
-        {
+        if (empty($order->checkIsPreparing($cus_id))) {
             $orderID = $order->setOrder($cus_id);
-        }else
-        {
+        } else {
             $orderID = $order->checkIsPreparing($cus_id)[0]->OrderID;
         }
 
@@ -125,82 +119,76 @@ class Customer_home extends Controller
             'Image' => $image[0]->Image
         ];
 
-        $cart->updateTotalAmountToIncrease($data['CartID'],$data['Cost']);
+        $cart->updateTotalAmountToIncrease($data['CartID'], $data['Cost']);
 
         $order_items->insert($data);
 
-        $this->redirect("furniture/view_product/".$id);
+        $this->redirect("furniture/view_product/" . $id);
     }
 
-    public function removeItem($cartID,$productID,$cost,$quantity)
+    public function removeItem($cartID, $productID, $cost, $quantity)
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
-        
+
         $cart = new Carts();
         $order_item = new Order_Items();
-        $order_item->deleteItem($cartID,$productID);
-        $cart->updateTotalAmountToDecrease($cartID,$cost*$quantity);
+        $order_item->deleteItem($cartID, $productID);
+        $cart->updateTotalAmountToDecrease($cartID, $cost * $quantity);
 
         $this->redirect('cart');
     }
 
     public function about()
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $customer = new Customer();
         $id = Auth::getCustomerID();
-        $data['row'] = $row = $customer->where('CustomerID',$id);
+        $data['row'] = $row = $customer->where('CustomerID', $id);
 
-        $this->view('about',$data);
+        $this->view('about', $data);
     }
 
     public function  contact()
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $customer = new Customer();
         $id = Auth::getCustomerID();
-        $data['row'] = $row = $customer->where('CustomerID',$id);
+        $data['row'] = $row = $customer->where('CustomerID', $id);
 
-        $this->view('contact',$data);
+        $this->view('contact', $data);
     }
 
     public function payment()
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $customer = new Customer();
         $id = Auth::getCustomerID();
-        $data['row'] = $row = $customer->where('CustomerID',$id);
+        $data['row'] = $row = $customer->where('CustomerID', $id);
 
-        $this->view('reg_customer/payment',$data);
+        $this->view('reg_customer/payment', $data);
     }
 
     public function orders()
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $customer = new Customer();
         $id = Auth::getCustomerID();
-        $data['row'] = $row = $customer->where('CustomerID',$id);
+        $data['row'] = $row = $customer->where('CustomerID', $id);
 
-        $this->view('reg_customer/orders',$data);
+        $this->view('reg_customer/orders', $data);
     }
-
 }
