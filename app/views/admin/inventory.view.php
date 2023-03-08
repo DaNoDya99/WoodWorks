@@ -9,16 +9,16 @@
             <div class="inv-header">
                 <h1>Inventory</h1>
                 <form id="search-form" method="post" class="inv-form">
-                    <input type="search" name="product" placeholder="SKU / Name">
+                    <input type="search" name="product" placeholder="SKU">
                     <button type="submit" onclick="searchProducts()">
                         <img src="<?= ROOT ?>/assets/images/admin/search.png" alt="Search">
                     </button>
                 </form>
                 <button onclick="openAddFurPopup()" id="add-furniture-btn">Add Furniture</button>
             </div>
-            <table class="inv-table">
+            <table id="inv-table" class="inv-table">
                 <tr>
-                    <th>ProductID</th>
+                    <th>SKU</th>
                     <th>Quantity</th>
                     <th>Reorder Point</th>
                     <th>Last Ordered</th>

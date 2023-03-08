@@ -102,7 +102,8 @@ class Inventory extends Controller
 
 
 
-        $errors = array_merge($furniture_model->errors,$inventory_model->errors);
+        $errors = $furniture_model->errors;
+        $errors = array_merge($errors,$inventory_model->errors);
 
         if(!empty($errors)) {
             $stm = "
@@ -121,5 +122,64 @@ class Inventory extends Controller
             echo "<div class='cat-success'><h3>Successfully Added.</h3>";
         }
 
+    }
+
+    public function search()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $inventory = new Product_Inventory();
+
+            if($_POST['product'] !== ''){
+                $rows = $inventory->searchInventoryProductByID($_POST['product']);
+            }else{
+                $rows = $inventory->getAllFromInventory();
+            }
+
+            $str = "
+                <tr>
+                    <th>SKU</th>
+                    <th>Quantity</th>
+                    <th>Reorder Point</th>
+                    <th>Last Ordered</th>
+                    <th>Last Received</th>
+                    <th>Cost</th>
+                    <th>Retail Price</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Actions</th>
+                </tr>
+            ";
+
+            foreach ($rows as $row){
+                $str .= "
+                    <tr>
+                        <td>".$row->ProductID."</td>
+                        <td>".$row->Quantity."</td>
+                        <td>".$row->Reorder_point."</td>
+                        <td>".$row->Last_ordered."</td>
+                        <td>".$row->Last_received."</td>
+                        <td>Rs ".$row->Cost."</td>
+                        <td>Rs ".$row->Retail_price."</td>
+                        <td>".$row->Status."</td>
+                        <td>".$row->Created_at."</td>
+                        <td>".$row->Updated_at."</td>
+                        <td>
+                            <div class='inv-table-btns'>
+                                <button onclick='openEditInvPopup(".`$row->ProductID`.")'><img src='http://localhost/WoodWorks/public/assets/images/admin/edit-4-svgrepo-com.svg' alt=''></button>
+                                <button onclick='deleteProduct(".`$row->ProductID`.")'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
+                            </div>
+                        </td>
+                    </tr>
+                ";
+            }
+
+           echo $str;
+        }
     }
 }
