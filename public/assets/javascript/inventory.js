@@ -1,8 +1,13 @@
 let popup = document.getElementById('popup');
 let closeBtn = document.querySelector('.popup-heading img');
 let add_fur_form = document.getElementById('add-fur-form');
+let search_form = document.getElementById('search-form');
 
 add_fur_form.onsubmit = function(e){
+    e.preventDefault();
+}
+
+search_form.onsubmit = (e) => {
     e.preventDefault();
 }
 
@@ -55,4 +60,20 @@ function addFurniture()
 
 function close_error(){
     document.getElementById("errors").innerHTML = "";
+}
+
+function searchProducts()
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/WoodWorks/public/inventory/search', true);
+    xhr.onload = () => {
+       if(xhr.readyState === XMLHttpRequest.DONE){
+           if(xhr.status === 200){
+               document.getElementById("inv-table").innerHTML = xhr.response;
+               // console.log(xhr.response);
+           }
+       }
+    }
+    let form_data = new FormData(search_form);
+    xhr.send(form_data);
 }
