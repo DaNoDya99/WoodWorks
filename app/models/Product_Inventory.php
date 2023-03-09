@@ -80,16 +80,24 @@ class Product_Inventory extends Model
         }
     }
 
-    public function searchInventoryProductByID($id)
+    public function searchInventoryProductByID($id): false|array
     {
         $query = "SELECT * FROM $this->table WHERE ProductID = :ProductID;";
 
         return $this->query($query,['ProductID' => $id]);
     }
 
-    public function getAllFromInventory(){
+    public function getAllFromInventory(): false|array
+    {
         $query = "SELECT * FROM $this->table";
 
         return $this->query($query);
+    }
+
+    public function deleteInvProduct($id): false|array
+    {
+        $query = "DELETE FROM $this->table WHERE ProductID = :ProductID;";
+
+        return $this->query($query,['ProductID' => $id]);
     }
 }
