@@ -25,14 +25,7 @@
     display: block;
 }
 
-.inventory-data tr {
-
-    border-radius: 5px;
-    min-width: -webkit-fill-available;
-    display: table;
-    border-bottom: 1px solid #ededed;
-
-}
+.inventory-data tr {border-radius: 5px;min-width: -webkit-fill-available;display: table;border-bottom: 1px solid #ededed;}
 
 .inventory-data thead {
     display: table;
@@ -53,10 +46,11 @@
 }
 
 .inventory-data .col-id{
+    text-align: center;
     width: 15%;
 }
 .inventory-data .col-name{
-    width: 20%;
+    width: 15%;
 }
 
 .inventory-data input {

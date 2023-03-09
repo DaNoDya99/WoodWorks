@@ -41,4 +41,14 @@ class Order_Items extends Model
 
         $this->query($query,['CartID' => $cartID, 'ProductID' => $productID]);
     }
+
+    //delete all order items in a cart
+
+    public function deleteAllItems($cartID)
+    {
+        $query = "DELETE FROM `order_item` WHERE CartID = :CartID;";
+
+        $this->query($query,['CartID' => $cartID]);
+    }
+
 }

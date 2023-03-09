@@ -6,9 +6,8 @@ class Customer_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
-
         $furniture = new Furnitures();
         $customer = new Customer();
         $id = Auth::getCustomerID();
@@ -125,7 +124,7 @@ class Customer_home extends Controller
             'Image' => $image[0]->Image
         ];
 
-        $cart->updateTotalAmountToIncrease($data['CartID'],$data['Cost']);
+        $cart->updateTotalAmountToIncrease($data['CartID'],$info[0]->Cost);
 
         $order_items->insert($data);
 
@@ -187,20 +186,6 @@ class Customer_home extends Controller
         $data['row'] = $row = $customer->where('CustomerID',$id);
 
         $this->view('reg_customer/payment',$data);
-    }
-
-    public function orders()
-    {
-        if(!Auth::logged_in())
-        {
-            $this->redirect('login');
-        }
-
-        $customer = new Customer();
-        $id = Auth::getCustomerID();
-        $data['row'] = $row = $customer->where('CustomerID',$id);
-
-        $this->view('reg_customer/orders',$data);
     }
 
 }

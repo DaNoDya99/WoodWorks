@@ -105,6 +105,12 @@ class Orders extends Model
         return $data['OrderID'];
     }
 
+    public function closeOrder($CustomerID, $payment_type, $total_amount, $deliver_method,)
+    {
+        $OrderID = $this->checkIsPreparing($CustomerID)[0]->OrderID;
+        $query = "update $this->table set Is_preparing = :Is_preparing, Payment_type = :Payment_type, Total_amount = :Total_amount, Deliver_method = :Deliver_method where CustomerID = :CustomerID && OrderID = :OrderID";
+        $this->query($query,['Is_preparing' => 0, 'Payment_type' => $payment_type, 'Total_amount' => $total_amount, 'Deliver_method' => $deliver_method, 'CustomerID' => $CustomerID, 'OrderID' => $OrderID]);
+    }
 
     public function make_order_id(){
 

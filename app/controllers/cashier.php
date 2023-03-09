@@ -67,7 +67,7 @@ class cashier extends Controller
         $cart = new Carts();
         $order_item = new Order_Items();
         $q = "DELETE FROM `order_item` WHERE CartID = :CartID;";
-        $cart_id = $cart->getCart('5lhHfqCRtAdbMxdEl69oEq1F0ywitBClYh3fF927If44CB4eaXFKGSgp4K0k')[0]->CartID;
+        $cart_id = $cart->getCart($_SESSION['CustomerID'])[0]->CartID;
         $order_item->query($q, ['CartID' => $cart_id]);
         $this->redirect('cashier/dash');
     }
@@ -134,6 +134,13 @@ class cashier extends Controller
 
         $this->view('cashier/inventory', $data);
     }
+    public function resetCustomer()
+    {
+        $_SESSION['CustomerID'] = null;
+        $_SESSION['CustomerDetails'] = null;
+        $this->redirect('cashier/dash');
+    }
+
 
     public function test()
     {

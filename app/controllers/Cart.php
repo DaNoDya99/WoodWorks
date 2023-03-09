@@ -13,7 +13,7 @@ class Cart extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $data['row'] = $row = $this->getUser();
