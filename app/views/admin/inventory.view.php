@@ -163,7 +163,7 @@
                                     <option value="<?= $val->SupplierID ?>"><?= $val->SupplierID?> - <?= $val->Company_name?></option>
                                 <?php endforeach; ?>
                             </select>
-                        </div>
+                       </div>
                     </div>
                 </div>
 
@@ -178,6 +178,55 @@
 
             </form>
 
+        </div>
+
+        <div class="popup edit-fur-inv-popup" id="edit-popup">
+            <div class="popup-heading">
+                <h2>Edit Inventory Product - P0001</h2>
+                <img src="<?=ROOT?>/assets/images/customer/close.png" alt="Close" onclick="closeEditPopup()">
+            </div>
+
+            <form id="edit-fur-form" class="edit-fur-form edit-inv-fur-form" method="post" enctype="multipart/form-data">
+
+                <div id="edit-errors">
+
+                </div>
+
+                <div class="edit-inv-fields">
+                    <div class="edit-inv-left">
+                        <div class="field">
+                            <label>Quantity</label>
+                            <input id="quantity" type="number" name="Quantity" placeholder="Quantity" disabled>
+                        </div>
+                        <div class="field">
+                            <label>Cost</label>
+                            <input id="cost" type="text" name="Cost" placeholder="Cost">
+                        </div>
+                        <div class="field">
+                            <label>Last Received</label>
+                            <input id="last-received" type="date" name="Last_received" placeholder="Last Received">
+                        </div>
+                    </div>
+                    <div class="edit-inv-right">
+                        <div class="field">
+                            <label>Arrived Quantity</label>
+                            <input type="number" name="Arrived_quantity" placeholder="Arrived Quantity">
+                        </div>
+                        <div class="field">
+                            <label>Retail Price</label>
+                            <input id="retail-price" type="text" name="Retail_price" placeholder="Retail Price">
+                        </div>
+                        <div class="field">
+                            <label>Reorder Point</label>
+                            <input id="reorder-point" type="text" name="Reorder_point" placeholder="Reorder Point">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-fur-btn">
+                    <button onclick="save()" type="submit">Save</button>
+                </div>
+            </form>
         </div>
 
         <div class="cat-response" id="response">

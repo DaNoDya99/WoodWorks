@@ -3739,10 +3739,6 @@ h2 {
     gap: 2em;
 }
 
-.add-inv-fur-imgs div:last-child{
-
-}
-
 .add-inv-fur-imgs label{
     display: flex;
     justify-content: center;
@@ -3821,3 +3817,21 @@ h2 {
     resize: none;
 }
 
+.edit-fur-inv-popup{
+    width: 80%;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.edit-inv-fields{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-inv-left, .edit-inv-right{
+    width: 49%;
+}
+
+.edit-inv-fields input{
+    padding-left: .5em;
+}

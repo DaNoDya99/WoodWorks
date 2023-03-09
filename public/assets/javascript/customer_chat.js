@@ -97,7 +97,7 @@ setInterval(() => {
         }
     }
     xhr.send();
-},500)
+},500);
 
 setInterval(() => {
     let xhr = new XMLHttpRequest();
