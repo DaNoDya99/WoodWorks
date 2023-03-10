@@ -2336,6 +2336,10 @@ h2 {
     font-family: 'Rubik', sans-serif;
 }
 
+.sup-popup input{
+    padding-left: .5em;
+}
+
 .admin-popup hr {
     width: 100%;
     border-left: none;
