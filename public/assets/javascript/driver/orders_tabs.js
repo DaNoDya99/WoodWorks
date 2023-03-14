@@ -1,17 +1,34 @@
-const tabs = document.querySelectorAll('.tab_btn');
-const all_content = document.querySelectorAll('.content_orders');
+const tabBox = document.querySelector('.tab_box');
+const tabs = tabBox.querySelectorAll('.tab_btn');
+const movingLine = tabBox.querySelector('.line');
 
-tabs.forEach((tab,index) => {
-  tab.addEventListener('click', (e) => {
-      tabs.forEach((tab) => {tab.classList.remove('active')});
-    tab.classList.add('active');
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const tabWidth = tab.offsetWidth;
+        const tabLeft = tab.offsetLeft;
+        movingLine.style.width = `${tabWidth}px`;
+        movingLine.style.left = `${tabLeft}px`;
 
-      var line = document.querySelector('.line');
-      line.style.width = e.target.offsetWidth + 'px';
-      line.style.left = e.target.offsetLeft + 'px';
+        // remove the "active" class from all tabs
+        tabs.forEach(t => t.classList.remove('active'));
 
-      all_content.forEach((content) => {content.classList.remove('active')});
-      all_content[index].classList.add('active');
-  })
+        // add the "active" class to the clicked tab
+        tab.classList.add('active');
+    });
 
-})
+    tab.addEventListener('mouseover', () => {
+        const tabWidth = tab.offsetWidth;
+        const tabLeft = tab.offsetLeft;
+        movingLine.style.width = `${tabWidth}px`;
+        movingLine.style.left = `${tabLeft}px`;
+    });
+
+    tab.addEventListener('mouseout', () => {
+        // check if any tab has the "active" class
+        const activeTab = tabBox.querySelector('.active');
+        if (!activeTab) {
+            movingLine.style.width = '0';
+        }
+    });
+});
+

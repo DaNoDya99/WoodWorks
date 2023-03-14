@@ -50,6 +50,12 @@ class Orders extends Model
         return $this->query($query,['value'=>$value]);
     }
 
+    public function filterDate($from_date,$to_date)
+    {
+        $query = "select OrderID,Dispatched_date,Delivered_date,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && Delivered_date BETWEEN '$from_date' AND '$to_date' limit 15";
+        return $this->query($query);
+    }
+
     public function pieGraph()
     {
         $query = "SELECT COUNT(OrderID) AS numOrders,Order_status FROM $this->table GROUP BY Order_status ";
