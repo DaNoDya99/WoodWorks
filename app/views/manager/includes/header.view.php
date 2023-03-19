@@ -10,6 +10,8 @@
 <!--    <link rel="stylesheet" href="--><?php //=ROOT?><!--/assets/css/style4.css">-->
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/header.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/table.css">
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/analytics.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 </head>

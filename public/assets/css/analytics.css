@@ -1,0 +1,191 @@
+
+.performance-widget {
+    background-color: white;
+    height: 150px;
+    width: 272px;
+    border-radius: 10px;
+    padding: 30px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 10px 10px rgba(140, 140, 140, 0.282);
+}
+
+.performance-widget:hover {
+    cursor: pointer;
+    background-color: rgb(211, 211, 211);
+
+}
+
+.performance-widget:active {
+    background-color: rgb(141, 141, 141);
+    box-shadow: 0px 10px 10px rgba(140, 140, 140, 0.282);
+
+}
+
+.charts {
+    background-color: white;
+    margin-top: 40px;
+    display: flex;
+    column-gap: 20px;
+    border-radius: 10px;
+    /* height: 600px; */
+    width: 100%;
+    padding: 30px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 10px 10px rgba(140, 140, 140, 0.282);
+    flex-direction: column;
+}
+
+.dashboard {
+    width: 90%;
+}
+
+.chart-component {
+    border-radius: 10px;
+    width: 100%;
+    border: 2px solid rgb(203, 203, 203);
+    height: 100%;
+    display: flex;
+
+    flex-direction: column;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-range {
+    height: 40px;
+    width: 250px;
+    padding: 10px;
+}
+
+.more-settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    transition: all 0.2s ease-in-out;
+}
+
+.more-settings:hover {
+    cursor: pointer;
+    background-color: rgb(211, 211, 211);
+
+}
+
+.more-settings:active {
+
+    background-color: rgb(140, 154, 116);
+
+}
+
+.date-range {
+    margin: 0;
+    display: flex;
+    height: 50px;
+    width: 300px;
+    background-color: white;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.date-overlay {
+    border: 2px solid #939393;
+    color: black;
+    left: 0px;
+    top: 50px;
+    z-index: 99;
+    position: absolute;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+    width: 700px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px rgb(123, 123, 123);
+    background-color: rgb(255, 255, 255);
+}
+
+.date-overlay input[type="date"] {
+    height: 40px;
+    width: 250px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgb(151, 151, 151);
+
+}
+
+.dropdown {
+    position: relative;
+    /* display: inline-block; */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+    display: block;
+    padding: 10px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: flex;
+}
+
+#dropdown-icon {
+    transition: all 0.2s ease-in-out;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.select-reports {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 15%;
+    padding: 30px;
+
+}
+
+.select-reports li {
+    list-style: none;
+    margin-bottom: 40px;
+    font-size: 20px;
+    /* font-weight: 600; */
+    color: rgb(85, 85, 85);
+    transition: all 0.2s ease-in-out;
+}
+
+.hidden-section {
+    display: none;
+}
+
+.active-section {
+    font-family: 'Rubik-Medium';
+    color: black !important;
+    font-weight: bolder;
+}
+
+.select-link:hover {
+    cursor: pointer;
+    color: rgb(140, 154, 116);
+}
+
+.date-overlay .closebtn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
