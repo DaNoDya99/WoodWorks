@@ -141,7 +141,12 @@ class cashier extends Controller
         $this->redirect('cashier/dash');
     }
 
+    public function checkout_cash()
+    {
+        //check if there is an order created and set it to prepared
+        $order = new Orders();
 
+    }
     public function test()
     {
         $customer = new Customer();
@@ -178,7 +183,7 @@ class cashier extends Controller
     public function billing()
     {
 
-        $orders = new Orders_Supplier();
+        $orders = new Orders();
         $data['orderdata'] = $orders->where(1, 1);
 
         $this->view('cashier/orders', $data);
@@ -189,7 +194,7 @@ class cashier extends Controller
             $this->redirect('login7');
         }
 
-        $order = new Orders_Supplier();
+        $order = new Orders();
         $furniture = new Furnitures();
         $cart = new Carts();
         $order_items = new Order_Items();

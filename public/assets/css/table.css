@@ -25,7 +25,14 @@
     display: block;
 }
 
-.inventory-data tr {border-radius: 5px;min-width: -webkit-fill-available;display: table;border-bottom: 1px solid #ededed;}
+.inventory-data tr {
+    border-radius: 5px;
+    min-width: -webkit-fill-available;
+    min-width: -moz-available;
+    min-width: fill-available;
+    display: table;
+    border-bottom: 1 px solid #ededed;
+}
 
 .inventory-data thead {
     display: table;
@@ -45,11 +52,12 @@
     align-items: center;
 }
 
-.inventory-data .col-id{
+.inventory-data .col-id {
     text-align: center;
     width: 15%;
 }
-.inventory-data .col-name{
+
+.inventory-data .col-name {
     width: 15%;
 }
 
@@ -62,4 +70,3 @@
     margin-top: 5px;
     border: 1px solid #18242279;
 }
-

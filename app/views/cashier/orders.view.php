@@ -24,6 +24,7 @@
                 <tr>
                     <td><?= $order->Payment_type ?></td>
                     <td><?= $order->Total_amount ?></td>
+                    <td><?= $order->Date ?></td>
                     <td><?= $order->Deliver_method ?></td>
                     <td><?= $order->Order_status ?></td>
                     <td><?= $order->Address ?></td>
