@@ -27,14 +27,19 @@ class Orders extends Model
 
     public function findOrders($column, $value)
     {
-        $query = "select * from $this->table where $column = :value order by DATE desc limit 4";
+        $query = "select * from $this->table where $column = :value order by DATE";
         return $this->query($query, ['value' => $value]);
     }
 
     //function to return orders based on date range
     public function findOrdersByDate($date1, $date2)
     {
-        $query = "select * from $this->table where Date between '$date1' and '$date2' order by DATE desc limit 4";
+        $query = "select * from $this->table where Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2' order by DATE";
+        return $this->query($query);
+    }
+    public function findOrdersSumByDate($date1, $date2)
+    {
+        $query = "select SUM(Total_amount) as total,COUNT(OrderID) as OrderCount, CONVERT(Date, Date) AS DATE from $this->table WHERE Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2' group by DATE ORDER BY Date;";
         return $this->query($query);
     }
 

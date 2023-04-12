@@ -253,18 +253,64 @@ class Manager extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Content-Type: application/json');
             //encode status success and echo to ajax call
+            $data['date1'] = $_POST['date1'];
+            $data['date2'] = $_POST['date2'];
 
-            $order = new Orders();
-            $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
 
-            $data['total'] = 0;
-            foreach ($data['orders'] as $row) {
-                $data['total'] += $row->Total_amount;
+            $startDate = new DateTime($_POST['date1']); // start date
+            $endDate = new DateTime($_POST['date2']); // end date
+            $labels = [];
+
+            while ($startDate <= $endDate) {
+                array_push($labels, $startDate->format('Y-m-d'));
+                $startDate->modify('+1 day');
             }
+            $data['labels'] = $labels;
+            // show($labels);
+            $order = new Orders();
+            $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
+            // show($a);
+            $s = [];
+            for ($i = 0; $i < count($labels); $i++) {
+                $s[$i] = 0;
+                for($j = 0; $j < count($a); $j++){
+                    if($labels[$i] == $a[$j]->DATE){
+                        $s[$i] = $a[$j]->total;
+                        break;
+                    }
+                }
+            }
+            $data['test'] = $s;
+            $ordercount = [];
+            for ($i = 0; $i < count($labels); $i++) {
+                $ordercount[$i] = 0;
+                for($j = 0; $j < count($a); $j++){
+                    if($labels[$i] == $a[$j]->DATE){
+                        $ordercount[$i] = $a[$j]->OrderCount;
+                        break;
+                    }
+                }
+            }
+            $data['test'] = $s;
+            $data['ordercount'] = $ordercount;
 
-            //get count of completed orders
-            $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
-            echo json_encode($data);
+
+            //     $order = new Orders();
+                $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
+            //     //get total amount of orders grouped by date
+
+            //     $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
+            //     $data['test'] = $a;
+                $data['total'] = 0;
+                foreach ($data['orders'] as $row) {
+                    //round off to 2 decimal places
+                    $row->Total_amount = round($row->Total_amount, 2);
+                    $data['total'] += $row->Total_amount;
+                }
+
+            //     //get count of completed orders
+                $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
+                echo json_encode($data);
         }
     }
 

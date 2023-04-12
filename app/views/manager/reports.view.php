@@ -46,15 +46,25 @@
                             </div>
                             <div style="display:flex; justify-content:flex-start; grid-column-gap:10px; grid-row-gap:10px; flex-wrap:wrap">
                                 <div class="performance-widget">
-                                    <h3>Total Sales</h3>
+                                    <div style="position:relative; display:flex; justify-content:space-between; align-items:center">
+                                        <h3>Total Sales</h3>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" style="width:30px; opacity:0.5" alt="" onmouseover="tooltip(1)" onmouseleave="tooltipoff(1)">
+                                        <div class="tooltip1" style="position:absolute; display:none; justify-content:center; align-items:center; border-radius:10px;min-height:50px; width:200px; color:white; background-color:#2d2d2d; top:-5px; right:-160px; opacity:0.9">Revenue from Sales</div>
+                                    </div>
                                     <h2 id="total-sales-value"><i style="color:grey">Select Range</i></h2>
                                 </div>
                                 <div class="performance-widget">
-                                    <h3>Orders</h3>
+                                    <div style="display:flex; justify-content:space-between; align-items:center">
+                                        <h3>Orders</h3>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" style="width:30px; opacity:0.5" alt="">
+                                    </div>
                                     <h2 id="total-order-count"><i style="color:grey">Select Range</i></h2>
                                 </div>
                                 <div class="performance-widget">
-                                    <h3>Products Sold</h3>
+                                    <div style="display:flex; justify-content:space-between; align-items:center">
+                                        <h3>Products Sold</h3>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" style="width:30px; opacity:0.5" alt="">
+                                    </div>
                                     <h2><i style="color:grey">Select Range</i></h2>
                                 </div>
                             </div>
@@ -62,19 +72,19 @@
                         <h2 style="margin-top: 40px;">Charts</h2>
                         <div class="charts">
                             <div style="display:flex; justify-content:space-between; column-gap:10px">
-                                <h2>Performance</h2>
-                                <div class="more-settings">
-                                    <img class="" style="width:5px" src="<?= ROOT ?>/assets/images/manager/ellipsis-vertical-solid.svg" alt="">
-                                </div>
+
                             </div>
-                            <div style="display:flex;">
+                            <div style="display:flex; column-gap:20px">
+
                                 <div class="chart-component">
-                                    <h3>Net Sales</h3>
-                                    <canvas id="myChart"></canvas>
+                                    <canvas id="mainSalesChart"></canvas>
                                 </div>
                                 <div class="chart-component">
                                     <canvas id="myChart2"></canvas>
                                 </div>
+                                <!-- <div class="chart-component">
+                                    <canvas id="myChart2"></canvas>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -167,56 +177,108 @@
 
 </body>
 <script type="text/javascript">
-    // Define the data for the chart
-    const data = {
-        labels: ['2', 'February', '', 'May', 'July', 'July', 'July', 'July', 'July', 'July'],
-        datasets: [{
-            label: 'Sales',
-            data: [12, 69, 3, 5, 2, 3, 20, 0, 0, 0, 0, 0],
-            fill: true,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-        }]
-    };
-
-    // Define the configuration for the chart
-    const config = {
-        type: 'bar',
-        data: data,
-        options: {
-            animation: {
-                duration: false
-            },
-
-        }
-    };
-    const config2 = {
-        type: 'line',
-        data: data,
-        options: {
-            animation: {
-                duration: 0
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-        }
-    };
-
     // Create the chart
-    var myChart = new Chart(
-        document.getElementById('myChart'),
-        config
+    var mainSalesChart = new Chart(
+        document.getElementById('mainSalesChart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Sales',
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgb(0, 156, 99)',
+                    tension: 0
+                }]
+            },
+
+            options: {
+                aspectRatio: 1.5,
+                responsive: true,
+                animation: {},
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Rupees',
+                        }
+                    }
+
+
+
+                },
+                tooltips: {
+                    enabled: true
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Sales',
+                        align: 'start',
+                        font: {
+                            size: 20,
+                            weight: 'bold'
+                        }
+                    }
+                }
+
+            }
+        }
     );
     var myChart2 = new Chart(
-        document.getElementById('myChart2'),
-        config
+        document.getElementById('myChart2'), {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Sales',
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0
+                }]
+            },
+
+            options: {
+                responsive: true,
+                animation: {},
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                        }
+                    }
+                },
+                aspectRatio: 1.5,
+                tooltips: {
+                    enabled: true
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Orders',
+                        align: 'start',
+                        font: {
+                            size: 20,
+                            weight: 'bold'
+                        }
+                    }
+                }
+
+            }
+        }
     );
-    var myChart3 = new Chart(
-        document.getElementById('myChart3'),
-        config2
-    );
+
     //onclick
-    window.onload = function() {
+    window.onload = function(e) {
         e.preventDefault();
         //ajax using fetch to send to php
         fetch('http://localhost/woodworks/public/manager/getReport', {
@@ -227,12 +289,33 @@
             //decode and show json on console
             .then(data => {
                 console.log(data);
-                document.getElementById('total-sales-value').innerHTML = data.total
+                document.getElementById('total-sales-value').innerHTML = "Rs. " + data.total
                 document.getElementById('total-order-count').innerHTML = data.completed[0].count
+
+                const date1 = new Date(data.date1);
+                const date2 = new Date(data.date2);
+
+                const diffInDays = Math.floor((date2.getTime() - date1.getTime()) / 86400000);
+
+                if (diffInDays < 30) {
+                    mainSalesChart.options.scales.x.time.unit = 'day';
+                } else if (diffInDays < 365) {
+                    mainSalesChart.options.scales.x.time.unit = 'month';
+                } else {
+                    mainSalesChart.options.scales.x.time.unit = 'year';
+                }
+                //update chart
+                mainSalesChart.data.labels = data.labels;
+                mainSalesChart.data.datasets[0].data = data.test;
+                myChart2.data.labels = data.labels;
+                myChart2.data.datasets[0].data = data.ordercount;
+
+                mainSalesChart.update();
+                myChart2.update();
             })
 
         var dropdownContent = document.querySelector(".dropdown-content");
-        dropdownContent.classList.toggle("show");
+        // dropdownContent.classList.toggle("show");
 
         var data1 = document.querySelector("input[name='date1']").value;
         var data2 = document.querySelector("input[name='date2']").value;
@@ -254,6 +337,26 @@
                 console.log(data);
                 document.getElementById('total-sales-value').innerHTML = data.total
                 document.getElementById('total-order-count').innerHTML = data.completed[0].count
+
+
+                const date1 = new Date(data.date1);
+                const date2 = new Date(data.date2);
+
+                const diffInDays = Math.floor((date2.getTime() - date1.getTime()) / 86400000);
+
+                if (diffInDays < 30) {
+                    mainSalesChart.options.scales.x.time.unit = 'day';
+                } else if (diffInDays < 365) {
+                    mainSalesChart.options.scales.x.time.unit = 'month';
+                } else {
+                    mainSalesChart.options.scales.x.time.unit = 'year';
+                }
+                //update chart
+                mainSalesChart.data.labels = data.labels;
+                mainSalesChart.data.datasets[0].data = data.test;
+
+                mainSalesChart.update();
+
             })
 
         var dropdownContent = document.querySelector(".dropdown-content");
@@ -313,9 +416,6 @@
                 //toggle hidden section
                 document.querySelector(".products-section").classList.toggle("hidden-section");
                 document.getElementById("products-link").classList.add("active-section");
-
-
-
                 break;
             case "orders":
                 //toggle hidden section
@@ -334,6 +434,22 @@
                 break;
 
         }
+    }
+
+    function tooltip(num) {
+        var tooltip = document.getElementsByClassName("tooltip1");
+        tooltip[0].style.display = "flex";
+    }
+
+    function tooltipoff(num) {
+        var tooltip = document.getElementsByClassName("tooltip1");
+        tooltip[0].style.display = "none";
+    }
+
+    function bar() {
+        mainSalesChart.config.type = 'bar';
+
+        mainSalesChart.update();
     }
 </script>
 
