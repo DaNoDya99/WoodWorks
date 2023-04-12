@@ -2710,22 +2710,40 @@ h2 {
     justify-content: space-around;
 }
 
+.payment-item-details{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
 .payment-items{
-    width: 40%;
+    width: 100%;
     background-color: #f9f9f9;
+    height: 31em;
     max-height: 40em;
     border-radius: 10px;
     overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    margin-bottom: 1em;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
 
 .payment-details{
-    width: 40%;
+    width: 92.3%;
     background-color: #0F3D3E;
     color: #f9f9f9;
     border-radius: 10px;
     padding: 1em 2em;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.shipping-details{
+    width: 45%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    padding: 1em;
 }
 
 .payment-details div{
@@ -2733,33 +2751,39 @@ h2 {
     justify-content: space-between;
 }
 
-.payment-details h1{
-    margin-bottom: 2em;
-}
-
-.payment-details div:nth-child(2){
-    margin-bottom: 1.5em;
-}
-
-.payment-details div:nth-child(3){
+.promo-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1em;
     border-bottom: 2px solid #f9f9f9;
-    padding-bottom: 2em;
 }
 
-.payment-details div:nth-child(4){
-    margin: 1em 0;
+.promo{
+    width: 55%;
 }
 
-.payment-details button{
+.promo-container input{
     width: 100%;
     height: 2em;
-    color: #f9f9f9;
-    background-color: #1b5b51;
-    border: none;
-    font-family: 'Rubik-SemiBold' , sans-serif;
-    font-size: 1.2rem;
     border-radius: 5px;
-    cursor: pointer;
+    border: none;
+    padding: 0 1em;
+    margin-right: .5em;
+}
+
+.promo-container button{
+    width: 5em;
+    height: 1.8em;
+    border-radius: 3px;
+    border: none;
+    color: #f9f9f9;
+    background-color: #2b7358;
+    font-size: 1rem;
+}
+
+.payment-details div:last-child{
+    margin-top: .5em;
 }
 
 .payment-items table{
@@ -2796,10 +2820,28 @@ h2 {
     text-align: left;
 }
 
+.checkout-btn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.checkout-btn{
+    width: 30%;
+    height: 2.5em;
+    border: none;
+    border-radius: 5px;
+    color: #f9f9f9;
+    background-color: #0F3D3E;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
 .field{
     display: flex;
     flex-direction: column;
     text-align: left;
+    margin-bottom: 1em;
 }
 
 .field label{

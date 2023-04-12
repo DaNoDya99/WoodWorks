@@ -44,7 +44,6 @@ class Admin extends Controller
         $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
-
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
         {
             $folder = "uploads/images/";

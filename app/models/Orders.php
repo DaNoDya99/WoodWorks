@@ -31,6 +31,13 @@ class Orders extends Model
         return $this->query($query,['value'=>$value]);
     }
 
+    public function getCustomerOrders($id)
+    {
+        $query = "select * from $this->table where CustomerID = :id && Is_preparing = :Is_preparing order by DATE desc";
+
+        return $this->query($query,['id'=>$id,'Is_preparing' => 0]);
+    }
+
     public function displayOrders($column,$value)
     {
         $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value ";
@@ -154,7 +161,7 @@ class Orders extends Model
 
     public function deliveryOrderDetails($id = null)
     {
-        $query = "SELECT OrderID, Contactno,Address,Total_amount FROM orders WHERE OrderID = :OrderID;";
+        $query = "SELECT OrderID, Contactno,Address,Total_amount,Order_status FROM orders WHERE OrderID = :OrderID;";
 
         return $this->query($query, ['OrderID' => $id]);
     }
@@ -166,5 +173,12 @@ class Orders extends Model
 
         return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID]);
     }
+
+//    public function saveShippingDetails($data)
+//    {
+//        $query = "UPDATE `orders` SET `Firstname` = :Firstname, `Lastname` = :Lastname, `Email` = :Email, `Contactno` = :Contactno, `Address` = :Address, `Payment_type` = :Payment_type, `Total_amount` = :Total_amount, `Deliver_method` = :Deliver_method, `Order_status` = :Order_status, `CustomerID` = :CustomerID WHERE `OrderID` = :OrderID;";
+//
+//        return $this->query($query,$data);
+//    }
 
 }
