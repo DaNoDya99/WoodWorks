@@ -1,7 +1,7 @@
 <?php
 
 define('APPNAME','WoodWorks');
-define('DISTANCE_MATRIX_API_KEY', 'AIzaSyDArtjXsD60TfGOfnU4lqsh0uan4Zkx-6c');
+
 
 if($_SERVER['SERVER_NAME'] == 'localhost')
 {

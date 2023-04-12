@@ -41,4 +41,18 @@ class Order_Items extends Model
 
         $this->query($query,['CartID' => $cartID, 'ProductID' => $productID]);
     }
+
+    public function getOrderItemCount($orderID)
+    {
+        $query = "SELECT COUNT(ProductID) AS Count FROM `order_item` WHERE OrderID = :OrderID;";
+
+        return $this->query($query,['OrderID' => $orderID]);
+    }
+
+    public function getOrderItems($orderID)
+    {
+        $query = "SELECT order_item.ProductID, order_item.Name, order_item.Quantity, order_item.Cost, order_item.Image, furniture.Wood_type FROM order_item INNER JOIN furniture ON order_item.ProductID = furniture.ProductID WHERE order_item.OrderID = :OrderID; ";
+
+        return $this->query($query,['OrderID' => $orderID]);
+    }
 }

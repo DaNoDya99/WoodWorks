@@ -1,10 +1,10 @@
-<?php
+<?php 
 
 class DistanceMatrixService
 {
     public function calculateDistance($origin, $destination) {
 
-        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$origin&destinations=$destination&mode=walking&key=".DISTANCE_MATRIX_API_KEY;
+        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$origin&destinations=$destination&mode=walking&key=".$_ENV['DISTANCE_API_KEY'];
         $response = file_get_contents($url);
         $result = json_decode($response, true);
 

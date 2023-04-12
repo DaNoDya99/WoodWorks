@@ -22,8 +22,7 @@ class Customer_home extends Controller
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
             }
         }
-
-
+        
         $this->view('reg_customer/customer_home',$data);
     }
 
@@ -175,7 +174,7 @@ class Customer_home extends Controller
         $this->view('contact',$data);
     }
 
-    public function payment()
+    public function payment($cartid = null)
     {
         if(!Auth::logged_in())
         {
@@ -186,7 +185,25 @@ class Customer_home extends Controller
         $id = Auth::getCustomerID();
         $data['row'] = $row = $customer->where('CustomerID',$id);
 
+        $order_items = new Order_Items();
+        $data['items'] = $order_items->getCustomerCartDetails($cartid);
+
         $this->view('reg_customer/payment',$data);
+    }
+
+    public function updateShippingDetails($orderID)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $order = new Orders();
+            $order->update_status($orderID,$_POST);
+            echo json_encode($_POST);
+        }
     }
 
     public function orders()
@@ -200,7 +217,191 @@ class Customer_home extends Controller
         $id = Auth::getCustomerID();
         $data['row'] = $row = $customer->where('CustomerID',$id);
 
+        $orders= new Orders();
+        $orders_cus = $orders->getCustomerOrders($id);
+        $order_items = new Order_Items();
+
+        foreach ($orders_cus as $order)
+        {
+            $order->items = $order_items->getOrderItemCount($order->OrderID)[0]->Count;
+            $order->Date = date("Y/m/d - H:i:s",strtotime($order->Date));
+        }
+
+        $data['orders'] = $orders_cus;
+
         $this->view('reg_customer/orders',$data);
+    }
+
+    public function getOrderDetails($orderID)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $order_items = new Order_Items();
+        $orders = new Orders();
+        $items = $order_items->getOrderItems($orderID);
+        $details = $orders->deliveryOrderDetails($orderID)[0];
+
+        $line = 'line-active';
+        $yet = 'yet-to-complete';
+        $completed = "<img class='completed' src='http://localhost/WoodWorks/public/assets/images/customer/tick-circle-svgrepo-com.svg' alt=''>";
+        $current = "<img class='current' src='http://localhost/WoodWorks/public/assets/images/customer/loading-part-2-svgrepo-com.svg' alt=''>";
+
+        $str = "<div class='order-progressing-bar'>";
+
+        switch ($details->Order_status)
+        {
+            case 'Processing':
+                $str .= "
+                    <div class='prog-status-container'>
+                    <img src='http://localhost/WoodWorks/public/assets/images/customer/dollar-circle-svgrepo-com(1).svg' alt='paid'>
+                    <span>Paid</span>
+                    <img class='completed' src='http://localhost/WoodWorks/public/assets/images/customer/tick-circle-svgrepo-com.svg' alt=''>
+                    </div>
+                    <div class='line line-active'></div>
+                    <div class='prog-status-container'>
+                        <img src='http://localhost/WoodWorks/public/assets/images/customer/gift-box-svgrepo-com.svg' alt='paid'>
+                        <span>Processing</span>
+                        ".$current."
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='".$yet."' src='http://localhost/WoodWorks/public/assets/images/customer/shipping-svgrepo-com.svg' alt='paid'>
+                        <span class='".$yet."'>Dispatched</span>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='yet-to-complete' src='http://localhost/WoodWorks/public/assets/images/customer/delivered-svgrepo-com.svg' alt='paid'>
+                        <span class='yet-to-complete'>Delivered</span>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='yet-to-complete' src='http://localhost/WoodWorks/public/assets/images/customer/review-like-message-svgrepo-com.svg' alt='paid'>
+                        <span class='yet-to-complete'>Review</span>
+                    </div>
+                ";
+                break;
+            case 'Dispatched':
+                $str .= "
+                    <div class='prog-status-container'>
+                    <img src='http://localhost/WoodWorks/public/assets/images/customer/dollar-circle-svgrepo-com(1).svg' alt='paid'>
+                    <span>Paid</span>
+                    <img class='completed' src='http://localhost/WoodWorks/public/assets/images/customer/tick-circle-svgrepo-com.svg' alt=''>
+                    </div>
+                    <div class='line line-active'></div>
+                    <div class='prog-status-container'>
+                        <img src='http://localhost/WoodWorks/public/assets/images/customer/gift-box-svgrepo-com.svg' alt='paid'>
+                        <span>Processing</span>
+                        ".$completed."
+                    </div>
+                    <div class='line ".$line."'></div>
+                    <div class='prog-status-container'>
+                        <img src='http://localhost/WoodWorks/public/assets/images/customer/shipping-svgrepo-com.svg' alt='paid'>
+                        <span>Dispatched</span>
+                        ".$current."
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='yet-to-complete' src='http://localhost/WoodWorks/public/assets/images/customer/delivered-svgrepo-com.svg' alt='paid'>
+                        <span class='yet-to-complete'>Delivered</span>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='yet-to-complete' src='http://localhost/WoodWorks/public/assets/images/customer/review-like-message-svgrepo-com.svg' alt='paid'>
+                        <span class='yet-to-complete'>Review</span>
+                    </div>
+                ";
+                break;
+            case 'Delivered':
+                $str .= "
+                    <div class='prog-status-container'>
+                    <img src='http://localhost/WoodWorks/public/assets/images/customer/dollar-circle-svgrepo-com(1).svg' alt='paid'>
+                    <span>Paid</span>
+                    <img class='completed' src='http://localhost/WoodWorks/public/assets/images/customer/tick-circle-svgrepo-com.svg' alt=''>
+                    </div>
+                    <div class='line line-active'></div>
+                    <div class='prog-status-container'>
+                        <img src='http://localhost/WoodWorks/public/assets/images/customer/gift-box-svgrepo-com.svg' alt='paid'>
+                        <span>Processing</span>
+                        ".$completed."
+                    </div>
+                    <div class='line ".$line."'></div>
+                    <div class='prog-status-container'>
+                        <img src='http://localhost/WoodWorks/public/assets/images/customer/shipping-svgrepo-com.svg' alt='paid'>
+                        <span>Dispatched</span>
+                        ".$completed."
+                    </div>
+                    <div class='line ".$line."'></div>
+                    <div class='prog-status-container'>
+                        <img src='http://localhost/WoodWorks/public/assets/images/customer/delivered-svgrepo-com.svg' alt='paid'>
+                        <span>Delivered</span>
+                        ".$completed."
+                    </div>
+                    <div class='line ".$line."'></div>
+                    <div class='prog-status-container'>
+                        <img src='http://localhost/WoodWorks/public/assets/images/customer/review-like-message-svgrepo-com.svg' alt='paid'>
+                        <span>Review</span>
+                        ".$current."
+                    </div>
+                ";
+                break;
+        }
+
+
+        $str .= "</div><div class='order-items'>";
+
+        foreach ($items as $item)
+        {
+           $str .= "
+                <div class='order-item'>
+                    <img src='http://localhost/WoodWorks/public/".$item->Image."' alt=''>
+
+                    <div class='ordered-product-details'>
+                        <div class='ordered-product-details-lhs'>
+                            <div class='row1'>
+                                <h4>".$item->Name."</h4>
+                                <span>".$item->ProductID."</span>
+                            </div>
+                    
+                            <div class='row2'><span>".$item->Wood_type."</span></div>
+                            <div class='row3'><span>".$item->Quantity." item</span></div>
+                        </div>
+                    
+                        <div class='price'>
+                            <span>Rs.".$item->Cost.".00</span>
+                        </div>
+                    </div>
+                </div>
+           ";
+        }
+
+        $str .= "</div>";
+
+        $str .= "
+            <div class='order-payment-details'>
+                <h2>Order Details</h2>
+                <div class='order-detail'>
+                    <h4>Phone Number</h4>
+                    <span>".$details->Contactno."</span>
+                </div>
+                <div class='order-detail'>
+                    <h4>Delivery Address</h4>
+                    <span>".$details->Address."</span>
+                </div>
+                <div class='order-detail order-final-detail'>
+                    <h4>Invoice Number</h4>
+                    <span>#".substr($details->OrderID,0,8)."</span>
+                </div>
+                <div class='order-detail order-total'>
+                    <h4>Total Amount</h4>
+                    <span>Rs. ".$details->Total_amount.".00</span>
+                </div>
+            </div>
+        ";
+
+        echo $str;
     }
 
 }
