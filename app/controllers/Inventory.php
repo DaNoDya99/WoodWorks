@@ -182,4 +182,43 @@ class Inventory extends Controller
            echo $str;
         }
     }
+
+    public function delete($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $furniture = new Furnitures();
+
+        $rows = $furniture->getAllImages($id);
+        foreach ($rows as $row){
+            unlink($row->Image);
+        }
+
+        if($furniture->deleteFurniture($id)){
+            echo "<div class='cat-success cat-deletion'>
+                    <h2>Product Deleted Successfully!</h2>
+                 </div>";
+        }else{
+            echo "<div class='cat-success cat-deletion'>
+                    <h2>Error Deleting!</h2>
+                 </div>";
+        }
+    }
+
+    public function edit($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $inventory = new Product_Inventory();
+
+        $row = $inventory->searchInventoryProductByID($id)[0];
+
+        echo json_encode($row);
+    }
 }

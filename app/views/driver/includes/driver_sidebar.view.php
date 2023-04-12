@@ -12,7 +12,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="<?=ROOT?>/driver_home/order">
+                <a href="<?=ROOT?>/driver_home/orders">
                     <h3>ORDERS</h3>
                 </a>
             </li>
