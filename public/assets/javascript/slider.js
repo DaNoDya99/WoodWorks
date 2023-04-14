@@ -1,3 +1,4 @@
+let response = document.getElementById('response');
 var slideIndex = 1;
 
 showSlides(slideIndex);
@@ -39,7 +40,12 @@ function addToCart(id,cost)
     xhr.open("POST","http://localhost/WoodWorks/public/customer_home/add_to_cart/"+id+"/"+cost,true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
-
+            if(xhr.status === 200){
+                response.innerHTML = xhr.response;
+                setTimeout(() => {
+                    response.innerHTML = "";
+                }, 3000);
+            }
         }
     }
     xhr.send();

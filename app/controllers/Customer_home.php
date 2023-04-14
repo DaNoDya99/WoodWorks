@@ -95,6 +95,7 @@ class Customer_home extends Controller
         $furniture = new Furnitures();
         $cart = new Carts();
         $order_items = new Order_Items();
+        $inventory = new Product_Inventory();
         $cus_id = Auth::getCustomerID();
         $orderID = '';
 
@@ -114,34 +115,48 @@ class Customer_home extends Controller
         $info = $furniture->getFurniture($id);
         $image = $furniture->getDisplayImage($id);
 
-        $data = [
-            'ProductID' => $id,
-            'Name' => $info[0]->Name,
-            'Quantity' => 1,
-            'Cost' => $cost,
-            'OrderID' => $orderID,
-            'CartID' => $cart->getCart($cus_id)[0]->CartID,
-            'Image' => $image[0]->Image
-        ];
+        if(empty($order_items->getOrderItem($orderID,$id)))
+        {
+            $data = [
+                'ProductID' => $id,
+                'Name' => $info[0]->Name,
+                'Quantity' => 1,
+                'Cost' => $cost,
+                'OrderID' => $orderID,
+                'CartID' => $cart->getCart($cus_id)[0]->CartID,
+                'Image' => $image[0]->Image
+            ];
 
-        $cart->updateTotalAmountToIncrease($data['CartID'],$data['Cost']);
+            $cart->updateTotalAmountToIncrease($data['CartID'],$data['Cost']);
 
-        $order_items->insert($data);
+            $order_items->insert($data);
+            $inventory->updateQuantityToDecrease($id,1);
+            $current_date_time = time();
 
-        $current_date_time = time();
+            $details = [
+                'OrderID' => $orderID,
+                'OrderDate' => $current_date_time,
+                'CustomerID' => $cus_id,
+                'ProductID' => $id,
+                'Quantity' => 1,
+                'CartID' => $cart->getCart($cus_id)[0]->CartID,
+                'Cost' => $cost,
+            ];
 
-        $details = [
-            'OrderID' => $orderID,
-            'OrderDate' => $current_date_time,
-            'CustomerID' => $cus_id,
-            'ProductID' => $id,
-        ];
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = array();
+            }
 
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = array();
+            $_SESSION['cart'][] = $details;
+
+            echo "<div class='cat-success'>
+                    <h2>Product added to the cart.</h2>
+                </div>";
+        }else{
+            echo "<div class='cat-success cat-deletion'>
+                    <h2>Product already in the cart.</h2>
+                </div>";
         }
-
-        $_SESSION['cart'][] = $details;
 
     }
 
@@ -152,9 +167,19 @@ class Customer_home extends Controller
         {
             $this->redirect('login');
         }
+
+        foreach ($_SESSION['cart'] as $key => $value)
+        {
+            if($value['ProductID'] == $productID)
+            {
+                unset($_SESSION['cart'][$key]);
+            }
+        }
         
         $cart = new Carts();
         $order_item = new Order_Items();
+        $inventory = new Product_Inventory();
+        $inventory->updateQuantityToIncrease($productID,$quantity);
         $order_item->deleteItem($cartID,$productID);
         $cart->updateTotalAmountToDecrease($cartID,$cost*$quantity);
 

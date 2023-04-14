@@ -84,5 +84,9 @@ if(!empty($furniture[0]->Discount_percentage)){
     </div>
 </div>
 
+<div class="cat-response" id="response">
+
+</div>
+
     <script src="<?=ROOT?>/assets/javascript/slider.js"></script>
 <?php $this->view('reg_customer/includes/footer'); ?>
