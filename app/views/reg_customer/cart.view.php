@@ -44,9 +44,15 @@
                         <p>Rs. 00.00</p>
                     <?php endif; ?>
                 </div>
-                <a href="<?=ROOT?>/customer_home/payment/<?=$cart[0]->CartID?>">
-                    <button>Proceed to Payment</button>
-                </a>
+                <?php if(!empty($cart[0]->CartID)): ?>
+                    <a href="<?=ROOT?>/customer_home/payment/<?=$cart[0]->CartID?>">
+                        <button>Proceed to Payment</button>
+                    </a>
+                <?php else: ?>
+                    <button disabled>Proceed to Payment</button>
+                <?php endif; ?>
+
+
             </div>
         </div>
     </div>

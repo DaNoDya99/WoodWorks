@@ -47,4 +47,17 @@ class Auth
 
         return '';
     }
+
+    public static function cartTimer($timer): void
+    {
+        if(isset($_SESSION['cart'])){
+            foreach ($_SESSION['cart'] as $key => $value){
+                if(time() - $value['OrderDate'] > $timer){
+                    $order_item = new Order_Items();
+                    $order_item->removeOrderItem($value['OrderID'],$value['ProductID']);
+                    unset($_SESSION['cart'][$key]);
+                }
+            }
+        }
+    }
 }

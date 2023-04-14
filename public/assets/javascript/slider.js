@@ -1,4 +1,5 @@
 var slideIndex = 1;
+
 showSlides(slideIndex);
 
 function plusSlides(n){
@@ -29,7 +30,20 @@ function showSlides(n)
     }
 
     slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += "active";
-
-
+    // dots[slideIndex - 1].className += "active";
 }
+
+function addToCart(id,cost)
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","http://localhost/WoodWorks/public/customer_home/add_to_cart/"+id+"/"+cost,true);
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+
+        }
+    }
+    xhr.send();
+}
+
+
+
