@@ -13,12 +13,12 @@
 
             </ul>
         </div>
-        <div class="reports" style="width:100%;">
+        <div class="reports">
             <div class="dashboard">
 
                 <label for="">Date Range:</label><br><br>
                 <div id="date-range" class="dropdown date-range dashboard" onclick="toggleDropdown()">
-                    <p id="date-range-label">Select</p><img id="dropdown-icon" style="width:15px;position:absolute; right:10px;" src="<?= ROOT ?>/assets/images/manager/chevron-down-solid.svg" alt="">
+                    <p id="date-range-label">Select</p><img id="dropdown-icon" src="<?= ROOT ?>/assets/images/manager/chevron-down-solid.svg" alt="">
 
                     <div id="date-overlay" class="dropdown-content date-overlay ">
                         <p>Select Range </p> <button class="closebtn" onclick="toggleDropdown()">Close</button>
@@ -33,150 +33,156 @@
 
                     </div>
                 </div>
-
                 <div class="variable-section">
                     <div class="overview-section">
                         <div>
-
-                            <div style="display:flex; justify-content:space-between">
+                            <div class="widget-header">
                                 <h2>Performance</h2>
-                                <div class="more-settings">
-                                    <img class="" style="width:5px" src="<?= ROOT ?>/assets/images/manager/ellipsis-vertical-solid.svg" alt="">
-                                </div>
                             </div>
-                            <div style="display:flex; justify-content:flex-start; grid-column-gap:10px; grid-row-gap:10px; flex-wrap:wrap">
+                            <div class="widget-holder">
                                 <div class="performance-widget">
-                                    <div style="position:relative; display:flex; justify-content:space-between; align-items:center">
+                                    <div class="widget-title-area">
                                         <h3>Total Sales</h3>
-                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" style="width:30px; opacity:0.5" alt="" onmouseover="tooltip(1)" onmouseleave="tooltipoff(1)">
-                                        <div class="tooltip1" style="position:absolute; display:none; justify-content:center; align-items:center; border-radius:10px;min-height:50px; width:200px; color:white; background-color:#2d2d2d; top:-5px; right:-160px; opacity:0.9">Revenue from Sales</div>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt="" onmouseover="tooltip(1)" onmouseleave="tooltipoff(1)">
+                                        <div class="tooltip tooltip1 hidden-section">Revenue from Sales</div>
                                     </div>
                                     <h2 id="total-sales-value"><i style="color:grey">Select Range</i></h2>
                                 </div>
                                 <div class="performance-widget">
-                                    <div style="display:flex; justify-content:space-between; align-items:center">
+                                    <div class="widget-title-area">
                                         <h3>Orders</h3>
-                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" style="width:30px; opacity:0.5" alt="">
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt="" onmouseover="tooltip(2)" onmouseleave="tooltipoff(2)">
+                                        <div class="tooltip tooltip2 hidden-section">Revenue from Sales</div>
+
                                     </div>
                                     <h2 id="total-order-count"><i style="color:grey">Select Range</i></h2>
                                 </div>
                                 <div class="performance-widget">
-                                    <div style="display:flex; justify-content:space-between; align-items:center">
+                                    <div class="widget-title-area">
                                         <h3>Products Sold</h3>
-                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" style="width:30px; opacity:0.5" alt="">
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt="" onmouseover="tooltip(3)" onmouseleave="tooltipoff(3)">
+                                        <div class="tooltip tooltip3 hidden-section">Revenue from Sales</div>
+
                                     </div>
-                                    <h2><i style="color:grey">Select Range</i></h2>
+                                    <h2 id="total-products-sold"><i style="color:grey">Select Range</i></h2>
                                 </div>
                             </div>
                         </div>
-                        <h2 style="margin-top: 40px;">Charts</h2>
+                        <h2>Charts</h2>
                         <div class="charts">
-                            <div style="display:flex; justify-content:space-between; column-gap:10px">
-
-                            </div>
-                            <div style="display:flex; column-gap:20px">
-
+                            <div class="chart-container">
                                 <div class="chart-component">
                                     <canvas id="mainSalesChart"></canvas>
                                 </div>
                                 <div class="chart-component">
-                                    <canvas id="myChart2"></canvas>
+                                    <canvas id="ordercount"></canvas>
                                 </div>
-                                <!-- <div class="chart-component">
-                                    <canvas id="myChart2"></canvas>
-                                </div> -->
                             </div>
                         </div>
                     </div>
+
+                    <!-- Product Section -->
                     <div class="products-section hidden-section">
-                        <h2 style="margin-top: 40px;">Charts</h2>
-                        <div class="charts">
-                            <div style="display:flex; justify-content:space-between; column-gap:10px">
-                                <h2>Items Sold</h2>
-                                <div class="more-settings">
-                                    <img class="" style="width:5px" src="<?= ROOT ?>/assets/images/manager/ellipsis-vertical-solid.svg" alt="">
-                                </div>
+                        <div>
+                            <div class="widget-header">
+                                <h2>Performance</h2>
                             </div>
-                            <div style="display:flex;">
-                                <div class="chart-component" style="height:50vh; width:100%;">
-                                    <h3>Net Sales</h3>
-                                    <canvas id="myChart3" height="500px" width="500px"></canvas>
+                            <div class="widget-holder">
+                                <div class="performance-widget">
+                                    <div class="widget-title-area">
+                                        <h3>Total Sales</h3>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt="" onmouseover="tooltip(1)" onmouseleave="tooltipoff(1)">
+                                        <div class="tooltip tooltip1 hidden-section">Revenue from Sales</div>
+                                    </div>
+                                    <h2 id="total-sales-value"><i style="color:grey">Select Range</i></h2>
                                 </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div style="width:100%; height:400px;padding:10px;border-radius:10px; background-color:white">
-                            <h2>Products Statistics</h2>
-                        </div>
-                    </div>
-                    <div class="orders-section hidden-section">
-                        <h2 style="margin-top: 40px;">Charts</h2>
-                        <div class="charts">
-                            <div style="display:flex; justify-content:space-between; column-gap:10px">
-                                <h2>Items Sold</h2>
-                                <div class="more-settings">
-                                    <img class="" style="width:5px" src="<?= ROOT ?>/assets/images/manager/ellipsis-vertical-solid.svg" alt="">
+                                <div class="performance-widget">
+                                    <div class="widget-title-area">
+                                        <h3>Orders</h3>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt="" onmouseover="tooltip(2)" onmouseleave="tooltipoff(2)">
+                                        <div class="tooltip tooltip2 hidden-section">Revenue from Sales</div>
+
+                                    </div>
+                                    <h2 id="total-order-count"><i style="color:grey">Select Range</i></h2>
                                 </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="chart-component" style="height:50vh; width:100%;">
-                                    <h3>Net Sales</h3>
-                                    <canvas id="myChart3" height="500px" width="500px"></canvas>
+                                <div class="performance-widget">
+                                    <div class="widget-title-area">
+                                        <h3>Products Sold</h3>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt="" onmouseover="tooltip(3)" onmouseleave="tooltipoff(3)">
+                                        <div class="tooltip tooltip3 hidden-section">Revenue from Sales</div>
+
+                                    </div>
+                                    <h2 id="total-products-sold"><i style="color:grey">Select Range</i></h2>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="charts">
+                            <div class="chart-container">
+                                <div class="chart-component">
+                                    <canvas id="SalesChart2"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list product-list">
+                            <div class="product-list-header">
+                                <h3>Products</h3>
+                                <div>
+                                        <input type="text">
+                                        <a href="#">Export to PDF</a>
+                                </div>
+
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr style="border-radius:5px;border-bottom: 1px solid black; background-color:wheat; height:50px">
+                                        <th>Product Name</th>
+                                        <th>SKU</th>
+                                        <th>Items Sold</th>
+                                        <th>Net Sales</th>
+                                        <th>Orders</th>
+                                        <th>Catergory</th>
+                                        <th>Stock</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="products">
+                                    <!-- get rows from ajax call -->
+
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
                     </div>
                 </div>
+                <div class="orders-section hidden-section">
+
+                </div>
                 <div class="catergories-section hidden-section">
-                    <h2 style="margin-top: 40px;">Charts</h2>
-                    <div class="charts">
-                        <div style="display:flex; justify-content:space-between; column-gap:10px">
-                            <h2>Items Sold</h2>
-                            <div class="more-settings">
-                                <img class="" style="width:5px" src="<?= ROOT ?>/assets/images/manager/ellipsis-vertical-solid.svg" alt="">
-                            </div>
-                        </div>
-                        <div style="display:flex;">
-                            <div class="chart-component" style="height:50vh; width:100%;">
-                                <h3>Net Sales</h3>
-                                <canvas id="myChart3" height="500px" width="500px"></canvas>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
                 <div class="coupons-section hidden-section">
-                    <h2 style="margin-top: 40px;">Charts</h2>
-                    <div class="charts">
-                        <div style="display:flex; justify-content:space-between; column-gap:10px">
-                            <h2>Items Sold</h2>
-                            <div class="more-settings">
-                                <img class="" style="width:5px" src="<?= ROOT ?>/assets/images/manager/ellipsis-vertical-solid.svg" alt="">
-                            </div>
-                        </div>
-                        <div style="display:flex;">
-                            <div class="chart-component" style="height:50vh; width:100%;">
-                                <h3>Net Sales</h3>
-                                <canvas id="myChart3" height="500px" width="500px"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
+
 
         </div>
 
     </div>
-
     </div>
     </div>
-    </div>
-
-
 </body>
 <script type="text/javascript">
+    var activesection = localStorage.getItem('activeSection');
+    if (activesection == null) {
+        activesection = 'overview';
+    }
+    changeSection(activesection);
+
     // Create the chart
     var mainSalesChart = new Chart(
         document.getElementById('mainSalesChart'), {
@@ -191,7 +197,6 @@
                     tension: 0
                 }]
             },
-
             options: {
                 aspectRatio: 1.5,
                 responsive: true,
@@ -208,11 +213,11 @@
                         title: {
                             display: true,
                             text: 'Rupees',
+                            font: {
+                                size: 15,
+                            }
                         }
                     }
-
-
-
                 },
                 tooltips: {
                     enabled: true
@@ -232,16 +237,70 @@
             }
         }
     );
-    var myChart2 = new Chart(
-        document.getElementById('myChart2'), {
-            type: 'bar',
+    var SalesChart2 = new Chart(
+        document.getElementById('SalesChart2'), {
+            type: 'line',
             data: {
                 labels: [],
                 datasets: [{
                     label: 'Sales',
                     data: [],
                     fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
+                    borderColor: 'rgb(0, 156, 99)',
+                    tension: 0
+                }]
+            },
+            options: {
+                aspectRatio: 3,
+                responsive: true,
+                animation: {},
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Rupees',
+                            font: {
+                                size: 15,
+                            }
+                        }
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Sales',
+                        align: 'start',
+                        font: {
+                            size: 20,
+                            weight: 'bold'
+                        }
+                    }
+                }
+
+            }
+        }
+    );
+    var ordercount = new Chart(
+        document.getElementById('ordercount'), {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Orders',
+                    data: [],
+
+
+                    backgroundColor: '#9BD0F5',
                     tension: 0
                 }]
             },
@@ -254,6 +313,18 @@
                         type: 'time',
                         time: {
                             unit: 'day',
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Quanitity',
+                            //size
+                            font: {
+                                size: 15,
+
+                            }
                         }
                     }
                 },
@@ -291,7 +362,7 @@
                 console.log(data);
                 document.getElementById('total-sales-value').innerHTML = "Rs. " + data.total
                 document.getElementById('total-order-count').innerHTML = data.completed[0].count
-
+                document.getElementById('total-products-sold').innerHTML = data.products_sold[0].total;
                 const date1 = new Date(data.date1);
                 const date2 = new Date(data.date2);
 
@@ -299,19 +370,27 @@
 
                 if (diffInDays < 30) {
                     mainSalesChart.options.scales.x.time.unit = 'day';
+                    SalesChart2.options.scales.x.time.unit = 'day';
+                    ordercount.options.scales.x.time.unit = 'day';
                 } else if (diffInDays < 365) {
                     mainSalesChart.options.scales.x.time.unit = 'month';
+                    SalesChart2.options.scales.x.time.unit = 'month';
+                    ordercount.options.scales.x.time.unit = 'month';
                 } else {
                     mainSalesChart.options.scales.x.time.unit = 'year';
+                    ordercount.options.scales.x.time.unit = 'year';
+                    SalesChart2.options.scales.x.time.unit = 'year';
                 }
                 //update chart
                 mainSalesChart.data.labels = data.labels;
                 mainSalesChart.data.datasets[0].data = data.test;
-                myChart2.data.labels = data.labels;
-                myChart2.data.datasets[0].data = data.ordercount;
+                SalesChart2.data.labels = data.labels;
+                ordercount.data.labels = data.labels;
+                ordercount.data.datasets[0].data = data.ordercount;
+                SalesChart2.data.datasets[0].data = data.test;
 
                 mainSalesChart.update();
-                myChart2.update();
+                ordercount.update();
             })
 
         var dropdownContent = document.querySelector(".dropdown-content");
@@ -321,6 +400,8 @@
         var data2 = document.querySelector("input[name='date2']").value;
 
         document.getElementById('date-range-label').innerText = data1 + " to " + data2;
+        products();
+
     };
 
 
@@ -346,16 +427,22 @@
 
                 if (diffInDays < 30) {
                     mainSalesChart.options.scales.x.time.unit = 'day';
+                    ordercount.options.scales.x.time.unit = 'day';
                 } else if (diffInDays < 365) {
                     mainSalesChart.options.scales.x.time.unit = 'month';
+                    ordercount.options.scales.x.time.unit = 'month';
                 } else {
                     mainSalesChart.options.scales.x.time.unit = 'year';
+                    ordercount.options.scales.x.time.unit = 'year';
                 }
                 //update chart
                 mainSalesChart.data.labels = data.labels;
                 mainSalesChart.data.datasets[0].data = data.test;
+                ordercount.data.labels = data.labels;
+                ordercount.data.datasets[0].data = data.ordercount;
 
                 mainSalesChart.update();
+                ordercount.update();
 
             })
 
@@ -365,8 +452,60 @@
         var data1 = document.querySelector("input[name='date1']").value;
         var data2 = document.querySelector("input[name='date2']").value;
 
+
+
         document.getElementById('date-range-label').innerText = data1 + " to " + data2;
+        products();
     });
+
+    function products() {
+        fetch('http://localhost/woodworks/public/manager/productinfo', {
+                method: 'POST',
+            }).then(response => response.json())
+            //decode and show json on console
+            .then(data => {
+                // data = JSON.stringify(data);
+                // data = JSON.parse(data);
+                console.log(data.detailedinfo[0]);
+                var tbody = document.getElementById("products");
+                data.detailedinfo.forEach(rowData => {
+                    const row = document.createElement('tr'); // Create a new table row
+
+                    // Create cells for each column
+                    const cell1 = document.createElement('td');
+                    cell1.textContent = rowData.Name; // Replace with the appropriate data property
+                    row.appendChild(cell1); // Append cell to the row
+
+                    const cell2 = document.createElement('td');
+                    cell2.textContent = rowData.ProductID; // Replace with the appropriate data property
+                    row.appendChild(cell2); // Append cell to the row
+
+                    const cell3 = document.createElement('td');
+                    cell3.textContent = rowData.Quantity; // Replace with the appropriate data property
+                    row.appendChild(cell3); // Append cell to the row
+
+                    const cell4 = document.createElement('td');
+                    cell4.textContent = rowData.Revenue; // Replace with the appropriate data property
+                    row.appendChild(cell4); // Append cell to the row
+
+                    const cell5 = document.createElement('td');
+                    cell5.textContent = rowData.COUNT1; // Replace with the appropriate data property
+                    row.appendChild(cell5); // Append cell to the row
+
+                    const cell6 = document.createElement('td');
+                    cell6.textContent = rowData.CategoryID; // Replace with the appropriate data property
+                    row.appendChild(cell6); // Append cell to the row
+
+                    const cell7 = document.createElement('td');
+                    cell7.textContent = rowData.Availability; // Replace with the appropriate data property
+                    row.appendChild(cell7); // Append cell to the row
+
+
+                    tbody.appendChild(row); // Append row to the table body
+                });
+            })
+
+    }
 
     //close popup
 
@@ -411,39 +550,64 @@
                 //toggle hidden section
                 document.querySelector(".overview-section").classList.toggle("hidden-section");
                 document.getElementById("overview-link").classList.add("active-section");
+                localStorage.setItem('activeSection', stringw);
                 break;
             case "products":
                 //toggle hidden section
                 document.querySelector(".products-section").classList.toggle("hidden-section");
                 document.getElementById("products-link").classList.add("active-section");
+                localStorage.setItem('activeSection', stringw);
+
                 break;
             case "orders":
                 //toggle hidden section
                 document.querySelector(".orders-section").classList.toggle("hidden-section");
                 document.getElementById("orders-link").classList.add("active-section");
+                localStorage.setItem('activeSection', stringw);
+
                 break;
             case "coupons":
                 //toggle hidden section
                 document.querySelector(".coupons-section").classList.toggle("hidden-section");
                 document.getElementById("coupons-link").classList.add("active-section");
+                localStorage.setItem('activeSection', stringw);
+
                 break;
             case "catergories":
                 //toggle hidden section
                 document.querySelector(".catergories-section").classList.toggle("hidden-section");
                 document.getElementById("catergories-link").classList.add("active-section");
+                localStorage.setItem('activeSection', stringw);
+
                 break;
 
         }
     }
 
     function tooltip(num) {
-        var tooltip = document.getElementsByClassName("tooltip1");
-        tooltip[0].style.display = "flex";
+        var tooltip1 = document.getElementsByClassName("tooltip1");
+        var tooltip2 = document.getElementsByClassName("tooltip2");
+        var tooltip3 = document.getElementsByClassName("tooltip3");
+        if (num == 1) {
+            tooltip1[0].classList.toggle("hidden-section");
+        } else if (num == 2) {
+            tooltip2[0].classList.toggle("hidden-section");
+        } else if (num == 3) {
+            tooltip3[0].classList.toggle("hidden-section");
+        }
     }
 
     function tooltipoff(num) {
-        var tooltip = document.getElementsByClassName("tooltip1");
-        tooltip[0].style.display = "none";
+        var tooltip1 = document.getElementsByClassName("tooltip1");
+        var tooltip2 = document.getElementsByClassName("tooltip2");
+        var tooltip3 = document.getElementsByClassName("tooltip3");
+        if (num == 1) {
+            tooltip1[0].classList.toggle("hidden-section");
+        } else if (num == 2) {
+            tooltip2[0].classList.toggle("hidden-section");
+        } else if (num == 3) {
+            tooltip3[0].classList.toggle("hidden-section");
+        }
     }
 
     function bar() {

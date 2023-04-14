@@ -268,13 +268,17 @@ class Manager extends Controller
             $data['labels'] = $labels;
             // show($labels);
             $order = new Orders();
+
+            $data['products_sold'] = $order->findProductsSold($_POST['date1'], $_POST['date2']);
+
+
             $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
             // show($a);
             $s = [];
             for ($i = 0; $i < count($labels); $i++) {
                 $s[$i] = 0;
-                for($j = 0; $j < count($a); $j++){
-                    if($labels[$i] == $a[$j]->DATE){
+                for ($j = 0; $j < count($a); $j++) {
+                    if ($labels[$i] == $a[$j]->DATE) {
                         $s[$i] = $a[$j]->total;
                         break;
                     }
@@ -284,8 +288,8 @@ class Manager extends Controller
             $ordercount = [];
             for ($i = 0; $i < count($labels); $i++) {
                 $ordercount[$i] = 0;
-                for($j = 0; $j < count($a); $j++){
-                    if($labels[$i] == $a[$j]->DATE){
+                for ($j = 0; $j < count($a); $j++) {
+                    if ($labels[$i] == $a[$j]->DATE) {
                         $ordercount[$i] = $a[$j]->OrderCount;
                         break;
                     }
@@ -296,22 +300,30 @@ class Manager extends Controller
 
 
             //     $order = new Orders();
-                $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
+            $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
             //     //get total amount of orders grouped by date
 
             //     $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
             //     $data['test'] = $a;
-                $data['total'] = 0;
-                foreach ($data['orders'] as $row) {
-                    //round off to 2 decimal places
-                    $row->Total_amount = round($row->Total_amount, 2);
-                    $data['total'] += $row->Total_amount;
-                }
+            $data['total'] = 0;
+            foreach ($data['orders'] as $row) {
+                //round off to 2 decimal places
+                $row->Total_amount = round($row->Total_amount, 2);
+                $data['total'] += $row->Total_amount;
+            }
+
 
             //     //get count of completed orders
-                $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
-                echo json_encode($data);
+            $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
+            echo json_encode($data);
         }
+    }
+
+    public function productinfo()
+    {
+        $order = new Orders();
+        $data['detailedinfo'] = $order->getDetailedProductInfo();
+        echo json_encode($data);
     }
 
     public function chat()

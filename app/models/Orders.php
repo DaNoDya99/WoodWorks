@@ -43,6 +43,21 @@ class Orders extends Model
         return $this->query($query);
     }
 
+    //get products sold
+
+    public function findProductsSold($date1, $date2)
+    {
+        $query = "select SUM(Quantity) as total from orders where OrderID in (select OrderID from orders where Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2')";
+        return $this->query($query);
+    }
+
+    public function getDetailedProductInfo()
+    {
+        $query = "SELECT a.Name, a.ProductID,a.Cost, COALESCE(b.Quantity,0) AS Quantity, COALESCE(a.Cost * b.Quantity,0) AS Revenue, COALESCE(b.COUNT1,0) AS COUNT1, a.CategoryID, a.Availability FROM furniture a LEFT JOIN( SELECT ProductID, COUNT(OrderID) AS COUNT1, SUM(Quantity) AS Quantity FROM order_item WHERE OrderID IN(SELECT OrderID FROM orders WHERE is_preparing = 0 and Order_status = 'Completed') GROUP BY ProductID) b ON a.ProductID = b.ProductID ORDER BY `a`.`ProductID`;";
+
+        return $this->query($query);
+    }
+
     //get count of completed orders
 
     public function getCompletedOrders($date1, $date2)
@@ -69,7 +84,7 @@ class Orders extends Model
         return $this->query($query, ['value' => $value]);
     }
 
-    public function filterDate($from_date,$to_date)
+    public function filterDate($from_date, $to_date)
     {
         $query = "select OrderID,Dispatched_date,Delivered_date,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && Delivered_date BETWEEN '$from_date' AND '$to_date' limit 15";
         return $this->query($query);
