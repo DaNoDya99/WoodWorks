@@ -5,6 +5,7 @@ class App
     protected $contoller = '_404';
     protected  $method = 'index';
     public static $page = '_404';
+    protected $timer = 3600;
 
     function __construct(){
         $url = $this->getURL(); //this in here represents App class
@@ -29,6 +30,9 @@ class App
 
         $url = array_values($url);
         call_user_func_array([$mycontroller,$this->method],$url); // ([object,method], parameters)
+
+
+        Auth::cartTimer($this->timer);
     }
 
     private function getURL(){

@@ -128,8 +128,23 @@ class Customer_home extends Controller
 
         $order_items->insert($data);
 
-        $this->redirect("furniture/view_product/".$id);
+        $current_date_time = time();
+
+        $details = [
+            'OrderID' => $orderID,
+            'OrderDate' => $current_date_time,
+            'CustomerID' => $cus_id,
+            'ProductID' => $id,
+        ];
+
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = array();
+        }
+
+        $_SESSION['cart'][] = $details;
+
     }
+
 
     public function removeItem($cartID,$productID,$cost,$quantity)
     {
@@ -221,13 +236,16 @@ class Customer_home extends Controller
         $orders_cus = $orders->getCustomerOrders($id);
         $order_items = new Order_Items();
 
-        foreach ($orders_cus as $order)
+        if(!empty($orders_cus))
         {
-            $order->items = $order_items->getOrderItemCount($order->OrderID)[0]->Count;
-            $order->Date = date("Y/m/d - H:i:s",strtotime($order->Date));
-        }
+            foreach ($orders_cus as $order)
+            {
+                $order->items = $order_items->getOrderItemCount($order->OrderID)[0]->Count;
+                $order->Date = date("Y/m/d - H:i:s",strtotime($order->Date));
+            }
 
-        $data['orders'] = $orders_cus;
+            $data['orders'] = $orders_cus;
+        }
 
         $this->view('reg_customer/orders',$data);
     }

@@ -55,4 +55,11 @@ class Order_Items extends Model
 
         return $this->query($query,['OrderID' => $orderID]);
     }
+
+    public function removeOrderItem($orderID,$productID)
+    {
+        $query = "DELETE FROM `order_item` WHERE OrderID = :OrderID AND ProductID = :ProductID;";
+
+        $this->query($query,['OrderID' => $orderID, 'ProductID' => $productID]);
+    }
 }
