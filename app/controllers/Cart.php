@@ -44,8 +44,26 @@ class Cart extends Controller
             $this->redirect('login1');
         }
 
+        $data = [];
+
+        foreach ($_SESSION['cart'] as $key => $value){
+            if($value['ProductID'] == $productID){
+                $data['OrderID'] = $value['OrderID'];
+                $data['ProductID'] = $value['ProductID'];
+                $data['Quantity'] = $value['Quantity'] + 1;
+                $data['OrderDate'] = $value['OrderDate'];
+                $data['CustomerID'] = $value['CustomerID'];
+                $data['Cost'] = $value['Cost'];
+                $data['CartID'] = $value['CartID'];
+                unset($_SESSION['cart'][$key]);
+                $_SESSION['cart'][] = $data;
+            }
+        }
+
         $cart = new Carts();
         $order_item = new Order_Items();
+        $inventory = new Product_Inventory();
+        $inventory->updateQuantityToDecrease($productID,1);
         $order_item->updateQuantity($cartID,$productID,(int)$quantity + 1);
         $cart->updateTotalAmountToIncrease($cartID,$cost);
 
@@ -61,7 +79,28 @@ class Cart extends Controller
 
         $cart = new Carts();
         $order_item = new Order_Items();
+        $inventory = new Product_Inventory();
         if($quantity > 1){
+
+            $data = [];
+
+            foreach ($_SESSION['cart'] as $key => $value){
+
+                if($value['ProductID'] == $productID){
+                    $data['OrderID'] = $value['OrderID'];
+                    $data['ProductID'] = $value['ProductID'];
+                    $data['Quantity'] = $value['Quantity'] - 1;
+                    $data['OrderDate'] = $value['OrderDate'];
+                    $data['CustomerID'] = $value['CustomerID'];
+                    $data['Cost'] = $value['Cost'];
+                    $data['CartID'] = $value['CartID'];
+                    unset($_SESSION['cart'][$key]);
+                    $_SESSION['cart'][] = $data;
+                }
+
+            }
+
+            $inventory->updateQuantityToIncrease($productID,1);
             $order_item->updateQuantity($cartID,$productID,(int)$quantity-1);
             $cart->updateTotalAmountToDecrease($cartID,$cost);
         }

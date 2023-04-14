@@ -3,7 +3,9 @@
 class Product_Inventory extends Model
 {
     protected $table = "inventory";
+
     public $errors = [];
+
     protected $allowedColumns = [
         'ProductID',
         'Quantity',
@@ -99,5 +101,29 @@ class Product_Inventory extends Model
         $query = "DELETE FROM $this->table WHERE ProductID = :ProductID;";
 
         return $this->query($query,['ProductID' => $id]);
+    }
+
+    public function updateQuantityToDecrease($ProductID,$Quantity)
+    {
+        $query = "UPDATE $this->table SET Quantity = Quantity - :Quantity WHERE ProductID = :ProductID; ";
+
+        $data = [
+            'Quantity' => $Quantity,
+            'ProductID' => $ProductID
+        ];
+
+        return $this->query($query, $data);
+    }
+
+    public function updateQuantityToIncrease($ProductID,$Quantity)
+    {
+        $query = "UPDATE $this->table SET Quantity = Quantity + :Quantity WHERE ProductID = :ProductID; ";
+
+        $data = [
+            'Quantity' => $Quantity,
+            'ProductID' => $ProductID
+        ];
+
+        return $this->query($query, $data);
     }
 }

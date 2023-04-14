@@ -62,4 +62,11 @@ class Order_Items extends Model
 
         $this->query($query,['OrderID' => $orderID, 'ProductID' => $productID]);
     }
+
+    public function getOrderItem($orderID,$productID)
+    {
+        $query = "SELECT * FROM `order_item` WHERE OrderID = :OrderID AND ProductID = :ProductID;";
+
+        return $this->query($query,['OrderID' => $orderID, 'ProductID' => $productID]);
+    }
 }
