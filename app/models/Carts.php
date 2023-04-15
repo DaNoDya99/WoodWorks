@@ -66,4 +66,11 @@ class Carts extends Model
 
          $this->query($query , ['CartID' => $cartID, 'Cost' => $cost]);
     }
+
+    public function resetCartTotal($cartId)
+    {
+        $query = "UPDATE `cart` SET Total_amount = 0 WHERE CartID = :CartID;";
+
+        $this->query($query , ['CartID' => $cartId]);
+    }
 }

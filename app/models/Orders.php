@@ -22,7 +22,8 @@ class Orders extends Model
         'Address',
         'CustomerID',
         'DriverID',
-        'Is_preparing'
+        'Is_preparing',
+        'SessionID'
     ];
 
     public function findOrders($column,$value)
@@ -174,11 +175,24 @@ class Orders extends Model
         return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID]);
     }
 
-//    public function saveShippingDetails($data)
-//    {
-//        $query = "UPDATE `orders` SET `Firstname` = :Firstname, `Lastname` = :Lastname, `Email` = :Email, `Contactno` = :Contactno, `Address` = :Address, `Payment_type` = :Payment_type, `Total_amount` = :Total_amount, `Deliver_method` = :Deliver_method, `Order_status` = :Order_status, `CustomerID` = :CustomerID WHERE `OrderID` = :OrderID;";
-//
-//        return $this->query($query,$data);
-//    }
+    public function updateSessionID($orderID, $sessionID,$status)
+    {
+        $query = "UPDATE `orders` SET `SessionID` = :SessionID, `Order_status` = :Order_status WHERE `OrderID` = :OrderID;";
 
+        return $this->query($query,['OrderID' => $orderID, 'SessionID' => $sessionID, 'Order_status' => $status]);
+    }
+
+    public function getOrderByTheSessionID($sessionId)
+    {
+        $query = "SELECT * FROM `orders` WHERE SessionID = :SessionID && Order_status = :Order_status;";
+
+        return $this->query($query,['SessionID' => $sessionId, 'Order_status' => 'unpaid']);
+    }
+
+    public function updateIsPreparing($orderId)
+    {
+        $query = "UPDATE $this->table SET Is_preparing = :Is_preparing WHERE OrderID = :OrderID && Is_preparing = 1;";
+
+        return $this->query($query, ['Is_preparing' => 0,'OrderID' => $orderId]);
+    }
 }
