@@ -1,5 +1,8 @@
 <?php
 
+
+require '../vendor/autoload.php';
+
 class Customer_home extends Controller
 {
     public function index()
@@ -231,7 +234,7 @@ class Customer_home extends Controller
         $this->view('reg_customer/payment',$data);
     }
 
-    public function updateShippingDetails($orderID)
+    public function checkout($orderID)
     {
         if(!Auth::logged_in())
         {
@@ -241,8 +244,41 @@ class Customer_home extends Controller
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $order = new Orders();
-            $order->update_status($orderID,$_POST);
-            echo json_encode($_POST);
+            $order_items = new Order_Items();
+//            $order->update_status($orderID,$_POST);
+
+            $stripe =  new \Stripe\StripeClient(
+                'sk_test_51Mx3NxCIse71JEne0LK7axCWj4nwwxotGp7kDjehW2wfmvhSLgPMPkld8L6WdaAwj8CzkT4vhr801oJQ8s39YQ3100hKfDfWLG'
+            );
+
+            $items = $order_items->getOrderItems($orderID);
+
+            $line_items = [];
+
+            foreach ($items as $item)
+            {
+                $line_items[] = [
+                    'price_data' => [
+                        'currency' => 'lkr',
+                        'product_data' => [
+                            'name' => $item->Name,
+                        ],
+                        'unit_amount' => $item->Cost*100,
+                    ],
+                    'quantity' => $item->Quantity,
+                ];
+            }
+
+            $checkout_session = $stripe->checkout->sessions->create([
+                'line_items' => $line_items,
+                'mode' => 'payment',
+                'success_url' => 'http://localhost/WoodWorks/public/checkout/success?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => 'http://localhost:4242/cancel',
+            ]);
+
+            $order->updateSessionID($orderID,$checkout_session->id,'unpaid');
+
+            echo json_encode($checkout_session->url);
         }
     }
 

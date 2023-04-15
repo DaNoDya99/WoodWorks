@@ -12,14 +12,16 @@ class Order_Items extends Model
         'Cost',
         'OrderID',
         'CartID',
-        'Image'
+        'Image',
+        'Is_purchased',
+        'Date'
     ];
 
     public function getCustomerCartDetails($cart_id)
     {
-        $query = "SELECT `ProductID`, `Name`, `Quantity`, `Cost`, `OrderID`, cart.`CartID`, `Image`, `Total_amount` FROM `order_item` LEFT JOIN cart ON order_item.CartID = cart.CartID where order_item.CartID = :CartID;";
+        $query = "SELECT `ProductID`, `Name`, `Quantity`, `Cost`, `OrderID`, cart.`CartID`, `Image`, `Total_amount` FROM `order_item` LEFT JOIN cart ON order_item.CartID = cart.CartID where order_item.CartID = :CartID AND Is_purchased = :Is_purchased;";
 
-        return $this->query($query,['CartID' => $cart_id]);
+        return $this->query($query,['CartID' => $cart_id,'Is_purchased' => 0]);
     }
 
     public function updateQuantity($cartID,$productID,$quantity)
@@ -68,5 +70,12 @@ class Order_Items extends Model
         $query = "SELECT * FROM `order_item` WHERE OrderID = :OrderID AND ProductID = :ProductID;";
 
         return $this->query($query,['OrderID' => $orderID, 'ProductID' => $productID]);
+    }
+
+    public function updateIsPurchased($orderID)
+    {
+        $query = "UPDATE $this->table SET Is_purchased = 1 WHERE OrderID = :OrderID;";
+
+        $this->query($query,['OrderID' => $orderID]);
     }
 }
