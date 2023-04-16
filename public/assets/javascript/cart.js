@@ -1,3 +1,5 @@
+let response = document.getElementById('response');
+
 function decreaseQuantity(cartId,orderId,productid,quantity,cost)
 {
     let xhr = new XMLHttpRequest();
@@ -5,7 +7,15 @@ function decreaseQuantity(cartId,orderId,productid,quantity,cost)
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-                window.location.reload();
+                if(xhr.response !== ''){
+                    response.innerHTML = xhr.response;
+                    setTimeout(() => {
+                        response.innerHTML = '';
+                        window.location.reload();
+                    },2000);
+                }else{
+                    window.location.reload();
+                }
             }
         }
 
@@ -20,8 +30,16 @@ function increaseQuantity(cartId,orderId,productid,quantity,cost)
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-                // console.log(xhr.response);
-                window.location.reload();
+                if(xhr.response !== ''){
+                    response.innerHTML = xhr.response;
+                    setTimeout(() => {
+                        response.innerHTML = '';
+                        window.location.reload();
+                    },2000);
+                }else{
+                    window.location.reload();
+                }
+
             }
         }
 

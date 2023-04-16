@@ -126,4 +126,11 @@ class Product_Inventory extends Model
 
         return $this->query($query, $data);
     }
+
+    public function getProductQuantity($ProductID)
+    {
+        $query = "SELECT Quantity FROM $this->table WHERE ProductID = :ProductID;";
+
+        return $this->query($query,['ProductID' => $ProductID]);
+    }
 }
