@@ -36,8 +36,10 @@ class Cart extends Controller
         $this->view('reg_customer/cart',$data);
     }
 
-    public function increaseQuantity($cartID,$productID,$quantity,$cost)
+    public function increaseQuantity($cartID,$orderID,$productID,$quantity,$cost)
     {
+        echo json_encode($cartID);
+
 
         if(!Auth::logged_in())
         {
@@ -64,13 +66,13 @@ class Cart extends Controller
         $order_item = new Order_Items();
         $inventory = new Product_Inventory();
         $inventory->updateQuantityToDecrease($productID,1);
-        $order_item->updateQuantity($cartID,$productID,(int)$quantity + 1);
+        $order_item->updateQuantity($orderID,$productID,(int)$quantity + 1);
         $cart->updateTotalAmountToIncrease($cartID,$cost);
 
         $this->redirect('cart');
     }
 
-    public function decreaseQuantity($cartID,$productID,$quantity,$cost)
+    public function decreaseQuantity($cartID,$orderID,$productID,$quantity,$cost)
     {
         if(!Auth::logged_in())
         {
@@ -101,7 +103,7 @@ class Cart extends Controller
             }
 
             $inventory->updateQuantityToIncrease($productID,1);
-            $order_item->updateQuantity($cartID,$productID,(int)$quantity-1);
+            $order_item->updateQuantity($orderID,$productID,(int)$quantity-1);
             $cart->updateTotalAmountToDecrease($cartID,$cost);
         }
 

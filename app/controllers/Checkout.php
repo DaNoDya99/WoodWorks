@@ -18,6 +18,8 @@ class Checkout extends Controller
         $customer = new Customer();
         $order = new Orders();
         $order_items = new Order_items();
+        $inventory = new Product_Inventory();
+
         $cart = new Carts();
         $id = Auth::getCustomerID();
         $data['row'] = $customer->where('CustomerID',$id);
@@ -43,6 +45,13 @@ class Checkout extends Controller
                 $order->updateIsPreparing($cus_order->OrderID);
                 $order_items->updateIsPurchased($cus_order->OrderID);
                 $cart->resetCartTotal($cart->getCart($id)[0]->CartID);
+
+                $cus_order_items = $order_items->getOrderItems($cus_order->OrderID);
+
+                foreach($cus_order_items as $item){
+                    $inventory->updateQuantityToDecrease($item->ProductID,$item->Quantity);
+                }
+
             }else{
                 $this->redirect('_404');
             }
