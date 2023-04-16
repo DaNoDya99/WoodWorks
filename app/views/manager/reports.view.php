@@ -128,8 +128,8 @@
                             <div class="product-list-header">
                                 <h3>Products</h3>
                                 <div>
-                                        <input type="text">
-                                        <a href="#">Export to PDF</a>
+                                    <input type="text" placeholder="Search for a product" style="height:40px; width:300px; padding:10px; border-radius:5px; border:1px solid grey; margin-right:10px;">
+                                    <a href="#">Export to PDF</a>
                                 </div>
 
                             </div>
@@ -155,6 +155,13 @@
                                 </tbody>
 
                             </table>
+                            <div class="pager-button">
+                                <button onclick="page('prev')"><img style="width:15px" src="<?= ROOT ?>/assets/images/manager/caret-left-solid.svg" alt=""></button>
+                                <p id="page-no">1</p>
+                                <button onclick="page('next')"><img style="width:15px" src="<?= ROOT ?>/assets/images/manager/caret-right-solid.svg" alt=""></button>
+
+
+                            </div>
 
                         </div>
                     </div>
@@ -199,7 +206,7 @@
             },
             options: {
                 aspectRatio: 1.5,
-                responsive: true,
+
                 animation: {},
                 scales: {
                     x: {
@@ -252,7 +259,7 @@
             },
             options: {
                 aspectRatio: 3,
-                responsive: true,
+
                 animation: {},
                 scales: {
                     x: {
@@ -306,7 +313,7 @@
             },
 
             options: {
-                responsive: true,
+
                 animation: {},
                 scales: {
                     x: {
@@ -395,12 +402,14 @@
 
         var dropdownContent = document.querySelector(".dropdown-content");
         // dropdownContent.classList.toggle("show");
+        document.getElementById("page-no").innerHTML = 1;
+
 
         var data1 = document.querySelector("input[name='date1']").value;
         var data2 = document.querySelector("input[name='date2']").value;
 
         document.getElementById('date-range-label').innerText = data1 + " to " + data2;
-        products();
+        products(1);
 
     };
 
@@ -440,12 +449,17 @@
                 mainSalesChart.data.datasets[0].data = data.test;
                 ordercount.data.labels = data.labels;
                 ordercount.data.datasets[0].data = data.ordercount;
+                SalesChart2.data.labels = data.labels;
+                SalesChart2.data.datasets[0].data = data.test;
 
                 mainSalesChart.update();
+
                 ordercount.update();
+                SalesChart2.update();
 
             })
 
+        document.getElementById("page-no").innerHTML = 1;
         var dropdownContent = document.querySelector(".dropdown-content");
         dropdownContent.classList.toggle("show");
 
@@ -455,11 +469,11 @@
 
 
         document.getElementById('date-range-label').innerText = data1 + " to " + data2;
-        products();
+        products(1);
     });
 
-    function products() {
-        fetch('http://localhost/woodworks/public/manager/productinfo', {
+    function products(pageno) {
+        fetch('http://localhost/woodworks/public/manager/productinfo/' + pageno, {
                 method: 'POST',
             }).then(response => response.json())
             //decode and show json on console
@@ -468,6 +482,8 @@
                 // data = JSON.parse(data);
                 console.log(data.detailedinfo[0]);
                 var tbody = document.getElementById("products");
+                tbody.innerHTML = "";
+
                 data.detailedinfo.forEach(rowData => {
                     const row = document.createElement('tr'); // Create a new table row
 
@@ -614,6 +630,23 @@
         mainSalesChart.config.type = 'bar';
 
         mainSalesChart.update();
+    }
+
+    function page(direction) {
+        pageno = 1;
+        no_of_records_per_page = 5;
+        total_pages = Math.ceil(10 / 5);
+
+        if (direction == "next" && pageno < total_pages) {
+            pageno++;
+        } else if (direction == "prev" && pageno > 1) {
+            pageno--;
+        }
+
+        products(pageno);
+
+        document.getElementById("page-no").innerHTML = pageno;
+
     }
 </script>
 

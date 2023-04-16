@@ -237,11 +237,8 @@ class Manager extends Controller
             $this->redirect('login');
         }
 
-        $data['title'] = "REPORTS";
 
-
-
-        $this->view('manager/reports', $data);
+        $this->view('manager/reports');
     }
 
     //reply to ajax call
@@ -319,10 +316,13 @@ class Manager extends Controller
         }
     }
 
-    public function productinfo()
+    public function productinfo($offset)
     {
         $order = new Orders();
-        $data['detailedinfo'] = $order->getDetailedProductInfo();
+        $furniture = new Furnitures();
+        //get furniture count
+        $data['furniturecount'] = $furniture->getFurnitureCount()[0]->count;
+        $data['detailedinfo'] = $order->getDetailedProductInfo($offset);
         echo json_encode($data);
     }
 

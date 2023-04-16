@@ -156,8 +156,8 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 15%;
+    position: fixed;
     padding: 30px;
-
 }
 
 .select-reports li {
@@ -250,17 +250,17 @@
     flex-wrap: wrap
 }
 .reports{
+    padding-left: 150px;
     width:100% !important;
 }
 
 .list{
-    margin-top:25px ;
+    margin-top:25px;
     display: flex;
     flex-direction: column;
-
     padding: 10px;
     width: 100%;
-    height: 600px;
+    /* height: 600px; */
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -295,8 +295,21 @@
 }
 
 .list table tbody{
-    overflow-y:scroll;
-    height: 500px;
+
+
+}
+
+.pager-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pager-button button{
+    background-color: white;
+    border:none;    
+    cursor:pointer;
 }
 
 .product-list-header{
@@ -305,4 +318,17 @@
     align-items: center;
 
     margin: 20px;
+}
+
+
+
+#page-no{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin: 5px;
+    height: 30px;
+    width: 30px;
+    border:1px solid black;
 }
