@@ -59,6 +59,10 @@
         </div>
     </div>
 
+    <div class="cat-response" id="response">
+
+    </div>
+
     <script src="<?=ROOT?>/assets/javascript/cart.js"></script>
 
 <?php $this->view('reg_customer/includes/footer'); ?>
