@@ -251,6 +251,8 @@ class Customer_home extends Controller
                 'sk_test_51Mx3NxCIse71JEne0LK7axCWj4nwwxotGp7kDjehW2wfmvhSLgPMPkld8L6WdaAwj8CzkT4vhr801oJQ8s39YQ3100hKfDfWLG'
             );
 
+            $coupon = $stripe->coupons->create(['percent_off' => 10, 'duration' => 'once','currency' => 'lkr']);
+
             $items = $order_items->getOrderItems($orderID);
 
             $line_items = [];
@@ -270,8 +272,30 @@ class Customer_home extends Controller
             }
 
             $checkout_session = $stripe->checkout->sessions->create([
+
+                'shipping_address_collection' => ['allowed_countries' => ['LK']],
+
+                'shipping_options' => [
+                  [
+                    'shipping_rate_data' => [
+                      'type' => 'fixed_amount',
+                      'fixed_amount' => ['amount' => 1500, 'currency' => 'lkr'],
+                      'display_name' => 'Next day air',
+                      'delivery_estimate' => [
+                        'minimum' => ['unit' => 'business_day', 'value' => 1],
+                        'maximum' => ['unit' => 'business_day', 'value' => 1],
+                      ],
+                    ],
+                  ],
+                ],
+
                 'line_items' => $line_items,
                 'mode' => 'payment',
+
+                'discounts' => [[
+                    'coupon' => $coupon->id,
+                ]],
+
                 'success_url' => 'http://localhost/WoodWorks/public/checkout/success?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => 'http://localhost:4242/cancel',
             ]);

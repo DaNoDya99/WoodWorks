@@ -24,14 +24,14 @@ class Order_Items extends Model
         return $this->query($query,['CartID' => $cart_id,'Is_purchased' => 0]);
     }
 
-    public function updateQuantity($cartID,$productID,$quantity)
+    public function updateQuantity($orderID,$productID,$quantity)
     {
-        $query = "UPDATE order_item SET Quantity = :Quantity WHERE CartID = :CartID AND ProductID = :ProductID; ";
+        $query = "UPDATE order_item SET Quantity = :Quantity WHERE OrderID = :OrderID AND ProductID = :ProductID; ";
 
         $data = [
             'Quantity' => $quantity,
             'ProductID' => $productID,
-            'CartID' => $cartID
+            'OrderID' => $orderID
         ];
 
         $this->query($query, $data);
