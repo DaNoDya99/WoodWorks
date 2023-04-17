@@ -245,7 +245,14 @@ class Customer_home extends Controller
         {
             $order = new Orders();
             $order_items = new Order_Items();
-//            $order->update_status($orderID,$_POST);
+            $cart = new Carts();
+            $id = Auth::getCustomerID();
+
+            $_POST['Payment_type'] = 'Card';
+            $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
+            $_POST['Delivery_method'] = 'Home Delivery';
+
+            $order->update_status($orderID,$_POST);
 
             $stripe =  new \Stripe\StripeClient(
                 'sk_test_51Mx3NxCIse71JEne0LK7axCWj4nwwxotGp7kDjehW2wfmvhSLgPMPkld8L6WdaAwj8CzkT4vhr801oJQ8s39YQ3100hKfDfWLG'
@@ -356,6 +363,35 @@ class Customer_home extends Controller
 
         switch ($details->Order_status)
         {
+            case 'paid':
+                $str .= "
+                    <div class='prog-status-container'>
+                    <img src='http://localhost/WoodWorks/public/assets/images/customer/dollar-circle-svgrepo-com(1).svg' alt='paid'>
+                    <span>Paid</span>
+                    <img class='completed' src='http://localhost/WoodWorks/public/assets/images/customer/tick-circle-svgrepo-com.svg' alt=''>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='".$yet."' src='http://localhost/WoodWorks/public/assets/images/customer/gift-box-svgrepo-com.svg' alt='paid'>
+                        <span class='".$yet."'>Processing</span>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='".$yet."' src='http://localhost/WoodWorks/public/assets/images/customer/shipping-svgrepo-com.svg' alt='paid'>
+                        <span class='".$yet."'>Dispatched</span>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='yet-to-complete' src='http://localhost/WoodWorks/public/assets/images/customer/delivered-svgrepo-com.svg' alt='paid'>
+                        <span class='yet-to-complete'>Delivered</span>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='yet-to-complete' src='http://localhost/WoodWorks/public/assets/images/customer/review-like-message-svgrepo-com.svg' alt='paid'>
+                        <span class='yet-to-complete'>Review</span>
+                    </div>
+                ";
+                break;
             case 'Processing':
                 $str .= "
                     <div class='prog-status-container'>
@@ -443,11 +479,15 @@ class Customer_home extends Controller
                         ".$completed."
                     </div>
                     <div class='line ".$line."'></div>
-                    <div class='prog-status-container'>
-                        <img src='http://localhost/WoodWorks/public/assets/images/customer/review-like-message-svgrepo-com.svg' alt='paid'>
-                        <span>Review</span>
-                        ".$current."
-                    </div>
+                    
+                        <div class='prog-status-container'>
+                            <a href='http://localhost/WoodWorks/public/review/addreview/".$orderID."'>
+                                <img src='http://localhost/WoodWorks/public/assets/images/customer/review-like-message-svgrepo-com.svg' alt='paid'>
+                            </a>    
+                            <span>Review</span>
+                            ".$current."
+                        </div>
+                    
                 ";
                 break;
         }

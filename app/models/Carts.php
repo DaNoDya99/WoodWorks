@@ -73,4 +73,11 @@ class Carts extends Model
 
         $this->query($query , ['CartID' => $cartId]);
     }
+
+    public function getTotalAmount($id)
+    {
+        $query = "SELECT Total_amount FROM $this->table WHERE CustomerID = :CustomerID;";
+
+        return $this->query($query,['CustomerID' => $id]);
+    }
 }

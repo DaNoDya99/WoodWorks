@@ -70,4 +70,56 @@ class Order extends Controller
 
         echo $str;
     }
+
+    public function getOrderItem($orderID,$productId)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $order_item = new Order_Items();
+        $row = $order_item->getOrderItem($orderID,$productId)[0];
+
+        $str = "
+            <h2>".$row->Name." - ".$row->ProductID."</h2>
+            <div class='review-fur-img'>
+                <img src='http://localhost/WoodWorks/public/".$row->Image."' alt=''>
+            <div class='current-rating'>
+                <h2>Current Ratings</h2>
+                <span>4.5</span>
+                <div>
+                    <div class='stars-outer'>
+                        <div class='stars-inner' style='width: 80%'></div>
+                    </div>
+                    <span class='number-rating'></span>
+                </div>
+            </div>
+            <div class='your-rating'>
+                <h2>Rate Product</h2>
+            
+                <div class='star-widget'>
+                    <input type='radio' name='rate' id='rate-5' value='5'>
+                    <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
+                    <input type='radio' name='rate' id='rate-4' value='4'>
+                    <label for='rate-4' class='fas fa-star' onclick='setRate(4)'></label>
+                    <input type='radio' name='rate' id='rate-3' value='3'>
+                    <label for='rate-3' class='fas fa-star' onclick='setRate(3)'></label>
+                    <input type='radio' name='rate' id='rate-2' value='2'>
+                    <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
+                    <input type='radio' name='rate' id='rate-1' value='1'>
+                    <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>
+                </div>
+            </div>
+            </div>
+            <div class='write-review'>
+                <h2>Write a review</h2>
+                <textarea id='review' cols='30' rows='10' maxlength='1024' placeholder='Describe Your Experience...'></textarea>
+            </div>
+            <div class='review-btn-container'>
+                <button class='review-btn' onclick='saveReview()'>Post Review</button>
+            </div>
+        ";
+
+        echo $str;
+    }
 }
