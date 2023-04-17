@@ -1,6 +1,0 @@
-{
-    "name": "nisura/wood-works",
-    "require": {
-        "dompdf/dompdf": "^2.0"
-    }
-}
