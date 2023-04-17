@@ -1,4 +1,9 @@
 const order_items = document.getElementById("order-items");
+const first = document.getElementById("first");
+
+window.addEventListener('load', function() {
+    first.click();
+});
 
 function getOrderDetails(orderId) {
     let xhr = new XMLHttpRequest();

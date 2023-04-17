@@ -45,12 +45,13 @@ class Checkout extends Controller
                 $order->updateIsPreparing($cus_order->OrderID);
                 $order_items->updateIsPurchased($cus_order->OrderID);
                 $cart->resetCartTotal($cart->getCart($id)[0]->CartID);
+//                $cus_order_items = $order_items->getOrderItems($cus_order->OrderID);
 
-                $cus_order_items = $order_items->getOrderItems($cus_order->OrderID);
+//                foreach($cus_order_items as $item){
+//                    $inventory->updateQuantityToDecrease($item->ProductID,$item->Quantity);
+//                }
 
-                foreach($cus_order_items as $item){
-                    $inventory->updateQuantityToDecrease($item->ProductID,$item->Quantity);
-                }
+                unset($_SESSION['cart']);
 
             }else{
                 $this->redirect('_404');

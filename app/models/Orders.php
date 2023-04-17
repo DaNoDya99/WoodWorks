@@ -100,7 +100,7 @@ class Orders extends Model
         $query = trim($query,",");
         $query .= " where OrderID = :OrderID";
 
-        $this->query($query,$data);
+        return $this->query($query,$data);
     }
 
     public function checkIsPreparing($id)
