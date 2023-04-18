@@ -4053,3 +4053,7 @@ h2 {
 .error{
     color: #ff0000;
 }
+
+.font-sm{
+    font-size: 14px;
+}
