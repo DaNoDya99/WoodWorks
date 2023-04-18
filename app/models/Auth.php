@@ -65,4 +65,17 @@ class Auth
             }
         }
     }
+
+    public static function deleteIncompleteOrders($id): void
+    {
+        $orders = new Orders();
+        $orderItems = new Order_Items();
+        if(!empty($orderID = $orders->checkIsPreparing($id))){
+            if(empty($orderItems->getOrderItems($orderID[0]->OrderID)))
+            {
+                $orders->removeIncompletedOrders($id);
+            }
+        }
+    }
+
 }

@@ -36,6 +36,12 @@ class App
 //        unset($_SESSION['cart']);
 
         Auth::cartTimer($this->timer);
+
+        $id = Auth::getCustomerID();
+        if(!empty($id)) {
+            Auth::deleteIncompleteOrders($id);
+        }
+
     }
 
     private function getURL(){

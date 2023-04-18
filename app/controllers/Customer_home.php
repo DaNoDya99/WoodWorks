@@ -191,6 +191,11 @@ class Customer_home extends Controller
         $order_item->removeOrderItem($orderId,$productID);
         $cart->updateTotalAmountToDecrease($cartID,$cost*$quantity);
 
+        if(empty($order_item->getOrderItems($orderId)))
+        {
+            $order->removeIncompletedOrders($orderId);
+        }
+
         $this->redirect('cart');
     }
 
