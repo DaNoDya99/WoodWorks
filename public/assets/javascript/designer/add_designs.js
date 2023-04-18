@@ -5,11 +5,14 @@
     var numOfFiles = document.getElementById("num-of-files");
     var input = document.getElementById('file-input');
 
+    const pdfFileInput = document.getElementById('pdfFile-input');
+    const pdfPreview = document.getElementById('pdf-preview');
+
     window.preview = function () {
         if (input.files.length === 3) {
 
             imageContainer.innerHTML = "";
-            numOfFiles.textContent = `${fileInput.files.length} Images Selected`;
+            numOfFiles.textContent = `${fileInput.files.length} Images have been Selected`;
 
             for (i of fileInput.files) {
                 let reader = new FileReader();
@@ -44,8 +47,7 @@
         }
 
     }
+
+
 })(window,document);
-
-
-
 

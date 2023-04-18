@@ -16,7 +16,7 @@
                         <h2>Add Supplier</h2>
                         <img src="<?= ROOT ?>/assets/images/customer/close.png" alt="Close" onclick="closePopup()">
                     </div>
-                    <form class="add-sup-form" method="post">
+                    <form class="add-sup-form" id="add-sup-form" method="post">
                         <div class="add-sup-field">
                             <label>Supplier ID</label>
                             <input type="text" name="EmployeeID" placeholder="Supplier ID">
@@ -50,7 +50,7 @@
                             <input type="text" name="Company_name" placeholder="Company Name">
                         </div>
 
-                        <button type="submit" onclick="closePopup()">Save</button>
+                        <button type="submit" onclick="addSupplier()">ADD</button>
                     </form>
                 </div>
 

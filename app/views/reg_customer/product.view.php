@@ -53,9 +53,9 @@ if(!empty($furniture[0]->Discount_percentage)){
                 <p class="product-detail"><?=$furniture[0]->Warrenty_period?> Warrenty</p>
             </div>
             <div>
-                <a href="<?=ROOT?>/customer_home/add_to_cart/<?=$furniture[0]->ProductID?>/<?=$cost?>">
-                    <button>Add to cart</button>
-                </a>
+<!--                <a href="#">-->
+                    <button onclick="addToCart('<?=$furniture[0]->ProductID?>',<?=$cost?>)">Add to cart</button>
+<!--                </a>-->
             </div>
         </div>
     </div>
@@ -82,6 +82,10 @@ if(!empty($furniture[0]->Discount_percentage)){
             <?php endforeach;?>
         <?php endif;?>
     </div>
+</div>
+
+<div class="cat-response" id="response">
+
 </div>
 
     <script src="<?=ROOT?>/assets/javascript/slider.js"></script>

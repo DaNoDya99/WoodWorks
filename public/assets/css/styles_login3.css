@@ -181,6 +181,21 @@ body{
     border: 1px solid #f5c6cb;
 }
 
+.close-error {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.signup-error {
+    text-align: left;
+    font-size: 12px;
+    padding: 0 10px;
+}
+
 /*DriverModel dashboard, Designer dashboard and sidebars*/
 .driver, .designer{
     height: 100vh;
@@ -251,7 +266,7 @@ body{
 }
 
 .dashboard-body{
-    padding: 50px 15px 0;
+    padding: 30px 15px 0;
     display: flex;
 }
 
@@ -286,7 +301,7 @@ body{
 }
 
 .driver-tbox{
-    width: 25%;
+    width: 30%;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
@@ -297,6 +312,23 @@ body{
     flex-direction: column;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     float: right;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.driver-tbox::-webkit-scrollbar{
+    display: none;
+}
+
+.driver-tbox hr{
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid #cacaca;
 }
 
 .driver-tbox table{
@@ -312,11 +344,6 @@ body{
     cursor: pointer;
 
 }
-
-/*.driver-content-table:hover{*/
-/*    transform: scale(1.02);*/
-/*    transition: .4s ease-in;*/
-/*}*/
 
 .driver-content-table thead tr{
     color: black;
@@ -441,8 +468,8 @@ body{
     text-align: center;
     font-family: 'Rubik';
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    /*padding: 1em 0;*/
-    padding: 3px;
+    padding: 1em 0;
+    /*padding: 3px;*/
 }
 
 .driver-profile-card hr{
@@ -483,6 +510,11 @@ body{
     padding-right: 6em;
 }
 
+.driver-popup{
+    width:35%;
+    top: 5%;
+}
+
 
 /*Designer profile page*/
 .designer-profile-card{
@@ -494,8 +526,7 @@ body{
     text-align: center;
     font-family: 'Rubik';
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    /*padding: 1em 0;*/
-    padding: 3px;
+    padding: 1em 0;
 }
 
 .designer-profile-card hr{
@@ -536,6 +567,11 @@ body{
     padding-right: 6em;
 }
 
+.designer-popup{
+    width:35%;
+    top: 5%;
+}
+
 
 /* profile edit page */
 
@@ -563,7 +599,7 @@ body{
     border-radius: 10px;
     position: absolute;
     top: 0;
-    left: 60%;
+    left: 50%;
     transform: translate(-50%, -50%) scale(0.1);
     text-align: center;
     padding:0 30px 30px;
@@ -673,9 +709,6 @@ body{
 
 .tbox{
 
-    /*width: 100% ;*/
-    /*height: auto;*/
-    /*background: #ffffff;*/
     width: 85%;
     margin: 1em auto;
     padding: 1em 2em;
@@ -683,6 +716,7 @@ body{
     border-radius: 20px;
     font-family: 'Rubik-SemiBold';
     max-height: 80vh;
+    height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
 }
 
@@ -690,8 +724,12 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 2px solid #d2d2d2;
+    /*border-top: 2px solid #d2d2d2;*/
     padding: 1em 0;
+}
+
+.orders_view_header h1{
+    margin: 0;
 }
 
 .order-form {
@@ -701,7 +739,7 @@ body{
 
 .order-form input{
     border: 2px solid #d2d2d2;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Rubik-SemiBold', sans-serif;
     width: 20em;
     border-radius: 3px;
     padding: 0 0 0 1em;
@@ -714,8 +752,10 @@ body{
     background-color: #f9f9f9;
     font-size: 1rem;
     padding: 0 0 0 1em;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Rubik-SemiBold', sans-serif;
     color: #787878;
+    cursor: pointer;
+
 }
 
 .order-form button{
@@ -733,8 +773,48 @@ body{
     width: 15px;
 }
 
-.orders_view_header h1{
-    margin: 0;
+.tab_box{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #d2d2d2;
+    position: relative;
+    /*margin: 1em 0;*/
+}
+
+.tab_box .tab_btn{
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+}
+
+.tab_btn.active {
+    font-weight: bold;
+}
+
+.tab_box .line{
+    height: 4px;
+    width: 100px;
+    background-color: #203330;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.3s ease;
+}
+
+.order-details-tbl {
+    display: flex;
+    overflow-y: auto;
+    max-height: 60vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.order-details-tbl::-webkit-scrollbar {
+    display: none;
 }
 
 .tbox table{
@@ -743,16 +823,16 @@ body{
 }
 
 .content-table{
-    /*border-collapse: collapse;*/
     margin: 25px 0;
     font-size: 0.9em;
     min-width: 400px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
-    /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
-    overflow-y: scroll;
-    max-height: 70vh;
-
+    overflow-y: auto;
+    max-height: 60vh;
+    font-family: 'Rubik', sans-serif;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .content-table thead tr{
@@ -767,6 +847,10 @@ body{
     word-break: break-all;
 }
 
+.content-table tbody tr td img{
+    cursor: pointer;
+}
+
 .content-table th,
 .content-table td{
     padding: 12px 15px;
@@ -774,17 +858,8 @@ body{
 }
 
 .content-table tbody tr{
-    /*border-bottom: 1px solid #dddddd;*/
     font-family: 'Rubik';
 }
-
-/*.content-table tbody tr:nth-of-type(even){*/
-/*    background-color: #D3D3D3;*/
-/*}*/
-
-/*.content-table tbody tr:last-of-type{*/
-/*    border-bottom: 2px solid #203330;*/
-/*}*/
 
 .select{
     padding: 8px 12px;
@@ -806,6 +881,136 @@ body{
     background: #262626;
 }
 
+.order-btn-sec{
+    text-align: center;
+}
+
+.order-btn-sec button{
+    width: 75px;
+    height: 30px;
+    margin: 0;
+    border: solid 2px #e2dcc8;
+    border-radius: 7px;
+    font-family: 'Rubik';
+    font-weight: bolder;
+    font-size: 0.8vw;
+    background-color: #100F0F;
+    color: #ffffff;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.filterDate input{
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.filterDate label {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.filterDate button {
+    background-color: #203330;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+/* Order Details View */
+
+.popups{
+    width: 60%;
+    margin: 1em auto;
+    padding: 1em 2em;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    font-family: 'Rubik-SemiBold';
+    max-height: 80vh;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    border-collapse: collapse;
+}
+
+.popups::-webkit-scrollbar {
+    display: none;
+}
+
+.popups-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid #d2d2d2;
+    padding: 1em 0;
+    /*position: sticky;!* Make the heading sticky *!*/
+    /*top: 0; !* Set the position to the top *!*/
+    /*z-index: 1; !* Make sure the heading appears on top of the other elements *!*/
+}
+
+.popups-heading h2{
+    font-size: 30px;
+    font-weight: 500;
+    padding-left: 20px;
+    margin:0;
+}
+
+.popups-heading img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.popups table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.details-table{
+    margin: 0;
+    width: 100%;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 70vh;
+
+}
+
+.details-table thead tr{
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #d2d2d2;
+}
+
+
+.details-table tbody tr td{
+    width: 20%;
+    word-break: break-word;
+}
+
+.details-table th,
+.details-table td{
+    padding: 10px 15px;
+    text-align: center;
+}
+
+.details-table td img{
+    width: 350px;
+    height: 200px;
+}
+
+.details-table tbody tr{
+    font-family: 'Rubik';
+}
 
 /* Driver Availability */
 
@@ -1001,20 +1206,40 @@ body{
 
 /* Designer-Add New Designs Page*/
 
-.des-form-body form{
+.des-form-body{
     width: 70%;
-    height: 80%;
+    background-color: #f9f9f9;
     margin: 1em auto;
+    padding: 1em 1.5em;
+    border-radius: 15px;
+    font-family: 'Rubik', sans-serif;
+    max-height: 80vh;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+
+}
+
+.des-form-body h1{
+    margin: 0;
+    border-bottom: #cacaca 2px solid;
+}
+
+.add-des-form{
+    padding: 1em 0;
+    max-height: 70vh;
+    width: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.add-des-form::-webkit-scrollbar {
+    display: none;
+}
+
+.des-img-upload-container{
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    max-height: 700px;
-    max-width: 90%;
-    border-radius: 10px;
-    font-family: 'Rubik';
-    padding: 5px;
-    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    background: #f9f9f9;
 }
 
 #designImage{
@@ -1022,21 +1247,38 @@ body{
     font-weight: bold;
     font-size: 15px;
     display: flex;
-    height: 5%;
+    /*height: 5%;*/
+    padding-top: 5px;
     justify-content: center;
+    padding-bottom: 10px;
+}
+
+#designPdf{
+    font-family: 'Rubik';
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    margin: 10px;
+    padding-top: 5px;
+    justify-content: center;
+    padding-bottom: 10px;
 }
 
 .designImage{
     height: 100%;
     width: 90%;
-    /*display: flex;*/
-    /*flex-direction: column;*/
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 .designImage p{
+    padding-top: 10px;
+    margin-top: 5px;
     text-align: center;
-    font-weight: bold;
+    font-family: 'Rubik', sans-serif;
+    /*font-weight: bold;*/
+    /*padding-left: 70px;*/
+    justify-content: center;
 }
 
 #images{
@@ -1051,9 +1293,9 @@ body{
 }
 
 .designImage img{
-    justify-content: center;
-    height: 150px;
-    width: 100px;
+    width: 10em;
+    height: 7em;
+    border-radius: 10px;
     max-height: 210px;
     max-width: 210px;
     object-fit: cover;
@@ -1064,27 +1306,32 @@ body{
     flex-direction: row;
 }
 
+.designImage img:nth-child(2) {
+    margin: 0 .5em;
+}
+
 .des_Name{
-    width: 475px;
-    display: flex;
-    align-items: center;
+    margin: auto;
+    height: 25%;
+    width: 55%;
+    padding-top: 20px;
 }
 
 .des_Name label{
     font-weight: bold;
+    /*margin-right: 0.5em;*/
 }
 
 .des_Name input{
-    width: 70%;
-    height: 36px;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background: #ffffff;
-    align-items: center;
-    margin-left: 10px;
-    padding-left: 10px;
-    box-sizing: border-box;
-    font-weight: bold;
-
+    font-family: 'Rubik', sans-serif;
+    background-color: #f9f9f9;
+    padding:0 10px;
+    margin-top: 0px;
 }
 
 figure{
@@ -1103,21 +1350,29 @@ figcaption{
     width: 100%;
 }
 
+.but-img-upload-container{
+    margin: auto;
+    width: 64%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .edit-des-Ubtn-section{
-    height: 3%;
-    width: 20%;
+    height: 2.8em;
+    width: 27%;
+    cursor: pointer;
     margin: auto;
     padding: 5px;
-    cursor: pointer;
     font-family: 'Rubik-SemiBold';
-    font-size: 1vw;
+    font-size: 1.1rem;
     background: #104f4a;
-    border-radius: 5px;
+    justify-content: center;
+    border-radius: 7px;
     align-items: center;
-    color: #ffffff;
+    color: #f9f9f9;
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
 }
 .edit-des-Ubtn-section label{
     cursor: pointer;
@@ -1127,17 +1382,18 @@ figcaption{
 }
 
 .edit-des-Dbtn-section{
-    height: 3%;
-    width: 20%;
+    height: 2.8em;
+    width: 40%;
     cursor: pointer;
     margin: auto;
     padding: 5px;
     font-family: 'Rubik-SemiBold';
-    font-size: 1vw;
+    justify-content: center;
+    font-size: 1.1rem;
     background: #721c24;
-    border-radius: 5px;
+    border-radius: 7px;
     align-items: center;
-    color: #ffffff;
+    color: #f9f9f9;
     display: flex;
     flex-direction: column;
 }
@@ -1160,9 +1416,15 @@ figcaption{
     justify-content: center;
 }
 
-.form-control{
+#description textarea{
+    border: 1px solid #ccc;
+    height: 8em;
     width: 100%;
-    height: 50px;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Rubik', sans-serif;
+    background-color: #f9f9f9;
 }
 
 .add-des-btn{
@@ -1607,9 +1869,11 @@ design-desc div button:hover{
     height: 40px;
 }
 
+/* Chat */
+
 .chat{
     display: flex;
-    width: 90%;
+    width: 100%;
     margin: 1em auto;
     border-radius: 10px;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
@@ -1620,7 +1884,7 @@ design-desc div button:hover{
     width: 30%;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    height: 85vh;
+    height: 88vh;
 }
 
 .chat-contact{
@@ -1762,9 +2026,14 @@ design-desc div button:hover{
     margin-top: 1em;
 }
 
+#chat-designer-form{
+    visibility: hidden;
+}
+
 .send-msg form div{
     display: flex;
     justify-content: space-between;
+    padding: 0 0.5em;
 }
 
 .send-msg input{
@@ -1828,3 +2097,82 @@ design-desc div button:hover{
     border-bottom-left-radius: 1em;
     text-align: justify;
 }
+
+#select-contact{
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    visibility: visible;
+}
+
+/*Edit sub category*/
+
+#edit-sub-cat{
+    width: 20%;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    padding: 2em;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    visibility: hidden;
+}
+
+#edit-sub-cat h1{
+    margin: 0;
+    border-bottom: #d4d4d4 2px solid;
+}
+
+#edit-sub-cat form{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-cat form{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub-cat-img{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sub-cat-img img{
+    width: 8em;
+    height: 8em;
+    border-radius: 10px;
+}
+
+.sub-cat-img label input{
+    display: none;
+}
+
+.sub-cat-img label{
+    width: 5em;
+    margin-top: 1em;
+    padding: .5em;
+    text-align: center;
+    background-color: #100F0F;
+    color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.edit-subcat-header{
+    display: flex;
+}
+
+.close-btn{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+
+

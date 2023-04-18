@@ -7,6 +7,7 @@ class Driver extends Model
 
     protected $allowedColumns = [
         'DriverID',
+        'Vehicle_type',
         'Availability',
 
     ];
@@ -30,6 +31,35 @@ class Driver extends Model
     }
 
 
+    public function update_type($DriverID,$data)
+    {
+        if (!empty($this->allowedColumns)) {
+            foreach ($data as $key => $value) {
+                if (!in_array($key, $this->allowedColumns)) {
+                    unset($data[$key]);
+                }
+            }
+        }
 
+        $keys = array_keys($data);
+        $data['DriverID'] = $DriverID;
+
+        $query = "update " . $this->table . " set ";
+        foreach ($keys as $key) {
+            $query .= $key . "=:" . $key . ",";
+        }
+        $query = trim($query, ",");
+        $query .= " where DriverID = :DriverID";
+
+        $this->query($query, $data);
+    }
+
+    public function availableDrivers()
+    {
+        $query = "SELECT * FROM $this->table WHERE Availability = :Availability;";
+
+        return $this->query($query,['Availability' => 'Available']);
+
+    }
 
 }

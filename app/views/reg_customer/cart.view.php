@@ -12,11 +12,13 @@
                             <td >
                                 <div class="cart-quantity">
                                     <div>
-                                        <a id="increase" href="<?=ROOT?>/cart/decreaseQuantity/<?=$row->CartID?>/<?=$row->ProductID?>/<?=$row->Quantity?>/<?=$row->Cost?>">
-                                            <img src="<?=ROOT?>/assets/images/customer/minus.png" alt="Minus"></a>
+<!--                                        <a id="increase" href="--><?php //=ROOT?><!--/cart/decreaseQuantity/--><?php //=$row->CartID?><!--/--><?php //=$row->ProductID?><!--/--><?php //=$row->Quantity?><!--/--><?php //=$row->Cost?><!--">-->
+                                            <img src="<?=ROOT?>/assets/images/customer/minus.png" alt="Minus" onclick="decreaseQuantity('<?=$row->CartID?>','<?=$row->OrderID?>','<?=$row->ProductID?>','<?=$row->Quantity?>','<?=$row->Cost?>')">
+<!--                                        </a>-->
                                         <input id="quantity" type="text" value="<?=$row->Quantity?>">
-                                        <a id="decrease" href="<?=ROOT?>/cart/increaseQuantity/<?=$row->CartID?>/<?=$row->ProductID?>/<?=$row->Quantity?>/<?=$row->Cost?>">
-                                            <img src="<?=ROOT?>/assets/images/customer/plus.png" alt="Plus"></a>
+<!--                                        <a id="decrease" href="--><?php //=ROOT?><!--/cart/increaseQuantity/--><?php //=$row->CartID?><!--/--><?php //=$row->ProductID?><!--/--><?php //=$row->Quantity?><!--/--><?php //=$row->Cost?><!--">-->
+                                            <img src="<?=ROOT?>/assets/images/customer/plus.png" alt="Plus" onclick="increaseQuantity('<?=$row->CartID?>','<?=$row->OrderID?>','<?=$row->ProductID?>','<?=$row->Quantity?>','<?=$row->Cost?>')">
+<!--                                        </a>-->
                                     </div>
                                 </div>
                             </td>
@@ -44,11 +46,21 @@
                         <p>Rs. 00.00</p>
                     <?php endif; ?>
                 </div>
-                <a href="<?=ROOT?>/customer_home/payment">
-                    <button>Proceed to Payment</button>
-                </a>
+                <?php if(!empty($cart[0]->CartID)): ?>
+                    <a href="<?=ROOT?>/customer_home/payment/<?=$cart[0]->CartID?>">
+                        <button>Proceed to Payment</button>
+                    </a>
+                <?php else: ?>
+                    <button disabled>Proceed to Payment</button>
+                <?php endif; ?>
+
+
             </div>
         </div>
+    </div>
+
+    <div class="cat-response" id="response">
+
     </div>
 
     <script src="<?=ROOT?>/assets/javascript/cart.js"></script>

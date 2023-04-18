@@ -5,49 +5,68 @@
         <?php $this->view('designer/includes/designer_header') ?>
         <div class="content dashboard">
 
-
             <div class="des-form-body">
 
-                <form action="/woodworks/public/designer/add_new_design" method="post" enctype="multipart/form-data">
+                <h1>Add New Designs</h1>
 
-                    <h2>Add New Designs</h2>
+                <form class="add-des-form" action="/woodworks/public/designer/add_new_design" method="post" enctype="multipart/form-data">
 
-                    <label id="designImage">Design Images</label>
-
-                    <div class="designImage">
-
-                        <div id="images"></div>
-                        <p id="num-of-files">Number of Images Chosen: None</p>
-
-                    </div>
-
-                    <?php if (!empty($errors['Description'])) : ?>
-                        <div class="error-txt"><?= $errors['Description'] ?></div>
-                    <?php endif; ?>
-                    <?php if (!empty($errors['Name'])) : ?>
-                        <div class="error-txt"><?= $errors['Name'] ?></div>
+                    <!--  This is  error message   -->
+                    <?php if (!empty($errors)) : ?>
+                        <div class="error-txt signup-error">
+                            <img class="close-error" src="<?= ROOT ?>/assets/images/designer/close.png" alt="Close btn" onclick="close_error()">
+                            <ul>
+                                <?php foreach ($errors as $key => $value) : ?>
+                                    <li><?= $errors[$key] ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
                     <?php endif; ?>
 
-                    <div class="edit-des-Ubtn-section" id="edit-design">
-                        <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
-                        <label for="file-input">
-                            Upload Images
-                        </label>
+                    <div class="des-img-upload-container">
+                        <div class="des-img">
+
+                            <label id="designImage">Design Images & Design Details Pdf Document</label>
+
+                            <div class="designImage">
+
+                                <div id="images">
+                                    <img id="first-img" src="<?= ROOT ?>/assets/images/designer/No_image.jpg" alt="Design Image">
+                                    <img id="second-img" src="<?= ROOT ?>/assets/images/designer/No_image.jpg" alt="Design Image">
+                                    <img id="third-img" src="<?= ROOT ?>/assets/images/designer/No_image.jpg" alt="Design Image">
+                                </div>
+                                <div id="pdf-preview"></div>
+                                <p id="num-of-files">Number of Images Chosen: None<br><b>You need to choose three images and one pdf document</b></p>
+
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="edit-des-Dbtn-section" id="edit-design">
-                        <label onclick="location.reload();">
-                            Delete Images
-                        </label>
+                    <div class="but-img-upload-container">
+                        <div class="edit-des-Ubtn-section" id="edit-design">
+                            <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
+                            <label for="file-input"> Upload Images</label>
+                        </div>
+                        <div class="edit-des-Ubtn-section" id="edit-design">
+
+                            <input type="file" onchange="showPdfPreview()" style="display: none" name="pdfFile-input" id="pdfFile-input">
+                            <label for="pdfFile-input">Upload Pdf</label>
+                        </div>
+                        <div class="edit-des-Dbtn-section" id="edit-design">
+                            <label onclick="location.reload();">
+                                Delete Images & Pdf
+                            </label>
+                        </div>
                     </div>
 
                     <div class="des_Name">
-                        <label>Design Name: </label>
+                        <label>Design Name :</label>
                         <input type="text" name="Name" placeholder="Enter Your Design Name" class="txt">
                     </div>
 
                     <div id="description">
-                        <label>Description :</label><textarea name="Description" class="form-control"></textarea>
+                        <label>Description :</label>
+                        <textarea name="Description" class="form-control" placeholder="Design Description"></textarea>
                     </div>
 
                     <div class="add-des-btn">
@@ -61,7 +80,7 @@
         </div>
     </div>
 </body>
-
-
-</html>
+<script src="<?= ROOT ?>/assets/javascript/script.js"></script>
 <script src="<?= ROOT ?>/assets/javascript/designer/add_designs.js"></script>
+<script src="<?= ROOT ?>/assets/javascript/designer/add_pdf.js"></script>
+</html>

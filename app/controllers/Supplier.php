@@ -41,7 +41,7 @@ class supplier extends Controller
     {
 
         if (!Auth::logged_in()) {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::SupplierID();
@@ -84,5 +84,38 @@ class supplier extends Controller
             }
         }
         $this->view('supplier/profile', $data);
+    }
+
+    public function add()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $errors = [];
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $supplier = new Suppliers();
+            if($supplier->validate($_POST))
+            {
+                $supplier->insert($_POST);
+            }else{
+                $errors = $supplier->errors;
+            }
+        }
+
+        if(empty($errors))
+        {
+            echo "Supplier Added Successfully";
+        }else{
+            $stm = '';
+            foreach ($errors as $error)
+            {
+                $stm .= $error . "<br>";
+            }
+            echo $stm;
+        }
     }
 }

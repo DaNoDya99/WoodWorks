@@ -13,8 +13,8 @@ class Database
         $con = $this->connect();
 
         $statement = $con->prepare($query);
-        // show($query);
-        // show($data);
+//        show($statement);
+
         if($statement){
             $check = $statement->execute($data);
 

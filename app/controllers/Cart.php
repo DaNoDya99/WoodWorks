@@ -36,8 +36,9 @@ class Cart extends Controller
         $this->view('reg_customer/cart',$data);
     }
 
-    public function increaseQuantity($cartID,$productID,$quantity,$cost)
+    public function increaseQuantity($cartID,$orderID,$productID,$quantity,$cost)
     {
+
 
         if(!Auth::logged_in())
         {
@@ -46,13 +47,44 @@ class Cart extends Controller
 
         $cart = new Carts();
         $order_item = new Order_Items();
-        $order_item->updateQuantity($cartID,$productID,(int)$quantity + 1);
-        $cart->updateTotalAmountToIncrease($cartID,$cost);
+        $inventory = new Product_Inventory();
 
-        $this->redirect('cart');
+        $item_quantity = $inventory->getProductQuantity($productID)[0]->Quantity;
+
+        if($item_quantity > 0){
+            $data = [];
+
+            foreach ($_SESSION['cart'] as $key => $value){
+                if($value['ProductID'] == $productID){
+                    $data['OrderID'] = $value['OrderID'];
+                    $data['ProductID'] = $value['ProductID'];
+                    $data['Quantity'] = $value['Quantity'] + 1;
+                    $data['OrderDate'] = $value['OrderDate'];
+                    $data['CustomerID'] = $value['CustomerID'];
+                    $data['Cost'] = $value['Cost'];
+                    $data['CartID'] = $value['CartID'];
+                    unset($_SESSION['cart'][$key]);
+                    $_SESSION['cart'][] = $data;
+                }
+            }
+
+
+            $inventory->updateQuantityToDecrease($productID,1);
+            $order_item->updateQuantity($orderID,$productID,(int)$quantity + 1);
+            $cart->updateTotalAmountToIncrease($cartID,$cost);
+
+//            $this->redirect('cart');
+
+        }else{
+
+            echo "<div class='cat-success cat-deletion'>
+                    <h2>The quantity is not available.</h2>
+                </div>";
+
+        }
     }
 
-    public function decreaseQuantity($cartID,$productID,$quantity,$cost)
+    public function decreaseQuantity($cartID,$orderID,$productID,$quantity,$cost)
     {
         if(!Auth::logged_in())
         {
@@ -61,12 +93,38 @@ class Cart extends Controller
 
         $cart = new Carts();
         $order_item = new Order_Items();
+        $inventory = new Product_Inventory();
         if($quantity > 1){
-            $order_item->updateQuantity($cartID,$productID,(int)$quantity-1);
+
+            $data = [];
+
+            foreach ($_SESSION['cart'] as $key => $value){
+
+                if($value['ProductID'] == $productID){
+                    $data['OrderID'] = $value['OrderID'];
+                    $data['ProductID'] = $value['ProductID'];
+                    $data['Quantity'] = $value['Quantity'] - 1;
+                    $data['OrderDate'] = $value['OrderDate'];
+                    $data['CustomerID'] = $value['CustomerID'];
+                    $data['Cost'] = $value['Cost'];
+                    $data['CartID'] = $value['CartID'];
+                    unset($_SESSION['cart'][$key]);
+                    $_SESSION['cart'][] = $data;
+                }
+
+            }
+
+            $inventory->updateQuantityToIncrease($productID,1);
+            $order_item->updateQuantity($orderID,$productID,(int)$quantity-1);
             $cart->updateTotalAmountToDecrease($cartID,$cost);
+
+        }else{
+            echo "<div class='cat-success cat-deletion'>
+                    <h2>Minimum quantity reached.</h2>
+                </div>";
         }
 
 
-        $this->redirect('cart');
+//        $this->redirect('cart');
     }
 }

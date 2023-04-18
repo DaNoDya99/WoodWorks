@@ -3,9 +3,25 @@
 <body class="driver">
 <div class="driver-body">
     <?php $this->view('driver/includes/driver_header') ?>
+
+    <form method="post" action="<?=ROOT?>/driver_home/availability">
+        <select name="Availability" required onchange="this.form.submit()" class="select-available">
+            <?php
+            $arr = array("Available", "Not Available");
+
+            foreach ($arr as $value) {
+                if ($value == esc($row[0]->Availability)) {
+                    show($value);
+                    echo "<option value=$value selected>$value</option>";
+                } else {
+                    echo "<option value=$value>$value</option>";
+                }
+            }
+            ?>
+        </select>
+    </form>
+
     <div class="content dashboard">
-
-
 
         <div class="containers">
 
@@ -13,11 +29,7 @@
                 <canvas id="myPie" width="100" height="100"> </canvas>
             </div>
 
-            <!--            <div class="box" id="chart-container3"">-->
-            <!--                <canvas id="myLine" height="400" width="300"></canvas>-->
-            <!--            </div>-->
-
-            <div class="driver-tbox" onclick="location.href='<?=ROOT?>/driver_home/order';">
+            <div class="driver-tbox">
                 <h1>New Orders</h1>
                 <table class="driver-content-table">
                     <thead>
@@ -41,6 +53,25 @@
                     <?php endforeach;?>
                     </tbody>
                 </table>
+                <hr>
+                <h1>Vehicle Type</h1>
+
+                <form method="post" class="order-form" action="/woodworks/public/driver_home/index" hidden>
+                    <select name="vehicle" required onchange="this.form.submit()">
+                        <option>---- Type ---</option>
+                        <?php
+                        $arr = array("CargoVan", "BoxTruck", "MovingTruck", "FlatbedTruck");
+
+                        foreach ($arr as $value) {
+                            if ($value == $_POST['vehicle']) {
+                                echo "<option value=$value selected>$value</option>";
+                            } else {
+                                echo "<option value=$value>$value</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+                </form>
 
             </div>
 

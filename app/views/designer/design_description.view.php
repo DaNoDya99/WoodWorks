@@ -15,11 +15,10 @@
                 <div class="design-btns">
                     <button>Update</button>
 
-
                     <form action="<?=ROOT?>/designer/remove_add_design/<?=$data['design'][0]->DesignID?>" method="post">
                         <input type="submit" name="delete_btn" value="Remove">
                     </form>
-<!--                    <button>Remove</button>-->
+
                 </div>
 
             </div>
@@ -57,7 +56,6 @@
                                 <table>
                                     <tr><th>Design Name : </th><td><?=$design[0]->Name?></td></tr>
                                     <tr><th>Designer ID : </th><td><?=$design[0]->DesignerID?></td></tr>
-                                    <tr><th>Manager ID : </th><td><?=$design[0]->ManagerID?></td></tr>
                                     <tr><th>Date : </th><td><?=$design[0]->Date?></td></tr>
                                     <tr><th>Description : </th><td><?=$design[0]->Description?></td></tr>
                                 </table>
@@ -73,4 +71,4 @@
     </body>
 
     <script src="<?=ROOT?>/assets/javascript/designer/slider.js"></script>
-<!-- <?php $this->view('designer/includes/footer'); ?> -->
+

@@ -10,35 +10,28 @@
                 <div class="posts-table-container">
                 <table class="issue-table">
                     <tr>
-                        <th>Order ID</th>
+                        <th class="issue_table-head">Order ID</th>
                         <th>Problem Statement</th>
                         <th></th>
                     </tr>
+
+                    <?php if(!empty($issue)): ?>
+                        <?php foreach($issue as $data): ?>
+                            <tr>
+                                <td class="order-ID"><?= $data->OrderID ?></td>
+                                <td><?= $data->Problem_statement ?></td>
+                                <td>
+                                    <a href="<?= ROOT ?>/issue/get_issues_details/<?= $data->IssueID ?>">Details</a>
+                                    <a href="#">Response</a>
+                                </td>  
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <h1>Empty.</h1>
+                    <?php endif; ?>
                     
-                    <tr>
-                        <td>ad45afg6j2bb5hy9uhbtre</td>
-                        <td>I brought a index stool last month and its paint was gone.</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Response</a>
-                        </td>  
-                    </tr>
-                    <tr>
-                        <td>ef45afg6j2bb5hy9uhbdf</td>
-                        <td>I brought a index stool last month and its paint was gone.</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Response</a>
-                        </td>  
-                    </tr>
-                    <tr>
-                        <td>cd45afg6j2bb5hy9uhabc</td>
-                        <td>I brought a index stool last month and its paint was gone.</td>
-                        <td>
-                            <a href="#">Details</a>
-                            <a href="#">Response</a>
-                        </td>  
-                    </tr>
+                    
+                    
 
                 </table>
                 </div>

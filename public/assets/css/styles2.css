@@ -618,6 +618,7 @@ margin: 20px 0;
   width: 4.5em;
   height: 4.5em;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .dashbord-body{
@@ -803,11 +804,24 @@ margin: 20px 0;
 }
 
 .issue-table th:first-child{
-  width: 10em;
+  width: 10%;
 }
+
 
 .issue-table td{
   height: 5em;
+}
+
+.issue_table-head{
+  width:10%;
+  overflow: hidden;
+
+}
+
+.order-ID{
+  width:10em;
+  max-width: 10em;
+  overflow:hidden;
 }
 
 .posts-table-container button{
@@ -855,6 +869,14 @@ margin: 20px 0;
 
 .advertisement-popup{
   width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.advertisement-popup::-webkit-scrollbar{
+  display: none;
 }
 
 /*Chat*/
@@ -945,6 +967,14 @@ margin: 20px 0;
   -ms-overflow-style: none;
 }
 
+#contacts-1{
+
+}
+
+#contacts-2{
+
+}
+
 .contact{
   display: flex;
   align-items: center;
@@ -1013,9 +1043,14 @@ margin: 20px 0;
   margin-top: 1em;
 }
 
+#chat-manager-form{
+  visibility: hidden;
+}
+
 .send-msg form div{
   display: flex;
   justify-content: space-between;
+  padding: 0 0.5em;
 }
 
 .send-msg input{
@@ -1078,6 +1113,13 @@ margin: 20px 0;
   border-top-right-radius: 1em;
   border-bottom-left-radius: 1em;
   text-align: justify;
+}
+
+#select-contact{
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  visibility: visible;
 }
 
 /* Reports */
@@ -1232,6 +1274,7 @@ margin: 20px 0;
   background-color: #0F3D3E;
 }
 
+
 .design-reject{
   background-color: #d23542;
 }
@@ -1253,8 +1296,7 @@ margin: 20px 0;
   height: 40px;
   border-radius:5px;
   padding: 20px;
-  font-family: 'Rubik';
-
+  font-family: 'Rubik', serif;
   border: 1px solid #0F3D3E;
 }
 
@@ -1281,7 +1323,7 @@ margin: 20px 0;
   height: 40px;
   border-radius:5px;
   padding: 10px;
-  font-family: 'Rubik';
+  font-family: 'Rubik', serif;
   border: 1px solid #0F3D3E;
 
 }
@@ -1311,7 +1353,7 @@ margin: 20px 0;
   height: 40px;
   border-radius:5px;
   padding: 20px;
-  font-family: 'Rubik';
+  font-family: 'Rubik', serif;
   border: 1px solid #0F3D3E;
 }
 
@@ -1490,7 +1532,144 @@ margin: 20px 0;
   top: 0;
   background-color: white;
 }
-/*#panel{*/
-/*  display: none;*/
-/*  width: 100vw;*/
-/*}*/
+
+.refur-fur-img-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.refur-fur-img-container input{
+  display: none;
+}
+
+.refur-fur-img-container label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  width: 10em;
+  background-color: #100F0F;
+  color: #f9f9f9;
+  height: 2.5em;
+  font-family: 'Rubik' 'sans-serif' ;
+}
+
+.refur-fur-img-container img{
+  width: 10em;
+  height: 10em;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.refur-fur-img{
+  display: flex;
+}
+
+.refur-fur-img img:first-child{
+  margin-right: 1em;
+}
+
+.fields-container{
+  display: flex;
+  justify-content: space-between;
+  margin: 2em 0 1em 0;
+}
+
+.fields-left,.fields-right{
+  text-align: left;
+  width: 49%;
+  font-family: 'Rubik' 'sans-serif' ;
+}
+
+.fields-left input, .fields-right input{
+  height: 40px;
+  font-size: 1rem;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-family: 'Rubik' 'sans-serif' ;
+  padding-left: 1em;
+  width: 100%;
+}
+
+.ref-description{
+  text-align: left;
+}
+
+.ref-description textarea{
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 15em;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: 'Rubik' 'sans-serif' ;
+  background-color: #f9f9f9;
+}
+
+.ref-fur-container{
+  margin-top: 1em;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ref-fur-slider{
+  width: 49.5%;
+}
+
+.ref-fur-slider img{
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.ref-fur-primary-img{
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.ref-fur-secondary-imgs{
+  display: flex;
+  justify-content: space-between;
+  height: 35vh;
+}
+
+.ref-fur-secondary-imgs img{
+  width: 49.5%;
+  object-fit: cover;
+}
+
+.ref-fur-details{
+  width: 49.5%;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+  border-radius: 10px;
+  padding: 1em;
+  max-height: 87vh;
+}
+
+.design-card-container a{
+  text-decoration: none;
+  color: #100F0F;
+}
+
+.design-response{
+  position: absolute;
+  top: 20%;
+  width: 30%;
+  left: 35%;
+  background-color: green;
+  text-align: center;
+  color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.error{
+  background-color: rgb(183, 26, 26);
+}

@@ -44,7 +44,6 @@ class Admin extends Controller
         $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
-
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
         {
             $folder = "uploads/images/";
@@ -166,7 +165,7 @@ class Admin extends Controller
         $this->view('admin/add_employee',$data);
     }
 
-    public function inventory($id = null)
+    public function furniture($id = null)
     {
         if (!Auth::logged_in()) {
             $this->redirect('login');
@@ -188,83 +187,28 @@ class Admin extends Controller
             $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
         }
 
-        $this->view('admin/inventory',$data);
+        $this->view('admin/furniture',$data);
     }
 
-    public function add_furniture()
+    public function inventory()
     {
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
-        $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employees();
-        $category = new Categories();
-        $furniture = new Furnitures();
-        $sub_category = new Sub_Categories();
+        $inventory = new Product_Inventory();
+        $data['inventory'] = $inventory->findAll();
 
-        $data['row'] = $employee->where('EmployeeID', $id);
-        $data['title'] = "ADD FURNITURE";
+        $category = new Categories();
+        $sub_category = new Sub_Categories();
+        $supplier = new Suppliers();
+
         $data['categories'] = $category->getCategories();
         $data['sub_categories'] = $sub_category->getSubcategoryName();
+        $data['suppliers'] = $supplier->getSuppliersWithComanyName();
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if ($furniture->validate($_POST)) {
-
-                $furniture->insert($_POST);
-
-                $folder = "uploads/images/";
-                $allowedFileType = ['image/jpeg', 'image/png'];
-                if (!file_exists($folder)) {
-                    mkdir($folder, 0777, true);
-                    file_put_contents($folder . "index.php", "<?php Access Denied.");
-                    file_put_contents("uploads/index.php", "<?php Access Denied.");
-                }
-                $images = array();
-
-                if (!empty($_FILES['Images']['name']) && !empty($_FILES['PrimaryImage']['name'])) {
-
-                    if (count(array_unique($_FILES['Images']['error'])) === 1 && end($_FILES['Images']['error']) === 0 && $_FILES['PrimaryImage']['error'] === 0) {
-
-                        $flag = true;
-
-                        foreach ($_FILES['Images']['type'] as $type) {
-                            if (!in_array($type, $allowedFileType)) {
-                                $flag = false;
-                            }
-                        }
-
-                        if (!in_array($_FILES['PrimaryImage']['type'], $allowedFileType)) {
-                            $flag = false;
-                        }
-
-                        if ($flag) {
-                            for ($i = 0; $i < 2; $i++) {
-                                $destination = $folder . time() . $_FILES['Images']['name'][$i];
-                                $images[$i] = $destination;
-                                move_uploaded_file($_FILES['Images']['tmp_name'][$i], $destination);
-                            }
-                            $destination = $folder . time() . 'primary' . $_FILES['PrimaryImage']['name'];
-                            $images[2] = $destination;
-                            move_uploaded_file($_FILES['PrimaryImage']['tmp_name'], $destination);
-
-                            $furniture->insertImages($_POST['ProductID'], $images);
-                        } else{
-                            $furniture->errors['Image'] = "File type must be jpeg or png.";
-                        }
-                    }else{
-                        $furniture->errors['Image'] = "Error occurred in images.";
-                    }
-                }else{
-                    $furniture->errors['Image'] = "Select primary and secondary images.";
-                }
-            }
-
-        }
-
-        $data['errors'] = $furniture->errors;
-        $this->view('admin/add_furniture',$data);
+        $this->view('admin/inventory',$data);
     }
 
     public function suppliers()
@@ -304,10 +248,51 @@ class Admin extends Controller
 
 
         $data['row'] = $employee->where('EmployeeID',$id);
-
         $data['title'] = "SUPPLIERS";
 
+        $category = new Categories();
+        $sub_category = new Sub_Categories();
+
+        $rows = $category->getCategories();
+
+        foreach ($rows as $row)
+        {
+            $row->sub_categories = $sub_category->getSubCategoriesByCatID($row->CategoryID);
+        }
+
+        $data['categories'] = $rows;
 
         $this->view('admin/categories',$data);
     }
+
+    public function delivery()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+
+        $data['row'] = $employee->where('EmployeeID',$id);
+        $data['title'] = "DELIVERY";
+
+        $orders = new Orders();
+        $rows = $orders->getNewOrders();
+        $data = array();
+
+        if(!empty($rows))
+        {
+            foreach ($rows as $row)
+            {
+                $row->Date = explode(" ",$row->Date)[0];
+            }
+
+            $data['orders'] = $rows;
+        }
+
+
+        $this->view('admin/delivery',$data);
+    }
+
 }

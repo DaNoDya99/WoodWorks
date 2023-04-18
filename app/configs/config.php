@@ -2,6 +2,7 @@
 
 define('APPNAME','WoodWorks');
 
+
 if($_SERVER['SERVER_NAME'] == 'localhost')
 {
     define('DBHOST','localhost');

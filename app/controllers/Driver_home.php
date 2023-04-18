@@ -16,7 +16,7 @@ class Driver_home extends Controller
 
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -25,7 +25,6 @@ class Driver_home extends Controller
         $employee = new Employees();
         $data['details'] = $employee->where('EmployeeID',$id);
         $data['row']=$row = $driver->where("DriverID",$id);
-        //show($row[0]->Availability);
 
         if(empty($row[0]))
         {
@@ -35,12 +34,19 @@ class Driver_home extends Controller
 
         }
         $order = new Orders();
-//        $query = "SELECT * FROM `orders`  WHERE `DriverID` = '$id' orders by DATE desc limit 10;";
-//        $data['rows']= $rows = $order->query($query);
 
         $data['rows']= $rows = $order->findOrders('DriverID',$id);
+        if (empty($rows[0]))
+        {
+            echo "No orders";
+        }
+
+        if(isset($_POST['vehicle'])){
+            $vehicle =$_POST['vehicle'];
+            $driver->update_type($id,['Vehicle_type'=>$vehicle]);
+        }
+
         $data['title'] = "DASHBOARD";
-//        $data['availability'] = $row[0]->Availability;
 
         $this->view('driver/driver_home',$data);
 
@@ -50,7 +56,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -107,7 +113,7 @@ class Driver_home extends Controller
 
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $order = new Orders();
@@ -124,7 +130,6 @@ class Driver_home extends Controller
             $data['row'] = $order->update_status($OrderID,['Order_status'=>$status]);
         }
 
-        //$query = "SELECT OrderID,Payment_type,Total_amount,Order_status,orders.Address,Firstname,Lastname,Mobileno,orders.Date FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && `DriverID` = '$id';";//&& OrderStatus = 'Processing'
         $data['row'] = $order->displayOrders('DriverID',$id);
 
         if(isset($_GET['orders_items']))
@@ -152,8 +157,135 @@ class Driver_home extends Controller
 
         }
 
-//        $data['row'] = $order->query($query);
         $this->view('driver/order',$data);
+
+    }
+
+    public function delivered_orders($id = null)
+    {
+
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $order = new Orders();
+
+        $id = Auth::getEmployeeID();
+        $employee = new Employees();
+        $data['details'] = $row = $employee->where('EmployeeID',$id);
+        $data['title'] = "ORDERS";
+
+        $data['records1'] = $order->displayOrders('DriverID',$id);
+
+        $this->view('driver/includes/delivered_orders_table',$data);
+
+    }
+
+    public function orders_records($id = null)
+    {
+
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $order = new Orders();
+
+        $id = Auth::getEmployeeID();
+        $employee = new Employees();
+        $data['details'] = $row = $employee->where('EmployeeID',$id);
+        $data['title'] = "ORDERS";
+
+        $data['records2'] = $order->displayOrders('DriverID',$id);
+
+        if(isset($_POST['dateFilter'])){
+            $from_date = $_POST['from_date'];
+            $to_date = $_POST['to_date'];
+            $data['records2'] = $order->filterDate($from_date,$to_date);
+        }
+
+        $this->view('driver/includes/orders_records_table',$data);
+
+    }
+
+    public function upload_document($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $order = new Orders();
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if($order->validate($_POST))
+            {
+                if(!empty($_FILES["Image"]['name']))
+                {
+                    $folder = "uploads/driver/document/";
+                    if(!file_exists($folder)){
+                        mkdir($folder,0777,true);
+                        file_put_contents($folder."index.php","<?php Access Denied.");
+                        file_put_contents("uploads/index.php","<?php Access Denied.");
+                    }
+
+                    $allowedFileType = ['image/jpeg','image/png'];
+
+                    if($_FILES['Image']['error'] == 0)
+                    {
+                        if(in_array($_FILES['Image']['type'],$allowedFileType))
+                        {
+                            $destination = $folder.time().$_FILES['Image']['name'];
+                            move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
+
+                            $_POST['Image'] = $destination;
+                            $order->insert($_POST);
+                        }else{
+                            $order->errors['image'] = "This file type is not allowed.";
+                        }
+                    }else{
+                        $order->errors['image'] = "Could not upload image.";
+                    }
+                }else{
+                    $order->errors['image'] = "Please select an image.";
+                }
+            }
+        }
+
+        if(empty($order->errors))
+        {
+            echo "<div class='cat-success'>
+                    <h3>Sub Category Added Successfully.</h3>
+                  </div>";
+        }else{
+            $stm = "<div class='cat-errors''>
+                        <ul>";
+            foreach ($order->errors as $error)
+            {
+                $stm .= "<li>".$error."</li>";
+            }
+
+            $stm .= "</ul>
+                    </div>";
+
+            echo $stm;
+        }
+
+    }
+
+    public function details($id=null)
+    {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $order_items = new Order_Items();
+        $OrderID = $id;
+        $data['rows']= $order_items->where('OrderID', $OrderID);
+        $this->view('driver/order_details',$data);
 
     }
 
@@ -170,6 +302,7 @@ class Driver_home extends Controller
         $row = $driver->where("DriverID",$id);
 
         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
             if (strtolower($row[0]->Availability) == "available") {
                 //$driver->query("UPDATE driver SET Availability='Not Available' WHERE DriverID = '$id';");
                 $driver->update($id,['DriverID'=>$id,'Availability'=>"Not Available"]);
@@ -177,7 +310,7 @@ class Driver_home extends Controller
                 //$driver->query("UPDATE driver SET Availability='Available'WHERE DriverID = '$id';");
                 $driver->update($id,['DriverID'=>$id,'Availability'=>"Available"]);
             }
-
+//            $this->redirect('driver_home');
         }
         $this->redirect('driver_home');
     }
@@ -248,4 +381,36 @@ class Driver_home extends Controller
         print json_encode($data);
 
     }
+
+    public function available_drivers()
+    {
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+
+        }
+
+        $driver = new Driver();
+        $rows = $driver->availableDrivers();
+
+        $str = "<option selected>-- Assign Driver --</option>";
+
+        foreach ($rows as $row){
+            $str .= "<option value='".$row->DriverID."'>".$row->DriverID." - ".$row->Availability."</option>";
+        }
+
+        echo $str;
+    }
+
+    public function assign_driver($orderId, $driverId){
+
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+
+        }
+
+        $order = new Orders();
+        $order->assignDriver($orderId,$driverId);
+        
+    }
+
 }

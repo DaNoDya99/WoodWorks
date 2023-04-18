@@ -1,5 +1,7 @@
 <?php
 
+require '../app/services/DistanceMatrixService.php';
+
 class Home extends Controller
 {
     public function index(){
@@ -37,7 +39,6 @@ class Home extends Controller
             'customer.Firstname',
             'customer.Lastname',
             'customer.Image'
-
         ];
 
         $furniture = new Furnitures();

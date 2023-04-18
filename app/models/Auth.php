@@ -47,4 +47,22 @@ class Auth
 
         return '';
     }
+
+    public static function cartTimer($timer): void
+    {
+        if(isset($_SESSION['cart'])){
+            foreach ($_SESSION['cart'] as $key => $value){
+                if(time() - $value['OrderDate'] > $timer){
+                    $order_item = new Order_Items();
+                    $inventory = new Product_Inventory();
+                    $cart = new Carts();
+
+                    $inventory->updateQuantityToIncrease($value['ProductID'],$value['Quantity']);
+                    $order_item->removeOrderItem($value['OrderID'],$value['ProductID']);
+                    $cart->updateTotalAmountToDecrease($value['CartID'],$value['Quantity'] * $value['Cost']);
+                    unset($_SESSION['cart'][$key]);
+                }
+            }
+        }
+    }
 }
