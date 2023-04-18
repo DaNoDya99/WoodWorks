@@ -195,4 +195,12 @@ class Orders extends Model
 
         return $this->query($query, ['Is_preparing' => 0,'OrderID' => $orderId]);
     }
+
+    public function removeIncompletedOrders($id)
+    {
+        $query = "DELETE FROM $this->table WHERE CustomerID = :CustomerID && Is_preparing = :Is_preparing;";
+
+        return $this->query($query,['CustomerID' => $id, 'Is_preparing' => 1]);
+    }
+
 }
