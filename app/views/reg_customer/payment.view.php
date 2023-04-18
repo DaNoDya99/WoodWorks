@@ -59,27 +59,42 @@
         <form method="post" id="shipping-details">
             <div class="name-field">
                 <div class="field checkout-details-field">
-                    <label>First Name</label>
+                    <div class="header-error">
+                        <label>First Name</label>
+                        <span class="error font-sm" id="Firstname"></span>
+                    </div>
                     <input type="text" name="Firstname" placeholder="First Name">
                 </div>
                 <div class="field checkout-details-field">
-                    <label>Last Name</label>
+                    <div class="header-error">
+                        <label>Last Name</label>
+                        <span class="error font-sm" id="Lastname"></span>
+                    </div>
                     <input type="text" name="Lastname" placeholder="Last Name">
                 </div>
             </div>
 
             <div class="field">
-                <label>Email</label>
+                <div class="header-error">
+                    <label>Email</label>
+                    <span class="error font-sm" id="Email"></span>
+                </div>
                 <input type="email" name="Email" placeholder="Email">
             </div>
 
             <div class="field">
-                <label>Contact No</label>
+                <div class="header-error">
+                    <label>Contact No</label>
+                    <span class="error font-sm" id="Contactno"></span>
+                </div>
                 <input type="text" name="Contactno" placeholder="Contact Number">
             </div>
 
             <div class="field">
-                <label>Address</label>
+                <div class="header-error">
+                    <label>Address</label>
+                    <span class="error font-sm" id="Address"></span>
+                </div>
                 <input type="text" name="Address" placeholder="Address">
             </div>
 
