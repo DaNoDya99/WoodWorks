@@ -22,14 +22,18 @@
 
                     <div id="date-overlay" class="dropdown-content date-overlay ">
                         <p>Select Range </p>
-                        <button class="closebtn" onclick="toggleDropdown()">Close</button>
+                        <a class="closebtn" onclick="toggleDropdown()"><img style="height:20px" src="<?= ROOT ?>/assets/images/manager/xmark-solid.svg" alt=""></a>
                         <form id="form" action="">
                             <label for="date1">From</label>
                             <input name="date1" type="date" value="<?php echo date('Y-m-01'); ?>">
                             <label for="date2">To</label>
                             <input name="date2" type="date" value="<?php echo date('Y-m-d'); ?>">
-                            <input type="submit" value="Submit">
-                            <input type="reset" value="Reset">
+                            <br><br>
+                            <div class="submit-reset-buttons">
+                                <input type="submit" value="Submit">
+                                <input type="reset" value="Reset">
+                            </div>
+
                         </form>
 
                     </div>

@@ -140,6 +140,7 @@
 
 .show {
     display: flex;
+    justify-content: space-evenly;
 }
 
 #dropdown-icon {
