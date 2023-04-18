@@ -5,7 +5,11 @@ class Checkout extends Controller
 {
     public function index()
     {
+        $customer = new Customer();
+        $id = Auth::getCustomerID();
+        $data['row'] = $customer->where('CustomerID',$id);
 
+        $this->view('checkout/success',$data);
     }
 
     public function success()
