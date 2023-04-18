@@ -1,5 +1,7 @@
 <?php
 
+use Dompdf\Dompdf;
+
 class Manager extends Controller
 {
     protected $message = '';
@@ -241,6 +243,21 @@ class Manager extends Controller
         $this->view('manager/reports');
     }
 
+   public function reportCsv($reportType, $date1, $date2){
+    // exportToCsv();
+    echo $reportType;   
+    echo $date1;
+    echo $date2;
+    if($reportType == 'product_sold'){
+
+        $order = new Orders();
+        $data = $order->getDetailedProductReport($date1, $date2);
+        $filename = 'products_sold.csv';
+        exportToCsv($data, $filename);
+    }
+
+   }
+
     //reply to ajax call
     public function getReport()
     {
@@ -316,13 +333,13 @@ class Manager extends Controller
         }
     }
 
-    public function productinfo($offset)
+    public function productinfo($date1,$date2)
     {
         $order = new Orders();
         $furniture = new Furnitures();
         //get furniture count
         $data['furniturecount'] = $furniture->getFurnitureCount()[0]->count;
-        $data['detailedinfo'] = $order->getDetailedProductInfo($offset);
+        $data['detailedinfo'] = $order->getDetailedProductReport($date1,$date2);
         echo json_encode($data);
     }
 

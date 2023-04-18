@@ -51,17 +51,17 @@ class Orders extends Model
         return $this->query($query);
     }
 
-    public function getDetailedProductInfo($offset)
-    {
-        $query = "SELECT a.Name, a.ProductID,a.Cost, COALESCE(b.Quantity,0) AS Quantity, COALESCE(a.Cost * b.Quantity,0) AS Revenue, COALESCE(b.COUNT1,0) AS COUNT1, a.CategoryID, a.Availability FROM furniture a LEFT JOIN( SELECT ProductID, COUNT(OrderID) AS COUNT1, SUM(Quantity) AS Quantity FROM order_item WHERE OrderID IN(SELECT OrderID FROM orders WHERE is_preparing = 0 and Order_status = 'Completed') GROUP BY ProductID) b ON a.ProductID = b.ProductID ORDER BY `a`.`ProductID` LIMIT 5 OFFSET ". 5 * $offset - 5 . ";";
+    // public function getDetailedProductInfo($offset, $date1, $date2)
+    // {
+    //     $query = "SELECT a.Name, a.ProductID,a.Cost, COALESCE(b.Quantity,0) AS Quantity, COALESCE(a.Cost * b.Quantity,0) AS Revenue, COALESCE(b.COUNT1,0) AS COUNT1, a.CategoryID, a.Availability FROM furniture a LEFT JOIN( SELECT ProductID, COUNT(OrderID) AS COUNT1, SUM(Quantity) AS Quantity FROM order_item WHERE OrderID IN(SELECT OrderID FROM orders WHERE is_preparing = 0 and Order_status = 'Completed' and Date BETWEEN '" . $date1 . "' and '" . $date2 . "') GROUP BY ProductID) b ON a.ProductID = b.ProductID ORDER BY `a`.`ProductID` LIMIT 5 OFFSET " . 5 * $offset - 5 . ";";
 
+    //     return $this->query($query);
+    // }
+    public function getDetailedProductReport($date1, $date2)
+    {
+        $query = "SELECT a.Name, a.ProductID,a.Cost, COALESCE(b.Quantity,0) AS Quantity, COALESCE(a.Cost * b.Quantity,0) AS Revenue, COALESCE(b.COUNT1,0) AS COUNT1, a.CategoryID, a.Availability FROM furniture a LEFT JOIN( SELECT ProductID, COUNT(OrderID) AS COUNT1, SUM(Quantity) AS Quantity FROM order_item WHERE OrderID IN(SELECT OrderID FROM orders WHERE is_preparing = 0 and Order_status = 'Completed' and Date BETWEEN '" . $date1 . "' and '" . $date2 . "') GROUP BY ProductID) b ON a.ProductID = b.ProductID ORDER BY `a`.`ProductID`;";
         return $this->query($query);
     }
-
-    //get count of completed orders
-
-
-
     public function getCompletedOrders($date1, $date2)
     {
         $query = "select count(OrderID) as count from $this->table where Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2'";
