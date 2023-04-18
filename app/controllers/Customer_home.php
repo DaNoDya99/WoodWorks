@@ -178,12 +178,17 @@ class Customer_home extends Controller
                 unset($_SESSION['cart'][$key]);
             }
         }
+
+        $id = Auth::getCustomerID();
         
         $cart = new Carts();
         $order_item = new Order_Items();
         $inventory = new Product_Inventory();
+        $order = new Orders();
+        $orderId = $order->checkIsPreparing($id)[0]->OrderID;
+
         $inventory->updateQuantityToIncrease($productID,$quantity);
-        $order_item->deleteItem($cartID,$productID);
+        $order_item->removeOrderItem($orderId,$productID);
         $cart->updateTotalAmountToDecrease($cartID,$cost*$quantity);
 
         $this->redirect('cart');
