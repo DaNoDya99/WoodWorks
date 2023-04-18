@@ -384,6 +384,8 @@
                         document.getElementById('message-overlay').style.top = '-100px';
                     }, 4000);
 
+                    location.reload()
+
                 })
                 .catch(error => console.log(error));
 
