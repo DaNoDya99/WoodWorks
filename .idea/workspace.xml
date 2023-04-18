@@ -4,108 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="e5197438-7cb1-4f72-8187-8b00aa5f47bf" name="Changes" comment="">
+    <list default="true" id="7427f2a1-a53a-4924-a434-a2801b233ea3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/WoodWorks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WoodWorks.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Login.php" afterDir="false" />
-=======
-    <list default="true" id="d0736f84-0e4a-4b5e-84ed-db94d2b38740" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/javascript/product_card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/includes/product_card.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/sub_category.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/sub_category.view.php" afterDir="false" />
-=======
->>>>>>> 76b460847fadeb7c1a81f011cda449ba2f077012
->>>>>>> b5bba13dce089bd198142db070497a33cd47d167
+      <change beforePath="$PROJECT_DIR$/app/controllers/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Review.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Review.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Reviews.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Reviews.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer/review.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer/review.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/javascript/review.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/review.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="a9a9506a-9f2c-4209-931a-c8568bbeef82" />
-        <option name="url" value="https://github.com/DaNoDya99/WoodWorks.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2JRGxv9AL7XdGl6PKO4MtFU52Jb" />
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="2OaCYvFEQeVGxg6hSidFlLfbev1" />
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\WoodWorks\public\assets\images\customer" />
-    </key>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d0736f84-0e4a-4b5e-84ed-db94d2b38740" name="Changes" comment="" />
-      <created>1672033736989</created>
+      <changelist id="7427f2a1-a53a-4924-a434-a2801b233ea3" name="Changes" comment="" />
+      <created>1681789367511</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1672033736989</updated>
-      <workItem from="1672033738488" duration="11026000" />
-      <workItem from="1672677215728" duration="967000" />
-      <workItem from="1672678243567" duration="1578000" />
-      <workItem from="1672976263161" duration="79000" />
-      <workItem from="1672976366074" duration="12900000" />
-      <workItem from="1673062961324" duration="12485000" />
+      <updated>1681789367511</updated>
+      <workItem from="1681789369196" duration="10298000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

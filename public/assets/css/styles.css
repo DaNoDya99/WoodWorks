@@ -4044,3 +4044,12 @@ h2 {
 #rate-1:checked ~ span:before{
     content: "1 star";
 }
+
+.header-error{
+    display: flex;
+    align-items: center;
+}
+
+.error{
+    color: #ff0000;
+}

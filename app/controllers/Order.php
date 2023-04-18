@@ -78,18 +78,36 @@ class Order extends Controller
         }
 
         $order_item = new Order_Items();
+        $reviews = new Reviews();
+        $id = Auth::getCustomerID();
         $row = $order_item->getOrderItem($orderID,$productId)[0];
 
-        $str = "
+        $rate = $reviews->getProductRating($productId)[0]->Average;
+
+        if($rate == null){
+            $rate = 0;
+            $rating = '0.0%';
+        }else{
+            $rating = round($rate/5*100);
+            $rating = $rating.'%';
+        }
+
+
+        $str = '';
+
+        if($reviews->getProductReviews($productId,$id)){
+            $review = $reviews->getProductReviews($productId,$id)[0];
+
+            $str = "
             <h2>".$row->Name." - ".$row->ProductID."</h2>
             <div class='review-fur-img'>
                 <img src='http://localhost/WoodWorks/public/".$row->Image."' alt=''>
             <div class='current-rating'>
                 <h2>Current Ratings</h2>
-                <span>4.5</span>
+                <span>".$rate."</span>
                 <div>
                     <div class='stars-outer'>
-                        <div class='stars-inner' style='width: 80%'></div>
+                        <div class='stars-inner' style='width: ".$rating."'></div>
                     </div>
                     <span class='number-rating'></span>
                 </div>
@@ -97,28 +115,130 @@ class Order extends Controller
             <div class='your-rating'>
                 <h2>Rate Product</h2>
             
-                <div class='star-widget'>
-                    <input type='radio' name='rate' id='rate-5' value='5'>
+                <div class='star-widget'>";
+
+                if($review->Rating == 5){
+                    $str .= "
+                    <input type='radio' name='rate' id='rate-5' value='5' checked>
                     <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
-                    <input type='radio' name='rate' id='rate-4' value='4'>
+                    <input type='radio' name='rate' id='rate-4' value='4' >
                     <label for='rate-4' class='fas fa-star' onclick='setRate(4)'></label>
                     <input type='radio' name='rate' id='rate-3' value='3'>
                     <label for='rate-3' class='fas fa-star' onclick='setRate(3)'></label>
                     <input type='radio' name='rate' id='rate-2' value='2'>
                     <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
                     <input type='radio' name='rate' id='rate-1' value='1'>
-                    <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>
+                    <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
+                }else if($review->Rating == 4){
+                    $str .= "
+                    <input type='radio' name='rate' id='rate-5' value='5'>
+                    <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
+                    <input type='radio' name='rate' id='rate-4' value='4' checked>
+                    <label for='rate-4' class='fas fa-star' onclick='setRate(4)'></label>
+                    <input type='radio' name='rate' id='rate-3' value='3'>
+                    <label for='rate-3' class='fas fa-star' onclick='setRate(3)'></label>
+                    <input type='radio' name='rate' id='rate-2' value='2'>
+                    <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
+                    <input type='radio' name='rate' id='rate-1' value='1'>
+                    <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
+                }else if($review->Rating == 3){
+                    $str .= "
+                    <input type='radio' name='rate' id='rate-5' value='5'>
+                    <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
+                    <input type='radio' name='rate' id='rate-4' value='4' >
+                    <label for='rate-4' class='fas fa-star' onclick='setRate(4)'></label>
+                    <input type='radio' name='rate' id='rate-3' value='3' checked>
+                    <label for='rate-3' class='fas fa-star' onclick='setRate(3)'></label>
+                    <input type='radio' name='rate' id='rate-2' value='2'>
+                    <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
+                    <input type='radio' name='rate' id='rate-1' value='1'>
+                    <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
+                }else if($review->Rating == 2){
+                    $str .= "
+                    <input type='radio' name='rate' id='rate-5' value='5'>
+                    <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
+                    <input type='radio' name='rate' id='rate-4' value='4' >
+                    <label for='rate-4' class='fas fa-star' onclick='setRate(4)'></label>
+                    <input type='radio' name='rate' id='rate-3' value='3'>
+                    <label for='rate-3' class='fas fa-star' onclick='setRate(3)'></label>
+                    <input type='radio' name='rate' id='rate-2' value='2' checked>
+                    <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
+                    <input type='radio' name='rate' id='rate-1' value='1'>
+                    <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
+                }else if($review->Rating == 1){
+                    $str .= "
+                    <input type='radio' name='rate' id='rate-5' value='5'>
+                    <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
+                    <input type='radio' name='rate' id='rate-4' value='4' >
+                    <label for='rate-4' class='fas fa-star' onclick='setRate(4)'></label>
+                    <input type='radio' name='rate' id='rate-3' value='3'>
+                    <label for='rate-3' class='fas fa-star' onclick='setRate(3)'></label>
+                    <input type='radio' name='rate' id='rate-2' value='2'>
+                    <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
+                    <input type='radio' name='rate' id='rate-1' value='1' checked>
+                    <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
+                }
+                $str .= "
+                        </div>
+                        <span class='error' id='error-rate'></span>
+                    </div>
+                    </div>
+                    <div class='write-review'>
+                        <div class='header-error'>
+                        <h2>Write a review</h2>
+                            <span class='error' id='error-review'></span>
+                        </div>
+                        <textarea id='review' cols='30' rows='10' maxlength='1024' placeholder='Describe Your Experience...'>".$review->Reviews."</textarea>
+                    </div>
+                    <div class='review-btn-container'>
+                        <button class='review-btn' onclick='saveReview(`".$row->ProductID."`)'>Post Review</button>
+                    </div>
+                ";
+        }else {
+                $str = "
+                <h2>" . $row->Name . " - " . $row->ProductID . "</h2>
+                <div class='review-fur-img'>
+                    <img src='http://localhost/WoodWorks/public/" . $row->Image . "' alt=''>
+                <div class='current-rating'>
+                    <h2>Current Ratings</h2>
+                    <span>$rate</span>
+                    <div>
+                        <div class='stars-outer'>
+                            <div class='stars-inner' style='width: ".$rating."'></div>
+                        </div>
+                        <span class='number-rating'></span>
+                    </div>
                 </div>
-            </div>
-            </div>
-            <div class='write-review'>
-                <h2>Write a review</h2>
-                <textarea id='review' cols='30' rows='10' maxlength='1024' placeholder='Describe Your Experience...'></textarea>
-            </div>
-            <div class='review-btn-container'>
-                <button class='review-btn' onclick='saveReview()'>Post Review</button>
-            </div>
-        ";
+                <div class='your-rating'>
+                    <h2>Rate Product</h2>
+                
+                    <div class='star-widget'>
+                        <input type='radio' name='rate' id='rate-5' value='5'>
+                        <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
+                        <input type='radio' name='rate' id='rate-4' value='4'>
+                        <label for='rate-4' class='fas fa-star' onclick='setRate(4)'></label>
+                        <input type='radio' name='rate' id='rate-3' value='3'>
+                        <label for='rate-3' class='fas fa-star' onclick='setRate(3)'></label>
+                        <input type='radio' name='rate' id='rate-2' value='2'>
+                        <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
+                        <input type='radio' name='rate' id='rate-1' value='1'>
+                        <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>
+                    </div>
+                    <span class='error' id='error-rate'></span>
+                </div>
+                </div>
+                <div class='write-review'>
+                    <div class='header-error'>
+                    <h2>Write a review</h2>
+                        <span class='error' id='error-review'></span>
+                    </div>
+                    <textarea id='review' cols='30' rows='10' maxlength='1024' placeholder='Describe Your Experience...'></textarea>
+                </div>
+                <div class='review-btn-container'>
+                    <button class='review-btn' onclick='saveReview(`" . $row->ProductID . "`)'>Post Review</button>
+                </div>
+            ";
+        }
 
         echo $str;
     }
