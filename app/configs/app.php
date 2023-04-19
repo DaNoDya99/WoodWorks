@@ -5,7 +5,8 @@ class App
     protected $contoller = '_404';
     protected  $method = 'index';
     public static $page = '_404';
-    protected $timer = 10;
+
+    protected $timer = 3600;
 
     function __construct(){
         $url = $this->getURL(); //this in here represents App class
@@ -35,6 +36,12 @@ class App
 //        unset($_SESSION['cart']);
 
         Auth::cartTimer($this->timer);
+
+        $id = Auth::getCustomerID();
+        if(!empty($id)) {
+            Auth::deleteIncompleteOrders($id);
+        }
+
     }
 
     private function getURL(){

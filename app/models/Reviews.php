@@ -6,24 +6,23 @@ class Reviews extends Model
     protected $table = "ratings";
 
     protected $allowedColumns = [
-
-        'RateID',
         'Rating',
         'Reviews',
         'CustomerID',
         'ProductID'
     ];
 
-    public function getReview($fields = null,$id = null){
+    public function getReview($fields = null, $id = null)
+    {
 
         $query = "select ";
 
-        foreach ($fields as $field){
-          $query .= $field.", ";
+        foreach ($fields as $field) {
+            $query .= $field . ", ";
         }
 
-        $query = trim($query,", ");
-        $query .= " from ".$this->table." INNER JOIN customer ON ".$this->table.".CustomerID = customer.CustomerID WHERE ".$this->table.".ProductID = '$id';";
+        $query = trim($query, ", ");
+        $query .= " from " . $this->table . " INNER JOIN customer ON " . $this->table . ".CustomerID = customer.CustomerID WHERE " . $this->table . ".ProductID = '$id';";
 
         return $this->query($query);
     }
@@ -32,6 +31,27 @@ class Reviews extends Model
     {
         $query = "select Rating, Reviews, Date from $this->table where ProductID = :ProductID;";
 
-        return $this->query($query, ['ProductID'=>$id]);
+        return $this->query($query, ['ProductID' => $id]);
+    }
+
+    public function getProductReviews($productID, $customerID)
+    {
+        $query = "select Rating, Reviews, Date from $this->table where ProductID = :ProductID and CustomerID = :CustomerID;";
+
+        return $this->query($query, ['ProductID' => $productID, 'CustomerID' => $customerID]);
+    }
+
+    public function updateReview($data,$productId,$customerId)
+    {
+        $query = "update $this->table set Rating = :Rating, Reviews = :Reviews where ProductID = :ProductID and CustomerID = :CustomerID;";
+
+        $this->query($query, ['Rating' => $data['Rating'], 'Reviews' => $data['Reviews'], 'ProductID' => $productId, 'CustomerID' => $customerId]);
+    }
+
+    public function getProductRating($productID)
+    {
+        $query = "select avg(Rating) as Average from $this->table where ProductID = :ProductID;";
+
+        return $this->query($query, ['ProductID' => $productID]);
     }
 }

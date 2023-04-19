@@ -1,5 +1,8 @@
 <?php
 
+
+require '../vendor/autoload.php';
+
 class Customer_home extends Controller
 {
     public function index()
@@ -175,13 +178,23 @@ class Customer_home extends Controller
                 unset($_SESSION['cart'][$key]);
             }
         }
+
+        $id = Auth::getCustomerID();
         
         $cart = new Carts();
         $order_item = new Order_Items();
         $inventory = new Product_Inventory();
+        $order = new Orders();
+        $orderId = $order->checkIsPreparing($id)[0]->OrderID;
+
         $inventory->updateQuantityToIncrease($productID,$quantity);
-        $order_item->deleteItem($cartID,$productID);
+        $order_item->removeOrderItem($orderId,$productID);
         $cart->updateTotalAmountToDecrease($cartID,$cost*$quantity);
+
+        if(empty($order_item->getOrderItems($orderId)))
+        {
+            $order->removeIncompletedOrders($orderId);
+        }
 
         $this->redirect('cart');
     }
@@ -231,7 +244,7 @@ class Customer_home extends Controller
         $this->view('reg_customer/payment',$data);
     }
 
-    public function updateShippingDetails($orderID)
+    public function checkout($orderID)
     {
         if(!Auth::logged_in())
         {
@@ -241,8 +254,72 @@ class Customer_home extends Controller
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $order = new Orders();
+            $order_items = new Order_Items();
+            $cart = new Carts();
+            $id = Auth::getCustomerID();
+
+            $_POST['Payment_type'] = 'Card';
+            $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
+            $_POST['Delivery_method'] = 'Home Delivery';
+
             $order->update_status($orderID,$_POST);
-            echo json_encode($_POST);
+
+            $stripe =  new \Stripe\StripeClient(
+                'sk_test_51Mx3NxCIse71JEne0LK7axCWj4nwwxotGp7kDjehW2wfmvhSLgPMPkld8L6WdaAwj8CzkT4vhr801oJQ8s39YQ3100hKfDfWLG'
+            );
+
+            $coupon = $stripe->coupons->create(['percent_off' => 10, 'duration' => 'once','currency' => 'lkr']);
+
+            $items = $order_items->getOrderItems($orderID);
+
+            $line_items = [];
+
+            foreach ($items as $item)
+            {
+                $line_items[] = [
+                    'price_data' => [
+                        'currency' => 'lkr',
+                        'product_data' => [
+                            'name' => $item->Name,
+                        ],
+                        'unit_amount' => $item->Cost*100,
+                    ],
+                    'quantity' => $item->Quantity,
+                ];
+            }
+
+            $checkout_session = $stripe->checkout->sessions->create([
+
+                'shipping_address_collection' => ['allowed_countries' => ['LK']],
+
+                'shipping_options' => [
+                  [
+                    'shipping_rate_data' => [
+                      'type' => 'fixed_amount',
+                      'fixed_amount' => ['amount' => 1500, 'currency' => 'lkr'],
+                      'display_name' => 'Next day air',
+                      'delivery_estimate' => [
+                        'minimum' => ['unit' => 'business_day', 'value' => 1],
+                        'maximum' => ['unit' => 'business_day', 'value' => 1],
+                      ],
+                    ],
+                  ],
+                ],
+
+                'line_items' => $line_items,
+                'mode' => 'payment',
+
+                'discounts' => [[
+                    'coupon' => $coupon->id,
+                ]],
+
+                'success_url' => 'http://localhost/WoodWorks/public/checkout/success?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => 'http://localhost:4242/cancel',
+            ]);
+
+            $order->updateSessionID($orderID,$checkout_session->id,'unpaid');
+
+            echo json_encode($checkout_session->url);
         }
     }
 
@@ -296,6 +373,35 @@ class Customer_home extends Controller
 
         switch ($details->Order_status)
         {
+            case 'paid':
+                $str .= "
+                    <div class='prog-status-container'>
+                    <img src='http://localhost/WoodWorks/public/assets/images/customer/dollar-circle-svgrepo-com(1).svg' alt='paid'>
+                    <span>Paid</span>
+                    <img class='completed' src='http://localhost/WoodWorks/public/assets/images/customer/tick-circle-svgrepo-com.svg' alt=''>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='".$yet."' src='http://localhost/WoodWorks/public/assets/images/customer/gift-box-svgrepo-com.svg' alt='paid'>
+                        <span class='".$yet."'>Processing</span>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='".$yet."' src='http://localhost/WoodWorks/public/assets/images/customer/shipping-svgrepo-com.svg' alt='paid'>
+                        <span class='".$yet."'>Dispatched</span>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='yet-to-complete' src='http://localhost/WoodWorks/public/assets/images/customer/delivered-svgrepo-com.svg' alt='paid'>
+                        <span class='yet-to-complete'>Delivered</span>
+                    </div>
+                    <div class='line'></div>
+                    <div class='prog-status-container'>
+                        <img class='yet-to-complete' src='http://localhost/WoodWorks/public/assets/images/customer/review-like-message-svgrepo-com.svg' alt='paid'>
+                        <span class='yet-to-complete'>Review</span>
+                    </div>
+                ";
+                break;
             case 'Processing':
                 $str .= "
                     <div class='prog-status-container'>
@@ -383,11 +489,15 @@ class Customer_home extends Controller
                         ".$completed."
                     </div>
                     <div class='line ".$line."'></div>
-                    <div class='prog-status-container'>
-                        <img src='http://localhost/WoodWorks/public/assets/images/customer/review-like-message-svgrepo-com.svg' alt='paid'>
-                        <span>Review</span>
-                        ".$current."
-                    </div>
+                    
+                        <div class='prog-status-container'>
+                            <a href='http://localhost/WoodWorks/public/review/addreview/".$orderID."'>
+                                <img src='http://localhost/WoodWorks/public/assets/images/customer/review-like-message-svgrepo-com.svg' alt='paid'>
+                            </a>    
+                            <span>Review</span>
+                            ".$current."
+                        </div>
+                    
                 ";
                 break;
         }

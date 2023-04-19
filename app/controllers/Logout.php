@@ -17,6 +17,10 @@ class Logout extends Controller
             }
         }
 
+        $id = Auth::getCustomerID();
+        $orders = new Orders();
+        $orders->removeIncompletedOrders($id);
+
         Auth::logout();
 
         $this->redirect('/');

@@ -3881,3 +3881,261 @@ h2 {
 .edit-inv-fields input{
     padding-left: .5em;
 }
+
+.reviews-body-container{
+    width: 98.35%;
+    height: 90vh;
+    background-color: #c3c4a5;
+    padding: 1.5em 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-order-container, .review-order-item-container{
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 1em;
+    font-family: 'Rubik', sans-serif;
+    max-height: 75vh;
+    margin-top: 2%;
+    overflow-y: auto;
+}
+
+.review-order-container{
+    width: 30%;
+}
+
+.review-order-container h2:first-child{
+    margin-bottom: 1em;
+}
+
+.review-order-item-container{
+    width: 60%;
+}
+
+.item-image{
+    width: 6em;
+}
+
+.item-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.review-fur-img{
+    display: flex;
+    justify-content: space-around;
+    margin: 2em 0;
+    align-items: center;
+}
+
+.review-fur-img img{
+    width: 30%;
+    height: 15em;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.current-rating{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.current-rating span{
+    font-size: 3rem;
+}
+
+.your-rating{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.write-review{
+    margin: 0 2em;
+}
+
+.write-review textarea{
+    width: 98%;
+    margin: 1em 0;
+    border-radius: 10px;
+    border: 2px solid #d4d4d4;
+    padding: .5em;
+    font-size: 18px;
+    color: #414141;
+    font-family: 'Rubik', sans-serif;
+}
+
+.review-btn{
+    width: 20%;
+    border: none;
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border-radius: 7px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    height: 2em;
+}
+
+.review-btn-container{
+    display: flex;
+    justify-content: center;
+}
+
+.stars-outer {
+    position: relative;
+    display: inline-block;
+    top: -30px;
+}
+
+.stars-inner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+
+.stars-outer::before{
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #ccc;
+}
+
+.stars-inner::before{
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #f8ce0b;
+}
+.star-widget{
+    width: 80%;
+}
+.star-widget input{
+    display: none;
+}
+
+.star-widget label{
+    float: right;
+    padding: 10px;
+    color: #ccc;
+    font-size: 30px;
+}
+
+.star-widget input:not(:checked) ~ label:hover, .star-widget input:not(:checked) ~ label:hover ~ label{
+    color: #f8ce0b;
+}
+
+.star-widget input:checked ~ label{
+    color: #f8ce0b;
+}
+
+.star-widget input#rate-5:checked ~ label{
+    color: #f8ce0b;
+    text-shadow: 0 0 4px #952;
+}
+
+#rate-1:checked ~ span:before{
+    content: "1 star";
+}
+
+.header-error{
+    display: flex;
+    align-items: center;
+}
+
+.error{
+    color: #ff0000;
+}
+
+.font-sm{
+    font-size: 14px;
+}
+
+/*Invoice*/
+
+.invoice-container{
+    width: 100%;
+    height: 96vh;
+    background-color: #c3c4a5;
+    padding-top: 2em;
+}
+
+.invoice{
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    width: 50%;
+    border-radius: 15px;
+    /*height: 82vh;*/
+    padding: 1em;
+
+}
+
+.invoice-header{
+    text-align: center;
+}
+
+.invoice-header h1{
+    margin: 0;
+}
+
+.invoice-details{
+    display: flex;
+    justify-content: space-around;
+    margin: 3em 0;
+}
+
+.invoice-details h4{
+    margin: 0;
+}
+
+.invoice-details div{
+   text-align: center;
+}
+
+.invoice-summary-container{
+
+}
+
+.invoice-summary{
+    margin-top: 2em;
+    padding: 1em 3em 1em 3em;
+    background-color: #d4d4d4;
+    border-radius: 10px;
+}
+
+.invoice-detail{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: .5em;
+    margin: 1em 0;
+}
+
+.invoice-detail h4{
+    margin: 0;
+}
+
+.item-list{
+    border-bottom: 2px solid #f9f9f9;
+}
+
+.download-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.download-btn button{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 10px;
+    padding: .5em 1em;
+    font-size: 1.2rem;
+    margin-top: 2em;
+}

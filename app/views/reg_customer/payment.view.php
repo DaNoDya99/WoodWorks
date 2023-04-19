@@ -4,14 +4,35 @@
     <div class="payment-item-details">
         <div class="payment-items">
             <table>
-                <?php foreach($items as $item): ?>
-                    <tr>
-                        <td><img src="<?=ROOT?>/<?=$item->Image?>"></td>
-                        <td><?=$item->Name?></td>
-                        <td><?=$item->Quantity?></td>
-                        <td>Rs. <?=$item->Cost?>.00</td>
-                    </tr>
-                <?php endforeach; ?>
+                <?php if(!empty($items)) : ?>
+
+                    <?php foreach($items as $item): ?>
+
+                        <tr>
+                            <td><img src="<?=ROOT?>/<?=$item->Image?>" alt=""></td>
+                            <td><?=$item->Name?></td>
+                            <td><?=$item->Quantity?></td>
+                            <td>Rs. <?=$item->Cost?>.00</td>
+                        </tr>
+
+                    <?php endforeach; ?>
+
+                <?php else : ?>
+
+                    <div class="cat-response" id="response">
+                        <div class='cat-success cat-deletion'>
+                            <h2>Link Expired!</h2>
+                        </div>
+                    </div>
+
+                    <script>
+                        setTimeout(() => {
+                            window.location.href = "http://localhost/WoodWorks/public/category";
+                        },2000);
+                    </script>
+
+                <?php endif; ?>
+
             </table>
         </div>
         <div class="payment-details">
@@ -25,7 +46,9 @@
             </div>
             <div>
                 <h3>Total</h3>
-                <h3>Rs. <?=$items[0]->Total_amount?>.00</h3>
+                <?php if(!empty($items)) : ?>
+                    <h3>Rs. <?=$items[0]->Total_amount?>.00</h3>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -36,32 +59,49 @@
         <form method="post" id="shipping-details">
             <div class="name-field">
                 <div class="field checkout-details-field">
-                    <label>First Name</label>
+                    <div class="header-error">
+                        <label>First Name</label>
+                        <span class="error font-sm" id="Firstname"></span>
+                    </div>
                     <input type="text" name="Firstname" placeholder="First Name">
                 </div>
                 <div class="field checkout-details-field">
-                    <label>Last Name</label>
+                    <div class="header-error">
+                        <label>Last Name</label>
+                        <span class="error font-sm" id="Lastname"></span>
+                    </div>
                     <input type="text" name="Lastname" placeholder="Last Name">
                 </div>
             </div>
 
             <div class="field">
-                <label>Email</label>
+                <div class="header-error">
+                    <label>Email</label>
+                    <span class="error font-sm" id="Email"></span>
+                </div>
                 <input type="email" name="Email" placeholder="Email">
             </div>
 
             <div class="field">
-                <label>Contact No</label>
+                <div class="header-error">
+                    <label>Contact No</label>
+                    <span class="error font-sm" id="Contactno"></span>
+                </div>
                 <input type="text" name="Contactno" placeholder="Contact Number">
             </div>
 
             <div class="field">
-                <label>Address</label>
+                <div class="header-error">
+                    <label>Address</label>
+                    <span class="error font-sm" id="Address"></span>
+                </div>
                 <input type="text" name="Address" placeholder="Address">
             </div>
 
             <div class="checkout-btn-container">
-                <button class="checkout-btn" type="submit" onclick="saveShippingDetails(`<?=$items[0]->OrderID?>`)">Checkout</button>
+                <?php if(!empty($items)) : ?>
+                    <button class="checkout-btn" type="submit" onclick="checkout(`<?=$items[0]->OrderID?>`)">Checkout</button>
+                <?php endif; ?>
             </div>
         </form>
     </div>
@@ -168,6 +208,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="cat-response" id="response">
+
 </div>
 
 <script src="<?=ROOT?>/assets/javascript/place_order.js"></script>

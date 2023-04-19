@@ -1,11 +1,21 @@
-function decreaseQuantity(cartid,productid,quantity,cost)
+let response = document.getElementById('response');
+
+function decreaseQuantity(cartId,orderId,productid,quantity,cost)
 {
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost/WoodWorks/public/cart/decreaseQuantity/'+cartid+'/'+productid+'/'+quantity+'/'+cost , true);
+    xhr.open('POST', 'http://localhost/WoodWorks/public/cart/decreaseQuantity/'+cartId+'/'+orderId+'/'+productid+'/'+quantity+'/'+cost , true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-                window.location.reload();
+                if(xhr.response !== ''){
+                    response.innerHTML = xhr.response;
+                    setTimeout(() => {
+                        response.innerHTML = '';
+                        window.location.reload();
+                    },2000);
+                }else{
+                    window.location.reload();
+                }
             }
         }
 
@@ -13,14 +23,23 @@ function decreaseQuantity(cartid,productid,quantity,cost)
     xhr.send();
 }
 
-function increaseQuantity(cartid,productid,quantity,cost)
+function increaseQuantity(cartId,orderId,productid,quantity,cost)
 {
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost/WoodWorks/public/cart/increaseQuantity/'+cartid+'/'+productid+'/'+quantity+'/'+cost , true);
+    xhr.open('POST', 'http://localhost/WoodWorks/public/cart/increaseQuantity/'+cartId+'/'+orderId+'/'+productid+'/'+quantity+'/'+cost , true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-                window.location.reload();
+                if(xhr.response !== ''){
+                    response.innerHTML = xhr.response;
+                    setTimeout(() => {
+                        response.innerHTML = '';
+                        window.location.reload();
+                    },2000);
+                }else{
+                    window.location.reload();
+                }
+
             }
         }
 

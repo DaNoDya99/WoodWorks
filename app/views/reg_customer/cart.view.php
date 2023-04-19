@@ -13,11 +13,11 @@
                                 <div class="cart-quantity">
                                     <div>
 <!--                                        <a id="increase" href="--><?php //=ROOT?><!--/cart/decreaseQuantity/--><?php //=$row->CartID?><!--/--><?php //=$row->ProductID?><!--/--><?php //=$row->Quantity?><!--/--><?php //=$row->Cost?><!--">-->
-                                            <img src="<?=ROOT?>/assets/images/customer/minus.png" alt="Minus" onclick="decreaseQuantity('<?=$row->CartID?>','<?=$row->ProductID?>','<?=$row->Quantity?>','<?=$row->Cost?>')">
+                                            <img src="<?=ROOT?>/assets/images/customer/minus.png" alt="Minus" onclick="decreaseQuantity('<?=$row->CartID?>','<?=$row->OrderID?>','<?=$row->ProductID?>','<?=$row->Quantity?>','<?=$row->Cost?>')">
 <!--                                        </a>-->
                                         <input id="quantity" type="text" value="<?=$row->Quantity?>">
 <!--                                        <a id="decrease" href="--><?php //=ROOT?><!--/cart/increaseQuantity/--><?php //=$row->CartID?><!--/--><?php //=$row->ProductID?><!--/--><?php //=$row->Quantity?><!--/--><?php //=$row->Cost?><!--">-->
-                                            <img src="<?=ROOT?>/assets/images/customer/plus.png" alt="Plus" onclick="increaseQuantity('<?=$row->CartID?>','<?=$row->ProductID?>','<?=$row->Quantity?>','<?=$row->Cost?>')">
+                                            <img src="<?=ROOT?>/assets/images/customer/plus.png" alt="Plus" onclick="increaseQuantity('<?=$row->CartID?>','<?=$row->OrderID?>','<?=$row->ProductID?>','<?=$row->Quantity?>','<?=$row->Cost?>')">
 <!--                                        </a>-->
                                     </div>
                                 </div>
@@ -57,6 +57,10 @@
 
             </div>
         </div>
+    </div>
+
+    <div class="cat-response" id="response">
+
     </div>
 
     <script src="<?=ROOT?>/assets/javascript/cart.js"></script>
