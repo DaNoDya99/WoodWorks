@@ -265,7 +265,7 @@ class Customer_home extends Controller
             $order->update_status($orderID,$_POST);
 
             $stripe =  new \Stripe\StripeClient(
-                'sk_test_51Mx3NxCIse71JEne0LK7axCWj4nwwxotGp7kDjehW2wfmvhSLgPMPkld8L6WdaAwj8CzkT4vhr801oJQ8s39YQ3100hKfDfWLG'
+                $_ENV['STRIPE_API_KEY']
             );
 
             $coupon = $stripe->coupons->create(['percent_off' => 10, 'duration' => 'once','currency' => 'lkr']);
@@ -317,7 +317,7 @@ class Customer_home extends Controller
                 'cancel_url' => 'http://localhost:4242/cancel',
             ]);
 
-            $order->updateSessionID($orderID,$checkout_session->id,'unpaid');
+            $order->updateSessionID($orderID,Encrypt::encrypt($checkout_session->id),'unpaid');
 
             echo json_encode($checkout_session->url);
         }
