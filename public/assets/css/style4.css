@@ -601,3 +601,17 @@ hr {
     left: 20px;
     right: 20px ; */
 }
+
+.payment-type{
+    /* width: 100px; */
+    text-align: left;
+}
+
+.total-amount{
+    /* width: 100px; */
+    text-align: left;
+}
+.address{
+   
+    text-align: left;
+}

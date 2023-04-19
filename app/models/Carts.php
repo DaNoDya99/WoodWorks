@@ -59,7 +59,7 @@ class Carts extends Model
     {
         
         $query = "UPDATE `cart` SET Total_amount = Total_amount + :Cost WHERE CartID = :CartID;";
-        show($query);
+//        show($query);
 
         $this->query($query, ['CartID' => $cartID, 'Cost' => $cost]);
     }

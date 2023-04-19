@@ -121,6 +121,27 @@ class Orders extends Model
         $this->insert($data);
         return $data['OrderID'];
     }
+    public function setBillOrder()
+    {
+        $data = [
+            'OrderID' => $this->make_order_id(),
+            'Firstname' => $_SESSION['CustomerDetails'][0]->Firstname,
+            'Lastname' => $_SESSION['CustomerDetails'][0]->Lastname,
+            'Email' => $_SESSION['CustomerDetails'][0]->Email,
+            'Contactno' => $_SESSION['CustomerDetails'][0]->Mobileno,
+            'Address' => $_SESSION['CustomerDetails'][0]->Address,
+            'Payment_type' => 'Cash',
+            'Total_amount' => 0,
+            'Deliver_method' => 'Delivery',
+            'Order_status' => 'pending',
+            'DriverID' => '0',
+            'Is_preparing' => 1,
+            'CustomerID' => $_SESSION['CustomerDetails'][0]->CustomerID,
+        ];
+
+        $this->insert($data);
+        return $data['OrderID'];
+    }
 
     public function closeOrder($CustomerID, $payment_type, $total_amount, $deliver_method,)
     {
