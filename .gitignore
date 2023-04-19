@@ -1,4 +1,4 @@
 /.idea
 /.vscode
-public/.env
-/vendor
+.env
+/vendor/
