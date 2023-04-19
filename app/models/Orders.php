@@ -182,11 +182,11 @@ class Orders extends Model
         return $this->query($query,['OrderID' => $orderID, 'SessionID' => $sessionID, 'Order_status' => $status]);
     }
 
-    public function getOrderByTheSessionID($sessionId)
+    public function getOrderByTheOrderID($orderId)
     {
-        $query = "SELECT * FROM `orders` WHERE SessionID = :SessionID && Order_status = :Order_status;";
+        $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID && Order_status = :Order_status;";
 
-        return $this->query($query,['SessionID' => $sessionId, 'Order_status' => 'unpaid']);
+        return $this->query($query,['OrderID' => $orderId, 'Order_status' => 'unpaid']);
     }
 
     public function updateIsPreparing($orderId)

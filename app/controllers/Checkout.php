@@ -29,22 +29,25 @@ class Checkout extends Controller
         $data['row'] = $customer->where('CustomerID',$id);
 
         $session_id = $_GET['session_id'];
+        $order_id = $order->checkIsPreparing($id)[0]->OrderID;
+
 
         $stripe =  new \Stripe\StripeClient(
-            'sk_test_51Mx3NxCIse71JEne0LK7axCWj4nwwxotGp7kDjehW2wfmvhSLgPMPkld8L6WdaAwj8CzkT4vhr801oJQ8s39YQ3100hKfDfWLG'
+            $_ENV['STRIPE_API_KEY']
         );
 
         try {
             $session = $stripe->checkout->sessions->retrieve($session_id);
+
 
             if(!$session){
                 $this->redirect('_404');
             }
 
             $customer = $session->customer_details;
-            $cus_order = $order->getOrderByTheSessionID($session->id)[0];
+            $cus_order = $order->getOrderByTheOrderID($order_id)[0];
 
-            if(!empty($cus_order)){
+            if($session->id === Encrypt::decrypt($cus_order->SessionID)){
                 $order->updateSessionID($cus_order->OrderID,$session->id,'paid');
                 $order->updateIsPreparing($cus_order->OrderID);
                 $order_items->updateIsPurchased($cus_order->OrderID);
