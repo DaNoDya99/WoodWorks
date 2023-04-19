@@ -2107,8 +2107,8 @@ design-desc div button:hover{
 
 /*Edit sub category*/
 
-#edit-sub-cat{
-    width: 20%;
+#upl-doc{
+    width: 40%;
     position: absolute;
     top: 10%;
     left: 30%;
@@ -2118,41 +2118,42 @@ design-desc div button:hover{
     visibility: hidden;
 }
 
-#edit-sub-cat h1{
+#upl-doc h2{
     margin: 0;
     border-bottom: #d4d4d4 2px solid;
 }
 
-#edit-sub-cat form{
+#upl-doc form{
     margin-top: 1em;
     display: flex;
     justify-content: space-between;
 }
 
-.edit-cat form{
+.upload-document form{
     margin-top: 1em;
     display: flex;
     justify-content: space-between;
 }
 
-.sub-cat-img{
-    width: 20%;
+.doc-img{
+    width: 30%;
+    margin: auto 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.sub-cat-img img{
-    width: 8em;
-    height: 8em;
+.doc-img img{
+    width: 11em;
+    height: 13em;
     border-radius: 10px;
 }
 
-.sub-cat-img label input{
+.doc-img label input{
     display: none;
 }
 
-.sub-cat-img label{
+.doc-img label{
     width: 5em;
     margin-top: 1em;
     padding: .5em;
@@ -2160,10 +2161,28 @@ design-desc div button:hover{
     background-color: #100F0F;
     color: #f9f9f9;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-.edit-subcat-header{
+.edit-doc-header{
     display: flex;
+}
+
+.doc-inputs{
+    width: 65%;
+    height: 100%;
+    padding: 1em;
+    margin: auto 0;
+}
+
+.doc-form-field{
+    margin: .3em;
+}
+
+.doc-form-field p{
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+    word-break: break-all;
 }
 
 .close-btn{
@@ -2172,6 +2191,55 @@ design-desc div button:hover{
     right: 1em;
     width: 1.2em;
     height: 1.2em;
+    cursor: pointer;
+}
+
+#doc-field{
+    padding-left: .5em;
+    margin: 0;
+}
+
+.doc-form-field{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1em;
+}
+
+.doc-form-field label{
+    font-size: .9rem;
+    margin: .5em 0
+}
+
+.doc-form-field textarea{
+    border: 2px #d4d4d4 solid;
+    height: 5em;
+    border-radius: 5px;
+}
+
+.submit-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-btn button{
+    margin-top: 1.5em;
+    height: 2.5em;
+    width: 35%;
+    font-size: 1.1rem;
+    border: none;
+    color: #f9f9f9;
+    background-color: #0F3D3E;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cat-response{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    width: 20%;
 }
 
 
