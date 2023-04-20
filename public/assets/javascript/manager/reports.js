@@ -272,7 +272,6 @@ document.getElementById('form').addEventListener('submit', function (e) {
 
         })
 
-    document.getElementById("page-no").innerHTML = 1;
     var dropdownContent = document.querySelector(".dropdown-content");
     dropdownContent.classList.toggle("show");
 

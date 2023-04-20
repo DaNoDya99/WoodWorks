@@ -287,7 +287,11 @@ class Manager extends Controller
 
 
             $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
-            // show($a);
+//             show($a);
+             if(empty($a)){
+                 $a = [];
+             }
+
             $s = [];
             for ($i = 0; $i < count($labels); $i++) {
                 $s[$i] = 0;
@@ -315,6 +319,9 @@ class Manager extends Controller
 
             //     $order = new Orders();
             $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
+            if (empty($data['orders'])){
+                $data['orders'] = [];
+            }
             //     //get total amount of orders grouped by date
 
             //     $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
@@ -330,8 +337,9 @@ class Manager extends Controller
             //     //get count of completed orders
             $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
             echo json_encode($data);
-        }
+
     }
+}
 
     public function productinfo($date1,$date2)
     {
