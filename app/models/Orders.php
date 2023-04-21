@@ -23,7 +23,8 @@ class Orders extends Model
         'CustomerID',
         'DriverID',
         'Is_preparing',
-        'SessionID'
+        'SessionID',
+        'in_store'
     ];
 
     public function findOrders($column,$value)
@@ -110,6 +111,14 @@ class Orders extends Model
         return $this->query($query,['CustomerID' => $id, 'Is_preparing' => 1]);
     }
 
+    //check is preparing and in store
+    public function checkIsPreparingInStore($id)
+    {
+        $query = "select OrderID from $this->table where CustomerID = :CustomerID && Is_preparing = :Is_preparing && in_store = :in_store;";
+
+        return $this->query($query,['CustomerID' => $id, 'Is_preparing' => 1, 'in_store' => 1]);
+    }
+
     public function setOrder($id)
     {
         $data = [
@@ -137,6 +146,7 @@ class Orders extends Model
             'DriverID' => '0',
             'Is_preparing' => 1,
             'CustomerID' => $_SESSION['CustomerDetails'][0]->CustomerID,
+            'in_store' => '1'
         ];
 
         $this->insert($data);
