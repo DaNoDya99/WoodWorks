@@ -6,7 +6,7 @@ class supplier extends Controller
     public function index()
     {
         if (!Auth::logged_in()) {
-            $this->redirect('Login');
+            $this->redirect('Login2');
         }
         $orders = new CompanyOrderModel();
         $data['neworders']=$orders->getneworders();
@@ -15,7 +15,7 @@ class supplier extends Controller
     public function accepted()
     {
         if (!Auth::logged_in()) {
-            $this->redirect('Login');
+            $this->redirect('Login2');
         }
         $orders = new CompanyOrderModel();
         $data['acceptedorders']=$orders->getacceptedorders();

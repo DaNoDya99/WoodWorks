@@ -21,7 +21,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         $furniture = new Furnitures();
@@ -43,7 +43,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         if($status == 1)
@@ -63,7 +63,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -122,25 +122,26 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         $id = $id ?? Auth::getEmployeeID();
         $advertisement = new Advertisements();
-        
 
-        $employee = new Employees();
-        $data['row'] = $employee->where('EmployeeID',$id);
-        $data['title'] = "ADVERTISEMENTS";
-        $rows = $advertisement->getReFurDetails();
-
-        foreach($rows as $row)
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $row->Image = $advertisement->getDisplayImage($row->AdvertisementID)[0]->Image;
-            $row->Date = explode(" ",$row->Date)[0];
+            $_POST['ManagerID'] = $id;
+
+            if($advertisement->validate($_POST)){
+                $advertisement->insert($_POST);
+            }
+            
         }
 
-        $data['advertisements'] = $rows;
+        $employee = new Employees();
+        $data['row'] = $row = $employee->where('EmployeeID',$id);
+        $data['title'] = "ADVERTISEMENTS";
+        $data['errors'] = $advertisement->errors;
 
         $this->view('manager/advertisements',$data);
     }
@@ -149,7 +150,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -170,7 +171,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         $furniture = new Furnitures();
@@ -191,13 +192,12 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
+        
         $data['title']="ISSUES";
 
-        $issue = new Issues();
-        $data['issue'] = $issue->get_issue();
         $this->view('manager/issues',$data);
     }
 
@@ -205,21 +205,18 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         $design = new Design();
         $rows = $design->getAllUnverifiedDesigns();
         //create an object and call function using that object
-        if(!empty($rows))
-        {
-            foreach($rows as $row)
+
+        foreach($rows as $row)
         {
             $row->Date = explode(" ",$row->Date)[0];
             $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
         }
-        }
-        
 
         $data['designs'] = $rows;
         $data['title']="DESIGNS";
@@ -231,7 +228,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -257,7 +254,7 @@ class Manager extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login4');
         }
 
         // $furniture = new Furnitures();
@@ -288,40 +285,5 @@ class Manager extends Controller
 
         $this->view('manager/chat',$data);
     }
-
-    public function verify($id=null)
-    {
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-        $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employees();
-
-        $data['row'] = $employee->where('EmployeeID',$id);
-        $data['title'] = "Design Details";
-
-        $this->view('manager/verify',$data);        
-    }
-
-    public function all_designs()
-    {
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-        $designs = new Design();
-        $rows = $designs->getDesignsCardDetails();
-
-        foreach($rows as $row)
-        {
-            $row->Image = $designs->getDesignPrimaryImage($row->DesignID)[0]->Image;
-        }
-
-        $data['designs'] = $rows;
-
-        $this->view('manager/all_designs',$data);
-    }
-
 
 }

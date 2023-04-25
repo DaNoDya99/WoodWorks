@@ -1,37 +1,57 @@
 <?php $this->view('manager/includes/header') ?>
 
 <body class="manager">
-<?php $this->view('manager/includes/manager_header') ?>
-    <div class="content manager-body ">
+    <div class="manager-body">
+        <?php $this->view('manager/includes/manager_sidebar') ?>
         <div class="dashboard">
-        
+            <div class="dashboard-nav">
+                <div class="nav-item-page-name">
+                    <h1><?= $title ?></h1>
+                </div>
+                <div class="nav-item-user">
+                    <img src="<?=ROOT?>/assets/images/manager/user.png" alt="Profile picture">
+                    <div class="nav-vr"></div>
+                    <h1>Hi, <?=Auth::getFirstname()?></h1>
+                    <div class="nav-vr"></div>
+                    <a href="<?=ROOT?>/logout">
+                        <h1>Logout</h1>
+                    </a>
+                </div>
+            </div>
             <div class="posts">
                 <h1 class="post-heading">Issues</h1>
                 <div class="posts-table-container">
                 <table class="issue-table">
                     <tr>
-                        <th class="issue_table-head">Order ID</th>
+                        <th>Order ID</th>
                         <th>Problem Statement</th>
                         <th></th>
                     </tr>
-
-                    <?php if(!empty($issue)): ?>
-                        <?php foreach($issue as $data): ?>
-                            <tr>
-                                <td class="order-ID"><?= $data->OrderID ?></td>
-                                <td><?= $data->Problem_statement ?></td>
-                                <td>
-                                    <a href="<?= ROOT ?>/issue/get_issues_details/<?= $data->IssueID ?>">Details</a>
-                                    <a href="#">Response</a>
-                                </td>  
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <h1>Empty.</h1>
-                    <?php endif; ?>
                     
-                    
-                    
+                    <tr>
+                        <td>ad45afg6j2bb5hy9uhbtre</td>
+                        <td>I brought a index stool last month and its paint was gone.</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Response</a>
+                        </td>  
+                    </tr>
+                    <tr>
+                        <td>ef45afg6j2bb5hy9uhbdf</td>
+                        <td>I brought a index stool last month and its paint was gone.</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Response</a>
+                        </td>  
+                    </tr>
+                    <tr>
+                        <td>cd45afg6j2bb5hy9uhabc</td>
+                        <td>I brought a index stool last month and its paint was gone.</td>
+                        <td>
+                            <a href="#">Details</a>
+                            <a href="#">Response</a>
+                        </td>  
+                    </tr>
 
                 </table>
                 </div>

@@ -12,10 +12,10 @@
             <p>Address : </p>
         </div>
         <div>
-            <img class="footer-img" src="<?=ROOT?>/assets/images/WOODWORKS.svg" alt="">
+            <h1>WOODWORKS</h1>
         </div>
     </div>
     <div class="footer-rights">
-        <small>&copy; <?php echo date ('Y'); ?>.  All Rights Reserved. Woodworks Furniture.</small>
+        <h2>All Rights Reserved. Woodworks Furniture.</h2>
     </div>
 </footer>

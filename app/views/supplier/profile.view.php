@@ -1,5 +1,26 @@
-<?php $this->view('supplier/includes/header') ?>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/supplier/style.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/styles.css">
+
+    <STYLE>
+
+@media screen and (max-width:700px) {
+    .admin-profile-card{
+        width: 100%;
+    }
+}
+    </STYLE>
+</head>
+
+<body>
+    <?php $this->view('supplier/supplier.header', $data) ?>
     <div class="content">
 
         <div class="admin-profile-card">

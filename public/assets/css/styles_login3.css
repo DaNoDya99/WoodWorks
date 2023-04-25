@@ -1,52 +1,30 @@
 @font-face {
-    font-family: 'Rubik';
-    src: url("../fonts/Rubik/Rubik-Regular.ttf");
+    font-family: 'Ubuntu-Regular';
+    src: url("../fonts/Ubuntu/Ubuntu-Regular.ttf");
+}
+@font-face {
+    font-family: 'Handlee';
+    src: url("../fonts/Handlee/Handlee-Regular.ttf");
+}
+@font-face {
+    font-family: 'Patrick Hand';
+    src: url("../fonts/Patrick_Hand/PatrickHand-Regular.ttf");
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url("../fonts/Roboto/Roboto-Light.ttf");
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url("../fonts/Poppins/Poppins-ExtraLight.ttf");
 }
 
 @font-face {
-    font-family: 'Rubik-SemiBold';
-    src: url("../fonts/Rubik/Rubik-SemiBold.ttf");
-}
-
-@font-face {
-    font-family: 'Rubik-Bold';
-    src: url("../fonts/Rubik/Rubik-Bold.ttf");
-}
-
-@font-face {
-    font-family: 'Rubik-Black';
-    src: url("../fonts/Rubik/Rubik-Black.ttf");
-}
-
-@font-face {
-    font-family: 'Rubik-Italic';
-    src: url("../fonts/Rubik/Rubik-Italic.ttf");
-}
-
-@font-face {
-    font-family: 'Rubik-Medium';
-    src: url("../fonts/Rubik/Rubik-Medium.ttf");
-}
-
-@font-face {
-    font-family: 'Rubik-Light';
-    src: url("../fonts/Rubik/Rubik-Light.ttf");
-}
-
-@font-face {
-    font-family: 'Rubik-Thin';
-    src: url("../fonts/Rubik/Rubik-Thin.ttf");
-}
-
-@font-face {
-    font-family: 'Rubik-ExtraBold';
-    src: url("../fonts/Rubik/Rubik-ExtraBold.ttf");
+    font-family: 'Poppins-Light';
+    src: url("../fonts/Poppins/Poppins-Light.ttf");
 }
 
 /* Login Page for Designer and Driver*/
-body{
-    font-family: 'Rubik' !important;
-}
 .bdy{
     margin: 0px;
     padding: 0px;
@@ -73,7 +51,7 @@ body{
     margin-left: 10px;
     color: #f9f9f9;
     filter:drop-shadow(0px 0px 5px #100F0F);
-    font-family: 'Rubik';
+    font-family: Poppins-SemiBold, sans-serif;
     font-size: 1.8vw;
 }
 
@@ -103,7 +81,7 @@ body{
     box-sizing: border-box;
     outline: none;
     border: none;
-    font-family: 'Rubik';
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .login3-inputBox2 {
@@ -123,7 +101,7 @@ body{
     box-sizing: border-box;
     outline: none;
     border: none;
-    font-family: 'Rubik';
+    font-family: 'Ubuntu', sans-serif;
 
 }
 .login3-inputBox2 img{
@@ -158,7 +136,7 @@ body{
 .login3-form a{
     text-decoration: none;
     color: greenyellow;
-    font-family: 'Rubik';
+    font-family: 'Ubuntu', sans-serif;
     padding: 10px;
     transition: 0.5s;
     display: block;
@@ -181,21 +159,6 @@ body{
     border: 1px solid #f5c6cb;
 }
 
-.close-error {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-}
-
-.signup-error {
-    text-align: left;
-    font-size: 12px;
-    padding: 0 10px;
-}
-
 /*DriverModel dashboard, Designer dashboard and sidebars*/
 .driver, .designer{
     height: 100vh;
@@ -206,18 +169,80 @@ body{
 .driver-body, .designer-body{
     display: flex;
     flex-direction: row;
-    justify-content: center;
 }
 
 .sidebar {
     width: 20%;
     height: 100vh;
     background-color: #203330;
-
+    filter: drop-shadow(0px 0px 5px #0F3D3E);
 }
 
 .dashboard{
     width: 80%;
+}
+
+.sidebar-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.sidebar-header-img{
+    width: 25%;
+    height: 25%;
+    border-radius: 50px;
+    filter: drop-shadow(0px 0px 5px #100F0F);
+}
+
+.sidebar-header-name{
+    margin-left: 10px;
+    color: #f9f9f9;
+    filter: drop-shadow(0px 0px 5px #100F0F);
+    font-family: Poppins-SemiBold , sans-serif;
+    font-size: 1.8vw;
+}
+
+.sidebar-body{
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-items{
+    text-align: center;
+    position: absolute;
+    list-style: none inside none;
+    top: 20%;
+    width: 80%;
+    padding-right: 1em;
+}
+
+.sidebar-item{
+    background-color: #455452;
+    text-align: unset;
+    width: 90%;
+    padding: 1em 0;
+    margin-top: .5em;
+    border-radius: 10px;
+}
+
+.sidebar-item h3{
+    font-family: Poppins-SemiBold , sans-serif;
+    font-weight: 700;
+    color: #f9f9f9;
+    filter: drop-shadow(0px 0px 3px #100F0F);
+    font-size: 1vw;
+    transition: 0.5s;
+}
+
+.sidebar-item h3:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.sidebar-item a{
+    text-decoration: none;
 }
 
 .dashboard-nav {
@@ -239,7 +264,7 @@ body{
 }
 
 .nav-item-page-name h1{
-    font-family: 'Rubik-SemiBold';
+    font-family: Poppins-SemiBold , sans-serif;
     font-size: 1.2vw;
 }
 
@@ -250,7 +275,7 @@ body{
 }
 
 .nav-item-user h1{
-    font-family: 'Rubik-SemiBold';
+    font-family: Poppins-SemiBold , sans-serif;
     font-size: 1.2vw;
 }
 
@@ -266,7 +291,7 @@ body{
 }
 
 .dashboard-body{
-    padding: 30px 15px 0;
+    padding: 50px 15px 0;
     display: flex;
 }
 
@@ -281,10 +306,7 @@ body{
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
-    font-family: 'Rubik-SemiBold';
-    position: absolute;
-    right: 380px;
-    top: 20px;
+    font-family: 'Poppins-SemiBold' , sans-serif;
 }
 
 .select-available:focus,
@@ -297,28 +319,21 @@ body{
     background: #f9f9f9;
     font-weight: bold;
     border-radius: 0px;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Poppins-SemiBold' , sans-serif;
 }
 
 .driver-tbox{
-    width: 30%;
+    width: 25%;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Poppins-SemiBold' , sans-serif;
     max-height: 80vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     float: right;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.driver-tbox::-webkit-scrollbar{
-    display: none;
 }
 
 .driver-tbox table{
@@ -360,12 +375,12 @@ body{
 }
 
 .driver-content-table tbody tr{
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     word-break: break-all;
 }
 
 .orders-table-rows{
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
 }
 
 .orders-table-rows img{
@@ -388,7 +403,7 @@ body{
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Rubik';
+    font-family: 'Poppins-SemiBold' , sans-serif;
     max-height: 80vh;
     display: flex;
     flex-direction: column;
@@ -431,12 +446,12 @@ body{
 }
 
 .designer-content-table tbody tr{
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     word-break: break-all;
 }
 
 .designs-table-rows{
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
 }
 
 .designs-table-rows img{
@@ -461,10 +476,10 @@ body{
     background-color: #f9f9f9;
     margin: 0 auto;
     text-align: center;
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    padding: 1em 0;
-    /*padding: 3px;*/
+    /*padding: 1em 0;*/
+    padding: 3px;
 }
 
 .driver-profile-card hr{
@@ -505,11 +520,6 @@ body{
     padding-right: 6em;
 }
 
-.driver-popup{
-    width:35%;
-    top: 5%;
-}
-
 
 /*Designer profile page*/
 .designer-profile-card{
@@ -519,9 +529,10 @@ body{
     background-color: #f9f9f9;
     margin: 0 auto;
     text-align: center;
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    padding: 1em 0;
+    /*padding: 1em 0;*/
+    padding: 3px;
 }
 
 .designer-profile-card hr{
@@ -562,11 +573,6 @@ body{
     padding-right: 6em;
 }
 
-.designer-popup{
-    width:35%;
-    top: 5%;
-}
-
 
 /* profile edit page */
 
@@ -579,7 +585,7 @@ body{
     height: 50px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     font-weight: bolder;
     font-size: 1vw;
     background-color: #100F0F;
@@ -594,7 +600,7 @@ body{
     border-radius: 10px;
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 60%;
     transform: translate(-50%, -50%) scale(0.1);
     text-align: center;
     padding:0 30px 30px;
@@ -704,21 +710,17 @@ body{
 
 .tbox{
 
+    /*width: 100% ;*/
+    /*height: auto;*/
+    /*background: #ffffff;*/
     width: 85%;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Poppins-SemiBold' , sans-serif;
     max-height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.tbox::-webkit-scrollbar {
-    display: none;
 }
 
 .orders_view_header{
@@ -736,7 +738,7 @@ body{
 
 .order-form input{
     border: 2px solid #d2d2d2;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Poppins-SemiBold' , sans-serif;
     width: 20em;
     border-radius: 3px;
     padding: 0 0 0 1em;
@@ -749,7 +751,7 @@ body{
     background-color: #f9f9f9;
     font-size: 1rem;
     padding: 0 0 0 1em;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Poppins-SemiBold' , sans-serif;
     color: #787878;
 }
 
@@ -778,11 +780,13 @@ body{
 }
 
 .content-table{
+    /*border-collapse: collapse;*/
     margin: 25px 0;
     font-size: 0.9em;
     min-width: 400px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
+    /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
     overflow-y: scroll;
     max-height: 70vh;
 
@@ -807,8 +811,17 @@ body{
 }
 
 .content-table tbody tr{
-    font-family: 'Rubik';
+    /*border-bottom: 1px solid #dddddd;*/
+    font-family: 'Poppins-Light', sans-serif;
 }
+
+/*.content-table tbody tr:nth-of-type(even){*/
+/*    background-color: #D3D3D3;*/
+/*}*/
+
+/*.content-table tbody tr:last-of-type{*/
+/*    border-bottom: 2px solid #203330;*/
+/*}*/
 
 .select{
     padding: 8px 12px;
@@ -830,114 +843,6 @@ body{
     background: #262626;
 }
 
-.order-btn-sec{
-    text-align: center;
-}
-
-.order-btn-sec button{
-    width: 75px;
-    height: 30px;
-    margin: 0;
-    border: solid 2px #e2dcc8;
-    border-radius: 7px;
-    font-family: 'Rubik';
-    font-weight: bolder;
-    font-size: 0.8vw;
-    background-color: #100F0F;
-    color: #ffffff;
-    margin: 20px 0;
-    cursor: pointer;
-}
-
-/* Order Details View */
-
-.popups{
-    width: 60%;
-    margin: 1em auto;
-    padding: 1em 2em;
-    background-color: #f9f9f9;
-    border-radius: 20px;
-    font-family: 'Rubik-SemiBold';
-    max-height: 80vh;
-    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    border-collapse: collapse;
-}
-
-.popups::-webkit-scrollbar {
-    display: none;
-}
-
-.popups-heading{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 2px solid #d2d2d2;
-    padding: 1em 0;
-    /*position: sticky;!* Make the heading sticky *!*/
-    /*top: 0; !* Set the position to the top *!*/
-    /*z-index: 1; !* Make sure the heading appears on top of the other elements *!*/
-}
-
-.popups-heading h2{
-    font-size: 30px;
-    font-weight: 500;
-    padding-left: 20px;
-    margin:0;
-}
-
-.popups-heading img {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-.popups table{
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.details-table{
-    margin: 0;
-    width: 100%;
-    font-size: 0.9em;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    overflow-y: scroll;
-    max-height: 70vh;
-
-}
-
-.details-table thead tr{
-    color: black;
-    text-align: center;
-    font-weight: bold;
-    border-bottom: 2px solid #d2d2d2;
-}
-
-
-.details-table tbody tr td{
-    width: 20%;
-    word-break: break-word;
-}
-
-.details-table th,
-.details-table td{
-    padding: 10px 15px;
-    text-align: center;
-}
-
-.details-table td img{
-    width: 350px;
-    height: 200px;
-}
-
-.details-table tbody tr{
-    font-family: 'Rubik';
-}
 
 /* Driver Availability */
 
@@ -1133,67 +1038,42 @@ body{
 
 /* Designer-Add New Designs Page*/
 
-.des-form-body{
+.des-form-body form{
     width: 70%;
-    background-color: #f9f9f9;
+    height: 80%;
     margin: 1em auto;
-    padding: 1em 1.5em;
-    border-radius: 15px;
-    font-family: 'Rubik', sans-serif;
-    max-height: 80vh;
-    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
-
-}
-
-.des-form-body h1{
-    margin: 0;
-    border-bottom: #cacaca 2px solid;
-}
-
-.add-des-form{
-    padding: 1em 0;
-    max-height: 70vh;
-    width: 100%;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.add-des-form::-webkit-scrollbar {
-    display: none;
-}
-
-.des-img-upload-container{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
+    max-height: 700px;
+    max-width: 90%;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 5px;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    background: #f9f9f9;
 }
 
 #designImage{
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     font-weight: bold;
     font-size: 15px;
     display: flex;
-    /*height: 5%;*/
-    padding-top: 5px;
+    height: 5%;
     justify-content: center;
-    padding-bottom: 10px;
 }
 
 .designImage{
     height: 100%;
     width: 90%;
+    /*display: flex;*/
+    /*flex-direction: column;*/
     justify-content: center;
-    padding-bottom: 10px;
 }
 
 .designImage p{
-    padding-top: 10px;
-    margin-top: 5px;
     text-align: center;
-    font-family: 'Rubik', sans-serif;
-    /*font-weight: bold;*/
-    padding-left: 70px;
+    font-weight: bold;
 }
 
 #images{
@@ -1208,9 +1088,9 @@ body{
 }
 
 .designImage img{
-    width: 10em;
-    height: 7em;
-    border-radius: 10px;
+    justify-content: center;
+    height: 150px;
+    width: 100px;
     max-height: 210px;
     max-width: 210px;
     object-fit: cover;
@@ -1221,31 +1101,27 @@ body{
     flex-direction: row;
 }
 
-.designImage img:nth-child(2) {
-    margin: 0 .5em;
-}
-
 .des_Name{
-    margin: auto;
-    height: 25%;
-    width: 55%;
+    width: 475px;
+    display: flex;
+    align-items: center;
 }
 
 .des_Name label{
     font-weight: bold;
-    /*margin-right: 0.5em;*/
 }
 
 .des_Name input{
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    width: 70%;
+    height: 36px;
     border-radius: 5px;
-    font-family: 'Rubik', sans-serif;
-    background-color: #f9f9f9;
-    padding:0 10px;
-    margin-top: 0px;
+    background: #ffffff;
+    align-items: center;
+    margin-left: 10px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    font-weight: bold;
+
 }
 
 figure{
@@ -1265,21 +1141,20 @@ figcaption{
 }
 
 .edit-des-Ubtn-section{
-    height: 2em;
-    width: 25%;
+    height: 3%;
+    width: 20%;
     margin: auto;
     padding: 5px;
     cursor: pointer;
-    font-family: 'Rubik-SemiBold';
-    font-size: 1.1rem;
+    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-size: 1vw;
     background: #104f4a;
     border-radius: 5px;
     align-items: center;
-    color: #f9f9f9;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .edit-des-Ubtn-section label{
     cursor: pointer;
@@ -1289,17 +1164,17 @@ figcaption{
 }
 
 .edit-des-Dbtn-section{
-    height: 2em;
-    width: 25%;
+    height: 3%;
+    width: 20%;
     cursor: pointer;
     margin: auto;
     padding: 5px;
-    font-family: 'Rubik-SemiBold';
-    font-size: 1.1rem;
+    font-family: 'Poppins-SemiBold' , sans-serif;
+    font-size: 1vw;
     background: #721c24;
     border-radius: 5px;
     align-items: center;
-    color: #f9f9f9;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
 }
@@ -1316,21 +1191,15 @@ figcaption{
     width: 55%;
 }
 #description label{
-    font-family: 'Rubik';
+    font-family: 'Poppins-SemiBold' , sans-serif;
     font-weight: bold;
     font-size: 15px;
     justify-content: center;
 }
 
-#description textarea{
-    border: 1px solid #ccc;
-    height: 8em;
+.form-control{
     width: 100%;
-    font-size: 16px;
-    border-radius: 5px;
-    padding: 10px;
-    font-family: 'Rubik', sans-serif;
-    background-color: #f9f9f9;
+    height: 50px;
 }
 
 .add-des-btn{
@@ -1346,7 +1215,7 @@ figcaption{
     height: 50px;
     border: solid 2px #e2dcc8;
     border-radius: 7px;
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     font-weight: bolder;
     font-size: 1vw;
     background-color: #100F0F;
@@ -1367,7 +1236,7 @@ figcaption{
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-family: 'Rubik';
+    font-family: 'Poppins', sans-serif;
     padding-left: 20px;
     text-decoration: none;
     color: black;
@@ -1388,7 +1257,7 @@ figcaption{
 .footer{
     background-color: #0F3D3E;
     color: #e2dcc8;
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     padding: 1%;
 }
 
@@ -1412,7 +1281,7 @@ figcaption{
 
 .des_category-body{
     text-align: center;
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     background-color: #E0E0CE;
     padding: 3em 0;
     /*border: 1px solid white;*/
@@ -1425,7 +1294,7 @@ figcaption{
 }
 
 .des_category-body h1 {
-    font-family: 'Rubik';
+    font-family: 'Poppins-SemiBold' , sans-serif;
     font-size: 3rem;
     font-weight: bolder;
     /*text-shadow: 2px 2px #007148;*/
@@ -1456,7 +1325,6 @@ figcaption{
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     margin: 0 2em 2em 2em;
     border-radius: 10px;
-    padding-bottom: 10px;
 }
 
 .des_category-card:hover {
@@ -1473,15 +1341,13 @@ figcaption{
 
 .des_category-card p{
     margin: 0;
-    padding-left: 75px;
-
 }
 
 .pagination ul{
     display: flex;
     list-style: none;
     justify-content: center;
-    font-family: 'Rubik';
+    font-family: 'Poppins-SemiBold' , sans-serif;
 }
 
 .pagination li {
@@ -1522,7 +1388,7 @@ figcaption{
 
 .design-view{
     background-color: #E2E2CF;
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     padding: 2em 0;
     display: flex;
     flex-direction: row;
@@ -1654,7 +1520,7 @@ figcaption{
 }
 
 .design-detail td{
-    /*font-family: 'Rubik';*/
+    /*font-family: 'Poppins-SemiBold' , sans-serif;*/
     word-break: break-word;
     padding-bottom: 5px;
     width:62%;
@@ -1663,7 +1529,7 @@ figcaption{
 .design-desc div button{
     width: 70%;
     height: 2.5rem;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Poppins-SemiBold' , sans-serif;
     font-size: 1.2rem;
     background-color: #2b7358;
     border-radius: 5px;
@@ -1739,27 +1605,11 @@ design-desc div button:hover{
 .design-btns button{
     border-radius: 6px;
     border: unset;
-    font-family: 'Rubik';
+    font-family: 'Poppins-Light', sans-serif;
     font-weight: bold;
     color: white;
     margin-right: 10px;
     cursor: pointer;
-}
-
-.design-btns input{
-    border-radius: 6px;
-    border: unset;
-    font-family: 'Rubik';
-    font-weight: bold;
-    color: white;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.design-btns input:last-child{
-    background: #E64848;
-    width: 70px;
-    height: 40px;
 }
 
 .design-btns button:first-child{
@@ -1773,226 +1623,4 @@ design-desc div button:hover{
     background: #E64848;
     width: 70px;
     height: 40px;
-}
-
-.chat{
-    display: flex;
-    width: 90%;
-    margin: 1em auto;
-    border-radius: 10px;
-    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
-}
-
-.chats{
-    background-color: #0F3D3E;
-    width: 30%;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-    height: 85vh;
-}
-
-.chat-contact{
-    background-color: #c2d2d0;
-    width: 70%;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.chats h1{
-    color: #f9f9f9;
-    margin-left: 1em;
-}
-
-.chats input{
-
-    height: 2.5em;
-    border: none;
-    border-radius: 5px;
-    width: 90%;
-    padding-left: .5em;
-}
-
-.chats-search{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1em;
-}
-
-.chats form button {
-    height: 34px;
-    width: 34px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    margin-left: .5em;
-}
-
-.chats form button img{
-    width: 20px;
-    height: 20px;
-}
-
-.chat-owner-details{
-    display: flex;
-    margin: 1em;
-}
-
-.chat-owner-details img{
-    width: 4.5em;
-    height: 4.5em;
-    border-radius: 50%;
-}
-
-.chat-owner-details h2, .chat-owner-details h3{
-    margin: 0;
-    padding-left: .5em;
-    color: #f9f9f9;
-    font-weight: lighter;
-}
-
-.chat-owner-details h3{
-    margin-left: .5em;
-}
-
-.contacts{
-    margin: 1em;
-    max-height: 65vh;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-}
-
-.contact{
-    display: flex;
-    align-items: center;
-    background-color: #c2d2d0;
-    padding: .3em 1em;
-    border-radius: 10px;
-    margin-top: .4em;
-    cursor: pointer;
-}
-
-.contact img{
-    width: 4em;
-    height: 4em;
-    border-radius: 50%;
-    opacity: 100%;
-}
-
-.contact-latest{
-    margin-left: .5em;
-    width: 100%;
-}
-
-.contact-latest div:first-child{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.contact-latest div:first-child h3{
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.contact-latest div:nth-child(2){
-    display: flex;
-    justify-content: space-between;
-}
-
-.contact-latest div:nth-child(2) span{
-    width: 1.5em;
-    height: 1.5em;
-    background-color: #65a299;
-    border-radius: 50%;
-    text-align: center;
-}
-
-.chat-msg-header{
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid #ffffff;
-}
-
-.chat-msg-header img{
-    width: 4em;
-    height: 4em;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 1em;
-}
-
-.chat-messages{
-    margin: 1em;
-}
-
-.send-msg{
-    margin-top: 1em;
-}
-
-.send-msg form div{
-    display: flex;
-    justify-content: space-between;
-}
-
-.send-msg input{
-    border: none;
-    border-radius: 10px;
-    padding-left: 1em;
-    width: 95%;
-    height: 3em;
-}
-
-.send-msg button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3em;
-    height: 3em;
-    border-radius: 50%;
-}
-
-.send-msg button img{
-    width: 3.5em;
-}
-
-.chat-msg-container {
-    margin-top: .3em;
-    height: 67vh;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-}
-
-.chat-msg-container::-webkit-scrollbar{
-    display: none;
-}
-
-.sending, .incoming{
-    margin: .5em;
-    padding: .5em;
-}
-
-.sending p:last-child,.incoming p:last-child{
-    text-align: right;
-    font-size: .8rem;
-    padding-right: .5em;
-}
-
-.sending{
-    max-width: 45%;
-    margin-left: 55%;
-    background-color: #ffffff;
-    border-top-left-radius: 1em;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
-    text-align: justify;
-}
-
-.incoming{
-    max-width: 45%;
-    background-color: #e5f4f4;
-    border-bottom-right-radius: 1em;
-    border-top-right-radius: 1em;
-    border-bottom-left-radius: 1em;
-    text-align: justify;
 }

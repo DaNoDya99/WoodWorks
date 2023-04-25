@@ -55,28 +55,21 @@
                 </a>
                 <span class="tooltip">Employees</span>
             </li>
-            <li>
-                <a href="<?= ROOT ?>/admin/furniture">
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chair-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
-                        Furniture</span>
-                </a>
-                <span class="tooltip">Furniture</span>
-            </li>
-            <li>
-                <a href="<?= ROOT ?>/admin/delivery">
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/free_icon_1.svg" style="" alt="" srcset=""> </div><span class="link-name">
-                        Deliveries</span>
-                </a>
-                <span class="tooltip">Deliveries</span>
-            </li>
 
             <li>
-                <a href="<?= ROOT ?>/admin/add_furniture">
-
+                <a href="<?= ROOT ?>/admin/inventory">
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/warehouse-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Inventory</span>
                 </a>
                 <span class="tooltip">Inventory</span>
+            </li>
+            <li>
+                <a href="<?= ROOT ?>/admin/add_furniture">
+
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chair-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                        Add Furniture</span>
+                </a>
+                <span class="tooltip">Add Furniture</span>
             </li>
             <li>
                 <a href="<?= ROOT ?>/admin/suppliers">
@@ -87,12 +80,12 @@
                 <span class="tooltip">Suppliers</span>
             </li>
             <li>
-                <a href="<?= ROOT ?>/admin/categories">
+                <a href="<?= ROOT ?>/admin/chat">
 
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/category-variety-random-shuffle-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
-                        Product Categories</span>
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chat-circle-plain-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                        Chat</span>
                 </a>
-                <span class="tooltip">Categories</span>
+                <span class="tooltip">Chat</span>
             </li>
             <li>
                 <a href="<?= ROOT ?>/admin/profile">

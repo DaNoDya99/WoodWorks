@@ -24,7 +24,6 @@
                 </a>
             </li>
 
-
             <li class="sidebar-item">
                 <a href="<?=ROOT?>/designer/profile">
                     <h3>PROFILE</h3>

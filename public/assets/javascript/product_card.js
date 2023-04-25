@@ -1,4 +1,12 @@
+let discount = document.querySelectorAll(".product-card-discount p");
 
-let productID = document.querySelectorAll('#PID')
+for(let i = 0; i < discount.length; i++)
+{
+    discount[i].click();
+    console.log(discount[i].innerHTML);
+}
 
-console.log(productID[0].getAttribute('href'));
+function calDiscount()
+{
+    document.querySelector(".product-card-details h3").innerHTML = "Rs. 150.00";
+}

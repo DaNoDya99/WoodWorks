@@ -1,46 +1,35 @@
-<a href="<?=ROOT?>/home/product/<?=$row->ProductID?>">
 <div class="product-card">
-    <?php if (!empty($row->Discount_percentage)) : ?>
+    <?php if(!empty($row->Discount_percentage)): ?>
         <div class="product-card-discount">
-            <p><?= $row->Discount_percentage ?>% Discount</p>
+            <p><?=$row->Discount_percentage?>% Discount</p>
         </div>
     <?php endif; ?>
     <div class="product-card-img">
-        <img src="<?= ROOT ?>/<?= $row->Image ?>" alt="Product Image">
+        <img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image">
     </div>
-    <div class="card-pair">
+    <div>
+        <h2><?=$row->Name?></h2>
         <div class="product-card-details">
-            <div class="rating">
-                5.0 &nbsp;
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
+            <h3>Rs. <?=$row->Cost?>.00</h3>
+            <div>
+                <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                <h3>5.0</h3>
             </div>
-
-            <?php if (isset($row->Sub_category_name)) : ?>
-                <h2 class="catergory"><?= $row->Sub_category_name ?></h2>
-            <?php endif ?>
-            <h2><?= $row->Name ?></h2>
-
-            <?php if(!empty($row->Discount_percentage)): ?>
-                <h3 class="cost line-through">Rs. <?= $row->Cost ?>.00</h3>
-                <h4>Rs. <?= $row->Cost*(100 - $row->Discount_percentage)/100 ?>.00</h4>
-            <?php else: ?>
-                <h3 class="cost">Rs. <?= $row->Cost ?>.00</h3>
-            <?php endif; ?>
 
         </div>
         <div class="product-card-buttons">
-            <a class="product-btn-link" href="<?= ROOT ?>/login">
-                <img src="<?= ROOT ?>/assets/images/customer/shopping-cart.png" alt="Cart Image">
+            <a href="<?=ROOT?>/home/product/<?=$row->ProductID?>">
+                <button>More Details</button>
             </a>
-            <a class="product-btn-link" href="<?= ROOT ?>/login">
-                <img src="<?= ROOT ?>/assets/images/customer/heart.svg" alt="Heart Image">
+            <a href="<?=ROOT?>/login">
+                <img src="<?=ROOT?>/assets/images/customer/shopping-cart.png" alt="Cart Image">
             </a>
         </div>
     </div>
 
 </div>
-</a>
+

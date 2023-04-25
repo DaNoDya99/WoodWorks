@@ -1,13 +1,3 @@
-<?php
-$cost = '';
-if (!empty($furniture[0]->Discount_percentage))
-{
-    $cost = $furniture[0]->Cost*(100 - $furniture[0]->Discount_percentage)/100;
-} else {
-    $cost = $furniture[0]->Cost;
-}
-?>
-
 <?php $this->view('includes/header',$data); ?>
 
 <div class="product-view">
@@ -34,17 +24,7 @@ if (!empty($furniture[0]->Discount_percentage))
         </div>
         <div class="product-desc">
             <h2><?=$furniture[0]->Name?></h2>
-
-            <?php if(!empty($furniture[0]->Discount_percentage)) : ?>
-                <div class="product-discount"><h2>Discount: <?=$furniture[0]->Discount_percentage?>%</h2></div>
-                <div class="product-costs">
-                    <h1 class="line-through">Rs. <?=$furniture[0]->Cost?>.00</h1>
-                    <h1>Rs. <?= $furniture[0]->Cost*(100 - $furniture[0]->Discount_percentage)/100 ?>.00</h1>
-                </div>
-            <?php else: ?>
-                <h1>Rs. <?=$furniture[0]->Cost?>.00</h1>
-            <?php endif; ?>
-
+            <h1>Rs. <?=$furniture[0]->Cost?>.00</h1>
             <p>Wood Type : <?=$furniture[0]->Wood_type?></p>
             <p><?=$furniture[0]->Description?></p>
             <div class="product-details">

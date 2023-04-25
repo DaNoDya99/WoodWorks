@@ -16,7 +16,7 @@ class Driver_home extends Controller
 
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login3');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -50,7 +50,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login3');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -107,7 +107,7 @@ class Driver_home extends Controller
 
         if(!Auth::logged_in())
         {
-            $this->redirect('login');
+            $this->redirect('login3');
         }
 
         $order = new Orders();
@@ -116,7 +116,6 @@ class Driver_home extends Controller
         $employee = new Employees();
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
-//        $order_items = new Order_Items();
 
         if(isset($_POST['status'])){//$_SERVER['REQUEST_METHOD'] == "POST"
             $OrderID =$_POST['OrderID'];
@@ -125,14 +124,7 @@ class Driver_home extends Controller
             $data['row'] = $order->update_status($OrderID,['Order_status'=>$status]);
         }
 
-//        if(isset($_POST['details'])) {
-//
-//            $OrderID = $_POST['OrderID'];
-//            $data['row'] = $order_items->where('OrderID', $OrderID);
-////            show($data['row']);
-//
-//        }
-
+        //$query = "SELECT OrderID,Payment_type,Total_amount,Order_status,orders.Address,Firstname,Lastname,Mobileno,orders.Date FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && `DriverID` = '$id';";//&& OrderStatus = 'Processing'
         $data['row'] = $order->displayOrders('DriverID',$id);
 
         if(isset($_GET['orders_items']))
@@ -160,21 +152,8 @@ class Driver_home extends Controller
 
         }
 
+//        $data['row'] = $order->query($query);
         $this->view('driver/order',$data);
-
-    }
-
-    public function details($id=null)
-    {
-
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-        $order_items = new Order_Items();
-        $OrderID = $id;
-        $data['rows']= $order_items->where('OrderID', $OrderID);
-        $this->view('driver/order_details',$data);
 
     }
 
@@ -191,7 +170,6 @@ class Driver_home extends Controller
         $row = $driver->where("DriverID",$id);
 
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-
             if (strtolower($row[0]->Availability) == "available") {
                 //$driver->query("UPDATE driver SET Availability='Not Available' WHERE DriverID = '$id';");
                 $driver->update($id,['DriverID'=>$id,'Availability'=>"Not Available"]);
@@ -199,7 +177,7 @@ class Driver_home extends Controller
                 //$driver->query("UPDATE driver SET Availability='Available'WHERE DriverID = '$id';");
                 $driver->update($id,['DriverID'=>$id,'Availability'=>"Available"]);
             }
-//            $this->redirect('driver_home');
+
         }
         $this->redirect('driver_home');
     }
@@ -270,36 +248,4 @@ class Driver_home extends Controller
         print json_encode($data);
 
     }
-
-    public function available_drivers()
-    {
-        if(!Auth::logged_in()) {
-            $this->redirect('login');
-
-        }
-
-        $driver = new Driver();
-        $rows = $driver->availableDrivers();
-
-        $str = "<option selected>-- Assign Driver --</option>";
-
-        foreach ($rows as $row){
-            $str .= "<option value='".$row->DriverID."'>".$row->DriverID." - ".$row->Availability."</option>";
-        }
-
-        echo $str;
-    }
-
-    public function assign_driver($orderId, $driverId){
-
-        if(!Auth::logged_in()) {
-            $this->redirect('login');
-
-        }
-
-        $order = new Orders();
-        $order->assignDriver($orderId,$driverId);
-        
-    }
-
 }

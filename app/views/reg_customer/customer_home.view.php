@@ -98,50 +98,21 @@
         </div>
     </section>
 
-    <div class="cus-chat" id = "cus-chat">
+    <div class="cus-chat">
         <div class="chat-header">
             <span>Manager</span>
-            <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize" onclick="closeChat()">
+            <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize">
         </div>
-        <div class="cus-chat-section" id="chat-manager">
-
-        </div>
-        <div class="cus-send-msg-sec">
-            <form id="chat-form-1">
-                <input type="text" id="field" name="message" placeholder="Write Something">
-                <button type="submit" id="button-manager"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
-            </form>
-
-        </div>
-    </div>
-
-    <div class="cus-chat" id = "dis-chat">
-        <div class="chat-header">
-            <span>Designer</span>
-            <img src="<?=ROOT?>/assets/images/customer/minimize-svgrepo-com.svg" alt=" minimize" onclick="closeChat()">
-        </div>
-        <div class="cus-chat-section" id="chat-designer">
+        <div class="cus-chat-section" id="chat">
 
         </div>
         <div class="cus-send-msg-sec">
-            <form id="chat-form-2">
-                <input type="text" id="message" name="message" placeholder="Write Something">
-                <button type="button" id="button-designer"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
-            </form>
+            <input type="text" id="message" placeholder="Write Something">
+            <button type="button" id="button"><img src="<?=ROOT?>/assets/images/manager/telegram-desktop-svgrepo-com.svg"></button>
         </div>
     </div>
 
-
-    <img class="chat-btn" id="chat-btn" src="<?=ROOT?>/assets/images/customer/chat-circle-svgrepo-com.svg" alt="" onclick="openChat()">
-
-    <div class="manager-chat-selector" id="manager-chat-selector" onclick="openManagerChat()">
-        <h3>Manager</h3>
-    </div>
-
-    <div class="designer-chat-selector" id="designer-chat-selector" onclick="openDesignerChat()">
-        <h3>Designer</h3>
-    </div>
-
+    <script src="<?=ROOT?>/assets/javascript/jQuery.js"></script>
     <script src="<?=ROOT?>/assets/javascript/customer_chat.js"></script>
 </div>
 

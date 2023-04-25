@@ -14,7 +14,7 @@ class Home extends Controller
 
         $furniture =  new Furnitures();
 
-        $data['furnitures'] = $rows = $furniture->getNewFurniture(['ProductID','Name','Cost','Sub_category_name']);
+        $data['furnitures'] = $rows = $furniture->getNewFurniture(['ProductID','Name','Cost']);
 
         foreach ($rows as $row)
         {
@@ -37,6 +37,7 @@ class Home extends Controller
             'customer.Firstname',
             'customer.Lastname',
             'customer.Image'
+
         ];
 
         $furniture = new Furnitures();
@@ -88,7 +89,6 @@ class Home extends Controller
         if(empty($sub_cat)){
             $this->redirect('home/sub_category/'.$id."/".$rows[0]->Sub_category_name);
         }
-
 
         $this->view("sub_category",$data);
     }

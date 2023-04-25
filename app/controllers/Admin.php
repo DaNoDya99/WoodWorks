@@ -166,7 +166,7 @@ class Admin extends Controller
         $this->view('admin/add_employee',$data);
     }
 
-    public function furniture($id = null)
+    public function inventory($id = null)
     {
         if (!Auth::logged_in()) {
             $this->redirect('login');
@@ -188,7 +188,7 @@ class Admin extends Controller
             $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
         }
 
-        $this->view('admin/furniture',$data);
+        $this->view('admin/inventory',$data);
     }
 
     public function add_furniture()
@@ -292,63 +292,4 @@ class Admin extends Controller
 
         $this->view('admin/supplier',$data);
     }
-
-    public function categories(){
-
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-        $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employees();
-
-
-        $data['row'] = $employee->where('EmployeeID',$id);
-        $data['title'] = "SUPPLIERS";
-
-        $category = new Categories();
-        $sub_category = new Sub_Categories();
-
-        $rows = $category->getCategories();
-
-        foreach ($rows as $row)
-        {
-            $row->sub_categories = $sub_category->getSubCategoriesByCatID($row->CategoryID);
-        }
-
-        $data['categories'] = $rows;
-
-        $this->view('admin/categories',$data);
-    }
-
-    public function delivery()
-    {
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-        $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employees();
-
-        $data['row'] = $employee->where('EmployeeID',$id);
-        $data['title'] = "DELIVERY";
-
-        $orders = new Orders();
-        $rows = $orders->getNewOrders();
-        $data = array();
-
-        if(!empty($rows))
-        {
-            foreach ($rows as $row)
-            {
-                $row->Date = explode(" ",$row->Date)[0];
-            }
-
-            $data['orders'] = $rows;
-        }
-
-
-        $this->view('admin/delivery',$data);
-    }
-
 }

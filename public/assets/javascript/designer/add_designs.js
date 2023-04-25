@@ -9,7 +9,7 @@
         if (input.files.length === 3) {
 
             imageContainer.innerHTML = "";
-            numOfFiles.textContent = `${fileInput.files.length} Images have been Selected`;
+            numOfFiles.textContent = `${fileInput.files.length} Images Selected`;
 
             for (i of fileInput.files) {
                 let reader = new FileReader();
