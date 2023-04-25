@@ -1,0 +1,370 @@
+
+body {
+    font-family: 'Rubik';
+    margin: 0;
+    background-color: #E0E0CE;
+}
+/* Point of Sales */
+.pos-body {
+    display: grid;
+    padding-top: 10px;
+    grid-template-columns: 2fr 1.5fr;
+    column-gap: 10px;
+}
+
+.sec2 {
+    width: 100%;
+}
+
+.sec3 {
+    display: grid;
+    background-color: #E1E1D0;
+    width: 100%;
+}
+
+.data {
+    margin-left: 30px;
+}
+
+.panel2 {
+    position: relative;
+    color: white;
+
+    background-color: #203330;
+    margin-right: 10px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.sec2 {
+    background-color: #E2E2CF;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+
+
+}
+
+.data {
+    background-color: white;
+    border-radius: 12px;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0px 4px 31px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    align-items: center;
+    padding: 30px;
+    padding-top: 30px;
+    transition: all 0.2s ease;
+
+
+
+}
+
+.data table {
+    box-sizing: border-box;
+    text-align: left;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    overflow: visible;
+    display: block;
+    height: 75vh;
+
+}
+.pos-table {
+    display: flex;
+    font-size: 14px;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+}
+
+select {
+    padding: 5px;
+}
+
+.data tr {
+
+    border-radius: 5px;
+    min-width: -webkit-fill-available;
+    display: table;
+    border-bottom: 1px solid #ededed;
+
+}
+
+.data thead {
+    display: table;
+    width: 100%;
+}
+
+.data tbody {
+    height: 65vh;
+    overflow: auto;
+    display: block;
+}
+
+.col {
+    text-align: left;
+}
+
+.col-id {
+    width: 10%;
+}
+
+.headercol {
+    font-weight: 600;
+    color: #182422;
+    font-size: 14px;
+    text-align: left;
+}
+
+.col-name {
+    width: 10%;
+}
+
+.col-qty {
+    width: 10%;
+}
+
+.col-cost {
+    width: 10%;
+    /* text-align: right; */
+}
+
+.col-quantity {
+    width: 15%;
+}
+
+.col-cat{
+    width: 15%;
+
+}
+.col-img {
+    width: 15%;
+}
+
+.col-add {
+    width: 10%;
+    text-align: center;
+}
+
+
+input {
+    box-sizing: border-box;
+    height: 35px;
+    width: 20vw;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px solid #18242279;
+}
+
+form input {
+    box-sizing: border-box;
+    height: 35px;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px solid #18242279;
+}
+
+select {
+    height: 35px;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px solid #18242279;
+}
+
+form button {
+    font-size: 15px;
+    background-color: #182422;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+form {
+    margin-left: 30px;
+}
+
+
+
+label {
+    font-size: small;
+    font-weight: 600;
+    color: rgb(59, 59, 59);
+}
+
+.form-textbox {
+    padding-left: 10px;
+}
+
+
+.pos-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid #ededed60;
+
+}
+
+.pos-item div {
+    width: 200px;
+
+}
+
+.pos-item input {
+    width: 40px;
+    margin: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+.proceed {
+
+    transition: all 0.5s;
+    background-color: #008f37;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+}
+
+.proceed:hover {
+    cursor: pointer;
+    background-color: #004c25;
+}
+
+.button {
+    box-sizing: border-box;
+    position: absolute;
+    width: 90%;
+    bottom: 20px;
+}
+
+.payment {
+
+    position: absolute;
+    top: 50%;
+    visibility: hidden;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    background-color: rgb(255, 255, 255);
+    height: 50vh;
+    border-radius: 10px;
+
+}
+
+.blur {
+
+    position: absolute;
+    visibility: hidden;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.302);
+    height: 100vh;
+    backdrop-filter: blur(10px);
+}
+
+.open-popup {
+    visibility: visible;
+
+
+}
+
+.paybutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #008f37;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 0;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    margin: 20px;
+}
+
+
+/* End of Point of Sales */
+
+/* Inventory Page */
+
+/*.inventory-body {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+
+.inventory-data {
+/*    background-color: white;*/
+    width: 80% !important;
+/*    border-radius: 12px;*/
+/*    box-shadow: 0px 4px 31px rgba(0, 0, 0, 0.05);*/
+/*    margin-bottom: 20px;*/
+/*    padding: 30px;*/
+/*    padding-top: 30px;*/
+/*    transition: all 0.2s ease;*/
+}
+
+/*.inventory-data table {*/
+/*    box-sizing: border-box;*/
+/*    text-align: left;*/
+/*    width: 100%;*/
+/*    border-collapse: separate;*/
+/*    border-spacing: 0px 15px;*/
+/*    overflow: visible;*/
+/*    display: block;*/
+/*}*/
+
+/*.inventory-data tr {*/
+
+/*    border-radius: 5px;*/
+/*    min-width: -webkit-fill-available;*/
+/*    display: table;*/
+/*    border-bottom: 1px solid #ededed;*/
+
+/*}*/
+
+/*.inventory-data thead {*/
+/*    display: table;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.inventory-data tbody {*/
+/*    height: 65vh;*/
+/*    overflow: auto;*/
+/*    display: block;*/
+/*}*/
+
+/*.inventory-body .sec2 {*/
+/*    width: 100%;*/
+/*    height: 90vh;*/
+/*    justify-items: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.inventory-data .col-id{*/
+/*    width: 15%;*/
+/*}*/
+/*.inventory-data .col-name{*/
+/*    width: 20%;*/
+/*}*/

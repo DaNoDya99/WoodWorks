@@ -30,20 +30,20 @@ class Orders extends Model
 
     public function displayOrders($column,$value)
     {
-        $query = "select OrderID,Payment_type,Total_amount,Order_status,$this->table.Address,Firstname,Lastname,Mobileno,$this->table.Date from $this->table INNER JOIN `customer` ON $this->table.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && $column = :value ";
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value ";
         return $this->query($query,['value'=>$value]);
     }
 
     public function searchOrdersDetails($column,$value,$orders_items)
     {
-        $query = "select OrderID,Payment_type,Total_amount,Order_status,$this->table.Address,Firstname,Lastname,Mobileno,$this->table.Date from $this->table INNER JOIN `customer` ON $this->table.CustomerID = customer.CustomerID WHERE DATE_FORMAT($this->table.Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or $this->table.Address like '%$orders_items%' or $this->table.Total_amount like '%$orders_items%' AND $column = :value LIMIT 15 ";
+        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or Address like '%$orders_items%' or Total_amount like '%$orders_items%' AND $column = :value LIMIT 15 ";
         return $this->query($query,['value'=>$value]);
 
     }
 
     public function filterStatus($column,$value,$id)
     {
-        $query = "select OrderID,Payment_type,Total_amount,Order_status,$this->table.Address,Firstname,Lastname,Mobileno,$this->table.Date from $this->table INNER JOIN `customer` ON $this->table.CustomerID = customer.CustomerID WHERE `Deliver_method` = 'Delivery' && $column = :value  && $this->table.`DriverID` = '$id' limit 15";
+        $query = "select OrderID,Payment_type,Total_amount,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && $column = :value  && `DriverID` = '$id' limit 15";
         return $this->query($query,['value'=>$value]);
     }
 
@@ -129,4 +129,33 @@ class Orders extends Model
 
         return $text;
     }
+
+    public function getNewOrders()
+    {
+        $query = "select * from $this->table where DriverId= 'null' && Is_preparing = :Is_preparing;";
+        return $this->query($query,['Is_preparing' => 0]);
+    }
+
+    public function getOrderDetails($id = null)
+    {
+        $query = "SELECT * FROM `order_item` WHERE OrderID = :OrderID;";
+
+        return $this->query($query, ['OrderID' => $id]);
+    }
+
+    public function deliveryOrderDetails($id = null)
+    {
+        $query = "SELECT OrderID, Contactno,Address,Total_amount FROM orders WHERE OrderID = :OrderID;";
+
+        return $this->query($query, ['OrderID' => $id]);
+    }
+
+
+    public function assignDriver($orderID, $driverID)
+    {
+        $query = 'UPDATE `orders` SET DriverID= :DriverID WHERE OrderID = :OrderID;';
+
+        return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID]);
+    }
+
 }

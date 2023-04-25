@@ -15,13 +15,8 @@ class Customer_home extends Controller
         $furniture = new Furnitures();
         $customer = new Customer();
         $id = Auth::getCustomerID();
-<<<<<<< HEAD
         $data['row'] = $customer->where('CustomerID', $id);
         $data['furnitures'] = $rows = $furniture->getNewFurniture(['ProductID', 'Name', 'Cost', 'Sub_category_name']);
-=======
-        $data['row'] = $customer->where('CustomerID',$id);
-        $data['furnitures'] =$rows= $furniture->getNewFurniture(['ProductID','Name','Cost']);
->>>>>>> parent of 2cf5b97 (Merge branch 'main' into sign-up-verification)
 
         foreach ($rows as $row) {
             if (!empty($furniture->getDisplayImage($row->ProductID)[0]->Image)) {
@@ -29,12 +24,8 @@ class Customer_home extends Controller
             }
         }
 
-<<<<<<< HEAD
 
         $this->view('reg_customer/customer_home', $data);
-=======
-        $this->view('reg_customer/customer_home',$data);
->>>>>>> parent of 2cf5b97 (Merge branch 'main' into sign-up-verification)
     }
 
     public function profile($id = null)
@@ -91,18 +82,11 @@ class Customer_home extends Controller
         $this->view('reg_customer/profile', $data);
     }
 
-<<<<<<< HEAD
     public function add_to_cart($id, $cost)
     {
 
         if (!Auth::logged_in()) {
             $this->redirect('login');
-=======
-    public function add_to_cart($id){
-
-        if(!Auth::logged_in()){
-            $this->redirect('login1');
->>>>>>> parent of 2cf5b97 (Merge branch 'main' into sign-up-verification)
         }
 
         $order = new Orders();
@@ -129,17 +113,13 @@ class Customer_home extends Controller
             'ProductID' => $id,
             'Name' => $info[0]->Name,
             'Quantity' => 1,
-            'Cost' => $info[0]->Cost,
+            'Cost' => $cost,
             'OrderID' => $orderID,
             'CartID' => $cart->getCart($cus_id)[0]->CartID,
             'Image' => $image[0]->Image
         ];
 
-<<<<<<< HEAD
         $cart->updateTotalAmountToIncrease($data['CartID'], $data['Cost']);
-=======
-        $cart->updateTotalAmountToIncrease($data['CartID'],$info[0]->Cost);
->>>>>>> parent of 2cf5b97 (Merge branch 'main' into sign-up-verification)
 
         $order_items->insert($data);
 
@@ -199,7 +179,6 @@ class Customer_home extends Controller
         $this->view('reg_customer/payment', $data);
     }
 
-<<<<<<< HEAD
     public function orders()
     {
         if (!Auth::logged_in()) {
@@ -213,6 +192,3 @@ class Customer_home extends Controller
         $this->view('reg_customer/orders', $data);
     }
 }
-=======
-}
->>>>>>> parent of 2cf5b97 (Merge branch 'main' into sign-up-verification)
