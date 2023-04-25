@@ -13,7 +13,7 @@ class Database
         $con = $this->connect();
 
         $statement = $con->prepare($query);
-//        show($statement);
+        show($statement);
 
         if($statement){
             $check = $statement->execute($data);
@@ -309,7 +309,7 @@ class Database
                  KEY `IssueManager` (`ManagerID`),
                  CONSTRAINT `IssueCustomer` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON DELETE CASCADE ON UPDATE CASCADE,
                  CONSTRAINT `IssueManager` FOREIGN KEY (`ManagerID`) REFERENCES `employee` (`EmployeeID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-                 CONSTRAINT `IssureOrder` FOREIGN KEY (`OrderID`) REFERENCES `order` (`OrderID`) ON DELETE CASCADE ON UPDATE CASCADE
+                 CONSTRAINT `IssureOrder` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`) ON DELETE CASCADE ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 
         ";
 
@@ -342,7 +342,7 @@ class Database
                  KEY `CartID` (`CartID`),
                  CONSTRAINT `OrderItemCart` FOREIGN KEY (`CartID`) REFERENCES `cart` (`CartID`) ON DELETE CASCADE ON UPDATE CASCADE,
                  CONSTRAINT `OrderItemFurniture` FOREIGN KEY (`ProductID`) REFERENCES `furniture` (`ProductID`) ON DELETE CASCADE ON UPDATE CASCADE,
-                 CONSTRAINT `OrderOrder_Item` FOREIGN KEY (`OrderID`) REFERENCES `order` (`OrderID`) ON DELETE CASCADE ON UPDATE CASCADE
+                 CONSTRAINT `OrderOrder_Item` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`) ON DELETE CASCADE ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
         ";
 

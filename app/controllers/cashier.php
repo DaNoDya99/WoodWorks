@@ -1,5 +1,7 @@
 <?php
 
+require '../vendor/autoload.php';
+
 class cashier extends Controller
 {
     public function index()
@@ -32,11 +34,33 @@ class cashier extends Controller
                 $data['error'] = "The cart is empty.";
             }
         }
+        $customer = new Customer();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $customer = new Customer();
-            $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
-            $_SESSION['CustomerDetails'] = $customer->where('CustomerID', $_SESSION['CustomerID']);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['type'])) {
+            if ($_POST['type'] = "newcust") {
+                $folder = "uploads/images/";
+                $_POST['Password'] = password_hash('testpass', PASSWORD_DEFAULT);
+                $_POST['Password2'] = $_POST['Password'];
+                $_POST['Role'] = 'Customer';
+                $_POST['Mobileno'] = $_POST['contact'];
+                $_POST['Gender'] = "Male";
+                show($_POST);
+                if ($customer->validate($_POST)) {
+                    show($_POST);
+                    $customer->insert($_POST);
+
+                    echo json_encode(['success' => 'Customer added successfully.']);
+                } else {
+                    echo json_encode($customer->errors);
+                }
+
+                $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
+                $_SESSION['CustomerDetails'] = $customer->where('CustomerID', $_SESSION['CustomerID']);
+
+            } else if ($_POST['type'] = "oldcust") {
+                $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
+                $_SESSION['CustomerDetails'] = $customer->where('CustomerID', $_SESSION['CustomerID']);
+            }
 
             $this->redirect('cashier');
         }
@@ -46,9 +70,9 @@ class cashier extends Controller
 
     private function getUser()
     {
-        $employee = new Employees();
-        $id = Auth::getEmployeeID();
-        return $employee->where('EmployeeID', $id);
+//        $employee = new Employees();
+//        $id = Auth::getEmployeeID();
+//        return $employee->where('EmployeeID', $id);
     }
 
     //    public function newBill()
@@ -167,8 +191,7 @@ class cashier extends Controller
                 $this->redirect('cashier/dash');
             }
             $this->redirect('cashier/dash');
-        }else
-        {
+        } else {
             $this->redirect('cashier/dash');
         }
     }
@@ -239,4 +262,84 @@ class cashier extends Controller
         $_SESSION['OrderID'] = null;
         $this->redirect('cashier/dash');
     }
+
+    public function checkout($orderID)
+    {
+        // if(!Auth::logged_in())
+        // {
+        //     $this->redirect('login');
+        // }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $order = new Orders();
+            $order_items = new Order_Items();
+            $cart = new Carts();
+            $id = '7WbGWsH1tZvFePZqm4b7nq6pQRhth4mpq7xACB2AFwFIAoDEFk0D46nDtzUu';
+
+            $_POST['Payment_type'] = 'Card';
+            $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
+            $_POST['Delivery_method'] = 'Home Delivery';
+
+            $order->update_status($orderID, $_POST);
+
+            $stripe = new \Stripe\StripeClient(
+                'sk_test_51Mx3NxCIse71JEne0LK7axCWj4nwwxotGp7kDjehW2wfmvhSLgPMPkld8L6WdaAwj8CzkT4vhr801oJQ8s39YQ3100hKfDfWLG'
+            );
+
+            $coupon = $stripe->coupons->create(['percent_off' => 10, 'duration' => 'once', 'currency' => 'lkr']);
+
+            $items = $order_items->getOrderItems($orderID);
+            // show($items);
+            // die;
+
+            $line_items = [];
+
+            foreach ($items as $item) {
+                $line_items[] = [
+                    'price_data' => [
+                        'currency' => 'lkr',
+                        'product_data' => [
+                            'name' => $item->Name,
+                        ],
+                        'unit_amount' => $item->Cost * 100,
+                    ],
+                    'quantity' => $item->Quantity,
+                ];
+            }
+
+            $checkout_session = $stripe->checkout->sessions->create([
+
+                'shipping_address_collection' => ['allowed_countries' => ['LK']],
+
+                'shipping_options' => [
+                    [
+                        'shipping_rate_data' => [
+                            'type' => 'fixed_amount',
+                            'fixed_amount' => ['amount' => 1500, 'currency' => 'lkr'],
+                            'display_name' => 'Next day air',
+                            'delivery_estimate' => [
+                                'minimum' => ['unit' => 'business_day', 'value' => 1],
+                                'maximum' => ['unit' => 'business_day', 'value' => 1],
+                            ],
+                        ],
+                    ],
+                ],
+
+                'line_items' => $line_items,
+                'mode' => 'payment',
+
+                'discounts' => [[
+                    'coupon' => $coupon->id,
+                ]],
+
+                'success_url' => 'http://localhost/WoodWorks/public/checkout/success?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => 'http://localhost:4242/cancel',
+            ]);
+
+            $order->updateSessionID($orderID, $checkout_session->id, 'unpaid');
+
+            echo json_encode($checkout_session->url);
+        }
+    }
+
 }

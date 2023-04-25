@@ -29,7 +29,6 @@ class Model extends Database
 
         $query = "insert into ".$this->table;
         $query .= " (".implode(",",$keys) .") values (:".implode(",:",$keys) .")";
-
         $this->query($query,$data);
     }
 
