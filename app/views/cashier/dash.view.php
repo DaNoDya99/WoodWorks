@@ -2,67 +2,87 @@
 <div id="message-overlay">
     <p id="status-message"></p>
 </div>
-<div class="details-overlay" id="details-overlay">
-    <div class="details-input">
-        <h2>Enter customer details</h2>
-        <hr>
-        <div>
-            <div>
-                <input type="radio" id="existing" name="customer-type" value="existing" onclick="toggleCustomerForm()">
-                <label for="existing">Existing Customer</label>
-            </div>
-            <div>
-                <input type="radio" id="new" name="customer-type" value="new" onclick="toggleCustomerForm()">
-                <label for="new">New Customer</label>
-            </div>
 
+<?php if (!isset($_SESSION['CustomerDetails'])) : ?>
+    <div id="customer-details">
+
+        <div class="customer-type-overlay">
+            <h2>Customer Details</h2>
+            <div id="btns">
+                <button class="customer-btn" onclick="newcustflow()">New Customer</button>
+                <button class="customer-btn" onclick="oldcustflow()">Old Customer</button>
+            </div>
+            <div class="old-cust-form" style="padding: 40px">
+                <div class="back-btn" style="width: 100%; margin-bottom: 30px" onclick="closecustomertypepop()">
+                    Back
+                </div>
+                <form id="old-customer-form" action="" method="POST">
+
+                    <div>
+                        <input type="hidden" name="type" value="oldcust">
+
+                        <label for="Email">E-Mail</label><br>
+                        <input type="email" id="contact" name="Email">
+                    </div>
+                    <div style="display:flex; grid-column-gap:10px;">
+                        <button type="submit" class="exit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="new-cust-form" style="padding: 40px">
+                <div class="back-btn" style="width: 100%; margin-bottom: 30px" onclick="closecustomertypepop()">
+                    Back
+                </div>
+                <form id="new-customer-form" action="" method="POST">
+                    <div>
+                        <input type="hidden" name="type" value="newcust">
+                        <label for="Firstname">First Name</label>
+                        <input type="text" id="name" name="Firstname">
+                        <label for="Lastname">Last Name</label>
+                        <input type="text" id="name" name="Lastname">
+                        <label for="Email">E-Mail</label>
+                        <input type="email" id="contact" name="Email">
+                        <label for="contact">Contact Number</label>
+                        <input type="tel" id="contact" name="contact">
+                    </div>
+                    <div>
+                        <label for="address">Address</label><br>
+                        <textarea type="textarea" id="address" height="200px" name="Address"></textarea>
+                    </div>
+                    <div style="display:flex; grid-column-gap:10px;">
+                        <button type="submit" class="exit">Submit</button>
+                    </div>
+                </form>
+
+            </div>
         </div>
-        <form style="display:none" id="new-customer-form" action="" method="POST">
-            <div>
-                <label for="Firstname">First Name</label>
-                <input type="text" id="name" name="Firstname">
-                <label for="Lastname">Last Name</label>
-                <input type="text" id="name" name="Lastname">
-                <label for="Email">E-Mail</label>
-                <input type="email" id="contact" name="Email">
-                <label for="contact">Contact Number</label>
-                <input type="tel" id="contact" name="contact">
-            </div>
-            <div>
-                <label for="address">Address</label><br>
-                <textarea type="textarea" id="address" height="200px" name="Address"></textarea>
-            </div>
-            <div style="display:flex; grid-column-gap:10px;">
-                <button type="submit" class="exit">Submit</button>
-                <button type="button" onclick="closeNewBillPopup()" class="exit">Cancel</button>
-            </div>
-        </form>
-        <form style="display:none" id="old-customer-form" action="" method="POST">
-            <div>
-                <label for="Email">E-Mail</label><br>
-                <input type="email" id="contact" name="Email">
-            </div>
-            <div style="display:flex; grid-column-gap:10px;">
-                <button type="submit" class="exit">Submit</button>
-                <button type="button" onclick="closeNewBillPopup()" class="exit">Cancel</button>
-            </div>
-        </form>
     </div>
-</div>
-<script>
-    function toggleCustomerForm() {
-        var existing = document.getElementById("existing").checked;
-        var customerForm = document.getElementById("new-customer-form");
-        var emailForm = document.getElementById("old-customer-form");
-        if (existing) {
-            customerForm.style.display = "none";
-            emailForm.style.display = "block";
-        } else {
-            customerForm.style.display = "block";
-            emailForm.style.display = "none";
+    <script>
+        function oldcustflow() {
+            document.getElementById("btns").style.display = "none";
+            document.getElementsByClassName("old-cust-form")[0].style.display = "flex";
         }
-    }
-</script>
+
+        function newcustflow() {
+            document.getElementById("btns").style.display = "none";
+            document.getElementsByClassName("new-cust-form")[0].style.display = "flex";
+        }
+
+        function closecustomertypepop() {
+            if (document.getElementsByClassName("old-cust-form")[0].style.display == "flex") {
+                document.getElementsByClassName("old-cust-form")[0].style.display = "none";
+                document.getElementById("btns").style.display = "flex";
+            } else if (document.getElementsByClassName("new-cust-form")[0].style.display == "flex") {
+                document.getElementsByClassName("new-cust-form")[0].style.display = "none";
+                document.getElementById("btns").style.display = "flex";
+            }
+
+
+        }
+    </script>
+
+<?php endif; ?>
+
 <div class="content pos-body">
     <div class="sec2">
         <div class="data" id="panel">
@@ -85,12 +105,8 @@
                         <td class="col col-cost"> <?= $product->Name ?></td>
                         <!-- <td><?= $product->Quantity ?></td> -->
                         <td class="col col-cost" style="font-weight:600;">Rs. <?= $product->Cost ?></td>
-                        <td class="col col-add" style="padding-right: 20px;"><a href=
-                                                                                <?php if (isset($_SESSION["CustomerID"])) : ?>
-                                                                                "<?= ROOT ?>/cashier/add_to_cart/<?= $product->ProductID ?>/<?= $product->Cost ?>"
-                            <?php else : ?>
-                                "#"
-                            <?php endif; ?>
+                        <td class="col col-add" style="padding-right: 20px;"><a
+                                href=<?php if (isset($_SESSION["CustomerID"])) : ?> "<?= ROOT ?>/cashier/add_to_cart/<?= $product->ProductID ?>/<?= $product->Cost ?>" <?php else : ?> "#" <?php endif; ?>
                             ><img style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/add.svg" alt=""></a>
                         </td>
                     </tr>
@@ -141,14 +157,15 @@
                         </td>
                         <td class="col-remove" style="text-align: center">
                             <a href="<?= ROOT ?>/cashier/removeItem/<?= $cart->CartID ?>/<?= $cart->ProductID ?>/<?= $cart->Cost ?>/<?= $cart->Quantity ?>"><img
-                                        style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/x.svg" alt=""></a>
+                                    style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/x.svg" alt=""></a>
 
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
             </table>
         <?php else : ?>
-            <div style="height:100%; width:100%;border:0.5px solid grey; margin-top:20px; margin-bottom:20px;border-radius:15px; display:flex; justify-content:center; align-items:center">
+            <div
+                style="height:100%; width:100%;border:0.5px solid grey; margin-top:20px; margin-bottom:20px;border-radius:15px; display:flex; justify-content:center; align-items:center">
                 <p style="color:white; font-size:20px">Cart is empty</p>
             </div>
 
@@ -277,95 +294,6 @@
         const clrbtn = document.querySelector('.clrbtn');
 
 
-        //form1.addEventListener('submit', (e) => {
-        //    e.preventDefault();
-        //
-        //    const formData = new FormData(form1);
-        //
-        //    fetch('<?php //= ROOT ?>///cashier/newcustomer', {
-        //        method: 'POST',
-        //        body: formData
-        //    })
-        //        .then(response => response.json())
-        //        .then(data => {
-        //            document.getElementById('message-overlay').style.top = '-100px';
-        //            console.log(data);
-        //            if (data.success) {
-        //                document.getElementById('status-message').innerHTML = data.success;
-        //                document.getElementById('message-overlay').style.top = '100px';
-        //            } else {
-        //                const overlay = document.getElementById('message-overlay');
-        //                if (data.Email) {
-        //                    const newParagraph1 = document.createElement('p');
-        //                    newParagraph1.classList.add('EmailError');
-        //                    newParagraph1.textContent = data.Email;
-        //                    overlay.appendChild(newParagraph1);
-        //
-        //                    document.getElementById('message-overlay').style.top = '100px';
-        //                    document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
-        //                }
-        //                if (data.Firstname) {
-        //                    const newParagraph2 = document.createElement('p');
-        //                    newParagraph2.textContent = data.Firstname;
-        //                    overlay.appendChild(newParagraph2);
-        //                    document.getElementById('message-overlay').style.top = '100px';
-        //                    document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
-        //                }
-        //                if (data.Lastname) {
-        //                    const newParagraph3 = document.createElement('p');
-        //                    newParagraph3.textContent = data.Lastame;
-        //                    overlay.appendChild(newParagraph3);
-        //                    document.getElementById('message-overlay').style.top = '100px';
-        //                    document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
-        //                }
-        //                // if (data.Address) {
-        //                //     document.getElementById('status-message').innerHTML += data.Address;
-        //                //     document.getElementById('message-overlay').style.top = '100px';
-        //                //     document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
-        //                // }
-        //                if (data.Mobileno) {
-        //                    const newParagraph3 = document.createElement('p');
-        //                    newParagraph3.textContent = data.Mobileno;
-        //                    overlay.appendChild(newParagraph3);
-        //                    document.getElementById('message-overlay').style.top = '100px';
-        //                    document.getElementById('message-overlay').style.backgroundColor = '#ffb1a8';
-        //                }
-        //            }
-        //            setTimeout(function () {
-        //                document.getElementById('message-overlay').style.top = '-100px';
-        //            }, 4000);
-        //
-        //        })
-        //        .catch(error => console.log(error));
-        //
-        //});
-        //form2.addEventListener('submit', (e) => {
-        //    e.preventDefault();
-        //
-        //    const formData = new FormData(form2);
-        //
-        //    fetch('<?php //= ROOT ?>///cashier/loadCustomer', {
-        //        method: 'POST',
-        //        body: formData
-        //    })
-        //        .then(response => response.json())
-        //        .then(data => {
-        //            document.getElementById('message-overlay').style.top = '-100px';
-        //            console.log(data);
-        //            if (data.success) {
-        //                document.getElementById('status-message').innerHTML = data.success;
-        //                document.getElementById('message-overlay').style.top = '100px';
-        //            }
-        //            setTimeout(function () {
-        //                document.getElementById('message-overlay').style.top = '-100px';
-        //            }, 4000);
-        //
-        //            location.reload()
-        //
-        //        })
-        //        .catch(error => console.log(error));
-        //
-        //});
     </script>
 
     </html>
