@@ -1673,3 +1673,157 @@ margin: 20px 0;
 .error{
   background-color: rgb(183, 26, 26);
 }
+
+/* Discounts Page */
+
+.dis-form-container{
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.dis-header{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #d4d4d4;
+  padding-bottom: 1em;
+}
+
+.dis-header h2{
+  margin: 0;
+}
+
+.dis-header button{
+  border: none;
+  background-color: #0F3D3E;
+  width: 14em;
+  border-radius: 5px;
+  color: #f9f9f9;
+  font-size: 1.1rem;
+}
+
+.dis-form{
+  display: flex;
+  justify-content: space-between;
+}
+
+.dis-form-left{
+  width: 35%;
+}
+
+.dis-field input{
+  width: 100%;
+  height: 2.5em;
+  border: 2px #d4d4d4 solid;
+  border-radius: 5px;
+  padding-left: .5em;
+}
+
+.dis-field-check{
+  display: flex;
+  align-items: center;
+}
+
+.dis-field-check input{
+  margin-left: 1em;
+  border: 2px solid #d4d4d4;
+}
+
+.dis-field-check,.dis-field{
+  margin: 1em 0;
+}
+
+.dis-date input{
+  color: #7e7e7e;
+}
+
+.dis-cat-list{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cat-list{
+  padding-left: 3em;
+  margin-top: 1em;
+}
+
+.dis-form-right{
+  width: 60%;
+}
+
+.dis-sub-cat-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dis-sub-cat-list div{
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+.furniture-item{
+  display: flex;
+  align-items: center;
+  margin: 1em 2em;
+}
+
+.furniture-item img{
+  width: 4em;
+  height: 4em;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-left: 1em;
+}
+
+.furniture-item span{
+  margin-left: 1em;
+}
+
+.sub-cat-items{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dis-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.dis-btn button{
+  border: none;
+  background-color: #0F3D3E;
+  color: #f9f9f9;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 12em;
+  height: 2em;
+}
+
+.dis-err{
+  color: #d23542;
+  font-size: small;
+}
+
+.cat-items-container{
+  height: 35em;
+  max-height: 35em;
+  margin-top: 1em;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  border: 2px solid #d4d4d4;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.cat-items-container::-webkit-scrollbar{
+  display: none;
+}
+
+.subcat-title{
+  font-size: .9rem;
+  font-weight: 700;
+  margin-left: 1.5em;
+}
