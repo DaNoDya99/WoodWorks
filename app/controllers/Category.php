@@ -360,4 +360,27 @@ class Category extends Controller
             echo $stm;
         }
     }
+
+    public function getSubCategories($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $sub_category = new Sub_Categories();
+        $rows = $sub_category->getSubCategoriesByCatID($id);
+
+        $str = '';
+
+        foreach($rows as $row)
+        {
+            $str .= "<div>
+                        <input type='checkbox'>
+                        <label>".$row->Sub_category_name."</label> 
+                    </div>";
+        }
+
+        echo $str;
+    }
 }
