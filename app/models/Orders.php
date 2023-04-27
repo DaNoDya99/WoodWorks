@@ -55,6 +55,32 @@ class Orders extends Model
         $this->query($query,$data);
     }
 
+    public function update_Reason($where, $data)
+    {
+        if(!empty($this->allowedColumns))
+        {
+            foreach ($data as $key => $value){
+                if(!in_array($key,$this->allowedColumns))
+                {
+                    unset($data[$key]);
+                }
+            }
+        }
+
+        $keys = array_keys($data);
+        $id = array_search($where['OrderID'], $where);
+
+        $query = "update ".$this->table." set ";
+        foreach ($keys as $key)
+        {
+            $query .= $key . "=:" . $key . ",";
+        }
+        $query = trim($query,",");
+        $query .= " where OrderID = :id";
+
+        $data['id'] = $where['OrderID'];
+        $this->query($query,$data);
+    }
 
     public function findOrders($column,$value)
     {

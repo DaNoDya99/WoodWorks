@@ -17,7 +17,7 @@ doc_btn.onclick = () => {
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
-                }, 9000);
+                }, 3000);
 
             }
         }
@@ -26,10 +26,11 @@ doc_btn.onclick = () => {
     xhr.send(formData);
 }
 
-function openDocumentPopup(id,name,image,date,event)
+function openDocumentPopup(id,name,image,date,reason,event)
 {
     event.preventDefault();
     let popup = document.getElementById("upl-doc");
+    let field = document.getElementById('doc-field');
     let header1 = document.getElementById('header1');
     let header2 = document.getElementById('header2');
     let header3 = document.getElementById('header3');
@@ -40,6 +41,12 @@ function openDocumentPopup(id,name,image,date,event)
     header2.innerHTML = name;
     header3.innerHTML = date;
     doc_id = id;
+    if(reason != null) {
+        field.setAttribute('value', reason);
+    }
+    if(reason == null) {
+        field.setAttribute('value', 'No reason provided');
+    }
 
     if(image != null) {
         img.setAttribute('src', 'http://localhost/WoodWorks/public/' + image);

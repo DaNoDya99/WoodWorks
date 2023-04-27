@@ -61,7 +61,7 @@
                                 <td><?=$dispatchedDate?></td>
                                 <td><?=$deliveredDate?></td>
                                 <td>
-                                    <button  onclick="openDocumentPopup('<?=$row->OrderID?>','<?=($row->Firstname)?>','<?=($row->Image)?>','<?=$deliveredDate?>',event)"><img src="<?=ROOT?>/assets/images/driver/pdf.png" alt="PDF image"></button>
+                                    <button  onclick="openDocumentPopup('<?=$row->OrderID?>','<?=($row->Firstname)?>','<?=($row->Image)?>','<?=$deliveredDate?>','<?=($row->Reasons)?>',event)"><img src="<?=ROOT?>/assets/images/driver/pdf.png" alt="PDF image"></button>
                                 </td>
                             </tr>
                         </form>
@@ -73,20 +73,20 @@
             <div id="upl-doc" class="upload-document">
                 <img class="close-btn" onclick="closeDocumentPopup()" src="<?=ROOT?>/assets/images/driver/close.png" alt="close button">
                 <h2>Upload Confirmation Image</h2>
-
-                <!--  This is  error message   -->
-                <?php if (!empty($errors)) : ?>
-                    <div class="error-txt signup-error">
-                        <img class="close-error" src="<?= ROOT ?>/assets/images/designer/close.png" alt="Close btn" onclick="close_error()">
-                        <ul>
-                            <?php foreach ($errors as $key => $value) : ?>
-                                <li><?= $errors[$key] ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
-
                 <form id="edit-doc-form" method="post">
+
+                    <!--  This is  error message   -->
+                    <?php if (!empty($errors)) : ?>
+                        <div class="error-txt signup-error">
+                            <img class="close-error" src="<?= ROOT ?>/assets/images/designer/close.png" alt="Close btn" onclick="close_error()">
+                            <ul>
+                                <?php foreach ($errors as $key => $value) : ?>
+                                    <li><?= $errors[$key] ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="doc-img">
                         <img id="edit-doc-img" src="<?=ROOT?>/assets/images/driver/No_image.jpg" alt="No Image">
                         <label>
@@ -109,7 +109,7 @@
                         </div>
                         <div class="doc-form-field">
                             <label>Reason for late delivery</label>
-                            <textarea id="doc-field" type="textarea" name="reasons" placeholder="Enter the Reason"></textarea>
+                            <input id="doc-field" name="Reason" placeholder="Enter the Reason">
                         </div>
                         <div class="submit-btn">
                             <button id="doc-btn" type="submit">Submit</button>

@@ -220,7 +220,9 @@ class Driver_home extends Controller
 
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            show($id);
+
+            $order->update_Reason(['OrderID' => $id], ['Reasons' => $_POST['Reason']]);
+
             if(!empty($_FILES["Image"]['name']))
             {
                 $folder = "uploads/driver/";
@@ -234,12 +236,14 @@ class Driver_home extends Controller
 
                 if(in_array($_FILES['Image']['type'],$allowedFileType))
                 {
+
                     if($_FILES['Image']['error'] == 0)
                     {
                         $destination = $folder.time().$_FILES['Image']['name'];
                         if(move_uploaded_file($_FILES['Image']['tmp_name'],$destination))
                         {
                             $order->update_Image(['OrderID' => $id], ['Image' => $destination]);
+
                         }else{
                             $order->errors['image'] = "Could not upload image.";
                         }
@@ -253,26 +257,29 @@ class Driver_home extends Controller
                 $order->errors['image'] = "Please select an image.";
             }
         }
+
+        if(empty($order->errors))
+        {
+            echo "<div class='cat-success'>
+                      <h3>Image Added Successfully.</h3>
+                        </div>";
+            }else{
+                $stm = "<div class='cat-errors''>
+                                        <ul>";
+                foreach ($order->errors as $error)
+                {
+                    $stm .= "<li>".$error."</li>";
+                }
+
+                $stm .= "</ul>
+                             </div>";
+
+                echo $stm;
+        }
+
     }
 
-//if(empty($order->errors))
-//{
-//echo "<div class='cat-success'>
-//                    <h3>Image Added Successfully.</h3>
-//                  </div>";
-//}else{
-//    $stm = "<div class='cat-errors''>
-//                        <ul>";
-//    foreach ($order->errors as $error)
-//    {
-//        $stm .= "<li>".$error."</li>";
-//    }
-//
-//    $stm .= "</ul>
-//                    </div>";
-//
-//    echo $stm;
-//}
+
 
     public function details($id=null)
     {
