@@ -205,7 +205,7 @@ class Driver_home extends Controller
             $data['records2'] = $order->filterDate($from_date,$to_date);
         }
 
-        $this->view('driver/includes/orders_records_table',$data);
+        $this->view('driver/includes/delivered_history_table',$data);
 
     }
 
@@ -220,60 +220,66 @@ class Driver_home extends Controller
 
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            if($order->validate($_POST))
-            {
-                if(!empty($_FILES["Image"]['name']))
-                {
-                    $folder = "uploads/driver/document/";
-                    if(!file_exists($folder)){
-                        mkdir($folder,0777,true);
-                        file_put_contents($folder."index.php","<?php Access Denied.");
-                        file_put_contents("uploads/index.php","<?php Access Denied.");
-                    }
 
-                    $allowedFileType = ['image/jpeg','image/png'];
+            $order->update_Reason(['OrderID' => $id], ['Reasons' => $_POST['Reason']]);
+
+            if(!empty($_FILES["Image"]['name']))
+            {
+                $folder = "uploads/driver/";
+                if(!file_exists($folder)){
+                    mkdir($folder,0777,true);
+                    file_put_contents($folder."index.php","<?php Access Denied.");
+                    file_put_contents("uploads/index.php","<?php Access Denied.");
+                }
+
+                $allowedFileType = ['image/jpeg','image/png'];
+
+                if(in_array($_FILES['Image']['type'],$allowedFileType))
+                {
 
                     if($_FILES['Image']['error'] == 0)
                     {
-                        if(in_array($_FILES['Image']['type'],$allowedFileType))
+                        $destination = $folder.time().$_FILES['Image']['name'];
+                        if(move_uploaded_file($_FILES['Image']['tmp_name'],$destination))
                         {
-                            $destination = $folder.time().$_FILES['Image']['name'];
-                            move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
+                            $order->update_Image(['OrderID' => $id], ['Image' => $destination]);
 
-                            $_POST['Image'] = $destination;
-                            $order->insert($_POST);
                         }else{
-                            $order->errors['image'] = "This file type is not allowed.";
+                            $order->errors['image'] = "Could not upload image.";
                         }
                     }else{
                         $order->errors['image'] = "Could not upload image.";
                     }
                 }else{
-                    $order->errors['image'] = "Please select an image.";
+                    $order->errors['image'] = "This file type is not allowed.";
                 }
+            }else{
+                $order->errors['image'] = "Please select an image.";
             }
         }
 
         if(empty($order->errors))
         {
             echo "<div class='cat-success'>
-                    <h3>Sub Category Added Successfully.</h3>
-                  </div>";
-        }else{
-            $stm = "<div class='cat-errors''>
-                        <ul>";
-            foreach ($order->errors as $error)
-            {
-                $stm .= "<li>".$error."</li>";
-            }
+                      <h3>Image Added Successfully.</h3>
+                        </div>";
+            }else{
+                $stm = "<div class='cat-errors''>
+                                        <ul>";
+                foreach ($order->errors as $error)
+                {
+                    $stm .= "<li>".$error."</li>";
+                }
 
-            $stm .= "</ul>
-                    </div>";
+                $stm .= "</ul>
+                             </div>";
 
-            echo $stm;
+                echo $stm;
         }
 
     }
+
+
 
     public function details($id=null)
     {

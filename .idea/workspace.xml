@@ -4,6 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="d9883e40-086d-40bf-a778-5a1287bfc0c4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/controllers/forum.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/designer/forum.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/designer/includes/dicussion.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/javascript/designer/discuss.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/javascript/designer/forum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/Driver_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Driver_home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Orders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designer/includes/designer_header.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designer/includes/designer_header.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/driver/includes/delivered_orders_table.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/driver/includes/delivered_orders_table.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/styles_login3.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles_login3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/javascript/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/categories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/javascript/driver/upload_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/driver/upload_document.js" afterDir="false" />
+=======
     <list default="true" id="7427f2a1-a53a-4924-a434-a2801b233ea3" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
@@ -11,6 +27,7 @@
       <change beforePath="$PROJECT_DIR$/public/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
+>>>>>>> f8e2c8f6748ada2cc51dbdfa63e5933726facbfc
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +39,13 @@
     <execution>
       <executable path="composer" />
     </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,7 +73,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+<<<<<<< HEAD
+=======
     &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+>>>>>>> f8e2c8f6748ada2cc51dbdfa63e5933726facbfc
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -60,11 +87,19 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+<<<<<<< HEAD
+  <component name="RunManager">
+    <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
+      <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
+      <method v="2" />
+    </configuration>
+=======
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\WoodWorks" />
       <recent name="C:\xampp\htdocs\WoodWorks\public" />
     </key>
+>>>>>>> f8e2c8f6748ada2cc51dbdfa63e5933726facbfc
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
