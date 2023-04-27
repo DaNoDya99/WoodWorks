@@ -9,9 +9,33 @@ function add_discount()
     let data = new FormData(form);
     let res = validate(data);
 
+    const checkboxes1 = document.querySelectorAll('input[name="products"]:checked');
+    let products = [];
+
+    checkboxes1.forEach((checkbox) => {
+        products.push(checkbox.value);
+    })
+
     if(res.valid){
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST','http://localhost/WoodWorks/public/discount/add',true);
+        xhr.onload = () => {
+            if(xhr.readyState === XMLHttpRequest.DONE){
+                if(xhr.status === 200){
+                    document.getElementById('response').innerHTML = xhr.response;
+                    setTimeout(() => {
+                        location.reload();
+                    },2000);
+                }
+            }
+        }
+
+        xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        xhr.send('Name='+data.get('Name')+'&Discount_percentage='+data.get('Discount_percentage')+'&Active='+data.get('Active')+'&Expired_at='+data.get('Expired_at')+'&categories='+res.categories+'&products='+products);
     }
 }
+
+
 
 function validate(data){
     let valid = true;
@@ -52,9 +76,9 @@ function validate(data){
     if(discount === ""){
         valid = false;
         document.getElementById('discount').innerHTML = "*Please enter the discount percentage.";
-    }else if(regex1.test(discount)){
-        valid = false;
-        document.getElementById('discount').innerHTML = "*Discount percentage should contain only numbers.";
+    // }else if(regex1.test(discount)){
+    //     valid = false;
+    //     document.getElementById('discount').innerHTML = "*Discount percentage should contain only numbers.";
     }else if(discount.length>2){
         valid = false;
         document.getElementById('discount').innerHTML = "*Discount percentage should maximum of two numbers.";
@@ -122,17 +146,20 @@ function selectSubCategory(id){
     xhr.send();
 }
 
-function getAllProducts(id)
+function selectAllCategoryProducts(name)
 {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET','http://localhost/WoodWorks/public/product/getAllProducts/'+id,true);
-    xhr.onload = () => {
-        if(xhr.readyState === XMLHttpRequest.DONE){
-            if(xhr.status === 200){
-                document.getElementById('products').innerHTML = xhr.response;
-            }
-        }
-    }
+    let checkboxes = document.querySelectorAll('input[category="'+name+'"]');
+    let checkbox = document.getElementById(name);
 
-    xhr.send();
+    console.log(checkboxes);
+
+    if(checkbox.checked){
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = true;
+        });
+    }else{
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+    }
 }

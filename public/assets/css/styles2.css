@@ -566,6 +566,7 @@ margin: 20px 0;
   align-items: center;
   border-top: 2px solid #d4d4d4;
   margin-bottom: 1em;
+  width:100%;
 }
 
 .ads-heading button{
@@ -1816,6 +1817,7 @@ margin: 20px 0;
   border: 2px solid #d4d4d4;
   padding: 1em;
   border-radius: 10px;
+  width: 100%;
 }
 
 .cat-items-container::-webkit-scrollbar{
@@ -1826,4 +1828,34 @@ margin: 20px 0;
   font-size: .9rem;
   font-weight: 700;
   margin-left: 1.5em;
+}
+.not-found{
+  font-size: .9rem;
+  margin-left: 3em;
+}
+
+.cat-response{
+  position: absolute;
+  top: 10%;
+  left: 40%;
+  width: 20%;
+}
+
+.cat-success{
+  background-color: #17c330;
+  color: #f9f9f9;
+  padding: 1em;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.cat-errors{
+  background-color: #e6b2b2;
+  color: #940b0b;
+  padding: 1em 2em;
+  border-radius: 7px;
+}
+
+.cat-deletion{
+  background-color: #ae1c1c;
 }

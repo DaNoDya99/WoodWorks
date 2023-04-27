@@ -303,4 +303,18 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
+    public function getFurnitureBySubCategoryName($name)
+    {
+        $query = "SELECT ProductID,Name,Quantity,Cost FROM furniture WHERE Sub_category_name LIKE '%$name%';";
+
+        return $this->query($query);
+    }
+
+    public function updateDiscount($id, $discount)
+    {
+        $query = "update $this->table set DiscountID = :Discount where ProductID =:ProductID;";
+
+        return $this->query($query, ['ProductID' => $id, 'Discount' => $discount]);
+    }
+
 }

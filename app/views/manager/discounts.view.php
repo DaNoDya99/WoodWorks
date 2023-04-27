@@ -23,7 +23,7 @@
                         </div>
                         <div class="dis-field-check">
                             <label>Active</label>
-                            <input type="checkbox" name="Active">
+                            <input type="checkbox" name="Active" value="1">
                         </div>
                         <div class="dis-field dis-date">
                             <label>Valid Until <span id="expired_at" class="dis-err"></span></label>
@@ -35,8 +35,8 @@
 
                                 <?php foreach($categories as $category): ?>
                                     <div>
-                                        <input type="checkbox" name="category<?=$i?>" value="<?=$category->CategoryID?>" id="<?=$category->CategoryID?>" onchange="getSubCategories('<?=$category->CategoryID?>'); getAllProducts('<?=$category->CategoryID?>')">
-                                        <label onclick="selectSubCategory('<?=$category->CategoryID?>'); selectAllProductsOfTheCategory('<?=$category->CategoryID?>');"><?=$category->Category_name?></label>
+                                        <input type="checkbox" name="category<?=$i?>" value="<?=$category->CategoryID?>" id="<?=$category->CategoryID?>" onchange="getSubCategories('<?=$category->CategoryID?>')">
+                                        <label onclick="selectSubCategory('<?=$category->CategoryID?>')"><?=$category->Category_name?></label>
                                     </div>
                                     <?php $i++; ?>
                                 <?php endforeach; ?>
@@ -48,85 +48,8 @@
                         <div class="dis-field-check dis-cat-list">
                             
                             <label>Select Sub-Categories</label>
-                            <div class="cat-items-container">
-                                <div>
-                                    <input type="checkbox">
-                                    <span class="subcat-title">Category 1</span>
-                                    <div class="sub-cat-items">
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="checkbox">
-                                    <span class="subcat-title">Category 1</span>
-                                    <div class="sub-cat-items">
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="checkbox">
-                                    <span class="subcat-title">Category 1</span>
-                                    <div class="sub-cat-items">
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                        <div class="furniture-item">
-                                            <input type="checkbox">
-                                            <img src="<?=ROOT?>/assets/images/customer/chair.jpg" alt="">
-                                            <span>Side Table</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="cat-items-container" id="sub-cats">
+                                <span class="dis-err">Please select a category</span>
                             </div>
                         </div>
                     </div> 
@@ -139,6 +62,10 @@
         </div>
         
     </div>
+
+<div class="cat-response" id="response">
+
+</div>
     
 </body>
 

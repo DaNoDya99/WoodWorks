@@ -195,9 +195,11 @@ class Manager extends Controller
         }
 
         $data['title']="ISSUES";
+        
 
         $issue = new Issues();
         $data['issue'] = $issue->get_issue();
+        $data['issues'] = $issue->getissuehistory();
         $this->view('manager/issues',$data);
     }
 

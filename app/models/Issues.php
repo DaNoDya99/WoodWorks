@@ -27,4 +27,10 @@ class Issues extends Model
 
     }
 
+    public function getissuehistory()
+    {
+        $query = "select `IssueID`, `OrderID`, `Problem_statement`, `Response` from $this->table where Response != 'null';";
+        return $this->query($query);
+    }
+
 }
