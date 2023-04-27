@@ -369,6 +369,7 @@ class Category extends Controller
         }
 
         $sub_category = new Sub_Categories();
+        $furniture = new Furnitures();
         $rows = $sub_category->getSubCategoriesByCatID($id);
 
         $str = '';
@@ -376,9 +377,31 @@ class Category extends Controller
         foreach($rows as $row)
         {
             $str .= "<div>
-                        <input type='checkbox'>
-                        <label>".$row->Sub_category_name."</label> 
-                    </div>";
+                          <input id='".$row->Sub_category_name."' type='checkbox' checked onclick='selectAllCategoryProducts(`".$row->Sub_category_name."`)'>
+                          <span class='subcat-title'>".$row->Sub_category_name."</span>
+                          <div class='sub-cat-items'>";
+
+            $fur = $furniture->getFurnitureBySubCategoryName($row->Sub_category_name);
+
+            if(!empty($fur)){
+                foreach ($fur as $value) {
+                    $image = $furniture->getDisplayImage($value->ProductID)[0]->Image;
+
+                    $str .= "
+                        <div class='furniture-item'>
+                             <input category='".$row->Sub_category_name."' type='checkbox' name='products' value='".$value->ProductID."' checked>
+                             <img src='http://localhost/WoodWorks/public/" . $image . "' alt=''>
+                             <span>" . $value->Name . "</span>
+                        </div>
+                    ";
+                }
+            }else{
+                $str .= "<div>
+                             <span class='not-found'>No Furniture Found.</span>
+                        </div>";
+            }
+
+            $str .= '</div>';
         }
 
         echo $str;
