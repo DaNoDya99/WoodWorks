@@ -1,4 +1,6 @@
 /.idea
 /.vscode
 .env
-/vendor
+/vendor/
+
+.idea/workspace.xml

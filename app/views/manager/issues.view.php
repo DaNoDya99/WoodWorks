@@ -4,9 +4,20 @@
 <?php $this->view('manager/includes/manager_header') ?>
     <div class="content manager-body ">
         <div class="dashboard">
-        
             <div class="posts">
-                <h1 class="post-heading">Issues</h1>
+                <div class="ads-heading">
+                    <h1 class="post-heading">Issues</h1>
+                    <button onclick = "openPopup()">History</button>
+                    <div class="popup advertisement-popup" id="popup">
+                        <div class="popup-heading">
+                            <h2>All Issues</h2>
+                            <img src="<?=ROOT?>/assets/images/customer/close.png" alt="Close" onclick="closePopup()">
+                        </div>
+                    </div>
+                </div>
+
+                
+
                 <div class="posts-table-container">
                 <table class="issue-table">
                     <tr>
