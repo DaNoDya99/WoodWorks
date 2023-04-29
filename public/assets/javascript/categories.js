@@ -112,7 +112,7 @@ function confirmDeleteCategory(){
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
-                }, 3000);
+                }, 9000);
             }
         }
     }

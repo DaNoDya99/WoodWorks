@@ -61,7 +61,7 @@
                                 <td><?=$dispatchedDate?></td>
                                 <td><?=$deliveredDate?></td>
                                 <td>
-                                    <button  onclick="openDocumentPopup('<?=$row->OrderID?>',event)"><img src="<?=ROOT?>/assets/images/driver/pdf.png" alt="PDF image"></button>
+                                    <button  onclick="openDocumentPopup('<?=$row->OrderID?>','<?=($row->Firstname)?>','<?=($row->Image)?>','<?=$deliveredDate?>','<?=($row->Reasons)?>',event)"><img src="<?=ROOT?>/assets/images/driver/pdf.png" alt="PDF image"></button>
                                 </td>
                             </tr>
                         </form>
@@ -70,21 +70,59 @@
                 </table>
             </div>
 
-            <div id="edit-sub-cat">
-                <h1 id="edit-sub-cat-header">hiiiiiii</h1>
-                <img class="close-btn" onclick="closeDocumentPopup()" src="<?=ROOT?>/assets/images/driver/close.png" alt="">
-                <form id="edit-sub-cat-form" method="post">
-                    <div class="sub-cat-img">
-                        <img id="edit-sub-cat-img" src="<?=ROOT?>/assets/images/driver/pdf.png" alt="No Image">
+            <div id="upl-doc" class="upload-document">
+                <img class="close-btn" onclick="closeDocumentPopup()" src="<?=ROOT?>/assets/images/driver/close.png" alt="close button">
+                <h2>Upload Confirmation Image</h2>
+                <form id="edit-doc-form" method="post">
+
+                    <!--  This is  error message   -->
+                    <?php if (!empty($errors)) : ?>
+                        <div class="error-txt signup-error">
+                            <img class="close-error" src="<?= ROOT ?>/assets/images/designer/close.png" alt="Close btn" onclick="close_error()">
+                            <ul>
+                                <?php foreach ($errors as $key => $value) : ?>
+                                    <li><?= $errors[$key] ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="doc-img">
+                        <img id="edit-doc-img" src="<?=ROOT?>/assets/images/driver/No_image.jpg" alt="No Image">
                         <label>
-                            Upload Document
+                            Upload
+                            <input onchange="load_doc_image(this.files[0])" type="file" name="Image">
                         </label>
+                    </div>
+                    <div class="doc-inputs">
+                        <div class="doc-form-field">
+                            <label>Order ID</label>
+                            <p id="header1"></p>
+                        </div>
+                        <div class="doc-form-field">
+                            <label>Customer Name</label>
+                            <p id="header2"></p>
+                        </div>
+                        <div class="doc-form-field">
+                            <label>Delivered Date</label>
+                            <p id="header3"></p>
+                        </div>
+                        <div class="doc-form-field">
+                            <label>Reason for late delivery</label>
+                            <input id="doc-field" name="Reason" placeholder="Enter the Reason">
+                        </div>
+                        <div class="submit-btn">
+                            <button id="doc-btn" type="submit">Submit</button>
+                        </div>
                     </div>
                 </form>
             </div>
 
         </div>
     </div>
+</div>
+<div class="cat-response" id="response">
+
 </div>
 </body>
 
