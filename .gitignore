@@ -2,3 +2,4 @@
 /.vscode
 .env
 /vendor/
+*.xml
