@@ -543,13 +543,25 @@ class Customer_home extends Controller
                     <h4>Delivery Address</h4>
                     <span>".$details->Address."</span>
                 </div>
-                <div class='order-detail order-final-detail'>
+                <div class='order-detail '>
                     <h4>Invoice Number</h4>
                     <span>#".substr($details->OrderID,0,8)."</span>
                 </div>
-                <div class='order-detail order-total'>
-                    <h4>Total Amount</h4>
+                <div class='order-detail'>
+                    <h4>Sub Total</h4>
                     <span>Rs. ".$details->Total_amount.".00</span>
+                </div> 
+                <div class='order-detail'>
+                    <h4>Shipping Cost</h4>
+                    <span>Rs. ".$details->Shipping_cost.".00</span>
+                </div>
+                <div class='order-detail order-final-detail'>
+                    <h4>Discount Obtained</h4>
+                    <span>-Rs. ".$details->Discount_obtained.".00</span>
+                </div>
+                <div class='order-detail order-total'>
+                    <h4>Total</h4>
+                    <span>Rs. ".$details->Total_amount + $details->Shipping_cost - $details->Discount_obtained.".00</span>
                 </div>
             </div>
         ";
