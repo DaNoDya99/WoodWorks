@@ -3,4 +3,8 @@
 .env
 /vendor/
 
+*.xml
+
+
 .idea/workspace.xml
+

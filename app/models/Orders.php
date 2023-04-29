@@ -25,6 +25,8 @@ class Orders extends Model
         'CustomerID',
         'DriverID',
         'Is_preparing',
+        'Shipping_cost',
+        'Discount_obtained',
         'SessionID'
     ];
 
@@ -243,6 +245,13 @@ class Orders extends Model
         $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID && Order_status = :Order_status;";
 
         return $this->query($query,['OrderID' => $orderId, 'Order_status' => 'unpaid']);
+    }
+
+    public function getPaidOrderDetails($orderId)
+    {
+        $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID && Order_status = :Order_status;";
+
+        return $this->query($query,['OrderID' => $orderId, 'Order_status' => 'paid']);
     }
 
     public function updateIsPreparing($orderId)
