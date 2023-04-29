@@ -6,7 +6,7 @@ class Issue extends Controller
 
     }
     
-    public function get_issues_details($id=null)
+    public function get_issue_details($id=null)
     {
         if(!Auth::logged_in())
         {

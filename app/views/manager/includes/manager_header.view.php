@@ -55,6 +55,13 @@
                 </a>
                 <span class="tooltip">Posts</span>
             </li>
+            <li>
+                <a href="<?= ROOT ?>/manager/discounts">
+                    <div class="icons"><img src="<?= ROOT ?>/assets/images/manager/discounts-percentage-label-on-calendar-daily-page-svgrepo-com (1).svg" style="" alt="" srcset=""> </div><span class="link-name">
+                    Discounts</span>
+                </a>
+                <span class="tooltip">Discounts</span>
+            </li>
 
             <li>
                 <a href="<?= ROOT ?>/manager/orders">
