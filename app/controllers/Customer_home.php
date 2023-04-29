@@ -102,6 +102,14 @@ class Customer_home extends Controller
         $cus_id = Auth::getCustomerID();
         $orderID = '';
 
+        $fur = $furniture->searchFurnitureByID($id)[0];
+        if($fur->Quantity < 1){
+            echo "<div class='cat-success cat-deletion'>
+                    <h2>Product is out of stock.</h2>
+                </div>";
+            return;
+        }
+
         if(empty($cart->getCart($cus_id)))
         {
             $cart->setCart($cus_id);
