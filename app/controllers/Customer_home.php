@@ -317,7 +317,7 @@ class Customer_home extends Controller
                 'cancel_url' => 'http://localhost:4242/cancel',
             ]);
 
-            $order->updateSessionID($orderID,Encrypt::encrypt($checkout_session->id),'unpaid');
+            $order->updateSessionID($orderID,$checkout_session->id,'unpaid');
 
             echo json_encode($checkout_session->url);
         }
