@@ -220,7 +220,7 @@ class Orders extends Model
 
     public function deliveryOrderDetails($id = null)
     {
-        $query = "SELECT OrderID, Contactno,Address,Total_amount,Order_status FROM orders WHERE OrderID = :OrderID;";
+        $query = "SELECT OrderID, Contactno,Address,Total_amount,Order_status,Shipping_cost,Discount_obtained FROM orders WHERE OrderID = :OrderID;";
 
         return $this->query($query, ['OrderID' => $id]);
     }

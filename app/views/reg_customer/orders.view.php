@@ -45,7 +45,7 @@
                 <div class="order-details selected-order" onclick="getOrderDetails('<?= $order->OrderID?>')">
                     <div class="lhs-details">
                         <h4 class="lhs-details-item">#<?= substr($order->OrderID,0,8)?></h4>
-                        <span class="lhs-details-item">Rs. <?=$order->Total_amount?>.00</span>
+                        <span class="lhs-details-item">Rs. <?=$order->Total_amount +$order->Shipping_cost - $order->Discount_obtained?>.00</span>
                         <span class="lhs-details-item"><?=$order->items?> Items</span>
                     </div>
                     <div class="rhs-details">
