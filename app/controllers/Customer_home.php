@@ -102,6 +102,14 @@ class Customer_home extends Controller
         $cus_id = Auth::getCustomerID();
         $orderID = '';
 
+        $fur = $furniture->searchFurnitureByID($id)[0];
+        if($fur->Quantity < 1){
+            echo "<div class='cat-success cat-deletion'>
+                    <h2>Product is out of stock.</h2>
+                </div>";
+            return;
+        }
+
         if(empty($cart->getCart($cus_id)))
         {
             $cart->setCart($cus_id);
@@ -317,7 +325,7 @@ class Customer_home extends Controller
                 'cancel_url' => 'http://localhost:4242/cancel',
             ]);
 
-            $order->updateSessionID($orderID,Encrypt::encrypt($checkout_session->id),'unpaid');
+            $order->updateSessionID($orderID,$checkout_session->id,'unpaid');
 
             echo json_encode($checkout_session->url);
         }
@@ -543,13 +551,25 @@ class Customer_home extends Controller
                     <h4>Delivery Address</h4>
                     <span>".$details->Address."</span>
                 </div>
-                <div class='order-detail order-final-detail'>
+                <div class='order-detail '>
                     <h4>Invoice Number</h4>
                     <span>#".substr($details->OrderID,0,8)."</span>
                 </div>
-                <div class='order-detail order-total'>
-                    <h4>Total Amount</h4>
+                <div class='order-detail'>
+                    <h4>Sub Total</h4>
                     <span>Rs. ".$details->Total_amount.".00</span>
+                </div> 
+                <div class='order-detail'>
+                    <h4>Shipping Cost</h4>
+                    <span>Rs. ".$details->Shipping_cost.".00</span>
+                </div>
+                <div class='order-detail order-final-detail'>
+                    <h4>Discount Obtained</h4>
+                    <span>-Rs. ".$details->Discount_obtained.".00</span>
+                </div>
+                <div class='order-detail order-total'>
+                    <h4>Total</h4>
+                    <span>Rs. ".$details->Total_amount + $details->Shipping_cost - $details->Discount_obtained.".00</span>
                 </div>
             </div>
         ";

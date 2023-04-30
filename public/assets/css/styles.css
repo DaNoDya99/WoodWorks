@@ -755,12 +755,14 @@ select {
 
 .add-sup-form input {
     width: 100%;
-    border: none;
+    border: 2px solid #d2d2d2;
     height: 35px;
     border-radius: 5px;
     font-size: 1rem;
-    background-color: #d4d4d4;
+
     margin-bottom: 1em;
+    font-family: 'Rubik', sans-serif;
+    padding-left: 0.5em;
 }
 
 .add-sup-field {
@@ -2336,6 +2338,17 @@ h2 {
     font-family: 'Rubik', sans-serif;
 }
 
+.edit-sup-popup{
+    left: 50%;
+    width: 30%;
+    font-family: 'Rubik', sans-serif;
+}
+
+.sup-btn{
+    font-weight: bolder;
+    font-size: 1rem;
+}
+
 .sup-popup input{
     padding-left: .5em;
 }
@@ -3212,7 +3225,7 @@ h2 {
 /*Your orders page*/
 
 .orders-container{
-    height: 95vh;
+    height: 100vh;
     background-color: #c3c4a5;
     display: flex;
     padding: 2em 1em;
@@ -3220,8 +3233,8 @@ h2 {
 }
 
 .orders, .order{
-    height: 85vh;
-    max-height: 85vh;
+    height: 90vh;
+    max-height: 90vh;
     background-color: #f9f9f9;
     border-radius: 15px;
     width: 35%;
@@ -3365,7 +3378,7 @@ h2 {
 
 .order-payment-details{
     background-color: #d4d4d4;
-    height: 24vh;
+    height: 29vh;
     margin-top: 1em;
     margin-left: 1em;
     margin-right: 1em;
@@ -3393,7 +3406,7 @@ h2 {
 }
 
 .order-total{
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 .delivery-order-total{

@@ -26,6 +26,8 @@ class Orders extends Model
         'CustomerID',
         'DriverID',
         'Is_preparing',
+        'Shipping_cost',
+        'Discount_obtained',
         'SessionID'
     ];
 
@@ -212,7 +214,7 @@ class Orders extends Model
 
     public function getNewOrders()
     {
-        $query = "select * from $this->table where DriverId= 'null' && Is_preparing = :Is_preparing;";
+        $query = "select * from $this->table where DriverId IS NULL && Is_preparing = :Is_preparing;";
         return $this->query($query,['Is_preparing' => 0]);
     }
 
@@ -225,7 +227,7 @@ class Orders extends Model
 
     public function deliveryOrderDetails($id = null)
     {
-        $query = "SELECT OrderID, Contactno,Address,Total_amount,Order_status FROM orders WHERE OrderID = :OrderID;";
+        $query = "SELECT OrderID, Contactno,Address,Total_amount,Order_status,Shipping_cost,Discount_obtained FROM orders WHERE OrderID = :OrderID;";
 
         return $this->query($query, ['OrderID' => $id]);
     }
@@ -250,6 +252,13 @@ class Orders extends Model
         $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID && Order_status = :Order_status;";
 
         return $this->query($query,['OrderID' => $orderId, 'Order_status' => 'unpaid']);
+    }
+
+    public function getPaidOrderDetails($orderId)
+    {
+        $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID && Order_status = :Order_status;";
+
+        return $this->query($query,['OrderID' => $orderId, 'Order_status' => 'paid']);
     }
 
     public function updateIsPreparing($orderId)

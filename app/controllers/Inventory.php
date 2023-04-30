@@ -221,4 +221,37 @@ class Inventory extends Controller
 
         echo json_encode($row);
     }
+
+    public function save($id,$quantity)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $data['Cost'] = $_POST['Cost'];
+        $data['Retail_price'] = $_POST['Retail_price'];
+
+        if($_POST['Arrived_quantity'] !== ''){
+            $data['Quantity'] = $_POST['Arrived_quantity'] + $quantity;
+        }else{
+            $data['Quantity'] = $quantity;
+        }
+
+        $data['Reorder_point'] = $_POST['Reorder_point'];
+        $data['Last_received'] = $_POST['Last_received'];
+        $data['Updated_at'] = date('Y-m-d H:i:s');
+        $data['ProductID'] = $id;
+
+        $inventory = new Product_Inventory();
+        if(!$inventory->updateInventoryItemDetails($data)){
+            echo "<div class='cat-success'>
+                    <h2>Product Updated Successfully!</h2>
+                 </div>";
+        }else{
+            echo "<div class='cat-success cat-deletion'>
+                    <h2>Error Updating!</h2>
+                 </div>";
+        }
+    }
 }

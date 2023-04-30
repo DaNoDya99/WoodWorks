@@ -23,40 +23,48 @@ class Suppliers extends Model
     {
         $this->errors = [];
 
+        if (empty($data['SupplierID'])) {
+            $this->errors['SupplierID'] = '&nbsp *Supplier ID is required';
+        } elseif (!preg_match('/^S\d{4}$/', $data['SupplierID'])) {
+            $this->errors['SupplierID'] = "&nbsp *Supplier ID does not match the 'S0001' format";
+        } elseif ($this->where('SupplierID', $data['SupplierID'])) {
+            $this->errors['SupplierID'] = '&nbsp *Supplier ID already exists';
+        }
+
         if (empty($data['Firstname'])) {
-            $this->errors['Firstname'] = 'First name is required';
+            $this->errors['Firstname'] = '&nbsp *First name is required';
         } elseif (preg_match('/[^a-zA-Z]/', $data['Firstname'])) {
-            $this->errors['Firstname'] = 'First name must be letters only';
+            $this->errors['Firstname'] = '&nbsp *First name must be letters only';
         }
 
         if (empty($data['Lastname'])) {
-            $this->errors['Lastname'] = 'Last name is required';
+            $this->errors['Lastname'] = '&nbsp *Last name is required';
         } elseif (preg_match('/[^a-zA-Z]/', $data['Lastname'])) {
-            $this->errors['Lastname'] = 'Last name must be letters only';
+            $this->errors['Lastname'] = '&nbsp *Last name must be letters only';
         }
 
         if (empty($data['Email'])) {
-            $this->errors['Email'] = 'Email is required';
+            $this->errors['Email'] = '&nbsp *Email is required';
         } elseif (!filter_var($data['Email'], FILTER_VALIDATE_EMAIL)) {
-            $this->errors['Email'] = 'Email is invalid';
+            $this->errors['Email'] = '&nbsp *Email is invalid';
         } elseif ($this->where('Email', $data['Email'])) {
-            $this->errors['Email'] = 'Email already exists';
+            $this->errors['Email'] = '&nbsp *Email already exists';
         }
 
         if (empty($data['Password'])) {
-            $this->errors['Password'] = 'Password is required';
+            $this->errors['Password'] = '&nbsp *Password is required';
         } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", trim($data['Password']))) {
-            $this->errors['Password'] = "Password must contain at least 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character.";
+            $this->errors['Password'] = "&nbsp *Password must contain at least 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character.";
         }
 
         if (empty($data['Contactno'])) {
-            $this->errors['Contactno'] = 'Contact number is required';
+            $this->errors['Contactno'] = '&nbsp *Contact number is required';
         } elseif (preg_match('/[^0-9]/', $data['Contactno'])) {
-            $this->errors['Contactno'] = 'Contact number must be numbers only';
+            $this->errors['Contactno'] = '&nbsp *Contact number must be numbers only';
         }
 
         if (empty($data['Company_name'])) {
-            $this->errors['Company_name'] = 'Company name is required';
+            $this->errors['Company_name'] = '&nbsp *Company name is required';
         }
 
         if (empty($this->errors)) {
@@ -121,5 +129,19 @@ class Suppliers extends Model
         $query = "SELECT SupplierID, Company_name FROM $this->table";
 
         return $this->query($query);
+    }
+
+    public function deleteSupplier($id)
+    {
+        $query = "DELETE FROM $this->table WHERE SupplierID = :SupplierID";
+
+        return $this->query($query,['SupplierID' => $id]);
+    }
+
+    public function updateSupplier($data)
+    {
+        $query = "UPDATE $this->table SET Firstname = :Firstname, Lastname = :Lastname, Email = :Email, Contactno = :Contactno, Company_name = :Company_name WHERE SupplierID = :SupplierID";
+
+        return $this->query($query, $data);
     }
 }
