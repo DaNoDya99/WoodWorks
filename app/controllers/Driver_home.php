@@ -132,6 +132,7 @@ class Driver_home extends Controller
 
         $data['row'] = $order->displayOrders('DriverID',$id);
 
+
         if(isset($_GET['orders_items']))
         {
                 $orders_items = $_GET['orders_items'];// don't care at the end
@@ -176,7 +177,7 @@ class Driver_home extends Controller
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
-        $data['records1'] = $order->displayOrders('DriverID',$id);
+        $data['records1'] = $order->displayDeliveredOrders('DriverID',$id);
 
         $this->view('driver/includes/delivered_orders_table',$data);
 

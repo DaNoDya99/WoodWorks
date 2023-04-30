@@ -74,19 +74,6 @@
                 <img class="close-btn" onclick="closeDocumentPopup()" src="<?=ROOT?>/assets/images/driver/close.png" alt="close button">
                 <h2>Upload Confirmation Image</h2>
                 <form id="edit-doc-form" method="post">
-
-                    <!--  This is  error message   -->
-                    <?php if (!empty($errors)) : ?>
-                        <div class="error-txt signup-error">
-                            <img class="close-error" src="<?= ROOT ?>/assets/images/designer/close.png" alt="Close btn" onclick="close_error()">
-                            <ul>
-                                <?php foreach ($errors as $key => $value) : ?>
-                                    <li><?= $errors[$key] ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                    <?php endif; ?>
-
                     <div class="doc-img">
                         <img id="edit-doc-img" src="<?=ROOT?>/assets/images/driver/No_image.jpg" alt="No Image">
                         <label>

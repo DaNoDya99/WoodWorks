@@ -17,6 +17,7 @@ class Orders extends Model
         'Dispatched_date',
         'Delivered_date',
         'Deliver_method',
+        'Estimated_date',
         'Image',
         'Reasons',
         'Order_status',
@@ -97,7 +98,13 @@ class Orders extends Model
 
     public function displayOrders($column,$value)
     {
-        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value ";
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` != 'Delivered' limit 15";
+        return $this->query($query,['value'=>$value]);
+    }
+
+    public function displayDeliveredOrders($column,$value)
+    {
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` = 'Delivered' limit 15";
         return $this->query($query,['value'=>$value]);
     }
 
