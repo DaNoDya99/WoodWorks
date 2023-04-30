@@ -755,12 +755,14 @@ select {
 
 .add-sup-form input {
     width: 100%;
-    border: none;
+    border: 2px solid #d2d2d2;
     height: 35px;
     border-radius: 5px;
     font-size: 1rem;
-    background-color: #d4d4d4;
+
     margin-bottom: 1em;
+    font-family: 'Rubik', sans-serif;
+    padding-left: 0.5em;
 }
 
 .add-sup-field {
@@ -2334,6 +2336,17 @@ h2 {
     width: 30%;
     top: 150%;
     font-family: 'Rubik', sans-serif;
+}
+
+.edit-sup-popup{
+    left: 50%;
+    width: 30%;
+    font-family: 'Rubik', sans-serif;
+}
+
+.sup-btn{
+    font-weight: bolder;
+    font-size: 1rem;
 }
 
 .sup-popup input{

@@ -110,12 +110,66 @@ class supplier extends Controller
         {
             echo "Supplier Added Successfully";
         }else{
-            $stm = '';
-            foreach ($errors as $error)
-            {
-                $stm .= $error . "<br>";
-            }
-            echo $stm;
+            echo json_encode($errors);
         }
+    }
+
+    public function getSupplier($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $supplier = new Suppliers();
+
+        $row = $supplier->where('SupplierID', $id);
+
+        if($row)
+        {
+            echo json_encode($row[0]);
+        }else{
+            echo "Supplier Not Found";
+        }
+    }
+
+    public function delete($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $supplier = new Suppliers();
+
+        if(!$supplier->deleteSupplier($id))
+        {
+            echo "<div class='cat-success cat-deletion'>
+                  <h3>Supplier Deleted Successfully!</h3>
+              </div>";
+        }else{
+            echo "Supplier Not Found";
+        }
+    }
+
+    public function save($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $supplier = new Suppliers();
+
+        $_POST['SupplierID'] = $id;
+
+        if(!$supplier->updateSupplier($_POST))
+        {
+            echo "<div class='cat-success'>
+                  <h3>Supplier Updated Successfully!</h3>
+              </div>";
+        }else{
+            echo "Supplier Not Found";
+        }
+
     }
 }
