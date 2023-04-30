@@ -34,6 +34,7 @@
                 <?php if(!empty($rows)):?>
                 <?php foreach ($rows as $row):?>
                 <tr>
+
                     <td><?=esc($row->Name)?></td>
                     <td><?=esc($row->Quantity)?></td>
                     <td>Rs. <?=esc($row->Cost)?>.00</td>

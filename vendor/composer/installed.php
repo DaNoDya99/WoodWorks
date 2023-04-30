@@ -3,22 +3,18 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd1ba530a9315e6ed2cc14ae4ce1618eff1a22aa0',
+        'reference' => '742152f03b14088b1c88a759136b4627d5616b8b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
 
-        'reference' => '3f72e51516554f3cefa95c9e35fa7cb9dd82e052',
-        'name' => '__root__',
-
-
-
-            'reference' => '3f72e51516554f3cefa95c9e35fa7cb9dd82e052',
-            'dev_requirement' => false,
-        ),
-        'dompdf/dompdf' => array(
-            'pretty_version' => 'v2.0.3',
-            'version' => '2.0.3.0',
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '742152f03b14088b1c88a759136b4627d5616b8b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../dompdf/dompdf',
             'aliases' => array(),
