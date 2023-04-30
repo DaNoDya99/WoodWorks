@@ -33,7 +33,7 @@ class Order_Items extends Model
             'ProductID' => $productID,
             'OrderID' => $orderID
         ];
-        show($data);
+
 
 
 

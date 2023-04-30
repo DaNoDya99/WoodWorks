@@ -4,12 +4,18 @@ require '../vendor/autoload.php';
 
 class cashier extends Controller
 {
-    public function index()
+    public function index(): void
     {
+        show($_SESSION);
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
-        show($_SESSION);
+        // show($_SESSION);
+
+        // unset($_SESSION['CustomerID']);
+        // unset($_SESSION['CustomerDetails']);
+
+
         $data['row'] = $row = $this->getUser();
         $products = new Furnitures();
         $data['products'] = $products->getInventory();
@@ -17,116 +23,184 @@ class cashier extends Controller
             $product->image = $products->getDisplayImage($product->ProductID)[0]->Image;
         }
 
-        $cart = new Carts();
 
-        if (!empty($_SESSION['CustomerID'])) {
-            $cart_id = $cart->getCart($_SESSION['CustomerID'])[0]->CartID;
-            $order_item = new Order_Items();
-
-
-            if (empty($cart->getCart($_SESSION['CustomerID']))) {
-                $cart->setCart($_SESSION['CustomerID']);
-            }
-
-            $data['cart'] = $order_item->getCustomerCartDetails($cart_id);
-
-            if (empty($data['cart'])) {
-                $data['error'] = "The cart is empty.";
-            }
-        }
         $customer = new Customer();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['type'])) {
-            if ($_POST['type'] = "newcust") {
-                $folder = "uploads/images/";
-                $_POST['Password'] = password_hash('testpass', PASSWORD_DEFAULT);
-                $_POST['Password2'] = $_POST['Password'];
-                $_POST['Role'] = 'Customer';
-                $_POST['Mobileno'] = $_POST['contact'];
-                $_POST['Gender'] = "Male";
-                show($_POST);
-                if ($customer->validate($_POST)) {
-                    show($_POST);
-                    $customer->insert($_POST);
-
-                    echo json_encode(['success' => 'Customer added successfully.']);
-                } else {
-                    echo json_encode($customer->errors);
-                }
-
-                $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
-                $_SESSION['CustomerDetails'] = $customer->where('CustomerID', $_SESSION['CustomerID']);
-
-            } else if ($_POST['type'] = "oldcust") {
-                $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
-                $_SESSION['CustomerDetails'] = $customer->where('CustomerID', $_SESSION['CustomerID']);
-            }
-
-            $this->redirect('cashier');
-        }
 
         $this->view('cashier/dash', $data);
     }
 
     private function getUser()
     {
-//        $employee = new Employees();
-//        $id = Auth::getEmployeeID();
-//        return $employee->where('EmployeeID', $id);
+        $employee = new Employees();
+        $id = Auth::getEmployeeID();
+        return $employee->where('EmployeeID', $id);
     }
 
-    //    public function newBill()
-    //    {
-    //        $bill = new Bills();
-    //        $bill->createBill();
-    //        $this->redirect('cashier');
-    //    }
-
-    //    public function newcustomer()
-    //    {
-    //        $customer = new Customer();
-    //        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //            $folder = "uploads/images/";
-    //            $_POST['Password'] = password_hash('testpass', PASSWORD_DEFAULT);
-    //            $_POST['Password2'] = $_POST['Password'];
-    //            $_POST['Role'] = 'Customer';
-    //            $_POST['Mobileno'] = $_POST['contact'];
-    //            $_POST['Gender'] = "Male";
-    //            if ($customer->validate($_POST)) {
-    //                $customer->insert($_POST);
-    //                echo json_encode(['success' => 'Customer added successfully.']);
-    //            } else {
-    //                echo json_encode($customer->errors);
-    //            }
-    //
-    //            $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
-    //            $_SESSION['CustomerDetails'] = $customer->where('CustomerID', $_SESSION['CustomerID']);
-    //
-    //        }
-    ////        $this->setupBillOrder();
-    //    }
-
-    //    public function loadCustomer()
-    //    {
-    //        $customer = new Customer();
-    //        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //            show($_POST);
-    //
-    //            $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
-    //            $_SESSION['CustomerDetails'] = $customer->where('CustomerID', $_SESSION['CustomerID']);
-    //        }
-    //
-    //        $this->view('cashier');
-    //
-    //    }
-
-    public function add_to_cart($id, $cost)
+    public function oldcust()
     {
 
-//        if (!Auth::logged_in()) {
-//            $this->redirect('login');
-//        }
+        $customer = new Customer();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            $cart = new Carts();
+            if (!empty($customer->where('Email', $_POST['Email'])[0]->CustomerID)) {
+                $_SESSION['CustomerID'] = $customer->where('Email', $_POST['Email'])[0]->CustomerID;
+                $_SESSION['CustomerDetails'] = $customer->where('CustomerID', $_SESSION['CustomerID']);
+                if (empty($cart->getCart($_SESSION['CustomerID']))) {
+                    $cart->setCart($_SESSION['CustomerID']);
+                }
+
+                $order_item = new Order_Items();
+                $_SESSION['CartID'] = $cart->getCart($_SESSION['CustomerID'])[0]->CartID;
+
+                if (!empty($order_item->getCustomerCartDetails($_SESSION['CartID']))) {
+                    $_SESSION['cart'] = $order_item->getCustomerCartDetails($_SESSION['CartID']);
+                    //convert objects in cart to array
+                    $_SESSION['cart'] = json_decode(json_encode($_SESSION['cart']), true);
+                    show($_SESSION['cart']);
+                } else {
+                    $_SESSION['cart'] = [];
+                }
+
+
+                if (empty($data['cart'])) {
+                    $data['error'] = "The cart is empty.";
+                }
+                echo json_encode(['status' => 'success', 'success' => 'Customer loaded successfully.']);
+//            unset($_SESSION['cart']);
+            } else {
+                echo json_encode(['status' => 'fail', 'error' => 'Customer not found. Try Again']);
+//            unset($_SESSION['cart']);
+            }
+        }
+    }
+
+    public function isCustomerSet()
+    {
+        if (isset($_SESSION['CustomerID']) && isset($_SESSION['CustomerDetails'])) {
+            echo json_encode(['status' => 'true', 'success' => 'Customer loaded successfully.']);
+        } else {
+            echo json_encode(['status' => 'false', 'error' => 'Customer not found. Try Again']);
+        }
+    }
+
+//    public function add_to_cart($id, $cost)
+//    {
+//
+//        //        if (!Auth::logged_in()) {
+//        //            $this->redirect('login');
+//        //        }
+//
+//        $order = new Orders();
+//        $furniture = new Furnitures();
+//        $cart = new Carts();
+//        $order_items = new Order_Items();
+//        $inventory = new Product_Inventory();
+//        $cus_id = $_SESSION['CustomerID'];
+//        $orderID = '';
+//        if (empty($cart->getCart($cus_id))) {
+//            $cart->setCart($cus_id);
+//        }
+//        $_SESSION['CartID'] = $cart->getCart($cus_id)[0]->CartID;
+//
+//        if (empty($order->checkIsPreparing($cus_id))) {
+//            $orderID = $order->setBillOrder($cus_id);
+//        } else {
+//            $orderID = $order->checkIsPreparingInStore($cus_id)[0]->OrderID;
+//        }
+//        $_SESSION['OrderID'] = $orderID;
+//
+//        $item_quantity = $inventory->getProductQuantity($id)[0]->Quantity;
+//        //if greater than 0 then add to cart
+//
+//
+//        if ($item_quantity > 0) {
+//            $q = "Select * from order_item where CartID = :CartID and ProductID = :ProductID";
+//            $res = $order_items->query($q, ['CartID' => $cart->getCart($cus_id)[0]->CartID, 'ProductID' => $id]);
+//            $info = $furniture->getFurniture($id);
+//
+//            if (!empty($res)) {
+//
+//                $order_items->updateQuantity($orderID, $id, $res[0]->Quantity + 1);
+//                $cart->updateTotalAmountToIncrease($cart->getCart($cus_id)[0]->CartID, $info[0]->Cost);
+//                $inventory->updateQuantityToDecrease($id, 1);
+//
+//                echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.']);
+//                // die;
+//            }
+//
+//
+//            $info = $furniture->getFurniture($id);
+//            $image = $furniture->getDisplayImage($id);
+//
+//            if (empty($order_items->getOrderItem($orderID, $id))) {
+//                $data = [
+//                    'ProductID' => $id,
+//                    'Name' => $info[0]->Name,
+//                    'Quantity' => 1,
+//                    'Cost' => $cost,
+//                    'OrderID' => $orderID,
+//                    'CartID' => $cart->getCart($cus_id)[0]->CartID,
+//                    'Image' => $image[0]->Image
+//                ];
+//
+//                $cart->updateTotalAmountToIncrease($data['CartID'], $data['Cost']);
+//
+//                $order_items->insert($data);
+//                $inventory->updateQuantityToDecrease($id, 1);
+//            }
+//
+//            echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.']);
+//        } else {
+//            echo json_encode(['status' => 'fail', 'error' => 'Item is out of stock.']);
+//        }
+//    }
+
+//    public function updateQuantity($cartID, $orderID, $productID, $newQuantity, $cost)
+//    {
+//        // if (!Auth::logged_in()) {
+//        //     $this->redirect('login1');
+//        // }
+//
+//        $cart = new Carts();
+//        $order_item = new Order_Items();
+//        $inventory = new Product_Inventory();
+//        $item_quantity = $inventory->getProductQuantity($productID)[0]->Quantity;
+//
+//        if ($item_quantity >= $newQuantity) {
+//            $data = [];
+//            show($_SESSION);
+//            foreach ($_SESSION['cart'] as $key => $value) {
+//                if ($value['ProductID'] == $productID) {
+//                    $oldQuantity = $value['Quantity'];
+//                    $data['OrderID'] = $value['OrderID'];
+//                    $data['ProductID'] = $value['ProductID'];
+//                    $data['Quantity'] = $newQuantity;
+//                    $data['OrderDate'] = $value['OrderDate'];
+//                    $data['CustomerID'] = $value['CustomerID'];
+//                    $data['Cost'] = $value['Cost'];
+//                    $data['CartID'] = $value['CartID'];
+//                    unset($_SESSION['cart'][$key]);
+//                    $_SESSION['cart'][] = $data;
+//                }
+//            }
+//
+//            $quantityDifference = $newQuantity - $oldQuantity;
+//            $inventory->updateQuantityToDecrease($productID, $quantityDifference);
+//            $order_item->updateQuantity($orderID, $productID, $newQuantity);
+//            $cart->updateTotalAmountToIncrease($cartID, $cost * $quantityDifference);
+//
+//            echo "<h1>New One</h1>";
+//        } else {
+//            echo "<div class='cat-success cat-deletion'>
+//                <h2>The requested quantity is not available.</h2>
+//              </div>";
+//        }
+//    }
+
+    public function add_to_cart($id, $cost, $quantity = 1): void
+    {
         $order = new Orders();
         $furniture = new Furnitures();
         $cart = new Carts();
@@ -134,6 +208,7 @@ class cashier extends Controller
         $inventory = new Product_Inventory();
         $cus_id = $_SESSION['CustomerID'];
         $orderID = '';
+
         if (empty($cart->getCart($cus_id))) {
             $cart->setCart($cus_id);
         }
@@ -143,78 +218,78 @@ class cashier extends Controller
             $orderID = $order->setBillOrder($cus_id);
         } else {
             $orderID = $order->checkIsPreparingInStore($cus_id)[0]->OrderID;
-
         }
         $_SESSION['OrderID'] = $orderID;
+//        show($_SESSION['OrderID']);
+//        show($_SESSION['CartID']);
 
         $item_quantity = $inventory->getProductQuantity($id)[0]->Quantity;
-        //if greater than 0 then add to cart
 
-
-        if ($item_quantity > 0) {
-            $q = "Select * from order_item where CartID = :CartID and ProductID = :ProductID";
-            $res = $order_items->query($q, ['CartID' => $cart->getCart($cus_id)[0]->CartID, 'ProductID' => $id]);
-//
-
+        if ($item_quantity >= $quantity) {
+            $q = "Select * from order_item where CartID = :CartID and ProductID = :ProductID and Is_purchased = :Is_purchased";
+            $res = $order_items->query($q, ['CartID' => $cart->getCart($cus_id)[0]->CartID, 'ProductID' => $id, 'Is_purchased' => '0']);
             $info = $furniture->getFurniture($id);
 
             if (!empty($res)) {
+//                show($res);
+                $order_items->updateQuantity($orderID, $id, $res[0]->Quantity + $quantity);
+                $cart->updateTotalAmountToIncrease($cart->getCart($cus_id)[0]->CartID, $info[0]->Cost * $quantity);
+                $inventory->updateQuantityToDecrease($id, $quantity);
 
-                $order_items->updateQuantity($orderID, $id, $res[0]->Quantity + 1);
-                $cart->updateTotalAmountToIncrease($cart->getCart($cus_id)[0]->CartID, $info[0]->Cost);
-                $inventory->updateQuantityToDecrease($id, 1);
+                echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.']);
+            } else {
+                $info = $furniture->getFurniture($id);
+                $image = $furniture->getDisplayImage($id);
 
-                $this->redirect("cashier/dash");
-            }
+                if (empty($order_items->getOrderItem($orderID, $id))) {
+                    $data = [
+                        'ProductID' => $id,
+                        'Name' => $info[0]->Name,
+                        'Quantity' => $quantity,
+                        'Cost' => $cost,
+                        'OrderID' => $orderID,
+                        'CartID' => $cart->getCart($cus_id)[0]->CartID,
+                        'Image' => $image[0]->Image
+                    ];
 
+                    $cart->updateTotalAmountToIncrease($data['CartID'], $data['Cost'] * $quantity);
 
-            $info = $furniture->getFurniture($id);
-            $image = $furniture->getDisplayImage($id);
+                    $order_items->insert($data);
+                    $inventory->updateQuantityToDecrease($id, $quantity);
+                }
 
-            if (empty($order_items->getOrderItem($orderID, $id))) {
-                $data = [
-                    'ProductID' => $id,
-                    'Name' => $info[0]->Name,
-                    'Quantity' => 1,
-                    'Cost' => $cost,
+                $current_date_time = time();
+
+                $details = [
                     'OrderID' => $orderID,
+                    'OrderDate' => $current_date_time,
+                    'CustomerID' => $cus_id,
+                    'ProductID' => $id,
+                    'Quantity' => $quantity,
                     'CartID' => $cart->getCart($cus_id)[0]->CartID,
-                    'Image' => $image[0]->Image
+                    'Cost' => $cost,
                 ];
 
-                $cart->updateTotalAmountToIncrease($data['CartID'], $data['Cost']);
+                if (!isset($_SESSION['cart'])) {
+                    $_SESSION['cart'] = array();
+                }
 
-                $order_items->insert($data);
-                $inventory->updateQuantityToDecrease($id, 1);
-            } else {
-                //no stock
-                $this->redirect('cashier/dash');
+                $_SESSION['cart'][] = $details;
+
+                echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.']);
             }
-            $this->redirect('cashier/dash');
         } else {
-            $this->redirect('cashier/dash');
+            echo json_encode(['status' => 'fail', 'error' => 'Item is out of stock.']);
         }
     }
 
-
-    //    public function setupBillOrder()
-    //    {
-    //        $bill = new Bills;
-    //        $order = new Orders;
-    //        $cart = new Carts;
-    //        $cart->setCart($_SESSION['CustomerID']);
-    //        $_SESSION['CartID'] = $cart->getCart($_SESSION['CustomerID'])[0]->CartID;
-    //        $_SESSION['OrderID']  = $order-> setBillOrder();
-    //
-    //        $bill->createBill($_SESSION['CustomerID']);
-    //    }
-
-    public function removeItem($cartID, $productID, $cost, $quantity)
+    public function removeItem($productID, $cost, $quantity)
     {
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
+        $cartID = $_SESSION['CartID'];
         $cart = new Carts();
         $order_item = new Order_Items();
         $inventory = new Product_Inventory();
@@ -224,12 +299,10 @@ class cashier extends Controller
         $order_item->deleteItem($cartID, $productID);
         $cart->updateTotalAmountToDecrease($cartID, $cost * $quantity);
 
-
-        $this->redirect('cashier/dash');
+        echo json_encode(['status' => 'success', 'success' => 'Item removed from cart successfully.']);
     }
 
-    public
-    function checkoutCash($orderID)
+    public function checkoutCash($orderID)
     {
         $order = new Orders();
         $order_items = new Order_Items();
@@ -250,11 +323,9 @@ class cashier extends Controller
         $cart->resetCartTotal($cart->getCart($id)[0]->CartID);
         $this->resetCustomer();
         $this->redirect('cashier/dash');
-
     }
 
-    public
-    function resetCustomer()
+    public function resetCustomer()
     {
         $_SESSION['CustomerID'] = null;
         $_SESSION['CustomerDetails'] = null;
@@ -263,7 +334,9 @@ class cashier extends Controller
         $this->redirect('cashier/dash');
     }
 
-    public function checkout($orderID)
+    //return cart total amount
+
+    public function checkout_card($orderID)
     {
         // if(!Auth::logged_in())
         // {
@@ -275,6 +348,7 @@ class cashier extends Controller
             $order_items = new Order_Items();
             $cart = new Carts();
             $id = '7WbGWsH1tZvFePZqm4b7nq6pQRhth4mpq7xACB2AFwFIAoDEFk0D46nDtzUu';
+
 
             $_POST['Payment_type'] = 'Card';
             $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
@@ -342,4 +416,42 @@ class cashier extends Controller
         }
     }
 
+    //get cart items of cart
+
+    public function getCartTotal()
+    {
+        $cart = new Carts();
+        if (isset($_SESSION['CustomerID'])) {
+            $id = $_SESSION['CustomerID'];
+            $data['total'] = $cart->getTotalAmount($id)[0]->Total_amount;
+            echo json_encode($data);
+        } else {
+            $data['total'] = 0;
+            echo json_encode($data);
+        }
+
+    }
+
+    public function getCartItems()
+    {
+        $cart_id = $_SESSION['CartID'];
+        $cart = new Carts();
+
+        if (!empty($_SESSION['CustomerID'])) {
+            $cart_id = $cart->getCart($_SESSION['CustomerID'])[0]->CartID;
+            $order_item = new Order_Items();
+
+
+            if (empty($cart->getCart($_SESSION['CustomerID']))) {
+                $cart->setCart($_SESSION['CustomerID']);
+            }
+
+            $data['cart'] = $order_item->getCustomerCartDetails($cart_id);
+
+            echo json_encode($data);
+        } else {
+            $data['cart'] = [];
+            echo json_encode($data);
+        }
+    }
 }
