@@ -49,7 +49,7 @@ class Order extends Controller
                         <h2>Order Details</h2>
                         <div class='order-detail'>
                             <h4>Order ID</h4>
-                            <span>" . $order->OrderID . "</span>
+                            <span>" . substr($order->OrderID,0,8) . "</span>
                         </div>
                         <div class='order-detail'>
                             <h4>Phone Number</h4>

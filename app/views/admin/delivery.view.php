@@ -22,7 +22,7 @@
                 <?php if(!empty($orders)): ?>
                     <?php foreach($orders as $order): ?>
                         <tr>
-                            <td class="order-id"><?= $order->OrderID ?></td>
+                            <td class="order-id"><?= substr($order->OrderID,0,8) ?></td>
                             <td><?= $order->Firstname ?> <?= $order->Lastname ?></td>
                             <td><?= $order->Email ?></td>
                             <td><?= $order->Address ?></td>
