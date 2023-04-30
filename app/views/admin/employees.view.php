@@ -46,7 +46,18 @@
                 </table>
             </div>
         </div>
+
+        <div class="popup edit-sup-popup" id="add-emp-popup">
+            <div class="popup-heading">
+                <h2>Add Employee</h2>
+                <img src="<?= ROOT ?>/assets/images/customer/close.png" alt="Close" onclick="closeEditSupplierPopup()">
+            </div>
+
+            </form>
+        </div>
     </div>
 </div>
+
+<script src="<?=ROOT?>/assets/javascript/employee.js"></script>
 </body>
 </html>
