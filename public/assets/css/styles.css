@@ -390,6 +390,7 @@ td {
 
 .emp-header button {
     width: 100%;
+    padding: 0 1em;
     background-color: #0F3D3E;
     color: #f9f9f9;
     font-family: 'Rubik', sans-serif;
@@ -500,16 +501,16 @@ td {
     display: flex;
     flex-direction: column;
     margin: 10px;
+    text-align: left;
 }
 
 .emp-form-field input,
-select {
-    padding: 5px 20px;
+.emp-form-field select {
+    padding: 5px 10px;
     font-family: 'Rubik', sans-serif;
-    font-size: 1vw;
     border-radius: 5px;
-    border: none;
-    background-color: #d4d4d4;
+    border: 2px solid #d4d4d4;
+    background-color: #f9f9f9;
 }
 
 .add-emp-btn {
@@ -4151,4 +4152,11 @@ h2 {
     padding: .5em 1em;
     font-size: 1.2rem;
     margin-top: 2em;
+}
+
+.emp-popup{
+    left: 50%;
+    width: 40%;
+    font-family: 'Rubik', sans-serif;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
