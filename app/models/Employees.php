@@ -49,6 +49,7 @@ class Employees extends Model
                 }
             }
         }
+
         if(empty($post['Contactno'])){
             $this->errors['Contactno'] = "Contact number required.";
         }elseif (!preg_match("/^[0-9]+$/",trim($post['Contactno']))){
@@ -77,39 +78,47 @@ class Employees extends Model
         $this->errors = [];
 
         if(empty($data['EmployeeID'])){
-            $this->errors['EmployeeID'] = "Employees ID is required.";
+            $this->errors['EmployeeID'] = "&nbsp *Employees ID is required.";
         }elseif($this->where('EmployeeID',$data['EmployeeID'])){
-            $this->errors['EmployeeID'] = "Employees ID already exist.";
+            $this->errors['EmployeeID'] = "&nbsp *Employees ID already exist.";
         }
 
         if (empty($data['Firstname'])) {
-            $this->errors['Firstname'] = "A first name is required.";
+            $this->errors['Firstname'] = "&nbsp *A first name is required.";
         } elseif (!preg_match("/^[a-zA-Z]+$/", trim($data['Firstname']))) {
-            $this->errors['Firstname'] = "First name can only have letters.";
+            $this->errors['Firstname'] = "&nbsp *First name can only have letters.";
         }
 
         if (empty($data['Lastname'])) {
-            $this->errors['Lastname'] = "A last name is required.";
+            $this->errors['Lastname'] = "&nbsp *A last name is required.";
         } elseif (!preg_match("/^[a-zA-Z]+$/", trim($data['Lastname']))) {
-            $this->errors['Lastname'] = "Last name can only have letters.";
+            $this->errors['Lastname'] = "&nbsp *Last name can only have letters.";
         }
 
-        if (!filter_var($data['Email'], FILTER_VALIDATE_EMAIL)) {
-            $this->errors['Email'] = "Email is not valid.";
+        if(empty($data['Email'])){
+            $this->errors['Email'] = "&nbsp *Email is required.";
+        }else if (!filter_var($data['Email'], FILTER_VALIDATE_EMAIL)) {
+            $this->errors['Email'] = "&nbsp *Email is not valid.";
         } elseif ($this->where('Email', $data['Email'])) {
-            $this->errors['email'] = "That email already exists.";
+            $this->errors['email'] = "&nbsp *That email already exists.";
         }
 
         if (empty($data['Password'])) {
-            $this->errors['Password'] = "A password is required.";
+            $this->errors['Password'] = "&nbsp *A password is required.";
         } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", trim($data['Password']))) {
-            $this->errors['Password'] = "Password must contain at least 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character.";
+            $this->errors['Password'] = "&nbsp *Password must contain at least 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character.";
         }
 
         if (empty($data['Contactno'])) {
-            $this->errors['Contactno'] = "Contact number required.";
+            $this->errors['Contactno'] = "&nbsp *Contact number required.";
         } elseif (!preg_match("/^[0-9]+$/", trim($data['Contactno']))) {
-            $this->errors['Contactno'] = "Contact number can only have numbers.";
+            $this->errors['Contactno'] = "&nbsp *Contact number can only have numbers.";
+        }
+
+        if (empty($data['Role'])) {
+            $this->errors['Role'] = "&nbsp *Role is required.";
+        } elseif (!preg_match("/^[a-zA-Z]+$/", trim($data['Role']))) {
+            $this->errors['Role'] = "&nbsp *Role can only have letters.";
         }
 
         if (empty($this->errors)) {
@@ -134,4 +143,10 @@ class Employees extends Model
         return $this->query($query);
     }
 
+    public function updateEmployee($data)
+    {
+        $query = "update $this->table set Firstname = :Firstname, Lastname = :Lastname, Email = :Email,  Contactno = :Contactno where EmployeeID = :EmployeeID;";
+
+        return $this->query($query,$data);
+    }
 }

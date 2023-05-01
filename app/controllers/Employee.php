@@ -2,13 +2,6 @@
 
 class Employee extends Controller
 {
-    public function edit()
-    {
-        if(!Auth::logged_in())
-        {
-            $this->redirect('login1');
-        }
-    }
 
     public function delete($id = null)
     {
@@ -18,8 +11,44 @@ class Employee extends Controller
         }
 
         $employee = new Employees();
-        $employee->deleteEmployee($id);
+        if(!$employee->deleteEmployee($id)){
+            echo "success";
+        }else{
+            echo "error";
+        }
 
-        $this->redirect('admin/employees');
+
+    }
+
+    public function getEmployee($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login1');
+        }
+
+        $employee = new Employees();
+        $row = $employee->where('EmployeeID',$id)[0];
+
+        echo json_encode($row);
+    }
+
+    public function editEmployee($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $employee = new Employees();
+        $_POST['EmployeeID'] = $id;
+
+        if($employee->edit_validate($_POST,$id))
+        {
+            $employee->updateEmployee($_POST);
+            echo "success";
+        }else{
+            echo json_encode($employee->errors);
+        }
     }
 }
