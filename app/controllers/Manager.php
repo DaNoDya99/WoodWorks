@@ -17,6 +17,16 @@ class Manager extends Controller
         $this->view('manager/dashboard', $data);
     }
 
+    public function mailing(){
+        // if (!Auth::logged_in()) {
+        //     $this->redirect('login');
+        // }
+
+       
+
+        $this->view('manager/mailing');
+
+    }
 
     public function posts()
     {
@@ -55,6 +65,8 @@ class Manager extends Controller
 
         $this->redirect('manager/posts');
     }
+
+    
 
     public function profile($id = null)
     {

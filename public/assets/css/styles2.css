@@ -629,20 +629,21 @@ td {
 }
 
 .ads {
-  width: 80%;
+
   margin: 1em auto;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: #f9f9f9;
   padding: 1em;
   max-height: 80vh;
   height: 80vh;
+  box-shadow: 0px 0px 100px rgba(51, 51, 51, 0.222);
 }
 
 .ads-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 2px solid #d4d4d4;
+  /* border-top: 2px solid #d4d4d4; */
   margin-bottom: 1em;
   width:100%;
 }
