@@ -1859,3 +1859,22 @@ margin: 20px 0;
 .cat-deletion{
   background-color: #ae1c1c;
 }
+
+.manager-content{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2em !important;
+}
+
+.dashboard-cols{
+  width: 33%;
+}
+
+.chart-container{
+width: 100%;
+height: 43vh;
+background-color: #f9f9f9;
+border-radius: 15px;
+margin: 0.5em 0;
+padding: 1em;
+}

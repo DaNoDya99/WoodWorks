@@ -314,5 +314,21 @@ class Manager extends Controller
  
     }
 
+    public function getTopSellingProducts()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $items = new Order_Items();
+        $rows = $items->getTopSellingProducts();
+
+        if(!empty($rows)){
+            echo json_encode($rows);
+        }else{
+            echo "error";
+        }
+    } 
+
 
 }
