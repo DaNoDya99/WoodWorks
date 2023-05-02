@@ -1,0 +1,8 @@
+{
+    "require": {
+        "stripe/stripe-php": "^10.12",
+        "ext-openssl": "*",
+        "vlucas/phpdotenv": "^5.5",
+        "dompdf/dompdf": "^2.0"
+    }
+}

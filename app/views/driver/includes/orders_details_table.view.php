@@ -13,7 +13,7 @@
             <select onchange="this.form.submit()" name="Status">
                 <option>-- Filter --</option>
                 <?php
-                    $arr = array("Processing", "Dispatched", "Delivered");
+                    $arr = array("Processing", "Dispatched");
 
                     foreach ($arr as $value) {
                         if ($value == $_POST['Status']) {
@@ -55,9 +55,11 @@
 
             <tbody>
             <?php foreach ($rows as $row):?>
+
                 <form method="post" action="<?=ROOT?>/driver_home/order" hidden>
                     <input type="text" name="OrderID" value="<?=$row->OrderID?>" hidden>
                     <tr>
+
                         <td><?=esc($row->OrderID)?></td>
                         <td><?=esc($row->Payment_type)?></td>
                         <td>Rs. <?=esc($row->Total_amount)?>.00</td>

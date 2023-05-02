@@ -179,11 +179,13 @@ class Manager extends Controller
             $this->redirect('login');
         }
 
-        $data['title'] = "ISSUES";
+        $data['title']="ISSUES";
+        
 
         $issue = new Issues();
         $data['issue'] = $issue->get_issue();
-        $this->view('manager/issues', $data);
+        $data['issues'] = $issue->getissuehistory();
+        $this->view('manager/issues',$data);
     }
 
     public function designs()
@@ -209,30 +211,7 @@ class Manager extends Controller
         $this->view('manager/designs', $data);
     }
 
-    public function discounts($id = null)
-    {
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-        $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employees();
-        $furniture = new Furnitures();
-
-        $data['row'] = $row = $employee->where('EmployeeID', $id);
-
-        $data['furniture'] = $furniture->getDiscounts($id);
-        $data['image'] = $furniture->getDisplayImage($id);
-        $data['title'] = $data['furniture'][0]->Name;
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $furniture->updateDiscounts($id, $_POST['Discount_percentage']);
-            $this->redirect('manager/discounts/' . $id);
-        }
-
-        $this->view('manager/discounts', $data);
-    }
-
+    
     public function reports()
     {
         if (!Auth::logged_in()) {
@@ -404,4 +383,20 @@ class Manager extends Controller
 
         $this->view('manager/all_designs', $data);
     }
+
+    public function discounts()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $categories = new Categories();
+
+        $data['categories'] = $categories->getCategories();
+
+        $this->view('manager/discounts',$data);
+ 
+    }
+
+
 }

@@ -3,7 +3,9 @@
 class Product_Inventory extends Model
 {
     protected $table = "inventory";
+
     public $errors = [];
+
     protected $allowedColumns = [
         'ProductID',
         'Quantity',
@@ -99,5 +101,43 @@ class Product_Inventory extends Model
         $query = "DELETE FROM $this->table WHERE ProductID = :ProductID;";
 
         return $this->query($query,['ProductID' => $id]);
+    }
+
+    public function updateQuantityToDecrease($ProductID,$Quantity)
+    {
+        $query = "UPDATE $this->table SET Quantity = Quantity - :Quantity WHERE ProductID = :ProductID; ";
+
+        $data = [
+            'Quantity' => $Quantity,
+            'ProductID' => $ProductID
+        ];
+
+        return $this->query($query, $data);
+    }
+
+    public function updateQuantityToIncrease($ProductID,$Quantity)
+    {
+        $query = "UPDATE $this->table SET Quantity = Quantity + :Quantity WHERE ProductID = :ProductID; ";
+
+        $data = [
+            'Quantity' => $Quantity,
+            'ProductID' => $ProductID
+        ];
+
+        return $this->query($query, $data);
+    }
+
+    public function getProductQuantity($ProductID)
+    {
+        $query = "SELECT Quantity FROM $this->table WHERE ProductID = :ProductID;";
+
+        return $this->query($query,['ProductID' => $ProductID]);
+    }
+
+    public function updateInventoryItemDetails($data)
+    {
+        $query = "UPDATE $this->table SET Quantity = :Quantity,  Reorder_point = :Reorder_point, Last_received = :Last_received, Cost = :Cost, Retail_price = :Retail_price, Updated_at = :Updated_at WHERE ProductID = :ProductID;";
+
+        return $this->query($query, $data);
     }
 }

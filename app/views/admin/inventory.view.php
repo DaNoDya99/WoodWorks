@@ -196,28 +196,28 @@
                     <div class="edit-inv-left">
                         <div class="field">
                             <label>Quantity</label>
-                            <input id="quantity" type="number" name="Quantity" placeholder="Quantity" disabled>
+                            <input id="quantity" type="number" name="Quantity" placeholder="Quantity"  disabled>
                         </div>
                         <div class="field">
-                            <label>Cost</label>
+                            <label>Cost<span id="cost-error" class="error font-sm"></span></label>
                             <input id="cost" type="text" name="Cost" placeholder="Cost">
                         </div>
                         <div class="field">
-                            <label>Last Received</label>
+                            <label>Last Received<span id="last-received-error" class="error font-sm"></label>
                             <input id="last-received" type="date" name="Last_received" placeholder="Last Received">
                         </div>
                     </div>
                     <div class="edit-inv-right">
                         <div class="field">
-                            <label>Arrived Quantity</label>
+                            <label>Arrived Quantity<span id="quantity-error" class="error font-sm"></span></label>
                             <input type="number" name="Arrived_quantity" placeholder="Arrived Quantity">
                         </div>
                         <div class="field">
-                            <label>Retail Price</label>
+                            <label>Retail Price<span id="retail-price-error" class="error font-sm"></span></label>
                             <input id="retail-price" type="text" name="Retail_price" placeholder="Retail Price">
                         </div>
                         <div class="field">
-                            <label>Reorder Point</label>
+                            <label>Reorder Point<span id="reorder-point-error" class="error font-sm"></span></label>
                             <input id="reorder-point" type="text" name="Reorder_point" placeholder="Reorder Point">
                         </div>
                     </div>

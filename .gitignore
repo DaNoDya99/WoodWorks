@@ -1,6 +1,6 @@
-
-.idea/dataSources/505c9cea-724e-47b0-9c6e-458a118341cd/storage_v2/_src_/schema/woodworks2.3aXDXQ.zip
-.idea/dataSources/505c9cea-724e-47b0-9c6e-458a118341cd/storage_v2/_src_/schema/woodworks2.3aXDXQ.meta
-.idea/dataSources/505c9cea-724e-47b0-9c6e-458a118341cd/storage_v2/_src_/schema/woodworks.9Xirlw.zip
-.idea/dataSources/505c9cea-724e-47b0-9c6e-458a118341cd/storage_v2/_src_/schema/woodworks.9Xirlw.meta
-vendor
+/.idea
+/.vscode
+.env
+*.xml
+.idea/workspace.xml
+/vendor/

@@ -1,5 +1,7 @@
 <?php
 
+require '../app/services/DistanceMatrixService.php';
+
 class Home extends Controller
 {
     public function index(){

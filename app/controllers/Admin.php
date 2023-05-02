@@ -44,7 +44,6 @@ class Admin extends Controller
         $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
-
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
         {
             $folder = "uploads/images/";
@@ -139,7 +138,7 @@ class Admin extends Controller
             if($employee->validate($_POST)) {
                 $destination = $folder."user.png";
 
-                copy(ROOT."assets/images/admin/user.png",$destination);
+//                copy(ROOT."assets/images/admin/user.png",$destination);
 
                 if(!file_exists(ROOT."/assets/images/admin/user.png"))
                 {
@@ -154,16 +153,21 @@ class Admin extends Controller
                 $_POST['Image'] = $destination;
 
                 $employee->insert($_POST);
-                $this->redirect('admin/employees');
+                echo "success";
+                exit();
             }
         }
 
 
-        $data['message'] = $this->message;
-        $data['errors'] = $employee->errors;
-        $data['title'] = "ADD EMPLOYEE";
+        $errors = $employee->errors;
 
-        $this->view('admin/add_employee',$data);
+        if(empty($errors))
+        {
+           echo "success";
+        }else{
+            echo json_encode($errors);
+        }
+
     }
 
     public function furniture($id = null)

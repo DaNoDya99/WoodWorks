@@ -41,7 +41,7 @@ class supplier extends Controller
     {
 
         if (!Auth::logged_in()) {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::SupplierID();
@@ -84,5 +84,92 @@ class supplier extends Controller
             }
         }
         $this->view('supplier/profile', $data);
+    }
+
+    public function add()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $errors = [];
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $supplier = new Suppliers();
+            if($supplier->validate($_POST))
+            {
+                $supplier->insert($_POST);
+            }else{
+                $errors = $supplier->errors;
+            }
+        }
+
+        if(empty($errors))
+        {
+            echo "Supplier Added Successfully";
+        }else{
+            echo json_encode($errors);
+        }
+    }
+
+    public function getSupplier($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $supplier = new Suppliers();
+
+        $row = $supplier->where('SupplierID', $id);
+
+        if($row)
+        {
+            echo json_encode($row[0]);
+        }else{
+            echo "Supplier Not Found";
+        }
+    }
+
+    public function delete($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $supplier = new Suppliers();
+
+        if(!$supplier->deleteSupplier($id))
+        {
+            echo "<div class='cat-success cat-deletion'>
+                  <h3>Supplier Deleted Successfully!</h3>
+              </div>";
+        }else{
+            echo "Supplier Not Found";
+        }
+    }
+
+    public function save($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $supplier = new Suppliers();
+
+        $_POST['SupplierID'] = $id;
+
+        if(!$supplier->updateSupplier($_POST))
+        {
+            echo "<div class='cat-success'>
+                  <h3>Supplier Updated Successfully!</h3>
+              </div>";
+        }else{
+            echo "Supplier Not Found";
+        }
+
     }
 }

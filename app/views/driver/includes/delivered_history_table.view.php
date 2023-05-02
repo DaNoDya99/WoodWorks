@@ -49,7 +49,15 @@
                                 $date1 = $row->Date;
                                 $date2 = $row->Dispatched_date;
                                 $date3 = $row->Delivered_date;
+                                $date4 = $row->Estimated_date;
+
                                 $orderDate = date("d/m/Y", strtotime($date1));
+                                $newDate4 = date("d/m/Y", strtotime($date4));
+
+                                $dateObject = DateTime::createFromFormat('d/m/Y', $orderDate);
+                                $dateObject->add(new DateInterval('P7D'));
+                                $estimatedDeliveryDate = $dateObject->format('d/m/Y');
+
                                 if(!empty($date2))
                                 {
                                     $dispatchedDate = date("d/m/Y", strtotime($date2));
@@ -68,7 +76,7 @@
 
                                 ?>
                             <td><?=$orderDate?></td>
-                            <td></td>
+                            <td><?=$estimatedDeliveryDate?></td>
                             <td><?=$dispatchedDate?></td>
                             <td><?=$deliveredDate?></td>
                         </tr>
