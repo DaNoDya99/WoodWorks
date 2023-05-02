@@ -140,4 +140,11 @@ class Product_Inventory extends Model
 
         return $this->query($query, $data);
     }
+
+    public function getItemsReachedReorderLevel()
+    {
+        $query = "SELECT ProductID, Quantity, Reorder_point FROM inventory WHERE Quantity <= Reorder_point;";
+
+        return $this->query($query);
+    }
 }

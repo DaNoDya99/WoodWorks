@@ -305,7 +305,7 @@ class Customer_home extends Controller
                     'shipping_rate_data' => [
                       'type' => 'fixed_amount',
                       'fixed_amount' => ['amount' => 1500, 'currency' => 'lkr'],
-                      'display_name' => 'Next day air',
+                      'display_name' => 'Home Delivery',
                       'delivery_estimate' => [
                         'minimum' => ['unit' => 'business_day', 'value' => 1],
                         'maximum' => ['unit' => 'business_day', 'value' => 1],

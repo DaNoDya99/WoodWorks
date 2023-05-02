@@ -78,4 +78,13 @@ class Order_Items extends Model
 
         $this->query($query,['OrderID' => $orderID]);
     }
+
+    public function getSoldProductsLastWeek()
+    {
+        $query = "SELECT ProductID, SUM(Quantity) AS SoldQuantity FROM order_item WHERE Is_purchased = 1 AND Date >= DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY ProductID; ";
+
+        return $this->query($query);
+    }
+
+
 }
