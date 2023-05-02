@@ -7,170 +7,172 @@ changeSection(activesection);
 // Create the chart
 var mainSalesChart = new Chart(
     document.getElementById('mainSalesChart'), {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Sales',
-            data: [],
-            fill: false,
-            borderColor: 'rgb(0, 156, 99)',
-            tension: 0
-        }]
-    },
-    options: {
-        aspectRatio: 1.5,
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Sales',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(0, 156, 99)',
+                tension: 0
+            }]
+        },
+        options: {
+            aspectRatio: 1.5,
 
-        animation: {},
-        scales: {
-            x: {
-                type: 'time',
-                time: {
-                    unit: 'day',
+            animation: {},
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Rupees',
+                        font: {
+                            size: 15,
+                        }
+                    }
                 }
             },
-            y: {
-                display: true,
+            tooltips: {
+                enabled: true
+            },
+            plugins: {
                 title: {
                     display: true,
-                    text: 'Rupees',
+                    text: 'Sales',
+                    align: 'start',
                     font: {
-                        size: 15,
+                        size: 20,
+                        weight: 'bold'
                     }
                 }
             }
-        },
-        tooltips: {
-            enabled: true
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Sales',
-                align: 'start',
-                font: {
-                    size: 20,
-                    weight: 'bold'
-                }
-            }
-        }
 
+        }
     }
-}
 );
 var SalesChart2 = new Chart(
     document.getElementById('SalesChart2'), {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Sales',
-            data: [],
-            fill: false,
-            borderColor: 'rgb(0, 156, 99)',
-            tension: 0
-        }]
-    },
-    options: {
-        aspectRatio: 3,
-        responsive: true,
-        animation: {},
-        scales: {
-            x: {
-                type: 'time',
-                time: {
-                    unit: 'day',
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Sales',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(0, 156, 99)',
+                tension: 0
+            }]
+        },
+        options: {
+            aspectRatio: 3,
+            responsive: true,
+            animation: {},
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Rupees',
+                        font: {
+                            size: 15,
+                        }
+                    }
                 }
             },
-            y: {
-                display: true,
+            tooltips: {
+                enabled: true
+            },
+            plugins: {
                 title: {
                     display: true,
-                    text: 'Rupees',
+                    text: 'Sales',
+                    align: 'start',
                     font: {
-                        size: 15,
+                        size: 20,
+                        weight: 'bold'
                     }
                 }
             }
-        },
-        tooltips: {
-            enabled: true
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Sales',
-                align: 'start',
-                font: {
-                    size: 20,
-                    weight: 'bold'
-                }
-            }
-        }
 
+        }
     }
-}
 );
 var ordercount = new Chart(
     document.getElementById('ordercount'), {
-    type: 'bar',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Orders',
-            data: [],
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Orders',
+                data: [],
 
 
-            backgroundColor: '#9BD0F5',
-            tension: 0
-        }]
-    },
+                backgroundColor: '#9BD0F5',
+                tension: 0
+            }]
+        },
 
-    options: {
+        options: {
 
-        animation: {},
-        scales: {
-            x: {
-                type: 'time',
-                time: {
-                    unit: 'day',
+            animation: {},
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Quanitity',
+                        //size
+                        font: {
+                            size: 15,
+
+                        }
+                    }
                 }
             },
-            y: {
-                display: true,
+            aspectRatio: 1.5,
+            tooltips: {
+                enabled: true
+            },
+            plugins: {
                 title: {
                     display: true,
-                    text: 'Quanitity',
-                    //size
+                    text: 'Orders',
+                    align: 'start',
                     font: {
-                        size: 15,
-
+                        size: 20,
+                        weight: 'bold'
                     }
                 }
             }
-        },
-        aspectRatio: 1.5,
-        tooltips: {
-            enabled: true
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Orders',
-                align: 'start',
-                font: {
-                    size: 20,
-                    weight: 'bold'
-                }
-            }
-        }
 
+        }
     }
-}
 );
+
 
 //onclick
 window.onload = function (e) {
+
     e.preventDefault();
     //ajax using fetch to send to php
     fetch('http://localhost/woodworks/public/manager/getReport', {
@@ -222,7 +224,7 @@ window.onload = function (e) {
     var data2 = document.querySelector("input[name='date2']").value;
 
     document.getElementById('date-range-label').innerText = data1 + " to " + data2;
-    products(data1, data2);
+    products(data1, data2, 'Paid');
 
 };
 
@@ -280,17 +282,17 @@ document.getElementById('form').addEventListener('submit', function (e) {
 
 
     document.getElementById('date-range-label').innerText = data1 + " to " + data2;
-    products(data1, data2);
+    products(data1, data2, 'Paid');
 });
 
 let data;
 
-function products(date1, date2) {
+function products(date1, date2, paymentStatus) {
     const perPage = 5; // Number of items to display per page
     let currentPage = 1; // Current page
 
     // Fetch data from API
-    fetch('http://localhost/woodworks/public/manager/productinfo/' + date1 + '/' + date2)
+    fetch('http://localhost/woodworks/public/manager/productinfo/' + date1 + '/' + date2 + '/' + paymentStatus)
         .then(response => response.json())
         .then(data => {
             console.log(data.detailedinfo);
@@ -305,7 +307,7 @@ function products(date1, date2) {
                 for (let i = start; i <= end; i++) {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                    <td style>${i+1}</td>
+                    <td style>${i + 1}</td>
 
                     <td>${data.detailedinfo[i].Name}</td>
                     <td>${data.detailedinfo[i].ProductID}</td>
@@ -348,9 +350,81 @@ function products(date1, date2) {
         .catch(error => console.error(error));
 
 }
+function inventory(date1, date2, paymentStatus) {
+    const perPage = 5; // Number of items to display per page
+    let currentPage = 1; // Current page
 
+    // Fetch data from API
+    fetch('http://localhost/woodworks/public/manager/productinfo/' + date1 + '/' + date2 + '/' + paymentStatus)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.detailedinfo);
+            const totalItems = data.detailedinfo.length;
+            const totalPages = Math.ceil(totalItems / perPage);
+            console.log(totalPages);
+
+            // Function to render table rows
+            const renderTableRows = (start, end) => {
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+                for (let i = start; i <= end; i++) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                    <td style>${i + 1}</td>
+
+                    <td>${data.detailedinfo[i].Name}</td>
+                    <td>${data.detailedinfo[i].ProductID}</td>
+                    <td>${data.detailedinfo[i].Quantity}</td>
+                    <td>Rs.${data.detailedinfo[i].Revenue}</td>
+                    <td>${data.detailedinfo[i].COUNT1}</td>
+                    <td>${data.detailedinfo[i].CategoryID}</td>
+                    <td>${data.detailedinfo[i].Availability}</td>  
+                `;
+                    tableBody.appendChild(row);
+                }
+            };
+
+
+            // Function to render pagination buttons
+            const renderPaginationButtons = () => {
+                const pagination = document.getElementById('pagination');
+                console.log(totalPages);
+                pagination.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    console.log(i);
+                    const button = document.createElement('button');
+                    button.textContent = i;
+                    if (i === currentPage) {
+                        button.disabled = true;
+                    }
+                    button.addEventListener('click', () => {
+                        currentPage = i;
+                        renderTableRows((currentPage - 1) * perPage, currentPage * perPage - 1);
+                        renderPaginationButtons();
+                    });
+                    pagination.appendChild(button);
+                }
+            };
+
+            renderTableRows(0, perPage - 1);
+            renderPaginationButtons();
+
+        })
+        .catch(error => console.error(error));
+
+}
 //close popup
 
+document.getElementById('paymentStatus').addEventListener('change', (event) => {
+    const paymentStatus = event.target.value;
+    var date1 = document.querySelector("input[name='date1']").value;
+    var date2 = document.querySelector("input[name='date2']").value;
+
+    console.log(date1);
+    console.log(date2);
+    console.log(paymentStatus);
+    products(date1, date2, paymentStatus);
+});
 
 function toggleDropdown() {
     var dropdownContent = document.querySelector(".dropdown-content");
@@ -379,6 +453,7 @@ function changeSection(stringw) {
     document.querySelector(".overview-section").classList.add("hidden-section");
     document.querySelector(".products-section").classList.add("hidden-section");
     document.querySelector(".orders-section").classList.add("hidden-section");
+    document.querySelector(".inventory-section").classList.add("hidden-section");
     document.querySelector(".catergories-section").classList.add("hidden-section");
     document.querySelector(".coupons-section").classList.add("hidden-section");
 
@@ -386,6 +461,15 @@ function changeSection(stringw) {
     document.querySelectorAll(".select-link");
     document.querySelectorAll(".select-link").forEach(function (element) {
         element.classList.remove("active-section");
+        //enable and color #date-range
+        document.getElementById("date-range").setAttribute("onclick", "toggleDropdown()");
+        document.getElementById("date-range").style.cursor = "pointer";
+        document.getElementById("date-range").style.color = "#000";
+        document.getElementById("date-range").style.border = "1px solid #000";
+        document.getElementById("date-range").style.backgroundColor = "#fff";
+
+
+
     });
 
     switch (stringw) {
@@ -394,6 +478,14 @@ function changeSection(stringw) {
             document.querySelector(".overview-section").classList.toggle("hidden-section");
             document.getElementById("overview-link").classList.add("active-section");
             localStorage.setItem('activeSection', stringw);
+            //enable and color #date-range
+            document.getElementById("date-range").setAttribute("onclick", "toggleDropdown()");
+            document.getElementById("date-range").style.cursor = "pointer";
+            document.getElementById("date-range").style.color = "#000";
+            document.getElementById("date-range").style.border = "1px solid #000";
+            document.getElementById("date-range").style.backgroundColor = "#fff";
+
+
             break;
         case "products":
             //toggle hidden section
@@ -404,9 +496,31 @@ function changeSection(stringw) {
             break;
         case "orders":
             //toggle hidden section
+
             document.querySelector(".orders-section").classList.toggle("hidden-section");
             document.getElementById("orders-link").classList.add("active-section");
             localStorage.setItem('activeSection', stringw);
+            //enable and color #date-range
+            document.getElementById("date-range").setAttribute("onclick", "toggleDropdown()");
+            document.getElementById("date-range").style.cursor = "pointer";
+            document.getElementById("date-range").style.color = "#000";
+            document.getElementById("date-range").style.border = "1px solid #000";
+            document.getElementById("date-range").style.backgroundColor = "#fff";
+
+
+            break;
+        case "inventory":
+            document.querySelector(".inventory-section").classList.toggle("hidden-section");
+            document.getElementById("inventory-link").classList.add("active-section");
+            localStorage.setItem('activeSection', stringw);
+
+            //disable #date-range onclick event
+            document.getElementById("date-range").removeAttribute("onclick");
+            document.getElementById("date-range").style.cursor = "default";
+            //grey out #date-range
+            document.getElementById("date-range").style.color = "#bfbfbf";
+            document.getElementById("date-range").style.border = "1px solid #bfbfbf";
+            document.getElementById("date-range").style.backgroundColor = "#f2f2f2";
 
             break;
         case "coupons":
@@ -415,12 +529,28 @@ function changeSection(stringw) {
             document.getElementById("coupons-link").classList.add("active-section");
             localStorage.setItem('activeSection', stringw);
 
+            //enable and color #date-range
+            document.getElementById("date-range").setAttribute("onclick", "toggleDropdown()");
+            document.getElementById("date-range").style.cursor = "pointer";
+            document.getElementById("date-range").style.color = "#000";
+            document.getElementById("date-range").style.border = "1px solid #000";
+            document.getElementById("date-range").style.backgroundColor = "#fff";
+
+
             break;
         case "catergories":
             //toggle hidden section
             document.querySelector(".catergories-section").classList.toggle("hidden-section");
             document.getElementById("catergories-link").classList.add("active-section");
             localStorage.setItem('activeSection', stringw);
+            //enable and color #date-range
+            document.getElementById("date-range").setAttribute("onclick", "toggleDropdown()");
+            document.getElementById("date-range").style.cursor = "pointer";
+            document.getElementById("date-range").style.color = "#000";
+            document.getElementById("date-range").style.border = "1px solid #000";
+            document.getElementById("date-range").style.backgroundColor = "#fff";
+
+
 
             break;
 
@@ -463,8 +593,9 @@ function exportCSV(reportType) {
 
     var data1 = document.querySelector("input[name='date1']").value;
     var data2 = document.querySelector("input[name='date2']").value;
+    var status = document.getElementById('paymentStatus').value;
 
-    fetch('http://localhost/woodworks/public/manager/reportCSV/' + reportType + '/' + data1 + '/' + data2, {
+    fetch('http://localhost/woodworks/public/manager/reportCSV/' + reportType + '/' + data1 + '/' + data2 + '/' + status, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

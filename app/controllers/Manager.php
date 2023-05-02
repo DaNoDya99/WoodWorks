@@ -50,7 +50,7 @@ class Manager extends Controller
             $status = 1;
         }
 
-        $furniture  =  new Furnitures();
+        $furniture = new Furnitures();
         $furniture->updateVisibility($id, $status);
 
         $this->redirect('manager/posts');
@@ -243,20 +243,21 @@ class Manager extends Controller
         $this->view('manager/reports');
     }
 
-   public function reportCsv($reportType, $date1, $date2){
-    // exportToCsv();
-    echo $reportType;   
-    echo $date1;
-    echo $date2;
-    if($reportType == 'product_sold'){
+    public function reportCsv($reportType, $date1, $date2, $status)
+    {
+        // exportToCsv();
+        echo $reportType;
+        echo $date1;
+        echo $date2;
+        if ($reportType == 'product_sold') {
 
-        $order = new Orders();
-        $data = $order->getDetailedProductReport($date1, $date2);
-        $filename = 'products_sold.csv';
-        exportToCsv($data, $filename);
+            $order = new Orders();
+            $data = $order->getDetailedProductReport($date1, $date2, $status);
+            $filename = 'products_sold.csv';
+            exportToCsv($data, $filename);
+        }
+
     }
-
-   }
 
     //reply to ajax call
     public function getReport()
@@ -288,9 +289,9 @@ class Manager extends Controller
 
             $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
 //             show($a);
-             if(empty($a)){
-                 $a = [];
-             }
+            if (empty($a)) {
+                $a = [];
+            }
 
             $s = [];
             for ($i = 0; $i < count($labels); $i++) {
@@ -319,7 +320,7 @@ class Manager extends Controller
 
             //     $order = new Orders();
             $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
-            if (empty($data['orders'])){
+            if (empty($data['orders'])) {
                 $data['orders'] = [];
             }
             //     //get total amount of orders grouped by date
@@ -338,17 +339,24 @@ class Manager extends Controller
             $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
             echo json_encode($data);
 
+        }
     }
-}
 
-    public function productinfo($date1,$date2)
+    public function productinfo($date1, $date2, $status)
     {
         $order = new Orders();
         $furniture = new Furnitures();
         //get furniture count
+
         $data['furniturecount'] = $furniture->getFurnitureCount()[0]->count;
-        $data['detailedinfo'] = $order->getDetailedProductReport($date1,$date2);
+        $data['detailedinfo'] = $order->getDetailedProductReport($date1, $date2, $status);
         echo json_encode($data);
+    }
+
+    public function inventoryinfo()
+    {
+        $inventory = new Inventory();
+
     }
 
     public function chat()
