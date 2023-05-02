@@ -30,8 +30,7 @@
                                         <td class="order-ID"><?= $row->OrderID ?></td>
                                         <td><?= $row->Problem_statement ?></td>
                                         <td>
-                                            <a href="<?=ROOT?>/issue/get_issue_details">Details</a>
-                                            <a href="#">Response</a>
+                                            <a href="<?=ROOT?>/issue/get_order_details">Details</a>
                                         </td>  
                                     </tr>
                                 <?php endforeach; ?>
