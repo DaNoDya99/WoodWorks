@@ -35,6 +35,13 @@ class Discounts extends Model{
         return $this->query($query, ['id' => $id]);
     }
 
+    public function getActiveDiscounts()
+    {
+        $query = "SELECT * FROM discounts WHERE Active = 1";
+
+        return $this->query($query);
+    }
+
     
 
 

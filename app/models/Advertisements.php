@@ -100,4 +100,11 @@ class Advertisements extends model
         $query = "SELECT * FROM $this->table WHERE AdvertisementID = :AdvertisementID;";
         return $this->query($query,['AdvertisementID' => $id]);
     }
+
+    public function getSoldOutRefurnishedProducts()
+    {
+        $query = "SELECT * FROM $this->table WHERE Quantity = 0;";
+
+        return $this->query($query);
+    }
 }

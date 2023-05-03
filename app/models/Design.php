@@ -214,4 +214,10 @@ class Design extends Model
 
         return $this->query($query,['Status' => 'rejected','DesignID' => $id, 'ManagerID' => $emp]);
     }
+
+    public function getPendingDesignsCount(){
+        $query = "SELECT COUNT(*) AS Count FROM $this->table WHERE Status = 'Pending';";
+
+        return $this->query($query);
+    }
 }
