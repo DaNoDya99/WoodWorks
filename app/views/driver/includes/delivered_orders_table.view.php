@@ -15,6 +15,12 @@
 
             <div class="orders_view_header">
                 <h1> DELIVERED ORDERS </h1>
+                <form class="order-form">
+                    <input type="search" name="orders_items"  id="myInput" placeholder="Orders details">
+                    <button type="submit" name="order_date">
+                        <img src="<?=ROOT?>/assets/images/driver/search.png" alt="Search">
+                    </button>
+                </form>
             </div>
 
             <div class="order-details-tbl">

@@ -117,6 +117,13 @@ class Orders extends Model
 
     }
 
+    public function searchDeliveredOrdersDetails($column,$value,$orders_items)
+    {
+        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or OrderID like '%$orders_items%' or DATE_FORMAT(Dispatched_date, '%d/%m/%Y') like '%$orders_items%' or DATE_FORMAT(Delivered_date, '%d/%m/%Y') like '%$orders_items%'or Firstname like '%$orders_items%' or Lastname like '%$orders_items%' AND $column = :value LIMIT 15 ";
+        return $this->query($query,['value'=>$value]);
+
+    }
+
     public function filterStatus($column,$value,$id)
     {
         $query = "select OrderID,Payment_type,Total_amount,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && $column = :value  && `DriverID` = '$id' limit 15";

@@ -12,8 +12,9 @@
                     <h1>Back</h1>
                 </a>
 
+
                 <div class="design-btns">
-                    <button onclick="openDocumentPopup('<?=$design[0]->DesignID?>','<?=$design[0]->Name?>','<?=$design[0]->DesignerID?>','<?=$design[0]->Description?>',event)">Update</button>
+                    <button onclick="openDocumentPopup('<?=$design[0]->DesignID?>','<?=$design[0]->Name?>','<?=$design[0]->DesignerID?>','<?=$design[0]->Description?>','<?=$images[0]->Image?>','<?=$images[1]->Image?>','<?=$images[2]->Image?>','<?=$design[0]->Pdf?>',event)">Update</button>
 
                     <form action="<?=ROOT?>/designer/remove_add_design/<?=$data['design'][0]->DesignID?>" method="post">
                         <input type="submit" name="delete_btn" value="Remove">
@@ -99,20 +100,15 @@
                             </div>
 
                             <div class="but-img-upload-container">
-                                <div class="edit-des-Ubtn-section" id="edit-design">
+                                <div class="edit-des-Ubtn-section-update" id="edit-design">
                                     <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
-                                    <label for="file-input"> Upload Images</label>
+                                    <label for="file-input"> Update Images</label>
                                 </div>
                                 <div class="edit-des-Ubtn-section" id="edit-design">
-
                                     <input type="file" onchange="showPdfPreview()" style="display: none" name="pdfFile-input" id="pdfFile-input">
-                                    <label for="pdfFile-input">Upload Pdf</label>
+                                    <label for="pdfFile-input">Update Pdf</label>
                                 </div>
-                                <div class="edit-des-Dbtn-section" id="edit-design">
-                                    <label onclick="location.reload();">
-                                        Delete Images & Pdf
-                                    </label>
-                                </div>
+
                             </div>
 
                             <div class="des_Name">
@@ -144,6 +140,8 @@
 
     </body>
 
+    <script src="<?= ROOT ?>/assets/javascript/designer/add_designs.js"></script>
+    <script src="<?= ROOT ?>/assets/javascript/designer/add_pdf.js"></script>
     <script src="<?=ROOT?>/assets/javascript/designer/update_design.js"></script>
     <script src="<?=ROOT?>/assets/javascript/designer/slider.js"></script>
 

@@ -2275,4 +2275,27 @@ design-desc div button:hover{
     border-bottom: #d4d4d4 2px solid;
 }
 
+.edit-des-Ubtn-section-update{
+    height: 2.8em;
+    width: 40%;
+    cursor: pointer;
+    margin: auto;
+    padding: 5px;
+    font-family: 'Rubik-SemiBold';
+    font-size: 1.1rem;
+    background: #104f4a;
+    justify-content: center;
+    border-radius: 7px;
+    align-items: center;
+    color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+.edit-des-Ubtn-section-update label{
+    cursor: pointer;
+}
+.edit-des-Ubtn-section-update:hover{
+    transform: scale(0.97);
+}
+
 

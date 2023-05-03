@@ -86,6 +86,7 @@ class Design extends Model
             'DesignerID',
             'Description',
             'Name',
+            'Pdf',
             'ManagerID',
             'Date',
 
