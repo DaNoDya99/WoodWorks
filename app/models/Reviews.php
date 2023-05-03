@@ -61,4 +61,12 @@ class Reviews extends Model
 
         return $this->query($query);
     }
+
+    public function getTop10RatedProducts(){
+        $query = "select ProductID, avg(Rating) as Average from $this->table group by ProductID order by Average desc limit 10;";
+
+        return $this->query($query);
+    }
+
+    
 }

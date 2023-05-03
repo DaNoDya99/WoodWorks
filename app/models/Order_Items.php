@@ -86,5 +86,21 @@ class Order_Items extends Model
         return $this->query($query);
     }
 
+    public function getTopSellingProducts()
+    {
+        $query = "SELECT ProductID, SUM(Quantity) as QuantitySold FROM order_item WHERE Date >= DATE_SUB(NOW(), INTERVAL 1 WEEK) AND Is_purchased = 1 GROUP BY ProductID ORDER BY QuantitySold DESC LIMIT 10; ";
+
+        return $this->query($query);
+    }
+
+   
+
+    public function getIncomeLastWeek()
+    {
+        $query = "SELECT DATE(Date) AS OrderDate, SUM(Quantity * Cost) AS TotalIncome FROM order_item WHERE Date >= DATE(NOW()) - INTERVAL 7 DAY GROUP BY DATE(Date);";
+
+        return $this->query($query);
+    }
+
 
 }

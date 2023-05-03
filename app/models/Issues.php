@@ -33,4 +33,11 @@ class Issues extends Model
         return $this->query($query);
     }
 
+    public function getPendingIssuesCount()
+    {
+        $query = "SELECT COUNT(IssueID) AS Count FROM $this->table WHERE Response IS NULL;";
+
+        return $this->query($query);
+    }
+
 }
