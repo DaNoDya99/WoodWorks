@@ -1614,7 +1614,7 @@ figcaption{
 
 /*Design Card full description view*/
 
-.design-view{
+.design-view {
     background-color: #E2E2CF;
     font-family: 'Rubik';
     padding: 2em 0;
@@ -2257,5 +2257,22 @@ design-desc div button:hover{
     border-radius: 7px;
 }
 
+/*Update Design*/
+
+#upl-docs{
+    width: 60%;
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    padding: 2em;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    visibility: hidden;
+}
+
+#upl-docs h2{
+    margin: 0;
+    border-bottom: #d4d4d4 2px solid;
+}
 
 
