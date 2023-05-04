@@ -71,8 +71,6 @@
                         <img class="close-btn" onclick="closeDocumentPopup()" src="<?=ROOT?>/assets/images/driver/close.png" alt="close button">
                         <h2>Update Design</h2>
                         <form class="add-des-form" id="edit-doc-form" method="post" enctype="multipart/form-data">
-
-
                             <?php if (!empty($errors)) : ?>
                                 <div class="error-txt signup-error">
                                     <img class="close-error" src="<?= ROOT ?>/assets/images/designer/close.png" alt="Close btn" onclick="close_error()">

@@ -21,12 +21,29 @@
         </select>
     </form>
 
+    <form method="post" class="vehicle-form" action="/woodworks/public/driver_home/index" hidden>
+        <select name="vehicle" required onchange="this.form.submit()">
+            <option>----Vehicle Type ---</option>
+            <?php
+            $arr = array("CargoVan", "BoxTruck", "MovingTruck", "FlatbedTruck");
+
+            foreach ($arr as $value) {
+                if ($value == $_POST['vehicle']) {
+                    echo "<option value=$value selected>$value</option>";
+                } else {
+                    echo "<option value=$value>$value</option>";
+                }
+            }
+            ?>
+        </select>
+    </form>
+
     <div class="content dashboard">
 
         <div class="containers">
 
             <div class="box" id="chart-container" onclick="location.href='<?=ROOT?>/driver_home/order';">
-                <canvas id="myPie" width="100" height="100"> </canvas>
+                <canvas id="myPie" width="80" height="100"> </canvas>
             </div>
 
             <div class="driver-tbox">
@@ -52,31 +69,13 @@
                         </tr>
                     <?php endforeach;?>
                     </tbody>
+
                 </table>
-                <hr>
-                <h1>Vehicle Type</h1>
-
-                <form method="post" class="order-form" action="/woodworks/public/driver_home/index" hidden>
-                    <select name="vehicle" required onchange="this.form.submit()">
-                        <option>---- Type ---</option>
-                        <?php
-                        $arr = array("CargoVan", "BoxTruck", "MovingTruck", "FlatbedTruck");
-
-                        foreach ($arr as $value) {
-                            if ($value == $_POST['vehicle']) {
-                                echo "<option value=$value selected>$value</option>";
-                            } else {
-                                echo "<option value=$value>$value</option>";
-                            }
-                        }
-                        ?>
-                    </select>
-                </form>
-
+                <p><a href="<?=ROOT?>/driver_home/order">View More --></a></p>
             </div>
 
             <div class="box" id="chart-container2" onclick="location.href='<?=ROOT?>/driver_home/order';">
-                <canvas id="myBar" width="300" height="400"> </canvas>
+                <canvas id="myBar" width="300" height="290"> </canvas>
             </div>
 
         </div>

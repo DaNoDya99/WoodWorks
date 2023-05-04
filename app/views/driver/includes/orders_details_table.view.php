@@ -99,6 +99,11 @@
         </table>
     </div>
 </div>
+<div class="cat-response" id="response">
+
+</div>
+
+<script src="<?=ROOT?>/assets/javascript/driver/moreDetails.js"></script>
 
 
 

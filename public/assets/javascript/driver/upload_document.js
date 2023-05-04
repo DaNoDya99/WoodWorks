@@ -17,7 +17,7 @@ doc_btn.onclick = () => {
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
-                }, 3000);
+                }, 1000);
 
             }
         }
@@ -26,7 +26,7 @@ doc_btn.onclick = () => {
     xhr.send(formData);
 }
 
-function openDocumentPopup(id,name,image,date,reason,event)
+function openDocumentPopup(id,name,image,date,estDeliDate,reason,event)
 {
     event.preventDefault();
     let popup = document.getElementById("upl-doc");
@@ -34,15 +34,17 @@ function openDocumentPopup(id,name,image,date,reason,event)
     let header1 = document.getElementById('header1');
     let header2 = document.getElementById('header2');
     let header3 = document.getElementById('header3');
+    let header4 = document.getElementById('header4');
      let img = document.getElementById('edit-doc-img');
 
     popup.style.visibility = "visible";
     header1.innerHTML = id;
     header2.innerHTML = name;
-    header3.innerHTML = date;
+    header3.innerHTML = estDeliDate;
+    header4.innerHTML = date;
     doc_id = id;
     if(reason != null) {
-        field.setAttribute('value', reason);
+        field.value= reason;
     }
     if(reason == null) {
         field.setAttribute('value', 'No reason provided');

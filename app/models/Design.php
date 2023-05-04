@@ -148,6 +148,32 @@ class Design extends Model
         $this->query($query,$data);
     }
 
+    public function updatePost($id, $data)
+    {
+        if (!empty($this->allowedColumns)) {
+            foreach ($data as $key => $value) {
+                if (!in_array($key, $this->allowedColumns)) {
+                    unset($data[$key]);
+                }
+            }
+        }
+
+        $keys = array_keys($data);
+
+        $setClause = '';
+        foreach ($keys as $key) {
+            $setClause .= $key . '=:' . $key . ',';
+        }
+        $setClause = rtrim($setClause, ',');
+
+        $query = "UPDATE " . $this->table . " SET " . $setClause . " WHERE DesignID=:DesignID";
+
+        $data['DesignID'] = $id;
+
+        $this->query($query, $data);
+    }
+
+
     public function getAllImages($id)
     {
         $query = "select Image from design_image WHERE DesignID = '$id';";

@@ -47,6 +47,11 @@
                                     $date2 = $row->Dispatched_date;
                                     $date3 = $row->Delivered_date;
                                     $orderDate = date("d/m/Y", strtotime($date1));
+
+                                    $dateObject = DateTime::createFromFormat('d/m/Y', $orderDate);
+                                    $dateObject->add(new DateInterval('P7D'));
+                                    $estimatedDeliveryDate = $dateObject->format('d/m/Y');
+
                                     if(!empty($date2))
                                     {
                                         $dispatchedDate = date("d/m/Y", strtotime($date2));
@@ -67,7 +72,7 @@
                                 <td><?=$dispatchedDate?></td>
                                 <td><?=$deliveredDate?></td>
                                 <td>
-                                    <button  onclick="openDocumentPopup('<?=$row->OrderID?>','<?=($row->Firstname)?>','<?=($row->Image)?>','<?=$deliveredDate?>','<?=($row->Reasons)?>',event)"><img src="<?=ROOT?>/assets/images/driver/pdf.png" alt="PDF image"></button>
+                                    <button  onclick="openDocumentPopup('<?=$row->OrderID?>','<?=($row->Firstname)?>','<?=($row->Image)?>','<?=$deliveredDate?>','<?=$estimatedDeliveryDate?>','<?=($row->Reasons)?>',event)"><img src="<?=ROOT?>/assets/images/driver/pdf.png" alt="PDF image"></button>
                                 </td>
                             </tr>
                         </form>
@@ -97,12 +102,16 @@
                             <p id="header2"></p>
                         </div>
                         <div class="doc-form-field">
-                            <label>Delivered Date</label>
+                            <label>Estimated Delivery Date</label>
                             <p id="header3"></p>
                         </div>
                         <div class="doc-form-field">
-                            <label>Reason for late delivery</label>
-                            <input id="doc-field" name="Reason" placeholder="Enter the Reason">
+                            <label>Delivered Date</label>
+                            <p id="header4"></p>
+                        </div>
+                        <div class="doc-form-field">
+                            <label>If delivery was delayed then,<br>Give the reason for late delivery</label>
+                            <textarea id="doc-field" name="Reason" placeholder="Enter the Reason"></textarea>
                         </div>
                         <div class="submit-btn">
                             <button id="doc-btn" type="submit">Submit</button>

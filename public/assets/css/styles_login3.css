@@ -300,8 +300,54 @@ body{
     font-family: 'Rubik-SemiBold';
 }
 
+.vehicle-form {
+    display: flex;
+    height: 35px;
+    position: absolute;
+    right: 580px;
+    top: 20px;
+}
+
+.vehicle-form input{
+    border: 2px solid #d2d2d2;
+    font-family: 'Rubik-SemiBold', sans-serif;
+    width: 20em;
+    border-radius: 3px;
+    padding: 0 0 0 1em;
+}
+
+.vehicle-form select{
+    width: 15em;
+    border: 2px solid #d2d2d2;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    padding: 0 0 0 1em;
+    font-family: 'Rubik-SemiBold', sans-serif;
+    color: #787878;
+    cursor: pointer;
+}
+
+.vehicle-form button{
+    border: 2px solid #d2d2d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3px;
+    width: 30px;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    right: 320px;
+    top: 20px;
+}
+
+.vehicle-form img{
+    width: 15px;
+}
+
 .driver-tbox{
     width: 30%;
+    height: 410px;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
@@ -315,6 +361,7 @@ body{
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    position: relative;/* added */
 }
 
 .driver-tbox::-webkit-scrollbar{
@@ -331,6 +378,22 @@ body{
     border-bottom: 2px solid #cacaca;
 }
 
+.driver-tbox p{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    font-size: 1rem;
+    font-family: 'Rubik-SemiBold';
+    cursor: pointer;
+    text-underline-mode: none;
+}
+
+.driver-tbox p a{
+    text-decoration: none;
+}
+
 .driver-tbox table{
     width: 100%;
     border-collapse: collapse;
@@ -341,8 +404,6 @@ body{
     width: 100%;
     border-radius: 5px 5px 0 0;
     max-height: 70vh;
-    cursor: pointer;
-
 }
 
 .driver-content-table thead tr{
@@ -755,7 +816,6 @@ body{
     font-family: 'Rubik-SemiBold', sans-serif;
     color: #787878;
     cursor: pointer;
-
 }
 
 .order-form button{
@@ -767,6 +827,8 @@ body{
     width: 30px;
     border-radius: 3px;
     background-color: #f9f9f9;
+    right: 320px;
+    top: 20px;
 }
 
 .order-form img{
@@ -937,6 +999,7 @@ body{
     -ms-overflow-style: none;
     scrollbar-width: none;
     border-collapse: collapse;
+    /*visibility: hidden;*/
 }
 
 .popups::-webkit-scrollbar {
@@ -949,9 +1012,6 @@ body{
     justify-content: space-between;
     border-top: 2px solid #d2d2d2;
     padding: 1em 0;
-    /*position: sticky;!* Make the heading sticky *!*/
-    /*top: 0; !* Set the position to the top *!*/
-    /*z-index: 1; !* Make sure the heading appears on top of the other elements *!*/
 }
 
 .popups-heading h2{
@@ -1105,7 +1165,9 @@ body{
 }
 #chart-container {
     /*width: 300px;*/
-    height: auto;
+    /*height: auto;*/
+    width: 400px;
+    height: 410px;
     float: right;
     background-color:#f9f9f9;
     margin: 20px;
@@ -1119,7 +1181,7 @@ body{
 
 #chart-container2{
     /*width: 500px;*/
-    height: auto;
+    height: 410px;
     float: left;
     background-color:#f9f9f9;
     margin: 20px;
@@ -2110,7 +2172,7 @@ design-desc div button:hover{
 #upl-doc{
     width: 40%;
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 30%;
     padding: 2em;
     border-radius: 15px;
@@ -2211,7 +2273,7 @@ design-desc div button:hover{
     margin: .5em 0
 }
 
-.doc-form-field input{
+.doc-form-field textarea{
     border: 2px #d4d4d4 solid;
     height: 3.8em;
     border-radius: 5px;

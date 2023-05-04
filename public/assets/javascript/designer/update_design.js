@@ -13,11 +13,11 @@ doc_btn.onclick = () => {
     xhr.onload = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                response.innerHTML = xhr.response;
+                 response.innerHTML = xhr.response;
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
-                }, 3000);
+                }, 1000);
 
             }
         }
