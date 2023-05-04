@@ -317,4 +317,11 @@ class Furnitures extends Model
         return $this->query($query, ['ProductID' => $id, 'Discount' => $discount]);
     }
 
+    public function getDiscountedFurniture($id)
+    {
+        $query = "select ProductID, Name, Cost from $this->table where DiscountID = :DiscountID;";
+
+        return $this->query($query, ['DiscountID' => $id]);
+    }
+
 }
