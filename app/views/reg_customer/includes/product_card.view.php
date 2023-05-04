@@ -26,7 +26,7 @@
 
                 <?php if(!empty($row->Discount_percentage)): ?>
                     <h3 class="cost line-through">Rs. <?= $row->Cost ?>.00</h3>
-                    <h4>Rs. <?= $row->Cost*(100 - $row->Discount_percentage)/100 ?>.00</h4>
+                    <h4>Rs. <?=round($furniture[0]->Cost*(100 - $furniture[0]->Discount_percentage)/100) ?>.00</h4>
                 <?php else: ?>
                     <h3 class="cost">Rs. <?= $row->Cost ?>.00</h3>
                 <?php endif; ?>
