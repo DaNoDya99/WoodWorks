@@ -134,6 +134,8 @@ class Manager extends Controller
         $data['title'] = "ADVERTISEMENTS";
         $rows = $advertisement->getReFurDetails();
 
+        // show($rows);die;
+
         foreach($rows as $row)
         {
             $row->Image = $advertisement->getDisplayImage($row->AdvertisementID)[0]->Image;
