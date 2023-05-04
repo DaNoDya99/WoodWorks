@@ -1980,6 +1980,7 @@ padding: 1em;
   display: flex;
   justify-content: center;
   gap: 15%;
+  align-items: center;
 }
 
 .inv-table-btns img{
@@ -2030,5 +2031,82 @@ padding: 1em;
   font-weight: bold;
   font-size: 1rem;
 }
+
+.discounts-popup{
+  width: 85%;
+  height: 84vh;
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+
+}
+
+.discounts-selections{
+  display: flex;
+  justify-content: space-between;
+}
+
+.ongoing-discounts, .past-discounts{
+  width: 49%;
+  padding: 0.5em;
+  border: #d4d4d4 2px solid;
+}
+
+.selected{
+    background-color: #d4d4d4;
+}
+
+.discounts-table{
+  width: 100%;
+  margin-top: 1em;
+  border-collapse: collapse;
+}
+
+.discounts-table th{
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.discounts-table td{
+  text-align: center;
+}
+
+.manager-btns button{
+  margin-top: 0 !important;
+}
+
+.discounts-info-popup{
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5) !important;
+  width: 50%;
+}
+
+.discounts-info{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.discounts-info th{
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.discounts-info td{
+  text-align: center;
+}
+
+.discounts-info td img{
+    height: 4.5em;
+    width: 4.5em;
+    border-radius: 7px;
+}
+
+.discounts-edit-popup{
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5) !important;
+}
+
+.align-left{
+  text-align: left;
+}
+
+.deletion-btn{
+  background-color: #a00505 !important;
+}
+
 
 
