@@ -28,7 +28,6 @@
                                     <td>
                                         <a href="<?= ROOT ?>/manager/change_visibility/<?= $row->ProductID ?>/<?= $row->Visibility ?>"><?= ($row->Visibility == 1) ? "Visible" : "Hidden"; ?></a>
                                         <a href="<?= ROOT ?>/manager/reviews/<?= $row->ProductID ?>">Reviews</a>
-                                        <a href="<?= ROOT ?>/manager/discounts/<?= $row->ProductID ?>">Discounts</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

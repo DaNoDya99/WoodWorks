@@ -551,7 +551,7 @@ margin: 20px 0;
 }
 
 .ads{
-  width: 80%;
+  width: 100%;
   margin: 1em auto;
   border-radius: 15px;
   background-color: #f9f9f9;
@@ -1652,6 +1652,10 @@ margin: 20px 0;
   max-height: 87vh;
 }
 
+.ref-fur-description{
+  text-align: justify;
+}
+
 .design-card-container a{
   text-decoration: none;
   color: #100F0F;
@@ -1936,5 +1940,60 @@ padding: 1em;
 
 .discounts-list table td{
   text-align: center;
+}
+
+.inv-table-btns{
+  display: flex;
+  justify-content: center;
+  gap: 15%;
+}
+
+.inv-table-btns img{
+  height: 1.8em;
+  width: 1.8em;
+}
+
+.inv-table-btns button{
+  height: 2.2em;
+  width: 2.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+}
+
+.inv-table-btns button:first-child{
+  background-color: #2b7358;
+}
+
+.inv-table-btns button:nth-child(2){
+  background-color: #a00505;
+}
+
+.inv-table-btns button:last-child{
+  background-color: #2e69c4;
+}
+
+.error-form{
+  color: #ff0000;
+}
+
+.font-sm{
+  font-size: 14px;
+}
+
+.font-vsm{
+  font-size: 12px;
+}
+
+.cat-deletion-btns button{
+  width: 20%;
+  padding: .5em;
+  background-color: #ae1c1c;
+  color: #f9f9f9;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
 }
 

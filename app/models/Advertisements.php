@@ -107,4 +107,13 @@ class Advertisements extends model
 
         return $this->query($query);
     }
+
+    public function delete($id)
+    {
+        $query = "delete from $this->table where AdvertisementID = :AdvertisementID;";
+
+        return $this->query($query,['AdvertisementID' => $id]);
+    }
+
+    
 }
