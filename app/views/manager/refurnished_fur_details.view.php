@@ -16,9 +16,9 @@
                 <span><?=$furniture->AdvertisementID?></span>
                 <h2>Rs. <?=$furniture->Price?>.00</h2>
                 <h2>Quantity: <?=$furniture->Quantity?></h2>
-                <pre>
+                <p class="ref-fur-description">
                     <?=$furniture->Description?>
-                </pre>
+                </p>
             </div>
         </div>
     </div>
