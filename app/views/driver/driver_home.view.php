@@ -29,7 +29,7 @@
 
             foreach ($arr as $value) {
                 if ($value == $_POST['vehicle']) {
-                    echo "<option value=$value selected>$value</option>";
+                    echo "<option value=$value >$value</option>";//selected
                 } else {
                     echo "<option value=$value>$value</option>";
                 }

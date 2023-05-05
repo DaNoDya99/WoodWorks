@@ -5,19 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="442fb663-8548-4b24-8149-7d2a051ba005" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/javascript/designer/moreDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Designer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Designer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Design.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Design.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designer/design_description.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designer/design_description.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designer/includes/designer_header.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designer/includes/designer_header.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Orders.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/driver/driver_home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/driver/driver_home.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/driver/includes/delivered_orders_table.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/driver/includes/delivered_orders_table.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/driver/includes/orders_details_table.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/driver/includes/orders_details_table.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/styles_login3.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles_login3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/javascript/designer/update_design.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/designer/update_design.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/javascript/driver/pieChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/driver/pieChart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/javascript/driver/upload_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/driver/upload_document.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1682928391IMG-644f730719df47.78519099.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1682928391IMG-644f73071f2262.87444334.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1682928391IMG-644f7307249cb9.03921432.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683175722IMG-6453392a54ae57.41500619.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683175722IMG-6453392a5a2451.02790371.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683175722IMG-6453392a5b9a63.26141377.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683212820IMG-6453ca145fe5d1.51729958.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683213010IMG-6453cad2835df6.01860328.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683213030IMG-6453cae6ecef27.28374412.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683213578IMG-6453cd0a3fdb03.59794686.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683213598IMG-6453cd1eea3db6.96386578.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683213613IMG-6453cd2d89eff1.12311853.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683213641IMG-6453cd495b1152.16592368.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683213657IMG-6453cd59476c61.42572598.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683214069IMG-6453cef5d31281.68267320.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683214102IMG-6453cf1657c141.94317199.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683214122IMG-6453cf2a45a045.73244051.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683214725IMG-6453d1858c3bd7.52783579.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683214858IMG-6453d20ab28678.81457630.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683214858IMG-6453d20ab56e78.43996667.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683214858IMG-6453d20abdd495.20154783.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683215015IMG-6453d2a736a599.65380296.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683215015IMG-6453d2a73c69d4.75457441.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683215015IMG-6453d2a73e6286.91083738.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683215035IMG-6453d2bbed99b5.61122670.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683215035IMG-6453d2bbeed832.49023112.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683215036IMG-6453d2bc00dff5.88420267.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683215166IMG-6453d33e333f84.72806485.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683215166IMG-6453d33e3afbe7.37283829.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683215166IMG-6453d33e40e8f9.65801536.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683225080IMG-6453f9f854f274.15579588.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683225080IMG-6453f9f86405a8.48040203.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/images/1683225080IMG-6453f9f86b8b89.53993028.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/pdf/1682928391PDF-644f73071a0f89.91291597.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/pdf/1683175722PDF-6453392a5517a3.88674049.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/pdf/1683215015PDF-6453d2a736dd61.43745573.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/pdf/1683224652PDF-6453f84c5513b1.49067596.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/designer/pdf/1683224945PDF-6453f97109e8d6.34351334.pdf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +191,7 @@
       <workItem from="1682738887077" duration="7898000" />
       <workItem from="1682751163975" duration="6220000" />
       <workItem from="1682825089263" duration="3574000" />
-      <workItem from="1683087854955" duration="30698000" />
+      <workItem from="1683087854955" duration="32706000" />
     </task>
     <servers />
   </component>

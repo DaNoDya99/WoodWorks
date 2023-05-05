@@ -40,12 +40,17 @@ class Design extends Model
 
     public function make_design_id($DATA){
 
-        $designID = $this->random_string(60);
-        $result = $this->where('DesignID',$designID);
-        while ($result){
-            $result = $this->where('DesignID',$designID);
-            $designID = $this->random_string(60);
-        }
+//        $designID = $this->random_string(60);
+//        $result = $this->where('DesignID',$designID);
+//        while ($result){
+//            $result = $this->where('DesignID',$designID);
+//            $designID = $this->random_string(60);
+//        }
+
+        $prefix = 'DES';
+        $unique_id = mt_rand(1000, 9999);
+        $timestamp = substr(date('YmdHis'), 8, 6);
+        $designID = $prefix . '-' . $unique_id . '-' . $timestamp;
 
         $DATA['DesignID'] = $designID;
 
