@@ -1,9 +1,58 @@
 
+/*import rubik*/
+@font-face {
+    font-family: 'Rubik';
+    src: url("../fonts/Rubik/Rubik-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-SemiBold';
+    src: url("../fonts/Rubik/Rubik-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Bold';
+    src: url("../fonts/Rubik/Rubik-Bold.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Black';
+    src: url("../fonts/Rubik/Rubik-Black.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Italic';
+    src: url("../fonts/Rubik/Rubik-Italic.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Medium';
+    src: url("../fonts/Rubik/Rubik-Medium.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Light';
+    src: url("../fonts/Rubik/Rubik-Light.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Thin';
+    src: url("../fonts/Rubik/Rubik-Thin.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-ExtraBold';
+    src: url("../fonts/Rubik/Rubik-ExtraBold.ttf");
+}
+
+
 body {
     font-family: 'Rubik';
     margin: 0;
     background-color: #E0E0CE;
 }
+
+
 /* Point of Sales */
 .pos-body {
     display: grid;
@@ -60,7 +109,6 @@ body {
     transition: all 0.2s ease;
 
 
-
 }
 
 .data table {
@@ -74,6 +122,7 @@ body {
     height: 75vh;
 
 }
+
 .pos-table {
     display: flex;
     font-size: 14px;
@@ -138,10 +187,11 @@ select {
     width: 15%;
 }
 
-.col-cat{
+.col-cat {
     width: 15%;
 
 }
+
 .col-img {
     width: 15%;
 }
@@ -192,9 +242,8 @@ form button {
 }
 
 form {
-    margin-left: 30px;
+    /*margin-left: 30px;*/
 }
-
 
 
 label {
@@ -278,7 +327,10 @@ label {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.302);
     height: 100vh;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+
+
 }
 
 .open-popup {
@@ -314,16 +366,16 @@ label {
 /*    justify-content: center;*/
 /*}*/
 
-.inventory-data {
+/* .inventory-data { */
 /*    background-color: white;*/
-    width: 80% !important;
+/*    width: 80% !important;*/
 /*    border-radius: 12px;*/
 /*    box-shadow: 0px 4px 31px rgba(0, 0, 0, 0.05);*/
 /*    margin-bottom: 20px;*/
 /*    padding: 30px;*/
 /*    padding-top: 30px;*/
 /*    transition: all 0.2s ease;*/
-}
+/* } */
 
 /*.inventory-data table {*/
 /*    box-sizing: border-box;*/
@@ -368,3 +420,219 @@ label {
 /*.inventory-data .col-name{*/
 /*    width: 20%;*/
 /*}*/
+
+
+/*#supplier-incoming td:nth-child(1) {*/
+/*    width: 15%;*/
+/*}*/
+
+/*#supplier-incoming td:nth-child(2) {*/
+/*    width: 20%;*/
+/*}*/
+
+/*#supplier-incoming td:nth-child(3) {*/
+/*    width: 15%;*/
+/*}*/
+
+/*#supplier-incoming td:nth-child(4) {*/
+/*    width: 15%;*/
+/*}*/
+
+/*#supplier-incoming td:nth-child(5) {*/
+/*    width: 15%;*/
+/*}*/
+
+
+.order-section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: auto;
+    height: 90vh;
+    width: 40%;
+}
+
+.order-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    height: 75vh;
+    overflow-y: scroll;
+    margin-top: 10px;
+}
+
+.order-list-item {
+    display: flex;
+    flex-direction: column;
+    /*width: 50%;*/
+    /*justify-content: space-between;*/
+    align-items: flex-start;
+    padding: 20px 20px;
+    border: 1px solid rgba(70, 70, 70, 0.38);
+    background-color: white;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.inventory-body .sec2 {
+    display: flex;
+}
+
+
+.supply-order-detail {
+    display: flex;
+    width: 60%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.detail-box {
+    margin-top: 50px;
+    height: 100%;
+    border-radius: 15px;
+    border: 1px solid rgba(70, 70, 70, 0.38);
+    padding: 40px;
+    width: 80%;
+    background-color: white;
+}
+
+.order-list-item {
+    cursor: pointer;
+    display: grid;
+    height: 100px;
+    grid-template-columns: 3fr 1fr;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.order-list-item.selected {
+    border: 2px solid #3a87ad;
+    outline: 2px solid #3a87ad; /* Add outline style */
+    outline-offset: -2px; /* Adjust outline distance from the element */
+}
+
+.detail-box table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.detail-box table tr td, th {
+    text-align: left;
+    padding: 10px;
+    /*font-size: 18px;*/
+    font-weight: 500;
+}
+
+.detail-box table th {
+    border: 1px solid #ddd;
+}
+
+.detail-box table tr th {
+    font-weight: 600;
+    /*font-size: 20px;*/
+}
+
+.detail-box tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+.date-overlay .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.hidden-section {
+    display: none !important;
+}
+
+.active-section {
+    font-family: 'Rubik-Medium';
+    color: black !important;
+    font-weight: bolder;
+}
+
+.date-overlay {
+    border: 2px solid #939393;
+    color: black;
+    left: 0px;
+    top: 50px;
+    z-index: 99;
+    position: absolute;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+    width: 700px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px rgb(123, 123, 123);
+    background-color: rgb(255, 255, 255);
+}
+
+.date-overlay input[type="date"] {
+    height: 40px;
+    width: 250px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgb(151, 151, 151);
+
+}
+
+.dropdown {
+    position: relative;
+    /* display: inline-block; */
+}
+
+.dropdown-content2 {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.dropdown-content2 a,
+.dropdown-content2 button {
+    display: block;
+    padding: 10px;
+}
+
+.dropdown-content2 a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#dropdown-icon {
+    transition: all 0.2s ease-in-out;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.date-range {
+    height: 40px;
+    width: 250px;
+    padding: 10px;
+}
+
+.date-range {
+    margin: 0;
+    display: flex;
+    height: 35px;
+    width: 300px;
+    background-color: white;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}

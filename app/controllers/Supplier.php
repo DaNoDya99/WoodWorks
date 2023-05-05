@@ -9,18 +9,26 @@ class supplier extends Controller
             $this->redirect('Login');
         }
         $orders = new CompanyOrderModel();
-        $data['neworders']=$orders->getneworders();
+        $data['neworders'] = $orders->getneworders();
         $this->view('supplier/dash', $data);
     }
+
+    public function getneworders()
+    {
+        $orders = new CompanyOrderModel();
+        $data['neworders'] = $orders->getneworders();
+        echo json_encode($data);
+    }
+
     public function accepted()
     {
         if (!Auth::logged_in()) {
             $this->redirect('Login');
         }
         $orders = new CompanyOrderModel();
-        $data['acceptedorders']=$orders->getacceptedorders();
+        $data['acceptedorders'] = $orders->getacceptedorders();
 
-        $this->view('supplier/accepted',$data);
+        $this->view('supplier/accepted', $data);
     }
 
     public function acceptOrder($id)
@@ -88,36 +96,31 @@ class supplier extends Controller
 
     public function add()
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $errors = [];
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $supplier = new Suppliers();
-            if($supplier->validate($_POST))
-            {
+            if ($supplier->validate($_POST)) {
                 $supplier->insert($_POST);
-            }else{
+            } else {
                 $errors = $supplier->errors;
             }
         }
 
-        if(empty($errors))
-        {
+        if (empty($errors)) {
             echo "Supplier Added Successfully";
-        }else{
+        } else {
             echo json_encode($errors);
         }
     }
 
     public function getSupplier($id)
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
@@ -125,29 +128,26 @@ class supplier extends Controller
 
         $row = $supplier->where('SupplierID', $id);
 
-        if($row)
-        {
+        if ($row) {
             echo json_encode($row[0]);
-        }else{
+        } else {
             echo "Supplier Not Found";
         }
     }
 
     public function delete($id)
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $supplier = new Suppliers();
 
-        if(!$supplier->deleteSupplier($id))
-        {
+        if (!$supplier->deleteSupplier($id)) {
             echo "<div class='cat-success cat-deletion'>
                   <h3>Supplier Deleted Successfully!</h3>
               </div>";
-        }else{
+        } else {
             echo "Supplier Not Found";
         }
     }
@@ -162,12 +162,11 @@ class supplier extends Controller
 
         $_POST['SupplierID'] = $id;
 
-        if(!$supplier->updateSupplier($_POST))
-        {
+        if (!$supplier->updateSupplier($_POST)) {
             echo "<div class='cat-success'>
                   <h3>Supplier Updated Successfully!</h3>
               </div>";
-        }else{
+        } else {
             echo "Supplier Not Found";
         }
 

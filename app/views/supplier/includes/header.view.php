@@ -8,10 +8,10 @@
     <title>Supplier Dashboard - Woodworks</title>
 
     
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style4.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/styles.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/table.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style4.css">
 
 
 </head>
