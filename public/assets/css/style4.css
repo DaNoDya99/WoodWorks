@@ -7,7 +7,7 @@ body {
 /* Point of Sales */
 .pos-body {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     padding-top: 10px;
     column-gap: 10px;
     align-items: center;
@@ -785,6 +785,8 @@ hr {
 
 .bill-table tbody tr {
     border-bottom: 1px solid rgb(135, 135, 135);
+    display: table;
+    width: 100%;
 }
 
 .bill-table thead {
@@ -793,54 +795,36 @@ hr {
 
 .bill-table thead th {
     border-left: 1px solid rgb(135, 135, 135);
+    font-size: 12px;
+}.bill-table tbody tr {
+    border-left: 1px solid rgb(135, 135, 135);
+    font-size: 14px;
 }
 
-.bill-table tbody tr td:nth-child(1) {
-    width: 20%;
+
+.bill-table  th:nth-child(1), td:nth-child(1) {
+    width: 18%;
 }
 
-.bill-table tbody tr td:nth-child(2) {
-    width: 20%;
+.bill-table  th:nth-child(2), td:nth-child(2) {
+    width: 18%;
 }
 
-.bill-table tbody tr td:nth-child(3) {
-    width: 20%;
+.bill-table  th:nth-child(3), td:nth-child(3) {
+    width: 18%;
 }
 
-.bill-table tbody tr td:nth-child(4) {
-    width: 20%;
+.bill-table  th:nth-child(4), td:nth-child(4) {
+    width: 18%;
 }
 
-.bill-table tbody tr td:nth-child(5) {
-    width: 20%;
+.bill-table  th:nth-child(5), td:nth-child(5) {
+    width: 18%;
 }
 
-.bill-table thead tr td {
-    /* border: 1px solid black; */
+.bill-table th:nth-child(6), td:nth-child(6) {
+    width: 10%;
 }
-
-.bill-table thead th:nth-child(1) {
-    border-left: 0px;
-
-    width: 20%;
-}
-
-.bill-table thead th:nth-child(2) {
-    width: 20%;
-}
-
-.bill-table thead th:nth-child(3) {
-    width: 20%;
-}
-
-.bill-table thead th:nth-child(4) {
-    width: 20%;
-}
-
-.bill-table thead th:nth-child(5) {
-    width: 20%;
-}
-
 
 .cart-empty-message {
     display: none;
@@ -1035,7 +1019,7 @@ hr {
     width: 50%
 }
 
-.applied-discounts td, th{
+.applied-discounts td, th {
     border: 1px solid #ccc;
     width: 50%;
 }

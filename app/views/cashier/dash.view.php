@@ -132,13 +132,15 @@
                 <th class="">Product ID</th>
                 <th class="">Product Name</th>
                 <th class="">Quantity</th>
-                <th class="">Cost</th>
-                <th class="">Remove</th>
+                <th class="">Unit Price</th>
+                <th class="">Discount</th>
+                <th class=""><img style="width: 15px" src="<?=ROOT?>/assets/images/cashier/trash-solid.svg" alt=""></th>
             </thead>
 
         </table>
 
-        <div id="empty-cart-message" style="height:100%; width:100%;border:0.5px solid grey; margin-top:20px; margin-bottom:20px;border-radius:15px; display:flex; justify-content:center; align-items:center">
+        <div id="empty-cart-message"
+             style="height:100%; width:100%;border:0.5px solid grey; margin-top:20px; margin-bottom:20px;border-radius:15px; display:flex; justify-content:center; align-items:center">
             <p style="color:white; font-size:20px">Cart is empty</p>
         </div>
         <div>
@@ -152,9 +154,12 @@
 
                     </div>
                     <div class="discounts-view">
-                        <div id="openDiscounts" style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row" onclick="discountPopup()">
+                        <div id="openDiscounts"
+                             style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row"
+                             onclick="discountPopup()">
                             <p>Discounts</p>
-                            <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt="" style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;" >
+                            <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt=""
+                                 style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;">
                         </div>
 
                         <p onclick="discountpopup()" style="">00.00</p>
@@ -557,6 +562,7 @@
                         const nameColumn = document.createElement("td");
                         const quantityColumn = document.createElement("td");
                         const costColumn = document.createElement("td");
+                        const discountColumn = document.createElement("td");
                         const removeColumn = document.createElement("td");
 
                         // Set the values for each column
@@ -564,6 +570,7 @@
                         nameColumn.textContent = cart.Name;
                         quantityColumn.textContent = cart.Quantity;
                         costColumn.textContent = cart.Cost * cart.Quantity;
+                        discountColumn.textContent = '10.00';
 
                         // Create a link to remove the item
                         //class remove item
@@ -586,6 +593,7 @@
                         row.appendChild(nameColumn);
                         row.appendChild(quantityColumn);
                         row.appendChild(costColumn);
+                        row.appendChild(discountColumn);
                         row.appendChild(removeColumn);
 
                         // Add the row to the tbody element

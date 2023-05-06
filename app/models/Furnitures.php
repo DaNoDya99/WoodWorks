@@ -20,6 +20,7 @@ class Furnitures extends Model
         'Discount_percentage',
         'SupplierID',
         'Discount_given_by',
+        'DiscountID',
         'Date'
     ];
 
