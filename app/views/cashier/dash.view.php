@@ -152,9 +152,9 @@
 
                     </div>
                     <div class="discounts-view">
-                        <div id="openAppButton" style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row">
+                        <div id="openDiscounts" style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row" onclick="discountPopup()">
                             <p>Discounts</p>
-                            <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt="" style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;" onclick="shippingpopup()">
+                            <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt="" style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;" >
                         </div>
 
                         <p onclick="discountpopup()" style="">00.00</p>
@@ -191,14 +191,17 @@
 
     </div>
 
-    <div id="discountPopup" class="discount-popup">
+    <div style="" id="discountPopup" class="discount-popup">
         <div class="discount-content">
             <div class="applied-discounts">
                 <h3>Applied Discounts</h3>
                 <table>
                     <thead>
+                    <tr>
                         <th>Discount Code</th>
                         <th>Discount Amount</th>
+                    </tr>
+
                     </thead>
                     <tbody id="applied-discounts-table">
                         <!-- dummy data -->
@@ -373,7 +376,7 @@
     }
 
     function discountpopup() {
-        // document.getElementById("discountpopup").style.display = "block";
+        document.getElementById("discountpopup").style.display = "block";
         document.getElementById("blur").style.display = "block";
         //enable visibility
         document.getElementById("blur").style.visibility = "visible";
@@ -416,7 +419,7 @@
                 }
             }).then(response => {
                 if (response.status === 200) {
-                    return response.json(); // or response.text() if the data is plain text
+                    return response.text(); // or response.text() if the data is plain text
                 } else {
                     throw new Error('Network response was not OK.');
                 }
@@ -642,7 +645,6 @@
             })
     }
 
-    // script.js
     function errormsg() {
 
         const popup = document.getElementById('tpopup');
@@ -667,7 +669,17 @@
             popup.style.opacity = '0';
         }, displayDuration);
     }
-    // scripts.js
+
+    function discountPopup() {
+        document.getElementsByClassName('discount-popup')[0].style.display = 'flex';
+        document.getElementById('blur').style.display = 'block';
+
+        // exit if blur is clicked
+        document.getElementById('blur').addEventListener('click', function() {
+            document.getElementsByClassName('discount-popup')[0].style.display = 'none';
+            document.getElementById('blur').style.display = 'none';
+        });
+    }
 </script>
 </body>
 

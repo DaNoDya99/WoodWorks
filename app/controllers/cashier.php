@@ -6,7 +6,7 @@ class cashier extends Controller
 {
     public function index(): void
     {
-        show($_SESSION);
+//        show($_SESSION);
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
@@ -35,6 +35,18 @@ class cashier extends Controller
         $employee = new Employees();
         $id = Auth::getEmployeeID();
         return $employee->where('EmployeeID', $id);
+    }
+
+    public function orders()
+    {
+//        if(!Auth::logged_in())
+//        {
+//            $this->redirect('login');
+//        }
+
+        $orders = new Orders();
+        $data['orders'] = $orders->viewAllOrders();
+        $this->view('cashier/orders', $data);
     }
 
     public function oldcust()
@@ -74,6 +86,16 @@ class cashier extends Controller
 //            unset($_SESSION['cart']);
             }
         }
+    }
+
+    public function getOrderByID($id)
+    {
+        $order = new Orders();
+        $order_items = new Order_Items();
+        $data['order'] = $order->getOrderByID($id);
+        $data['order_items'] = $order_items->getOrderItems($id);
+        echo json_encode($data);
+
     }
 
     public function isCustomerSet()
@@ -418,6 +440,7 @@ class cashier extends Controller
 
     //get cart items of cart
 
+
     public function getCartTotal()
     {
         $cart = new Carts();
@@ -453,5 +476,55 @@ class cashier extends Controller
             $data['cart'] = [];
             echo json_encode($data);
         }
+    }
+
+    public function Profile($id = null)
+    {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login1');
+        }
+
+        $id = $id ?? Auth::getEmployeeID();
+        $employee = new Employees();
+        $data['row'] = $row = $employee->where('EmployeeID', $id);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $row) {
+            $folder = "uploads/images/";
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+                file_put_contents($folder . "index.php", "<?php Access Denied.");
+                file_put_contents("uploads/index.php", "<?php Access Denied.");
+            }
+
+            if ($employee->edit_validate($_POST, $id)) {
+                $allowedFileType = ['image/jpeg', 'image/png'];
+
+
+                if (!empty($_FILES['Image']['name'])) {
+                    if ($_FILES['Image']['error'] == 0) {
+                        if (in_array($_FILES['Image']['type'], $allowedFileType)) {
+                            $destination = $folder . time() . $_FILES['Image']['name'];
+                            move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
+
+                            //                            resize_image($destination);
+                            $_POST['Image'] = $destination;
+                            if (file_exists($row[0]->Image)) {
+                                unlink($row[0]->Image);
+                            }
+                        } else {
+                            $employee->errors['image'] = "This file type is not allowed.";
+                        }
+                    } else {
+                        $employee->errors['image'] = "Could not upload image.";
+                    }
+                }
+
+                $_POST['EmployeeID'] = $id;
+                $employee->update($id, $_POST);
+                $this->redirect('cashier/profile/' . $id);
+            }
+        }
+        $this->view('cashier/profile', $data);
     }
 }
