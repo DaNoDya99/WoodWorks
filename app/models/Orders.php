@@ -17,17 +17,75 @@ class Orders extends Model
         'Dispatched_date',
         'Delivered_date',
         'Deliver_method',
+        'Estimated_date',
+        'Image',
+        'Reasons',
         'Order_status',
         'Vehicle_type',
         'Address',
         'CustomerID',
         'DriverID',
         'Is_preparing',
-        'SessionID',
-        'in_store'
+        'Shipping_cost',
+        'Discount_obtained',
+        'SessionID'
     ];
 
-    public function findOrders($column, $value)
+    public function update_Image($where, $data)
+    {
+        if(!empty($this->allowedColumns))
+        {
+            foreach ($data as $key => $value){
+                if(!in_array($key,$this->allowedColumns))
+                {
+                    unset($data[$key]);
+                }
+            }
+        }
+
+        $keys = array_keys($data);
+        $id = array_search($where['OrderID'], $where);
+
+        $query = "update ".$this->table." set ";
+        foreach ($keys as $key)
+        {
+            $query .= $key . "=:" . $key . ",";
+        }
+        $query = trim($query,",");
+        $query .= " where OrderID = :id";
+
+        $data['id'] = $where['OrderID'];
+        $this->query($query,$data);
+    }
+
+    public function update_Reason($where, $data)
+    {
+        if(!empty($this->allowedColumns))
+        {
+            foreach ($data as $key => $value){
+                if(!in_array($key,$this->allowedColumns))
+                {
+                    unset($data[$key]);
+                }
+            }
+        }
+
+        $keys = array_keys($data);
+        $id = array_search($where['OrderID'], $where);
+
+        $query = "update ".$this->table." set ";
+        foreach ($keys as $key)
+        {
+            $query .= $key . "=:" . $key . ",";
+        }
+        $query = trim($query,",");
+        $query .= " where OrderID = :id";
+
+        $data['id'] = $where['OrderID'];
+        $this->query($query,$data);
+    }
+
+    public function findOrders($column,$value)
     {
         $query = "select * from $this->table where $column = :value order by DATE desc limit 4";
         return $this->query($query, ['value' => $value]);
@@ -48,8 +106,14 @@ class Orders extends Model
 
     public function displayOrders($column, $value)
     {
-        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value ";
-        return $this->query($query, ['value' => $value]);
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` != 'Delivered' limit 15";
+        return $this->query($query,['value'=>$value]);
+    }
+
+    public function displayDeliveredOrders($column,$value)
+    {
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` = 'Delivered' limit 15";
+        return $this->query($query,['value'=>$value]);
     }
 
     public function searchOrdersDetails($column, $value, $orders_items)
@@ -198,8 +262,8 @@ class Orders extends Model
 
     public function getNewOrders()
     {
-        $query = "select * from $this->table where DriverId= 'null' && Is_preparing = :Is_preparing;";
-        return $this->query($query, ['Is_preparing' => 0]);
+        $query = "select * from $this->table where DriverId IS NULL && Is_preparing = :Is_preparing;";
+        return $this->query($query,['Is_preparing' => 0]);
     }
 
     public function getOrderDetails($id = null)
@@ -211,7 +275,7 @@ class Orders extends Model
 
     public function deliveryOrderDetails($id = null)
     {
-        $query = "SELECT OrderID, Contactno,Address,Total_amount,Order_status FROM orders WHERE OrderID = :OrderID;";
+        $query = "SELECT OrderID, Contactno,Address,Total_amount,Order_status,Shipping_cost,Discount_obtained FROM orders WHERE OrderID = :OrderID;";
 
         return $this->query($query, ['OrderID' => $id]);
     }
@@ -231,17 +295,32 @@ class Orders extends Model
         return $this->query($query, ['OrderID' => $orderID, 'SessionID' => $sessionID, 'Order_status' => $status]);
     }
 
-    public function getOrderByTheSessionID($sessionId)
+    public function getOrderByTheOrderID($orderId)
     {
-        $query = "SELECT * FROM `orders` WHERE SessionID = :SessionID && Order_status = :Order_status;";
+        $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID && Order_status = :Order_status;";
 
-        return $this->query($query, ['SessionID' => $sessionId, 'Order_status' => 'unpaid']);
+        return $this->query($query,['OrderID' => $orderId, 'Order_status' => 'unpaid']);
+    }
+
+    public function getPaidOrderDetails($orderId)
+    {
+        $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID && Order_status = :Order_status;";
+
+        return $this->query($query,['OrderID' => $orderId, 'Order_status' => 'paid']);
     }
 
     public function updateIsPreparing($orderId)
     {
-        $query = "UPDATE $this->table SET Is_preparing = :Is_preparing WHERE OrderID = :OrderID && Is_preparing = 1;";
+        $query = "UPDATE $this->table SET Is_preparing = :Is_preparing,Deliver_method = :Deliver_method WHERE OrderID = :OrderID && Is_preparing = 1;";
 
-        return $this->query($query, ['Is_preparing' => 0, 'OrderID' => $orderId]);
+        return $this->query($query, ['Is_preparing' => 0,'OrderID' => $orderId,'Deliver_method' => 'Home Delivery']);
     }
+
+    public function removeIncompletedOrders($id)
+    {
+        $query = "DELETE FROM $this->table WHERE CustomerID = :CustomerID && Is_preparing = :Is_preparing;";
+
+        return $this->query($query,['CustomerID' => $id, 'Is_preparing' => 1]);
+    }
+
 }

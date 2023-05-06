@@ -74,6 +74,15 @@
         </li>
 
         <li>
+            <a href="<?= ROOT ?>/designer/forum">
+
+                <div class="icons"><img src="<?= ROOT ?>/assets/images/header/chat-circle-plain-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
+                        Chat </span>
+            </a>
+            <span class="tooltip">Forum</span>
+        </li>
+
+        <li>
             <a href="<?= ROOT ?>/designer/profile">
 
                 <div class="icons"><img src="<?= ROOT ?>/assets/images/header/user-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">

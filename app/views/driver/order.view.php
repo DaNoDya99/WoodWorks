@@ -15,7 +15,7 @@
             </div>
         <?php endif;?>
 
-        <?php $data['rows'] = $row; $this->view('driver/includes/order_table',$data) ?>
+        <?php $data['rows'] = $row; $this->view('driver/includes/orders_details_table',$data) ?>
     </div>
 </div>
 </body>

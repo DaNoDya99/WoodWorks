@@ -138,7 +138,7 @@ class Admin extends Controller
             if($employee->validate($_POST)) {
                 $destination = $folder."user.png";
 
-                copy(ROOT."assets/images/admin/user.png",$destination);
+//                copy(ROOT."assets/images/admin/user.png",$destination);
 
                 if(!file_exists(ROOT."/assets/images/admin/user.png"))
                 {
@@ -153,16 +153,21 @@ class Admin extends Controller
                 $_POST['Image'] = $destination;
 
                 $employee->insert($_POST);
-                $this->redirect('admin/employees');
+                echo "success";
+                exit();
             }
         }
 
 
-        $data['message'] = $this->message;
-        $data['errors'] = $employee->errors;
-        $data['title'] = "ADD EMPLOYEE";
+        $errors = $employee->errors;
 
-        $this->view('admin/add_employee',$data);
+        if(empty($errors))
+        {
+           echo "success";
+        }else{
+            echo json_encode($errors);
+        }
+
     }
 
     public function furniture($id = null)
@@ -293,6 +298,71 @@ class Admin extends Controller
 
 
         $this->view('admin/delivery',$data);
+    }
+
+    public function getWeeklySalesOfProducts()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $items = new Order_Items();
+
+        $rows = $items->getSoldProductsLastWeek();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
+    }
+
+    public function getProductsReachedReorderLevel()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $inventory = new Product_Inventory();
+        $rows = $inventory->getItemsReachedReorderLevel();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
+    }
+
+    public function getOrderStatus()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $orders = new Orders();
+        $rows = $orders->pieGraph();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
+    }
+
+    public function getTop5Products()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $reviews = new Reviews();
+        $rows = $reviews->getTop5RatedProducts();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
     }
 
 }

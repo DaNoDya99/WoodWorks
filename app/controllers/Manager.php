@@ -134,6 +134,8 @@ class Manager extends Controller
         $data['title'] = "ADVERTISEMENTS";
         $rows = $advertisement->getReFurDetails();
 
+        // show($rows);die;
+
         foreach($rows as $row)
         {
             $row->Image = $advertisement->getDisplayImage($row->AdvertisementID)[0]->Image;
@@ -195,9 +197,11 @@ class Manager extends Controller
         }
 
         $data['title']="ISSUES";
+        
 
         $issue = new Issues();
         $data['issue'] = $issue->get_issue();
+        $data['issues'] = $issue->getissuehistory();
         $this->view('manager/issues',$data);
     }
 
@@ -227,32 +231,7 @@ class Manager extends Controller
         $this->view('manager/designs',$data);
     }
 
-    public function discounts($id = null)
-    {
-        if(!Auth::logged_in())
-        {
-            $this->redirect('login');
-        }
-
-        $id = $id ?? Auth::getEmployeeID();
-        $employee = new Employees();
-        $furniture = new Furnitures();
-
-        $data['row'] = $row = $employee->where('EmployeeID',$id);
-
-        $data['furniture'] = $furniture->getDiscounts($id);
-        $data['image'] = $furniture->getDisplayImage($id);
-        $data['title'] = $data['furniture'][0]->Name;
-
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            $furniture->updateDiscounts($id,$_POST['Discount_percentage']);
-            $this->redirect('manager/discounts/'.$id);
-        }
-
-        $this->view('manager/discounts',$data);
-    }
-
+    
     public function reports()
     {
         if(!Auth::logged_in())
@@ -322,6 +301,174 @@ class Manager extends Controller
 
         $this->view('manager/all_designs',$data);
     }
+
+    public function discounts()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $categories = new Categories();
+
+        $data['categories'] = $categories->getCategories();
+
+        $this->view('manager/discounts',$data);
+ 
+    }
+
+    public function getTopSellingProducts()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $items = new Order_Items();
+        $rows = $items->getTopSellingProducts();
+
+        if(!empty($rows)){
+            echo json_encode($rows);
+        }else{
+            echo "error";
+        }
+    } 
+
+    public function getTop10Products()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $reviews = new Reviews();
+        $rows = $reviews->getTop10RatedProducts();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
+    }
+
+    public function getIncomeLastWeek()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $order = new Order_Items();
+        $rows = $order->getIncomeLastWeek();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
+    }
+
+    public function getProductsReachedReorderLevel()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $inventory = new Product_Inventory();
+        $rows = $inventory->getItemsReachedReorderLevel();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
+    }
+
+    public function getPendingIssues()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $issue = new Issues();
+        $rows = $issue->getPendingIssuesCount()[0];
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode(['Count'=>0]);
+        }
+    }
+
+    public function getPendingDesigns()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $design = new Design();
+        $rows = $design->getPendingDesignsCount()[0];
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode(['Count'=>0]);
+        }
+    }
+
+    public function getActiveDiscounts()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $discount = new Discounts();
+        $rows = $discount->getActiveDiscounts();
+
+        if(!empty($rows)) {
+            $stm = '';
+
+            foreach ($rows as $row){
+                $stm .= "
+                    <tr>
+                        <td>".$row->Name."</td>
+                        <td>".$row->Discount_percentage."%</td>
+                        <td>".explode(' ',$row-> Created_at)[0]."</td>
+                        <td>".explode(' ',$row-> Expired_at)[0]."</td>
+                    </tr>
+                ";
+            }
+
+            echo $stm;
+        }else {
+            echo "No Active Discounts";
+        }
+    }
+
+    public function getSoldOutRefurnishedProducts()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $advertisement = new Advertisements();
+        $rows = $advertisement->getSoldOutRefurnishedProducts();
+
+        if(!empty($rows)) {
+            $stm = '';
+
+            foreach ($rows as $row){
+                $stm .= "
+                    <tr>
+                        <td>".$row->AdvertisementID."</td>
+                        <td>".$row->Name."</td>
+                    </tr>
+                ";
+            }
+
+            echo $stm;
+        }else {
+            echo "No Sold Out Refurnished Products";
+        }
+    }
+
+    
 
 
 }

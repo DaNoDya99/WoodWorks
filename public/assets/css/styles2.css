@@ -551,7 +551,7 @@ margin: 20px 0;
 }
 
 .ads{
-  width: 80%;
+  width: 100%;
   margin: 1em auto;
   border-radius: 15px;
   background-color: #f9f9f9;
@@ -566,6 +566,7 @@ margin: 20px 0;
   align-items: center;
   border-top: 2px solid #d4d4d4;
   margin-bottom: 1em;
+  width:100%;
 }
 
 .ads-heading button{
@@ -1651,6 +1652,10 @@ margin: 20px 0;
   max-height: 87vh;
 }
 
+.ref-fur-description{
+  text-align: justify;
+}
+
 .design-card-container a{
   text-decoration: none;
   color: #100F0F;
@@ -1673,3 +1678,400 @@ margin: 20px 0;
 .error{
   background-color: rgb(183, 26, 26);
 }
+
+/* Discounts Page */
+
+.dis-form-container{
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.dis-header{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #d4d4d4;
+  padding-bottom: 1em;
+}
+
+.dis-header h2{
+  margin: 0;
+}
+
+.dis-header button{
+  border: none;
+  background-color: #0F3D3E;
+  width: 14em;
+  border-radius: 5px;
+  color: #f9f9f9;
+  font-size: 1.1rem;
+}
+
+.dis-form{
+  display: flex;
+  justify-content: space-between;
+}
+
+.dis-form-left{
+  width: 35%;
+}
+
+.dis-field input{
+  width: 100%;
+  height: 2.5em;
+  border: 2px #d4d4d4 solid;
+  border-radius: 5px;
+  padding-left: .5em;
+}
+
+.dis-field-check{
+  display: flex;
+  align-items: center;
+}
+
+.dis-field-check input{
+  margin-left: 1em;
+  border: 2px solid #d4d4d4;
+}
+
+.dis-field-check,.dis-field{
+  margin: 1em 0;
+}
+
+.dis-date input{
+  color: #7e7e7e;
+}
+
+.dis-cat-list{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cat-list{
+  padding-left: 3em;
+  margin-top: 1em;
+}
+
+.dis-form-right{
+  width: 60%;
+}
+
+.dis-sub-cat-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dis-sub-cat-list div{
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+.furniture-item{
+  display: flex;
+  align-items: center;
+  margin: 1em 2em;
+}
+
+.furniture-item img{
+  width: 4em;
+  height: 4em;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-left: 1em;
+}
+
+.furniture-item span{
+  margin-left: 1em;
+}
+
+.sub-cat-items{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dis-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.dis-btn button{
+  border: none;
+  background-color: #0F3D3E;
+  color: #f9f9f9;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 12em;
+  height: 2em;
+}
+
+.dis-err{
+  color: #d23542;
+  font-size: small;
+}
+
+.cat-items-container{
+  height: 35em;
+  max-height: 35em;
+  margin-top: 1em;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  border: 2px solid #d4d4d4;
+  padding: 1em;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.cat-items-container::-webkit-scrollbar{
+  display: none;
+}
+
+.subcat-title{
+  font-size: .9rem;
+  font-weight: 700;
+  margin-left: 1.5em;
+}
+.not-found{
+  font-size: .9rem;
+  margin-left: 3em;
+}
+
+.cat-response{
+  position: absolute;
+  top: 10%;
+  left: 40%;
+  width: 20%;
+}
+
+.cat-success{
+  background-color: #17c330;
+  color: #f9f9f9;
+  padding: 1em;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.cat-errors{
+  background-color: #e6b2b2;
+  color: #940b0b;
+  padding: 1em 2em;
+  border-radius: 7px;
+}
+
+.cat-deletion{
+  background-color: #ae1c1c;
+}
+
+.manager-content{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2em !important;
+}
+
+.dashboard-cols{
+  width: 33%;
+}
+
+.chart-container{
+width: 100%;
+height: 43vh;
+background-color: #f9f9f9;
+border-radius: 15px;
+margin: 0.5em 0;
+padding: 1em;
+}
+
+.shortcuts{
+  background-color: unset;
+  display: flex;
+  justify-content: space-between;
+  padding: unset;
+}
+
+.shortcut-cols{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.shortcut{
+  width: 100%;
+  height: 21.1vh;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.shortcut:last-child{
+  margin-top: .5em;
+}
+
+.shortcut h2{
+  margin: 0;
+}
+
+.shortcut span{
+  font-size: 5rem;
+}
+
+.ads-list{
+  width: 58.5%;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  padding: 0.5em 1em;
+  text-align: center;
+}
+
+.discounts-list{
+  text-align: center;
+}
+
+.discounts-list table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+.discounts-list table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.discounts-list table td{
+  text-align: center;
+}
+
+.inv-table-btns{
+  display: flex;
+  justify-content: center;
+  gap: 15%;
+  align-items: center;
+}
+
+.inv-table-btns img{
+  height: 1.8em;
+  width: 1.8em;
+}
+
+.inv-table-btns button{
+  height: 2.2em;
+  width: 2.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+}
+
+.inv-table-btns button:first-child{
+  background-color: #2b7358;
+}
+
+.inv-table-btns button:nth-child(2){
+  background-color: #a00505;
+}
+
+.inv-table-btns button:last-child{
+  background-color: #2e69c4;
+}
+
+.error-form{
+  color: #ff0000;
+}
+
+.font-sm{
+  font-size: 14px;
+}
+
+.font-vsm{
+  font-size: 12px;
+}
+
+.cat-deletion-btns button{
+  width: 20%;
+  padding: .5em;
+  background-color: #ae1c1c;
+  color: #f9f9f9;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.discounts-popup{
+  width: 85%;
+  height: 84vh;
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+
+}
+
+.discounts-selections{
+  display: flex;
+  justify-content: space-between;
+}
+
+.ongoing-discounts, .past-discounts{
+  width: 49%;
+  padding: 0.5em;
+  border: #d4d4d4 2px solid;
+}
+
+.selected{
+    background-color: #d4d4d4;
+}
+
+.discounts-table{
+  width: 100%;
+  margin-top: 1em;
+  border-collapse: collapse;
+}
+
+.discounts-table th{
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.discounts-table td{
+  text-align: center;
+}
+
+.manager-btns button{
+  margin-top: 0 !important;
+}
+
+.discounts-info-popup{
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5) !important;
+  width: 50%;
+}
+
+.discounts-info{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.discounts-info th{
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.discounts-info td{
+  text-align: center;
+}
+
+.discounts-info td img{
+    height: 4.5em;
+    width: 4.5em;
+    border-radius: 7px;
+}
+
+.discounts-edit-popup{
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5) !important;
+}
+
+.align-left{
+  text-align: left;
+}
+
+.deletion-btn{
+  background-color: #a00505 !important;
+}
+
+

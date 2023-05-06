@@ -101,6 +101,14 @@ class Customer_home extends Controller
         $cus_id = Auth::getCustomerID();
         $orderID = '';
 
+        $fur = $furniture->searchFurnitureByID($id)[0];
+        if($fur->Quantity < 1){
+            echo "<div class='cat-success cat-deletion'>
+                    <h2>Product is out of stock.</h2>
+                </div>";
+            return;
+        }
+
         if(empty($cart->getCart($cus_id)))
         {
             $cart->setCart($cus_id);
@@ -177,13 +185,23 @@ class Customer_home extends Controller
                 unset($_SESSION['cart'][$key]);
             }
         }
+
+        $id = Auth::getCustomerID();
         
         $cart = new Carts();
         $order_item = new Order_Items();
         $inventory = new Product_Inventory();
+        $order = new Orders();
+        $orderId = $order->checkIsPreparing($id)[0]->OrderID;
+
         $inventory->updateQuantityToIncrease($productID,$quantity);
-        $order_item->deleteItem($cartID,$productID);
+        $order_item->removeOrderItem($orderId,$productID);
         $cart->updateTotalAmountToDecrease($cartID,$cost*$quantity);
+
+        if(empty($order_item->getOrderItems($orderId)))
+        {
+            $order->removeIncompletedOrders($orderId);
+        }
 
         $this->redirect('cart');
     }
@@ -254,7 +272,7 @@ class Customer_home extends Controller
             $order->update_status($orderID,$_POST);
 
             $stripe =  new \Stripe\StripeClient(
-                'sk_test_51Mx3NxCIse71JEne0LK7axCWj4nwwxotGp7kDjehW2wfmvhSLgPMPkld8L6WdaAwj8CzkT4vhr801oJQ8s39YQ3100hKfDfWLG'
+                $_ENV['STRIPE_API_KEY']
             );
 
             $coupon = $stripe->coupons->create(['percent_off' => 10, 'duration' => 'once','currency' => 'lkr']);
@@ -286,7 +304,7 @@ class Customer_home extends Controller
                     'shipping_rate_data' => [
                       'type' => 'fixed_amount',
                       'fixed_amount' => ['amount' => 1500, 'currency' => 'lkr'],
-                      'display_name' => 'Next day air',
+                      'display_name' => 'Home Delivery',
                       'delivery_estimate' => [
                         'minimum' => ['unit' => 'business_day', 'value' => 1],
                         'maximum' => ['unit' => 'business_day', 'value' => 1],
@@ -532,13 +550,25 @@ class Customer_home extends Controller
                     <h4>Delivery Address</h4>
                     <span>".$details->Address."</span>
                 </div>
-                <div class='order-detail order-final-detail'>
+                <div class='order-detail '>
                     <h4>Invoice Number</h4>
                     <span>#".substr($details->OrderID,0,8)."</span>
                 </div>
-                <div class='order-detail order-total'>
-                    <h4>Total Amount</h4>
+                <div class='order-detail'>
+                    <h4>Sub Total</h4>
                     <span>Rs. ".$details->Total_amount.".00</span>
+                </div> 
+                <div class='order-detail'>
+                    <h4>Shipping Cost</h4>
+                    <span>Rs. ".$details->Shipping_cost.".00</span>
+                </div>
+                <div class='order-detail order-final-detail'>
+                    <h4>Discount Obtained</h4>
+                    <span>-Rs. ".$details->Discount_obtained.".00</span>
+                </div>
+                <div class='order-detail order-total'>
+                    <h4>Total</h4>
+                    <span>Rs. ".$details->Total_amount + $details->Shipping_cost - $details->Discount_obtained.".00</span>
                 </div>
             </div>
         ";

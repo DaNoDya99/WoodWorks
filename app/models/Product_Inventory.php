@@ -133,4 +133,18 @@ class Product_Inventory extends Model
 
         return $this->query($query,['ProductID' => $ProductID]);
     }
+
+    public function updateInventoryItemDetails($data)
+    {
+        $query = "UPDATE $this->table SET Quantity = :Quantity,  Reorder_point = :Reorder_point, Last_received = :Last_received, Cost = :Cost, Retail_price = :Retail_price, Updated_at = :Updated_at WHERE ProductID = :ProductID;";
+
+        return $this->query($query, $data);
+    }
+
+    public function getItemsReachedReorderLevel()
+    {
+        $query = "SELECT ProductID, Quantity, Reorder_point FROM inventory WHERE Quantity <= Reorder_point;";
+
+        return $this->query($query);
+    }
 }

@@ -95,4 +95,58 @@ class Advertisement extends Controller{
 
         $this->view('manager/refurnished_fur_details',$data);
     }
+
+    public function getAdDetails($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $advertisements = new Advertisements();
+
+        $row = $advertisements->getRefurnishedFurnityreById($id)[0];
+
+        if(!empty($row))
+        {
+            $data = [
+                'primary_image' => $advertisements->getDisplayImage($id)[0]->Image,
+                'secondary_image1' => $advertisements->getSecondaryImages($id)[0]->Image,
+                'secondary_image2' => $advertisements->getSecondaryImages($id)[1]->Image,
+                'advertisement_id' => $row->AdvertisementID,
+                'name' => $row->Product_name,
+                'price' => $row->Price,
+                'description' => $row->Description,
+                'quantity' => $row->Quantity,
+            ];
+
+            echo json_encode($data);
+        }else{
+            echo "error";
+        }
+
+    }
+
+    public function updateRefurnishedFurniture($id)
+    {
+        echo json_encode($_FILES['Images']);
+    }
+
+    public function deleteRefurnishedFurniture($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $advertisements = new Advertisements();
+        $row = $advertisements->delete($id);
+
+        if(empty($row))
+        {
+            echo "success";
+        }else{
+            echo "error";
+        }
+    }
 }

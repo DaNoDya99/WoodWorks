@@ -1,5 +1,6 @@
 /.idea
 /.vscode
 .env
-/vendor
-app/configs/config.php
+*.xml
+.idea/workspace.xml
+/vendor/

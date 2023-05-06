@@ -51,14 +51,14 @@ class Furnitures extends Model
 
         $fields = [
             'ProductID',
-            'Name',
+            'furniture.Name',
             'Description',
             'Quantity',
             'Cost',
             'Availability',
             'Warrenty_period',
             'Wood_type ',
-            'Discount_percentage'
+            'discounts.Discount_percentage'
         ];
 
         if (!empty($fields)) {
@@ -68,14 +68,14 @@ class Furnitures extends Model
         }
 
         $query = trim($query, ", ");
-        $query .= " from " . $this->table . " where ProductID = '$id'";
+        $query .= " from " . $this->table . " left join discounts on furniture.DiscountID = discounts.DiscountID where ProductID = '$id'";
 
         return $this->query($query);
     }
 
     public function getFurnitures($category ,$sub_cat,$offset,$limit = 2)
     {
-        $query = "select ProductID, Name , Cost, Discount_percentage from furniture WHERE CategoryID = '$category' && Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
+        $query = "SELECT furniture.ProductID, furniture.Name, furniture.Cost, discounts.Discount_percentage FROM furniture LEFT JOIN discounts ON furniture.DiscountID = discounts.DiscountID WHERE furniture.CategoryID = '$category' && furniture.Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
 
         return $this->query($query);
     }
@@ -301,6 +301,27 @@ class Furnitures extends Model
         $query = "SELECT ProductID,Name,Quantity,Cost FROM $this->table WHERE Name like '%$name%';";
 
         return $this->query($query);
+    }
+
+    public function getFurnitureBySubCategoryName($name)
+    {
+        $query = "SELECT ProductID,Name,Quantity,Cost FROM furniture WHERE Sub_category_name LIKE '%$name%';";
+
+        return $this->query($query);
+    }
+
+    public function updateDiscount($id, $discount)
+    {
+        $query = "update $this->table set DiscountID = :Discount where ProductID =:ProductID;";
+
+        return $this->query($query, ['ProductID' => $id, 'Discount' => $discount]);
+    }
+
+    public function getDiscountedFurniture($id)
+    {
+        $query = "select ProductID, Name, Cost from $this->table where DiscountID = :DiscountID;";
+
+        return $this->query($query, ['DiscountID' => $id]);
     }
 
 }

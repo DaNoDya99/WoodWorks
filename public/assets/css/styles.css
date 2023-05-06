@@ -371,7 +371,7 @@ td {
 
 .emp-container {
     width: 95%;
-    max-height: 80vh;
+    max-height: 82vh;
     margin: 1em auto;
     border-radius: 15px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
@@ -389,6 +389,7 @@ td {
 
 .emp-header button {
     width: 100%;
+    padding: 0 1em;
     background-color: #0F3D3E;
     color: #f9f9f9;
     font-family: 'Rubik', sans-serif;
@@ -499,16 +500,16 @@ td {
     display: flex;
     flex-direction: column;
     margin: 10px;
+    text-align: left;
 }
 
 .emp-form-field input,
-select {
-    padding: 5px 20px;
+.emp-form-field select {
+    padding: 5px 10px;
     font-family: 'Rubik', sans-serif;
-    font-size: 1vw;
     border-radius: 5px;
-    border: none;
-    background-color: #d4d4d4;
+    border: 2px solid #d4d4d4;
+    background-color: #f9f9f9;
 }
 
 .add-emp-btn {
@@ -516,7 +517,7 @@ select {
     justify-content: center;
 }
 
-.add-emp-btn button {
+.add-emp-btn button,.add-delivery-btn button {
     width: 200px;
     height: 50px;
     border: solid 2px #e2dcc8;
@@ -526,6 +527,11 @@ select {
     font-size: 1vw;
     background-color: #100F0F;
     color: #ffffff;
+}
+
+.add-delivery-btn button{
+    width: 100px;
+    height: 40px;
 }
 
 .emp-form-header h1 {
@@ -754,12 +760,14 @@ select {
 
 .add-sup-form input {
     width: 100%;
-    border: none;
+    border: 2px solid #d2d2d2;
     height: 35px;
     border-radius: 5px;
     font-size: 1rem;
-    background-color: #d4d4d4;
+
     margin-bottom: 1em;
+    font-family: 'Rubik', sans-serif;
+    padding-left: 0.5em;
 }
 
 .add-sup-field {
@@ -2305,6 +2313,17 @@ h2 {
     font-family: 'Rubik', sans-serif;
 }
 
+.edit-sup-popup{
+    left: 50%;
+    width: 30%;
+    font-family: 'Rubik', sans-serif;
+}
+
+.sup-btn{
+    font-weight: bolder;
+    font-size: 1rem;
+}
+
 .sup-popup input{
     padding-left: .5em;
 }
@@ -2337,16 +2356,40 @@ h2 {
     margin: 1em;
 }
 
+.dashboard-rhs{
+    width: 60%;
+}
+
 .ofs-list {
     width: 100%;
     background-color: #f9f9f9;
-    margin: 1em .5em;
+    margin-top: 1em;
     border-radius: 15px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
-    max-height: 85vh;
+    height: 50vh;
+    max-height: 50vh;
     text-align: center;
     font-family: 'Rubik', sans-serif;
     padding: 0 1em;
+    overflow-y: auto;
+}
+
+.ofs-list h1{
+    margin: 0;
+    padding: .5em 0;
+}
+
+.pie-chart-container{
+    width: 50%;
+    /*background-color: #f9f9f9;*/
+    height: 32vh;
+    margin-top: .5em;
+    border-radius: 15px;
+}
+
+.pie-chart-container h1{
+    margin: 0;
+    padding: .5em 0;
 }
 
 .ofs-list table {
@@ -3181,7 +3224,7 @@ h2 {
 /*Your orders page*/
 
 .orders-container{
-    height: 95vh;
+    height: 100vh;
     background-color: #c3c4a5;
     display: flex;
     padding: 2em 1em;
@@ -3189,8 +3232,8 @@ h2 {
 }
 
 .orders, .order{
-    height: 85vh;
-    max-height: 85vh;
+    height: 90vh;
+    max-height: 90vh;
     background-color: #f9f9f9;
     border-radius: 15px;
     width: 35%;
@@ -3334,7 +3377,7 @@ h2 {
 
 .order-payment-details{
     background-color: #d4d4d4;
-    height: 24vh;
+    height: 29vh;
     margin-top: 1em;
     margin-left: 1em;
     margin-right: 1em;
@@ -3362,7 +3405,7 @@ h2 {
 }
 
 .order-total{
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 .delivery-order-total{
@@ -3418,11 +3461,16 @@ h2 {
     width: 70%;
 }
 
-#myChart1{
+#myChart1,#myChart2,#myChart3,#myChart4{
     background-color: #f9f9f9;
     padding: 1em;
     border-radius: 15px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+#myChart3,#myChart4{
+    width: 100% !important;
+    height: 32vh !important;
 }
 
 .chat-btn{
@@ -3434,6 +3482,68 @@ h2 {
     height: 6em;
     border: none;
     visibility: visible;
+}
+
+.delivery-rates-container{
+    max-width: 95% !important;
+    background-color: #f9f9f9;
+    margin-top: 1em;
+    margin-left: 1em;
+    height: 50vh;
+    border-radius: 15px;
+    text-align: center;
+    padding: .5em;
+}
+
+.pie-width{
+    width: 95% !important;
+    height: 32vh !important;
+    margin-left: 1em;
+}
+
+.delivery-rates-container span{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.delivery-rates-container button{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 5px;
+    padding: .5em 1em;
+    margin-top: 1em;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.rhs-container{
+    display: flex;
+}
+
+.rhs-container div{
+    width: 100%;
+}
+
+.delivery-rates-table{
+    width: 100%;
+    margin-top: 1em;
+    border-collapse: collapse;
+}
+
+.delivery-rates-table td{
+    text-align: center;
+    margin: 1em 0;
+}
+
+.delivery-rates-table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.rates-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .chat-btn img{
@@ -4021,4 +4131,119 @@ h2 {
 
 .error{
     color: #ff0000;
+}
+
+.font-sm{
+    font-size: 14px;
+}
+
+.font-vsm{
+    font-size: 12px;
+}
+
+/*Invoice*/
+
+.invoice-container{
+    width: 100%;
+    height: 96vh;
+    background-color: #c3c4a5;
+    padding-top: 2em;
+}
+
+.invoice{
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    width: 50%;
+    border-radius: 15px;
+    /*height: 82vh;*/
+    padding: 1em;
+
+}
+
+.invoice-header{
+    text-align: center;
+}
+
+.invoice-header h1{
+    margin: 0;
+}
+
+.invoice-details{
+    display: flex;
+    justify-content: space-around;
+    margin: 3em 0;
+}
+
+.invoice-details h4{
+    margin: 0;
+}
+
+.invoice-details div{
+   text-align: center;
+}
+
+.invoice-summary-container{
+
+}
+
+.invoice-summary{
+    margin-top: 2em;
+    padding: 1em 3em 1em 3em;
+    background-color: #d4d4d4;
+    border-radius: 10px;
+}
+
+.invoice-detail{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: .5em;
+    margin: 1em 0;
+}
+
+.invoice-detail h4{
+    margin: 0;
+}
+
+.item-list{
+    border-bottom: 2px solid #f9f9f9;
+}
+
+.download-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.download-btn button{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 10px;
+    padding: .5em 1em;
+    font-size: 1.2rem;
+    margin-top: 2em;
+}
+
+.emp-popup{
+    left: 50%;
+    width: 40%;
+    font-family: 'Rubik', sans-serif;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.dis-field{
+    width: 49.5%;
+}
+
+.dis-outer-field{
+    width: 100%;
+}
+
+.dis-field input,.dis-outer-field input{
+    width: 100%;
+    padding-left: .5em;
+    height: 2.5em;
+}
+
+.delivery-rate-popup{
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
