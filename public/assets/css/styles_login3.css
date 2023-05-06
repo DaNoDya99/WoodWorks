@@ -986,23 +986,26 @@ body{
 }
 /* Order Details View */
 
-.popups{
+#popups{
     width: 60%;
     margin: 1em auto;
     padding: 1em 2em;
+    top: 5%;
+    left: 20%;
     background-color: #f9f9f9;
     border-radius: 20px;
     font-family: 'Rubik-SemiBold';
     max-height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    position: absolute;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
     border-collapse: collapse;
-    /*visibility: hidden;*/
+    visibility: hidden;
 }
 
-.popups::-webkit-scrollbar {
+#popups::-webkit-scrollbar {
     display: none;
 }
 
@@ -1010,7 +1013,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 2px solid #d2d2d2;
     padding: 1em 0;
 }
 
@@ -2320,23 +2322,6 @@ design-desc div button:hover{
 }
 
 /*Update Design*/
-
-#upl-docs{
-    width: 60%;
-    position: absolute;
-    top: 5%;
-    left: 20%;
-    padding: 2em;
-    border-radius: 15px;
-    background-color: #f9f9f9;
-    visibility: hidden;
-}
-
-#upl-docs h2{
-    margin: 0;
-    border-bottom: #d4d4d4 2px solid;
-}
-
 .edit-des-Ubtn-section-update{
     height: 2.8em;
     width: 40%;

@@ -289,21 +289,20 @@ class Driver_home extends Controller
 
     }
 
-
-
-    public function details($id=null)
+    public function details($id = null)
     {
-
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $order_items = new Order_Items();
         $OrderID = $id;
-        $data['rows']= $order_items->where('OrderID', $OrderID);
-        $this->view('driver/order_details',$data);
+        $data['rows'] = $order_items->where('OrderID', $OrderID);
 
+        header('Content-Type: application/json');
+        echo json_encode($data['rows']);
     }
+
 
     public function availability($id = null)
     {
