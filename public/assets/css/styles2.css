@@ -2108,5 +2108,296 @@ padding: 1em;
   background-color: #a00505 !important;
 }
 
+.comp-orders-container{
+  width: 95%;
+  height: 95vh;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  padding: 1em;
+  font-family: 'Rubik', sans-serif;
+  margin: 0 auto;
+}
+
+.comp-order-title-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+  border-bottom: #d4d4d4 2px solid;
+padding-bottom: 0.5em;
+}
+
+.comp-order-title-container button{
+  background-color: #0F3D3E;
+  color: #f9f9f9;
+  border: none;
+  border-radius: 5px;
+  padding: .5em 1em;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.comp-order-title-container h2{
+  margin: 0;
+}
+
+.supplier-heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2em;
+}
+
+.supplier-heading label{
+font-size: 0.9rem;
+}
+
+.supplier-field{
+width: 30%;
+}
+
+.supplier-field select{
+margin-left: 0.5em;
+width: 70%;
+height: 2em;
+border: #d4d4d4 2px solid;
+border-radius: 5px;
+background-color: #f9f9f9;
+padding-left: .5em;
+}
+
+.row{
+  display: flex;
+  justify-content: space-between;
+}
+
+.supplier-items,.company-order-form{
+  margin-top: 1em;
+  /* height: 69.5vh; */
+  border: #d4d4d4 2px solid;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+
+.supplier-items{
+width: 59.5%;
+}
+
+.company-order-form{
+width: 39.5%;
+}
+
+.supplier-items-heading{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.supplier-items-heading button{
+  background-color: #0F3D3E;
+  color: #f9f9f9;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3em 1em;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.supplier-items-heading h4{
+font-size: 1.1rem;
+}
+
+.supplier-items table{
+width: 100%;
+margin-top: 2em;
+border-collapse: collapse;
+}
+
+.supplier-items table th{
+border-bottom: 2px solid #d4d4d4;
+}
+
+.checkbox{
+width: 4em;
+}
+
+.supplier-items table td{
+  text-align: center;
+}
+
+.supplier-items table td img{
+  height: 4.5em;
+  width: 4.5em;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+.tbody{
+height: 63vh !important;
+overflow-y: scroll;
+}
+
+.selected-products{
+  border: #d4d4d4 2px solid;
+  border-radius: 10px;
+  padding: 0.5em;
+  height: 41vh;
+   overflow-y: scroll;
+}
+
+.selected-products table{
+width: 100%;
+border-collapse: collapse;
+}
+
+.selected-products table th{
+border-bottom: 2px solid #d4d4d4;
+}
+
+.selected-products table td{
+  text-align: center;
+}
+
+#company-order-tbody td img{
+  height: 3.5em;
+  width: 3.5em;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+#company-order-tbody td input{
+  width: 5em;
+  height: 2em;
+  border-radius: 5px;
+  border: #d4d4d4 2px solid;
+  text-align: center;
+}
+
+.order-form-field{
+margin-top: 1em;
+}
+
+.order-form-field textarea{
+width: 100%;
+font-size: small;
+border: #d4d4d4 2px solid;
+  border-radius: 5px;
+}
+
+.order-form-btn{
+  display: flex;
+  justify-content: center;
+  margin-top: 0.6em;
+}
+
+.order-form-btn button{
+  background-color: #0F3D3E;
+  color: #f9f9f9;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3em 3em;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.warn{
+background-color: #ffcbcf;
+}
+
+.orders-info-popup{
+width: 90%;
+height: 82vh;
+box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5) !important;
+}
+
+.order-selections{
+display: flex;
+justify-content: space-between;
+}
+
+.selector{
+width: 19%;
+padding: 0.5em 0;
+border: 2px solid #d4d4d4;
+cursor: pointer;
+}
+
+.orders-info-table{
+width: 100%;
+border-collapse: collapse;
+margin-top: 1em;
+}
+
+.orders-info-table th{
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.orders-info-table td{
+  text-align: center;
+}
+
+.orders-edit-popup{
+width: 40%;
+box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5) !important;
+max-height: 82vh;
+}
+
+.edit-info-table-container{
+max-height: 50vh;
+overflow-y: scroll;
+}
+
+.edit-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.edit-table th{
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.edit-table td{
+  text-align: center;
+}
+
+.edit-table td img{
+  height: 4em;
+  width: 4em;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+.field{
+display: flex;
+flex-direction: column;
+text-align: left;
+margin-bottom: 1em;
+}
+
+.field label{
+font-size: .9rem;
+margin: .5em 0
+}
+
+.field textarea{
+border: #d4d4d4 2px solid;
+  border-radius: 5px;
+  font-size: small;
+padding: 0.5em;
+}
+
+.edit-table input[type="number"]{
+width: 5em;
+height: 2em;
+border-radius: 5px;
+border: #d4d4d4 2px solid;
+text-align: center;
+}
+
+.order-comment{
+text-align: left;
+max-height: 27vh;
+  overflow-y: scroll;
+}
 
 

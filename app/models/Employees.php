@@ -149,4 +149,12 @@ class Employees extends Model
 
         return $this->query($query,$data);
     }
+
+    public function getEmployeeByID($id)
+    {
+        $query = "select * from $this->table where EmployeeID = :EmployeeID;";
+
+        return $this->query($query,['EmployeeID' => $id]);
+    }
+    
 }

@@ -174,16 +174,9 @@ class Manager extends Controller
         {
             $this->redirect('login');
         }
+        $supplier = new Suppliers();
 
-        $furniture = new Furnitures();
-        $rows = $furniture->view_furniture_orders();
-
-        foreach($rows as $row)
-        {
-            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
-        }
-
-        $data['furniture'] = $rows;
+        $data['suppliers'] = $supplier->getSuppliersWithComanyName();
         $data['title']="ORDERS";
 
         $this->view('manager/orders',$data);
