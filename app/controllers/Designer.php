@@ -423,6 +423,7 @@ class Designer extends Controller
             echo "<div class='cat-success'>
                       <h3>Design Updated Successfully.</h3>
                         </div>";
+
         }else{
             $stm = "<div class='cat-errors''>
                                         <ul>";

@@ -1396,6 +1396,7 @@ body{
     font-family: 'Rubik-SemiBold', sans-serif;
     color: #787878;
     cursor: pointer;
+    margin-top: 10px;
     margin-bottom: 15px;
     margin-left: 5px;
 }
@@ -1595,7 +1596,7 @@ figcaption{
 
 .des_category-body h1 {
     font-family: 'Rubik';
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bolder;
     /*text-shadow: 2px 2px #007148;*/
     margin: 0;
@@ -1621,7 +1622,7 @@ figcaption{
 
 .des_category-card{
     width: 250px;
-    height: 280px;
+    height: 260px;
     background-color: #f9f9f9;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     margin: 0 2em 2em 2em;
@@ -2336,10 +2337,10 @@ design-desc div button:hover{
 /*Update Design*/
 
 #upl-docs{
-    width: 60%;
+    width: 70%;
     position: absolute;
     top: 5%;
-    left: 20%;
+    left: 18%;
     padding: 2em;
     border-radius: 15px;
     background-color: #f9f9f9;

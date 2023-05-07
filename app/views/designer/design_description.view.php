@@ -57,7 +57,10 @@
                                     <tr><th>Design Name : </th><td><?=$design[0]->Name?></td></tr>
                                     <tr><th>Designer ID : </th><td><?=$design[0]->DesignerID?></td></tr>
                                     <tr><th>Category ID : </th><td><?=$design[0]->CategoryID?></td></tr>
-                                    <tr><th>Date : </th><td><?=$design[0]->Date?></td></tr>
+                                    <?php
+                                    $newDate = date("d/m/Y", strtotime($design[0]->Date));
+                                    ?>
+                                    <tr><th>Date : </th><td><?=$newDate?></td></tr>
                                     <tr><th>Description : </th><td><?=$design[0]->Description?></td></tr>
                                 </table>
                             </div>
@@ -112,6 +115,26 @@
                             <div class="des_Name">
                                 <label>Design Name :</label>
                                 <input type="text" name="Name" id="doc-field1" placeholder="Enter Your Design Name" class="txt">
+                            </div>
+
+                            <div class="des_Name">
+                                <label>Select Design category :</label>
+                                <?php
+                                    $categories = new Categories();
+                                    $rows = $categories->findAll();
+                                    $categoryDetails = $categories->getCategoryByID($data['design'][0]->CategoryID);
+                                ?>
+                                <select name="CategoryID">
+                                    <?php
+                                        foreach ($rows as $row) {
+                                            if ($row->Category_name == $categoryDetails[0]->Category_name) {
+                                                echo "<option value=$row->CategoryID selected>$row->Category_name</option>";
+                                            } else {
+                                                echo "<option value=$row->CategoryID>$row->Category_name</option>";
+                                            }
+                                        }
+                                    ?>
+                                </select>
                             </div>
 
                             <div id="description">

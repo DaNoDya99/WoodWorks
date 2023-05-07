@@ -74,7 +74,7 @@ class Design extends Model
     }
 
     public function getDesigns($CatID, $offset, $limit = 2) {
-        $query = "SELECT DesignID, Name, DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM `$this->table` WHERE CategoryID = '$CatID' ORDER BY DesignID DESC LIMIT $limit OFFSET $offset";
+        $query = "SELECT DesignID, Name,CategoryID, DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM `$this->table` WHERE CategoryID = '$CatID' ORDER BY DesignID DESC LIMIT $limit OFFSET $offset";
         return $this->query($query);
     }
 

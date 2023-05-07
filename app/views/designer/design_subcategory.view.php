@@ -13,7 +13,17 @@
         </div>
 
         <div class="des_category-body">
-            <h1>New Designs</h1>
+
+            <?php if(!empty($data['rows'][0]->CategoryID)): ?>
+                <?php
+                $categories = new Categories();
+                $categoryDetail = $categories->getCategoryByID($data['rows'][0]->CategoryID);
+                ?>
+                <?php if(is_array($categoryDetail) && isset($categoryDetail[0]->Category_name)): ?>
+                    <h1>New Designs For <?=$categoryDetail[0]->Category_name?> Category</h1>
+                <?php endif; ?>
+            <?php endif; ?>
+
             <div class="des_categories">
                 <?php if(!empty($rows)): ?>
                 <?php foreach ($rows as $row) :?>
