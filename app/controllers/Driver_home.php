@@ -136,8 +136,6 @@ class Driver_home extends Controller
         if(isset($_GET['orders_items']))
         {
                 $orders_items = $_GET['orders_items'];// don't care at the end
-                //$query = ("SELECT OrderID,Payment_type,Total_amount,Order_status,orders.Address,Firstname,Lastname,Mobileno,orders.Date FROM `orders` INNER JOIN `customer` ON orders.CustomerID = customer.CustomerID WHERE DATE_FORMAT(orders.Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or orders.Address like '%$orders_items%' or orders.Total_amount like '%$orders_items%' AND `orders`.`DriverID` = '$id'LIMIT 15");
-
                 $data['row'] = $result = $order->searchOrdersDetails('DriverID',$id,$orders_items);
                 if(empty($result))
                 {
@@ -177,6 +175,17 @@ class Driver_home extends Controller
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
+        if(isset($_GET['orders_items']))
+        {
+            $orders_items = $_GET['orders_items'];// don't care at the end
+            $data['row'] = $result = $order->searchDeliveredOrdersDetails('DriverID',$id,$orders_items);
+            if(empty($result))
+            {
+                $this->redirect('driver_home/order');
+            }
+
+        }
+
         $data['records1'] = $order->displayDeliveredOrders('DriverID',$id);
 
         $this->view('driver/includes/delivered_orders_table',$data);
@@ -198,7 +207,7 @@ class Driver_home extends Controller
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
-        $data['records2'] = $order->displayOrders('DriverID',$id);
+        $data['records2'] = $order->displayDeliveredOrders('DriverID',$id);
 
         if(isset($_POST['dateFilter'])){
             $from_date = $_POST['from_date'];
@@ -280,21 +289,20 @@ class Driver_home extends Controller
 
     }
 
-
-
-    public function details($id=null)
+    public function details($id = null)
     {
-
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $order_items = new Order_Items();
         $OrderID = $id;
-        $data['rows']= $order_items->where('OrderID', $OrderID);
-        $this->view('driver/order_details',$data);
+        $data['rows'] = $order_items->where('OrderID', $OrderID);
 
+        header('Content-Type: application/json');
+        echo json_encode($data['rows']);
     }
+
 
     public function availability($id = null)
     {
