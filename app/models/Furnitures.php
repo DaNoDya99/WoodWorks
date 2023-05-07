@@ -324,4 +324,15 @@ class Furnitures extends Model
         return $this->query($query, ['DiscountID' => $id]);
     }
 
+    public function getProductsBySupplier($id)
+    {
+        $query = "select furniture.ProductID, furniture.Name, furniture.Quantity, furniture.CategoryID, furniture.Sub_category_name, Reorder_point from $this->table inner join inventory on furniture.ProductID = inventory.ProductID where SupplierID = :SupplierID ORDER BY CategoryID;";
+
+        return $this->query($query, ['SupplierID' => $id]);
+    }
+    
+
+    
+
+
 }
