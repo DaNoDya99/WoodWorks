@@ -7,11 +7,10 @@
 
             <div class="add-des-bar">
 
-                <a class="go-back" href="<?=ROOT?>/designer/design">
+                <a class="go-back" href="<?=ROOT?>/designer/design/<?=$design[0]->CategoryID?>">
                     <img src="<?=ROOT?>/assets/images/designer/back.png" alt="Back Button">
                     <h1>Back</h1>
                 </a>
-
 
                 <div class="design-btns">
                     <button onclick="openDocumentPopup('<?=$design[0]->DesignID?>','<?=$design[0]->Name?>','<?=$design[0]->DesignerID?>','<?=$design[0]->Description?>','<?=$images[0]->Image?>','<?=$images[1]->Image?>','<?=$images[2]->Image?>','<?=$design[0]->Pdf?>',event)">Update</button>
@@ -57,6 +56,7 @@
                                 <table>
                                     <tr><th>Design Name : </th><td><?=$design[0]->Name?></td></tr>
                                     <tr><th>Designer ID : </th><td><?=$design[0]->DesignerID?></td></tr>
+                                    <tr><th>Category ID : </th><td><?=$design[0]->CategoryID?></td></tr>
                                     <tr><th>Date : </th><td><?=$design[0]->Date?></td></tr>
                                     <tr><th>Description : </th><td><?=$design[0]->Description?></td></tr>
                                 </table>

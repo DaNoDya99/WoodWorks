@@ -57,7 +57,7 @@
         </li>
 
         <li>
-            <a href="<?= ROOT ?>/designer/design">
+            <a href="<?= ROOT ?>/designer/view_design_categories">
                 <div class="icons"><img src="<?= ROOT ?>/assets/images/header/design-svgrepo-com.svg" style="" alt="" srcset=""> </div><span class="link-name">
                     Designs</span>
             </a>

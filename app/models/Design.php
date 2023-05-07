@@ -10,6 +10,7 @@ class Design extends Model
         'Description',
         'DesignerID',
         'ManagerID',
+        'CategoryID',
         'Pdf',
         'Date',
         'Name',
@@ -30,6 +31,9 @@ class Design extends Model
         }
         if (empty($data['Description'])) {
             $this->errors['Description'] = "Description can not be empty";
+        }
+        if (empty($data['CategoryID'])) {
+            $this->errors['CategoryID'] = "Please select a category";
         }
         if (empty($this->errors)) {
             return true;
@@ -69,15 +73,15 @@ class Design extends Model
         return $text;
     }
 
-    public function getDesigns($offset,$limit = 2){
-
-        $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM design ORDER BY DesignID desc limit $limit offset $offset; ";
+    public function getDesigns($CatID, $offset, $limit = 2) {
+        $query = "SELECT DesignID, Name, DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM `$this->table` WHERE CategoryID = '$CatID' ORDER BY DesignID DESC LIMIT $limit OFFSET $offset";
         return $this->query($query);
     }
 
+
     public function getDesign($limit = 5){
 
-        $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM design ORDER BY DesignID desc limit $limit; ";
+        $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM $this->table ORDER BY DesignID desc limit $limit; ";
 
         return $this->query($query);
     }
@@ -90,6 +94,7 @@ class Design extends Model
             'DesignID',
             'DesignerID',
             'Description',
+            'CategoryID',
             'Name',
             'Pdf',
             'ManagerID',

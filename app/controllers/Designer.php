@@ -3,6 +3,13 @@
 class Designer extends Controller
 {
 
+    private function getUser()
+    {
+        $employee = new Employees();
+        $id = Auth::getEmployeeID();
+        return $employee->where("EmployeeID",$id);
+    }
+
     public function index()
     {
         if(!Auth::logged_in())
@@ -89,7 +96,7 @@ class Designer extends Controller
 
     }
 
-    public function design()
+    public function design($CatID = null)
     {
         if(!Auth::logged_in())
         {
@@ -105,7 +112,7 @@ class Designer extends Controller
         $employee = new Employees();
         $id = $id ?? Auth::getEmployeeID();
         $data['row'] = $employee->where("EmployeeID",$id);
-        $data['rows'] = $design->getDesigns($offset,$limit);
+        $data['rows'] = $design->getDesigns($CatID,$offset,$limit);
 
         if(!empty($data['rows'])) {
 
@@ -115,8 +122,27 @@ class Designer extends Controller
         }
 
         $data['title'] = "DESIGNS";
-        $this->view('designer/design',$data);
+        $this->view('designer/design_subcategory',$data);
 
+    }
+
+    public function view_design_categories(){
+
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login1');
+        }
+
+        $limit = 8;
+        $pager = new Pager($limit);
+        $offset = $pager->offset;
+        $data['pager'] = $pager;
+
+        $categories = new Categories();
+        $data['row'] = $this->getUser();
+        $data['categories'] = $categories->getDesignCategories($offset,$limit);
+
+        $this->view("designer/design_category",$data);
     }
 
     public function view_design($id = null)
