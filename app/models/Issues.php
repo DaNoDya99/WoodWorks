@@ -60,4 +60,30 @@ class Issues extends Model
         }
     }
 
+    public function getIssuesReportedForTheOrder($id)
+    {
+        $query = "SELECT * FROM $this->table WHERE OrderID = :OrderID ORDER BY Reported_date DESC;";
+        return $this->query($query, ['OrderID' => $id]);
+    }
+
+    public function getIssueImages($id)
+    {
+        $query = "SELECT Image FROM issue_image WHERE IssueID = :IssueID;";
+
+        return $this->query($query, ['IssueID' => $id]);
+    }
+
+    public function getIssueDetails($id)
+    {
+        $query = "SELECT * FROM $this->table WHERE IssueID = :IssueID;";
+        return $this->query($query, ['IssueID' => $id]);
+    }
+
+    public function deleteIssue($id)
+    {
+        $query = "DELETE FROM $this->table WHERE IssueID = :IssueID;";
+
+        return $this->query($query, ['IssueID' => $id]);
+    }
+
 }

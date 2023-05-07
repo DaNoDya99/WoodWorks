@@ -29,7 +29,7 @@
     <div class="issue-form">
         <div class="issue-form-heading">
             <h2>Report An Issue</h2>
-            <button>Reported Issues</button>
+            <button onclick="getIssues('<?= $order_id ?>')">Reported Issues</button>
         </div>
         <form action="" id="report-issue">
             <div class="form-images">
@@ -59,6 +59,36 @@
             </div>
         </form>
     </div>
+</div>
+
+<div class="popup issues-info-popup" id="issues-info-popup" >
+    <div class="popup-heading" style="margin-bottom: unset">
+        <h2>Reported Issues For This Order</h2>
+        <img src="<?= ROOT ?>/assets/images/customer/close.png" alt="Close" onclick="closeIssuesPopup()">
+    </div>
+
+    <div class="issues-table-container">
+        <div class="issues">
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>ISSUE ID</th>
+                    <th>Reported Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="issues">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="issue-details" id="issue-details">
+
+        </div>
+    </div>
+
 </div>
 
 <div class="cat-response" id="response">

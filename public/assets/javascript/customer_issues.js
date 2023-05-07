@@ -1,4 +1,6 @@
 let issue_form = document.getElementById('report-issue');
+let response = document.getElementById('response');
+let issue_id = '';
 
 issue_form.onsubmit = (e) => {
     e.preventDefault();
@@ -37,11 +39,11 @@ function reportIssue(id)
                 if (xhr.status === 200) {
                     console.log(xhr.response);
                     if(xhr.response === "success"){
-
+                        console.log(xhr.response);
                         document.getElementById('response').innerHTML = "<div class='cat-success'>\n" +
                             "        <h2>Issue Reported Successfully.</h2>\n" +
                             "    </div>";
-                        
+
                         setTimeout(() => {
                             location.reload()
                         },2000);
@@ -53,6 +55,83 @@ function reportIssue(id)
             }
         }
         xhr.send(formData);
-
     }
+}
+
+function getIssues(id)
+{
+    document.getElementById('issues-info-popup').classList.add('open-popup');
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', "http://localhost/WoodWorks/public/issue/getIssuesReportedForTheOrder/"+id, true);
+    xhr.onload = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                document.getElementById('issues').innerHTML = xhr.response;
+
+                document.querySelectorAll("input[type='radio']")[0].click();
+            }
+        }
+    }
+    xhr.send();
+}
+
+function closeIssuesPopup()
+{
+    document.getElementById('issues-info-popup').classList.remove('open-popup');
+}
+
+function getIssueDetails(id)
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', "http://localhost/WoodWorks/public/issue/getIssueDetails/"+id, true);
+    xhr.onload = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                document.getElementById('issue-details').innerHTML = xhr.response;
+            }
+        }
+    }
+    xhr.send();
+}
+
+function deleteIssue(id)
+{
+    issue_id = id;
+
+    response.innerHTML = "<div class='cat-success cat-deletion'>\n" +
+        "        <h2>Do you want to delete this?</h2>\n" +
+        "        <div class=\"cat-deletion-btns\">\n" +
+        "            <button onclick=\"confirmDeleteIssue()\">Yes</button>\n" +
+        "            <button onclick=\"closeDeleteIssuePopup()\">No</button>\n" +
+        "        </div>\n" +
+        "    </div>";
+}
+
+function closeDeleteIssuePopup()
+{
+    response.innerHTML = "";
+    issue_id = "";
+}
+
+function confirmDeleteIssue()
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', "http://localhost/WoodWorks/public/issue/deleteIssue/"+issue_id, true);
+    xhr.onload = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                if(xhr.response === "success"){
+                    document.getElementById('response').innerHTML = "<div class='cat-success cat-deletion'>\n" +
+                        "        <h2>Issue Deleted Successfully.</h2>\n" +
+                        "    </div>";
+
+                    setTimeout(() => {
+                        location.reload()
+                    },2000);
+                }
+            }
+        }
+    }
+    xhr.send();
 }
