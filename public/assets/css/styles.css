@@ -4417,3 +4417,76 @@ h2 {
     font-size: 1.1rem;
     width: 30%;
 }
+
+.issues-info-popup{
+    width: 80%;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+
+}
+
+.issues-table-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+
+}
+
+.issues{
+    width: 35%;
+    border: 2px solid #d4d4d4;
+    padding: 1em;
+    border-radius: 7px;
+}
+
+.issues table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.issues table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.issues table td{
+    text-align: center;
+}
+
+.issue-details{
+    width: 60%;
+    border: 2px solid #d4d4d4;
+    padding: 1em;
+    border-radius: 7px;
+}
+
+.issue-details h2{
+    margin: 0;
+}
+
+.issue-details-header{
+    text-align: left;
+}
+
+.issue-images-container img{
+    width: 10em;
+    height: 8em;
+    border-radius: 7px;
+    object-fit: cover;
+    border: #d4d4d4 2px solid;
+    margin: 1em 0.3em 0 0.3em;
+}
+
+.issue-description-container{
+    text-align: left;
+    margin-top: 1em;
+}
+
+.issue-description-container span{
+    font-weight: bold;
+}
+
+.issue-description-container p {
+    text-align: justify;
+    max-height: 10em;
+    overflow-y: scroll;
+    padding: 0 2em;
+}
