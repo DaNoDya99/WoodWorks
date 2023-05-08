@@ -300,8 +300,54 @@ body{
     font-family: 'Rubik-SemiBold';
 }
 
+.vehicle-form {
+    display: flex;
+    height: 35px;
+    position: absolute;
+    right: 580px;
+    top: 20px;
+}
+
+.vehicle-form input{
+    border: 2px solid #d2d2d2;
+    font-family: 'Rubik-SemiBold', sans-serif;
+    width: 20em;
+    border-radius: 3px;
+    padding: 0 0 0 1em;
+}
+
+.vehicle-form select{
+    width: 15em;
+    border: 2px solid #d2d2d2;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    padding: 0 0 0 1em;
+    font-family: 'Rubik-SemiBold', sans-serif;
+    color: #787878;
+    cursor: pointer;
+}
+
+.vehicle-form button{
+    border: 2px solid #d2d2d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3px;
+    width: 30px;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    right: 320px;
+    top: 20px;
+}
+
+.vehicle-form img{
+    width: 15px;
+}
+
 .driver-tbox{
     width: 30%;
+    height: 410px;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
@@ -315,6 +361,7 @@ body{
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    position: relative;/* added */
 }
 
 .driver-tbox::-webkit-scrollbar{
@@ -331,6 +378,22 @@ body{
     border-bottom: 2px solid #cacaca;
 }
 
+.driver-tbox p{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    font-size: 1rem;
+    font-family: 'Rubik-SemiBold';
+    cursor: pointer;
+    text-underline-mode: none;
+}
+
+.driver-tbox p a{
+    text-decoration: none;
+}
+
 .driver-tbox table{
     width: 100%;
     border-collapse: collapse;
@@ -341,8 +404,6 @@ body{
     width: 100%;
     border-radius: 5px 5px 0 0;
     max-height: 70vh;
-    cursor: pointer;
-
 }
 
 .driver-content-table thead tr{
@@ -755,7 +816,6 @@ body{
     font-family: 'Rubik-SemiBold', sans-serif;
     color: #787878;
     cursor: pointer;
-
 }
 
 .order-form button{
@@ -767,6 +827,8 @@ body{
     width: 30px;
     border-radius: 3px;
     background-color: #f9f9f9;
+    right: 320px;
+    top: 20px;
 }
 
 .order-form img{
@@ -924,22 +986,26 @@ body{
 }
 /* Order Details View */
 
-.popups{
+#popups{
     width: 60%;
     margin: 1em auto;
     padding: 1em 2em;
+    top: 5%;
+    left: 20%;
     background-color: #f9f9f9;
     border-radius: 20px;
     font-family: 'Rubik-SemiBold';
     max-height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    position: absolute;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
     border-collapse: collapse;
+    visibility: hidden;
 }
 
-.popups::-webkit-scrollbar {
+#popups::-webkit-scrollbar {
     display: none;
 }
 
@@ -947,11 +1013,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 2px solid #d2d2d2;
     padding: 1em 0;
-    /*position: sticky;!* Make the heading sticky *!*/
-    /*top: 0; !* Set the position to the top *!*/
-    /*z-index: 1; !* Make sure the heading appears on top of the other elements *!*/
 }
 
 .popups-heading h2{
@@ -1105,7 +1167,9 @@ body{
 }
 #chart-container {
     /*width: 300px;*/
-    height: auto;
+    /*height: auto;*/
+    width: 400px;
+    height: 410px;
     float: right;
     background-color:#f9f9f9;
     margin: 20px;
@@ -1119,7 +1183,7 @@ body{
 
 #chart-container2{
     /*width: 500px;*/
-    height: auto;
+    height: 410px;
     float: left;
     background-color:#f9f9f9;
     margin: 20px;
@@ -1322,6 +1386,21 @@ body{
     /*margin-right: 0.5em;*/
 }
 
+.des_Name select{
+    width: 20em;
+    border: 2px solid #d2d2d2;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    padding: 0 0 0 1em;
+    font-family: 'Rubik-SemiBold', sans-serif;
+    color: #787878;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 5px;
+}
+
 .des_Name input{
     width: 100%;
     height: 40px;
@@ -1506,13 +1585,10 @@ figcaption{
 
 .des_category-body{
     text-align: center;
-    font-family: 'Rubik';
+    font-family: 'Rubik', sans-serif;
     background-color: #E0E0CE;
-    padding: 3em 0;
-    /*border: 1px solid white;*/
+    padding:0;
     border-radius: 10px;
-    /*box-shadow: -10px 10px 5px rgba(0,0,0,0.3);*/
-    /*box-shadow: -10px -2px 10px rgba(0,0,0,0.5),10px 10px 10px rgba(0,0,0,0.5);*/
     margin-left: 5px;
     height: 580px;
 
@@ -1520,10 +1596,11 @@ figcaption{
 
 .des_category-body h1 {
     font-family: 'Rubik';
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bolder;
     /*text-shadow: 2px 2px #007148;*/
     margin: 0;
+    padding: 0;
 
 }
 
@@ -1545,12 +1622,12 @@ figcaption{
 
 .des_category-card{
     width: 250px;
-    height: 350px;
+    height: 260px;
     background-color: #f9f9f9;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     margin: 0 2em 2em 2em;
     border-radius: 10px;
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
 }
 
 .des_category-card:hover {
@@ -1560,14 +1637,14 @@ figcaption{
 
 .des_category-card img{
     width: 100%;
-    height: 85%;
+    height: auto;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .des_category-card p{
     margin: 0;
-    padding-left: 75px;
+    padding-left: 50px;
 
 }
 
@@ -1575,7 +1652,7 @@ figcaption{
     display: flex;
     list-style: none;
     justify-content: center;
-    font-family: 'Rubik';
+    font-family: 'Rubik-SemiBold', sans-serif;
 }
 
 .pagination li {
@@ -1614,7 +1691,7 @@ figcaption{
 
 /*Design Card full description view*/
 
-.design-view{
+.design-view {
     background-color: #E2E2CF;
     font-family: 'Rubik';
     padding: 2em 0;
@@ -2110,7 +2187,7 @@ design-desc div button:hover{
 #upl-doc{
     width: 40%;
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 30%;
     padding: 2em;
     border-radius: 15px;
@@ -2211,7 +2288,7 @@ design-desc div button:hover{
     margin: .5em 0
 }
 
-.doc-form-field input{
+.doc-form-field textarea{
     border: 2px #d4d4d4 solid;
     height: 3.8em;
     border-radius: 5px;
@@ -2257,5 +2334,103 @@ design-desc div button:hover{
     border-radius: 7px;
 }
 
+/*Update Design*/
+
+#upl-docs{
+    width: 70%;
+    position: absolute;
+    top: 5%;
+    left: 18%;
+    padding: 2em;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    visibility: hidden;
+}
+
+#upl-docs h2{
+    margin: 0;
+    border-bottom: #d4d4d4 2px solid;
+}
+
+.edit-des-Ubtn-section-update{
+    height: 2.8em;
+    width: 40%;
+    cursor: pointer;
+    margin: auto;
+    padding: 5px;
+    font-family: 'Rubik-SemiBold';
+    font-size: 1.1rem;
+    background: #104f4a;
+    justify-content: center;
+    border-radius: 7px;
+    align-items: center;
+    color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+.edit-des-Ubtn-section-update label{
+    cursor: pointer;
+}
+.edit-des-Ubtn-section-update:hover{
+    transform: scale(0.97);
+}
+
+/*Category Page*/
+
+.category-body {
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    background-color: #E0E0CE;
+    padding: 0;
+    height: 580px;
+}
+
+.category-body h1 {
+    font-family: 'Rubik-SemiBold', sans-serif;
+    font-weight: bolder;
+    font-size: 3rem;
+}
+
+.categories {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    padding-top: 2em;
+
+}
+
+.categories a {
+    text-decoration: none;
+    color: #100F0F;
+    font-weight: bolder;
+}
+
+.category-card {
+    width: 160px;
+    height: 200px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    margin: 0 2em 2em 2em;
+    border-radius: 10px;
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+    transition: .4s ease-in;
+}
+
+.category-card img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.category-card p {
+    margin: 0;
+    padding-left: 40px;
+}
 
 

@@ -88,20 +88,47 @@
                         <td><?=esc($row->Firstname)?> <?=esc($row->Lastname)?></td>
                         <td><?=esc($row->Contactno)?></td>
                         <td>
-                            <div class ="order-btn-sec">
-                                <button type="button" id="order-btn" onclick="location.href='<?=ROOT?>/driver_home/details/<?=$row->OrderID?>'">More</button>
+                            <div class="order-btn-sec">
+                                <button onclick="openDocumentPopups('<?=$row->OrderID?>',event)" id="doc-btn">More</button>
                             </div>
                         </td>
                     </tr>
                 </form>
+
             <?php endforeach;?>
             </tbody>
         </table>
     </div>
+
+    <div id="popups">
+        <div class="popups-heading">
+            <img class="close-btn" onclick="closeDocumentPopups()" src="<?=ROOT?>/assets/images/driver/close.png" alt="close button">
+            <h2>MORE DETAILS</h2>
+        </div>
+        <table class="details-table">
+            <thead>
+                <tr>
+                    <th class="th">Product Name</th>
+                    <th class="th">Quantity</th>
+                    <th class="th">Cost</th>
+                    <th class="th">Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                $order_items = new Order_Items();
+                $rows = $order_items->where('OrderID', $row->OrderID);
+                ?>
+                <?php foreach ($rows as $row) { ?>
+                    <tr>
+                        <td id="header1_<?=$row->ProductID?>"></td>
+                        <td id="header2_<?=$row->ProductID?>"></td>
+                        <td id="header3_<?=$row->ProductID?>"></td>
+                        <td><img id="edit-doc-img_<?=$row->ProductID?>" src="<?=ROOT?>/assets/images/driver/No_image.jpg" alt="No Image"></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+    </div>
+
 </div>
-
-
-
-
-
-

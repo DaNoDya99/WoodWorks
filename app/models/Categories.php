@@ -67,6 +67,11 @@ class Categories extends Model
         return false;
     }
 
+    public function getDesignCategories($offset, $limit = 2) {
+        $query = "SELECT * FROM $this->table LIMIT $limit OFFSET $offset";
+        return $this->query($query);
+    }
+
     public function deleteCategory($id)
     {
         $query = "delete from $this->table where CategoryID = :CategoryID;";
