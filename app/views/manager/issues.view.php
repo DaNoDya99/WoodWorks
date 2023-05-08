@@ -35,6 +35,7 @@
                                         <td><?=$issue->Email?></td>
                                         <td><?=$issue->Reported_date?></td>
                                         <td>
+
                                             <div class='inv-table-btns manager-btns'>
                                                 <button onclick="getIssueInfo('<?=$issue->IssueID?>')"><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
                                             </div>

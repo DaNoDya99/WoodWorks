@@ -1652,8 +1652,25 @@ margin: 20px 0;
   max-height: 87vh;
 }
 
+.ref-fur-details-heading{
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #ccc;
+}
+
+.ref-fur-details-heading span{
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-left: 1em;
+}
+
+.price-section{
+  margin-top: 1.5em;
+}
+
 .ref-fur-description{
   text-align: justify;
+  padding: 1em 2em;
 }
 
 .design-card-container a{
@@ -1862,6 +1879,40 @@ margin: 20px 0;
 
 .cat-deletion{
   background-color: #ae1c1c;
+}
+
+.order{
+    height: 85vh;
+    max-height: 85vh;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    width: 85%;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    padding: .5em;
+    font-family: 'Rubik', sans-serif;
+    margin: 1em auto;
+}
+
+.order-items{
+  margin: .5em 1em;
+  height: 35vh;
+  border-radius: 10px;
+  background-color: #d4d4d4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: .5em;
+  overflow-y: auto;
+}
+
+.order-item{
+  width: 48.5%;
+  height: 46%;
+  background-color: #f9f9f9;
+  border-radius: 7px;
+  margin-bottom: .3em;
+  display:flex;
+  padding: 0.4em;
 }
 
 .manager-content{
@@ -2535,4 +2586,5 @@ max-height: 27vh;
   width: 85%;
   height: 82vh;
 }
+
 

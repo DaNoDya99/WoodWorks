@@ -6,7 +6,9 @@ class Issue extends Controller
 
     }
 
+
     public function addIssue($order_id)
+
     {
         if(!Auth::logged_in())
         {
@@ -125,7 +127,7 @@ class Issue extends Controller
             ";
         }
         echo $stm;
-
+        
     }
 
     public function getIssueDetails($id)
