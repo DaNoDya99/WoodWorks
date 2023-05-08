@@ -347,8 +347,10 @@ class Issue extends Controller
                 $issue->Manager = $manager_name;
             }
 
+            $stm = '';
+
             foreach ($issues as $issue) {
-                $stm = "
+                $stm .= "
                     <tr>
                         <td>$issue->IssueID</td>
                         <td>".substr($issue->OrderID,0,8)."</td>
@@ -366,8 +368,9 @@ class Issue extends Controller
                     </tr>
                 ";
 
-                echo $stm;
+                
             }
+            echo $stm;
         }else{
             echo "
                 <tr>
