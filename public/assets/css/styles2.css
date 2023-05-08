@@ -1652,8 +1652,25 @@ margin: 20px 0;
   max-height: 87vh;
 }
 
+.ref-fur-details-heading{
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #ccc;
+}
+
+.ref-fur-details-heading span{
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-left: 1em;
+}
+
+.price-section{
+  margin-top: 1.5em;
+}
+
 .ref-fur-description{
   text-align: justify;
+  padding: 1em 2em;
 }
 
 .design-card-container a{
