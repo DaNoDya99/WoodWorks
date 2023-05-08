@@ -14,6 +14,13 @@ class Issues extends Model
         'Response',
     ];
 
+    public function generateIssueID() {
+        $prefix = 'ISSUE';
+        $unique_id = mt_rand(1000, 9999);
+        $timestamp = substr(date('YmdHis'), 8, 6);
+        return $prefix . '-' . $unique_id . '-' . $timestamp;
+    }
+
     public function get_issue()
     {
         $query = "SELECT `IssueID`,`OrderID`, `Problem_statement`, `Response` FROM $this->table WHERE Response='null';";
@@ -38,6 +45,45 @@ class Issues extends Model
         $query = "SELECT COUNT(IssueID) AS Count FROM $this->table WHERE Response IS NULL;";
 
         return $this->query($query);
+    }
+
+    public function insertImages($IssueID, $images)
+    {
+        foreach ($images as $image) {
+            $query = "insert into issue_image (`IssueID`, `Image`) values (:IssueID,:Image);";
+            $data = [
+                'IssueID' => $IssueID,
+                'Image' => $image,
+            ];
+
+            $this->query($query, $data);
+        }
+    }
+
+    public function getIssuesReportedForTheOrder($id)
+    {
+        $query = "SELECT * FROM $this->table WHERE OrderID = :OrderID ORDER BY Reported_date DESC;";
+        return $this->query($query, ['OrderID' => $id]);
+    }
+
+    public function getIssueImages($id)
+    {
+        $query = "SELECT Image FROM issue_image WHERE IssueID = :IssueID;";
+
+        return $this->query($query, ['IssueID' => $id]);
+    }
+
+    public function getIssueDetails($id)
+    {
+        $query = "SELECT * FROM $this->table WHERE IssueID = :IssueID;";
+        return $this->query($query, ['IssueID' => $id]);
+    }
+
+    public function deleteIssue($id)
+    {
+        $query = "DELETE FROM $this->table WHERE IssueID = :IssueID;";
+
+        return $this->query($query, ['IssueID' => $id]);
     }
 
 }

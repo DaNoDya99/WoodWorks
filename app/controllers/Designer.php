@@ -3,6 +3,13 @@
 class Designer extends Controller
 {
 
+    private function getUser()
+    {
+        $employee = new Employees();
+        $id = Auth::getEmployeeID();
+        return $employee->where("EmployeeID",$id);
+    }
+
     public function index()
     {
         if(!Auth::logged_in())
@@ -89,7 +96,7 @@ class Designer extends Controller
 
     }
 
-    public function design()
+    public function design($CatID = null)
     {
         if(!Auth::logged_in())
         {
@@ -105,7 +112,7 @@ class Designer extends Controller
         $employee = new Employees();
         $id = $id ?? Auth::getEmployeeID();
         $data['row'] = $employee->where("EmployeeID",$id);
-        $data['rows'] = $design->getDesigns($offset,$limit);
+        $data['rows'] = $design->getDesigns($CatID,$offset,$limit);
 
         if(!empty($data['rows'])) {
 
@@ -115,8 +122,27 @@ class Designer extends Controller
         }
 
         $data['title'] = "DESIGNS";
-        $this->view('designer/design',$data);
+        $this->view('designer/design_subcategory',$data);
 
+    }
+
+    public function view_design_categories(){
+
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login1');
+        }
+
+        $limit = 8;
+        $pager = new Pager($limit);
+        $offset = $pager->offset;
+        $data['pager'] = $pager;
+
+        $categories = new Categories();
+        $data['row'] = $this->getUser();
+        $data['categories'] = $categories->getDesignCategories($offset,$limit);
+
+        $this->view("designer/design_category",$data);
     }
 
     public function view_design($id = null)
@@ -292,6 +318,125 @@ class Designer extends Controller
         }
         $data['errors'] = $design->errors;
         $this->view('designer/includes/add_design',$data);
+    }
+
+    public function update_design($id)
+    {
+
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $design_images = new Design_image();
+
+        $design = new Design();
+
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            if ($design->validate($_POST)) {
+
+                $images = $_FILES['images'];
+                $pdf_file = $_FILES['pdfFile-input'];
+                $num_of_imgs = count($images['name']); //number of images
+
+                $design->updatePost($id,$_POST);
+
+                $pdf_file_name = $pdf_file['name'];
+                $pdf_tmp_name = $pdf_file['tmp_name'];
+                $pdf_error = $pdf_file['error'];
+                $pdf_folder = "uploads/designer/pdf/";
+
+                //upload pdf file
+                if (!empty($pdf_file_name)) {
+                    show("hello");
+                    if ($pdf_error === 0) {
+                        $pdf_ex = pathinfo($pdf_file_name, PATHINFO_EXTENSION); // pdf extension
+                        $pdf_ex_lc = strtolower($pdf_ex); // pdf extension lowercase
+                        $allowed_exs = array('pdf'); // allowed extensions
+
+                        if (in_array($pdf_ex_lc, $allowed_exs)) {
+                            $new_pdf_name = uniqid('PDF-', true) . '.' . $pdf_ex_lc; // unique pdf name
+                            $pdf_destination = $pdf_folder . time() . $new_pdf_name; // pdf destination
+                            move_uploaded_file($pdf_tmp_name, $pdf_destination); // move pdf to destination
+
+                            // it must run only one time
+                            $design->update_pdf(['DesignID' => $id], ['Pdf' => $pdf_destination]);
+
+                        } else {
+                            $design->errors['pdf'] = "This file type is not allowed. Please select pdf file";
+                        }
+                    } else {
+                        $design->errors['pdf'] = "Could not upload pdf file";
+                    }
+                }
+
+                //loop through all images
+                if($num_of_imgs == 3) {
+                    for ($i = 0; $i < $num_of_imgs; $i++) {
+
+                        $image_name = $images['name'][$i];
+                        $tmp_name = $images['tmp_name'][$i];
+                        $error = $images['error'][$i];
+
+                        $folder = "uploads/designer/images/";
+
+                        //check if there is an image
+                        if (!empty($image_name)) {
+
+                            //check if there is no error
+                            // $error === 0 means no error
+                            if (count(array_unique($_FILES['images']['error'])) === 1 && end($_FILES['images']['error']) === 0) {
+
+                                $img_ex = pathinfo($image_name, PATHINFO_EXTENSION);// image extension
+                                $img_ex_lc = strtolower($img_ex); // image extension lowercase
+                                $allowed_exs = array('jpg', 'jpeg', 'png');// allowed extensions
+
+                                if (in_array($img_ex_lc, $allowed_exs)) {
+
+                                    $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;// unique image names
+                                    $destination = $folder . time() . $new_img_name;// image destination
+                                    move_uploaded_file($tmp_name, $destination);// move image to destination
+
+                                    if ($i == 0) {
+                                        $design_images->deleteImage($id);
+                                    }
+
+                                }
+                                $design_images->insert(['DesignID' => $id, 'Image' => $destination]);
+
+                            } else {
+                                $design->errors['image'] = "This file type is not allowed";
+                            }
+                        } else {
+                            $design->errors['image'] = "Could not upload image";
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        if(empty($design->errors))
+        {
+            echo "<div class='cat-success'>
+                      <h3>Design Updated Successfully.</h3>
+                        </div>";
+
+        }else{
+            $stm = "<div class='cat-errors''>
+                                        <ul>";
+            foreach ($design->errors as $error)
+            {
+                $stm .= "<li>".$error."</li>";
+            }
+
+            $stm .= "</ul>
+                             </div>";
+
+            echo $stm;
+        }
     }
 
     public function remove_add_design($id=null)
