@@ -16,8 +16,30 @@ class supplier extends Controller
     public function getneworders()
     {
         $orders = new CompanyOrderModel();
+
+        $furnitures = new Furnitures();
+
+        $order_item = new CompanyOrderItems();
         $data['neworders'] = $orders->getneworders();
         echo json_encode($data);
+    }
+
+    public function getItemsByOrderID($id)
+    {
+        $order_item = new CompanyOrderItems();
+        $furnitures = new Furnitures();
+
+        $data['items'] = $order_item->getItemsByOrderID($id);
+        if (count((array)$data['items']) == 0) {
+            echo json_encode(['status' => 'error', 'message' => 'No items found.']);
+            return;
+        } else {
+            for ($i = 0; $i < count((array)$data['items']); $i++) {
+                $data['items'][$i]->image = $furnitures->getDisplayImage($data['items'][$i]->ProductID)[0]->Image;
+            }
+            echo json_encode($data);
+        }
+
     }
 
     public function accepted()
@@ -31,11 +53,22 @@ class supplier extends Controller
         $this->view('supplier/accepted', $data);
     }
 
+    public function changeOrderStatus($id, $status)
+    {
+        $orders = new CompanyOrderModel();
+        if ($orders->findOrder($id)) {
+            $orders->changeOrderStatus($id, $status);
+            echo json_encode(['status' => 'success', 'message' => 'Order status changed successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Order does not exist.']);
+        }
+    }
+
     public function acceptOrder($id)
     {
         $orders = new CompanyOrderModel();
         $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'accepted']);
-        $this->redirect('supplier/dash');
+        echo json_encode(['status' => 'success']);
     }
 
     public function CompleteOrder($id)
@@ -150,6 +183,18 @@ class supplier extends Controller
         } else {
             echo "Supplier Not Found";
         }
+    }
+
+    public function getAllOrders(){
+//        if (!Auth::logged_in()) {
+//            $this->redirect('login');
+//        }
+
+        $orders = new CompanyOrderModel();
+
+        $data['orders'] = $orders->getAllOrders();
+
+        echo json_encode($data);
     }
 
     public function save($id)
