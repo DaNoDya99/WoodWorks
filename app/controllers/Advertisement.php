@@ -140,6 +140,19 @@ class Advertisement extends Controller{
         }
 
         $advertisements = new Advertisements();
+        $images = $advertisements->getDisplayImage($id)[0]->Image;
+        $secondary_images = $advertisements->getSecondaryImages($id);
+
+        unlink($images);
+
+        if(!empty($secondary_images))
+        {
+            foreach($secondary_images as $image)
+            {
+                unlink($image->Image);
+            }
+        }
+
         $row = $advertisements->delete($id);
 
         if(empty($row))
