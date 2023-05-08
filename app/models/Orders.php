@@ -230,7 +230,7 @@ class Orders extends Model
         return $this->query($query,['Is_preparing' => 0]);
     }
 
-    public function getOrderDetails($id = null)
+    public function getOrderItems($id = null)
     {
         $query = "SELECT * FROM `order_item` WHERE OrderID = :OrderID;";
 
@@ -285,6 +285,13 @@ class Orders extends Model
         $query = "DELETE FROM $this->table WHERE CustomerID = :CustomerID && Is_preparing = :Is_preparing;";
 
         return $this->query($query,['CustomerID' => $id, 'Is_preparing' => 1]);
+    }
+
+    public function getOrderDetails($orderId)
+    {
+        $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID;";
+
+        return $this->query($query,['OrderID' => $orderId]);
     }
 
 }

@@ -12,6 +12,8 @@ class Issues extends Model
         'OrderID',	
         'ManagerID',	
         'Response',
+        'Reported_date',
+        'Responded_date',
     ];
 
     public function generateIssueID() {
@@ -23,14 +25,14 @@ class Issues extends Model
 
     public function get_issue()
     {
-        $query = "SELECT `IssueID`,`OrderID`, `Problem_statement`, `Response` FROM $this->table WHERE Response='null';";
+        $query = "SELECT * FROM $this->table WHERE Response IS NULL ORDER BY Reported_date DESC;";
         return $this->query($query);
     }
 
     public function getIssuesDetails($id=null)
     {
         $query = "select * from issues where IssueID = :IssueID;";
-        return $this->query($query,['Issue' => $id]);
+        return $this->query($query,['IssueID' => $id]);
 
     }
 
@@ -84,6 +86,27 @@ class Issues extends Model
         $query = "DELETE FROM $this->table WHERE IssueID = :IssueID;";
 
         return $this->query($query, ['IssueID' => $id]);
+    }
+
+    public function saveResponse($post)
+    {
+        $query = "UPDATE $this->table SET Response = :Response, Responded_date = :Responded_date,ManagerID = :ManagerID WHERE IssueID = :IssueID;";
+
+        $data = [
+            'Response' => $post['response'],
+            'Responded_date' => date('Y-m-d H:i:s'),
+            'IssueID' => $post['id'],
+            'ManagerID' => $post['ManagerID'],
+        ];
+
+        return $this->query($query, $data);
+    }
+
+    public function getRespondedIssues()
+    {
+        $query = "SELECT * FROM $this->table WHERE Response IS NOT NULL ORDER BY Reported_date DESC;";
+
+        return $this->query($query);
     }
 
 }
