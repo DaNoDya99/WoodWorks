@@ -132,4 +132,10 @@ class Customer extends Model
 
         return false;
     }
+    public function getCustomerByID($id)
+    {
+        $query = "SELECT * FROM customer WHERE CustomerID = :id";
+
+        return $this->query($query,['id'=>$id]);
+    }
 }

@@ -14,8 +14,7 @@ class Order extends Controller
         }
 
         $orders = new Orders();
-        $rows = $orders->getOrderDetails($id);
-
+        $rows = $orders->getOrderItems($id);
         $str = '<div  class="delivery-order-items">';
         foreach ($rows as $row) {
             $str .= "

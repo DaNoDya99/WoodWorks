@@ -198,5 +198,188 @@ class Issue extends Controller
 
         echo "success";
     }
+
+    function getPendingIssueDetails($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+
+        $issue = new Issues();
+        $order = new Orders();
+        $order_item = new Order_Items();
+        $issue_details = $issue->getIssuesDetails($id)[0];
+        $issue_images = $issue->getIssueImages($id);
+        $order_details = $order->getOrderDetails($issue_details->OrderID)[0];
+        $order_item_details = $order_item->getOrderItems($issue_details->OrderID);
+
+        $stm = "
+            <div class='order-details'>
+                <div class='order-heading'>
+                    <h4>Order ID : <span style='font-weight: normal; font-size: 0.9rem'>$issue_details->OrderID</span></h4>
+                    <h4>Date : <span style='font-weight: normal; font-size: 0.9rem'>$order_details->Date</span></h4>
+
+                    <table class='order-items-table'>
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Warranty</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+
+        foreach ($order_item_details as $item) {
+            $stm .= "
+                            <tr>
+                                <td>$item->ProductID</td>
+                                <td>$item->Name</td>
+                                <td>$item->Quantity</td>
+                                <td>$item->Warrenty_period</td>
+                            </tr>
+            ";
+        }
+
+        $stm .= "
+                        </tbody>
+                    </table>
+
+                    <div class='order-payment-details'>
+                        <div class='row'>
+                            <h4>Sub Total</h4>
+                            <span>Rs ".$order_details->Total_amount.".00</span>
+                        </div>
+                        <div class='row'>
+                            <h4>Discount Obtained</h4>
+                            <span>- Rs ".$order_details->Discount_obtained.".00</span>
+                        </div>
+                        <div class='row' style='border-bottom: 2px solid #f1f1f1'>
+                            <h4>Delivery Charge</h4>
+                            <span>Rs ".$order_details->Shipping_cost.".00</span>
+                        </div>
+                        <div class='row'>
+                            <h4>Total</h4>
+                            <span>Rs ".$order_details->Total_amount + $order_details->Shipping_cost - $order_details->Discount_obtained.".00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='issue-details'>
+                <h3>Issue Details</h3>
+
+                <div class='issue-images-container'>
+                    <span>Reported Images:</span>
+                    <div class='issue-images '>
+        ";
+
+        if(!empty($issue_images)){
+            $i = 1;
+            $issue_image = "issue-image".$i;
+            foreach ($issue_images as $image) {
+                $stm .= "<img src='http://localhost/WoodWorks/public/$image->Image' alt='' onclick='displayImage(`".$issue_image."`)'>
+                        <div class='image-popup' id='$issue_image'>
+                            <img class='close-image' src='http://localhost/WoodWorks/public/assets/images/customer/close.png' alt='Close' onclick='closeImage(`".$issue_image."`)'>
+                            <img src='http://localhost/WoodWorks/public/$image->Image' alt=''>
+                        </div>";
+                $i++;
+
+                $issue_image = "issue-image".$i;
+            }
+        }else{
+            $stm .= "No Images Uploaded";
+        }
+
+
+        $stm .= "
+                    </div>
+                </div>
+                <div class='issue-description-container'>
+                    <span>Issue Description:</span>
+                    <p>$issue_details->Problem_statement</p>
+                </div>
+                <div class='issue-description-container'>
+                    <span>Company Response: <span class='dis-err' id='response-error'></span></span>
+                    <textarea name='Response' id='response' cols='30' rows='6'>$issue_details->Response</textarea>
+                </div>
+                <div class='response-btn'>
+                    <button class='btn btn-primary' onclick='saveResponse(`".$id."`)'>Save Response</button>
+                </div>
+            </div>";
+
+        echo $stm;
+    }
+
+    public function saveResponse()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $issue = new Issues();
+        $_POST['ManagerID'] = Auth::getEmployeeID();
+        $issue->saveResponse($_POST);
+
+        echo "success";
+    }
+
+    public function getRespondedIssues()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $issue = new Issues();
+        $customer = new Customer();
+        $employee = new Employees();
+        $issues = $issue->getRespondedIssues();
+
+
+        if(!empty($issues)){
+            foreach ($issues as $issue) {
+                $customer_details = $customer->getCustomerByID($issue->CustomerID)[0];
+                $employee_details = $employee->getEmployeeByID($issue->ManagerID)[0];
+                $manager_name = $employee_details->Firstname." ".$employee_details->Lastname;
+
+                $issue->First_name = $customer_details->Firstname;
+                $issue->Last_name = $customer_details->Lastname;
+                $issue->Email = $customer_details->Email;
+                $issue->Contact_number = $customer_details->Mobileno;
+                $issue->Manager = $manager_name;
+            }
+
+            $stm = '';
+
+            foreach ($issues as $issue) {
+                $stm .= "
+                    <tr>
+                        <td>$issue->IssueID</td>
+                        <td>".substr($issue->OrderID,0,8)."</td>
+                        <td>$issue->First_name $issue->Last_name</td>
+                        <td>$issue->Contact_number</td>
+                        <td>$issue->Email</td>
+                        <td>$issue->Reported_date</td>
+                        <td>$issue->Responded_date</td>
+                        <td>$issue->Manager</td>
+                        <td>
+                            <div class='inv-table-btns manager-btns'>
+                                <button onclick='getIssueInfo(`".$issue->IssueID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                            </div>
+                        </td>
+                    </tr>
+                ";
+
+                
+            }
+            echo $stm;
+        }else{
+            echo "
+                <tr>
+                    <td colspan='9' style='text-align: center'>No Responded Issues Found</td>
+                </tr>
+            ";
+        }
+    }
 }
 
