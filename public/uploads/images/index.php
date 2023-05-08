@@ -1,1 +1,1 @@
-<h1>Access Denied</h1>
+<?php Access Denied.
