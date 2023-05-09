@@ -197,7 +197,7 @@ class Orders extends Model
 
     public function make_order_id(){
 
-        $prefix = 'CUS-ODR';
+        $prefix = 'CUS-ORD';
         $unique_id = mt_rand(1000, 9999);
         $timestamp = substr(date('YmdHis'), 8, 6);
         $orderID = $prefix . '-' . $unique_id . '-' . $timestamp;
