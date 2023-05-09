@@ -9,7 +9,7 @@
             <div id="first" class="order-details selected-order" onclick="getOrderDetails('<?= $orders[0]->OrderID?>')">
                 <div class="lhs-details">
                     <h4 class="lhs-details-item"><?= $orders[0]->OrderID?></h4>
-                    <span class="lhs-details-item">Rs. <?=$orders[0]->Total_amount?>.00</span>
+                    <span class="lhs-details-item">Rs. <?=($orders[0]->Total_amount + $orders[0]->Shipping_cost - $orders[0]->Discount_obtained)?>.00</span>
                     <span class="lhs-details-item"><?=$orders[0]->items?> Items</span>
                 </div>
                 <div class="rhs-details">

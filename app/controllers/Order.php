@@ -58,11 +58,21 @@ class Order extends Controller
                             <h4>Delivery Address</h4>
                             <span>" . $order->Address . "</span>
                         </div>
+                        <div class='order-detail'>
+                            <h4>Sub Total</h4>
+                            <span>Rs " . $order->Total_amount . ".00</span>
+                        </div>
+                        <div class='order-detail'>
+                            <h4>Delivery Cost</h4>
+                            <span>Rs " . $order->Shipping_cost . "</span>
+                        </div>
                         <div class='order-detail order-final-detail'>
+                            <h4>Discount Obtained</h4>
+                            <span>-Rs " . $order->Discount_obtained . ".00</span>
                         </div>
                         <div class='order-detail order-total delivery-order-total'>
                             <h4>Total Amount</h4>
-                            <span>Rs. " . $order->Total_amount . ".00</span>
+                            <span>Rs. " . $order->Total_amount + $order->Shipping_cost - $order->Discount_obtained . ".00</span>
                         </div>
                     </div>
         ";
@@ -871,6 +881,183 @@ class Order extends Controller
                     </p>
                 </div>
         ";
+
+        echo $stm;
+    }
+
+    public function getOrdersByStatus($status)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $orders = new Orders();
+        $employees = new Employees();
+        $ordersList = $orders->getOrdersByStatus($status);
+
+        if (empty($ordersList)) {
+            echo "
+                <table class='delivery-orders-table order-table'>
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Contact No</th>
+                    <th>Order Date</th>
+                    <th>Order Total</th>
+                    <th>Assigned Driver</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan='9'>No Orders Found</td>
+                </tr>
+                </tbody>
+            ";
+            return;
+        }
+
+        foreach ($ordersList as $order) {
+            $driver = $employees->getEmployeeByID($order->DriverID)[0];
+
+            $order->DriverName = $driver->Firstname . " " . $driver->Lastname;
+        }
+
+
+        $stm = "
+            <table class='delivery-orders-table order-table'>
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Contact No</th>
+                    <th>Order Date</th>
+                    <th>Order Total</th>
+                    <th>Assigned Driver</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+        ";
+
+        foreach ($ordersList as $order) {
+            $stm .= "
+                <tr>
+                    <td>$order->OrderID</td>
+                    <td>$order->Firstname $order->Lastname</td>
+                    <td>$order->Email</td>
+                    <td>$order->Address</td>
+                    <td>$order->Contactno</td>
+                    <td>$order->Date</td>
+                    <td>Rs ".$order->Total_amount + $order->Shipping_cost - $order->Discount_obtained.".00</td>
+                    <td>$order->DriverName</td>
+                    <td>
+                        <div class='inv-table-btns'>
+                             <button style='background-color: #2e69c4; margin-top: 0;' onclick='getOrderDetails(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                        </div>
+                    </td>
+                </tr>
+            ";
+        }
+
+        $stm .= "
+                </tbody>
+            </table>";
+
+        echo $stm;
+
+    }
+
+    public function getDeliveredOrders($status)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $orders = new Orders();
+        $employees = new Employees();
+        $ordersList = $orders->getOrdersByStatus($status);
+
+        if (empty($ordersList)) {
+            echo "
+                <table class='delivery-orders-table order-table'>
+                    <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Contact No</th>
+                        <th>Order Date</th>
+                        <th>Order Total</th>
+                        <th>Assigned Driver</th>
+                        <th>Delivered Date</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan='10'>No Orders Found</td>
+                    </tr>
+                    </tbody>
+            ";
+            return;
+        }
+
+        foreach ($ordersList as $order) {
+            $driver = $employees->getEmployeeByID($order->DriverID)[0];
+
+            $order->DriverName = $driver->Firstname . " " . $driver->Lastname;
+        }
+
+        $stm = "
+            <table class='delivery-orders-table order-table'>
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Contact No</th>
+                    <th>Order Date</th>
+                    <th>Order Total</th>
+                    <th>Assigned Driver</th>
+                    <th>Delivered Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>";
+
+        foreach ($ordersList as $order) {
+            $stm .= "
+                <tr>
+                    <td>$order->OrderID</td>
+                    <td>$order->Firstname $order->Lastname</td>
+                    <td>$order->Email</td>
+                    <td>$order->Address</td>
+                    <td>$order->Contactno</td>
+                    <td>$order->Date</td>
+                    <td>Rs ".$order->Total_amount + $order->Shipping_cost - $order->Discount_obtained.".00</td>
+                    <td>$order->DriverName</td>
+                    <td>$order->Delivered_date</td>
+                    <td>
+                         <div class='inv-table-btns'>
+                             <button style='background-color: #2e69c4; margin-top: 0;' onclick='getOrderDetails(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                        </div>
+                    </td>
+                </tr>
+            ";
+
+        }
+
+        $stm .= "
+                </tbody>
+            </table>";
 
         echo $stm;
     }

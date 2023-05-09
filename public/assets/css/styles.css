@@ -3777,16 +3777,6 @@ h2 {
     margin: 0;
 }
 
-.delivery-orders-table tr td:last-child button{
-    width: 7em;
-    border: none;
-    border-radius: 5px;
-    background-color: #0F3D3E;
-    color: #f9f9f9;
-    font-weight: bolder;
-    padding: 1em;
-}
-
 .order-id{
     width: 10em;
     max-width: 10em;
@@ -4498,4 +4488,50 @@ h2 {
 
 .rating{
     display: flex;
+}
+
+.delivery-history-btn{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 7px;
+    padding: .5em 1em;
+    font-size: 1.1rem;
+    margin-top: 1em;
+    height: 2.5em;
+}
+
+.delivery-history-popup{
+    width: 90%;
+    height: 85vh;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+
+}
+
+.order-selections{
+    display: flex;
+    justify-content: space-between;
+}
+
+.selector{
+    width: 19%;
+    padding: 0.5em 0;
+    border: 2px solid #d4d4d4;
+    cursor: pointer;
+}
+
+.order-select{
+    width: 33%
+}
+
+.order-table{
+    margin-top: 2em;
+}
+
+.order-table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.order-table td{
+    text-align: center;
 }
