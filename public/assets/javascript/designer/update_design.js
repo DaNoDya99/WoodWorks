@@ -9,15 +9,15 @@ doc_form.onsubmit = (e) => {
 
 doc_btn.onclick = () => {
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost/WoodWorks/public/driver_home/upload_document/'+doc_id, true);
+    xhr.open('POST', 'http://localhost/WoodWorks/public/designer/update_design/'+doc_id, true);
     xhr.onload = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                response.innerHTML = xhr.response;
+                 response.innerHTML = xhr.response;
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
-                }, 3000);
+                }, 1000);
 
             }
         }
@@ -26,48 +26,65 @@ doc_btn.onclick = () => {
     xhr.send(formData);
 }
 
-function openDocumentPopup(id,name,image,date,reason,event)
+function openDocumentPopup(DesignID,Name,DesignerID,Description,image1,image2,image3,pdf,event)
 {
     event.preventDefault();
-    let popup = document.getElementById("upl-doc");
-    let field = document.getElementById('doc-field');
-    let header1 = document.getElementById('header1');
-    let header2 = document.getElementById('header2');
-    let header3 = document.getElementById('header3');
-    let img = document.getElementById('edit-doc-img');
+    let popup = document.getElementById("upl-docs");
+    let field1 = document.getElementById('doc-field1');
+    let field2 = document.getElementById('doc-field2');
+    let firstImg = document.getElementById("first-img");
+    let secondImg = document.getElementById("second-img");
+    let thirdImg = document.getElementById("third-img");
+    const pdfPreview = document.getElementById('pdf-preview');
 
     popup.style.visibility = "visible";
-    header1.innerHTML = id;
-    header2.innerHTML = name;
-    header3.innerHTML = date;
-    doc_id = id;
-    if(reason != null) {
-        field.setAttribute('value', reason);
+    doc_id = DesignID;
+    if(Name != null) {
+        field1.setAttribute('value', Name);
     }
-    if(reason == null) {
-        field.setAttribute('value', 'No reason provided');
+    if(Description != null) {
+        field2.value= Description;
     }
 
-    if(image != null) {
-        img.setAttribute('src', 'http://localhost/WoodWorks/public/' + image);
+    if (image1 != null && image2 != null && image3 != null) {
+        firstImg.setAttribute("src", "http://localhost/WoodWorks/public/"+image1);
+        secondImg.setAttribute("src", "http://localhost/WoodWorks/public/"+image2);
+        thirdImg.setAttribute("src", "http://localhost/WoodWorks/public/"+image3);
+    } else {
+        firstImg.setAttribute("src", "http://localhost/WoodWorks/public/assets/images/designer/No_image.jpg");
+        secondImg.setAttribute("src", "http://localhost/WoodWorks/public/assets/images/designer/No_image.jpg");
+        thirdImg.setAttribute("src", "http://localhost/WoodWorks/public/assets/images/designer/No_image.jpg");
     }
-    if(image == ''){
-        img.setAttribute('src', 'http://localhost/WoodWorks/public/assets/images/driver/No_image.jpg');
+
+    console.log(pdf);
+
+    if(pdf != null) {
+
+        // Get the last occurrence of "/" to isolate the file name
+        const lastSlashIndex = pdf.lastIndexOf("/");
+        const fileNameWithExtension = pdf.substring(lastSlashIndex + 1);
+
+        // Get the substring starting from the 0th index up to the last occurrence of "." to remove the file extension
+        const fileName = fileNameWithExtension.substring(0, fileNameWithExtension.lastIndexOf("."));
+
+        // Get the first 7 characters of the file name using substring
+        const trimmedFileName = fileName.substring(0, 7) + ".." + fileName.substring(fileName.length - 5);
+
+        pdfPreview.innerHTML = `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+              <img src="http://localhost/WoodWorks/public/assets/images/designer/pdf-file.png" alt="PDF icon" style="width: 70px; height: 70px;">
+              <span style="font-size: 15px; font-weight: bold; text-align: center; margin-top: 10px;">Selected Pdf file: ${trimmedFileName}.pdf</span>
+            </div>`;
     }
 
 }
 
 function closeDocumentPopup()
 {
-    let popup = document.getElementById("upl-doc");
+    let popup = document.getElementById("upl-docs");
     popup.style.visibility = "hidden";
 }
 
-function load_doc_image(file){
-    let mylink;
-    mylink = window.URL.createObjectURL(file);
-    document.querySelector("#edit-doc-img").src = mylink;
-}
+
 
 
 

@@ -123,7 +123,15 @@ class Orders extends Model
 
     }
 
-    public function filterStatus($column, $value, $id)
+
+    public function searchDeliveredOrdersDetails($column,$value,$orders_items)
+    {
+        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or OrderID like '%$orders_items%' or DATE_FORMAT(Dispatched_date, '%d/%m/%Y') like '%$orders_items%' or DATE_FORMAT(Delivered_date, '%d/%m/%Y') like '%$orders_items%'or Firstname like '%$orders_items%' or Lastname like '%$orders_items%' AND $column = :value LIMIT 15 ";
+        return $this->query($query,['value'=>$value]);
+
+    }
+
+    public function filterStatus($column,$value,$id)
     {
         $query = "select OrderID,Payment_type,Total_amount,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && $column = :value  && `DriverID` = '$id' limit 15";
         return $this->query($query, ['value' => $value]);
@@ -201,12 +209,17 @@ class Orders extends Model
     public function make_order_id()
     {
 
-        $orderID = $this->random_string(60);
-        $result = $this->where('OrderID', $orderID);
-        while ($result) {
-            $result = $this->where('OrderID', $orderID);
-            $orderID = $this->random_string(60);
-        }
+//        $orderID = $this->random_string(60);
+//        $result = $this->where('OrderID',$orderID);
+//        while ($result){
+//            $result = $this->where('OrderID',$orderID);
+//            $orderID = $this->random_string(60);
+//        }
+
+        $prefix = 'ORD';
+        $unique_id = mt_rand(1000, 9999);
+        $timestamp = substr(date('YmdHis'), 8, 6);
+        $orderID = $prefix . '-' . $unique_id . '-' . $timestamp;
 
         return $orderID;
     }
@@ -266,7 +279,7 @@ class Orders extends Model
         return $this->query($query,['Is_preparing' => 0]);
     }
 
-    public function getOrderDetails($id = null)
+    public function getOrderItems($id = null)
     {
         $query = "SELECT * FROM `order_item` WHERE OrderID = :OrderID;";
 
@@ -321,6 +334,13 @@ class Orders extends Model
         $query = "DELETE FROM $this->table WHERE CustomerID = :CustomerID && Is_preparing = :Is_preparing;";
 
         return $this->query($query,['CustomerID' => $id, 'Is_preparing' => 1]);
+    }
+
+    public function getOrderDetails($orderId)
+    {
+        $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID;";
+
+        return $this->query($query,['OrderID' => $orderId]);
     }
 
 }

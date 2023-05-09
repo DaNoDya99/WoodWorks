@@ -172,4 +172,66 @@ class supplier extends Controller
         }
 
     }
+
+    public function getSupplierProdcuts($id)
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+
+        $furniture = new Furnitures();
+        $category = new Categories();
+
+        $row = $furniture->getProductsBySupplier($id);
+
+        if(empty($row))
+        {
+            echo "<tr>
+                    <td colspan='7' class='text-center'>No Products Found</td>
+                  </tr>";
+            return;
+        }
+
+        foreach ($row as $value){
+            $value->Image = $furniture->getDisplayImage($value->ProductID)[0]->Image;
+            $value->Category = $category->getCategoryByID($value->CategoryID)[0]->Category_name;
+        }
+
+        $stm = '';
+
+        foreach ($row as $value) {
+
+            if ($value->Quantity <= $value->Reorder_point) {
+
+                $stm .= "
+                    <tr class='warn'>
+                        <td><input type='checkbox' name='product' value='" . $value->ProductID . "'></td>
+                        <td>$value->ProductID</td>
+                        <td><img src='http://localhost/WoodWorks/public/" . $value->Image . "' alt=''></td>
+                        <td>$value->Name</td>
+                        <td>$value->Quantity</td>
+                        <td>$value->Reorder_point</td>
+                        <td>$value->Category</td>
+                        <td>$value->Sub_category_name</td>
+                    </tr>
+                ";
+            }else{
+                $stm .= "
+                    <tr>
+                        <td><input type='checkbox' name='product' value='" . $value->ProductID . "'></td>
+                        <td>$value->ProductID</td>
+                        <td><img src='http://localhost/WoodWorks/public/" . $value->Image . "' alt=''></td>
+                        <td>$value->Name</td>
+                        <td>$value->Quantity</td>
+                        <td>$value->Reorder_point</td>
+                        <td>$value->Category</td>
+                        <td>$value->Sub_category_name</td>
+                    </tr>
+                ";
+            }
+        }
+
+        echo $stm;
+    }
 }

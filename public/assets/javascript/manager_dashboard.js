@@ -427,3 +427,4 @@ function loadDesignsPage(){
 function loadIssuesPage(){
     window.location.href = "http://localhost/WoodWorks/public/manager/issues";
 }
+

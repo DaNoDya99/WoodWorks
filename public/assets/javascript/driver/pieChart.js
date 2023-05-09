@@ -52,7 +52,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'Status and Counts',
+                            text: 'Current Status',
                             color:'black',
                             font: {
                                 size: 15,

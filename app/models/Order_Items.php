@@ -65,8 +65,7 @@ class Order_Items extends Model
 
     public function getOrderItems($orderID)
     {
-        $query = "SELECT order_item.ProductID, order_item.OrderID, order_item.Name, order_item.Quantity, order_item.Cost, order_item.Image, furniture.Wood_type FROM order_item INNER JOIN furniture ON order_item.ProductID = furniture.ProductID WHERE order_item.OrderID = :OrderID; ";
-
+        $query = "SELECT order_item.ProductID, order_item.OrderID, order_item.Name, order_item.Quantity, order_item.Cost, order_item.Image,order_item.Date, furniture.Wood_type,furniture.Warrenty_period,furniture.Name FROM order_item INNER JOIN furniture ON order_item.ProductID = furniture.ProductID WHERE order_item.OrderID = :OrderID; ";
         return $this->query($query,['OrderID' => $orderID]);
     }
 

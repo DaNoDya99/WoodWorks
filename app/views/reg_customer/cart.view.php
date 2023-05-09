@@ -9,7 +9,7 @@
                         <tr>
                             <td><img class="cart-product-img" src="<?=ROOT?>/<?=$row->Image?>" alt=""></td>
                             <td><p><?=$row->Name?></p></td>
-                            <td >
+                            <td>
                                 <div class="cart-quantity">
                                     <div>
 <!--                                        <a id="increase" href="--><?php //=ROOT?><!--/cart/decreaseQuantity/--><?php //=$row->CartID?><!--/--><?php //=$row->ProductID?><!--/--><?php //=$row->Quantity?><!--/--><?php //=$row->Cost?><!--">-->

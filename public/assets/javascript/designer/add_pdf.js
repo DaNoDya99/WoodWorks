@@ -23,7 +23,6 @@
             </div>`;
 
 
-
     }
 
 })(window,document);

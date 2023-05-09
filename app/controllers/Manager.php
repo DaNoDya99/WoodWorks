@@ -174,16 +174,9 @@ class Manager extends Controller
         {
             $this->redirect('login');
         }
+        $supplier = new Suppliers();
 
-        $furniture = new Furnitures();
-        $rows = $furniture->view_furniture_orders();
-
-        foreach($rows as $row)
-        {
-            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
-        }
-
-        $data['furniture'] = $rows;
+        $data['suppliers'] = $supplier->getSuppliersWithComanyName();
         $data['title']="ORDERS";
 
         $this->view('manager/orders',$data);
@@ -196,12 +189,26 @@ class Manager extends Controller
             $this->redirect('login');
         }
 
-        $data['title']="ISSUES";
-        
-
         $issue = new Issues();
-        $data['issue'] = $issue->get_issue();
-        $data['issues'] = $issue->getissuehistory();
+        $customer = new Customer();
+        $issues = $issue->get_issue();
+
+        $data['issues'] = [];
+
+        if(!empty($issues)){
+            foreach ($issues as $issue) {
+                $customer_details = $customer->getCustomerByID($issue->CustomerID)[0];
+
+                $issue->First_name = $customer_details->Firstname;
+                $issue->Last_name = $customer_details->Lastname;
+                $issue->Email = $customer_details->Email;
+                $issue->Contact_number = $customer_details->Mobileno;
+
+            }
+
+            $data['issues'] = $issues;
+        }
+
         $this->view('manager/issues',$data);
     }
 

@@ -14,8 +14,7 @@ class Order extends Controller
         }
 
         $orders = new Orders();
-        $rows = $orders->getOrderDetails($id);
-
+        $rows = $orders->getOrderItems($id);
         $str = '<div  class="delivery-order-items">';
         foreach ($rows as $row) {
             $str .= "
@@ -241,5 +240,638 @@ class Order extends Controller
         }
 
         echo $str;
+    }
+
+    public function getSelectedProducts()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $selected = json_decode($_POST['selected']);
+        $furniture = new Furnitures();
+
+        $stm = '';
+
+        foreach ($selected as $value) {
+            $row = $furniture->getFurnitureByID($value)[0];
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+
+            $stm .= "
+                <tr>
+                    <td>$value</td>
+                    <td><img src='http://localhost/WoodWorks/public/".$row->Image."' alt=''></td>
+                    <td>$row->Name</td>
+                    <td><input type='number' name='".$value."' id='quantity' min='1' value='1'></td>
+                </tr>
+            ";
+        }
+
+        echo $stm;
+    }
+
+    public function placeCompanyOrder()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+        $order_items = new Company_order_items();
+
+        $order_id = $company_order->generateOrderID();
+
+        $order = [
+            'OrderID' => $order_id,
+            'OrderStatus' => 'Pending',
+            'ManagerID' => Auth::getEmployeeID(),
+            'SupplierID' => $_POST['supplier'],
+            'Comments' => $_POST['Comments'],
+        ];
+
+        $company_order->insert($order);
+
+        unset($_POST['supplier']);
+        unset($_POST['Comments']);
+        unset($_POST['products']);
+
+        $products = $_POST;
+
+        foreach ($products as $key => $value) {
+            $order_items->insertItem($order_id, $key, $value);
+        }
+
+        echo 'success';
+
+    }
+
+    public function getCompanyPendingOrders()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+
+        $orders = $company_order->getSupplierOrdersByStatus('Pending');
+
+        $stm = "
+            <table class='orders-info-table'>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Supplier Name</th>
+                        <th>Company</th>
+                        <th>Manager</th>
+                        <th>Ordered Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+        ";
+
+        if(empty($orders))
+        {
+            $stm .= "
+                <tr>
+                    <td colspan='6'>No Pending Orders Yet</td>
+                </tr>
+                </tbody>
+                </table>
+            ";
+
+            echo $stm;
+            return;
+        }
+
+        $suppliers = new Suppliers();
+        $employees = new Employees();
+
+        foreach ($orders as $order) {
+            $supplier = $suppliers->getSupplier($order->SupplierID)[0];
+
+            $supplier_name = $supplier->Firstname . ' ' . $supplier->Lastname;
+
+            $employee = $employees->getEmployeeByID($order->ManagerID)[0];
+
+            $manager_name = $employee->Firstname . ' ' . $employee->Lastname;
+
+            $stm .= "
+                <tr>
+                    <td>$order->OrderID</td>
+                    <td>$supplier_name</td>
+                    <td>$supplier->Company_name</td>
+                    <td>$manager_name</td>
+                    <td>$order->Date</td>
+                    <td>
+                        <div class='inv-table-btns manager-btns'>
+                            <button onclick='editCompanyOrder(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/edit-4-svgrepo-com.svg' alt=''></button>
+                            <button onclick='deleteCompanyOrder(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
+                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                        </div>   
+                    </td>
+                </tr>
+            ";
+        }
+
+        $stm .= "
+                </tbody>
+            </table>";
+
+        echo $stm;
+    }
+
+    public function getCompanyCompletedOrders()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+
+        $orders = $company_order->getSupplierOrdersByStatus('Completed');
+
+        $stm = "
+            <table class='orders-info-table'>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Supplier Name</th>
+                        <th>Company</th>
+                        <th>Manager</th>
+                        <th>Ordered Date</th>
+                        <th>Accepted Date</th>
+                        <th>Completed Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>";
+
+        if(empty($orders))
+        {
+            $stm .= "
+                <tr>
+                    <td colspan='8'>No Completed Orders Yet</td>
+                </tr>
+                </tbody>
+                </table>
+            ";
+
+            echo $stm;
+            return;
+        }
+
+        $suppliers = new Suppliers();
+        $employees = new Employees();
+
+        foreach ($orders as $order) {
+            $supplier = $suppliers->getSupplier($order->SupplierID)[0];
+
+            $supplier_name = $supplier->Firstname . ' ' . $supplier->Lastname;
+
+            $employee = $employees->getEmployeeByID($order->ManagerID)[0];
+
+            $manager_name = $employee->Firstname . ' ' . $employee->Lastname;
+
+            $stm .= "
+                <tr>
+                    <td>$order->OrderID</td>
+                    <td>$supplier_name</td>
+                    <td>$supplier->Company_name</td>
+                    <td>$manager_name</td>
+                    <td>$order->Date</td>
+                    <td>$order->Responded_date</td>
+                    <td>$order->Completed_date</td>
+                    <td>
+                        <div class='inv-table-btns manager-btns'>
+                            <button onclick='orderReceived(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/active-svgrepo-com(1).svg' alt=''></button>
+                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                        </div>   
+                    </td>
+                </tr>
+            ";
+        }
+
+        $stm .= "
+                </tbody>
+            </table>";
+
+        echo $stm;
+    }
+
+    public function getCompanyRejectedOrders()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+
+        $orders = $company_order->getSupplierOrdersByStatus('Rejected');
+
+        $stm = "
+            <table class='orders-info-table'>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Supplier Name</th>
+                        <th>Company</th>
+                        <th>Manager</th>
+                        <th>Ordered Date</th>
+                        <th>Rejected Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>";
+
+        if(empty($orders))
+        {
+            $stm .= "
+                <tr>
+                    <td colspan='7'>No Rejected Orders Yet</td>
+                </tr>
+                </tbody>
+                </table>
+            ";
+
+            echo $stm;
+            return;
+        }
+
+        $suppliers = new Suppliers();
+        $employees = new Employees();
+
+        foreach ($orders as $order) {
+            $supplier = $suppliers->getSupplier($order->SupplierID)[0];
+
+            $supplier_name = $supplier->Firstname . ' ' . $supplier->Lastname;
+
+            $employee = $employees->getEmployeeByID($order->ManagerID)[0];
+
+            $manager_name = $employee->Firstname . ' ' . $employee->Lastname;
+
+            $stm .= "
+                <tr>
+                    <td>$order->OrderID</td>
+                    <td>$supplier_name</td>
+                    <td>$supplier->Company_name</td>
+                    <td>$manager_name</td>
+                    <td>$order->Date</td>
+                    <td>$order->Responded_date</td>
+                    <td>
+                        <div class='inv-table-btns manager-btns'>
+                            <button class='deletion-btn' onclick='deleteCompanyOrder(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
+                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                        </div>   
+                    </td>
+                </tr>
+            ";
+        }
+
+        $stm .= "
+                </tbody>
+            </table>";
+
+        echo $stm;
+    }
+
+    public function getCompanyAcceptedOrders()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+
+        $orders = $company_order->getSupplierOrdersByStatus('Accepted');
+
+        $stm = "
+            <table class='orders-info-table'>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Supplier Name</th>
+                        <th>Company</th>
+                        <th>Manager</th>
+                        <th>Ordered Date</th>
+                        <th>Accepted Date</th>
+                        <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+        ";
+
+        if(empty($orders))
+        {
+            $stm .= "
+                <tr>
+                    <td colspan='7'>No Accepted Orders Yet</td>
+                </tr>
+                </tbody>
+                </table>
+            ";
+
+            echo $stm;
+            return;
+        }
+
+        $suppliers = new Suppliers();
+        $employees = new Employees();
+
+        foreach ($orders as $order) {
+            $supplier = $suppliers->getSupplier($order->SupplierID)[0];
+
+            $supplier_name = $supplier->Firstname . ' ' . $supplier->Lastname;
+
+            $employee = $employees->getEmployeeByID($order->ManagerID)[0];
+
+            $manager_name = $employee->Firstname . ' ' . $employee->Lastname;
+
+            $stm .= "
+                <tr>
+                    <td>$order->OrderID</td>
+                    <td>$supplier_name</td>
+                    <td>$supplier->Company_name</td>
+                    <td>$manager_name</td>
+                    <td>$order->Date</td>
+                    <td>$order->Responded_date</td>
+                    <td>
+                        <div class='inv-table-btns manager-btns'>
+                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                        </div>   
+                    </td>
+                </tr>
+            ";
+        }
+
+        $stm .= "
+                </tbody>
+            </table>  ";
+
+        echo $stm;
+
+    }
+
+    function getCompanyReceivedOrders()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+
+        $orders = $company_order->getSupplierOrdersByStatus('Received');
+
+        $stm = "
+            <table class='orders-info-table'>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Supplier Name</th>
+                        <th>Company</th>
+                        <th>Manager</th>
+                        <th>Ordered Date</th>
+                        <th>Accepted Date</th>
+                        <th>Completed Date</th>
+                        <th>Received Date</th>
+                        <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+        ";
+
+        if(empty($orders))
+        {
+            $stm .= "
+                <tr>
+                    <td colspan='9'>No Received Orders Yet</td>
+                </tr>
+                </tbody>
+                </table>
+            ";
+
+            echo $stm;
+            return;
+        }
+
+        $suppliers = new Suppliers();
+        $employees = new Employees();
+
+        foreach ($orders as $order) {
+            $supplier = $suppliers->getSupplier($order->SupplierID)[0];
+
+            $supplier_name = $supplier->Firstname . ' ' . $supplier->Lastname;
+
+            $employee = $employees->getEmployeeByID($order->ManagerID)[0];
+
+            $manager_name = $employee->Firstname . ' ' . $employee->Lastname;
+
+            $stm .= "
+                <tr>
+                    <td>$order->OrderID</td>
+                    <td>$supplier_name</td>
+                    <td>$supplier->Company_name</td>
+                    <td>$manager_name</td>
+                    <td>$order->Date</td>
+                    <td>$order->Responded_date</td>
+                    <td>$order->Completed_date</td>
+                    <td>$order->Received_date</td>
+                    <td>
+                        <div class='inv-table-btns manager-btns'>
+                            <button class='deletion-btn' onclick='deleteCompanyOrder(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
+                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                        </div>   
+                    </td>
+                </tr>
+            ";
+        }
+
+        $stm .= "
+                </tbody>
+            </table>  ";
+
+        echo $stm;
+    }
+
+    public function deleteCompanyOrder($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+
+        if(empty($company_order->deleteOrder($id)))
+        {
+            echo "success";
+        }
+        else
+        {
+            echo "failed";
+        }
+
+    }
+
+    function orderReceived($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+
+        if(empty($company_order->orderReceived($id)))
+        {
+            echo "success";
+        }
+        else
+        {
+            echo "failed";
+        }
+    }
+
+    public function editCompanyOrder($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+        $order_items = new Company_order_items();
+
+        $order = $company_order->getOrder($id)[0];
+        $items = $order_items->getOrderItems($id);
+
+        $stm = "
+            <span class='dis-err' id='quantity-error'></span>
+            <form action='' id='order-edit-form'>
+                <div class='edit-info-table-container'>
+                    <table class='orders-info-table edit-table'>
+                        <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                        </tr>
+                        </thead>
+    
+                        <tbody id='order-edit-tbody'>
+        ";
+
+        $furniture = new Furnitures();
+
+        foreach ($items as $item) {
+            $product = $furniture->getFurniture($item->ProductID)[0];
+            $image = $furniture->getDisplayImage($item->ProductID)[0]->Image;
+
+            $stm .= "
+                    <tr>
+                        <td>$item->ProductID</td>
+                        <td><img src='http://localhost/WoodWorks/public/$image' alt=''></td>
+                        <td>$product->Name</td>
+                        <td><input type='number' min='1' name='$item->ProductID' value='$item->Quantity'></td>
+                    </tr>
+            ";
+        }
+
+        $stm .= "
+                    </tbody>
+                </table>
+            </div>";
+
+        $stm .= "
+                <div class='field'>
+                    <label for=''>Comments</label>
+                    <textarea name='Comments' cols='30' rows='6'>$order->Comments</textarea>
+                </div>
+
+                <div>
+                    <button onclick='updateCompanyOrder(`$id`)'>Save</button>
+                </div>
+            </form>
+        ";
+
+        echo $stm;
+    }
+
+    public function updateCompanyOrder($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+        $order_items = new Company_order_items();
+
+        $company_order->updateComment($id, $_POST['Comments']);
+
+        unset($_POST['Comments']);
+
+        foreach ($_POST as $key => $value) {
+            $order_items->updateQuantities($id, $key, $value);
+        }
+
+        echo "success";
+    }
+
+    public function getCompanyOrderDetails($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $company_order = new CompanyOrderModel();
+        $order_items = new Company_order_items();
+
+        $order = $company_order->getOrder($id)[0];
+        $items = $order_items->getOrderItems($id);
+
+        $stm = "
+                <div class='edit-info-table-container'>
+                    <table class='orders-info-table edit-table'>
+                        <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                        </tr>
+                        </thead>
+    
+                        <tbody id='order-edit-tbody'>
+        ";
+
+        $furniture = new Furnitures();
+
+        foreach ($items as $item) {
+            $product = $furniture->getFurniture($item->ProductID)[0];
+            $image = $furniture->getDisplayImage($item->ProductID)[0]->Image;
+
+            $stm .= "
+                    <tr>
+                        <td>$item->ProductID</td>
+                        <td><img src='http://localhost/WoodWorks/public/$image' alt=''></td>
+                        <td>$product->Name</td>
+                        <td>$item->Quantity</td>
+                    </tr>
+            ";
+        }
+
+        $stm .= "
+                    </tbody>
+                </table>
+            </div>";
+
+        $stm .= "
+                <div class='order-comment'>
+                    <h4>Comments:</h4>
+                    <p class='comment'>
+                        $order->Comments
+                    </p>
+                </div>
+        ";
+
+        echo $stm;
     }
 }
