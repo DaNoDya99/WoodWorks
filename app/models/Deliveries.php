@@ -31,4 +31,11 @@ class Deliveries extends Model
 
         return $this->query($query,['id' => $id]);
     }
+
+    function getDeliveryRate($distance)
+    {
+        $query = "SELECT * FROM $this->table WHERE Distance_from <= :distance AND Distance_to >= :distance;";
+
+        return $this->query($query,['distance' => $distance]);
+    }
 }

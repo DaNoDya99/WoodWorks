@@ -231,7 +231,7 @@ class Orders extends Model
     {
         $query = 'UPDATE `orders` SET Order_status = :Order_status,DriverID= :DriverID WHERE OrderID = :OrderID;';
 
-        return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID,'Order_status' => 'Preparing']);
+        return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID,'Order_status' => 'Processing']);
     }
 
     public function updateSessionID($orderID, $sessionID,$status)

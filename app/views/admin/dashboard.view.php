@@ -40,7 +40,9 @@
 
                                             <?php endforeach;?>
                                         <?php else: ?>
-                                            <h1>No products to show.</h1>
+                                            <tr>
+                                                <td colspan="3">No Out of Stock Furniture</td>
+                                            </tr>
                                         <?php endif; ?>
 
                                     </table>

@@ -32,6 +32,19 @@ class Furnitures extends Model
     {
         $query = "select ";
 
+        $fields = [
+            'ProductID',
+            'furniture.Name',
+            'Description',
+            'Quantity',
+            'Cost',
+            'Availability',
+            'Warrenty_period',
+            'Wood_type ',
+            'discounts.Discount_percentage',
+            'discounts.Active',
+        ];
+
         if (!empty($fields)) {
             foreach ($fields as $field) {
                 $query .= $field . ", ";
@@ -39,8 +52,7 @@ class Furnitures extends Model
         }
 
         $query = trim($query, ", ");
-
-        $query .= " from " . $this->table . " order by date $order limit $limit";
+        $query .= " from " . $this->table . " left join discounts on furniture.DiscountID = discounts.DiscountID ORDER BY DATE $order LIMIT $limit";
 
         return $this->query($query);
     }
