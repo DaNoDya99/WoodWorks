@@ -197,14 +197,7 @@ class Orders extends Model
 
     public function make_order_id(){
 
-//        $orderID = $this->random_string(60);
-//        $result = $this->where('OrderID',$orderID);
-//        while ($result){
-//            $result = $this->where('OrderID',$orderID);
-//            $orderID = $this->random_string(60);
-//        }
-
-        $prefix = 'ORD';
+        $prefix = 'CUS-ODR';
         $unique_id = mt_rand(1000, 9999);
         $timestamp = substr(date('YmdHis'), 8, 6);
         $orderID = $prefix . '-' . $unique_id . '-' . $timestamp;
@@ -212,17 +205,6 @@ class Orders extends Model
         return $orderID;
     }
 
-    public function random_string($length){
-        $array = array(0,1,2,3,4,5,6,7,8,9,'A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
-        $text = "";
-        for($x=0;$x<$length;$x++)
-        {
-            $random = rand(0,61);
-            $text .= $array[$random];
-        }
-
-        return $text;
-    }
 
     public function getNewOrders()
     {
@@ -247,9 +229,9 @@ class Orders extends Model
 
     public function assignDriver($orderID, $driverID)
     {
-        $query = 'UPDATE `orders` SET DriverID= :DriverID WHERE OrderID = :OrderID;';
+        $query = 'UPDATE `orders` SET Order_status = :Order_status,DriverID= :DriverID WHERE OrderID = :OrderID;';
 
-        return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID]);
+        return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID,'Order_status' => 'Preparing']);
     }
 
     public function updateSessionID($orderID, $sessionID,$status)
