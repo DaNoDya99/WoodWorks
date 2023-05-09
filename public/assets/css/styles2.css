@@ -2587,4 +2587,67 @@ max-height: 27vh;
   height: 82vh;
 }
 
+.stars-outer {
+  position: relative;
+  display: inline-block;
+  top: -30px;
+}
+
+.product-card-stars-outer{
+  top: 0;
+  left: 10px;
+}
+
+.stars-inner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-outer::before{
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner::before{
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #f8ce0b;
+}
+.star-widget{
+  width: 80%;
+}
+.star-widget input{
+  display: none;
+}
+
+.star-widget label{
+  float: right;
+  padding: 10px;
+  color: #ccc;
+  font-size: 30px;
+}
+
+.star-widget input:not(:checked) ~ label:hover, .star-widget input:not(:checked) ~ label:hover ~ label{
+  color: #f8ce0b;
+}
+
+.star-widget input:checked ~ label{
+  color: #f8ce0b;
+}
+
+.star-widget input#rate-5:checked ~ label{
+  color: #f8ce0b;
+  text-shadow: 0 0 4px #952;
+}
+
+#rate-1:checked ~ span:before{
+  content: "1 star";
+}
 

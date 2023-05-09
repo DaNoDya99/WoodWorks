@@ -14,6 +14,7 @@ class Customer_home extends Controller
 
         $furniture = new Furnitures();
         $customer = new Customer();
+        $review = new Reviews();
         $id = Auth::getCustomerID();
         $data['row'] = $customer->where('CustomerID',$id);
         $data['furnitures'] =$rows= $furniture->getNewFurniture(['ProductID','Name','Cost','Sub_category_name']);
@@ -23,6 +24,8 @@ class Customer_home extends Controller
             if(!empty($furniture->getDisplayImage($row->ProductID)[0]->Image))
             {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+                $row->Rate = round($review->getProductRating($row->ProductID)[0]->Average,1);
+                $row->Rating = (($row->Rate/5)*100).'%';
             }
         }
         

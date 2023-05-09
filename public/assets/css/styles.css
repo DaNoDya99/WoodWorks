@@ -1929,7 +1929,7 @@ h3 {
 .rate-info {
     display: flex;
     align-items: center;
-    margin: 0 auto;
+    margin: 1em auto;
 }
 
 .rate-info img {
@@ -4102,6 +4102,11 @@ h2 {
     top: -30px;
 }
 
+.product-card-stars-outer{
+    top: 8px;
+    left: 10px;
+}
+
 .stars-inner{
     position: absolute;
     top: 0;
@@ -4489,4 +4494,8 @@ h2 {
     max-height: 10em;
     overflow-y: scroll;
     padding: 0 2em;
+}
+
+.rating{
+    display: flex;
 }
