@@ -1169,3 +1169,18 @@ body {
     right: 20px;
     color: rgb(81, 81, 81);
 }
+
+#blur-quantity{
+    backdrop-filter: brightness(0.8);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    display: flex;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+

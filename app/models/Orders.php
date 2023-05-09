@@ -326,7 +326,7 @@ class Orders extends Model
     {
         $query = "UPDATE $this->table SET Is_preparing = :Is_preparing,Deliver_method = :Deliver_method WHERE OrderID = :OrderID && Is_preparing = 1;";
 
-        return $this->query($query, ['Is_preparing' => 0,'OrderID' => $orderId,'Deliver_method' => 'Home Delivery']);
+        return $this->query($query, ['Is_preparing' => 0,'OrderID' => $orderId,'Deliver_method' => 'Delivery']);
     }
 
     public function removeIncompletedOrders($id)

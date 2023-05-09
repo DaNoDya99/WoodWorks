@@ -115,6 +115,12 @@ class Furnitures extends Model
 
         return $this->query($query);
     }
+    public function getInventorywithDiscounts()
+    {
+        $query = "select ProductID , furniture.Name , Quantity , Cost, CategoryID, discounts.Discount_percentage FROM furniture LEFT JOIN discounts ON furniture.DiscountID = discounts.DiscountID";
+
+        return $this->query($query);
+    }
 
     public function deleteFurniture($id = null)
     {

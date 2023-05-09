@@ -105,7 +105,8 @@
                             <td class="col col-cost"> <?= $product->Name ?></td>
 
                             <td class="col col-cost" style="font-weight:600;">Rs. <?= $product->Cost ?></td>
-                            <td class="col col-add" style="padding-right: 20px;"><img style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/add.svg" alt="" <?php if (isset($_SESSION["CustomerID"])) : ?> onclick="quantitypopup('<?= ROOT ?>/<?= $product->image ?>','<?= $product->Name ?>','<?= $product->ProductID ?>','<?= $product->Cost ?>')" <?php endif; ?> </td>
+                            <td class="col col-cost" style="font-weight:100; color:red;font-style:italic"><?= $product->Discount_percentage ?>%</td>
+                            <td class="col col-add" style="padding-right: 20px;"><img style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/add.svg" alt="" <?php if (isset($_SESSION["CustomerID"])) : ?> onclick="quantitypopup('<?= ROOT ?>/<?= $product->image ?>','<?= $product->Name ?>','<?= $product->ProductID ?>','<?= $product->Cost -  $product->Cost * $product->Discount_percentage / 100 ?>')" <?php endif; ?> </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -133,7 +134,8 @@
                 <th class="">Product Name</th>
                 <th class="">Quantity</th>
                 <th class="">Unit Price</th>
-                <th class="">Discount</th>
+
+                <th>Total</th>
                 <th class=""><img style="width: 15px" src="<?= ROOT ?>/assets/images/cashier/trash-solid.svg" alt=""></th>
             </thead>
 
@@ -152,14 +154,14 @@
 
 
                     </div>
-                    <div class="discounts-view">
+                    <!-- <div class="discounts-view">
                         <div id="openDiscounts" style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row" onclick="discountPopup()">
                             <p>Discounts</p>
                             <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt="" style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;">
                         </div>
 
                         <p onclick="discountpopup()" style="">00.00</p>
-                    </div>
+                    </div> -->
                     <div class="shippingcost-view">
                         <div style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row">
                             <p>Shipping</p>
@@ -172,11 +174,7 @@
                 </div>
                 <div class="total_price">
                     <p>Total</p>
-                    <?php if (!empty($cart)) : ?>
-                        <p>Rs. <?= $data['cart'][0]->Total_amount ?>.00</p>
-                    <?php else : ?>
-                        <p>Rs. 00.00</p>
-                    <?php endif; ?>
+                    <span id="final_total"></span>
 
                 </div>
                 <div>
@@ -185,97 +183,42 @@
 
             </div>
             <div class="button">
-                <button class="proceed" onclick="openPopup()">Proceed to Payment</button>
+                <button class="proceed" onclick="openPaymentPopup()">Proceed to Payment</button>
             </div>
         </div>
 
 
     </div>
-
-    <div style="" id="discountPopup" class="discount-popup">
-        <div class="discount-content">
-            <div class="applied-discounts">
-                <h3>Applied Discounts</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Discount Code</th>
-                            <th>Discount Amount</th>
-                        </tr>
-
-                    </thead>
-                    <tbody id="applied-discounts-table">
-                        <!-- dummy data -->
-                        <tr>
-                            <td>DISCOUNTCODE</td>
-                            <td>Rs. 100.00</td>
-
-                        </tr>
-                        <tr>
-                            <td>DISCOUNTCODE</td>
-                            <td>Rs. 100.00</td>
-                        </tr>
-                        <tr>
-                            <td>DISCOUNTCODE</td>
-                            <td>Rs. 100.00</td>
-
-                        </tr>
-                        <tr>
-                            <td>DISCOUNTCODE</td>
-                            <td>Rs. 100.00</td>
-                        </tr>
-                        <tr>
-                            <td>DISCOUNTCODE</td>
-                            <td>Rs. 100.00</td>
-
-                        </tr>
-                        <tr>
-                            <td>DISCOUNTCODE</td>
-                            <td>Rs. 100.00</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <hr>
-            <div>
-                <h3>Apply Promo Code</h3>
-                <form id="promo-form" action="">
-                    <input type="text" name="promocode" id="promocode" placeholder="Enter Promo Code">
-                    <button style="float:right; width:15%" type="button" onclick="addPromoCode()">Add</button>
-                </form>
+    <div id="blur-quantity">
+        <div style="display:flex; flex-direction:column; justify-content:center; position: absolute; height:auto; width:50%; z-index:99; padding:20px; background-color:white; box-shadow:0px 0px 15px black; border-radius:10px" id="quantitypopup">
+            <div style="display:flex; justify-content:space-between;">
+                <h3>Add Item</h3>
+                <p onclick="closequantitypopup()">&times;</p>
             </div>
 
-        </div>
+            <div class="item-info">
+                <img id='furniture-image' src="" alt="furn">
 
-    </div>
+                <div class="deets">
+                    <div class="name">
+                        <h3 id="furniture-name">Furniture</h3>
+                        <p id="furniture-id">F0001</p>
+                    </div>
+                    <div class="quantity-box">
 
-    <div style="display:none; flex-direction:column; justify-content:center; position: absolute; height:auto; width:50%; z-index:99; padding:20px; background-color:white; box-shadow:0px 0px 15px black; border-radius:10px" id="quantitypopup">
-        <div style="display:flex; justify-content:space-between;">
-            <h3>Add Item</h3>
-            <p onclick="closequantitypopup()">&times;</p>
-        </div>
+                        <button class="quantity-change" id="decrement">-</button>
+                        <input type="text" id="quantity" class="quantity-input" value="1" min="1">
+                        <button class="quantity-change" id="increment">+</button>
+                    </div>
 
-        <div class="item-info">
-            <img id='furniture-image' src="" alt="furn">
-
-            <div class="deets">
-                <div class="name">
-                    <h3 id="furniture-name">Furniture</h3>
-                    <p id="furniture-id">F0001</p>
-                </div>
-                <div class="quantity-box">
-
-                    <button class="quantity-change" id="decrement">-</button>
-                    <input type="text" id="quantity" class="quantity-input" value="1" min="1">
-                    <button class="quantity-change" id="increment">+</button>
                 </div>
 
             </div>
+            <button type="button" class="add-quantity">Add</button>
 
         </div>
-        <button type="button" class="add-quantity">Add</button>
-
     </div>
+
 </div>
 <script>
     document.getElementById('increment').addEventListener('click', function() {
@@ -298,12 +241,11 @@
     });
 </script>
 
-<div class="blur" id="blur">
-
-    <div class="payment" id="popup" style="display: flex; justify-content:center; align-items:center; flex-direction:column">
+<div class="blur" id="blur-payment">
+    <div class="payment" id="popup2" style="display: flex; justify-content:center; align-items:center; flex-direction:column">
         <span class="exit-payment">&times;</span>
-    <h3>Please choose payment method</h3>
-        
+        <h3>Please choose payment method</h3>
+
         <div class="transaction-info">
             <table style="width:60%;">
                 <tr>
@@ -335,14 +277,11 @@
         </div>
     </div>
 </div>
-<div id="tpopup" class="tpopup">
-    <div class="popup-message">This is a popup message!</div>
-    <div id="indicator" class="indicator"></div>
-</div>
+
 
 <script>
     let popup1 = document.getElementById('popup');
-    let popup2 = document.getElementById('blur');
+    let popup2 = document.getElementById('blur-payment');
     let popup3 = document.getElementById('details-overlay');
 
     let profile_card = document.querySelector('.admin-profile-card');
@@ -350,6 +289,12 @@
 
     function openPopup() {
         popup1.classList.add("open-popup");
+        popup2.classList.add("open-popup");
+
+    }
+
+    function openPaymentPopup() {
+
         popup2.classList.add("open-popup");
 
     }
@@ -363,6 +308,7 @@
     window.onload = function() {
         makeTable();
         getCartTotal();
+        getFinalTotal();
     }
 
     function checkcustomerloaded() {
@@ -401,16 +347,9 @@
         }
     }
 
-    function discountpopup() {
-        document.getElementById("discountpopup").style.display = "block";
-        document.getElementById("blur").style.display = "block";
-        //enable visibility
-        document.getElementById("blur").style.visibility = "visible";
-    }
-
     function quantitypopup(img, name, id, cost, ) {
-        document.getElementById("quantitypopup").style.display = "block";
-        document.getElementById("blur").style.display = "block";
+
+        document.getElementById("blur-quantity").style.display = "flex";
 
         document.getElementById("furniture-name").innerHTML = name;
         document.getElementById("furniture-id").innerHTML = id;
@@ -420,16 +359,13 @@
 
         document.getElementsByClassName("add-quantity")[0].setAttribute("onclick", "addtocart('" + id + "','" + cost + "')");
 
-
-        //enable visibility
-        document.getElementById("blur").style.visibility = "visible";
     }
 
     function closequantitypopup() {
-        document.getElementById("quantitypopup").style.display = "none";
-        document.getElementById("blur").style.display = "none";
+
+        document.getElementById("blur-quantity").style.display = "none";
         //enable visibility
-        document.getElementById("blur").style.visibility = "hidden";
+
     }
 
 
@@ -534,6 +470,7 @@
 
                 makeTable();
                 getCartTotal();
+                getFinalTotal();
 
             })
             .catch(error => {
@@ -541,8 +478,8 @@
             });
 
 
-        document.getElementById('quantitypopup').style.display = 'none';
-        document.getElementById('blur').style.display = 'none';
+
+        document.getElementById('blur-quantity').style.display = 'none';
     }
 
     // Get the table element
@@ -566,7 +503,7 @@
 
             .then(response => response.json())
             .then(data => {
-
+                console.log(data);
                 // Loop through the cart data and create a new row for each item
                 console.log(data);
                 if (data.cart === false) {
@@ -592,15 +529,15 @@
                         const nameColumn = document.createElement("td");
                         const quantityColumn = document.createElement("td");
                         const costColumn = document.createElement("td");
-                        const discountColumn = document.createElement("td");
+                        const totalColumn = document.createElement("td");
                         const removeColumn = document.createElement("td");
 
                         // Set the values for each column
                         idColumn.textContent = cart.ProductID;
                         nameColumn.textContent = cart.Name;
                         quantityColumn.textContent = cart.Quantity;
-                        costColumn.textContent = cart.Cost * cart.Quantity;
-                        discountColumn.textContent = '10.00';
+                        costColumn.textContent = cart.Cost;
+                        totalColumn.textContent = cart.Cost * cart.Quantity;
 
                         // Create a link to remove the item
                         //class remove item
@@ -623,7 +560,7 @@
                         row.appendChild(nameColumn);
                         row.appendChild(quantityColumn);
                         row.appendChild(costColumn);
-                        row.appendChild(discountColumn);
+                        row.appendChild(totalColumn);
                         row.appendChild(removeColumn);
 
                         // Add the row to the tbody element
@@ -665,6 +602,18 @@
 
     }
 
+    function getFinalTotal() {
+
+        fetch("<?= ROOT ?>/cashier/updateFinalTotal")
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                console.log(data);
+                document.getElementById('final_total').innerHTML = data;
+            })
+    }
+
     function removeitem(productid, cost, quantity) {
         fetch('<?= ROOT ?>/cashier/removeitem/' + productid + '/' + cost + '/' + quantity, {
                 method: 'GET',
@@ -679,6 +628,8 @@
                 console.log(data);
                 makeTable();
                 getCartTotal()
+                getFinalTotal();
+
 
             })
     }
