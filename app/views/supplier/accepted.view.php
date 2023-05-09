@@ -32,7 +32,7 @@
                             <td><?= $order->OrderID ?></td>
                             <td><?= $order->Date ?></td>
                             <td><?= $order->ManagerID ?></td>
-                            <td><?= $order->Accepted_date ?></td>
+                            <td><?= $order->Responded_date ?></td>
 
                             <td><?= ucfirst($order->OrderStatus) ?></td>
                             <!--                        <td> --><?php //if ($order->OrderStatus != 'complete') : 
@@ -50,185 +50,14 @@
                             <!--                            --><?php //endif; 
                                                                 ?>
                             <!--                        </td>-->
-                            <td><div class="table-actions">
-                            <button>Update Status</button><button>View Details</button>
-                            </div></td>
+                            <td>
+                                <div class="table-actions">
+                                    <button>Update Status</button><button>View Details</button>
+                                </div>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
-                    <?php foreach ($data['acceptedorders'] as $order) : ?>
-                        <tr>
-                            <td><small><?= ++$i ?></small></td>
-                            <td><?= $order->OrderID ?></td>
-                            <td><?= $order->Date ?></td>
-                            <td><?= $order->ManagerID ?></td>
-                            <td><?= $order->Accepted_date ?></td>
 
-                            <td><?= ucfirst($order->OrderStatus) ?></td>
-                            <!--                        <td> --><?php //if ($order->OrderStatus != 'complete') : 
-                                                                ?>
-                            <!--                                <a href="--><?php //= ROOT 
-                                                                            ?><!--/supplier/CompleteOrder/-->
-                            <?php //= $order->OrderID 
-                            ?><!--"><button style="background-color: green;">-->
-                            <!--                                        Complete-->
-                            <!--                                    </button></a>-->
-                            <!--                                <button style="background-color: red;">-->
-                            <!--                                    Cancel-->
-                            <!--                                </button>-->
-                            <!---->
-                            <!--                            --><?php //endif; 
-                                                                ?>
-                            <!--                        </td>-->
-                            <td><div>
-                            <button>Update Status</button><button>View Details</button>
-                            </div></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    <?php foreach ($data['acceptedorders'] as $order) : ?>
-                        <tr>
-                            <td><small><?= ++$i ?></small></td>
-                            <td><?= $order->OrderID ?></td>
-                            <td><?= $order->Date ?></td>
-                            <td><?= $order->ManagerID ?></td>
-                            <td><?= $order->Accepted_date ?></td>
-
-                            <td><?= ucfirst($order->OrderStatus) ?></td>
-                            <!--                        <td> --><?php //if ($order->OrderStatus != 'complete') : 
-                                                                ?>
-                            <!--                                <a href="--><?php //= ROOT 
-                                                                            ?><!--/supplier/CompleteOrder/-->
-                            <?php //= $order->OrderID 
-                            ?><!--"><button style="background-color: green;">-->
-                            <!--                                        Complete-->
-                            <!--                                    </button></a>-->
-                            <!--                                <button style="background-color: red;">-->
-                            <!--                                    Cancel-->
-                            <!--                                </button>-->
-                            <!---->
-                            <!--                            --><?php //endif; 
-                                                                ?>
-                            <!--                        </td>-->
-                            <td><div>
-                            <button>Update Status</button><button>View Details</button>
-                            </div></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    <?php foreach ($data['acceptedorders'] as $order) : ?>
-                        <tr>
-                            <td><small><?= ++$i ?></small></td>
-                            <td><?= $order->OrderID ?></td>
-                            <td><?= $order->Date ?></td>
-                            <td><?= $order->ManagerID ?></td>
-                            <td><?= $order->Accepted_date ?></td>
-
-                            <td><?= ucfirst($order->OrderStatus) ?></td>
-                            <!--                        <td> --><?php //if ($order->OrderStatus != 'complete') : 
-                                                                ?>
-                            <!--                                <a href="--><?php //= ROOT 
-                                                                            ?><!--/supplier/CompleteOrder/-->
-                            <?php //= $order->OrderID 
-                            ?><!--"><button style="background-color: green;">-->
-                            <!--                                        Complete-->
-                            <!--                                    </button></a>-->
-                            <!--                                <button style="background-color: red;">-->
-                            <!--                                    Cancel-->
-                            <!--                                </button>-->
-                            <!---->
-                            <!--                            --><?php //endif; 
-                                                                ?>
-                            <!--                        </td>-->
-                            <td><div>
-                            <button>Update Status</button><button>View Details</button>
-                            </div></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    <?php foreach ($data['acceptedorders'] as $order) : ?>
-                        <tr>
-                            <td><small><?= ++$i ?></small></td>
-                            <td><?= $order->OrderID ?></td>
-                            <td><?= $order->Date ?></td>
-                            <td><?= $order->ManagerID ?></td>
-                            <td><?= $order->Accepted_date ?></td>
-
-                            <td><?= ucfirst($order->OrderStatus) ?></td>
-                            <!--                        <td> --><?php //if ($order->OrderStatus != 'complete') : 
-                                                                ?>
-                            <!--                                <a href="--><?php //= ROOT 
-                                                                            ?><!--/supplier/CompleteOrder/-->
-                            <?php //= $order->OrderID 
-                            ?><!--"><button style="background-color: green;">-->
-                            <!--                                        Complete-->
-                            <!--                                    </button></a>-->
-                            <!--                                <button style="background-color: red;">-->
-                            <!--                                    Cancel-->
-                            <!--                                </button>-->
-                            <!---->
-                            <!--                            --><?php //endif; 
-                                                                ?>
-                            <!--                        </td>-->
-                            <td><div>
-                            <button>Update Status</button><button>View Details</button>
-                            </div></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    <?php foreach ($data['acceptedorders'] as $order) : ?>
-                        <tr>
-                            <td><small><?= ++$i ?></small></td>
-                            <td><?= $order->OrderID ?></td>
-                            <td><?= $order->Date ?></td>
-                            <td><?= $order->ManagerID ?></td>
-                            <td><?= $order->Accepted_date ?></td>
-
-                            <td><?= ucfirst($order->OrderStatus) ?></td>
-                            <!--                        <td> --><?php //if ($order->OrderStatus != 'complete') : 
-                                                                ?>
-                            <!--                                <a href="--><?php //= ROOT 
-                                                                            ?><!--/supplier/CompleteOrder/-->
-                            <?php //= $order->OrderID 
-                            ?><!--"><button style="background-color: green;">-->
-                            <!--                                        Complete-->
-                            <!--                                    </button></a>-->
-                            <!--                                <button style="background-color: red;">-->
-                            <!--                                    Cancel-->
-                            <!--                                </button>-->
-                            <!---->
-                            <!--                            --><?php //endif; 
-                                                                ?>
-                            <!--                        </td>-->
-                            <td><div>
-                            <button>Update Status</button><button>View Details</button>
-                            </div></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    <?php foreach ($data['acceptedorders'] as $order) : ?>
-                        <tr>
-                            <td><small><?= ++$i ?></small></td>
-                            <td><?= $order->OrderID ?></td>
-                            <td><?= $order->Date ?></td>
-                            <td><?= $order->ManagerID ?></td>
-                            <td><?= $order->Accepted_date ?></td>
-
-                            <td><?= ucfirst($order->OrderStatus) ?></td>
-                            <!--                        <td> --><?php //if ($order->OrderStatus != 'complete') : 
-                                                                ?>
-                            <!--                                <a href="--><?php //= ROOT 
-                                                                            ?><!--/supplier/CompleteOrder/-->
-                            <?php //= $order->OrderID 
-                            ?><!--"><button style="background-color: green;">-->
-                            <!--                                        Complete-->
-                            <!--                                    </button></a>-->
-                            <!--                                <button style="background-color: red;">-->
-                            <!--                                    Cancel-->
-                            <!--                                </button>-->
-                            <!---->
-                            <!--                            --><?php //endif; 
-                                                                ?>
-                            <!--                        </td>-->
-                            <td><div>
-                            <button>Update Status</button><button>View Details</button>
-                            </div></td>
-                        </tr>
-                    <?php endforeach; ?>
                 </tbody>
             </table>
             <script>

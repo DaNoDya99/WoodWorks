@@ -329,13 +329,15 @@
         document.getElementsByClassName('managerno-span')[0].value = itemId.ManagerID;
         document.getElementsByClassName('orderstatus')[0].innerHTML = itemId.OrderStatus;
 
-        document.getElementById('accept').setAttribute('onclick', 'changeOrderStatus(' + itemId.OrderID + ', "accepted")');
-        document.getElementById('reject').setAttribute('onclick', 'changeOrderStatus(' + itemId.OrderID + ', "rejected")');
+        document.getElementById('accept').setAttribute('onclick', 'changeOrderStatus("' + itemId.OrderID + '", "accepted")');
+        document.getElementById('reject').setAttribute('onclick', 'changeOrderStatus("' + itemId.OrderID + '", "rejected")');
         getOrderItems(itemId.OrderID);
 
     }
 
     function changeOrderStatus(orderID, status) {
+        console.log(orderID);
+        
         fetch('http://localhost/woodworks/public/supplier/changeOrderStatus/' + orderID + '/' + status)
             .then(response => response.json())
             .then(data => {

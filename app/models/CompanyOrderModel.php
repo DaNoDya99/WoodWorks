@@ -62,11 +62,11 @@ class CompanyOrderModel extends Model
     public function changeOrderStatus($id, $status)
     {
         if ($status == 'accepted') {
-            $query = "update $this->table set OrderStatus = :OrderStatus, Accepted_date = :Accepted_date where OrderID = :OrderID";
+            $query = "update $this->table set OrderStatus = :OrderStatus, Responded_date = :Responded_date where OrderID = :OrderID";
             $data = [
                 'OrderStatus' => $status,
                 'OrderID' => $id,
-                'Accepted_date' => date('Y-m-d'),
+                'Responded_date' => date('Y-m-d'),
 
             ];
         } else {
