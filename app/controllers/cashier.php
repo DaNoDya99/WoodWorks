@@ -6,15 +6,10 @@ class cashier extends Controller
 {
     public function index(): void
     {
-//        show($_SESSION);
+        //        show($_SESSION);
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
-        // show($_SESSION);
-
-        // unset($_SESSION['CustomerID']);
-        // unset($_SESSION['CustomerDetails']);
-
 
         $data['row'] = $row = $this->getUser();
         $products = new Furnitures();
@@ -39,10 +34,10 @@ class cashier extends Controller
 
     public function orders()
     {
-//        if(!Auth::logged_in())
-//        {
-//            $this->redirect('login');
-//        }
+        //        if(!Auth::logged_in())
+        //        {
+        //            $this->redirect('login');
+        //        }
 
         $orders = new Orders();
         $data['orders'] = $orders->viewAllOrders();
@@ -80,10 +75,10 @@ class cashier extends Controller
                     $data['error'] = "The cart is empty.";
                 }
                 echo json_encode(['status' => 'success', 'success' => 'Customer loaded successfully.']);
-//            unset($_SESSION['cart']);
+                //            unset($_SESSION['cart']);
             } else {
                 echo json_encode(['status' => 'fail', 'error' => 'Customer not found. Try Again']);
-//            unset($_SESSION['cart']);
+                //            unset($_SESSION['cart']);
             }
         }
     }
@@ -95,7 +90,6 @@ class cashier extends Controller
         $data['order'] = $order->getOrderByID($id);
         $data['order_items'] = $order_items->getOrderItems($id);
         echo json_encode($data);
-
     }
 
     public function isCustomerSet()
@@ -107,119 +101,119 @@ class cashier extends Controller
         }
     }
 
-//    public function add_to_cart($id, $cost)
-//    {
-//
-//        //        if (!Auth::logged_in()) {
-//        //            $this->redirect('login');
-//        //        }
-//
-//        $order = new Orders();
-//        $furniture = new Furnitures();
-//        $cart = new Carts();
-//        $order_items = new Order_Items();
-//        $inventory = new Product_Inventory();
-//        $cus_id = $_SESSION['CustomerID'];
-//        $orderID = '';
-//        if (empty($cart->getCart($cus_id))) {
-//            $cart->setCart($cus_id);
-//        }
-//        $_SESSION['CartID'] = $cart->getCart($cus_id)[0]->CartID;
-//
-//        if (empty($order->checkIsPreparing($cus_id))) {
-//            $orderID = $order->setBillOrder($cus_id);
-//        } else {
-//            $orderID = $order->checkIsPreparingInStore($cus_id)[0]->OrderID;
-//        }
-//        $_SESSION['OrderID'] = $orderID;
-//
-//        $item_quantity = $inventory->getProductQuantity($id)[0]->Quantity;
-//        //if greater than 0 then add to cart
-//
-//
-//        if ($item_quantity > 0) {
-//            $q = "Select * from order_item where CartID = :CartID and ProductID = :ProductID";
-//            $res = $order_items->query($q, ['CartID' => $cart->getCart($cus_id)[0]->CartID, 'ProductID' => $id]);
-//            $info = $furniture->getFurniture($id);
-//
-//            if (!empty($res)) {
-//
-//                $order_items->updateQuantity($orderID, $id, $res[0]->Quantity + 1);
-//                $cart->updateTotalAmountToIncrease($cart->getCart($cus_id)[0]->CartID, $info[0]->Cost);
-//                $inventory->updateQuantityToDecrease($id, 1);
-//
-//                echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.']);
-//                // die;
-//            }
-//
-//
-//            $info = $furniture->getFurniture($id);
-//            $image = $furniture->getDisplayImage($id);
-//
-//            if (empty($order_items->getOrderItem($orderID, $id))) {
-//                $data = [
-//                    'ProductID' => $id,
-//                    'Name' => $info[0]->Name,
-//                    'Quantity' => 1,
-//                    'Cost' => $cost,
-//                    'OrderID' => $orderID,
-//                    'CartID' => $cart->getCart($cus_id)[0]->CartID,
-//                    'Image' => $image[0]->Image
-//                ];
-//
-//                $cart->updateTotalAmountToIncrease($data['CartID'], $data['Cost']);
-//
-//                $order_items->insert($data);
-//                $inventory->updateQuantityToDecrease($id, 1);
-//            }
-//
-//            echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.']);
-//        } else {
-//            echo json_encode(['status' => 'fail', 'error' => 'Item is out of stock.']);
-//        }
-//    }
+    //    public function add_to_cart($id, $cost)
+    //    {
+    //
+    //        //        if (!Auth::logged_in()) {
+    //        //            $this->redirect('login');
+    //        //        }
+    //
+    //        $order = new Orders();
+    //        $furniture = new Furnitures();
+    //        $cart = new Carts();
+    //        $order_items = new Order_Items();
+    //        $inventory = new Product_Inventory();
+    //        $cus_id = $_SESSION['CustomerID'];
+    //        $orderID = '';
+    //        if (empty($cart->getCart($cus_id))) {
+    //            $cart->setCart($cus_id);
+    //        }
+    //        $_SESSION['CartID'] = $cart->getCart($cus_id)[0]->CartID;
+    //
+    //        if (empty($order->checkIsPreparing($cus_id))) {
+    //            $orderID = $order->setBillOrder($cus_id);
+    //        } else {
+    //            $orderID = $order->checkIsPreparingInStore($cus_id)[0]->OrderID;
+    //        }
+    //        $_SESSION['OrderID'] = $orderID;
+    //
+    //        $item_quantity = $inventory->getProductQuantity($id)[0]->Quantity;
+    //        //if greater than 0 then add to cart
+    //
+    //
+    //        if ($item_quantity > 0) {
+    //            $q = "Select * from order_item where CartID = :CartID and ProductID = :ProductID";
+    //            $res = $order_items->query($q, ['CartID' => $cart->getCart($cus_id)[0]->CartID, 'ProductID' => $id]);
+    //            $info = $furniture->getFurniture($id);
+    //
+    //            if (!empty($res)) {
+    //
+    //                $order_items->updateQuantity($orderID, $id, $res[0]->Quantity + 1);
+    //                $cart->updateTotalAmountToIncrease($cart->getCart($cus_id)[0]->CartID, $info[0]->Cost);
+    //                $inventory->updateQuantityToDecrease($id, 1);
+    //
+    //                echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.']);
+    //                // die;
+    //            }
+    //
+    //
+    //            $info = $furniture->getFurniture($id);
+    //            $image = $furniture->getDisplayImage($id);
+    //
+    //            if (empty($order_items->getOrderItem($orderID, $id))) {
+    //                $data = [
+    //                    'ProductID' => $id,
+    //                    'Name' => $info[0]->Name,
+    //                    'Quantity' => 1,
+    //                    'Cost' => $cost,
+    //                    'OrderID' => $orderID,
+    //                    'CartID' => $cart->getCart($cus_id)[0]->CartID,
+    //                    'Image' => $image[0]->Image
+    //                ];
+    //
+    //                $cart->updateTotalAmountToIncrease($data['CartID'], $data['Cost']);
+    //
+    //                $order_items->insert($data);
+    //                $inventory->updateQuantityToDecrease($id, 1);
+    //            }
+    //
+    //            echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.']);
+    //        } else {
+    //            echo json_encode(['status' => 'fail', 'error' => 'Item is out of stock.']);
+    //        }
+    //    }
 
-//    public function updateQuantity($cartID, $orderID, $productID, $newQuantity, $cost)
-//    {
-//        // if (!Auth::logged_in()) {
-//        //     $this->redirect('login1');
-//        // }
-//
-//        $cart = new Carts();
-//        $order_item = new Order_Items();
-//        $inventory = new Product_Inventory();
-//        $item_quantity = $inventory->getProductQuantity($productID)[0]->Quantity;
-//
-//        if ($item_quantity >= $newQuantity) {
-//            $data = [];
-//            show($_SESSION);
-//            foreach ($_SESSION['cart'] as $key => $value) {
-//                if ($value['ProductID'] == $productID) {
-//                    $oldQuantity = $value['Quantity'];
-//                    $data['OrderID'] = $value['OrderID'];
-//                    $data['ProductID'] = $value['ProductID'];
-//                    $data['Quantity'] = $newQuantity;
-//                    $data['OrderDate'] = $value['OrderDate'];
-//                    $data['CustomerID'] = $value['CustomerID'];
-//                    $data['Cost'] = $value['Cost'];
-//                    $data['CartID'] = $value['CartID'];
-//                    unset($_SESSION['cart'][$key]);
-//                    $_SESSION['cart'][] = $data;
-//                }
-//            }
-//
-//            $quantityDifference = $newQuantity - $oldQuantity;
-//            $inventory->updateQuantityToDecrease($productID, $quantityDifference);
-//            $order_item->updateQuantity($orderID, $productID, $newQuantity);
-//            $cart->updateTotalAmountToIncrease($cartID, $cost * $quantityDifference);
-//
-//            echo "<h1>New One</h1>";
-//        } else {
-//            echo "<div class='cat-success cat-deletion'>
-//                <h2>The requested quantity is not available.</h2>
-//              </div>";
-//        }
-//    }
+    //    public function updateQuantity($cartID, $orderID, $productID, $newQuantity, $cost)
+    //    {
+    //        // if (!Auth::logged_in()) {
+    //        //     $this->redirect('login1');
+    //        // }
+    //
+    //        $cart = new Carts();
+    //        $order_item = new Order_Items();
+    //        $inventory = new Product_Inventory();
+    //        $item_quantity = $inventory->getProductQuantity($productID)[0]->Quantity;
+    //
+    //        if ($item_quantity >= $newQuantity) {
+    //            $data = [];
+    //            show($_SESSION);
+    //            foreach ($_SESSION['cart'] as $key => $value) {
+    //                if ($value['ProductID'] == $productID) {
+    //                    $oldQuantity = $value['Quantity'];
+    //                    $data['OrderID'] = $value['OrderID'];
+    //                    $data['ProductID'] = $value['ProductID'];
+    //                    $data['Quantity'] = $newQuantity;
+    //                    $data['OrderDate'] = $value['OrderDate'];
+    //                    $data['CustomerID'] = $value['CustomerID'];
+    //                    $data['Cost'] = $value['Cost'];
+    //                    $data['CartID'] = $value['CartID'];
+    //                    unset($_SESSION['cart'][$key]);
+    //                    $_SESSION['cart'][] = $data;
+    //                }
+    //            }
+    //
+    //            $quantityDifference = $newQuantity - $oldQuantity;
+    //            $inventory->updateQuantityToDecrease($productID, $quantityDifference);
+    //            $order_item->updateQuantity($orderID, $productID, $newQuantity);
+    //            $cart->updateTotalAmountToIncrease($cartID, $cost * $quantityDifference);
+    //
+    //            echo "<h1>New One</h1>";
+    //        } else {
+    //            echo "<div class='cat-success cat-deletion'>
+    //                <h2>The requested quantity is not available.</h2>
+    //              </div>";
+    //        }
+    //    }
 
     public function add_to_cart($id, $cost, $quantity = 1): void
     {
@@ -242,8 +236,7 @@ class cashier extends Controller
             $orderID = $order->checkIsPreparingInStore($cus_id)[0]->OrderID;
         }
         $_SESSION['OrderID'] = $orderID;
-//        show($_SESSION['OrderID']);
-//        show($_SESSION['CartID']);
+
 
         $item_quantity = $inventory->getProductQuantity($id)[0]->Quantity;
 
@@ -253,7 +246,6 @@ class cashier extends Controller
             $info = $furniture->getFurniture($id);
 
             if (!empty($res)) {
-//                show($res);
                 $order_items->updateQuantity($orderID, $id, $res[0]->Quantity + $quantity);
                 $cart->updateTotalAmountToIncrease($cart->getCart($cus_id)[0]->CartID, $info[0]->Cost * $quantity);
                 $inventory->updateQuantityToDecrease($id, $quantity);
@@ -452,7 +444,6 @@ class cashier extends Controller
             $data['total'] = 0;
             echo json_encode($data);
         }
-
     }
 
     public function getCartItems()
@@ -526,5 +517,16 @@ class cashier extends Controller
             }
         }
         $this->view('cashier/profile', $data);
+    }
+
+    public function getDiscount($id)
+    {
+        $discounts = new Discounts();
+        $discount = $discounts->getDiscount($id);
+
+        if (empty($discount)) {
+            return 0;
+        }
+        return $discount[0]->Discount_percentage;
     }
 }

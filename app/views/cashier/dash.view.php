@@ -134,13 +134,12 @@
                 <th class="">Quantity</th>
                 <th class="">Unit Price</th>
                 <th class="">Discount</th>
-                <th class=""><img style="width: 15px" src="<?=ROOT?>/assets/images/cashier/trash-solid.svg" alt=""></th>
+                <th class=""><img style="width: 15px" src="<?= ROOT ?>/assets/images/cashier/trash-solid.svg" alt=""></th>
             </thead>
 
         </table>
 
-        <div id="empty-cart-message"
-             style="height:100%; width:100%;border:0.5px solid grey; margin-top:20px; margin-bottom:20px;border-radius:15px; display:flex; justify-content:center; align-items:center">
+        <div id="empty-cart-message" style="height:100%; width:100%;border:0.5px solid grey; margin-top:20px; margin-bottom:20px;border-radius:15px; display:flex; justify-content:center; align-items:center">
             <p style="color:white; font-size:20px">Cart is empty</p>
         </div>
         <div>
@@ -154,12 +153,9 @@
 
                     </div>
                     <div class="discounts-view">
-                        <div id="openDiscounts"
-                             style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row"
-                             onclick="discountPopup()">
+                        <div id="openDiscounts" style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row" onclick="discountPopup()">
                             <p>Discounts</p>
-                            <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt=""
-                                 style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;">
+                            <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt="" style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;">
                         </div>
 
                         <p onclick="discountpopup()" style="">00.00</p>
@@ -202,10 +198,10 @@
                 <h3>Applied Discounts</h3>
                 <table>
                     <thead>
-                    <tr>
-                        <th>Discount Code</th>
-                        <th>Discount Amount</th>
-                    </tr>
+                        <tr>
+                            <th>Discount Code</th>
+                            <th>Discount Amount</th>
+                        </tr>
 
                     </thead>
                     <tbody id="applied-discounts-table">
@@ -302,16 +298,41 @@
     });
 </script>
 
-<div class="blur" id="blur"></div>
-<div class="payment" id="popup" style="display: flex; justify-content:center; align-items:center; flex-direction:column">
+<div class="blur" id="blur">
+
+    <div class="payment" id="popup" style="display: flex; justify-content:center; align-items:center; flex-direction:column">
+        <span class="exit-payment">&times;</span>
     <h3>Please choose payment method</h3>
-    <div style="display:flex;">
-        <a href="<?= ROOT ?>/cashier/checkout_cash">
-            <div class="paybutton">Cash</div>
-        </a>
+        
+        <div class="transaction-info">
+            <table style="width:60%;">
+                <tr>
+                    <td>Order ID:</td>
+                    <td style="text-align:right;">123123_ORD</td>
+                </tr>
 
-        <div class="paybutton" onclick="checkout('<?= $_SESSION['OrderID'] ?>')">Card</div>
+                <tr>
+                    <td>Number of items:</td>
+                    <td style="text-align:right;">123</td>
+                </tr>
+                <tr>
+                    <td>Total Amount:</td>
+                    <td style="text-align:right;">420,000</td>
+                </tr>
 
+
+            </table>
+
+
+        </div>
+        <div style="display:flex;">
+            <a href="<?= ROOT ?>/cashier/checkout_cash">
+                <div class="paybutton">Cash</div>
+            </a>
+
+            <div class="paybutton" onclick="checkout('<?= $_SESSION['OrderID'] ?>')">Card</div>
+
+        </div>
     </div>
 </div>
 <div id="tpopup" class="tpopup">
@@ -515,6 +536,9 @@
                 getCartTotal();
 
             })
+            .catch(error => {
+                console.error("Error fetching cart data:", error);
+            });
 
 
         document.getElementById('quantitypopup').style.display = 'none';
@@ -549,7 +573,13 @@
                     document.getElementById('empty-cart-message').style.display = 'flex';
                     document.getElementById('bill-table').style.display = 'none';
 
+                    document.getElementsByClassName('proceed')[0].setAttribute('disabled', 'true');
+                    document.getElementsByClassName('proceed')[0].style.backgroundColor = 'grey';
+
+
                 } else {
+                    document.getElementsByClassName('proceed')[0].removeAttribute('disabled');
+                    document.getElementsByClassName('proceed')[0].style.backgroundColor = '#008f37';
                     document.getElementById('bill-table').style.display = 'block';
                     document.getElementById('empty-cart-message').style.display = 'none';
 

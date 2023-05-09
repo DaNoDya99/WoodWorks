@@ -261,7 +261,7 @@ label {
 
 .proceed {
     transition: all 0.5s;
-    background-color: #008f37;
+    background-color: `;
     color: white;
     padding: 20px;
     border-radius: 10px;
@@ -281,20 +281,20 @@ label {
     box-sizing: border-box;
     /* position: absolute; */
     bottom: 20px;
-    right: 20px;
+    right: 20px;¸¸¸¸¸
 }
 
 .payment {
     position: absolute;
-    top: 50%;
-    visibility: hidden;
-    left: 50%;
+    visibility: visible;
     transform: translate(-50%, -50%);
-    width: 50vw;
-    /* background-color: rgb(255, 255, 255); */
-    height: 50vh;
-    color: white;
-    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    padding: 40px;
+    /* width: 50vw; */
+    background-color: rgb(255, 255, 255);
+    /* height: 50vh; */
+    border-radius: 14px;
 }
 
 .blur {
@@ -304,7 +304,9 @@ label {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.104);
     height: 100vh;
+    -webkit-backdrop-filter: blur(0px) brightness(0.5);
     backdrop-filter: blur(0px) brightness(0.5);
+
 }
 
 .open-popup {
@@ -481,8 +483,7 @@ input[type="password"] {
     font-size: 0.9rem;
 }
 
-.details-input form button {
-}
+.details-input form button {}
 
 #message-overlay {
     transition: all 0.5s ease;
@@ -498,7 +499,8 @@ input[type="password"] {
     transform: translateX(-50%);
     width: 500px;
     border-radius: 10px;
-    box-shadow: 0px 0px 45px 14px rgba(0, 0, 0, 0.3);;
+    box-shadow: 0px 0px 45px 14px rgba(0, 0, 0, 0.3);
+    ;
 
     padding: 20px;
     background-color: #ffffff;
@@ -796,34 +798,52 @@ hr {
 .bill-table thead th {
     border-left: 1px solid rgb(135, 135, 135);
     font-size: 12px;
-}.bill-table tbody tr {
+}
+
+.bill-table tbody tr {
     border-left: 1px solid rgb(135, 135, 135);
     font-size: 14px;
 }
 
 
-.bill-table  th:nth-child(1), td:nth-child(1) {
-    width: 18%;
+.bill-table th:nth-child(1),
+.bill-table td:nth-child(1) {
+    width: 5%;
 }
 
-.bill-table  th:nth-child(2), td:nth-child(2) {
-    width: 18%;
+.bill-table th:nth-child(2),
+.bill-table td:nth-child(2) {
+    width: 20%;
 }
 
-.bill-table  th:nth-child(3), td:nth-child(3) {
-    width: 18%;
+.bill-table th:nth-child(3),
+.bill-table td:nth-child(3) {
+    width: 16%;
 }
 
-.bill-table  th:nth-child(4), td:nth-child(4) {
-    width: 18%;
+.bill-table th:nth-child(4),
+.bill-table td:nth-child(4) {
+    width: 15%;
 }
 
-.bill-table  th:nth-child(5), td:nth-child(5) {
-    width: 18%;
+.bill-table th:nth-child(5),
+.bill-table td:nth-child(5) {
+    width: 12%;
 }
 
-.bill-table th:nth-child(6), td:nth-child(6) {
-    width: 10%;
+.bill-table th:nth-child(6),
+.bill-table td:nth-child(6) {
+    width: 12%;
+}
+
+.bill-table th:nth-child(7),
+.bill-table td:nth-child(7) {
+    width: 12%;
+}
+
+.bill-table th:nth-child(8),
+.bill-table td:nth-child(8) {
+    width: 12%;
 }
 
 .cart-empty-message {
@@ -868,7 +888,8 @@ hr {
 
 }
 
-.quantity-box #increment, #decrement {
+.quantity-box #increment,
+#decrement {
     height: 30px;
     width: 30px;
     text-align: center;
@@ -909,9 +930,7 @@ hr {
     width: 200px;
 }
 
-#furniture-image {
-
-}
+#furniture-image {}
 
 
 .tpopup {
@@ -998,7 +1017,8 @@ hr {
 .applied-discounts tbody {
     display: table;
     width: 100%;
-    max-height: 200px; /* Set the desired maximum height for the scrollable area */
+    max-height: 200px;
+    /* Set the desired maximum height for the scrollable area */
     overflow-y: scroll;
 }
 
@@ -1019,9 +1039,10 @@ hr {
     width: 50%
 }
 
-.applied-discounts td, th {
+.applied-discounts td,
+.applied-discounts th {
     border: 1px solid #ccc;
-    width: 50%;
+    /* width: 50%; */
 }
 
 .order-detail-popup {
@@ -1046,7 +1067,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: absolute;
     z-index: 1;
     left: 0;
     top: 0;
@@ -1126,4 +1147,25 @@ body {
 .order-items-table tbody tr:hover {
     background-color: #ddd;
     cursor: pointer;
+}
+
+.transaction-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.exit-payment {
+    position: absolute;
+    top: 5px;
+    font-size: 40px;
+    right: 20px;
+    color: rgb(81, 81, 81);
 }
