@@ -276,4 +276,10 @@ class Orders extends Model
         return $this->query($query,['OrderID' => $orderId]);
     }
 
+    public function getOrdersByStatus($status)
+    {
+        $query = "SELECT * FROM `orders` WHERE Order_status = :Order_status ORDER BY DATE DESC;";
+
+        return $this->query($query,['Order_status' => $status]);
+    }
 }
