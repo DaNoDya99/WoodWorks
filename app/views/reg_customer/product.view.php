@@ -1,7 +1,7 @@
 <?php
 $cost = '';
 
-if(!empty($furniture[0]->Discount_percentage)){
+if(!empty($furniture[0]->Discount_percentage) && $furniture[0]->Active === 1){
     $cost = round($furniture[0]->Cost*(100 - $furniture[0]->Discount_percentage)/100);
 }else{
     $cost = $furniture[0]->Cost;
@@ -36,7 +36,7 @@ if(!empty($furniture[0]->Discount_percentage)){
         <div class="product-desc">
             <h2><?=$furniture[0]->Name?></h2>
 
-            <?php if(!empty($furniture[0]->Discount_percentage)) : ?>
+            <?php if(!empty($furniture[0]->Discount_percentage)  && $furniture[0]->Active === 1) : ?>
                 <div class="product-discount"><h2>Discount: <?=$furniture[0]->Discount_percentage?>%</h2></div>
                 <div class="product-costs">
                     <h1 class="line-through">Rs. <?=$furniture[0]->Cost?>.00</h1>

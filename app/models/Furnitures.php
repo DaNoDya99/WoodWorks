@@ -58,7 +58,8 @@ class Furnitures extends Model
             'Availability',
             'Warrenty_period',
             'Wood_type ',
-            'discounts.Discount_percentage'
+            'discounts.Discount_percentage',
+            'discounts.Active',
         ];
 
         if (!empty($fields)) {
@@ -75,7 +76,7 @@ class Furnitures extends Model
 
     public function getFurnitures($category ,$sub_cat,$limit = 2,$offset)
     {
-        $query = "SELECT furniture.ProductID, furniture.Name, furniture.Cost, discounts.Discount_percentage FROM furniture LEFT JOIN discounts ON furniture.DiscountID = discounts.DiscountID WHERE furniture.CategoryID = '$category' && furniture.Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
+        $query = "SELECT furniture.ProductID, furniture.Name, furniture.Cost, discounts.Discount_percentage, discounts.Active FROM furniture LEFT JOIN discounts ON furniture.DiscountID = discounts.DiscountID WHERE furniture.CategoryID = '$category' && furniture.Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
 
         return $this->query($query);
     }

@@ -1,6 +1,6 @@
 <a href="<?=ROOT?>/home/product/<?=$row->ProductID?>">
 <div class="product-card">
-    <?php if (!empty($row->Discount_percentage)) : ?>
+    <?php if (!empty($row->Discount_percentage && $row->Active === 1)) : ?>
         <div class="product-card-discount">
             <p><?= $row->Discount_percentage ?>% Discount</p>
         </div>
@@ -25,7 +25,7 @@
             <?php endif ?>
             <h2><?= $row->Name ?></h2>
 
-            <?php if(!empty($row->Discount_percentage)): ?>
+            <?php if(!empty($row->Discount_percentage) && $row->Active === 1): ?>
                 <h3 class="cost line-through">Rs. <?= $row->Cost ?>.00</h3>
                 <h4>Rs. <?=round(($row->Cost*(100 - $row->Discount_percentage))/100) ?>.00</h4>
             <?php else: ?>
