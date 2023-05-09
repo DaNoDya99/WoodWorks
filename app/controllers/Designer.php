@@ -133,14 +133,10 @@ class Designer extends Controller
             $this->redirect('login1');
         }
 
-        $limit = 8;
-        $pager = new Pager($limit);
-        $offset = $pager->offset;
-        $data['pager'] = $pager;
-
+        $limit = 10;
         $categories = new Categories();
         $data['row'] = $this->getUser();
-        $data['categories'] = $categories->getDesignCategories($offset,$limit);
+        $data['categories'] = $categories->getDesignCategories($limit);
 
         $this->view("designer/design_category",$data);
     }

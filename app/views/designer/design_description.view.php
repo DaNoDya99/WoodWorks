@@ -56,7 +56,12 @@
                                 <table>
                                     <tr><th>Design Name : </th><td><?=$design[0]->Name?></td></tr>
                                     <tr><th>Designer ID : </th><td><?=$design[0]->DesignerID?></td></tr>
-                                    <tr><th>Category ID : </th><td><?=$design[0]->CategoryID?></td></tr>
+                                    <?php
+                                    $categories = new Categories();
+                                    $rows = $categories->findAll();
+                                    $categoryDetail = $categories->getCategoryByID($data['design'][0]->CategoryID);
+                                    ?>
+                                    <tr><th>Category Name : </th><td><?=$categoryDetail[0]->Category_name?></td></tr>
                                     <?php
                                     $newDate = date("d/m/Y", strtotime($design[0]->Date));
                                     ?>

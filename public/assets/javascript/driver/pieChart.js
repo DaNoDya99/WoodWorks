@@ -3,7 +3,7 @@ $(document).ready(function () {
         url: "http://localhost/woodworks/public/driver_home/pieData",
         method: "GET",
         success: function (data) {
-              //console.log(data);
+              // console.log(data);
                 var Count = [];
                 var Status = [];
                 var colors = [];
@@ -13,8 +13,8 @@ $(document).ready(function () {
                 Status.push(data[i].Order_status);
                 colors.push(color());
             }
-            // console.log(Count);
-            // console.log(Status);
+             // console.log(Count);
+             // console.log(Status);
             var chartdata = {
                 labels: Status,
                 datasets: [{
@@ -52,7 +52,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'Current Status',
+                            text: 'Recent Orders Status',
                             color:'black',
                             font: {
                                 size: 15,

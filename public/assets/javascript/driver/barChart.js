@@ -13,8 +13,8 @@ $(document).ready(function () {
                 date.push(data[i].Date);
                 colors.push(color());
             }
-            // console.log(Count);
-            // console.log(Status);
+            console.log(Count);
+            console.log(Status);
             var chartdata = {
                 labels: date,
                 datasets: [{
@@ -37,7 +37,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'Uncompleted Orders and Dates',
+                            text: 'Uncompleted Orders For This Week',
                             color:'black',
                             font: {
                                 size: 15,
@@ -71,7 +71,7 @@ $(document).ready(function () {
                         x: {
                             title: {
                                 display: true,
-                                text: 'Dates',
+                                text: 'Delivery Dates',
                                 color:'black',
                                 font: {
                                     size: 15,

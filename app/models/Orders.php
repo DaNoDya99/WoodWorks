@@ -85,11 +85,50 @@ class Orders extends Model
         $this->query($query,$data);
     }
 
-    public function findOrders($column,$value)
+    public function findThisWeekOrders($column,$value)
     {
-        $query = "select * from $this->table where $column = :value order by DATE desc limit 4";
-        return $this->query($query,['value'=>$value]);
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT * FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` != 'Delivered' ORDER BY DATE DESC LIMIT 7";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+//        echo "Query: $query\n";
+//        echo "Params: " . json_encode($params) . "\n";
+
+        return $this->query($query, $params);
     }
+
+    public function findThisWeekCompletedOrders($column,$value)
+    {
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT count(OrderID) AS 'NumOfCompletedOrdres' FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` = 'Delivered'";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+        return $this->query($query, $params);
+    }
+
+
+    public function findThisMonthDelayedOrders($column, $value)
+    {
+        $currentMonth = date('m');
+        $query = "SELECT COUNT(OrderID) AS 'NumOfDelayedOrders'FROM $this->table 
+              WHERE MONTH(Estimated_date) = :currentMonth 
+                AND $column = :value 
+                AND `Order_status` = 'Delivered' 
+                AND `Date` < `Estimated_date`";
+
+        $params = ['currentMonth' => $currentMonth, 'value' => $value];
+
+        return $this->query($query, $params);
+    }
+
+
+
 
     public function getCustomerOrders($id)
     {
@@ -136,16 +175,30 @@ class Orders extends Model
         return $this->query($query);
     }
 
-    public function pieGraph()
+    public function pieGraph($column, $value)
     {
-        $query = "SELECT COUNT(OrderID) AS numOrders,Order_status FROM $this->table GROUP BY Order_status ";
-        return $this->query($query);
+
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT count(OrderID) AS 'numOrders',Order_status FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value GROUP BY Order_status";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+        return $this->query($query, $params);
     }
 
-    public function barGraph()
+    public function barGraph($column, $value)
     {
-        $query = "SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM $this->table WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)";
-        return $this->query($query);
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT cast(Estimated_date as date) AS Date, count(OrderID) AS numOrders FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND  $column = :value AND Order_status != 'delivered' GROUP BY cast(Estimated_date as date)";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+        return $this->query($query, $params);
+
     }
 
     public function update_status($OrderID,$data)
@@ -204,7 +257,7 @@ class Orders extends Model
 //            $orderID = $this->random_string(60);
 //        }
 
-        $prefix = 'ORD';
+        $prefix = 'CUS_ORD';
         $unique_id = mt_rand(1000, 9999);
         $timestamp = substr(date('YmdHis'), 8, 6);
         $orderID = $prefix . '-' . $unique_id . '-' . $timestamp;
