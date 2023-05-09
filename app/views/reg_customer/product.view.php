@@ -62,8 +62,13 @@ if(!empty($furniture[0]->Discount_percentage)){
     <div class="review-section">
         <div class="overall-rate-sec">
             <div class="rate-info">
-                <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
-                <h1>5.0</h1>
+                <span style="font-size: 3rem"><?= $rating ?></span>
+                <div>
+                    <div class="stars-outer product-card-stars-outer" style="top: 0">
+                        <div class="stars-inner" style="width: <?= (($rating/5)*100).'%' ?>"></div>
+                    </div>
+                    <span class="number-rating"></span>
+                </div>
             </div>
             <p>(Based on last 10 customer reviews)</p>
         </div>
