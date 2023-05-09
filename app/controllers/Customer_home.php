@@ -384,7 +384,7 @@ class Customer_home extends Controller
 
         switch ($details->Order_status)
         {
-            case 'paid':
+            case 'Paid':
                 $str .= "
                     <div class='prog-status-container'>
                     <img src='http://localhost/WoodWorks/public/assets/images/customer/dollar-circle-svgrepo-com(1).svg' alt='paid'>
@@ -559,7 +559,7 @@ class Customer_home extends Controller
                 </div>
                 <div class='order-detail '>
                     <h4>Invoice Number</h4>
-                    <span>#" . substr($details->OrderID, 0, 8) . "</span>
+                    <span>" .$details->OrderID . "</span>
                 </div>
                 <div class='order-detail'>
                     <h4>Sub Total</h4>
