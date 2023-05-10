@@ -64,7 +64,7 @@
                                     <h3>Orders</h3>
                                     <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt=""
                                          onmouseover="tooltip(2)" onmouseleave="tooltipoff(2)">
-                                    <div class="tooltip tooltip2 hidden-section">Revenue from Sales</div>
+                                    <div class="tooltip tooltip2 hidden-section">Number of orders within that time</div>
 
                                 </div>
                                 <h2 id="total-order-count"><i style="color:grey">Select Range</i></h2>
@@ -74,7 +74,7 @@
                                     <h3>Products Sold</h3>
                                     <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt=""
                                          onmouseover="tooltip(3)" onmouseleave="tooltipoff(3)">
-                                    <div class="tooltip tooltip3 hidden-section">Revenue from Sales</div>
+                                    <div class="tooltip tooltip3 hidden-section">Number of products sold</div>
 
                                 </div>
                                 <h2 id="total-products-sold"><i style="color:grey">Select Range</i></h2>
@@ -86,6 +86,16 @@
                         <div class="chart-container">
                             <div class="chart-component">
                                 <canvas id="mainSalesChart"></canvas>
+                            </div>
+                            <div class="chart-component">
+                                <canvas id="ordercount"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="charts">
+                        <div class="chart-container">
+                            <div class="chart-component">
+                                <canvas id="myChart"></canvas>
                             </div>
                             <div class="chart-component">
                                 <canvas id="ordercount"></canvas>
@@ -144,57 +154,58 @@
                 </div>
             </div>
             <div class="inventory-section hidden-section">
-                <div class="list product-list">
-                    <div class="inventory-list-header">
-                        <h3>Inventory</h3>
-                        <select id="">
-                            <option value="paid">Paid</option>
-                            <option value="unpaid">Unpaid</option>
-                        </select>
 
-                        <div>
-                            <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a>
+                <div class="charts">
+                    <div style="display: flex; flex-direction: row; column-gap:20px">
+                        <div class="list product-list">
+                            <div class="inventory-list-header">
+                                <h3>Inventory</h3>
+                                <div>
+                                    <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a>
+                                </div>
+
+                            </div>
+
+                            <table id="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product ID</th>
+                                    <th>Status</th>
+                                    <th>Quantity In Stock</th>
+                                    <th>Reorder Point</th>
+                                    <th>Last Ordered</th>
+                                    <th>Last Recieved</th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="tableBody-inventory">
+                                <!-- Table rows will be populated dynamically using JavaScript -->
+                                </tbody>
+                            </table>
+                            <div class="pagination-inventory" id="pagination-inventory">
+                                <!-- Pagination buttons will be populated dynamically using JavaScript -->
+                            </div>
                         </div>
-
-                    </div>
-
-                    <table id="table">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Product ID</th>
-                            <th>Quantity In Stock</th>
-                            <th>Reorder Point</th>
-                            <th>Last Ordered</th>
-                            <th>Last Recieved</th>
-
-                        </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                        <!-- Table rows will be populated dynamically using JavaScript -->
-                        </tbody>
-                    </table>
-                    <div class="pagination" id="pagination">
-                        <!-- Pagination buttons will be populated dynamically using JavaScript -->
                     </div>
                 </div>
-            </div>
-            <div class="orders-section hidden-section">
+                <div class="orders-section hidden-section">
 
+                </div>
+
+                <div class="catergories-section hidden-section">
+
+                </div>
+                <div class="coupons-section hidden-section">
+                </div>
             </div>
 
-            <div class="catergories-section hidden-section">
 
-            </div>
-            <div class="coupons-section hidden-section">
-            </div>
         </div>
-
-
     </div>
 
-</div>
-<script src="<?= ROOT ?>/assets/javascript/manager/reports.js"></script>
+
+    <script src="<?= ROOT ?>/assets/javascript/manager/reports.js"></script>
 </body>
 
 </html>

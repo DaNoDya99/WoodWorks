@@ -179,13 +179,13 @@ class Manager extends Controller
             $this->redirect('login');
         }
 
-        $data['title']="ISSUES";
-        
+        $data['title'] = "ISSUES";
+
 
         $issue = new Issues();
         $data['issue'] = $issue->get_issue();
         $data['issues'] = $issue->getissuehistory();
-        $this->view('manager/issues',$data);
+        $this->view('manager/issues', $data);
     }
 
     public function designs()
@@ -211,7 +211,7 @@ class Manager extends Controller
         $this->view('manager/designs', $data);
     }
 
-    
+
     public function reports()
     {
         if (!Auth::logged_in()) {
@@ -263,11 +263,11 @@ class Manager extends Controller
             // show($labels);
             $order = new Orders();
 
-            $data['products_sold'] = $order->findProductsSold($_POST['date1'], $_POST['date2']);
+            // $data['products_sold'] = $order->findProductsSold($_POST['date1'], $_POST['date2']);
 
 
             $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
-//             show($a);
+            // show($a);
             if (empty($a)) {
                 $a = [];
             }
@@ -334,7 +334,9 @@ class Manager extends Controller
 
     public function inventoryinfo()
     {
-        $inventory = new Inventory();
+        $inventory = new Product_Inventory();
+        $data['inventory'] = $inventory->getAllFromInventory();
+        echo json_encode($data);
 
     }
 
@@ -394,8 +396,8 @@ class Manager extends Controller
 
         $data['categories'] = $categories->getCategories();
 
-        $this->view('manager/discounts',$data);
- 
+        $this->view('manager/discounts', $data);
+
     }
 
 
