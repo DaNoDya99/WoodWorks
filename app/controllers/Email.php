@@ -20,6 +20,15 @@ class Email extends Controller
         $this->send($email, 'Sign-up Verification', $content);
     }
 
+    function bill($email)
+    {
+        ob_start();
+
+        include('../public/assets/templates/bill.php');
+        $content =  ob_get_clean();
+        $this->send($email, 'Sign-up Verification', $content);
+    }
+
     function send($emailTo, $subject, $body): void
     {
         $mail = new PHPMailer();
