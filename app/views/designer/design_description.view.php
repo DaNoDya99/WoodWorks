@@ -15,9 +15,11 @@
                 <div class="design-btns">
                     <button onclick="openDocumentPopup('<?=$design[0]->DesignID?>','<?=$design[0]->Name?>','<?=$design[0]->DesignerID?>','<?=$design[0]->Description?>','<?=$images[0]->Image?>','<?=$images[1]->Image?>','<?=$images[2]->Image?>','<?=$design[0]->Pdf?>',event)">Update</button>
 
-                    <form action="<?=ROOT?>/designer/remove_add_design/<?=$data['design'][0]->DesignID?>" method="post">
-                        <input type="submit" name="delete_btn" value="Remove">
-                    </form>
+<!--                    <form action="--><?php //=ROOT?><!--/designer/remove_add_design/--><?php //=$data['design'][0]->DesignID?><!--" method="post">-->
+<!--                        <input type="submit" name="delete_btn" value="Remove">-->
+<!--                    </form>-->
+
+                    <button onclick="deleteDesign('<?=$data['design'][0]->DesignID?>')">Remove</button>
 
                 </div>
 

@@ -66,14 +66,15 @@
                                 <?php endif;?>
                                 <?php
                                 $date = $row->Date;
-                                $newDate = date("d/m/Y", strtotime($date));
+                                $newDate1 = date("d/m/Y", strtotime($date));
+                                $newDate2 = date("d/m/Y", strtotime($row->Estimated_date));
 
-                                $dateObject = DateTime::createFromFormat('d/m/Y', $newDate);
-                                $dateObject->add(new DateInterval('P7D'));
-                                $estimatedDeliveryDate = $dateObject->format('d/m/Y');
+//                                $dateObject = DateTime::createFromFormat('d/m/Y', $newDate);
+//                                $dateObject->add(new DateInterval('P7D'));
+//                                $estimatedDeliveryDate = $dateObject->format('d/m/Y');
                                 ?>
-                                <td><?=$newDate?></td>
-                                <td><?=$estimatedDeliveryDate?></td>
+                                <td><?=$newDate1?></td>
+                                <td><?=$newDate2?></td>
                             </tr>
                         <?php endforeach;?>
                         </tbody>
@@ -113,7 +114,7 @@
             </div>
 
             <div class="box" id="chart-container2" onclick="location.href='<?=ROOT?>/driver_home/order';">
-                <canvas id="myBar" width="300" height="380"> </canvas>
+                <canvas id="myBar" width="340" height="470"> </canvas>
             </div>
 
         </div>

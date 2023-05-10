@@ -120,7 +120,7 @@ class Orders extends Model
               WHERE MONTH(Estimated_date) = :currentMonth 
                 AND $column = :value 
                 AND `Order_status` = 'Delivered' 
-                AND `Date` < `Estimated_date`";
+                AND `Delivered_date` > `Estimated_date`";
 
         $params = ['currentMonth' => $currentMonth, 'value' => $value];
 
@@ -193,7 +193,14 @@ class Orders extends Model
         $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
         $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
 
-        $query = "SELECT cast(Estimated_date as date) AS Date, count(OrderID) AS numOrders FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND  $column = :value AND Order_status != 'delivered' GROUP BY cast(Estimated_date as date)";
+        $query = "SELECT cast(Estimated_date as date) AS 'Date', count(OrderID) AS 'numOrders' 
+              FROM $this->table 
+              WHERE Estimated_date >= :startOfWeek 
+              AND Estimated_date <= :endOfWeek 
+              AND $column = :value 
+              AND Order_status != 'delivered' 
+            GROUP BY cast(Estimated_date as date)";
+
 
         $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
 

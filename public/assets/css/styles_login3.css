@@ -347,7 +347,7 @@ body{
 
 .driver-tbox{
     width: 30%;
-    height: 550px;
+    height: 580px;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
@@ -459,6 +459,7 @@ body{
     width: 100%;
     height: 150px;
     display: flex;
+    justify-content: space-between;
 }
 
 .cardBox .cards{
@@ -467,9 +468,7 @@ body{
     padding: 15px;
     border-radius: 20px;
     display: flex;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-    align-items: center;
-    margin: 5px;
+    margin: 5px 0px 0 0;
 }
 
 .cardBox .cards:hover {
@@ -1220,9 +1219,10 @@ body{
 
 }
 #chart-container {
-    height: 350px;
+    width: 425px;
+    height: auto;
     background-color:#f9f9f9;
-    margin: 20px;
+    margin: 0 ;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -1235,7 +1235,7 @@ body{
     width:30%;
     height: auto;
     background-color:#f9f9f9;
-    margin: 20px;
+    margin:20px;
     border-radius: 10px;
     cursor: pointer;
     max-height: 80vh;
@@ -1256,7 +1256,7 @@ body{
 
 #chart-container3{
     width:30%;
-    height: auto;
+    height: 580px;
     margin: 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -1998,10 +1998,22 @@ design-desc div button:hover{
     float: left;
 }
 
+.design-btns button:first-child:hover{
+    background: #5ba49e;
+    transform: scale(0.97);
+    transition: .4s ease-in;
+}
+
 .design-btns button:last-child{
     background: #E64848;
     width: 70px;
     height: 40px;
+}
+
+.design-btns button:last-child:hover{
+    background: #E64848;
+    transform: scale(0.97);
+    transition: .4s ease-in;
 }
 
 /* Chat */
@@ -2240,12 +2252,12 @@ design-desc div button:hover{
     visibility: visible;
 }
 
-/*Edit sub category*/
+/*popup in delivered Order table*/
 
 #upl-doc{
     width: 40%;
     position: absolute;
-    top: 5%;
+    top: 4%;
     left: 30%;
     padding: 2em;
     border-radius: 15px;
@@ -2383,6 +2395,35 @@ design-desc div button:hover{
     padding: 1em;
     border-radius: 7px;
     text-align: center;
+}
+
+.cat-deletion{
+    background-color: #ae1c1c;
+}
+
+.cat-deletion-btns{
+    display: flex;
+    justify-content: center;
+    gap: 40%;
+    margin-top: 1em;
+}
+
+.cat-deletion-btns button{
+    width: 20%;
+    padding: .5em;
+    background-color: black;
+    border-radius: 5px;
+    color: #f9f9f9;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.cat-deletion-btns button:hover{
+    background-color: #0F3D3E;
+    transform: scale(0.97);
+    transition: .4s ease-in;
 }
 
 .cat-errors{

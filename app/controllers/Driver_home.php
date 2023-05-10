@@ -233,7 +233,7 @@ class Driver_home extends Controller
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
 
-            $order->update_Reason(['OrderID' => $id], ['Reasons' => $_POST['Reason']]);
+            //$order->update_Reason(['OrderID' => $id], ['Reasons' => $_POST['Reason']]);
 
             if(!empty($_FILES["Image"]['name']))
             {
@@ -366,8 +366,6 @@ class Driver_home extends Controller
 
         $order = new Orders();
         $id = $id ?? Auth::getEmployeeID();
-
-        //$rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `orders` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
         $rows =  $order->barGraph('DriverID',$id);
         $data = array();
 

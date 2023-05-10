@@ -443,15 +443,16 @@ class Designer extends Controller
         }
 
         $design = new Design();
-        $design_images = new Design_image();
 
-        if(isset($_POST['delete_btn'])){
-            $design->deleteDesign($id);
-            $design_images->deleteImage($id);
-            $this->redirect('designer/design');
+        if(empty($design->deleteDesign($id)))
+        {
+            echo "success";
+        }
+        else
+        {
+            echo "failed";
         }
 
-        $this->redirect('designer/design');
     }
 
     public function chat()
