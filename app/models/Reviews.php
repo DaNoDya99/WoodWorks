@@ -9,7 +9,8 @@ class Reviews extends Model
         'Rating',
         'Reviews',
         'CustomerID',
-        'ProductID'
+        'ProductID',
+        'Date'
     ];
 
     public function getReview($fields = null, $id = null)
@@ -54,4 +55,18 @@ class Reviews extends Model
 
         return $this->query($query, ['ProductID' => $productID]);
     }
+
+    public function getTop5RatedProducts(){
+        $query = "select ProductID, avg(Rating) as Average from $this->table group by ProductID order by Average desc limit 5;";
+
+        return $this->query($query);
+    }
+
+    public function getTop10RatedProducts(){
+        $query = "select ProductID, avg(Rating) as Average from $this->table group by ProductID order by Average desc limit 10;";
+
+        return $this->query($query);
+    }
+
+    
 }

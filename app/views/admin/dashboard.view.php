@@ -1,5 +1,6 @@
 <?php $this->view('admin/includes/header') ?>
-
+<script src="<?=ROOT?>/assets/javascript/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <body class="admin">
     <div class="admin-body">
         <?php $this->view('admin/includes/admin.header') ?>
@@ -11,123 +12,137 @@
                         <canvas id="myChart1" ></canvas>
                     </div>
 
-                    <script src="<?=ROOT?>/assets/javascript/chart.umd.js"></script>
-
-                    <script>
-                        const ctx1 = document.getElementById('myChart1');
-
-                        const labels = ['P0002', 'P0010','P0008','P0003','P0004','P0001','P0005'];
-                        const data = {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Products With Low Quantity.',
-
-                                data: [5, 4, 3, 4, 2, 1, 5],
-
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.3)',
-                                    'rgba(255, 159, 64, 0.3)',
-                                    'rgba(255, 205, 86, 0.3)',
-                                    'rgba(75, 192, 192, 0.3)',
-                                    'rgba(54, 162, 235, 0.3)',
-                                    'rgba(153, 102, 255, 0.3)',
-                                    'rgba(201, 203, 207, 0.3)',
-                                    'rgba(201, 203, 207, 0.3)'
-                                ],
-
-                                borderColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(255, 159, 64)',
-                                    'rgb(255, 205, 86)',
-                                    'rgb(75, 192, 192)',
-                                    'rgb(54, 162, 235)',
-                                    'rgb(153, 102, 255)',
-                                    'rgb(201, 203, 207)',
-                                    'rgb(201, 203, 207)'
-                                ],
-
-                                borderWidth: 1
-
-                            }]
-                        };
-
-                        const config = {
-                            type: 'bar',
-                            data: data,
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            },
-                        };
-
-                        new Chart(ctx1, config);
-                    </script>
-                    <div class="emp-cus-count">
-                        <div class="count">
-                            <div>
-                                <h2># Employees</h2>
-                                <img src="<?=ROOT?>/assets/images/admin/employee.png" alt="Image">
-                            </div>
-                            <h1><?=$emp_cnt[0]->count?></h1>
-                        </div>
-                        <div class="count">
-                            <div>
-                                <h2># Suppliers</h2>
-                                <img src="<?=ROOT?>/assets/images/admin/supplier.png" alt="Image">
-                            </div>
-                            <h1><?=$sup_cnt[0]->count?></h1>
-                        </div>
-                    </div>
-                    <div class="emp-cus-count">
-                        <div class="count">
-                            <div>
-                                <h2># Furniture</h2>
-                                <img src="<?=ROOT?>/assets/images/admin/furnitures.png" alt="Image">
-                            </div>
-                            <h1><?=$fur_cnt[0]->count?></h1>
-                        </div>
-                        <div class="count">
-                            <div>
-                                <h2># Out of Stock Furniture</h2>
-                                <img src="<?=ROOT?>/assets/images/admin/out-of-stock.png" alt="Image">
-                            </div>
-                            <h1><?=$ots_fur_cnt[0]->count?></h1>
-                        </div>
+                    <div class="chart-container">
+                        <canvas id="myChart2" style="z-index: 1;"></canvas>
                     </div>
                 </div>
-                <div class="ofs-list">
-                    <h1>Out Of Stock Furniture</h1>
-                    <div class="ofs-table-container">
-                        <table class="list-table">
-                            <tr>
-                                <th>SKU</th>
-                                <th>Image</th>
-                                <th>Name</th>
-                            </tr>
+                <div class="dashboard-rhs">
+                    <div class="rhs-container">
+                        <div>
+                            <div class="ofs-list">
+                                <h1>Out Of Stock Furniture</h1>
+                                <div class="ofs-table-container">
+                                    <table class="list-table">
+                                        <tr>
+                                            <th>SKU</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                        </tr>
 
-                            <?php if(!empty($furniture)): ?>
-                                <?php foreach ($furniture as $row): ?>
+                                        <?php if(!empty($furniture)): ?>
+                                            <?php foreach ($furniture as $row): ?>
 
-                                    <tr>
-                                        <td><?=$row->ProductID?></td>
-                                        <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image"></td>
-                                        <td><?=$row->Name?></td>
-                                    </tr>
+                                                <tr>
+                                                    <td><?=$row->ProductID?></td>
+                                                    <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Product Image"></td>
+                                                    <td><?=$row->Name?></td>
+                                                </tr>
 
-                                <?php endforeach;?>
-                            <?php else: ?>
-                                <h1>No products to show.</h1>
-                            <?php endif; ?>
+                                            <?php endforeach;?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="3">No Out of Stock Furniture</td>
+                                            </tr>
+                                        <?php endif; ?>
 
-                        </table>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="pie-chart-container">
+                                <span id="pie-title"></span>
+                                <canvas id="myChart3" ></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="delivery-rates-container">
+                                <div class="rates-title">
+                                    <span>Delivery Rates (per km)</span>
+                                    <button id="add-delivery-rate-btn" onclick="addRatesPopup()">Add Delivery Rate</button>
+                                </div>
+                                <table class="delivery-rates-table" id="delivery-rates">
+
+
+                                </table>
+                            </div>
+                            <div class="pie-chart-container pie-width">
+                                <canvas id="myChart4" ></canvas>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
 
         </div>
+
+        <div class="popup delivery-rate-popup" id="add-popup">
+            <div class="popup-heading">
+                <h2>Add Delivery Rate</span></h2>
+                <img src="<?= ROOT ?>/assets/images/customer/close.png" alt="Close" onclick="closeAddRatesPopup()">
+            </div>
+
+            <form action="" id="add-form">
+                <div class="name-field">
+                    <div class="field dis-field">
+                        <label>Distance From (km)</label>
+                        <p class="error font-vsm" id="distance-from-error"></p>
+                        <input class="" type="text" name="Distance_from" id="distance-from" placeholder="Enter Distance">
+                    </div>
+                    <div class="field dis-field">
+                        <label>Distance To (km)</label>
+                        <p class="error font-vsm" id="distance-to-error"></p>
+                        <input type="text" name="Distance_to" id="distance-to" placeholder="Enter Distance">
+                    </div>
+                </div>
+                <div class="field dis-outer-field">
+                    <label>Cost per km (Rs)</label>
+                    <p class="error font-vsm" id="cost-per-km-error"></p>
+                    <input type="text" name="Cost_per_km" id="cost-per-km" placeholder="Enter Cost">
+                </div>
+                <div class="add-delivery-btn">
+                    <button type="button" onclick="addDeliveryRate()">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="popup delivery-rate-popup" id="edit-popup">
+            <div class="popup-heading">
+                <h2>Edit Delivery Rate</span></h2>
+                <img src="<?= ROOT ?>/assets/images/customer/close.png" alt="Close" onclick="closeEditRatesPopup()">
+            </div>
+
+            <form action="" id="edit-form">
+                <div class="name-field">
+                    <div class="field dis-field">
+                        <label>Distance From (km)</label>
+                        <p class="error font-vsm" id="distance-from-error"></p>
+                        <input class="" type="text" name="Distance_from" id="distance-from-edit">
+                    </div>
+                    <div class="field dis-field">
+                        <label>Distance To (km)</label>
+                        <p class="error font-vsm" id="distance-to-error"></p>
+                        <input type="text" name="Distance_to" id="distance-to-edit">
+                    </div>
+                </div>
+                <div class="field dis-outer-field">
+                    <label>Cost per km (Rs)</label>
+                    <p class="error font-vsm" id="cost-per-km-error"></p>
+                    <input type="text" name="Cost_per_km" id="cost-per-km-edit" >
+                </div>
+                <div class="add-delivery-btn">
+                    <button type="button" onclick="saveDeliveryRate()">Save</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="cat-response" id="response">
+
     </div>
 </body>
+<script src="<?=ROOT?>/assets/javascript/admin_dashboard.js"></script>
 </html>

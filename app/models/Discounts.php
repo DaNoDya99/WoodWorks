@@ -35,6 +35,41 @@ class Discounts extends Model{
         return $this->query($query, ['id' => $id]);
     }
 
+    public function getActiveDiscounts()
+    {
+        $query = "SELECT * FROM discounts WHERE Active = 1";
+
+        return $this->query($query);
+    }
+
+    public function getUnExpiredDiscounts()
+    {
+        $query = "SELECT * FROM discounts WHERE Expired_at > NOW()";
+
+        return $this->query($query);
+    }
+
+    public function getExpiredDiscounts()
+    {
+        $query = "SELECT * FROM discounts WHERE Expired_at < NOW()";
+
+        return $this->query($query);
+    }
+
+    public function deleteDiscount($id)
+    {
+        $query = "DELETE FROM discounts WHERE DiscountID = :id";
+
+        return $this->query($query, ['id' => $id]);
+    }
+
+    public function updateDiscount($data)
+    {
+        $query = "UPDATE $this->table SET DiscountID = :DiscountID, Name = :Name, Discount_percentage = :Discount_percentage, Active = :Active, Modified_at = :Modified_at, Expired_at = :Expired_at WHERE DiscountID = :DiscountID";
+
+        return $this->query($query, $data);
+    }
+
     
 
 

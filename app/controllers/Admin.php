@@ -17,9 +17,11 @@ class Admin extends Controller
         $supplier = new Suppliers();
 
         $data['furniture'] = $rows = $furniture->getOutOfStockFurniture();
-        foreach ($rows as $row)
-        {
-            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        if(!empty($rows)){
+            foreach ($rows as $row)
+            {
+                $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+            }
         }
 
         $data['row'] = $employee->where('EmployeeID',$id);
@@ -298,6 +300,71 @@ class Admin extends Controller
 
 
         $this->view('admin/delivery',$data);
+    }
+
+    public function getWeeklySalesOfProducts()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $items = new Order_Items();
+
+        $rows = $items->getSoldProductsLastWeek();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
+    }
+
+    public function getProductsReachedReorderLevel()
+    {
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $inventory = new Product_Inventory();
+        $rows = $inventory->getItemsReachedReorderLevel();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
+    }
+
+    public function getOrderStatus()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $orders = new Orders();
+        $rows = $orders->pieGraph();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
+    }
+
+    public function getTop5Products()
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $reviews = new Reviews();
+        $rows = $reviews->getTop5RatedProducts();
+
+        if(!empty($rows)) {
+            echo json_encode($rows);
+        }else {
+            echo json_encode("error");
+        }
     }
 
 }

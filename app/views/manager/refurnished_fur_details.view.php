@@ -12,13 +12,18 @@
                 </div>
             </div>
             <div class = "ref-fur-details">
-                <h1><?=$furniture->Product_name?></h1>
-                <span><?=$furniture->AdvertisementID?></span>
-                <h2>Rs. <?=$furniture->Price?>.00</h2>
-                <h2>Quantity: <?=$furniture->Quantity?></h2>
-                <pre>
+                <div class="ref-fur-details-heading">
+                    <h1><?=$furniture->Product_name?> - </h1>
+                    <span><?=$furniture->AdvertisementID?></span>
+                </div>
+
+                <h3 class="price-section">Unit Price:  <span style="font-weight: normal;font-size: 1.2rem;">Rs. <?=$furniture->Price?>.00</span></h3>
+                <h3 >Quantity:  <span style="font-weight: normal;font-size: 1.2rem;"><?=$furniture->Quantity?></span></h3>
+<!--                <h2>Quantity: --><?php //=$furniture->Quantity?><!--</h2>-->
+                <h3 class="price-section">Product Description</h3>
+                <p class="ref-fur-description">
                     <?=$furniture->Description?>
-                </pre>
+                </p>
             </div>
         </div>
     </div>

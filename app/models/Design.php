@@ -10,6 +10,7 @@ class Design extends Model
         'Description',
         'DesignerID',
         'ManagerID',
+        'CategoryID',
         'Pdf',
         'Date',
         'Name',
@@ -31,6 +32,9 @@ class Design extends Model
         if (empty($data['Description'])) {
             $this->errors['Description'] = "Description can not be empty";
         }
+        if (empty($data['CategoryID'])) {
+            $this->errors['CategoryID'] = "Please select a category";
+        }
         if (empty($this->errors)) {
             return true;
         } else {
@@ -40,12 +44,17 @@ class Design extends Model
 
     public function make_design_id($DATA){
 
-        $designID = $this->random_string(60);
-        $result = $this->where('DesignID',$designID);
-        while ($result){
-            $result = $this->where('DesignID',$designID);
-            $designID = $this->random_string(60);
-        }
+//        $designID = $this->random_string(60);
+//        $result = $this->where('DesignID',$designID);
+//        while ($result){
+//            $result = $this->where('DesignID',$designID);
+//            $designID = $this->random_string(60);
+//        }
+
+        $prefix = 'DES';
+        $unique_id = mt_rand(1000, 9999);
+        $timestamp = substr(date('YmdHis'), 8, 6);
+        $designID = $prefix . '-' . $unique_id . '-' . $timestamp;
 
         $DATA['DesignID'] = $designID;
 
@@ -64,15 +73,15 @@ class Design extends Model
         return $text;
     }
 
-    public function getDesigns($offset,$limit = 2){
-
-        $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM design ORDER BY DesignID desc limit $limit offset $offset; ";
+    public function getDesigns($CatID, $offset, $limit = 2) {
+        $query = "SELECT DesignID, Name,CategoryID, DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM `$this->table` WHERE CategoryID = '$CatID' ORDER BY DesignID DESC LIMIT $limit OFFSET $offset";
         return $this->query($query);
     }
 
+
     public function getDesign($limit = 5){
 
-        $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM design ORDER BY DesignID desc limit $limit; ";
+        $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM $this->table ORDER BY DesignID desc limit $limit; ";
 
         return $this->query($query);
     }
@@ -85,7 +94,9 @@ class Design extends Model
             'DesignID',
             'DesignerID',
             'Description',
+            'CategoryID',
             'Name',
+            'Pdf',
             'ManagerID',
             'Date',
 
@@ -146,6 +157,32 @@ class Design extends Model
         $data['id'] = $where['DesignID'];
         $this->query($query,$data);
     }
+
+    public function updatePost($id, $data)
+    {
+        if (!empty($this->allowedColumns)) {
+            foreach ($data as $key => $value) {
+                if (!in_array($key, $this->allowedColumns)) {
+                    unset($data[$key]);
+                }
+            }
+        }
+
+        $keys = array_keys($data);
+
+        $setClause = '';
+        foreach ($keys as $key) {
+            $setClause .= $key . '=:' . $key . ',';
+        }
+        $setClause = rtrim($setClause, ',');
+
+        $query = "UPDATE " . $this->table . " SET " . $setClause . " WHERE DesignID=:DesignID";
+
+        $data['DesignID'] = $id;
+
+        $this->query($query, $data);
+    }
+
 
     public function getAllImages($id)
     {
@@ -213,5 +250,11 @@ class Design extends Model
         $query = 'update design set Status = :Status, ManagerID = :ManagerID where DesignID = :DesignID;';
 
         return $this->query($query,['Status' => 'rejected','DesignID' => $id, 'ManagerID' => $emp]);
+    }
+
+    public function getPendingDesignsCount(){
+        $query = "SELECT COUNT(*) AS Count FROM $this->table WHERE Status = 'Pending';";
+
+        return $this->query($query);
     }
 }

@@ -15,6 +15,7 @@ class Home extends Controller
         $db->create_tables();
 
         $furniture =  new Furnitures();
+        $review = new Reviews();
 
         $data['furnitures'] = $rows = $furniture->getNewFurniture(['ProductID','Name','Cost','Sub_category_name']);
 
@@ -23,6 +24,8 @@ class Home extends Controller
             if(!empty($furniture->getDisplayImage($row->ProductID)[0]->Image))
             {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+                $row->Rate = round($review->getProductRating($row->ProductID)[0]->Average,1);
+                $row->Rating = (($row->Rate/5)*100).'%';
             }
         }
 
@@ -46,6 +49,7 @@ class Home extends Controller
 
         $data['furniture'] = $furniture->viewFurniture($id);
         $data['reviews'] = $review->getReview($allowedCols,$id);
+        $data['rating'] = round($review->getProductRating($id)[0]->Average,1);
         $data['images'] = $furniture->getAllImages($id);
 
         $this->view('product',$data);
@@ -68,6 +72,7 @@ class Home extends Controller
         $sub_cat = implode(" ",$sub_cat);
         $sub_category = new Sub_Categories();
         $furniture = new Furnitures();
+        $review = new Reviews();
 
         $limit = 8;
 
@@ -84,6 +89,8 @@ class Home extends Controller
             foreach ($data['furniture'] as $row)
             {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+                $row->Rate = round($review->getProductRating($row->ProductID)[0]->Average,1);
+                $row->Rating = (($row->Rate/5)*100).'%';
             }
         }
 

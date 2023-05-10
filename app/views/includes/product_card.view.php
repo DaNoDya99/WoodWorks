@@ -1,6 +1,6 @@
 <a href="<?=ROOT?>/home/product/<?=$row->ProductID?>">
 <div class="product-card">
-    <?php if (!empty($row->Discount_percentage)) : ?>
+    <?php if (!empty($row->Discount_percentage && $row->Active === 1)) : ?>
         <div class="product-card-discount">
             <p><?= $row->Discount_percentage ?>% Discount</p>
         </div>
@@ -11,12 +11,13 @@
     <div class="card-pair">
         <div class="product-card-details">
             <div class="rating">
-                5.0 &nbsp;
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
-                <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
+                <span><?= $row->Rate ?></span>
+                <div>
+                    <div class="stars-outer product-card-stars-outer">
+                        <div class="stars-inner" style="width: <?= $row->Rating ?>"></div>
+                    </div>
+                    <span class="number-rating"></span>
+                </div>
             </div>
 
             <?php if (isset($row->Sub_category_name)) : ?>
@@ -24,9 +25,9 @@
             <?php endif ?>
             <h2><?= $row->Name ?></h2>
 
-            <?php if(!empty($row->Discount_percentage)): ?>
+            <?php if(!empty($row->Discount_percentage) && $row->Active === 1): ?>
                 <h3 class="cost line-through">Rs. <?= $row->Cost ?>.00</h3>
-                <h4>Rs. <?= $row->Cost*(100 - $row->Discount_percentage)/100 ?>.00</h4>
+                <h4>Rs. <?=round(($row->Cost*(100 - $row->Discount_percentage))/100) ?>.00</h4>
             <?php else: ?>
                 <h3 class="cost">Rs. <?= $row->Cost ?>.00</h3>
             <?php endif; ?>

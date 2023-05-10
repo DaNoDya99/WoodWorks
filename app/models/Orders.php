@@ -156,7 +156,14 @@ class Orders extends Model
         return $this->query($query, ['value' => $value]);
     }
 
-    public function filterStatus($column, $value, $id)
+    public function searchDeliveredOrdersDetails($column,$value,$orders_items)
+    {
+        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or OrderID like '%$orders_items%' or DATE_FORMAT(Dispatched_date, '%d/%m/%Y') like '%$orders_items%' or DATE_FORMAT(Delivered_date, '%d/%m/%Y') like '%$orders_items%'or Firstname like '%$orders_items%' or Lastname like '%$orders_items%' AND $column = :value LIMIT 15 ";
+        return $this->query($query,['value'=>$value]);
+
+    }
+
+    public function filterStatus($column,$value,$id)
     {
         $query = "select OrderID,Payment_type,Total_amount,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && $column = :value  && `DriverID` = '$id' limit 15";
         return $this->query($query, ['value' => $value]);
@@ -227,27 +234,14 @@ class Orders extends Model
     public function make_order_id()
     {
 
-        $orderID = $this->random_string(60);
-        $result = $this->where('OrderID', $orderID);
-        while ($result) {
-            $result = $this->where('OrderID', $orderID);
-            $orderID = $this->random_string(60);
-        }
+        $prefix = 'CUS-ORD';
+        $unique_id = mt_rand(1000, 9999);
+        $timestamp = substr(date('YmdHis'), 8, 6);
+        $orderID = $prefix . '-' . $unique_id . '-' . $timestamp;
 
         return $orderID;
     }
 
-    public function random_string($length)
-    {
-        $array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
-        $text = "";
-        for ($x = 0; $x < $length; $x++) {
-            $random = rand(0, 61);
-            $text .= $array[$random];
-        }
-
-        return $text;
-    }
 
     public function getNewOrders()
     {
@@ -255,7 +249,7 @@ class Orders extends Model
         return $this->query($query,['Is_preparing' => 0]);
     }
 
-    public function getOrderDetails($id = null)
+    public function getOrderItems($id = null)
     {
         $query = "SELECT * FROM `order_item` WHERE OrderID = :OrderID;";
 
@@ -272,9 +266,9 @@ class Orders extends Model
 
     public function assignDriver($orderID, $driverID)
     {
-        $query = 'UPDATE `orders` SET DriverID= :DriverID WHERE OrderID = :OrderID;';
+        $query = 'UPDATE `orders` SET Order_status = :Order_status,DriverID= :DriverID WHERE OrderID = :OrderID;';
 
-        return $this->query($query, ['OrderID' => $orderID, 'DriverID' => $driverID]);
+        return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID,'Order_status' => 'Processing']);
     }
 
     public function updateSessionID($orderID, $sessionID,$status)
@@ -300,9 +294,9 @@ class Orders extends Model
 
     public function updateIsPreparing($orderId)
     {
-        $query = "UPDATE $this->table SET Is_preparing = :Is_preparing WHERE OrderID = :OrderID && Is_preparing = 1;";
+        $query = "UPDATE $this->table SET Is_preparing = :Is_preparing,Deliver_method = :Deliver_method WHERE OrderID = :OrderID && Is_preparing = 1;";
 
-        return $this->query($query, ['Is_preparing' => 0,'OrderID' => $orderId]);
+        return $this->query($query, ['Is_preparing' => 0,'OrderID' => $orderId,'Deliver_method' => 'Home Delivery']);
     }
 
     public function removeIncompletedOrders($id)
@@ -312,4 +306,17 @@ class Orders extends Model
         return $this->query($query,['CustomerID' => $id, 'Is_preparing' => 1]);
     }
 
+    public function getOrderDetails($orderId)
+    {
+        $query = "SELECT * FROM `orders` WHERE OrderID = :OrderID;";
+
+        return $this->query($query,['OrderID' => $orderId]);
+    }
+
+    public function getOrdersByStatus($status)
+    {
+        $query = "SELECT * FROM `orders` WHERE Order_status = :Order_status ORDER BY DATE DESC;";
+
+        return $this->query($query,['Order_status' => $status]);
+    }
 }

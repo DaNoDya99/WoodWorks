@@ -64,6 +64,20 @@
                         <input type="text" name="Name" placeholder="Enter Your Design Name" class="txt">
                     </div>
 
+                    <div class="des_Name">
+                        <label>Select Design category :</label>
+                        <?php
+                            $categories = new Categories();
+                            $rows = $categories->findAll();
+                        ?>
+                        <select name="CategoryID">
+                            <option>----- Category Type ----</option>
+                            <?php foreach ($rows as $row) :?>
+                                <option value="<?=$row->CategoryID?>"><?=$row->Category_name?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+
                     <div id="description">
                         <label>Description :</label>
                         <textarea name="Description" class="form-control" placeholder="Design Description"></textarea>

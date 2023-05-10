@@ -17,3 +17,7 @@ function getOrderDetails(orderId) {
     }
     xhr.send();
 }
+
+function loadReportIssuePage(id){
+    location.href = "http://localhost/WoodWorks/public/customer_home/reportIssue/"+id;
+}

@@ -34,9 +34,10 @@ class Category extends Controller
         unset($sub_cat[0]);
         $sub_cat = implode(" ",$sub_cat);
         $data['row'] = $this->getUser();
+
         $sub_category = new Sub_Categories();
         $furniture = new Furnitures();
-
+        $review = new Reviews();
 
         $limit = 8;
 
@@ -53,6 +54,8 @@ class Category extends Controller
             foreach ($data['furniture'] as $row)
             {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+                $row->Rate = round($review->getProductRating($row->ProductID)[0]->Average,1);
+                $row->Rating = (($row->Rate/5)*100).'%';
             }
         }
 

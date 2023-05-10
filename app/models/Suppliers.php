@@ -144,4 +144,12 @@ class Suppliers extends Model
 
         return $this->query($query, $data);
     }
+
+    public function getSupplier($id)
+    {
+        $query = "SELECT * FROM $this->table WHERE SupplierID = :SupplierID";
+
+        return $this->query($query, ['SupplierID' => $id]);
+    }
+    
 }

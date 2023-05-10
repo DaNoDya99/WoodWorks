@@ -518,7 +518,7 @@ td {
     justify-content: center;
 }
 
-.add-emp-btn button {
+.add-emp-btn button,.add-delivery-btn button {
     width: 200px;
     height: 50px;
     border: solid 2px #e2dcc8;
@@ -528,6 +528,11 @@ td {
     font-size: 1vw;
     background-color: #100F0F;
     color: #ffffff;
+}
+
+.add-delivery-btn button{
+    width: 100px;
+    height: 40px;
 }
 
 .emp-form-header h1 {
@@ -1924,7 +1929,7 @@ h3 {
 .rate-info {
     display: flex;
     align-items: center;
-    margin: 0 auto;
+    margin: 1em auto;
 }
 
 .rate-info img {
@@ -2382,16 +2387,40 @@ h2 {
     margin: 1em;
 }
 
+.dashboard-rhs{
+    width: 60%;
+}
+
 .ofs-list {
     width: 100%;
     background-color: #f9f9f9;
-    margin: 1em .5em;
+    margin-top: 1em;
     border-radius: 15px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
-    max-height: 85vh;
+    height: 50vh;
+    max-height: 50vh;
     text-align: center;
     font-family: 'Rubik', sans-serif;
     padding: 0 1em;
+    overflow-y: auto;
+}
+
+.ofs-list h1{
+    margin: 0;
+    padding: .5em 0;
+}
+
+.pie-chart-container{
+    width: 50%;
+    /*background-color: #f9f9f9;*/
+    height: 32vh;
+    margin-top: .5em;
+    border-radius: 15px;
+}
+
+.pie-chart-container h1{
+    margin: 0;
+    padding: .5em 0;
 }
 
 .ofs-list table {
@@ -3463,11 +3492,16 @@ h2 {
     width: 70%;
 }
 
-#myChart1{
+#myChart1,#myChart2,#myChart3,#myChart4{
     background-color: #f9f9f9;
     padding: 1em;
     border-radius: 15px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+#myChart3,#myChart4{
+    width: 100% !important;
+    height: 32vh !important;
 }
 
 .chat-btn{
@@ -3479,6 +3513,68 @@ h2 {
     height: 6em;
     border: none;
     visibility: visible;
+}
+
+.delivery-rates-container{
+    max-width: 95% !important;
+    background-color: #f9f9f9;
+    margin-top: 1em;
+    margin-left: 1em;
+    height: 50vh;
+    border-radius: 15px;
+    text-align: center;
+    padding: .5em;
+}
+
+.pie-width{
+    width: 95% !important;
+    height: 32vh !important;
+    margin-left: 1em;
+}
+
+.delivery-rates-container span{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.delivery-rates-container button{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 5px;
+    padding: .5em 1em;
+    margin-top: 1em;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.rhs-container{
+    display: flex;
+}
+
+.rhs-container div{
+    width: 100%;
+}
+
+.delivery-rates-table{
+    width: 100%;
+    margin-top: 1em;
+    border-collapse: collapse;
+}
+
+.delivery-rates-table td{
+    text-align: center;
+    margin: 1em 0;
+}
+
+.delivery-rates-table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.rates-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .chat-btn img{
@@ -3679,16 +3775,6 @@ h2 {
 
 .deliver-order-details h2{
     margin: 0;
-}
-
-.delivery-orders-table tr td:last-child button{
-    width: 7em;
-    border: none;
-    border-radius: 5px;
-    background-color: #0F3D3E;
-    color: #f9f9f9;
-    font-weight: bolder;
-    padding: 1em;
 }
 
 .order-id{
@@ -4006,6 +4092,11 @@ h2 {
     top: -30px;
 }
 
+.product-card-stars-outer{
+    top: 8px;
+    left: 10px;
+}
+
 .stars-inner{
     position: absolute;
     top: 0;
@@ -4070,6 +4161,10 @@ h2 {
 
 .font-sm{
     font-size: 14px;
+}
+
+.font-vsm{
+    font-size: 12px;
 }
 
 /*Invoice*/
@@ -4159,4 +4254,284 @@ h2 {
     width: 40%;
     font-family: 'Rubik', sans-serif;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.dis-field{
+    width: 49.5%;
+}
+
+.dis-outer-field{
+    width: 100%;
+}
+
+.dis-field input,.dis-outer-field input{
+    width: 100%;
+    padding-left: .5em;
+    height: 2.5em;
+}
+
+.delivery-rate-popup{
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.issue-btn{
+    position: absolute;
+    left: 88.5%;
+    top: 11%;
+    height: 2.5em;
+    width: 10em;
+    border: none;
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.issues-container{
+    width: 100%;
+    height: 91vh;
+    background-color: #c3c4a5;
+    padding-top: 2em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.order-item-list,.issue-form{
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    padding: 1em;
+    margin-bottom: 2em;
+}
+
+.order-item-list{
+    width: 40%;
+}
+
+.issue-form{
+    width: 50%;
+}
+
+.item-list-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2em;
+}
+
+.item-list-table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.item-list-table td{
+    text-align: center;
+}
+
+.item-list-table td img{
+    width: 5em;
+    height: 5em;
+    border-radius: 7px;
+    object-fit: cover;
+}
+
+.issue-form-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: #d4d4d4 2px solid;
+    padding-bottom: 0.8em;
+}
+
+.issue-form-heading button{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 7px;
+    padding: .5em 1em;
+    font-size: 1.1rem;
+}
+
+.uploaded-images{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.uploaded-images img{
+    width: 10em;
+    height: 8em;
+    border-radius: 7px;
+    object-fit: cover;
+    border: #d4d4d4 2px solid;
+    margin-bottom: 2em;
+}
+
+.upload-btn-container{
+    display: flex;
+    justify-content: center;
+}
+
+.upload-btn{
+    background-color: black;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 7px;
+    padding: .5em 1em;
+    font-size: 1.1rem;
+    cursor: pointer;
+
+}
+
+.upload-btn input{
+    display: none;
+}
+
+.form-images{
+    margin-top: 1em;
+}
+
+.issue-field textarea
+{
+    border: #d4d4d4 2px solid;
+    border-radius: 5px;
+    padding: 0.5em;
+    font-size: 1rem;
+}
+
+.add-issue-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.add-issue-btn button{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 7px;
+    padding: .5em 1em;
+    font-size: 1.1rem;
+    width: 30%;
+}
+
+.issues-info-popup{
+    width: 80%;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+
+}
+
+.issues-table-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+
+}
+
+.issues{
+    width: 35%;
+    border: 2px solid #d4d4d4;
+    padding: 1em;
+    border-radius: 7px;
+}
+
+.issues table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.issues table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.issues table td{
+    text-align: center;
+}
+
+.issue-details{
+    width: 60%;
+    border: 2px solid #d4d4d4;
+    padding: 1em;
+    border-radius: 7px;
+}
+
+.issue-details h2{
+    margin: 0;
+}
+
+.issue-details-header{
+    text-align: left;
+}
+
+.issue-images-container img{
+    width: 10em;
+    height: 8em;
+    border-radius: 7px;
+    object-fit: cover;
+    border: #d4d4d4 2px solid;
+    margin: 1em 0.3em 0 0.3em;
+}
+
+.issue-description-container{
+    text-align: left;
+    margin-top: 1em;
+}
+
+.issue-description-container span{
+    font-weight: bold;
+}
+
+.issue-description-container p {
+    text-align: justify;
+    max-height: 10em;
+    overflow-y: scroll;
+    padding: 0 2em;
+}
+
+.rating{
+    display: flex;
+}
+
+.delivery-history-btn{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 7px;
+    padding: .5em 1em;
+    font-size: 1.1rem;
+    margin-top: 1em;
+    height: 2.5em;
+}
+
+.delivery-history-popup{
+    width: 90%;
+    height: 85vh;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+
+}
+
+.order-selections{
+    display: flex;
+    justify-content: space-between;
+}
+
+.selector{
+    width: 19%;
+    padding: 0.5em 0;
+    border: 2px solid #d4d4d4;
+    cursor: pointer;
+}
+
+.order-select{
+    width: 33%
+}
+
+.order-table{
+    margin-top: 2em;
+}
+
+.order-table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.order-table td{
+    text-align: center;
 }
