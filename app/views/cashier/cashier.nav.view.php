@@ -49,14 +49,7 @@
             </li>
 
             <li>
-            <a href="<?=ROOT?>/cashier/inventory">
-                    <div class="icons"><img src="<?= ROOT ?>/assets/images/header/check-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
-                        Accepted Orders</span>
-                </a>
-                <span class="tooltip">Accepted Orders</span>
-            </li>
-            <li>
-            <a href="<?=ROOT?>/cashier/billing">
+            <a href="<?=ROOT?>/cashier/orders">
                     <div class="icons"><img src="<?= ROOT ?>/assets/images/header/clock-rotate-left-solid.svg" style="" alt="" srcset=""> </div><span class="link-name">
                         Order History</span>
                 </a>

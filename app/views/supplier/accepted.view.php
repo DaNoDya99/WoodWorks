@@ -27,10 +27,14 @@
 
                         <td><?= ucfirst($order->OrderStatus) ?></td>
                         <td> <?php if ($order->OrderStatus != 'complete') : ?>
-                                <a href="<?= ROOT ?>/supplier/CompleteOrder/<?= $order->OrderID ?>"><button style="background-color: green;">
+                                <a href="<?= ROOT ?>/supplier/CompleteOrder/<?= $order->OrderID ?>">
+                                    <button
+                                        style="background-color: #37ff37 ; color:black; padding: 10px 15px; border: 0px; border-radius: 5px">
                                         Complete
-                                    </button></a>
-                                <button style="background-color: red;">
+                                    </button>
+                                </a>
+                                <button
+                                    style="background-color: #ff3535; color:white; padding: 10px 15px; border: 0px; border-radius: 5px">
                                     Cancel
                                 </button>
 

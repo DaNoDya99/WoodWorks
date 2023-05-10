@@ -568,7 +568,7 @@ p {
 }
 
 .blur {
-
+    display: none;
     position: absolute;
     visibility: hidden;
     width: 100vw;
@@ -595,4 +595,11 @@ p {
     text-align: center;
     font-size: 18px;
     margin: 20px;
+}
+
+#blur-quantity{
+    backdrop-filter: brightness(0.5);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
 }
