@@ -59,6 +59,7 @@ class Category extends Controller
             }
         }
 
+
         if(empty($sub_cat)){
             $this->redirect('category/sub_category/'.$id."/".$rows[0]->Sub_category_name);
         }

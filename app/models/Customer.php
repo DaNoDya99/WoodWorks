@@ -26,7 +26,6 @@ class Customer extends Model
     public function validate($post)
     {
         $this->errors = [];
-        $gender = ['Male', 'Female'];
 
         if (empty($post['Firstname'])) {
             $this->errors['Firstname'] = "A first name is required.";
@@ -40,10 +39,6 @@ class Customer extends Model
             $this->errors['Lastname'] = "Last name can only have letters.";
         }
 
-        //        if(!in_array($post['Gender'],$gender)){
-        //            $this->errors['Gender'] = "Gender is required.";
-        //        }
-
         if (!filter_var($post['Email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['Email'] = "Email is not valid.";
         } elseif ($this->where('Email', $post['Email'])) {
@@ -55,12 +50,6 @@ class Customer extends Model
         } elseif ($post['Password'] !== $post['Password2']) {
             $this->errors['Password'] = "Passwords do not match.";
         }
-
-        //        if(empty($post['Mobileno'])){
-        //            $this->errors['Mobileno'] = "Contact number required.";
-        //        }elseif (!preg_match("/^[0-9]+$/",trim($post['Mobileno']))){
-        //            $this->errors['Mobileno'] = "Contact number can only have numbers.";
-        //        }
 
         if (empty($this->errors)) {
             return true;
