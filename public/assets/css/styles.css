@@ -4502,7 +4502,7 @@ h2 {
 }
 
 .delivery-history-popup{
-    width: 90%;
+    width: 95%;
     height: 85vh;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 
@@ -4534,4 +4534,16 @@ h2 {
 
 .order-table td{
     text-align: center;
+}
+
+.selected{
+    background-color: #d4d4d4;
+}
+
+.select-driver{
+    width: 35%;
+    height: 2.5em;
+    border: 2px solid #d4d4d4;
+    background-color: #f9f9f9;
+    border-radius: 7px;
 }

@@ -2,6 +2,7 @@ let popup = document.getElementById('popup');
 let closeBtn = document.querySelector('.popup-heading img');
 let order_items = document.getElementById("order-items");
 let select_driver = document.getElementById('driver');
+let reponse = document.getElementById('response');
 let orderId = '';
 
 let xhr = new XMLHttpRequest();
@@ -63,7 +64,16 @@ select_driver.onchange = () => {
         xhr.onload = () => {
             if(xhr.readyState === xhr.DONE){
                 if(xhr.status === 200){
-                    console.log(xhr.response);
+                    if(xhr.response === "success"){
+                        reponse.innerHTML = "<div class='cat-success'>\n" +
+                            "        <h2>Driver Assigned Successfully.</h2>\n" +
+                            "    </div>";
+
+                        setTimeout(() => {
+                            location.reload();
+                        },2000)
+                    }
+
                 }
             }
         }
@@ -85,6 +95,12 @@ function closeDeliveryHistoryPopup()
 
 function getOrders(status)
 {
+    document.querySelectorAll("div[status='status']").forEach(element => {
+        element.classList.remove("selected");
+    })
+
+    document.getElementById(status.toLowerCase()).classList.add("selected");
+
     let xhr = new XMLHttpRequest();
     xhr.open('GET','http://localhost/WoodWorks/public/order/getOrdersByStatus/'+status,true);
     xhr.onload = () => {
@@ -100,6 +116,12 @@ function getOrders(status)
 
 function getDeliveredOrders(status)
 {
+    document.querySelectorAll("div[status='status']").forEach(element => {
+        element.classList.remove("selected");
+    })
+
+    document.getElementById(status.toLowerCase()).classList.add("selected");
+
     let xhr = new XMLHttpRequest();
     xhr.open('GET','http://localhost/WoodWorks/public/order/getDeliveredOrders/'+status,true);
     xhr.onload = () => {
