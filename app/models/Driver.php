@@ -59,7 +59,13 @@ class Driver extends Model
         $query = "SELECT * FROM $this->table WHERE Availability = :Availability;";
 
         return $this->query($query,['Availability' => 'Available']);
+    }
 
+    public function getAssignedOrderCount($id)
+    {
+        $query = "SELECT COUNT(OrderID) AS Count FROM orders WHERE DriverID = :DriverID;";
+
+        return $this->query($query,['DriverID' => $id]);
     }
 
 }

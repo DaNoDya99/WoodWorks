@@ -407,6 +407,10 @@ class Driver_home extends Controller
         $driver = new Driver();
         $rows = $driver->availableDrivers();
 
+        foreach ($rows as $row){
+            $row->Order_count = $driver->getAssignedOrderCount($row->DriverID);
+        }
+
         $str = "<option selected>-- Assign Driver --</option>";
 
         foreach ($rows as $row){
@@ -425,6 +429,8 @@ class Driver_home extends Controller
 
         $order = new Orders();
         $order->assignDriver($orderId,$driverId);
+
+        echo 'success';
         
     }
 

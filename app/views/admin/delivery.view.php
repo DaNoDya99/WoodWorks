@@ -51,7 +51,7 @@
                 <div class="popup delivery-popup" id="popup">
                     <div class="popup-heading">
                         <h2>Order Details</h2>
-                        <select name="Driver" id="driver">
+                        <select class="select-driver" name="Driver" id="driver">
 
                         </select>
                         <img src="<?=ROOT?>/assets/images/customer/close.png" alt="Close" onclick="closePopup()">
@@ -69,9 +69,9 @@
                     </div>
 
                     <div class="order-selections">
-                        <div class="selector order-select" id="processing" onclick="getOrders('Processing')">Processing Orders</div>
-                        <div class="selector order-select" id="dispatched" onclick="getOrders('Dispatched')">Dispatched Orders</div>
-                        <div class="selector order-select" id="delivered" onclick="getDeliveredOrders('Delivered')">Delivered Orders</div>
+                        <div class="selector order-select" status="status" id="processing" onclick="getOrders('Processing')">Processing Orders</div>
+                        <div class="selector order-select" status="status" id="dispatched" onclick="getOrders('Dispatched')">Dispatched Orders</div>
+                        <div class="selector order-select" status="status" id="delivered" onclick="getDeliveredOrders('Delivered')">Delivered Orders</div>
                     </div>
 
                     <div  id="delivery-orders-table">
@@ -92,6 +92,10 @@
                 </div>
         </div>
     </div>
+    <div class="cat-response" id="response">
+
+    </div>
+
 </div>
 </body>
 <script src="<?=ROOT?>/assets/javascript/delivery.js"></script>
