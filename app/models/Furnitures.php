@@ -86,7 +86,7 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
-    public function getFurnitures($category ,$sub_cat,$offset,$limit = 2)
+    public function getFurnitures($category ,$sub_cat,$limit = 2,$offset)
     {
         $query = "SELECT furniture.ProductID, furniture.Name, furniture.Cost, discounts.Discount_percentage, discounts.Active FROM furniture LEFT JOIN discounts ON furniture.DiscountID = discounts.DiscountID WHERE furniture.CategoryID = '$category' && furniture.Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
 
