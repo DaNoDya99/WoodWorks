@@ -131,8 +131,8 @@
             <div>
                 <div style="margin-top:50px;display: grid; justify-content:center ;width: 30vw;background-color: white; padding: 40px; border-radius: 10px; box-shadow: 0px 5px 10px rgba(107, 107, 107, 0.753);">
                     <h1>Login</h1>
-                    <?php if (!empty($data['errors'])) : ?>
-                        <div style=" display:flex; align-items:center; justify-content:center; border:1px solid #F3D8DA; width:100%; height:50px; background-color:#F3D8DA; margin-bottom:20px;"><small><?php if (isset($data['errors']['email'])) : ?> <?= $data['errors']['email'] ?> <?php endif; ?></small><small><?php if (isset($data['errors']['otp'])) : ?><?= $data['errors']['otp'] ?> <?php endif; ?></small></div>
+                    <?php if (!empty($data['errors']['email'])) : ?>
+                        <div style=" display:flex; align-items:center; justify-content:center; border:1px solid #F3D8DA; width:100%; height:50px; background-color:#F3D8DA; margin-bottom:20px;"><small><?= $data['errors']['email'] ?></small></div>
                     <?php endif; ?>
 
                     <form action="" method="post" novalidate>
@@ -143,9 +143,7 @@
                         <br>
                         <label for="password"><small>Password</small></label>
                         <input style="padding-left:10px ;" type="password" name="Password" id="Password" value="<?= set_value('Password') ?>" required>
-
-                        <p>Don't have an account? <a href="<?=ROOT?>/signup">Sign up</a></p>
-                        <button class="loginbutton" type="submit">Login</button>
+                        <br><button class="loginbutton" type="submit">Login</button>
                     </form>
                 </div>
             </div>
