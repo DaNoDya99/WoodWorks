@@ -55,17 +55,9 @@ class Model extends Database
             }
         }
 
-         if(property_exists($this,'beforeInsert'))
-        {
-            foreach($this->beforeInsert as $func)
-            {
-                $data = $this->$func($data);
-            }
-        }
-
         $keys = array_keys($data);
-       
         $id = array_search($id,$data);
+
         $query = "update ".$this->table." set ";
         foreach ($keys as $key)
         {
@@ -73,6 +65,7 @@ class Model extends Database
         }
         $query = trim($query,",");
         $query .= " where ".$id." = :".$id;
+
         $this->query($query,$data);
     }
 
