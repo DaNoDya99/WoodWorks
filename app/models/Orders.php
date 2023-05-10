@@ -244,12 +244,11 @@ class Orders extends Model
             'Lastname' => $_SESSION['CustomerDetails'][0]->Lastname,
             'Email' => $_SESSION['CustomerDetails'][0]->Email,
             'Contactno' => $_SESSION['CustomerDetails'][0]->Mobileno,
-            'Address' => $_SESSION['CustomerDetails'][0]->Address,
+//            'Address' => $_SESSION['CustomerDetails'][0]-Lastname>Address,
             'Payment_type' => 'Cash',
             'Total_amount' => 0,
             'Deliver_method' => 'Delivery',
             'Order_status' => 'pending',
-            'DriverID' => '0',
             'Is_preparing' => 1,
             'CustomerID' => $_SESSION['CustomerDetails'][0]->CustomerID,
             'in_store' => '1'
