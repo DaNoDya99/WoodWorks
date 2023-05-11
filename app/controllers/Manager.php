@@ -60,7 +60,7 @@ class Manager extends Controller
             $status = 1;
         }
 
-        $furniture  =  new Furnitures();
+        $furniture = new Furnitures();
         $furniture->updateVisibility($id, $status);
 
         $this->redirect('manager/posts');
@@ -194,7 +194,7 @@ class Manager extends Controller
 
         $data['issues'] = [];
 
-        if(!empty($issues)){
+        if (!empty($issues)) {
             foreach ($issues as $issue) {
                 $customer_details = $customer->getCustomerByID($issue->CustomerID)[0];
 
@@ -245,112 +245,114 @@ class Manager extends Controller
         $this->view('manager/reports');
     }
 
-   public function reportCsv($reportType, $date1, $date2){
-    // exportToCsv();
-    echo $reportType;   
-    echo $date1;
-    echo $date2;
-    if($reportType == 'product_sold'){
+    public function reportCsv($reportType, $date1, $date2, $status)
+    {
+        // exportToCsv();
+        echo $reportType;
+        echo $date1;
+        echo $date2;
+        if ($reportType == 'product_sold') {
 
-        $order = new Orders();
-        $data = $order->getDetailedProductReport($date1, $date2);
-        $filename = 'products_sold.csv';
-        exportToCsv($data, $filename);
+            $order = new Orders();
+            $data = $order->getDetailedProductReport($date1, $date2, $status);
+            $filename = 'products_sold.csv';
+            exportToCsv($data, $filename);
+        }
+
     }
 
-   }
+//    public function getReport()
+//    {
+//        // if (!Auth::logged_in()) {
+//        //     $this->redirect('login');
+//        // }
+//        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//            header('Content-Type: application/json');
+//            $data['date1'] = $_POST['date1'];
+//            $data['date2'] = $_POST['date2'];
+//
+//            $data['labels'] = $this->getDateLabels($_POST['date1'], $_POST['date2']);
+//            $labels = $data['labels'];
+//
+//            $order = new Orders();
+//
+//
+//            $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
+//            if (empty($a)) {
+//                $a = [];
+//            }
+//
+//            $s = [];
+//            for ($i = 0; $i < count($labels); $i++) {
+//                $s[$i] = 0;
+//                for ($j = 0; $j < count($a); $j++) {
+//                    if ($labels[$i] == $a[$j]->DATE) {
+//                        $s[$i] = $a[$j]->total;
+//                        break;
+//                    }
+//                }
+//            }
+//            $data['test'] = $s;
+//            $ordercount = [];
+//            for ($i = 0; $i < count($labels); $i++) {
+//                $ordercount[$i] = 0;
+//                for ($j = 0; $j < count($a); $j++) {
+//                    if ($labels[$i] == $a[$j]->DATE) {
+//                        $ordercount[$i] = $a[$j]->OrderCount;
+//                        break;
+//                    }
+//                }
+//            }
+//            $data['test'] = $s;
+//            $data['ordercount'] = $ordercount;
+//
+//
+//            $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
+//            if (empty($data['orders'])) {
+//                $data['orders'] = [];
+//            }
+//
+//
+//            $data['total'] = 0;
+//            foreach ($data['orders'] as $row) {
+//                //round off to 2 decimal places
+//                if ($row->Order_status == 'paid' || $row->Order_status == 'Delivered'|| $row->Order_status == 'Dispatched') {
+////                    show($row->Order_status);
+//                    $row->Total_amount = round($row->Total_amount, 2);
+//                    $data['total'] += $row->Total_amount;
+//
+//                }
+//
+//            }
+////            show($data['total']);
+//
+//            //     //get count of completed orders
+//            $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
+//            echo json_encode($data);
+//
+//        }
+//    }
+
 
     //reply to ajax call
-    public function getReport()
-    {
-        // if (!Auth::logged_in()) {
-        //     $this->redirect('login');
-        // }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            header('Content-Type: application/json');
-            //encode status success and echo to ajax call
-            $data['date1'] = $_POST['date1'];
-            $data['date2'] = $_POST['date2'];
 
-
-            $startDate = new DateTime($_POST['date1']); // start date
-            $endDate = new DateTime($_POST['date2']); // end date
-            $labels = [];
-
-            while ($startDate <= $endDate) {
-                array_push($labels, $startDate->format('Y-m-d'));
-                $startDate->modify('+1 day');
-            }
-            $data['labels'] = $labels;
-            // show($labels);
-            $order = new Orders();
-
-            $data['products_sold'] = $order->findProductsSold($_POST['date1'], $_POST['date2']);
-
-
-            $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
-//             show($a);
-             if(empty($a)){
-                 $a = [];
-             }
-
-            $s = [];
-            for ($i = 0; $i < count($labels); $i++) {
-                $s[$i] = 0;
-                for ($j = 0; $j < count($a); $j++) {
-                    if ($labels[$i] == $a[$j]->DATE) {
-                        $s[$i] = $a[$j]->total;
-                        break;
-                    }
-                }
-            }
-            $data['test'] = $s;
-            $ordercount = [];
-            for ($i = 0; $i < count($labels); $i++) {
-                $ordercount[$i] = 0;
-                for ($j = 0; $j < count($a); $j++) {
-                    if ($labels[$i] == $a[$j]->DATE) {
-                        $ordercount[$i] = $a[$j]->OrderCount;
-                        break;
-                    }
-                }
-            }
-            $data['test'] = $s;
-            $data['ordercount'] = $ordercount;
-
-
-            //     $order = new Orders();
-            $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
-            if (empty($data['orders'])){
-                $data['orders'] = [];
-            }
-            //     //get total amount of orders grouped by date
-
-            //     $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
-            //     $data['test'] = $a;
-            $data['total'] = 0;
-            foreach ($data['orders'] as $row) {
-                //round off to 2 decimal places
-                $row->Total_amount = round($row->Total_amount, 2);
-                $data['total'] += $row->Total_amount;
-            }
-
-
-            //     //get count of completed orders
-            $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
-            echo json_encode($data);
-
-    }
-}
-
-    public function productinfo($date1,$date2)
+    public function productinfo($date1, $date2)
     {
         $order = new Orders();
         $furniture = new Furnitures();
         //get furniture count
+
         $data['furniturecount'] = $furniture->getFurnitureCount()[0]->count;
-        $data['detailedinfo'] = $order->getDetailedProductReport($date1,$date2);
+        $data['detailedinfo'] = $order->getDetailedProductReport($date1, $date2);
         echo json_encode($data);
+    }
+
+    public function inventoryinfo()
+    {
+        $inventory = new Product_Inventory();
+        $data['inventory'] = $inventory->getAllFromInventory();
+        echo json_encode($data);
+
     }
 
     public function chat()
@@ -409,8 +411,8 @@ class Manager extends Controller
 
         $data['categories'] = $categories->getCategories();
 
-        $this->view('manager/discounts',$data);
- 
+        $this->view('manager/discounts', $data);
+
     }
 
     public function getTopSellingProducts()
@@ -422,12 +424,12 @@ class Manager extends Controller
         $items = new Order_Items();
         $rows = $items->getTopSellingProducts();
 
-        if(!empty($rows)){
+        if (!empty($rows)) {
             echo json_encode($rows);
-        }else{
+        } else {
             echo "error";
         }
-    } 
+    }
 
     public function getTop10Products()
     {
@@ -438,9 +440,9 @@ class Manager extends Controller
         $reviews = new Reviews();
         $rows = $reviews->getTop10RatedProducts();
 
-        if(!empty($rows)) {
+        if (!empty($rows)) {
             echo json_encode($rows);
-        }else {
+        } else {
             echo json_encode("error");
         }
     }
@@ -454,118 +456,223 @@ class Manager extends Controller
         $order = new Order_Items();
         $rows = $order->getIncomeLastWeek();
 
-        if(!empty($rows)) {
+        if (!empty($rows)) {
             echo json_encode($rows);
-        }else {
+        } else {
             echo json_encode("error");
         }
     }
 
     public function getProductsReachedReorderLevel()
     {
-        if(!Auth::logged_in()){
-            $this->redirect('login');
-        }
+//        if(!Auth::logged_in()){
+//            $this->redirect('login');
+//        }
 
         $inventory = new Product_Inventory();
         $rows = $inventory->getItemsReachedReorderLevel();
 
-        if(!empty($rows)) {
+        if (!empty($rows)) {
             echo json_encode($rows);
-        }else {
+        } else {
             echo json_encode("error");
         }
     }
 
     public function getPendingIssues()
     {
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $issue = new Issues();
         $rows = $issue->getPendingIssuesCount()[0];
 
-        if(!empty($rows)) {
+        if (!empty($rows)) {
             echo json_encode($rows);
-        }else {
-            echo json_encode(['Count'=>0]);
+        } else {
+            echo json_encode(['Count' => 0]);
         }
     }
 
     public function getPendingDesigns()
     {
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $design = new Design();
         $rows = $design->getPendingDesignsCount()[0];
 
-        if(!empty($rows)) {
+        if (!empty($rows)) {
             echo json_encode($rows);
-        }else {
-            echo json_encode(['Count'=>0]);
+        } else {
+            echo json_encode(['Count' => 0]);
         }
     }
 
     public function getActiveDiscounts()
     {
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $discount = new Discounts();
         $rows = $discount->getActiveDiscounts();
 
-        if(!empty($rows)) {
+        if (!empty($rows)) {
             $stm = '';
 
-            foreach ($rows as $row){
+            foreach ($rows as $row) {
                 $stm .= "
                     <tr>
-                        <td>".$row->Name."</td>
-                        <td>".$row->Discount_percentage."%</td>
-                        <td>".explode(' ',$row-> Created_at)[0]."</td>
-                        <td>".explode(' ',$row-> Expired_at)[0]."</td>
+                        <td>" . $row->Name . "</td>
+                        <td>" . $row->Discount_percentage . "%</td>
+                        <td>" . explode(' ', $row->Created_at)[0] . "</td>
+                        <td>" . explode(' ', $row->Expired_at)[0] . "</td>
                     </tr>
                 ";
             }
 
             echo $stm;
-        }else {
+        } else {
             echo "No Active Discounts";
         }
     }
 
     public function getSoldOutRefurnishedProducts()
     {
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $advertisement = new Advertisements();
         $rows = $advertisement->getSoldOutRefurnishedProducts();
 
-        if(!empty($rows)) {
+        if (!empty($rows)) {
             $stm = '';
 
-            foreach ($rows as $row){
+            foreach ($rows as $row) {
                 $stm .= "
                     <tr>
-                        <td>".$row->AdvertisementID."</td>
-                        <td>".$row->Name."</td>
+                        <td>" . $row->AdvertisementID . "</td>
+                        <td>" . $row->Name . "</td>
                     </tr>
                 ";
             }
 
             echo $stm;
-        }else {
+        } else {
             echo "No Sold Out Refurnished Products";
         }
     }
 
-    
+    public function getOrdersForDateRange()
+    {
 
+        $data['date1'] = $_POST['date1'];
+        $data['date2'] = $_POST['date2'];
+        $orders = new orders;
+        $ordercount = $orders->getOrderByDateRange($data['date1'], $data['date2']);
+        if ($ordercount == false) {
+            $ordercount = [];
+        }
+        $data['ordercount'] = $ordercount;
+        $labels = $this->getDateLabels($data['date1'], $data['date2']);
+        $data['labels'] = $labels;
+        $s = [];
+        for ($i = 0; $i < count($labels); $i++) {
+            $s[$i] = 0;
+            for ($j = 0; $j < count($ordercount); $j++) {
+                if ($labels[$i] == $ordercount[$j]->order_date) {
+                    $s[$i] = $ordercount[$j]->order_count;
+                    break;
+                }
+            }
+        }
+
+        $data['values'] = $s;
+        echo json_encode($data);
+
+    }
+
+    public function getDateLabels($date1, $date2)
+    {
+        $startDate = new DateTime($date1); // start date
+        $endDate = new DateTime($date2); // end date
+        $labels = [];
+
+        while ($startDate <= $endDate) {
+            array_push($labels, $startDate->format('Y-m-d'));
+            $startDate->modify('+1 day');
+        }
+
+        return $labels;
+    }
+
+    public function orderlists()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $q = "SELECT 
+    o.Date AS 'Date',
+    o.OrderID AS 'OrderID',
+    o.Order_status AS 'Status',
+    CONCAT(o.Firstname, ' ', o.Lastname) AS 'Customer',
+    GROUP_CONCAT(i.Name SEPARATOR ', ') AS 'Products',
+    SUM(i.Quantity) AS 'ItemsSold',
+    SUM(i.Quantity * i.Cost) AS 'NetSales'
+FROM 
+    orders o
+INNER JOIN 
+    order_item i ON o.OrderID = i.OrderID
+WHERE
+    o.Date BETWEEN '" . $_POST['date1'] . "' AND '" . $_POST['date2'] . "'
+GROUP BY 
+    o.OrderID
+ORDER BY 
+    o.Date DESC;
+
+";
+            $orders = new Orders();
+            echo json_encode($orders->query($q, []));
+        }
+    }
+
+    public function catergoryDetails($date1,$date2)
+    {
+        $q = "SELECT 
+    c.CategoryID AS `CatergoryID`,
+    c.Category_name AS `Catergory`,
+    COALESCE(SUM(sub.Quantity), 0) AS `ItemsSold`,
+    COALESCE(SUM(sub.Quantity * f.Cost), 0) AS `NetSales`,
+    COUNT(DISTINCT sub.OrderID) AS `Orders`
+FROM
+    categories c
+LEFT JOIN
+    furniture f ON c.CategoryID = f.CategoryID
+LEFT JOIN
+    (SELECT oi.ProductID, oi.Quantity, oi.OrderID
+     FROM order_item oi
+     JOIN orders o ON oi.OrderID = o.OrderID
+     WHERE o.Order_status IN ('Delivered', 'Dispatched', 'paid')
+       AND o.Date >= '".$date1."'
+       AND o.Date <  '".$date2."'
+    ) as sub ON f.ProductID = sub.ProductID
+GROUP BY
+    c.CategoryID,
+    c.Category_name
+";
+
+        $catergory = new Categories();
+        echo json_encode($catergory->query($q, []));
+    }
+
+    public function CatergoryDist()
+    {
+        $q = "SELECT c.CategoryID AS CategoryID, COALESCE(SUM(i.Quantity),0) AS Quantity from categories c LEFT JOIN furniture f ON c.CategoryID = f.CategoryID LEFT JOIN inventory i ON f.ProductID = i.ProductID GROUP BY c.CategoryID;";
+        $catergories = new Categories();
+        echo json_encode($catergories->query($q, []));
+    }
 
 }
