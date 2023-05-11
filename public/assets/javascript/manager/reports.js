@@ -1,296 +1,207 @@
 let activesection = localStorage.getItem('activeSection');
 if (activesection == null) {
-    activesection = 'overview';
+    activesection = 'products';
 }
 changeSection(activesection);
 
 
-// Create the chart
-var mainSalesChart = new Chart(
-    document.getElementById('mainSalesChart'), {
-        type: 'line',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Sales',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(0, 156, 99)',
-                tension: 0
-            }]
-        },
-        options: {
-            aspectRatio: 1.5,
-
-            animation: {},
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day',
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Rupees',
-                        font: {
-                            size: 15,
-                        }
-                    }
-                }
-            },
-            tooltips: {
-                enabled: true
-            },
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Sales',
-                    align: 'start',
-                    font: {
-                        size: 20,
-                        weight: 'bold'
-                    }
+var RatingsChart = new Chart(document.getElementById('RatingsChart'), {
+    type: 'bar',
+    options: {
+        aspectRatio: 1.5, responsive: true, animation: {},
+        scales: {}, tooltips: {
+            enabled: true
+        }, plugins: {
+            title: {
+                display: true, text: 'Top Products By Ratings (For All Time)', align: 'start', font: {
+                    size: 20, weight: 'bold'
                 }
             }
-
         }
+
     }
-);
-var SalesChart2 = new Chart(
-    document.getElementById('SalesChart2'), {
-        type: 'line',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Sales',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(0, 156, 99)',
-                tension: 0
-            }]
-        },
-        options: {
-            aspectRatio: 3,
-            responsive: true,
-            animation: {},
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day',
-                    }
+});
+
+function getTopRatings() {
+    fetch("http://localhost/WoodWorks/public/manager/getTop10Products")
+        .then(response => response.json())
+        .then(data => {
+            let labels = [];
+            let values = [];
+            console.log(data);
+            data.forEach(item => {
+                labels.push(item.ProductID);
+                values.push(item.Average);
+            })
+            console.log(labels);
+            console.log(values);
+            RatingsChart.data = {
+                labels: labels, datasets: [{
+                    label: 'Ratings',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    data: values
+                }]
+            };
+            RatingsChart.update();
+        })
+}
+
+var TopSellingChart = new Chart(document.getElementById('Topselling'), {
+    type: 'bar',
+    options: {
+        aspectRatio: 1.5,
+        responsive: true,
+        animation: {},
+        scales: {
+            y: {
+                beginAtZero: true,
+                precision: 0,
+                ticks: {
+                    stepSize: 1,
+
                 },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Rupees',
-                        font: {
-                            size: 15,
-                        }
-                    }
-                }
-            },
-            tooltips: {
-                enabled: true
-            },
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Sales',
-                    align: 'start',
-                    font: {
-                        size: 20,
-                        weight: 'bold'
-                    }
+                suggestedMax: 10 // Set the suggested maximum value of the y-axis to be 10 greater than the maximum value in your data
+            }
+        },
+        tooltips: {
+            enabled: true
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: 'Highest Sold Products (For All Time)',
+                align: 'start',
+                font: {
+                    size: 20,
+                    weight: 'bold'
                 }
             }
-
         }
     }
-);
-var ordercount = new Chart(
-    document.getElementById('ordercount'), {
-        type: 'bar',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Orders',
-                data: [],
 
+});
 
-                backgroundColor: '#9BD0F5',
-                tension: 0
-            }]
-        },
-
-        options: {
-
-            animation: {},
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day',
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Quanitity',
-                        //size
-                        font: {
-                            size: 15,
-
-                        }
-                    }
-                }
-            },
-            aspectRatio: 1.5,
-            tooltips: {
-                enabled: true
-            },
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Orders',
-                    align: 'start',
-                    font: {
-                        size: 20,
-                        weight: 'bold'
-                    }
-                }
-            }
-
-        }
-    }
-);
+function getTopProducts() {
+    fetch("http://localhost/WoodWorks/public/manager/getTopSellingProducts")
+        .then(response => response.json())
+        .then(data => {
+            let labels = [];
+            let values = [];
+            console.log(data);
+            data.forEach(item => {
+                labels.push(item.ProductID);
+                values.push(item.QuantitySold);
+            })
+            console.log(labels);
+            console.log(values);
+            TopSellingChart.data = {
+                labels: labels, datasets: [{
+                    label: 'Quantity Sold',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    data: values
+                }]
+            };
+            TopSellingChart.update();
+        })
+}
 
 
 //onclick
 window.onload = function (e) {
-
     e.preventDefault();
     //ajax using fetch to send to php
-    fetch('http://localhost/woodworks/public/manager/getReport', {
-        method: 'POST',
-        //formdata
-        body: new FormData(document.getElementById('form'))
-    }).then(response => response.json())
-        //decode and show json on console
-        .then(data => {
-            console.log(data);
-            document.getElementById('total-sales-value').innerHTML = "Rs. " + data.total
-            document.getElementById('total-order-count').innerHTML = data.completed[0].count
-            document.getElementById('total-products-sold').innerHTML = data.products_sold[0].total;
-            const date1 = new Date(data.date1);
-            const date2 = new Date(data.date2);
+    //
+    //
+    const date1 = new Date(document.getElementById('date1-input').value);
+    const date2 = new Date(document.getElementById('date2-input').value);
+    //
+    // const diffInDays = Math.floor((date2.getTime() - date1.getTime()) / 86400000);
+    //
+    // if (diffInDays < 30) {
+    //     SalesChart2.options.scales.x.time.unit = 'day';
+    //     orderchart.options.scales.x.time.unit = 'day';
+    //
+    // } else if (diffInDays < 365) {
+    //     SalesChart2.options.scales.x.time.unit = 'month';
+    //     orderchart.options.scales.x.time.unit = 'month';
+    // } else {
+    //     SalesChart2.options.scales.x.time.unit = 'year';
+    //     orderchart.options.scales.x.time.unit = 'year';
+    // }
+    // //update chart
+    // SalesChart2.data.labels = data.labels;
+    // SalesChart2.data.datasets[0].data = data.test;
+    //
+    getorderchart();
+    getTopRatings();
+    getOrderDescription();
+    getTopProducts();
 
-            const diffInDays = Math.floor((date2.getTime() - date1.getTime()) / 86400000);
 
-            if (diffInDays < 30) {
-                mainSalesChart.options.scales.x.time.unit = 'day';
-                SalesChart2.options.scales.x.time.unit = 'day';
-                ordercount.options.scales.x.time.unit = 'day';
-            } else if (diffInDays < 365) {
-                mainSalesChart.options.scales.x.time.unit = 'month';
-                SalesChart2.options.scales.x.time.unit = 'month';
-                ordercount.options.scales.x.time.unit = 'month';
-            } else {
-                mainSalesChart.options.scales.x.time.unit = 'year';
-                ordercount.options.scales.x.time.unit = 'year';
-                SalesChart2.options.scales.x.time.unit = 'year';
-            }
-            //update chart
-            mainSalesChart.data.labels = data.labels;
-            mainSalesChart.data.datasets[0].data = data.test;
-            SalesChart2.data.labels = data.labels;
-            ordercount.data.labels = data.labels;
-            ordercount.data.datasets[0].data = data.ordercount;
-            SalesChart2.data.datasets[0].data = data.test;
-
-            mainSalesChart.update();
-            SalesChart2.update();
-            ordercount.update();
-        })
-
-    // document.getElementById("page-no").innerHTML = 1;
+// document.getElementById("page-no").innerHTML = 1;
 
 
     var data1 = document.querySelector("input[name='date1']").value;
     var data2 = document.querySelector("input[name='date2']").value;
-
-    document.getElementById('date-range-label').innerText = data1 + " to " + data2;
+    //
+    // document.getElementById('date-range-label').innerText = data1 + " to " + data2;
     products(data1, data2, 'Paid');
     inventory();
-};
+    getReorderDetails();
+    getCatergoryDescription(data1, data2);
+    getCatergoryDist()
+    // getorderchart();
+
+}
 
 
 document.getElementById('form').addEventListener('submit', function (e) {
     e.preventDefault();
-    //ajax using fetch to send to php
-    fetch('http://localhost/woodworks/public/manager/getReport', {
-        method: 'POST',
-        //formdata
-        body: new FormData(document.getElementById('form'))
-    }).then(response => response.json())
-        //decode and show json on console
-        .then(data => {
-            console.log(data);
-            document.getElementById('total-sales-value').innerHTML = data.total
-            document.getElementById('total-order-count').innerHTML = data.completed[0].count
+
+    const date1 = new Date(document.getElementById('date1-input').value);
+    const date2 = new Date(document.getElementById('date2-input').value);
+    if (date1.getTime() <= date2.getTime()) {
 
 
-            const date1 = new Date(data.date1);
-            const date2 = new Date(data.date2);
+        //ajax using fetch to send to php
 
-            const diffInDays = Math.floor((date2.getTime() - date1.getTime()) / 86400000);
+        const diffInDays = Math.floor((date2.getTime() - date1.getTime()) / 86400000);
 
-            if (diffInDays < 30) {
-                mainSalesChart.options.scales.x.time.unit = 'day';
-                ordercount.options.scales.x.time.unit = 'day';
-            } else if (diffInDays < 365) {
-                mainSalesChart.options.scales.x.time.unit = 'month';
-                ordercount.options.scales.x.time.unit = 'month';
-            } else {
-                mainSalesChart.options.scales.x.time.unit = 'year';
-                ordercount.options.scales.x.time.unit = 'year';
-            }
-            //update chart
-            mainSalesChart.data.labels = data.labels;
-            mainSalesChart.data.datasets[0].data = data.test;
-            ordercount.data.labels = data.labels;
-            ordercount.data.datasets[0].data = data.ordercount;
-            SalesChart2.data.labels = data.labels;
-            SalesChart2.data.datasets[0].data = data.test;
-
-            mainSalesChart.update();
-
-            ordercount.update();
-            SalesChart2.update();
-
-        })
-
-    var dropdownContent = document.querySelector(".dropdown-content");
-    dropdownContent.classList.toggle("show");
-
-    var data1 = document.querySelector("input[name='date1']").value;
-    var data2 = document.querySelector("input[name='date2']").value;
+        if (diffInDays < 30) {
+            orderchart.options.scales.x.time.unit = 'day';
+        } else if (diffInDays < 365) {
+            orderchart.options.scales.x.time.unit = 'month';
+        } else {
+            orderchart.options.scales.x.time.unit = 'year';
+        }
+        //update chart
+        getorderchart();
 
 
-    document.getElementById('date-range-label').innerText = data1 + " to " + data2;
-    products(data1, data2, 'Paid');
-    inventory();
+        var dropdownContent = document.querySelector(".dropdown-content");
+        dropdownContent.classList.toggle("show");
+
+        var data1 = document.querySelector("input[name='date1']").value;
+        var data2 = document.querySelector("input[name='date2']").value;
+
+
+        document.getElementById('date-range-label').innerText = data1 + " to " + data2;
+        products(data1, data2, 'Paid');
+        getCatergoryDescription(data1, data2);
+        inventory();
+    } else {
+        alert('Invalid Date Range');
+    }
 });
 
 let data;
 
 function products(date1, date2, paymentStatus) {
-    const perPage = 5; // Number of items to display per page
+    const perPage = 10; // Number of items to display per page
     let currentPage = 1; // Current page
 
     // Fetch data from API
@@ -378,7 +289,7 @@ function inventory() {
                     const reorderPoint = data.inventory[i].Reorder_point;
                     const status = data.inventory[i].Status;
                     // Check the stock level and set the appropriate background color
-                    if (quantity === 0 || status === 'Out of stock' ) {
+                    if (quantity === 0 || status === 'Out of stock') {
                         row.style.backgroundColor = '#f99';
                     } else if (quantity > 0 && quantity <= reorderPoint + 5) {
                         row.style.backgroundColor = '#FFAE42';
@@ -398,7 +309,6 @@ function inventory() {
                     tableBody.appendChild(row);
                 }
             };
-
 
 
             // Function to render pagination buttons
@@ -428,49 +338,6 @@ function inventory() {
         })
         .catch(error => console.error(error));
 }
-
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Category A', 'Category B', 'Category C'],
-        datasets: [
-            {
-                label: 'Stock',
-                data: [20, 15, 30],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            },
-            {
-                label: 'Reorder Point',
-                data: [10, 12, 25],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }
-        ]
-    },
-    options: {
-        aspectRatio: 1.5,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Stock vs. Reorder Point',
-                align: 'start',
-                font: {
-                    size: 20,
-                    weight: 'bold'
-                }
-            }
-        }
-    }
-});
 
 //close popup
 
@@ -509,12 +376,10 @@ window.onclick = function (event) {
 
 function changeSection(stringw) {
     //switch statement depending on stringw
-    document.querySelector(".overview-section").classList.add("hidden-section");
     document.querySelector(".products-section").classList.add("hidden-section");
     document.querySelector(".orders-section").classList.add("hidden-section");
     document.querySelector(".inventory-section").classList.add("hidden-section");
     document.querySelector(".catergories-section").classList.add("hidden-section");
-    document.querySelector(".coupons-section").classList.add("hidden-section");
 
     //select all links and remove active class
     document.querySelectorAll(".select-link");
@@ -531,20 +396,7 @@ function changeSection(stringw) {
     });
 
     switch (stringw) {
-        case "overview":
-            //toggle hidden section
-            document.querySelector(".overview-section").classList.toggle("hidden-section");
-            document.getElementById("overview-link").classList.add("active-section");
-            localStorage.setItem('activeSection', stringw);
-            //enable and color #date-range
-            document.getElementById("date-range").setAttribute("onclick", "toggleDropdown()");
-            document.getElementById("date-range").style.cursor = "pointer";
-            document.getElementById("date-range").style.color = "#000";
-            document.getElementById("date-range").style.border = "1px solid #000";
-            document.getElementById("date-range").style.backgroundColor = "#fff";
 
-
-            break;
         case "products":
             //toggle hidden section
             document.querySelector(".products-section").classList.toggle("hidden-section");
@@ -581,21 +433,7 @@ function changeSection(stringw) {
             document.getElementById("date-range").style.backgroundColor = "#f2f2f2";
 
             break;
-        case "coupons":
-            //toggle hidden section
-            document.querySelector(".coupons-section").classList.toggle("hidden-section");
-            document.getElementById("coupons-link").classList.add("active-section");
-            localStorage.setItem('activeSection', stringw);
 
-            //enable and color #date-range
-            document.getElementById("date-range").setAttribute("onclick", "toggleDropdown()");
-            document.getElementById("date-range").style.cursor = "pointer";
-            document.getElementById("date-range").style.color = "#000";
-            document.getElementById("date-range").style.border = "1px solid #000";
-            document.getElementById("date-range").style.backgroundColor = "#fff";
-
-
-            break;
         case "catergories":
             //toggle hidden section
             document.querySelector(".catergories-section").classList.toggle("hidden-section");
@@ -614,38 +452,6 @@ function changeSection(stringw) {
     }
 }
 
-function tooltip(num) {
-    var tooltip1 = document.getElementsByClassName("tooltip1");
-    var tooltip2 = document.getElementsByClassName("tooltip2");
-    var tooltip3 = document.getElementsByClassName("tooltip3");
-    if (num == 1) {
-        tooltip1[0].classList.toggle("hidden-section");
-    } else if (num == 2) {
-        tooltip2[0].classList.toggle("hidden-section");
-    } else if (num == 3) {
-        tooltip3[0].classList.toggle("hidden-section");
-    }
-}
-
-function tooltipoff(num) {
-    var tooltip1 = document.getElementsByClassName("tooltip1");
-    var tooltip2 = document.getElementsByClassName("tooltip2");
-    var tooltip3 = document.getElementsByClassName("tooltip3");
-    if (num == 1) {
-        tooltip1[0].classList.toggle("hidden-section");
-    } else if (num == 2) {
-        tooltip2[0].classList.toggle("hidden-section");
-    } else if (num == 3) {
-        tooltip3[0].classList.toggle("hidden-section");
-    }
-}
-
-function bar() {
-    mainSalesChart.config.type = 'bar';
-
-    mainSalesChart.update();
-}
-
 function exportCSV(reportType) {
 
     var data1 = document.querySelector("input[name='date1']").value;
@@ -653,11 +459,9 @@ function exportCSV(reportType) {
     var status = document.getElementById('paymentStatus').value;
 
     fetch('http://localhost/woodworks/public/manager/reportCSV/' + reportType + '/' + data1 + '/' + data2 + '/' + status, {
-        method: 'POST',
-        headers: {
+        method: 'POST', headers: {
             'Content-Type': 'application/json'
-        },
-        body: reportType,
+        }, body: reportType,
     })
         //download csv file
         .then(response => response.text())
@@ -673,4 +477,318 @@ function exportCSV(reportType) {
             a.click();
             document.body.removeChild(a);
         })
+}
+
+// Inventory Page Reoder Levels Chart
+
+var salresReorder2 = new Chart(document.getElementById('reorderchart2'), {
+    type: 'bar', data: {
+        labels: [], datasets: [{
+            label: 'Orders', data: [],
+
+
+            backgroundColor: '#9BD0F5', tension: 0
+        }]
+    },
+
+    options: {
+
+        maintainAspectRatio: false, // aspectRatio: 1.5,
+        tooltips: {
+            enabled: true
+        }, plugins: {
+            title: {
+                display: true, text: 'Inventory Reorder Levels', align: 'start', font: {
+                    size: 20, weight: 'bold'
+                }
+            }
+        }
+
+    }
+});
+
+
+function getReorderDetails() {
+    fetch('http://localhost/WoodWorks/public/manager/getProductsReachedReorderLevel')
+        .then(response => response.json())
+        .then(data => {
+            let labels = []
+            let values1 = []
+            let values2 = []
+
+            data.forEach(item => {
+                labels.push(item.ProductID);
+                values1.push(item.Quantity);
+                values2.push(item.Reorder_point);
+            })
+            //
+            let chartdata = {
+                labels: labels, datasets: [{
+                    label: 'Inventory Level',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    data: values1
+                }, {
+                    label: 'Reorder Level',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    data: values2
+                }]
+            }
+
+            salresReorder2.data = chartdata;
+            salresReorder2.update();
+
+
+        })
+}
+
+
+//setup order analytics orders page
+
+
+var orderchart = new Chart(document.getElementById('orderchart2'), {
+    type: 'bar', data: {
+        labels: [], datasets: [{
+            label: 'Orders', data: [], backgroundColor: '#9BD0F5', tension: 0
+        }]
+    }, options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true, stepSize: 1
+                }
+            }]
+        }, maintainAspectRatio: false, // aspectRatio: 1.5,
+        tooltips: {
+            enabled: true
+        }, plugins: {
+            title: {
+                display: true, text: 'Orders', align: 'start', font: {
+                    size: 20, weight: 'bold'
+                }
+            }
+        }, aspectRatio: 3, responsive: true, animation: {}, scales: {
+            x: {
+                type: 'time', time: {
+                    unit: 'day',
+                }
+            }, y: {
+                display: true, title: {
+                    display: true, text: 'No. of Orders', font: {
+                        size: 15,
+                    }
+                }
+            }
+        }
+
+
+    }
+});
+
+
+function getorderchart() {
+    fetch("http://localhost/WoodWorks/public/manager/getOrdersForDateRange", {
+        method: 'POST', body: new FormData(document.getElementById('form'))
+    })
+        .then(response => response.json())
+        .then(data => {
+            let labels = [];
+            let value = [];
+            // console.log(value);
+
+            //chart definitions
+
+            let chartdata = {
+                labels: data.labels, datasets: [{
+                    label: 'Orders',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    data: data.values
+                }]
+            }
+            orderchart.data = chartdata;
+            orderchart.update();
+
+
+        })
+        .catch(error => console.log(error));
+}
+
+var catergorydistr = new Chart(document.getElementById('catergorydist'), {
+    type: 'doughnut',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Orders',
+            data: [],
+            backgroundColor: '#9BD0F5',
+            tension: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        aspectRatio: 1,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Category Distribution Across Inventory',
+                align: 'start',  // Align the title to the left
+                font: {
+                    size: 15,
+                }
+            }
+        }
+    }
+});
+
+function getCatergoryDist() {
+    fetch("http://localhost/WoodWorks/public/manager/CatergoryDist")
+        .then(response => response.json())
+        .then(data => {
+            let labels = [];
+            let value = [];
+            data.forEach(item => {
+                labels.push(item.CategoryID);
+                value.push(item.Quantity);
+            });
+            console.log(data);
+            let chartdata = {
+                labels: labels,
+                datasets: [{
+                    label: 'Categories',
+                    data: value
+                }]
+            };
+            catergorydistr.data = chartdata;
+            catergorydistr.update();
+        })
+        .catch(error => console.log(error));
+}
+
+function getOrderDescription() {
+
+
+    const perPage = 5; // Number of items to display per page
+    let currentPage = 1; // Current page
+
+    fetch("http://localhost/WoodWorks/public/manager/orderlists", {
+        method: 'POST', body: new FormData(document.getElementById('form'))
+    })
+        .then(response => response.json())
+        .then(data => {
+            const totalItems = data.length;
+            console.log(data);
+            const totalPages = Math.ceil(totalItems / perPage);
+            const renderTableRows = (start, end) => {
+                const tableBody = document.getElementById('tableBody-orders');
+                tableBody.innerHTML = '';
+                for (let i = start; i <= Math.min(end, data.length - 1); i++) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                    <td>${data[i].Date}</td>
+                    <td>${data[i].OrderID}</td>
+                    <td>${data[i].Status}</td>
+                    <td>${data[i].Customer}</td>
+                    <td>${data[i].Products}</td>
+                    <td>${data[i].ItemsSold}</td>
+                    <td>${data[i].NetSales}</td>  
+                `;
+                    tableBody.appendChild(row);
+                }
+            };
+
+            const renderPaginationButtons = () => {
+                const pagination = document.getElementById('pagination-orders');
+                console.log(totalPages);
+                pagination.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    console.log(i);
+                    const button = document.createElement('button');
+                    button.textContent = i;
+                    if (i === currentPage) {
+                        button.disabled = true;
+                    }
+                    button.addEventListener('click', () => {
+                        currentPage = i;
+                        renderTableRows((currentPage - 1) * perPage, currentPage * perPage - 1);
+                        renderPaginationButtons();
+                    });
+                    pagination.appendChild(button);
+                }
+            };
+            console.log("Test-> " + data[0].Date);
+
+            renderTableRows(0, perPage - 1);
+
+            renderPaginationButtons();
+        })
+
+
+}
+
+function getCatergoryDescription($date1, $date2) {
+
+
+    const perPage = 5; // Number of items to display per page
+    let currentPage = 1; // Current page
+
+    fetch("http://localhost/WoodWorks/public/manager/catergoryDetails/" + $date1 + "/" + $date2)
+        .then(response => response.json())
+        .then(data => {
+            const totalItems = data.length;
+            console.log(data);
+            const totalPages = Math.ceil(totalItems / perPage);
+            const renderTableRows = (start, end) => {
+                const tableBody = document.getElementById('tableBody-categories');
+                tableBody.innerHTML = '';
+                for (let i = start; i <= Math.min(end, data.length - 1); i++) {
+                    const row = document.createElement('tr');
+                    console.log('test ' + i);
+                    row.innerHTML = `
+                    <td>${data[i].CatergoryID}</td>
+                    <td>${data[i].Catergory}</td>
+                    <td>${data[i].ItemsSold}</td>
+                    <td>${data[i].NetSales}</td>
+                    <td>${data[i].Orders}</td>
+                    
+                `;
+                    tableBody.appendChild(row);
+                }
+            };
+
+            const renderPaginationButtons = () => {
+                const pagination = document.getElementById('pagination-catergory');
+                console.log(totalPages);
+                pagination.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    console.log(i);
+                    const button = document.createElement('button');
+                    button.textContent = i;
+                    if (i === currentPage) {
+                        button.disabled = true;
+                    }
+                    button.addEventListener('click', () => {
+                        currentPage = i;
+                        renderTableRows((currentPage - 1) * perPage, currentPage * perPage - 1);
+                        renderPaginationButtons();
+                    });
+                    pagination.appendChild(button);
+                }
+            };
+            console.log("Test-> " + data[0].Date);
+
+            renderTableRows(0, perPage - 1);
+
+            renderPaginationButtons();
+        })
+
+
 }

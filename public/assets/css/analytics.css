@@ -38,10 +38,10 @@
     width: 90%;
 }
 
-.chart-component,.chart-component-inventory {
+.chart-component, .chart-component-inventory {
     border-radius: 10px;
     width: 100%;
-     height: 450px;
+    height: 450px;
     display: flex;
     background-color: white;
     flex-direction: column;
@@ -51,7 +51,7 @@
     box-shadow: 10px 10px 10px rgba(140, 140, 140, 0.282);
 }
 
-.chart-component-inventory{
+.chart-component-inventory {
     width: auto;
 }
 
@@ -229,7 +229,8 @@
     opacity: 0.5;
 }
 
-.overview-section {}
+.overview-section {
+}
 
 .overview-section h2 {
     margin-top: 40px;
@@ -253,18 +254,20 @@
     grid-row-gap: 10px;
     flex-wrap: wrap
 }
-.reports{
+
+.reports {
     padding-left: 150px;
-    width:100% !important;
+    width: 100% !important;
 }
 
-.list{
-    margin-top:25px;
+.list {
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
     padding: 10px;
+    position: relative;
     width: 100%;
-    /* height: 600px; */
+    min-height: 500px;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -272,13 +275,14 @@
     background-color: white;
     box-shadow: 0px 10px 10px rgba(140, 140, 140, 0.282);
 }
-.list table th{
+
+.list table th {
     height: 50px;
     border: 1px solid white;
     background-color: #d9d9d9;
 }
 
-.list table td{
+.list table td {
 
     border: 1px solid #d9d9d9;
     text-align: center;
@@ -286,40 +290,40 @@
     padding: 10px;
 }
 
-.list table{
+.list table {
     margin-bottom: 10px;
     width: 100%;
     border-collapse: collapse;
     border-radius: 10px !important;
 }
 
-.list table tr:nth-child(even){
+.list table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.list table tr:hover{
+.list table tr:hover {
     background-color: #d9d9d9;
 }
 
-.list table tbody{
+.list table tbody {
 
 
 }
 
-.pager-button{
+.pager-button {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
 }
 
-.pager-button button{
+.pager-button button {
     background-color: white;
-    border:none;    
-    cursor:pointer;
+    border: none;
+    cursor: pointer;
 }
 
-.product-list-header, .inventory-list-header{
+.product-list-header, .inventory-list-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -327,9 +331,13 @@
     margin: 20px;
 }
 
+.product-list {
+    padding-bottom: 60px;
+
+}
 
 
-#page-no{
+#page-no {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -337,32 +345,75 @@
     margin: 5px;
     height: 30px;
     width: 30px;
-    border:1px solid black;
+    border: 1px solid black;
 }
 
-.pagination, .pagination-inventory button{
+.pagination button {
 
     background-color: white;
-    border:none;    
-    cursor:pointer;
+    border: none;
+    cursor: pointer;
     margin: 5px;
     height: 30px;
     width: 30px;
-    border:1px solid rgb(123, 123, 123);
+    border: 1px solid rgb(123, 123, 123);
     border-radius: 5px;
 }
 
-.pagination, .pagination-inventory{
+#pagination-catergory button {
+    background-color: white;
+    border: none;
+
+    cursor: pointer;
+    margin: 5px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid rgb(123, 123, 123);
+    border-radius: 5px;
+}
+
+#pagination-inventory button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid rgb(123, 123, 123);
+    border-radius: 5px;
+}
+
+#pagination-orders button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid rgb(123, 123, 123);
+    border-radius: 5px;
+}
+
+.pagination, #pagination-inventory, #pagination-orders, #pagination-catergory {
     display: flex;
-    justify-content: right;
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    width: 100%;
+    justify-content: flex-end;
     align-items: center;
 }
 
-#exporttocsv{
-    color:rgb(85, 0, 255);;
+#exporttocsv {
+    color: rgb(85, 0, 255);;
 }
 
-#exporttocsv:hover{
+#exporttocsv:hover {
     cursor: pointer;
     color: rgb(0, 31, 168);
+}
+
+.chart-container {
+    background: none;
+    height: 500px;
 }
