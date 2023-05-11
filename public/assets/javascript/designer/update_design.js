@@ -2,6 +2,7 @@ let doc_form = document.getElementById('edit-doc-form');
 let doc_btn = document.getElementById('doc-btn');
 let response = document.getElementById('response');
 let doc_id = '';
+let design_id = '';
 
 doc_form.onsubmit = (e) => {
     e.preventDefault();
@@ -82,6 +83,56 @@ function closeDocumentPopup()
 {
     let popup = document.getElementById("upl-docs");
     popup.style.visibility = "hidden";
+}
+
+function deleteDesign(id)
+{
+    design_id = id;
+
+    response.innerHTML = "<div class='cat-success cat-deletion'>\n" +
+        "        <h2>Do you want to delete this design?</h2>\n" +
+        "        <div class=\"cat-deletion-btns\">\n" +
+        "            <button onclick=\"confirmDeleteDesign()\">Yes</button>\n" +
+        "            <button onclick=\"closeDeleteDeletePopup()\">No</button>\n" +
+        "        </div>\n" +
+        "    </div>";
+}
+
+function confirmDeleteDesign()
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/WoodWorks/public/designer/remove_add_design/'+design_id, true);
+    xhr.onload = () => {
+        if (xhr.readyState === 4 )
+        {
+            if (xhr.status === 200) {
+                if(xhr.response === 'success'){
+                    response.innerHTML = "<div class='cat-success'>\n" +
+                        "        <h2>Design Deleted Successfully.</h2>\n" +
+                        "    </div>";
+                    setTimeout(() => {
+                        window.location.href = 'http://localhost/WoodWorks/public/designer/view_design_categories';
+                    }, 2000);
+                }else
+                {
+                    response.innerHTML = "<div class='cat-success cat-deletion'>\n" +
+                        "        <h2>Design Deletion Failed.</h2>\n" +
+                        "    </div>";
+                    setTimeout(() => {
+                         window.location.reload();
+                    }, 2000);
+                }
+
+            }
+        }
+    }
+    xhr.send();
+}
+
+function closeDeleteDeletePopup()
+{
+    response.innerHTML = '';
+    design_id = null;
 }
 
 

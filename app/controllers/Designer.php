@@ -21,12 +21,10 @@ class Designer extends Controller
         $id = Auth::getEmployeeID();
 
         $design = new Design();
-        $employee = new Employees();
-        $data['row'] = $employee->where("EmployeeID",$id);
 
         $limit = 8;
 
-        $data['rows'] = $design->getDesign($limit);
+        $data['rows'] = $design->getDesign("DesignerID",$id,$limit);
 
         if(!empty($data['rows'])) {
 
@@ -133,14 +131,10 @@ class Designer extends Controller
             $this->redirect('login1');
         }
 
-        $limit = 8;
-        $pager = new Pager($limit);
-        $offset = $pager->offset;
-        $data['pager'] = $pager;
-
+        $limit = 10;
         $categories = new Categories();
         $data['row'] = $this->getUser();
-        $data['categories'] = $categories->getDesignCategories($offset,$limit);
+        $data['categories'] = $categories->getDesignCategories($limit);
 
         $this->view("designer/design_category",$data);
     }
@@ -447,15 +441,16 @@ class Designer extends Controller
         }
 
         $design = new Design();
-        $design_images = new Design_image();
 
-        if(isset($_POST['delete_btn'])){
-            $design->deleteDesign($id);
-            $design_images->deleteImage($id);
-            $this->redirect('designer/design');
+        if(empty($design->deleteDesign($id)))
+        {
+            echo "success";
+        }
+        else
+        {
+            echo "failed";
         }
 
-        $this->redirect('designer/design');
     }
 
     public function chat()
