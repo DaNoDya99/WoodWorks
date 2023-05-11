@@ -21,12 +21,10 @@ class Designer extends Controller
         $id = Auth::getEmployeeID();
 
         $design = new Design();
-        $employee = new Employees();
-        $data['row'] = $employee->where("EmployeeID",$id);
 
         $limit = 8;
 
-        $data['rows'] = $design->getDesign($limit);
+        $data['rows'] = $design->getDesign("DesignerID",$id,$limit);
 
         if(!empty($data['rows'])) {
 

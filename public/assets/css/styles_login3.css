@@ -499,17 +499,30 @@ body{
 
 /* Designer Dashboard*/
 .designer-tbox{
-    width: 55%;
-    margin: 1em auto;
+    width: 45%;
+    height: 580px;
+    margin-top: 20px ;
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Rubik';
+    font-family: 'Rubik-SemiBold';
     max-height: 80vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     float: right;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.designer-tbox:hover{
+    transform: scale(1.05);
+    transition: .4s ease-in;
+}
+
+.designer-tbox::-webkit-scrollbar{
+    display: none;
 }
 
 .designer-tbox table{
@@ -526,17 +539,11 @@ body{
 
 }
 
-.designer-content-table:hover{
-    transform: scale(1.05);
-    transition: .4s ease-in;
-}
-
 .designer-content-table thead tr{
     color: black;
     text-align: center;
     font-weight: bold;
     margin-top: 5px;
-    border-bottom: 1px solid #d2d2d2;
 
 }
 
@@ -1219,7 +1226,7 @@ body{
 
 }
 #chart-container {
-    width: 425px;
+    width: 100%;
     height: auto;
     background-color:#f9f9f9;
     margin: 0 ;
@@ -1256,7 +1263,7 @@ body{
 
 #chart-container3{
     width:30%;
-    height: 580px;
+    height: auto;
     margin: 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -1289,7 +1296,7 @@ body{
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
-
+    justify-content: space-between;
 }
 
 .designer-box{
