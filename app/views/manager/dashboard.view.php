@@ -1,5 +1,6 @@
 <?php $this->view('manager/includes/header') ?>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="<?=ROOT?>/assets/javascript/chart.umd.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>-->
 <body class="manager">
     <div class="manager-body ">
         <?php $this->view('manager/includes/manager_header') ?>

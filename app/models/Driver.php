@@ -56,7 +56,7 @@ class Driver extends Model
 
     public function availableDrivers()
     {
-        $query = "SELECT * FROM $this->table WHERE Availability = :Availability;";
+        $query = "SELECT * FROM $this->table INNER JOIN employee ON driver.DriverID = employee.EmployeeID WHERE Availability = :Availability;";
 
         return $this->query($query,['Availability' => 'Available']);
     }

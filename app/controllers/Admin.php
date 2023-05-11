@@ -204,7 +204,7 @@ class Admin extends Controller
         }
 
         $inventory = new Product_Inventory();
-        $data['inventory'] = $inventory->findAll();
+        $data['inventory'] = $inventory->getAllFromInventory();
 
         $category = new Categories();
         $sub_category = new Sub_Categories();
