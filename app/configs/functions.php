@@ -23,11 +23,9 @@ function str_to_url($url)
 function set_value($key, $default = '')
 {
 
-    if(!empty($_POST[$key]))
-    {
+    if (!empty($_POST[$key])) {
         return $_POST[$key];
-    }else if(!empty($default))
-    {
+    } else if (!empty($default)) {
         return $default;
     }
 
@@ -40,13 +38,12 @@ function esc($str)
     return nl2br(htmlspecialchars($str));
 }
 
-function resize_image($filename,$max_size = 700)
+function resize_image($filename, $max_size = 700)
 {
 
     $type = mime_content_type($filename);
 
-    if(file_exists($filename))
-    {
+    if (file_exists($filename)) {
         switch ($type) {
 
             case 'image/png':
@@ -69,19 +66,16 @@ function resize_image($filename,$max_size = 700)
         $src_w = imagesx($image);
         $src_h = imagesy($image);
 
-        if($src_w > $src_h)
-        {
-            if($src_w < $max_size)
-            {
+        if ($src_w > $src_h) {
+            if ($src_w < $max_size) {
                 $max_size = $src_w;
             }
 
             $dst_w = $max_size;
             $dst_h = ($src_h / $src_w) * $max_size;
-        }else{
+        } else {
 
-            if($src_h < $max_size)
-            {
+            if ($src_h < $max_size) {
                 $max_size = $src_h;
             }
             $dst_w = ($src_w / $src_h) * $max_size;
@@ -90,8 +84,7 @@ function resize_image($filename,$max_size = 700)
 
         $dst_image = imagecreatetruecolor($dst_w, $dst_h);
 
-        if($type == 'image/png')
-        {
+        if ($type == 'image/png') {
             imagealphablending($dst_image, false);
             imagesavealpha($dst_image, true);
         }
@@ -100,23 +93,23 @@ function resize_image($filename,$max_size = 700)
 
         imagedestroy($image);
 
-        imagejpeg($dst_image,$filename,90);
+        imagejpeg($dst_image, $filename, 90);
         switch ($type) {
 
             case 'image/png':
-                imagepng($dst_image,$filename);
+                imagepng($dst_image, $filename);
                 break;
 
             case 'image/gif':
-                imagegif($dst_image,$filename);
+                imagegif($dst_image, $filename);
                 break;
 
             case 'image/jpeg':
-                imagejpeg($dst_image,$filename,90);
+                imagejpeg($dst_image, $filename, 90);
                 break;
 
             default:
-                imagejpeg($dst_image,$filename,90);
+                imagejpeg($dst_image, $filename, 90);
                 break;
         }
 
@@ -125,3 +118,19 @@ function resize_image($filename,$max_size = 700)
 
     return $filename;
 }
+function exportToCsv($data, $filename)
+{
+    // show($data);
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="' . $filename . '";');
+    $file = fopen('php://output', 'w');
+    foreach ($data as $row) {
+        $row = (array)$row;
+        fputcsv($file, (array)$row);
+    }
+    fclose($file);
+}
+
+/**
+ * @throws \PHPMailer\PHPMailer\Exception
+ */

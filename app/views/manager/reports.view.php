@@ -1,173 +1,152 @@
 <?php $this->view('manager/includes/header') ?>
 
 <body class="manager">
-<?php $this->view('manager/includes/manager_header') ?>
-<div class="content manager-body ">
-    <div class="dashboard">
-        <div class="form-container">
+    <?php $this->view('manager/includes/manager_header') ?>
+    <div class="content manager-body ">
+        <div class="select-reports">
+            <ul>
+                <li id="overview-link" class="select-link active-section" onclick="changeSection('overview')">Overview</li>
+                <li id="products-link" class="select-link" onclick="changeSection('products')">Products</li>
+                <li id="orders-link" class="select-link" onclick="changeSection('orders')">Orders</li>
+                <li id="catergories-link" class="select-link" onclick="changeSection('catergories')">Catergories</li>
+                <li id="coupons-link" class="select-link" onclick="changeSection('coupons')">Coupons</li>
 
-            <form method="post" class="report-form">
-                <div class="form-header" style="width: 100%">
-                    <h2>Generate Reports</h2>
-                </div>
-                <div class="form-fields">
-                    <div class="report-type ">
-                        <div>
-                            <label for="report_types">Select Report</label><br/>
-                            <select name="report_types">
-                                <option value="Daily Sales Reports">Daily Sales Reports</option>
-                                <option value="Weekly Sales reports">Weekly Sales Reports</option>
-                                <option value="Monthly Sales Reports">Monthly Sales Report</option>
-                            </select>
-                        </div>
-
-                    </div>
-                    <div class="report-date">
-                        <div class="report-from">
-                            <label for="dateFrom">From</label>
-                            <input type="date" name="dateFrom">
-                        </div>
-
-
-                        <div class="report-to">
-                            <label for="dateTo">To</label>
-                            <input type="date" name="dateTo">
-                            <!-- <select name="months"> -->
-                            <!-- <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-
-
-                            </select> -->
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <button type="button" onclick="gentable()">Generate Report</button>
-
-
-            </form>
-            <div class="generated-report">
-                <div class="inventory-data" id="panel">
-
-                    <div style="display:flex; justify-content:space-between">
-                        <h3 style="font-weight:500;">Inventory</h3>
-        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
-            <a href="#" style="padding-right:30px; text-decoration: none; font-weight: bold; "><p>Export to PDF</p></a>
-            <input type="text" name="search" onkeyup="myFunction()" id="myInput"
-                   placeholder="Search Orders">
-
+            </ul>
         </div>
+        <div class="reports">
+            <div class="dashboard">
+
+                <label for="">Date Range:</label><br><br>
+                <div id="date-range" class="dropdown date-range dashboard" onclick="toggleDropdown()">
+                    <p id="date-range-label">Select</p><img id="dropdown-icon" src="<?= ROOT ?>/assets/images/manager/chevron-down-solid.svg" alt="">
+
+                    <div id="date-overlay" class="dropdown-content date-overlay ">
+                        <p>Select Range </p>
+                        <a class="closebtn" onclick="toggleDropdown()"><img style="height:20px" src="<?= ROOT ?>/assets/images/manager/xmark-solid.svg" alt=""></a>
+                        <form id="form" action="">
+                            <label for="date1">From</label>
+                            <input name="date1" type="date" value="<?php echo date('Y-m-01'); ?>">
+                            <label for="date2">To</label>
+                            <input name="date2" type="date" value="<?php echo date('Y-m-d'); ?>">
+                            <br><br>
+                            <div class="submit-reset-buttons">
+                                <input type="submit" value="Submit">
+                                <input type="reset" value="Reset">
+                            </div>
+
+                        </form>
 
                     </div>
+                </div>
+                <div class="variable-section">
+                    <div class="overview-section">
+                        <div>
+                            <div class="widget-header">
+                                <h2>Performance</h2>
+                            </div>
+                            <div class="widget-holder">
+                                <div class="performance-widget">
+                                    <div class="widget-title-area">
+                                        <h3>Total Sales</h3>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt="" onmouseover="tooltip(1)" onmouseleave="tooltipoff(1)">
+                                        <div class="tooltip tooltip1 hidden-section">Revenue from Sales</div>
+                                    </div>
+                                    <h2 id="total-sales-value"><i style="color:grey">Select Range</i></h2>
+                                </div>
+                                <div class="performance-widget">
+                                    <div class="widget-title-area">
+                                        <h3>Orders</h3>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt="" onmouseover="tooltip(2)" onmouseleave="tooltipoff(2)">
+                                        <div class="tooltip tooltip2 hidden-section">Revenue from Sales</div>
 
-                    <table id="myTable">
-                        <table>
-                            <tr class="thead">
-                                <th class="col-name headercol">Product</th>
-                                <th class="col-quantity headercol">Quantity Sold</th>
-                                <th class="col-cost headercol">Unit Price</th>
-                                <th class="col-revenue headercol">Total Revenue</th>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 1</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 2</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 3</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 4</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>   <tr>
-                                <td class="col-name">Product 1</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 2</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 3</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 4</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>   <tr>
-                                <td class="col-name">Product 1</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 2</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 3</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="col-name">Product 4</td>
-                                <td class="col-quantity">100</td>
-                                <td class="col-cost">$10.00</td>
-                                <td class="col-revenue">$1000.00</td>
-                            </tr>
-                        </table>
+                                    </div>
+                                    <h2 id="total-order-count"><i style="color:grey">Select Range</i></h2>
+                                </div>
+                                <div class="performance-widget">
+                                    <div class="widget-title-area">
+                                        <h3>Products Sold</h3>
+                                        <img src="<?= ROOT ?>/assets/images/manager/info.svg" alt="" onmouseover="tooltip(3)" onmouseleave="tooltipoff(3)">
+                                        <div class="tooltip tooltip3 hidden-section">Revenue from Sales</div>
 
-                    </table>
+                                    </div>
+                                    <h2 id="total-products-sold"><i style="color:grey">Select Range</i></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Charts</h2>
+                        <div class="charts">
+                            <div class="chart-container">
+                                <div class="chart-component">
+                                    <canvas id="mainSalesChart"></canvas>
+                                </div>
+                                <div class="chart-component">
+                                    <canvas id="ordercount"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Product Section -->
+                    <div class="products-section hidden-section">
+
+
+                        <div class="charts">
+                            <div class="chart-container">
+                                <div class="chart-component">
+                                    <canvas id="SalesChart2"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list product-list">
+                            <div class="product-list-header">
+                                <h3>Products</h3>
+                                <div>
+                                    <!-- <input type="text" id="searchInput" placeholder="Search by Name" onkeyup="searchProducts()"style="height:40px; width:300px; padding:10px; border-radius:5px; border:1px solid grey; margin-right:10px;"> -->
+                                    <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a>
+                                </div>
+
+                            </div>
+
+                            <table id="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Product ID</th>
+                                        <th>Items Sold</th>
+                                        <th>Net Sales</th>
+                                        <th>Orders</th>
+                                        <th>Catergories</th>
+                                        <th>Stock</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <!-- Table rows will be populated dynamically using JavaScript -->
+                                </tbody>
+                            </table>
+                            <div class="pagination" id="pagination">
+                                <!-- Pagination buttons will be populated dynamically using JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-section hidden-section">
+
+                </div>
+                <div class="catergories-section hidden-section">
+
+                </div>
+                <div class="coupons-section hidden-section">
                 </div>
             </div>
+
+
         </div>
 
-
     </div>
-</div>
-
+    </div>
+    </div>
+    <script src="<?= ROOT ?>/assets/javascript/manager/reports.js"></script>
 </body>
-<script type="text/javascript">
-    function gentable(){
-        var panel = document.getElementById("panel");
-        panel.style.display = "block";
-    }
-</script>
+
 </html>

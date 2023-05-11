@@ -1,5 +1,6 @@
 .dropdown {
     transition: all 0.5s;
+    border-radius: 10px;
 }
 
 .dropdown-content {

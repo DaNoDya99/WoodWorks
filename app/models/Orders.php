@@ -7,7 +7,7 @@ class Orders extends Model
 
     protected $allowedColumns = [
         'OrderID',
-       	'Firstname',
+        'Firstname',
         'Lastname',
         'Email',
         'Contactno',
@@ -87,8 +87,8 @@ class Orders extends Model
 
     public function findOrders($column,$value)
     {
-        $query = "select * from $this->table where $column = :value order by DATE desc limit 4";
-        return $this->query($query,['value'=>$value]);
+        $query = "select * from $this->table where $column = :value order by DATE";
+        return $this->query($query, ['value' => $value]);
     }
 
     public function getCustomerOrders($id)
@@ -110,11 +110,53 @@ class Orders extends Model
         return $this->query($query,['value'=>$value]);
     }
 
-    public function searchOrdersDetails($column,$value,$orders_items)
+    //function to return orders based on date range
+    public function findOrdersByDate($date1, $date2)
+    {
+        $query = "select * from $this->table where Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2' order by DATE";
+        return $this->query($query);
+    }
+    public function findOrdersSumByDate($date1, $date2)
+    {
+        $query = "select SUM(Total_amount) as total,COUNT(OrderID) as OrderCount, CONVERT(Date, Date) AS DATE from $this->table WHERE Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2' group by DATE ORDER BY Date;";
+        return $this->query($query);
+    }
+
+    //get products sold
+
+    public function findProductsSold($date1, $date2)
+    {
+        $query = "select SUM(Quantity) as total from orders where OrderID in (select OrderID from orders where Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2')";
+        return $this->query($query);
+    }
+
+    // public function getDetailedProductInfo($offset, $date1, $date2)
+    // {
+    //     $query = "SELECT a.Name, a.ProductID,a.Cost, COALESCE(b.Quantity,0) AS Quantity, COALESCE(a.Cost * b.Quantity,0) AS Revenue, COALESCE(b.COUNT1,0) AS COUNT1, a.CategoryID, a.Availability FROM furniture a LEFT JOIN( SELECT ProductID, COUNT(OrderID) AS COUNT1, SUM(Quantity) AS Quantity FROM order_item WHERE OrderID IN(SELECT OrderID FROM orders WHERE is_preparing = 0 and Order_status = 'Completed' and Date BETWEEN '" . $date1 . "' and '" . $date2 . "') GROUP BY ProductID) b ON a.ProductID = b.ProductID ORDER BY `a`.`ProductID` LIMIT 5 OFFSET " . 5 * $offset - 5 . ";";
+
+    //     return $this->query($query);
+    // }
+    public function getDetailedProductReport($date1, $date2)
+    {
+        $query = "SELECT a.Name, a.ProductID,a.Cost, COALESCE(b.Quantity,0) AS Quantity, COALESCE(a.Cost * b.Quantity,0) AS Revenue, COALESCE(b.COUNT1,0) AS COUNT1, a.CategoryID, a.Availability FROM furniture a LEFT JOIN( SELECT ProductID, COUNT(OrderID) AS COUNT1, SUM(Quantity) AS Quantity FROM order_item WHERE OrderID IN(SELECT OrderID FROM orders WHERE is_preparing = 0 and Order_status = 'Completed' and Date BETWEEN '" . $date1 . "' and '" . $date2 . "') GROUP BY ProductID) b ON a.ProductID = b.ProductID ORDER BY `a`.`ProductID`;";
+        return $this->query($query);
+    }
+    public function getCompletedOrders($date1, $date2)
+    {
+        $query = "select count(OrderID) as count from $this->table where Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2'";
+        return $this->query($query);
+    }
+
+    public function displayOrders2($column, $value)
+    {
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value ";
+        return $this->query($query, ['value' => $value]);
+    }
+
+    public function searchOrdersDetails($column, $value, $orders_items)
     {
         $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or Address like '%$orders_items%' or Total_amount like '%$orders_items%' AND $column = :value LIMIT 15 ";
-        return $this->query($query,['value'=>$value]);
-
+        return $this->query($query, ['value' => $value]);
     }
 
     public function searchDeliveredOrdersDetails($column,$value,$orders_items)
@@ -127,10 +169,10 @@ class Orders extends Model
     public function filterStatus($column,$value,$id)
     {
         $query = "select OrderID,Payment_type,Total_amount,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && $column = :value  && `DriverID` = '$id' limit 15";
-        return $this->query($query,['value'=>$value]);
+        return $this->query($query, ['value' => $value]);
     }
 
-    public function filterDate($from_date,$to_date)
+    public function filterDate($from_date, $to_date)
     {
         $query = "select OrderID,Dispatched_date,Delivered_date,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && Delivered_date BETWEEN '$from_date' AND '$to_date' limit 15";
         return $this->query($query);
@@ -148,13 +190,11 @@ class Orders extends Model
         return $this->query($query);
     }
 
-    public function update_status($OrderID,$data)
+    public function update_status($OrderID, $data)
     {
-        if(!empty($this->allowedColumns))
-        {
-            foreach ($data as $key => $value){
-                if(!in_array($key,$this->allowedColumns))
-                {
+        if (!empty($this->allowedColumns)) {
+            foreach ($data as $key => $value) {
+                if (!in_array($key, $this->allowedColumns)) {
                     unset($data[$key]);
                 }
             }
@@ -164,12 +204,11 @@ class Orders extends Model
         //$OrderID = array_search($OrderID,$data);
         $data['OrderID'] = $OrderID;
 
-        $query = "update ".$this->table." set ";
-        foreach ($keys as $key)
-        {
+        $query = "update " . $this->table . " set ";
+        foreach ($keys as $key) {
             $query .= $key . "=:" . $key . ",";
         }
-        $query = trim($query,",");
+        $query = trim($query, ",");
         $query .= " where OrderID = :OrderID";
 
         return $this->query($query,$data);
@@ -179,7 +218,7 @@ class Orders extends Model
     {
         $query = "select OrderID from $this->table where CustomerID = :CustomerID && Is_preparing = :Is_preparing;";
 
-        return $this->query($query,['CustomerID' => $id, 'Is_preparing' => 1]);
+        return $this->query($query, ['CustomerID' => $id, 'Is_preparing' => 1]);
     }
 
     public function setOrder($id)
@@ -195,7 +234,8 @@ class Orders extends Model
     }
 
 
-    public function make_order_id(){
+    public function make_order_id()
+    {
 
         $prefix = 'CUS-ORD';
         $unique_id = mt_rand(1000, 9999);
