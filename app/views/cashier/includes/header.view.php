@@ -10,7 +10,16 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/styles.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/table.css">
+
+    <style>
+        .content{
+            margin-top: 0px;
+            min-height: 100vh;
+            padding: 0;
+        }
+    </style>
 </head>
+
 
 <body class="admin">
 

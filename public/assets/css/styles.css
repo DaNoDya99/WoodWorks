@@ -43,9 +43,7 @@
     src: url("../fonts/Rubik/Rubik-ExtraBold.ttf");
 }   
 
-body{
-    font-family: 'Rubik';
-}
+
 /*Login Page*/
 .login-body {
     display: flex;
@@ -316,6 +314,7 @@ form .name-details .field:last-child {
     flex-direction: column;
     align-items: center;
     margin-top: 10vh;
+    margin-bottom: 30vh;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
@@ -1051,13 +1050,13 @@ h3 {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;    
-
+    margin-bottom: 30px;
     margin-left: 10px;
     margin-right: 10px;
-}
 
-.product-card-details h2, .product-card-details h3{
-    margin: 0;
+    
+
+
 }
 
 .product-cost{
@@ -1075,20 +1074,10 @@ h3 {
 }
 
 .product-card-details h3 {
-    margin-top: .5em;
-    font-size: 1.4rem;
-    padding-bottom: 7px;
-
-}
-
-.product-card-details h4{
     margin: 0;
-    font-size: 1.3rem;
-}
+    font-size: 1.4rem;
+    padding-bottom: 15px;
 
-.line-through{
-    text-decoration: line-through #d23542 2px solid;
-    opacity: 60%;
 }
 
 .product-card-details div {
@@ -1097,6 +1086,11 @@ h3 {
     padding-bottom: 10px;
 }
 
+.product-card-details .cost {
+    position: absolute;
+    bottom: 10px;
+    
+}
 
 .product-card-details .catergory{
     font-size: 1.0rem;
@@ -1131,9 +1125,10 @@ h3 {
     height: 30px;
     opacity: 0.5;
 
-}
 
-.product-btn-link{
+
+}
+.product-card-buttons a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1364,14 +1359,13 @@ h3 {
 .cus-chat{
     position: fixed;
     right: 15px;
-    top: 40%;
+    top: 50%;
     width: 25em;
     height: 28em;
     background-color: #d4d4d4;
     border-radius: 10px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     font-family: 'Poppins-Light', sans-serif;
-    visibility: hidden;
 }
 
 .chat-header{
@@ -1401,12 +1395,11 @@ h3 {
     overflow-y: auto;
 }
 
-.cus-send-msg-sec form{
+.cus-send-msg-sec{
     display: flex;
     padding:  .5em;
     justify-content: space-between;
 }
-
 
 .cus-send-msg-sec button{
     display: flex;
@@ -1602,9 +1595,9 @@ h3 {
     background: #f9f9f9;
     border-radius: 10px;
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.1);
+    transform: translate(-50%, -50%) scale(1);
     text-align: center;
     padding: 0 30px 30px;
     visibility: hidden;
@@ -1627,11 +1620,7 @@ h3 {
     border-radius: 5px;
 }
 
-.open-popup {
-    visibility: visible;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(1);
-}
+.open-popup {visibility: visible;top: 50%;left: 50%;transform: translate(-50%, -50%) scale(1);}
 
 .popup-heading {
     display: flex;
@@ -1708,8 +1697,7 @@ h3 {
 .product-view {
     background-color: #e2dcc8;
     font-family: 'Rubik', sans-serif;
-    padding-top: 10vh;
-    padding-bottom: 2em;
+    padding: 2em 0;
 }
 
 .product-desc-section {
@@ -1717,26 +1705,6 @@ h3 {
     width: 90%;
     display: flex;
     max-height: 600px;
-}
-
-.product-costs{
-    display: flex;
-}
-
-.product-costs h1:last-child{
-    margin-left: 1em;
-}
-
-.product-discount{
-    width: 40%;
-    background-color: #d4d4d4;
-    height: 2.5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 7px;
-    color: #d23542;
-    margin: .5em 0;
 }
 
 .product-img {
@@ -2081,10 +2049,6 @@ h2 {
     padding-top: 60px;
 }
 
-.reg-sub-cat{
-    padding-top: unset;
-}
-
 .sub-cat-sidebar {
     display: flex;
     flex-direction: column;
@@ -2338,9 +2302,8 @@ h2 {
 }
 
 .sup-popup {
-    left: 50%;
+    left: 60%;
     width: 30%;
-    top: 150%;
     font-family: 'Rubik', sans-serif;
 }
 

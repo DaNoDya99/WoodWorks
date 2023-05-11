@@ -10,9 +10,8 @@ class Customer_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
-
         $furniture = new Furnitures();
         $customer = new Customer();
         $review = new Reviews();
@@ -278,9 +277,7 @@ class Customer_home extends Controller
 
             $_POST['Payment_type'] = 'Card';
             $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
-            $_POST['Delivery_method'] = 'Home Delivery';
-            $_POST['Shipping_cost'] = $deliveryCost;
-            $_POST['Address'] = $_POST['Address_line1'].', '.$_POST['Address_line2'].', '.$_POST['City'];
+            $_POST['Delivery_method'] = 'Delivery';
 
             $order->update_status($orderID,$_POST);
 

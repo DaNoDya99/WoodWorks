@@ -20,6 +20,7 @@ class Furnitures extends Model
         'Discount_percentage',
         'SupplierID',
         'Discount_given_by',
+        'DiscountID',
         'Date'
     ];
 
@@ -124,6 +125,12 @@ class Furnitures extends Model
     public function getInventory()
     {
         $query = "select ProductID , Name , Quantity , Cost, CategoryID from furniture;";
+
+        return $this->query($query);
+    }
+    public function getInventorywithDiscounts()
+    {
+        $query = "select ProductID , furniture.Name , Quantity , Cost, CategoryID, discounts.Discount_percentage FROM furniture LEFT JOIN discounts ON furniture.DiscountID = discounts.DiscountID";
 
         return $this->query($query);
     }

@@ -157,9 +157,9 @@ body {
 
 * {
     /* margin: 0; */
+    text-decoration: none;
     padding: 0;
     box-sizing: border-box;
-    
 }
 
 .sidebar {
@@ -322,7 +322,7 @@ p {
 
 .sidebar.active~.content {
     position: absolute;
-
+    height: 100%;
     width: calc(100% - 240px);
     left: 240px
 }
@@ -377,7 +377,6 @@ p {
 
 .headerprime .profile {
     position: absolute;
-    z-index: 10;
     top: 10px;
     right: 35px;
     display: flex;
@@ -438,7 +437,7 @@ p {
     padding-left: 5px;
     font-family: 'Rubik';
     flex-direction: column;
-    width: 160px;
+    width: 140px;
 }
 
 .headerprime .profile .carret {
@@ -450,7 +449,7 @@ p {
 .headerprime .profile .name {
     font-size: 18px;
     font-weight: 600;
-    width: 150px;
+    width: 180px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -506,8 +505,6 @@ p {
 
 #myDropdown a {
     color: #182422;
-    text-decoration: none;
-
 }
 
 /* Dashboard Body */
@@ -521,7 +518,7 @@ p {
     margin-top: 60px;
     background-color: #e2e2d1;
     /* z-index: -99; */
-    position: absolute
+    position: absolute;
 }
 
 @media screen and (max-width:700px) {
@@ -584,6 +581,7 @@ p {
 
     .sidebar.active~.content {
         z-index: -9;
+        height: 100%;
         width: 100%
     }
 
