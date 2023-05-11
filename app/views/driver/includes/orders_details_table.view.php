@@ -44,7 +44,7 @@
                 <th class="th">Order ID</th>
                 <th class="th">Payment Type</th>
                 <th class="th">Total Amount</th>
-                <th class="th">Date</th>
+                <th class="th">Order Date</th>
                 <th class="th">Order Status</th>
                 <th class="th">Customer Address</th>
                 <th class="th">Customer Name</th>

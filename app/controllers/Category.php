@@ -51,6 +51,7 @@ class Category extends Controller
 
         if(!empty($data['furniture']))
         {
+//            show($sub_cat);die;
             foreach ($data['furniture'] as $row)
             {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
@@ -61,7 +62,8 @@ class Category extends Controller
 
 
         if(empty($sub_cat)){
-            $this->redirect('category/sub_category/'.$id."/".$rows[0]->Sub_category_name);
+            $sub_category_name = $rows[0]->Sub_category_name;
+            $this->redirect('category/sub_category/'.$id."/".$sub_category_name);
         }
 
         $this->view("reg_customer/sub_category",$data);

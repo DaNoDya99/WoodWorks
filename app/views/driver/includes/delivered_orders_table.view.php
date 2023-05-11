@@ -32,10 +32,10 @@
                         <th class="th">Order Date</th>
                         <th class="th">Dispatched Date</th>
                         <th class="th">Delivered Date</th>
-
                     </tr>
                     </thead>
                     <tbody>
+
                     <?php foreach ($records1 as $row):?>
                         <form method="post" action="<?=ROOT?>/driver_home/order" hidden>
                             <input type="text" name="OrderID" value="<?=$row->OrderID?>" hidden>
@@ -72,11 +72,12 @@
                                 <td><?=$dispatchedDate?></td>
                                 <td><?=$deliveredDate?></td>
                                 <td>
-                                    <button  onclick="openDocumentPopup('<?=$row->OrderID?>','<?=($row->Firstname)?>','<?=($row->Image)?>','<?=$deliveredDate?>','<?=$estimatedDeliveryDate?>','<?=($row->Reasons)?>',event)"><img src="<?=ROOT?>/assets/images/driver/pdf.png" alt="PDF image"></button>
+                                    <button  onclick="openDocumentPopup('<?=$row->OrderID?>','<?=($row->Firstname)?>','<?=($row->Image)?>','<?=$deliveredDate?>','<?=$estimatedDeliveryDate?>',event)"><img src="<?=ROOT?>/assets/images/driver/pdf.png" alt="PDF image"></button>
                                 </td>
                             </tr>
                         </form>
-                    <?php endforeach;?>
+                        <?php endforeach;?>
+
                     </tbody>
                 </table>
             </div>
@@ -109,10 +110,10 @@
                             <label>Delivered Date</label>
                             <p id="header4"></p>
                         </div>
-                        <div class="doc-form-field">
-                            <label>If delivery was delayed then,<br>Give the reason for late delivery</label>
-                            <textarea id="doc-field" name="Reason" placeholder="Enter the Reason"></textarea>
-                        </div>
+<!--                        <div class="doc-form-field">-->
+<!--                            <label>If delivery was delayed then,<br>Give the reason for late delivery</label>-->
+<!--                            <textarea id="doc-field" name="Reason" placeholder="Enter the Reason"></textarea>-->
+<!--                        </div>-->
                         <div class="submit-btn">
                             <button id="doc-btn" type="submit">Submit</button>
                         </div>

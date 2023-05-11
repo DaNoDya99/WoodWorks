@@ -15,9 +15,11 @@
                 <div class="design-btns">
                     <button onclick="openDocumentPopup('<?=$design[0]->DesignID?>','<?=$design[0]->Name?>','<?=$design[0]->DesignerID?>','<?=$design[0]->Description?>','<?=$images[0]->Image?>','<?=$images[1]->Image?>','<?=$images[2]->Image?>','<?=$design[0]->Pdf?>',event)">Update</button>
 
-                    <form action="<?=ROOT?>/designer/remove_add_design/<?=$data['design'][0]->DesignID?>" method="post">
-                        <input type="submit" name="delete_btn" value="Remove">
-                    </form>
+<!--                    <form action="--><?php //=ROOT?><!--/designer/remove_add_design/--><?php //=$data['design'][0]->DesignID?><!--" method="post">-->
+<!--                        <input type="submit" name="delete_btn" value="Remove">-->
+<!--                    </form>-->
+
+                    <button onclick="deleteDesign('<?=$data['design'][0]->DesignID?>')">Remove</button>
 
                 </div>
 
@@ -56,7 +58,11 @@
                                 <table>
                                     <tr><th>Design Name : </th><td><?=$design[0]->Name?></td></tr>
                                     <tr><th>Designer ID : </th><td><?=$design[0]->DesignerID?></td></tr>
-                                    <tr><th>Category ID : </th><td><?=$design[0]->CategoryID?></td></tr>
+                                    <?php
+                                    $categories = new Categories();
+                                    $categoryDetail = $categories->getCategoryByID($data['design'][0]->CategoryID);
+                                    ?>
+                                    <tr><th>Category Name : </th><td><?=$categoryDetail[0]->Category_name?></td></tr>
                                     <?php
                                     $newDate = date("d/m/Y", strtotime($design[0]->Date));
                                     ?>
