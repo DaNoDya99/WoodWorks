@@ -38,7 +38,10 @@
                                 $categoryDetail = $categories->getCategoryByID($row->CategoryID);
                                 ?>
                                 <td><?=$categoryDetail[0]->Category_name?></td>
-                                <td><?=$row->Date?></td>
+                                <?php
+                                    $newDate = date("d/m/Y", strtotime($row->Date));
+                                ?>
+                                <td><?=$newDate?></td>
                             </tr>
 
                         <?php endforeach;?>

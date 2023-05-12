@@ -22,7 +22,7 @@ class Designer extends Controller
 
         $design = new Design();
 
-        $limit = 8;
+        $limit = 7;
 
         $data['rows'] = $design->getDesign("DesignerID",$id,$limit);
 
@@ -101,7 +101,7 @@ class Designer extends Controller
             $this->redirect('login');
         }
 
-        $limit = 3;
+        $limit = 5;
         $pager = new Pager($limit);
         $offset = $pager->offset;
         $data['pager'] = $pager;
