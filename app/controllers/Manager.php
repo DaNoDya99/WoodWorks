@@ -220,17 +220,24 @@ class Manager extends Controller
         }
 
         $design = new Design();
+        $employee = new Employees();
+        $categories = new Categories();
+
         $rows = $design->getAllUnverifiedDesigns();
         //create an object and call function using that object
         if(!empty($rows))
         {
             foreach($rows as $row)
-        {
-            $row->Date = explode(" ",$row->Date)[0];
-            $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
+            {
+                $designer = $employee->getEmployeeByID($row->DesignerID)[0];
+                $category = $categories->getCategoryByID($row->CategoryID)[0];
+
+                $row->Category = $category->Category_name;
+                $row->Desinger = $designer->Firstname." ".$designer->Lastname;
+                $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
+            }
         }
-        }
-        
+
 
         $data['designs'] = $rows;
         $data['title']="DESIGNS";
