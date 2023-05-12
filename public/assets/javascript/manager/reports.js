@@ -719,7 +719,6 @@ function getOrderDescription() {
                     pagination.appendChild(button);
                 }
             };
-            console.log("Test-> " + data[0].Date);
 
             renderTableRows(0, perPage - 1);
 
