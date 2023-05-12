@@ -4,23 +4,23 @@ $(document).ready(function () {
         method: "GET",
         success: function (data) {
             console.log(data);
-            var count = [];
+            var Count = [];
             var date = [];
             var colors = [];
 
             for (var i in data) {
-                count.push(data[i].numOrders);
+                Count.push(data[i].numOrders);
                 date.push(data[i].Date);
                 colors.push(color());
             }
-            // console.log(Count);
-            // console.log(Status);
+            console.log(Count);
+            console.log(date);
             var chartdata = {
                 labels: date,
                 datasets: [{
                     label: "Number of Orders",
                     backgroundColor: colors,
-                    data:count,
+                    data:Count,
 
                 }]
             };
@@ -37,7 +37,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'Uncompleted Orders and Dates',
+                            text: 'Uncompleted Orders For This Week',
                             color:'black',
                             font: {
                                 size: 15,
@@ -71,7 +71,7 @@ $(document).ready(function () {
                         x: {
                             title: {
                                 display: true,
-                                text: 'Dates',
+                                text: 'Delivery Dates',
                                 color:'black',
                                 font: {
                                     size: 15,
@@ -84,6 +84,7 @@ $(document).ready(function () {
                                 },
                             },
                             grid: {
+                                display:true,
                                 borderColor: 'black'
                             }
                         },

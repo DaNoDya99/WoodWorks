@@ -1,3 +1,19 @@
+
+<?php
+
+$advertisements = '';
+
+for($i = 0 ; $i < count($categories); $i++)
+{
+    if($categories[$i]->Category_name === "Refurbished Furniture")
+    {
+        $advertisements = $categories[$i];
+        unset($categories[$i]);
+    }
+}
+
+?>
+
 <?php $data['row'] = $row; $this->view('reg_customer/includes/header',$data); ?>
 
 <div class="category-body">
@@ -11,6 +27,13 @@
                 </div>
             </a>
         <?php endforeach;?>
+
+        <a href="<?=ROOT?>/advertisement/viewAdvertisements">
+            <div class="category-card">
+                <img src="<?=ROOT?>/<?=$advertisements->Image?>" alt="category image" loading="lazy">
+                <p><?=$advertisements->Category_name?></p>
+            </div>
+        </a>
     </div>
 </div>
 

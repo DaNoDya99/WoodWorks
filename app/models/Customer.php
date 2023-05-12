@@ -25,7 +25,8 @@ class Customer extends Model
     public function validate($post)
     {
         $this->errors = [];
-        $gender = ['Male', 'Female'];
+
+        $gender = ['Male','Female'];
 
         if (empty($post['Firstname'])) {
             $this->errors['Firstname'] = "A first name is required.";
@@ -38,12 +39,22 @@ class Customer extends Model
         } elseif (!preg_match("/^[a-zA-Z]+$/", trim($post['Lastname']))) {
             $this->errors['Lastname'] = "Last name can only have letters.";
         }
+        if (!filter_var($post['Email'], FILTER_VALIDATE_EMAIL)) {
+            $this->errors['Email'] = "Email is not valid.";
+        } elseif ($results = $this->where('Email', $post['Email'])) {
+            foreach ($results as $result) {
+                if ($post['CustomerID'] != $result->CustomerID) {
+                    $this->errors['Email'] = "That email already exists.";
+                }
+            }
+        }
 
         if (!in_array($post['Gender'], $gender)) {
             $this->errors['Gender'] = "Gender is required.";
         }
 
-        if (!filter_var($post['Email'], FILTER_VALIDATE_EMAIL)) {
+        if(!filter_var($post['Email'],FILTER_VALIDATE_EMAIL)){
+
             $this->errors['Email'] = "Email is not valid.";
         } elseif ($this->where('Email', $post['Email'])) {
             $this->errors['Email'] = "Email already exist.";
@@ -55,7 +66,8 @@ class Customer extends Model
             $this->errors['Password'] = "Passwords do not match.";
         }
 
-        if (empty($post['Mobileno'])) {
+
+        if(empty($post['Mobileno'])){
             $this->errors['Mobileno'] = "Contact number required.";
         } elseif (!preg_match("/^[0-9]+$/", trim($post['Mobileno']))) {
             $this->errors['Mobileno'] = "Contact number can only have numbers.";
@@ -145,5 +157,12 @@ class Customer extends Model
         $query = "SELECT * FROM customer WHERE CustomerID = :id";
 
         return $this->query($query, ['id' => $id]);
+    }
+
+
+    public function activate_profile()
+    {
+        // show($_SESSION['email']);
+        $this->update($_SESSION['email'], ['status' => 1, 'Email' => $_SESSION['email']]);
     }
 }

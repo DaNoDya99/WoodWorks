@@ -85,17 +85,50 @@ class Orders extends Model
         $this->query($query,$data);
     }
 
-    public function findOrders($column,$value)
+    public function findThisWeekOrders($column,$value)
     {
-        $query = "select * from $this->table where $column = :value order by DATE desc limit 4";
-        return $this->query($query, ['value' => $value]);
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT * FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` != 'Delivered' ORDER BY DATE DESC LIMIT 7";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+//        echo "Query: $query\n";
+//        echo "Params: " . json_encode($params) . "\n";
+
+        return $this->query($query, $params);
     }
 
-    public function viewAllOrders()
+    public function findThisWeekCompletedOrders($column,$value)
     {
-        $query = "select * from $this->table order by DATE desc";
-        return $this->query($query);
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT count(OrderID) AS 'NumOfCompletedOrdres' FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` = 'Delivered'";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+        return $this->query($query, $params);
     }
+
+
+    public function findThisMonthDelayedOrders($column, $value)
+    {
+        $currentMonth = date('m');
+        $query = "SELECT COUNT(OrderID) AS 'NumOfDelayedOrders'FROM $this->table 
+              WHERE MONTH(Estimated_date) = :currentMonth 
+                AND $column = :value 
+                AND `Order_status` = 'Delivered' 
+                AND `Delivered_date` > `Estimated_date`";
+
+        $params = ['currentMonth' => $currentMonth, 'value' => $value];
+
+        return $this->query($query, $params);
+    }
+
+
+
 
     public function getCustomerOrders($id)
     {
@@ -143,16 +176,37 @@ class Orders extends Model
         return $this->query($query);
     }
 
-    public function pieGraph()
+    public function pieGraph($column, $value)
     {
-        $query = "SELECT COUNT(OrderID) AS numOrders,Order_status FROM $this->table GROUP BY Order_status ";
-        return $this->query($query);
+
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT count(OrderID) AS 'numOrders',Order_status FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value GROUP BY Order_status";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+        return $this->query($query, $params);
     }
 
-    public function barGraph()
+    public function barGraph($column, $value)
     {
-        $query = "SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM $this->table WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)";
-        return $this->query($query);
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT cast(Estimated_date as date) AS 'Date', count(OrderID) AS 'numOrders' 
+              FROM $this->table 
+              WHERE Estimated_date >= :startOfWeek 
+              AND Estimated_date <= :endOfWeek 
+              AND $column = :value 
+              AND Order_status != 'delivered' 
+            GROUP BY cast(Estimated_date as date)";
+
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+        return $this->query($query, $params);
+
     }
 
     public function update_status($OrderID, $data)
@@ -209,14 +263,7 @@ class Orders extends Model
     public function make_order_id()
     {
 
-//        $orderID = $this->random_string(60);
-//        $result = $this->where('OrderID',$orderID);
-//        while ($result){
-//            $result = $this->where('OrderID',$orderID);
-//            $orderID = $this->random_string(60);
-//        }
-
-        $prefix = 'ORD';
+        $prefix = 'CUS-ORD';
         $unique_id = mt_rand(1000, 9999);
         $timestamp = substr(date('YmdHis'), 8, 6);
         $orderID = $prefix . '-' . $unique_id . '-' . $timestamp;
@@ -224,17 +271,6 @@ class Orders extends Model
         return $orderID;
     }
 
-    public function random_string($length)
-    {
-        $array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
-        $text = "";
-        for ($x = 0; $x < $length; $x++) {
-            $random = rand(0, 61);
-            $text .= $array[$random];
-        }
-
-        return $text;
-    }
 
     public function setBillOrder()
     {
@@ -295,9 +331,9 @@ class Orders extends Model
 
     public function assignDriver($orderID, $driverID)
     {
-        $query = 'UPDATE `orders` SET DriverID= :DriverID WHERE OrderID = :OrderID;';
+        $query = 'UPDATE `orders` SET Order_status = :Order_status,DriverID= :DriverID WHERE OrderID = :OrderID;';
 
-        return $this->query($query, ['OrderID' => $orderID, 'DriverID' => $driverID]);
+        return $this->query($query,['OrderID' => $orderID, 'DriverID' => $driverID,'Order_status' => 'Processing']);
     }
 
     public function updateSessionID($orderID, $sessionID, $status)
@@ -342,6 +378,10 @@ class Orders extends Model
         return $this->query($query,['OrderID' => $orderId]);
     }
 
-    
+    public function getOrdersByStatus($status)
+    {
+        $query = "SELECT * FROM `orders` WHERE Order_status = :Order_status ORDER BY DATE DESC;";
 
+        return $this->query($query,['Order_status' => $status]);
+    }
 }
