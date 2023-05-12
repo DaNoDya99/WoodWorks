@@ -14,13 +14,7 @@
 
                 <div class="design-btns">
                     <button onclick="openDocumentPopup('<?=$design[0]->DesignID?>','<?=$design[0]->Name?>','<?=$design[0]->DesignerID?>','<?=$design[0]->Description?>','<?=$images[0]->Image?>','<?=$images[1]->Image?>','<?=$images[2]->Image?>','<?=$design[0]->Pdf?>',event)">Update</button>
-
-<!--                    <form action="--><?php //=ROOT?><!--/designer/remove_add_design/--><?php //=$data['design'][0]->DesignID?><!--" method="post">-->
-<!--                        <input type="submit" name="delete_btn" value="Remove">-->
-<!--                    </form>-->
-
                     <button onclick="deleteDesign('<?=$data['design'][0]->DesignID?>')">Remove</button>
-
                 </div>
 
             </div>
@@ -48,8 +42,6 @@
                                 <a class="prev" onclick="plusSlides(-1)">&#10094</a>
                                 <a class="next" onclick="plusSlides(1)">&#10095</a>
                             </div>
-
-                            <br>
                         </div>
 
                         <div class="design-desc">
@@ -111,7 +103,7 @@
                                     <input onchange="preview()" type="file" style="display: none;" name="images[]" id="file-input" multiple>
                                     <label for="file-input"> Update Images</label>
                                 </div>
-                                <div class="edit-des-Ubtn-section" id="edit-design">
+                                <div class="edit-des-Ubtn-section-update" id="edit-design">
                                     <input type="file" onchange="showPdfPreview()" style="display: none" name="pdfFile-input" id="pdfFile-input">
                                     <label for="pdfFile-input">Update Pdf</label>
                                 </div>

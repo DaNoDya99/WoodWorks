@@ -502,7 +502,7 @@ body{
 /* Designer Dashboard*/
 .designer-tbox{
     width: 45%;
-    height: 580px;
+    height:auto;
     margin-top: 20px ;
     padding: 1em 2em;
     background-color: #f9f9f9;
@@ -1354,13 +1354,13 @@ body{
 
 .des-form-body{
     width: 70%;
-    height: 80vh;
+    height: 85vh;
     background-color: #f9f9f9;
     margin: 1em auto;
     padding: 1em 1.5em;
     border-radius: 15px;
     font-family: 'Rubik', sans-serif;
-    max-height: 85vh;
+    max-height: 90vh;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 
 }
@@ -1708,13 +1708,12 @@ figcaption{
 }
 
 .des_category-card{
-    width: 250px;
-    height: 260px;
+    width: 280px;
+    height: 330px;
     background-color: #f9f9f9;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     margin: 0 2em 2em 2em;
     border-radius: 10px;
-    /*padding-bottom: 10px;*/
 }
 
 .des_category-card:hover {
@@ -1724,8 +1723,8 @@ figcaption{
 
 .des_category-card img{
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 240px;
+    object-fit: contain;
     border-radius: 10px 10px 0px 0px;
 }
 
@@ -1780,6 +1779,8 @@ figcaption{
 
 .design-view {
     background-color: #E2E2CF;
+    height: 80vh;
+    max-height: 85vh;
     font-family: 'Rubik';
     padding: 2em 0;
     display: flex;
@@ -1789,13 +1790,15 @@ figcaption{
 .design-desc-section {
     margin: 0 auto;
     width: 90%;
+    height: auto;
     display: flex;
-    max-height: 540px;
+    max-height: 80vh;
     flex-direction: row;
 }
 
 .design-img{
     width: 55%;
+    height: 680px;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
 }
 
@@ -1809,8 +1812,8 @@ figcaption{
     position: relative;
     vertical-align: middle;
     width: 100%;
-    height: 540px;
-    object-fit: cover;
+    height: 680px;
+    object-fit: contain;
     top: -23px;
     border-radius: 7px;
 }
@@ -1877,11 +1880,14 @@ figcaption{
 
 .design-desc {
     margin-left: 1%;
+    height: auto;
     width: 45%;
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .design-desc div{
@@ -1889,32 +1895,28 @@ figcaption{
 }
 
 .design-detail table{
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
     align-self: center;
     margin-top: 20px;
     width: 100%;
-
+    height: 100%;
 }
 
 .design-detail th,.design-detail td{
     text-align: left;
-    /*border: 1px solid black;*/
     background: #f9f9f9;
-    /*border-radius: 3px;*/
-    padding-top: .8em;
-    padding-bottom: .8em;
+    padding: 15px;
 }
 
 .design-detail th{
     padding-right: 3em;
+    font-size: 1.35em;
     width:38%;
 }
 
 .design-detail td{
-    /*font-family: 'Rubik';*/
     word-break: break-word;
     padding-bottom: 5px;
+    font-size: 1.2em;
     width:62%;
 }
 
@@ -2004,25 +2006,9 @@ design-desc div button:hover{
     cursor: pointer;
 }
 
-.design-btns input{
-    border-radius: 6px;
-    border: unset;
-    font-family: 'Rubik';
-    font-weight: bold;
-    color: white;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.design-btns input:last-child{
-    background: #E64848;
-    width: 70px;
-    height: 40px;
-}
-
 .design-btns button:first-child{
     background: #5ba49e;
-    width: 70px;
+    width: 100px;
     height: 40px;
     float: left;
 }
@@ -2035,7 +2021,7 @@ design-desc div button:hover{
 
 .design-btns button:last-child{
     background: #E64848;
-    width: 70px;
+    width: 100px;
     height: 40px;
 }
 
@@ -2489,7 +2475,7 @@ design-desc div button:hover{
     padding: 5px;
     font-family: 'Rubik-SemiBold';
     font-size: 1.1rem;
-    background: #104f4a;
+    background: #100F0F;
     justify-content: center;
     border-radius: 7px;
     align-items: center;

@@ -48,7 +48,6 @@
                             <label for="file-input"> Upload Images</label>
                         </div>
                         <div class="edit-des-Ubtn-section" id="edit-design">
-
                             <input type="file" onchange="showPdfPreview()" style="display: none" name="pdfFile-input" id="pdfFile-input">
                             <label for="pdfFile-input">Upload Pdf</label>
                         </div>
