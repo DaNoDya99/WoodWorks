@@ -588,8 +588,6 @@ class cashier extends Controller
         $orderitem = new Order_Items();
 
         $orderCount = $orderitem->getTotalOrderItemCount($id);
-
-
         $data["Total"] = $_SESSION['Final_Total'];
         $data["OrderCount"] = $orderCount[0]->Count;
         echo json_encode($data);

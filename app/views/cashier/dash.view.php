@@ -135,7 +135,6 @@
                 <h3>No bill selected. Please Create a Bill</h3>
             <?php endif; ?>
         </div>
-
         <table id="bill-table" class="bill-table">
             <thead class="thead" style="display:table;width: 100%">
             <th class="">Product ID</th>
@@ -235,7 +234,7 @@
     </div>
 
 </div>
-<
+
 <div id="tpopup" class="tpopup">
     <div class="popup-message"></div>
     <div id="indicator" class="indicator"></div>

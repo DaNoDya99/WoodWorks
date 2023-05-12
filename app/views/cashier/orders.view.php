@@ -28,11 +28,10 @@
                     <?php $i = 1; ?>
                     <?php foreach ($data['orders'] as $order) : ?>
 
-                        <?php $order->OrderIDTrunc = substr($order->OrderID, 0, 10) . '...' ?>
-                        <?php $order->Date = substr($order->Date, 0, 10) ?>
+                       
                         <tr onclick="orderdetailpopup(<?= "'" . $order->OrderID . "'" ?>)">
                             <td style="color: grey"><?= $i ?></td>
-                            <td><?= $order->OrderIDTrunc ?></td>
+                            <td><?= $order->OrderID ?></td>
                             <td><?= $order->Firstname . " " . $order->Lastname ?></td>
                             <td><?= "Rs. " . number_format($order->Total_amount, 2, '.', ',') ?></td>
                             <td><?= $order->Date ?></td>
