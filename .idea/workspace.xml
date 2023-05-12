@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7615da7-ad26-45e2-8533-1489e44d0a47" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/manager/mailing.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/header/man.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/configs/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/configs/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Manager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/styles2.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main-email",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -75,6 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682915829780</updated>
       <workItem from="1682915831772" duration="676000" />
+      <workItem from="1683880717206" duration="744000" />
     </task>
     <servers />
   </component>
