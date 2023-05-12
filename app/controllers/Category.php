@@ -46,8 +46,7 @@ class Category extends Controller
         $data['sub_categories'] =$rows= $sub_category->where('CategoryID',$id);
         $data['id'] = $id;
         $data['pager'] = $pager;
-        $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$limit,$offset);
-
+        $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$offset,$limit);
         if(!empty($data['furniture']))
         {
             foreach ($data['furniture'] as $row)
