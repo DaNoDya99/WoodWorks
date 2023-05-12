@@ -38,7 +38,7 @@ class CompanyOrderModel extends Model
         return $this->query($query, $data);
     }
     public function generateOrderID() {
-        $prefix = 'COM-ORD';
+        $prefix = 'COM-ODR';
         $unique_id = mt_rand(1000, 9999);
         $timestamp = substr(date('YmdHis'), 8, 6);
         return $prefix . '-' . $unique_id . '-' . $timestamp;

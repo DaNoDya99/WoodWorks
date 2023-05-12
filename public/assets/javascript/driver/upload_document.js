@@ -39,7 +39,7 @@ if (doc_btn) {
 }
 
 
-function openDocumentPopup(id,name,image,date,estDeliDate,event)
+function openDocumentPopup(id,name,image,date,estDeliDate,reason,event)
 {
     event.preventDefault();
     let popup = document.getElementById("upl-doc");
@@ -56,12 +56,12 @@ function openDocumentPopup(id,name,image,date,estDeliDate,event)
     header3.innerHTML = estDeliDate;
     header4.innerHTML = date;
     doc_id = id;
-    // if(reason != null) {
-    //     field.value= reason;
-    // }
-    // if(reason == null) {
-    //     field.setAttribute('value', 'No reason provided');
-    // }
+    if(reason != null) {
+        field.value= reason;
+    }
+    if(reason == null) {
+        field.setAttribute('value', 'No reason provided');
+    }
 
     if(image != null) {
         img.setAttribute('src', 'http://localhost/WoodWorks/public/' + image);

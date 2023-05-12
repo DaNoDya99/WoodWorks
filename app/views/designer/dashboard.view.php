@@ -1,49 +1,42 @@
 <?php $this->view('designer/includes/header') ?>
 
 <body class="designer">
-<div class="designer-body">
     <?php $this->view('designer/includes/designer_header') ?>
-    <div class="content dashboard">
 
-        <div class="containers-designer-chart ">
+<div class="content designer-body">
+    <div class="dashboard">
 
-            <div class="designer-tbox">
-                <div class="recentOrders">
-                    <div class="driver-tbox-header">
-                        <h1>Recent Designs</h1>
-                        <button onclick="location.href='<?=ROOT?>/designer/view_design_categories';">View All</button>
-                    </div>
-                    <table class="designer-content-table">
-                        <thead>
 
-                        <th class="th">Design Name</th>
-                        <th class="th">Image</th>
-                        <th class="th">Type Of Category</th>
-                        <th class="th">Added Date</th>
-
-                        </thead>
-                        <tbody>
-                        <?php foreach ($rows as $row):?>
-
-                            <tr class="designs-table-rows">
-                                <td><?=esc($row->Name)?></td>
-                                <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Design Image"></td>
-                                <?php
-                                $categories = new Categories();
-                                $categoryDetail = $categories->getCategoryByID($row->CategoryID);
-                                ?>
-                                <td><?=$categoryDetail[0]->Category_name?></td>
-                                <td><?=$row->Date?></td>
-                            </tr>
-
-                        <?php endforeach;?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="containers-designer-chart " >
 
             <div class="designer-box" id="chart-designer-container" onclick="location.href='<?=ROOT?>/designer/design';">
                 <canvas id="designerBar" width="300" height="400"></canvas>
+            </div>
+
+            <div class="designer-tbox" onclick="location.href='<?=ROOT?>/designer/design';">
+                <h1>Newly Added Designs</h1>
+
+                <table class="designer-content-table">
+                    <thead>
+
+                    <th class="th">Name</th>
+                    <th class="th">Image</th>
+                    <th class="th">Date</th>
+
+                    </thead>
+                    <tbody>
+                    <?php foreach ($rows as $row):?>
+
+                        <tr class="designs-table-rows">
+                            <td><?=esc($row->Name)?></td>
+                            <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Design Image"></td>
+                            <td><?=$row->Date?></td>
+                        </tr>
+
+                    <?php endforeach;?>
+                    </tbody>
+                </table>
+
             </div>
 
 

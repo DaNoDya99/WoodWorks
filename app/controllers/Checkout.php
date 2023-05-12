@@ -316,7 +316,7 @@ class Checkout extends Controller
             $cus_order = $order->getOrderByTheOrderID($order_id)[0];
 
             if($session->id === $cus_order->SessionID){
-                $order->updateSessionID($cus_order->OrderID,$session->id,'Paid');
+                $order->updateSessionID($cus_order->OrderID,$session->id,'paid');
                 $order->updateIsPreparing($cus_order->OrderID);
                 $order_items->updateIsPurchased($cus_order->OrderID);
                 $cart->resetCartTotal($cart->getCart($id)[0]->CartID);

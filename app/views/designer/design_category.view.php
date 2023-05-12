@@ -21,6 +21,7 @@
                         <h1>No design Categories to show.</h1>
                     <?php endif; ?>
                 </div>
+                <?php $pager->display()?>
             </div>
 
         </div>

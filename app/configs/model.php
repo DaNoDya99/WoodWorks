@@ -6,7 +6,6 @@ class Model extends Database
 
     public function insert($data)
     {
-
         if(!empty($this->allowedColumns))
         {
             foreach ($data as $key => $value){

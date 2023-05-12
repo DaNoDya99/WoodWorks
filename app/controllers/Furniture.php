@@ -38,7 +38,6 @@ class Furniture extends Controller
         $data['row'] = $customer->where('CustomerID',$cus_id);
         $data['furniture'] = $furniture->viewFurniture($id);
         $data['reviews'] = $review->getReview($allowedCols,$id);
-        $data['rating'] = round($review->getProductRating($id)[0]->Average,1);
         $data['images'] = $furniture->getAllImages($id);
 
         $this->view("reg_customer/product", $data);

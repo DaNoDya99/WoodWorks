@@ -11,7 +11,6 @@ class Signup extends Controller
 
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-//            show($_POST);
             $folder = "uploads/images/";
 
             if($customer->validate($_POST))

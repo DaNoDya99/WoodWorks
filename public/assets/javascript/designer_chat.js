@@ -93,7 +93,7 @@ form.onsubmit = (e) => {
 
 button.onclick = () => {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST","http://localhost/WoodWorks/public/message/sendMsgsToCustomerByDesigner/"+user,true);
+    xhr.open("POST","http://localhost/WoodWorks/public/message/sendMsgsToCustomer/"+user,true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE)
         {

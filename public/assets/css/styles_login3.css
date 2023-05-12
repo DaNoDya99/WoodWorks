@@ -347,7 +347,7 @@ body{
 
 .driver-tbox{
     width: 30%;
-    height: 580px;
+    height: 410px;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
@@ -362,57 +362,57 @@ body{
     -ms-overflow-style: none;
     scrollbar-width: none;
     position: relative;/* added */
-
 }
 
 .driver-tbox::-webkit-scrollbar{
     display: none;
 }
 
-.recentOrders .driver-tbox-header{
+.driver-tbox hr{
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    margin: 5px;
+    padding: 5px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
     border-bottom: 2px solid #cacaca;
 }
 
-.driver-tbox-header h1{
+.driver-tbox p{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    font-size: 1rem;
     font-family: 'Rubik-SemiBold';
-    font-weight: 600;
+    cursor: pointer;
+    text-underline-mode: none;
 }
 
-.driver-tbox-header button{
-    position: relative;
-    width: 75px;
-    height: 30px;
-    margin: 0;
-    border: solid 2px #e2dcc8;
-    border-radius: 7px;
-    font-family: 'Rubik';
-    font-weight: bolder;
-    font-size: 0.8vw;
-    background-color: #100F0F;
-    color: #ffffff;
-    margin: 20px 0;
-    cursor: pointer;
+.driver-tbox p a{
     text-decoration: none;
 }
 
-.driver-content-table{
+.driver-tbox table{
     width: 100%;
+    border-collapse: collapse;
+}
+
+.driver-content-table{
     font-size: 0.9em;
-    margin-top: 10px;
+    width: 100%;
     border-radius: 5px 5px 0 0;
     max-height: 70vh;
 }
 
-.driver-content-table table tr{
+.driver-content-table thead tr{
     color: black;
     text-align: center;
     font-weight: bold;
     margin-top: 5px;
     border-bottom: 1px solid #d2d2d2;
+
 }
 
 .driver-content-table th,
@@ -441,88 +441,25 @@ body{
     border-radius: 5px;
 }
 
-#statusCircle{
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-}
-
 .orders-table-rows td{
     text-align: center;
     padding: 1em 0 0 0 ;
     vertical-align: middle;
 }
 
-.cardBox{
-    width: 100%;
-    height: 150px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.cardBox .cards{
-    width: 47%;
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 20px;
-    display: flex;
-    margin: 5px 0px 0 0;
-}
-
-.cardBox .cards:hover {
-    transform: scale(1.05);
-    transition: .4s ease-in;
-}
-
-.cardBox .cards .numbers{
-    position: relative;
-    font-weight: 450;
-    font-size: 2.2em;
-    font-family: 'Rubik', sans-serif;
-}
-
-.cardBox .cards .cardsName{
-    position: relative;
-    margin-top: 5px;
-    font-size: 1.1em;
-    font-family: 'Rubik', sans-serif;
-}
-
-.iconBx img{
-    margin-top: 10px;
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
-}
-
 /* Designer Dashboard*/
 .designer-tbox{
-    width: 45%;
-    height: 580px;
-    margin-top: 20px ;
+    width: 55%;
+    margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Rubik';
     max-height: 80vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     float: right;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.designer-tbox:hover{
-    transform: scale(1.05);
-    transition: .4s ease-in;
-}
-
-.designer-tbox::-webkit-scrollbar{
-    display: none;
 }
 
 .designer-tbox table{
@@ -539,11 +476,17 @@ body{
 
 }
 
+.designer-content-table:hover{
+    transform: scale(1.05);
+    transition: .4s ease-in;
+}
+
 .designer-content-table thead tr{
     color: black;
     text-align: center;
     font-weight: bold;
     margin-top: 5px;
+    border-bottom: 1px solid #d2d2d2;
 
 }
 
@@ -1213,23 +1156,23 @@ body{
     flex-direction: row;
     justify-content: space-around;
     flex-flow: wrap;
-    position: relative;
-    max-height: 850px;
 }
 
 .box{
-    position: relative;
     margin: 20px;
-    width: 80%;
+    width: 30%;
     height: auto;
     box-sizing: border-box;
 
 }
 #chart-container {
-    width: 100%;
-    height: auto;
+    /*width: 300px;*/
+    /*height: auto;*/
+    width: 400px;
+    height: 410px;
+    float: right;
     background-color:#f9f9f9;
-    margin: 0 ;
+    margin: 20px;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -1239,17 +1182,13 @@ body{
 }
 
 #chart-container2{
-    width:30%;
-    height: auto;
+    /*width: 500px;*/
+    height: 410px;
+    float: left;
     background-color:#f9f9f9;
-    margin:20px;
+    margin: 20px;
     border-radius: 10px;
     cursor: pointer;
-    max-height: 80vh;
-    flex-direction: column;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 #chart-container2:hover {
@@ -1257,24 +1196,20 @@ body{
     transition: .4s ease-in;
 }
 
-#chart-container2::-webkit-scrollbar{
-    display: none;
-}
-
 #chart-container3{
-    width:30%;
+    /*width: 500px;*/
     height: auto;
+    float: left;
+    /*background-color:#E0E0CE;*/
+    background-color:#f9f9f9;
     margin: 20px;
     border-radius: 10px;
     cursor: pointer;
-    max-height: 80vh;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
-#chart-container3::-webkit-scrollbar{
-    display: none;
+#chart-container3:hover {
+    transform: scale(1.05);
+    transition: .4s ease-in;
 }
 
 @media screen and (max-width: 1200px){
@@ -1296,7 +1231,7 @@ body{
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
-    justify-content: space-between;
+
 }
 
 .designer-box{
@@ -2005,22 +1940,10 @@ design-desc div button:hover{
     float: left;
 }
 
-.design-btns button:first-child:hover{
-    background: #5ba49e;
-    transform: scale(0.97);
-    transition: .4s ease-in;
-}
-
 .design-btns button:last-child{
     background: #E64848;
     width: 70px;
     height: 40px;
-}
-
-.design-btns button:last-child:hover{
-    background: #E64848;
-    transform: scale(0.97);
-    transition: .4s ease-in;
 }
 
 /* Chat */
@@ -2259,12 +2182,12 @@ design-desc div button:hover{
     visibility: visible;
 }
 
-/*popup in delivered Order table*/
+/*Edit sub category*/
 
 #upl-doc{
     width: 40%;
     position: absolute;
-    top: 4%;
+    top: 5%;
     left: 30%;
     padding: 2em;
     border-radius: 15px;
@@ -2402,35 +2325,6 @@ design-desc div button:hover{
     padding: 1em;
     border-radius: 7px;
     text-align: center;
-}
-
-.cat-deletion{
-    background-color: #ae1c1c;
-}
-
-.cat-deletion-btns{
-    display: flex;
-    justify-content: center;
-    gap: 40%;
-    margin-top: 1em;
-}
-
-.cat-deletion-btns button{
-    width: 20%;
-    padding: .5em;
-    background-color: black;
-    border-radius: 5px;
-    color: #f9f9f9;
-    border: none;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.cat-deletion-btns button:hover{
-    background-color: #0F3D3E;
-    transform: scale(0.97);
-    transition: .4s ease-in;
 }
 
 .cat-errors{

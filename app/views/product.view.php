@@ -1,6 +1,6 @@
 <?php
 $cost = '';
-if (!empty($furniture[0]->Discount_percentage) && $furniture[0]->Active === 1  )
+if (!empty($furniture[0]->Discount_percentage))
 {
     $cost = $furniture[0]->Cost*(100 - $furniture[0]->Discount_percentage)/100;
 } else {
@@ -35,11 +35,11 @@ if (!empty($furniture[0]->Discount_percentage) && $furniture[0]->Active === 1  )
         <div class="product-desc">
             <h2><?=$furniture[0]->Name?></h2>
 
-            <?php if(!empty($furniture[0]->Discount_percentage)  && $furniture[0]->Active === 1) : ?>
+            <?php if(!empty($furniture[0]->Discount_percentage)) : ?>
                 <div class="product-discount"><h2>Discount: <?=$furniture[0]->Discount_percentage?>%</h2></div>
                 <div class="product-costs">
                     <h1 class="line-through">Rs. <?=$furniture[0]->Cost?>.00</h1>
-                    <h1>Rs. <?=round(($furniture[0]->Cost*(100 - $furniture[0]->Discount_percentage))/100) ?>.00</h1>
+                    <h1>Rs. <?= $furniture[0]->Cost*(100 - $furniture[0]->Discount_percentage)/100 ?>.00</h1>
                 </div>
             <?php else: ?>
                 <h1>Rs. <?=$furniture[0]->Cost?>.00</h1>
@@ -61,13 +61,8 @@ if (!empty($furniture[0]->Discount_percentage) && $furniture[0]->Active === 1  )
     <div class="review-section">
         <div class="overall-rate-sec">
             <div class="rate-info">
-                <span style="font-size: 3rem"><?= $rating ?></span>
-                <div>
-                    <div class="stars-outer product-card-stars-outer" style="top: 0">
-                        <div class="stars-inner" style="width: <?= (($rating/5)*100).'%' ?>"></div>
-                    </div>
-                    <span class="number-rating"></span>
-                </div>
+                <img src="<?=ROOT?>/assets/images/customer/star.png" alt="Star">
+                <h1>5.0</h1>
             </div>
             <p>(Based on last 10 customer reviews)</p>
         </div>

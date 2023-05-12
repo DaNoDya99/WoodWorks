@@ -35,9 +35,7 @@ class Driver_home extends Controller
         }
         $order = new Orders();
 
-        $data['rows']= $rows = $order->findThisWeekOrders('DriverID',$id);
-        $data['completedOrders']= $order->findThisWeekCompletedOrders('DriverID',$id);
-        $data['delayedOrders']= $order->findThisMonthDelayedOrders('DriverID',$id);
+        $data['rows']= $rows = $order->findOrders('DriverID',$id);
         if (empty($rows[0]))
         {
             echo "No orders";
@@ -233,7 +231,7 @@ class Driver_home extends Controller
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
 
-            //$order->update_Reason(['OrderID' => $id], ['Reasons' => $_POST['Reason']]);
+            $order->update_Reason(['OrderID' => $id], ['Reasons' => $_POST['Reason']]);
 
             if(!empty($_FILES["Image"]['name']))
             {
@@ -342,10 +340,9 @@ class Driver_home extends Controller
         header('Content-Type: application/json');
 
         $order = new Orders();
-        $id = $id ?? Auth::getEmployeeID();
 
         //$rows =  $order->query("SELECT COUNT(OrderID) AS numOrders,Order_status FROM `orders` GROUP BY Order_status ");
-        $rows =  $order->pieGraph('DriverID',$id);
+        $rows =  $order->pieGraph();
         $data = array();
 
         foreach ($rows as $row){
@@ -365,8 +362,9 @@ class Driver_home extends Controller
         header('Content-Type: application/json');
 
         $order = new Orders();
-        $id = $id ?? Auth::getEmployeeID();
-        $rows =  $order->barGraph('DriverID',$id);
+
+        //$rows =  $order->query("SELECT cast(Date as date) AS Date, count(OrderID) AS numOrders FROM `orders` WHERE NOT Order_status = 'delivered' GROUP BY cast(Date as date)");
+        $rows =  $order->barGraph();
         $data = array();
 
         foreach ($rows as $row){
@@ -409,15 +407,10 @@ class Driver_home extends Controller
         $driver = new Driver();
         $rows = $driver->availableDrivers();
 
-        foreach ($rows as $row){
-            $row->Fullname = $row->Firstname." ".$row->Lastname;
-            $row->Order_count = $driver->getAssignedOrderCount($row->DriverID)[0]->Count;
-        }
-
         $str = "<option selected>-- Assign Driver --</option>";
 
         foreach ($rows as $row){
-            $str .= "<option value='".$row->DriverID."'>".$row->DriverID." - ".$row->Fullname." - ".$row->Order_count." Orders Assigned.</option>";
+            $str .= "<option value='".$row->DriverID."'>".$row->DriverID." - ".$row->Availability."</option>";
         }
 
         echo $str;
@@ -432,8 +425,6 @@ class Driver_home extends Controller
 
         $order = new Orders();
         $order->assignDriver($orderId,$driverId);
-
-        echo 'success';
         
     }
 
