@@ -202,7 +202,6 @@ class Manager extends Controller
                 $issue->Last_name = $customer_details->Lastname;
                 $issue->Email = $customer_details->Email;
                 $issue->Contact_number = $customer_details->Mobileno;
-
             }
 
             $data['issues'] = $issues;
@@ -267,80 +266,79 @@ class Manager extends Controller
             $filename = 'products_sold.csv';
             exportToCsv($data, $filename);
         }
-
     }
 
-//    public function getReport()
-//    {
-//        // if (!Auth::logged_in()) {
-//        //     $this->redirect('login');
-//        // }
-//        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//            header('Content-Type: application/json');
-//            $data['date1'] = $_POST['date1'];
-//            $data['date2'] = $_POST['date2'];
-//
-//            $data['labels'] = $this->getDateLabels($_POST['date1'], $_POST['date2']);
-//            $labels = $data['labels'];
-//
-//            $order = new Orders();
-//
-//
-//            $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
-//            if (empty($a)) {
-//                $a = [];
-//            }
-//
-//            $s = [];
-//            for ($i = 0; $i < count($labels); $i++) {
-//                $s[$i] = 0;
-//                for ($j = 0; $j < count($a); $j++) {
-//                    if ($labels[$i] == $a[$j]->DATE) {
-//                        $s[$i] = $a[$j]->total;
-//                        break;
-//                    }
-//                }
-//            }
-//            $data['test'] = $s;
-//            $ordercount = [];
-//            for ($i = 0; $i < count($labels); $i++) {
-//                $ordercount[$i] = 0;
-//                for ($j = 0; $j < count($a); $j++) {
-//                    if ($labels[$i] == $a[$j]->DATE) {
-//                        $ordercount[$i] = $a[$j]->OrderCount;
-//                        break;
-//                    }
-//                }
-//            }
-//            $data['test'] = $s;
-//            $data['ordercount'] = $ordercount;
-//
-//
-//            $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
-//            if (empty($data['orders'])) {
-//                $data['orders'] = [];
-//            }
-//
-//
-//            $data['total'] = 0;
-//            foreach ($data['orders'] as $row) {
-//                //round off to 2 decimal places
-//                if ($row->Order_status == 'paid' || $row->Order_status == 'Delivered'|| $row->Order_status == 'Dispatched') {
-////                    show($row->Order_status);
-//                    $row->Total_amount = round($row->Total_amount, 2);
-//                    $data['total'] += $row->Total_amount;
-//
-//                }
-//
-//            }
-////            show($data['total']);
-//
-//            //     //get count of completed orders
-//            $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
-//            echo json_encode($data);
-//
-//        }
-//    }
+    //    public function getReport()
+    //    {
+    //        // if (!Auth::logged_in()) {
+    //        //     $this->redirect('login');
+    //        // }
+    //        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //            header('Content-Type: application/json');
+    //            $data['date1'] = $_POST['date1'];
+    //            $data['date2'] = $_POST['date2'];
+    //
+    //            $data['labels'] = $this->getDateLabels($_POST['date1'], $_POST['date2']);
+    //            $labels = $data['labels'];
+    //
+    //            $order = new Orders();
+    //
+    //
+    //            $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
+    //            if (empty($a)) {
+    //                $a = [];
+    //            }
+    //
+    //            $s = [];
+    //            for ($i = 0; $i < count($labels); $i++) {
+    //                $s[$i] = 0;
+    //                for ($j = 0; $j < count($a); $j++) {
+    //                    if ($labels[$i] == $a[$j]->DATE) {
+    //                        $s[$i] = $a[$j]->total;
+    //                        break;
+    //                    }
+    //                }
+    //            }
+    //            $data['test'] = $s;
+    //            $ordercount = [];
+    //            for ($i = 0; $i < count($labels); $i++) {
+    //                $ordercount[$i] = 0;
+    //                for ($j = 0; $j < count($a); $j++) {
+    //                    if ($labels[$i] == $a[$j]->DATE) {
+    //                        $ordercount[$i] = $a[$j]->OrderCount;
+    //                        break;
+    //                    }
+    //                }
+    //            }
+    //            $data['test'] = $s;
+    //            $data['ordercount'] = $ordercount;
+    //
+    //
+    //            $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
+    //            if (empty($data['orders'])) {
+    //                $data['orders'] = [];
+    //            }
+    //
+    //
+    //            $data['total'] = 0;
+    //            foreach ($data['orders'] as $row) {
+    //                //round off to 2 decimal places
+    //                if ($row->Order_status == 'paid' || $row->Order_status == 'Delivered'|| $row->Order_status == 'Dispatched') {
+    ////                    show($row->Order_status);
+    //                    $row->Total_amount = round($row->Total_amount, 2);
+    //                    $data['total'] += $row->Total_amount;
+    //
+    //                }
+    //
+    //            }
+    ////            show($data['total']);
+    //
+    //            //     //get count of completed orders
+    //            $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
+    //            echo json_encode($data);
+    //
+    //        }
+    //    }
 
 
     //reply to ajax call
@@ -361,7 +359,32 @@ class Manager extends Controller
         $inventory = new Product_Inventory();
         $data['inventory'] = $inventory->getAllFromInventory();
         echo json_encode($data);
+    }
 
+    public function getOrdersChart($date1, $date2)
+    {
+
+        
+        $data['labels'] = $this->getDateLabels($date1, $date2);
+        $labels = $data['labels'];
+        $order = new Orders;
+
+        $data['order'] = $order->findOrdersSumByDate($date1, $date2);
+
+
+        $s = [];
+        for ($i = 0; $i < count($labels); $i++) {
+            $s[$i] = 0;
+            for ($j = 0; $j < count($data['order']); $j++) {
+                if ($labels[$i] == $data['order'][$j]->DATE) {
+                    $s[$i] = $data['order'][$j]->total;
+                    break;
+                }
+            }
+        }
+
+        $data['order'] = $s;
+        echo json_encode($data);
     }
 
     public function chat()
@@ -421,7 +444,6 @@ class Manager extends Controller
         $data['categories'] = $categories->getCategories();
 
         $this->view('manager/discounts', $data);
-
     }
 
     public function getTopSellingProducts()
@@ -474,9 +496,9 @@ class Manager extends Controller
 
     public function getProductsReachedReorderLevel()
     {
-//        if(!Auth::logged_in()){
-//            $this->redirect('login');
-//        }
+        //        if(!Auth::logged_in()){
+        //            $this->redirect('login');
+        //        }
 
         $inventory = new Product_Inventory();
         $rows = $inventory->getItemsReachedReorderLevel();
@@ -602,7 +624,6 @@ class Manager extends Controller
 
         $data['values'] = $s;
         echo json_encode($data);
-
     }
 
     public function getDateLabels($date1, $date2)
@@ -630,7 +651,7 @@ class Manager extends Controller
     CONCAT(o.Firstname, ' ', o.Lastname) AS 'Customer',
     GROUP_CONCAT(i.Name SEPARATOR ', ') AS 'Products',
     SUM(i.Quantity) AS 'ItemsSold',
-    SUM(i.Quantity * i.Cost) AS 'NetSales'
+    ROUND(SUM(i.Quantity * i.Cost),2) AS 'NetSales'
 FROM 
     orders o
 INNER JOIN 
@@ -648,7 +669,7 @@ ORDER BY
         }
     }
 
-    public function catergoryDetails($date1,$date2)
+    public function catergoryDetails($date1, $date2)
     {
         $q = "SELECT 
     c.CategoryID AS `CatergoryID`,
@@ -665,8 +686,8 @@ LEFT JOIN
      FROM order_item oi
      JOIN orders o ON oi.OrderID = o.OrderID
      WHERE o.Order_status IN ('Delivered', 'Dispatched', 'paid')
-       AND o.Date >= '".$date1."'
-       AND o.Date <  '".$date2."'
+       AND o.Date >= '" . $date1 . "'
+       AND o.Date <  '" . $date2 . "'
     ) as sub ON f.ProductID = sub.ProductID
 GROUP BY
     c.CategoryID,
@@ -683,5 +704,4 @@ GROUP BY
         $catergories = new Categories();
         echo json_encode($catergories->query($q, []));
     }
-
 }

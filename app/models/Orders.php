@@ -149,6 +149,36 @@ class Orders extends Model
         return $this->query($query,['value'=>$value]);
     }
 
+    public function findThisWeekCompletedOrders($column,$value)
+    {
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT count(OrderID) AS 'NumOfCompletedOrdres' FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` = 'Delivered'";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+        return $this->query($query, $params);
+    }
+
+
+    public function findThisMonthDelayedOrders($column, $value)
+    {
+        $currentMonth = date('m');
+        $query = "SELECT COUNT(OrderID) AS 'NumOfDelayedOrders'FROM $this->table 
+              WHERE MONTH(Estimated_date) = :currentMonth 
+                AND $column = :value 
+                AND `Order_status` = 'Delivered' 
+                AND `Delivered_date` > `Estimated_date`";
+
+        $params = ['currentMonth' => $currentMonth, 'value' => $value];
+
+        return $this->query($query, $params);
+    }
+
+
+    
+
     //function to return orders based on date range
     public function findOrdersByDate($date1, $date2)
     {
@@ -157,10 +187,10 @@ class Orders extends Model
     }
     public function findOrdersSumByDate($date1, $date2)
     {
-        $query = "select SUM(Total_amount) as total,COUNT(OrderID) as OrderCount, CONVERT(Date, Date) AS DATE from $this->table WHERE Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2' group by DATE ORDER BY Date;";
+        $query = "select SUM(Total_amount) as total,COUNT(OrderID) as OrderCount, CONVERT(Date, Date) AS DATE from $this->table WHERE Order_status IN ('Paid', 'Dispatched', 'Delivered') or is_preparing = 0 and Date between '$date1' and '$date2' group by DATE ORDER BY Date;";
         return $this->query($query);
     }
-
+ 
     //get products sold
 
     public function findProductsSold($date1, $date2)

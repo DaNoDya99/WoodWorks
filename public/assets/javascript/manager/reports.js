@@ -142,18 +142,19 @@ window.onload = function (e) {
     getTopProducts();
 
 
-// document.getElementById("page-no").innerHTML = 1;
+    // document.getElementById("page-no").innerHTML = 1;
 
 
     var data1 = document.querySelector("input[name='date1']").value;
     var data2 = document.querySelector("input[name='date2']").value;
     //
-    // document.getElementById('date-range-label').innerText = data1 + " to " + data2;
+    document.getElementById('date-range-label').innerText = data1 + " to " + data2;
     products(data1, data2, 'Paid');
     inventory();
     getReorderDetails();
     getCatergoryDescription(data1, data2);
     getCatergoryDist()
+    salesChart2(data1, data2);
     // getorderchart();
 
 }
@@ -173,10 +174,13 @@ document.getElementById('form').addEventListener('submit', function (e) {
 
         if (diffInDays < 30) {
             orderchart.options.scales.x.time.unit = 'day';
+            SalesChart2.options.scales.x.time.unit = 'day';
         } else if (diffInDays < 365) {
             orderchart.options.scales.x.time.unit = 'month';
+            SalesChart2.options.scales.x.time.unit = 'month';
         } else {
             orderchart.options.scales.x.time.unit = 'year';
+            SalesChart2.options.scales.x.time.unit = 'year';
         }
         //update chart
         getorderchart();
@@ -193,6 +197,8 @@ document.getElementById('form').addEventListener('submit', function (e) {
         products(data1, data2, 'Paid');
         getCatergoryDescription(data1, data2);
         inventory();
+        salesChart2(data1, data2);
+
     } else {
         alert('Invalid Date Range');
     }
@@ -220,12 +226,12 @@ function products(date1, date2, paymentStatus) {
                 for (let i = start; i <= end; i++) {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                    <td style>${i + 1}</td>
+
 
                     <td>${data.detailedinfo[i].Name}</td>
                     <td>${data.detailedinfo[i].ProductID}</td>
                     <td>${data.detailedinfo[i].Quantity}</td>
-                    <td>Rs.${data.detailedinfo[i].Revenue}</td>
+                    <td>Rs. ${data.detailedinfo[i].Revenue}</td>
                     <td>${data.detailedinfo[i].COUNT1}</td>
                     <td>${data.detailedinfo[i].CategoryID}</td>
                     <td>${data.detailedinfo[i].Availability}</td>  
@@ -339,18 +345,7 @@ function inventory() {
         .catch(error => console.error(error));
 }
 
-//close popup
 
-document.getElementById('paymentStatus').addEventListener('change', (event) => {
-    const paymentStatus = event.target.value;
-    var date1 = document.querySelector("input[name='date1']").value;
-    var date2 = document.querySelector("input[name='date2']").value;
-
-    console.log(date1);
-    console.log(date2);
-    console.log(paymentStatus);
-    products(date1, date2, paymentStatus);
-});
 
 function toggleDropdown() {
     var dropdownContent = document.querySelector(".dropdown-content");
@@ -676,7 +671,7 @@ function getCatergoryDist() {
 function getOrderDescription() {
 
 
-    const perPage = 5; // Number of items to display per page
+    const perPage = 6; // Number of items to display per page
     let currentPage = 1; // Current page
 
     fetch("http://localhost/WoodWorks/public/manager/orderlists", {
@@ -694,7 +689,7 @@ function getOrderDescription() {
                     const row = document.createElement('tr');
                     row.innerHTML = `
                     <td>${data[i].Date}</td>
-                    <td>${data[i].OrderID}</td>
+                    <td>123456</td>
                     <td>${data[i].Status}</td>
                     <td>${data[i].Customer}</td>
                     <td>${data[i].Products}</td>
@@ -790,5 +785,77 @@ function getCatergoryDescription($date1, $date2) {
             renderPaginationButtons();
         })
 
+
+}
+
+var SalesChart2 = new Chart(
+    document.getElementById('SalesChart2'), {
+    type: 'line',
+    data: {},
+    options: {
+        aspectRatio: 1.5,
+        maintainAspectRatio: false,
+        responsive: true,
+        animation: {},
+        scales: {
+            x: {
+                type: 'time',
+                time: {
+                    unit: 'day',
+                }
+            },
+            y: {
+                display: true,
+                title: {
+                    display: true,
+                    text: 'Rupees',
+                    font: {
+                        size: 15,
+                    }
+                }
+            }
+        },
+        tooltips: {
+            enabled: true
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: 'Sales',
+                align: 'start',
+                font: {
+                    size: 20,
+                    weight: 'bold'
+                }
+            }
+        }
+
+    }
+}
+);
+
+
+function salesChart2(date1, date2) {
+
+    fetch("http://localhost/WoodWorks/public/manager/getOrdersChart/" + date1 + "/" + date2)
+        .then(response => response.json())
+        .then(data => {
+            let labels = data.labels;
+            let values = data.order;
+
+            let chartdata = {
+                labels: labels,
+                datasets: [{
+                    label: 'Sales',
+                    data: values,
+                    fill: false,
+                    borderColor: 'rgb(0, 156, 99)',
+                    tension: 0
+                }]
+            }
+
+            SalesChart2.data = chartdata;
+            SalesChart2.update();
+        })
 
 }
