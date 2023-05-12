@@ -37,7 +37,7 @@ function checkout(orderID){
         xhr.onload = () => {
             if(xhr.readyState === XMLHttpRequest.DONE){
                 if(xhr.status === 200){
-                    // console.log(xhr.response);
+                    console.log(xhr.response);
                     window.location.href = JSON.parse(xhr.response);
                 }
 
