@@ -195,24 +195,6 @@
     right: 10px;
 }
 
-
-.tooltip {
-    z-index: 99;
-    display: flex;
-    pointer-events: none;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    min-height: 50px;
-    width: 200px;
-    color: white;
-    background-color: #2d2d2d;
-    top: -5px;
-    right: -160px;
-    opacity: 0.9
-}
-
 .widget-header {
     display: flex;
     justify-content: space-between
