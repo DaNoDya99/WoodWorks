@@ -14,7 +14,7 @@ class Database
 
         $statement = $con->prepare($query);
         // show($statement);
-
+// show($data);
         if($statement){
             $check = $statement->execute($data);
 

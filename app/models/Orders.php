@@ -248,7 +248,7 @@ class Orders extends Model
     {
         $query = "select OrderID from $this->table where CustomerID = :CustomerID && Is_preparing = :Is_preparing && in_store = :in_store;";
 
-        return $this->query($query, ['CustomerID' => $id, 'Is_preparing' => 1]);
+        return $this->query($query, ['CustomerID' => $id, 'Is_preparing' => 1, 'in_store' => 1]);
     }
 
     //check is preparing and in store
