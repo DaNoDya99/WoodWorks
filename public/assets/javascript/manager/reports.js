@@ -155,6 +155,8 @@ window.onload = function (e) {
     getCatergoryDescription(data1, data2);
     getCatergoryDist()
     salesChart2(data1, data2);
+
+    exportTableToCSV('apple');
     // getorderchart();
 
 }
@@ -234,7 +236,7 @@ function products(date1, date2, paymentStatus) {
                     <td>Rs. ${data.detailedinfo[i].Revenue}</td>
                     <td>${data.detailedinfo[i].COUNT1}</td>
                     <td>${data.detailedinfo[i].CategoryID}</td>
-                    <td>${data.detailedinfo[i].Availability}</td>  
+
                 `;
                     tableBody.appendChild(row);
                 }
@@ -445,33 +447,6 @@ function changeSection(stringw) {
             break;
 
     }
-}
-
-function exportCSV(reportType) {
-
-    var data1 = document.querySelector("input[name='date1']").value;
-    var data2 = document.querySelector("input[name='date2']").value;
-    var status = document.getElementById('paymentStatus').value;
-
-    fetch('http://localhost/woodworks/public/manager/reportCSV/' + reportType + '/' + data1 + '/' + data2 + '/' + status, {
-        method: 'POST', headers: {
-            'Content-Type': 'application/json'
-        }, body: reportType,
-    })
-        //download csv file
-        .then(response => response.text())
-        .then(csv => {
-            const blob = new Blob([csv], {
-                type: 'text/csv'
-            });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = reportType + '_' + data1 + '_to_' + data2 + '.csv';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        })
 }
 
 // Inventory Page Reoder Levels Chart
@@ -859,3 +834,4 @@ function salesChart2(date1, date2) {
         })
 
 }
+

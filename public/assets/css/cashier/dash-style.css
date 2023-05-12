@@ -581,7 +581,7 @@ p {
     visibility: visible;
 }
 
-.paybutton{
+.paybutton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -597,7 +597,7 @@ p {
     margin: 20px;
 }
 
-#blur-quantity{
+#blur-quantity {
     backdrop-filter: brightness(0.5);
     height: 100vh;
     width: 100vw;

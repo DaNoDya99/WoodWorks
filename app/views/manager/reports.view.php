@@ -80,7 +80,7 @@
                     <!--                    </div>-->
                     <!--                    <h2>Charts</h2>-->
                     <!--                    <div class="charts">-->
-                    <!--                        <div class="chart-container">-->
+                    <!--                        <div class="chart-container2">-->
                     <!--                            <div class="chart-component">-->
                     <!--                                <canvas id="mainSalesChart"></canvas>-->
                     <!--                            </div>-->
@@ -90,7 +90,7 @@
                     <!--                        </div>-->
                     <!--                    </div>-->
                     <!--                    <div class="charts">-->
-                    <!--                        <div class="chart-container">-->
+                    <!--                        <div class="chart-container2">-->
                     <!--                            <div class="chart-component">-->
                     <!--                                <canvas id="myChart"></canvas>-->
                     <!--                            </div>-->
@@ -106,13 +106,13 @@
 
 
                         <div class="charts">
-                            <div style="display: flex; flex-direction: row">
-                                <div class="chart-container">
+                            <div style="display: flex; flex-direction: row; column-gap:20px">
+                                <div class="chart-container2">
                                     <div class="chart-component">
                                         <canvas id="Topselling"></canvas>
                                     </div>
                                 </div>
-                                <div class="chart-container">
+                                <div class="chart-container2">
                                     <div class="chart-component">
                                         <canvas id="RatingsChart"></canvas>
                                     </div>
@@ -126,7 +126,7 @@
                               
                                 <div>
                                     <!-- <input type="text" id="searchInput" placeholder="Search by Name" onkeyup="searchProducts()"style="height:40px; width:300px; padding:10px; border-radius:5px; border:1px solid grey; margin-right:10px;"> -->
-                                    <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a>
+                                    <!-- <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a> -->
                                 </div>
 
                             </div>
@@ -141,7 +141,7 @@
                                         <th>Net Sales</th>
                                         <th>Orders</th>
                                         <th>Catergories</th>
-                                        <th>Stock</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody id="tableBody">
@@ -157,9 +157,9 @@
                 <div class="inventory-section hidden-section">
 
                     <div class="charts">
-                        <div style="display: flex; flex-direction: column;">
+                        <div style="display: flex; flex-direction: column; row-gap:50px">
                             <div style="display: flex; column-gap:10px">
-                                <div class="chart-container">
+                                <div class="chart-container2">
                                     <div class="chart-component">
                                         <canvas id="reorderchart2"></canvas>
                                     </div>
@@ -174,7 +174,7 @@
                                 <div class="inventory-list-header">
                                     <h3>Inventory</h3>
                                     <div>
-                                        <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a>
+                                        <!-- <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a> -->
                                     </div>
 
                                 </div>
@@ -211,12 +211,12 @@
                     <div class="charts">
                         <div style="display: flex; flex-direction: column;">
                             <div style="display: flex; column-gap:10px">
-                                <div class="chart-container">
+                                <div class="chart-container2">
                                     <div class="chart-component">
                                         <canvas id="orderchart2"></canvas>
                                     </div>
                                 </div>
-                                <div class="chart-container">
+                                <div class="chart-container2">
                                     <div class="chart-component">
                                         <canvas id="SalesChart2"></canvas>
                                     </div>
@@ -226,7 +226,7 @@
                                 <div class="inventory-list-header">
                                     <h3>Orders</h3>
                                     <div>
-                                        <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a>
+                                        <!-- <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a> -->
                                     </div>
 
                                 </div>
@@ -258,9 +258,9 @@
 
                 <div class="catergories-section hidden-section">
 
-                    <div style="display: flex">
+                    <div style="display: flex; height:400px;">
 
-                        <div class="chart-container">
+                        <div class="chart-container2">
                             <div class="chart-component" style="width: 40%; height: 100%">
                                 <canvas id="catergorydist"></canvas>
                             </div>
@@ -275,7 +275,7 @@
 
                             <div>
                                 <!-- <input type="text" id="searchInput" placeholder="Search by Name" onkeyup="searchProducts()"style="height:40px; width:300px; padding:10px; border-radius:5px; border:1px solid grey; margin-right:10px;"> -->
-                                <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a>
+                                <!-- <a id="exporttocsv" onclick="exportCSV('product_sold')">Export to CSV</a> -->
                             </div>
 
                         </div>

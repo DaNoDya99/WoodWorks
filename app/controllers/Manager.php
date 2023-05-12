@@ -17,17 +17,6 @@ class Manager extends Controller
         $this->view('manager/dashboard', $data);
     }
 
-    public function mailing()
-    {
-        // if (!Auth::logged_in()) {
-        //     $this->redirect('login');
-        // }
-
-
-
-        $this->view('manager/mailing');
-    }
-
     public function posts()
     {
         if (!Auth::logged_in()) {

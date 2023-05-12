@@ -203,7 +203,7 @@
     </div>
     <div id="blur-quantity">
         <div
-            style="display:flex; flex-direction:column; justify-content:center; position: absolute; height:auto; width:50%; z-index:99; padding:20px; background-color:white; box-shadow:0px 0px 15px black; border-radius:10px"
+            style="display:flex; flex-direction:column; justify-content:center; position: absolute; height:auto; width:30%; z-index:99; padding:20px; background-color:white; box-shadow:0px 0px 15px black; border-radius:10px"
             id="quantitypopup">
             <div style="display:flex; justify-content:space-between;">
                 <h3>Add Item</h3>
@@ -268,7 +268,7 @@
         <h3>Please choose payment method</h3>
 
         <div class="transaction-info">
-            <table style="width:60%;">
+            <table style="width:70%;">
                 <tr>
                     <td>Order ID:</td>
                     <td style="text-align:right;"><span id="popup-orderid"></span></td>
@@ -316,7 +316,7 @@
 
     function openPaymentPopup(id) {
 
-        popup2.classList.add("open-popup");
+        popup2.classList.add("open-popup2");
         fetch("http://localhost/WoodWorks/public/cashier/getOrderSummary/" + id)
             .then(response => response.json())
             .then(data => {

@@ -417,7 +417,7 @@ class Orders extends Model
 
     public function viewAllOrders()
     {
-        $query = "select * from $this->table order by DATE desc";
+        $query = "select * from $this->table WHERE Order_status NOT IN ('Unpaid', 'Pending') order by DATE desc";
         return $this->query($query);
     }
 //    test

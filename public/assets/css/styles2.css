@@ -2014,14 +2014,7 @@ td {
   width: 33%;
 }
 
-.chart-container{
-width: 100%;
-height: 43vh;
-background-color: #f9f9f9;
-border-radius: 15px;
-margin: 0.5em 0;
-padding: 1em;
-}
+.chart-container{/* width: 100%; *//* height: 43vh; *//* background-color: #f9f9f9; *//* border-radius: 15px; *//* margin: 0.5em 0; *//* padding: 1em; */}
 
 .shortcuts{
   background-color: unset;
