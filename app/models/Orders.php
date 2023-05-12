@@ -128,24 +128,7 @@ class Orders extends Model
     }
 
 
-    public function getCustomerOrders($id)
-    {
-        $query = "select * from $this->table where CustomerID = :id && Is_preparing = :Is_preparing order by DATE desc";
-
-        return $this->query($query, ['id' => $id, 'Is_preparing' => 0]);
-    }
-
-    public function displayOrders($column, $value)
-    {
-        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` != 'Delivered' limit 15";
-        return $this->query($query,['value'=>$value]);
-    }
-
-    public function displayDeliveredOrders($column,$value)
-    {
-        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` = 'Delivered' limit 15";
-        return $this->query($query,['value'=>$value]);
-    }
+    
 
     //function to return orders based on date range
     public function findOrdersByDate($date1, $date2)
