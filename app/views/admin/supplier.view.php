@@ -91,7 +91,6 @@
         </div>
 
     </div>
-    </div>
 
     <div class="popup edit-sup-popup" id="edit-popup">
         <div class="popup-heading">

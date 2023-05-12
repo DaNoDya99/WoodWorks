@@ -208,7 +208,7 @@ class Orders extends Model
 
     public function getNewOrders()
     {
-        $query = "select * from $this->table where DriverId IS NULL && Is_preparing = :Is_preparing;";
+        $query = "select * from $this->table where DriverId IS NULL && Is_preparing = :Is_preparing ORDER BY Date DESC;";
         return $this->query($query,['Is_preparing' => 0]);
     }
 
