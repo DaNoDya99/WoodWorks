@@ -95,6 +95,7 @@ class CompanyOrderModel extends Model
             'OrderID' => $id,
             'Comments' => $comment,
         ];
+    }
 
     public function getAllOrders()
     {
