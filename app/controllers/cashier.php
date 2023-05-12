@@ -1,6 +1,8 @@
 <?php
 
 require '../vendor/autoload.php';
+require_once 'PDF.php';
+
 
 class cashier extends Controller
 {
@@ -87,21 +89,31 @@ class cashier extends Controller
         }
     }
 
-    public function getOrderByID($id)
-    {
-        $order = new Orders();
-        $order_items = new Order_Items();
-        $data['order'] = $order->getOrderByID($id);
-        $data['order_items'] = $order_items->getOrderItems($id);
-        echo json_encode($data);
-    }
-
     public function isCustomerSet()
     {
         if (isset($_SESSION['CustomerID']) && isset($_SESSION['CustomerDetails'])) {
             echo json_encode(['status' => 'true', 'success' => 'Customer loaded successfully.']);
         } else {
             echo json_encode(['status' => 'false', 'error' => 'Customer not found. Try Again']);
+        }
+    }
+
+    public function add_to_cart($id, $cost, $quantity = 1): void
+    {
+        $cus_id = $_SESSION['CustomerID'];
+        $cartID = $this->get_or_create_cart($cus_id);
+        $orderID = $this->get_or_create_order($cus_id);
+
+        $_SESSION['CartID'] = $cartID;
+        $_SESSION['OrderID'] = $orderID;
+
+        $inventory = new Product_Inventory();
+        $item_quantity = $inventory->getProductQuantity($id)[0]->Quantity;
+
+        if ($item_quantity >= $quantity) {
+            $this->add_product_to_cart($id, $cost, $quantity, $cus_id, $cartID, $orderID);
+        } else {
+            echo json_encode(['status' => 'fail', 'error' => 'Item is out of stock.']);
         }
     }
 
@@ -188,26 +200,6 @@ class cashier extends Controller
     //         echo json_encode(['status' => 'fail', 'error' => 'Item is out of stock.']);
     //     }
     // }
-
-
-    public function add_to_cart($id, $cost, $quantity = 1): void
-    {
-        $cus_id = $_SESSION['CustomerID'];
-        $cartID = $this->get_or_create_cart($cus_id);
-        $orderID = $this->get_or_create_order($cus_id);
-
-        $_SESSION['CartID'] = $cartID;
-        $_SESSION['OrderID'] = $orderID;
-
-        $inventory = new Product_Inventory();
-        $item_quantity = $inventory->getProductQuantity($id)[0]->Quantity;
-
-        if ($item_quantity >= $quantity) {
-            $this->add_product_to_cart($id, $cost, $quantity, $cus_id, $cartID, $orderID);
-        } else {
-            echo json_encode(['status' => 'fail', 'error' => 'Item is out of stock.']);
-        }
-    }
 
     public function get_or_create_cart($cus_id)
     {
@@ -327,8 +319,6 @@ class cashier extends Controller
         $_SESSION['cart'][] = $details;
     }
 
-
-
     public function removeItem($productID, $cost, $quantity)
     {
         // if (!Auth::logged_in()) {
@@ -402,8 +392,6 @@ class cashier extends Controller
         $_SESSION['OrderID'] = null;
         $this->redirect('cashier/dash');
     }
-
-    //return cart total amount
 
     public function checkout_card($orderID)
     {
@@ -485,8 +473,7 @@ class cashier extends Controller
         }
     }
 
-    //get cart items of cart
-
+    //return cart total amount
 
     public function getCartTotal()
     {
@@ -500,6 +487,8 @@ class cashier extends Controller
             echo json_encode($data);
         }
     }
+
+    //get cart items of cart
 
     public function getCartItems()
     {
@@ -590,16 +579,27 @@ class cashier extends Controller
         $cart = new Carts();
         $id = $_SESSION['CustomerID'];
 
-        $_SESSION['Final_Total'] =  $cart->getTotalAmount($id)[0]->Total_amount + $_SESSION['shipping'];
+        $_SESSION['Final_Total'] = $cart->getTotalAmount($id)[0]->Total_amount + $_SESSION['shipping'];
         echo json_encode($_SESSION['Final_Total']);
+    }
+
+    public function getOrderSummary($id)
+    {
+        $orderitem = new Order_Items();
+
+        $orderCount = $orderitem->getTotalOrderItemCount($id);
+
+
+        $data["Total"] = $_SESSION['Final_Total'];
+        $data["OrderCount"] = $orderCount[0]->Count;
+        echo json_encode($data);
     }
 
     public function card_success()
     {
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
+//        if (!Auth::logged_in()) {
+//            $this->redirect('login');
+//        }
         $customer = new Customer();
         $order = new Orders();
         $order_items = new Order_items();
@@ -611,7 +611,7 @@ class cashier extends Controller
         $order_id = $order->checkIsPreparing($id)[0]->OrderID;
 
         show($id);
-        $stripe =  new \Stripe\StripeClient(
+        $stripe = new \Stripe\StripeClient(
             $_ENV['STRIPE_API_KEY']
         );
 
@@ -656,5 +656,20 @@ class cashier extends Controller
             die;
             // $this->redirect('_404');
         }
+    }
+
+    public function bill($id)
+    {
+        $pdf = new PDF();
+        $pdf->generateBill($id);
+    }
+
+    public function getOrderByID($id)
+    {
+        $order = new Orders();
+        $order_items = new Order_Items();
+        $data['order'] = $order->getOrderByID($id);
+        $data['order_items'] = $order_items->getOrderItems($id);
+        echo json_encode($data);
     }
 }

@@ -101,6 +101,7 @@ select {
 }
 
 .data tr {
+    min-height: 140px;
     border-radius: 5px;
     min-width: -webkit-fill-available;
     min-width: -moz-available;
