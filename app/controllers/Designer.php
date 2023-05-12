@@ -498,23 +498,6 @@ class Designer extends Controller
 
     }
 
-    public function design_details($id=null)
-    {
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-
-        $design = new Design();
-        $data['designs'] = $design->viewDesign($id);
-
-        $data['primary_image'] = $design->getDesignPrimaryImage($id);
-        $data['secondary_images'] = $design->getDesignSecondaryImages($id);
-
-        $data['details'] = $design->getDesignDetailsByID($id)[0];
-        
-        $this->view('manager/design_details',$data);
-    }
 
     public function acceptDesign($id)
     {
@@ -556,4 +539,107 @@ class Designer extends Controller
         }
     }
 
+    public function downloadPdf()
+    {
+        $filepath = $_GET['filepath'];
+        $filename = explode('/',$filepath)[3];
+
+        if (file_exists($filepath)) {
+            header('Content-Type: application/pdf');
+            header('Content-Disposition: attachment; filename="' .$filename. '"');
+            header('Content-Length: ' . filesize($filepath));
+
+            readfile($filepath);
+
+        } else {
+            echo 'File not found.';
+        }
+    }
+
+    public function viewDesigns($status)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $design = new Design();
+        $employee = new Employees();
+        $categories = new Categories();
+
+        $rows = $design->getDesignsByStatus($status);
+
+        if (empty($rows)){
+            echo "<tr>
+                    <td colspan='8' style='text-align: center'>No Designs Available</td>
+                </tr>";
+            return;
+        }
+
+        $stm = "";
+
+        foreach ($rows as $row){
+            $designer = $employee->getEmployeeByID($row->DesignerID)[0];
+            $category = $categories->getCategoryByID($row->CategoryID)[0];
+
+            $row->Category = $category->Category_name;
+            $row->Desinger = $designer->Firstname." ".$designer->Lastname;
+            $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
+
+            $stm .= "
+                <td>$row->DesignID</td>
+                <td><img class='table-image' src='http://localhost/WoodWorks/public/".$row->Image. "' alt=''></td>
+                <td>$row->Name</td>
+                <td>$row->Desinger</td>
+                <td>$row->Status</td>
+                <td>$row->Category</td>
+                <td>$row->Date</td>
+                <td>
+                    <div class='inv-table-btns manager-btns'>
+                        <button onclick='downloadPdf(`$row->Pdf`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/download-svgrepo-com.svg' alt=''></button>
+                        <button onclick='getDesignInfo(`$row->DesignID`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                    </div>
+                </td>
+            ";
+        }
+
+        echo $stm;
+    }
+
+    public function getDesignInfo($id)
+    {
+        if (!Auth::logged_in()){
+            $this->redirect('login');
+        }
+
+        $designs = new Design();
+        $employees = new Employees();
+        $design = $designs->getDesignByID($id)[0];
+        $images = $designs->getDesignImages($id);
+        $designer = $employees->getEmployeeByID($design->DesignerID)[0];
+
+        $stm = "
+            <div class='design-images'>
+                   <img class='display-image' id='display-image' src='http://localhost/WoodWorks/public/".$images[0]->Image."' alt=''>
+            <div class='images-list'>
+                <img id='image1' onclick='changeImage(`image1`)' src='http://localhost/WoodWorks/public/".$images[0]->Image."' alt=''>
+                <img id='image2' onclick='changeImage(`image2`)' src='http://localhost/WoodWorks/public/".$images[1]->Image."' alt=''>
+                <img id='image3' onclick='changeImage(`image3`)'  src='http://localhost/WoodWorks/public/".$images[2]->Image."' alt=''>
+            </div>
+            </div>
+            <div class='design-info'>
+                <h2 id='design-name'>$design->Name</h2>
+                <h3>Designer: <span style='font-weight: normal;font-size: medium'>".$designer->Firstname." ".$designer->Lastname."</span></h3>
+                <div>
+                    <h3>Design Description:</h3>
+                    <p id='design-description'>$design->Description</p>
+                </div>
+                <div class='design-info-btn-container'>
+                    <button>Accept</button>
+                    <button>Reject</button>
+                </div>
+            </div>
+        ";
+
+        echo $stm;
+    }
 }

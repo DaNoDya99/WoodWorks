@@ -226,18 +226,18 @@ class Design extends Model
         return $this->query($query,['DesignID' => $id]);
     }
 
-    public function getDesignSecondaryImages($id = null)
+    public function getDesignImages($id = null)
     {
         $query = "select Image from design_image where DesignID = :DesignID && Image not like '%primary%';";
 
         return $this->query($query,['DesignID' => $id]);
     }
 
-    public function getDesignDetailsByID($id)
+    public function getDesignByID($id)
     {
-        $query = "select * from $this->table where DesignID = :DesignID;";
+        $query = "select * from design where DesignID = 'DES-4117-145602';";
 
-        return $this->query($query,['DesignID'=>$id]);
+        return $this->query($query);
     }
 
     public function acceptDesign($id,$emp){
@@ -256,5 +256,12 @@ class Design extends Model
         $query = "SELECT COUNT(*) AS Count FROM $this->table WHERE Status = 'Pending';";
 
         return $this->query($query);
+    }
+
+    public function getDesignsByStatus($status)
+    {
+        $query = "SELECT * FROM $this->table WHERE Status = :Status;";
+
+        return $this->query($query,['Status' => $status]);
     }
 }
