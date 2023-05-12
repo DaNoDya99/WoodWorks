@@ -149,32 +149,32 @@ class Orders extends Model
         return $this->query($query,['value'=>$value]);
     }
 
-    public function findThisWeekCompletedOrders($column,$value)
-    {
-        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
-        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+//    public function findThisWeekCompletedOrders($column,$value)
+//    {
+//        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+//        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+//
+//        $query = "SELECT count(OrderID) AS 'NumOfCompletedOrdres' FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` = 'Delivered'";
+//
+//        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+//
+//        return $this->query($query, $params);
+//    }
 
-        $query = "SELECT count(OrderID) AS 'NumOfCompletedOrdres' FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` = 'Delivered'";
 
-        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
-
-        return $this->query($query, $params);
-    }
-
-
-    public function findThisMonthDelayedOrders($column, $value)
-    {
-        $currentMonth = date('m');
-        $query = "SELECT COUNT(OrderID) AS 'NumOfDelayedOrders'FROM $this->table 
-              WHERE MONTH(Estimated_date) = :currentMonth 
-                AND $column = :value 
-                AND `Order_status` = 'Delivered' 
-                AND `Delivered_date` > `Estimated_date`";
-
-        $params = ['currentMonth' => $currentMonth, 'value' => $value];
-
-        return $this->query($query, $params);
-    }
+//    public function findThisMonthDelayedOrders($column, $value)
+//    {
+//        $currentMonth = date('m');
+//        $query = "SELECT COUNT(OrderID) AS 'NumOfDelayedOrders'FROM $this->table
+//              WHERE MONTH(Estimated_date) = :currentMonth
+//                AND $column = :value
+//                AND `Order_status` = 'Delivered'
+//                AND `Delivered_date` > `Estimated_date`";
+//
+//        $params = ['currentMonth' => $currentMonth, 'value' => $value];
+//
+//        return $this->query($query, $params);
+//    }
 
 
     
