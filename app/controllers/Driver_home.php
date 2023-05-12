@@ -410,13 +410,14 @@ class Driver_home extends Controller
         $rows = $driver->availableDrivers();
 
         foreach ($rows as $row){
-            $row->Order_count = $driver->getAssignedOrderCount($row->DriverID);
+            $row->Fullname = $row->Firstname." ".$row->Lastname;
+            $row->Order_count = $driver->getAssignedOrderCount($row->DriverID)[0]->Count;
         }
 
         $str = "<option selected>-- Assign Driver --</option>";
 
         foreach ($rows as $row){
-            $str .= "<option value='".$row->DriverID."'>".$row->DriverID." - ".$row->Availability."</option>";
+            $str .= "<option value='".$row->DriverID."'>".$row->DriverID." - ".$row->Fullname." - ".$row->Order_count." Orders Assigned.</option>";
         }
 
         echo $str;

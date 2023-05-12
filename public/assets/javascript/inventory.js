@@ -56,7 +56,7 @@ function addFurniture()
                    response.innerHTML = res;
                    setTimeout(() => {
                           location.reload();
-                   },3000);
+                   },2000);
                }else{
                    document.getElementById("errors").innerHTML = res;
                }
@@ -108,6 +108,7 @@ function confirmDeleteProduct(){
             if(xhr.status === 200){
                 response.innerHTML = xhr.response;
                 product_id = '';
+
                 setTimeout(() => {
                     location.reload();
                 },3000);
@@ -123,6 +124,7 @@ function closeDeleteProductPopup(){
 
 function openEditInvPopup(id){
     product_id = id;
+    document.getElementById('product-id').innerHTML = product_id;
 
     edit_popup.classList.add("open-popup");
     let xhr = new XMLHttpRequest();
@@ -151,6 +153,8 @@ function closeEditPopup(){
 }
 
 function save(){
+
+
     let form_data = new FormData(edit_fur);
     if(validate(form_data)){
         let xhr = new XMLHttpRequest();
@@ -163,7 +167,7 @@ function save(){
                     response.innerHTML = xhr.response;
                     setTimeout(() => {
                         location.reload();
-                    },100000);
+                    },2000);
                 }
             }
         }
@@ -175,10 +179,12 @@ function validate(data)
 {
     let validity = true;
 
+    console.log(data);
+
     let quantity = data.get('Arrived_quantity');
-    let cost = data.get('Cost');
-    let retail_price = data.get('Retail_price');
-    let reorder_point = data.get('Reorder_point');
+    let cost = parseFloat(data.get('Cost'));
+    let retail_price = parseFloat(data.get('Retail_price'));
+    let reorder_point = parseInt(data.get('Reorder_point'));
     let last_received = data.get('Last_received')
 
     if(quantity < 0){

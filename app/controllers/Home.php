@@ -4,6 +4,14 @@ require '../app/services/DistanceMatrixService.php';
 
 class Home extends Controller
 {
+
+    private function getUser()
+    {
+        $customer = new Customer();
+        $id = Auth::getCustomerID();
+        return $customer->where('CustomerID',$id);
+    }
+
     public function index(){
 
         if(Auth::logged_in())
@@ -83,6 +91,7 @@ class Home extends Controller
         $data['id'] = $id;
         $data['pager'] = $pager;
         $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$limit,$offset);
+        $data['flag'] = 'f';
 
         if(!empty($data['furniture']))
         {
@@ -100,6 +109,35 @@ class Home extends Controller
 
 
         $this->view("sub_category",$data);
+    }
+
+    public function viewAdvertisements()
+    {
+        $limit = 8;
+
+        $pager = new Pager($limit);
+        $offset = $pager->offset;
+
+        $advertisements = new Advertisements();
+        $rows = $advertisements->getRefurbishedFurniture($limit,$offset);
+
+        foreach ($rows as $row) {
+            $row->ProductID = $row->AdvertisementID;
+            $row->Name = $row->Product_name;
+            $row->Cost = $row->Price;
+            $row->Discount_percentage = '';
+            $row->Active = '';
+            $row->Rate = 0;
+            $row->Image = $advertisements->getDisplayImage($row->AdvertisementID)[0]->Image;
+        }
+
+        $data['row'] = $this->getUser();
+        $data['furniture'] = $rows;
+        $data['sub_categories'] = 'Refurbished Furniture';
+        $data['pager'] = $pager;
+        $data['flag'] = 'rf';
+
+        $this->view('sub_category',$data);
     }
 
     public function about()

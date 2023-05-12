@@ -1,6 +1,7 @@
 <?php $this->view('admin/includes/header') ?>
-<script src="<?=ROOT?>/assets/javascript/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<!--<script src="--><?php //=ROOT?><!--/assets/javascript/chart.umd.js"></script>-->
+
 <body class="admin">
     <div class="admin-body">
         <?php $this->view('admin/includes/admin.header') ?>

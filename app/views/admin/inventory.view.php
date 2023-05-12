@@ -182,7 +182,7 @@
 
         <div class="popup edit-fur-inv-popup" id="edit-popup">
             <div class="popup-heading">
-                <h2>Edit Inventory Product - P0001</h2>
+                <h2>Edit Inventory Product - <span id="product-id"></span></h2>
                 <img src="<?=ROOT?>/assets/images/customer/close.png" alt="Close" onclick="closeEditPopup()">
             </div>
 

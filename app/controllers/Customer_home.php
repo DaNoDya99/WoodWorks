@@ -278,7 +278,7 @@ class Customer_home extends Controller
 
             $_POST['Payment_type'] = 'Card';
             $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
-            $_POST['Delivery_method'] = 'Home Delivery';
+            $_POST['Delivery_method'] = 'Delivery';
             $_POST['Shipping_cost'] = $deliveryCost;
             $_POST['Address'] = $_POST['Address_line1'].', '.$_POST['Address_line2'].', '.$_POST['City'];
 

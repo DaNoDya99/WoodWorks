@@ -48,6 +48,7 @@ class Category extends Controller
         $data['id'] = $id;
         $data['pager'] = $pager;
         $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$limit,$offset);
+        $data['flag'] = 'f';
 
         if(!empty($data['furniture']))
         {
