@@ -37,7 +37,10 @@
                                 <td>
                                     <div class='inv-table-btns manager-btns'>
                                         <button onclick='downloadPdf(`<?=$row->Pdf?>`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/download-svgrepo-com.svg' alt=''></button>
-                                        <button onclick='getDesignInfo('<?= $row->DesignID ?>')'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                                        <button style="background-color: #2e69c4;" onclick='getDesignInfo(`<?= $row->DesignID ?>`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                                        <button style="background-color: #02df00;" onclick='acceptDesign(`<?= $row->DesignID ?>`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/active-svgrepo-com.svg' alt=''></button>
+                                        <button style="background-color: #a00505;" onclick='rejectDesign(`<?= $row->DesignID ?>`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/reject-cross-delete-svgrepo-com.svg' alt=''></button>
+
                                     </div>
                                 </td>
                             </tr>
@@ -85,14 +88,19 @@
 
         <div class="popup details-info-popup" id="design-info-popup">
             <div class="popup-heading">
-                <h2>DES-4117-145602</h2>
+                <h2 id="design-id"></h2>
                 <img src="<?= ROOT ?>/assets/images/customer/close.png" alt="Close" onclick="closeDesignInfoPopup()">
             </div>
 
            <div class="design-details-container" id="design-info">
 
            </div>
+        </div>
     </div>
+    <div class="cat-response" id="response">
+
+    </div>
+
 </body>
 <script src="<?=ROOT?>/assets/javascript/designs.js"></script>
 </html>

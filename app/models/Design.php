@@ -245,13 +245,13 @@ class Design extends Model
     public function acceptDesign($id,$emp){
         $query = 'update design set Status = :Status, ManagerID = :ManagerID where DesignID = :DesignID;';
 
-        return $this->query($query,['Status' => 'accepted','DesignID' => $id, 'ManagerID' => $emp]);
+        return $this->query($query,['Status' => 'Accepted','DesignID' => $id, 'ManagerID' => $emp]);
     }
 
     public function rejectDesign($id,$emp){
         $query = 'update design set Status = :Status, ManagerID = :ManagerID where DesignID = :DesignID;';
 
-        return $this->query($query,['Status' => 'rejected','DesignID' => $id, 'ManagerID' => $emp]);
+        return $this->query($query,['Status' => 'Rejected','DesignID' => $id, 'ManagerID' => $emp]);
     }
 
     public function getPendingDesignsCount(){
@@ -262,7 +262,7 @@ class Design extends Model
 
     public function getDesignsByStatus($status)
     {
-        $query = "SELECT * FROM $this->table WHERE Status = :Status;";
+        $query = "SELECT * FROM $this->table WHERE Status = :Status ORDER BY Date DESC;";
 
         return $this->query($query,['Status' => $status]);
     }

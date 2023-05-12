@@ -147,4 +147,16 @@ class Product_Inventory extends Model
 
         return $this->query($query);
     }
+
+    public function updateLastOrderedDate($id)
+    {
+        $query = "UPDATE $this->table SET Last_ordered = :Last_ordered WHERE ProductID = :ProductID;";
+
+        $data = [
+            'Last_ordered' => date('Y-m-d H:i:s'),
+            'ProductID' => $id
+        ];
+
+        return $this->query($query, $data);
+    }
 }

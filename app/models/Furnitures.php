@@ -123,7 +123,7 @@ class Furnitures extends Model
 
     public function getInventory()
     {
-        $query = "select ProductID , Name , Quantity , Cost, CategoryID from furniture;";
+        $query = "select ProductID , Name , Quantity , Cost, CategoryID,Visibility from furniture;";
 
         return $this->query($query);
     }
@@ -243,20 +243,6 @@ class Furnitures extends Model
         return $this->query($query, ['ProductID' => $id]);
     }
 
-    public function getDiscounts($id)
-    {
-        $query = "select Name, Discount_percentage from $this->table where ProductID = :ProductID";
-
-        return $this->query($query, ['ProductID' => $id]);
-    }
-
-    public function updateDiscounts($id, $discount)
-    {
-        $query = "update $this->table set Discount_percentage = :Discount where ProductID =:ProductID;";
-
-        return $this->query($query, ['ProductID' => $id, 'Discount' => $discount]);
-    }
-
 
     public function view_furniture_orders()
     {
@@ -285,10 +271,6 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
-    public function getDiscount()
-    {
-    }
-
     public function getFurnitureByID($id)
     {
         $query = "SELECT * FROM $this->table WHERE ProductID = :ProductID;";
@@ -297,17 +279,25 @@ class Furnitures extends Model
     }
 
     public function filterFurniture($id){
-        $query = "SELECT ProductID,Name,Quantity,Cost FROM furniture WHERE CategoryID = :CategoryID;";
+        $query = "SELECT ProductID,Name,Quantity,Cost,Visibility FROM furniture WHERE CategoryID = :CategoryID;";
 
         return $this->query($query,['CategoryID' => $id]);
     }
 
     public function searchFurnitureByID($id)
     {
-        $query = "SELECT ProductID,Name,Quantity,Cost FROM $this->table WHERE ProductID = :ProductID;";
+        $query = "SELECT ProductID,Name,Quantity,Cost,Visibility FROM $this->table WHERE ProductID = :ProductID;";
 
         return $this->query($query, ['ProductID' => $id]);
     }
+
+    public function searchFurnitureByGivenID($id)
+    {
+        $query = "SELECT ProductID,Name,Quantity,Cost,Visibility FROM $this->table WHERE ProductID LIKE '%$id%';";
+
+        return $this->query($query);
+    }
+
 
     public function searchFurnitureByName($name)
     {

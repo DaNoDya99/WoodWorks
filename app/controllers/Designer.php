@@ -581,19 +581,21 @@ class Designer extends Controller
             $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
 
             $stm .= "
-                <td>$row->DesignID</td>
-                <td><img class='table-image' src='http://localhost/WoodWorks/public/".$row->Image. "' alt=''></td>
-                <td>$row->Name</td>
-                <td>$row->Desinger</td>
-                <td>$row->Status</td>
-                <td>$row->Category</td>
-                <td>$row->Date</td>
-                <td>
-                    <div class='inv-table-btns manager-btns'>
-                        <button onclick='downloadPdf(`$row->Pdf`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/download-svgrepo-com.svg' alt=''></button>
-                        <button onclick='getDesignInfo(`$row->DesignID`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
-                    </div>
-                </td>
+                <tr>
+                    <td>$row->DesignID</td>
+                    <td><img class='table-image' src='http://localhost/WoodWorks/public/".$row->Image. "' alt=''></td>
+                    <td>$row->Name</td>
+                    <td>$row->Desinger</td>
+                    <td>$row->Status</td>
+                    <td>$row->Category</td>
+                    <td>$row->Date</td>
+                    <td>
+                        <div class='inv-table-btns manager-btns'>
+                            <button onclick='downloadPdf(`$row->Pdf`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/download-svgrepo-com.svg' alt=''></button>
+                            <button onclick='getDesignInfo(`$row->DesignID`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                        </div>
+                    </td>
+                </tr>
             ";
         }
 
@@ -628,13 +630,10 @@ class Designer extends Controller
                     <h3>Design Description:</h3>
                     <p id='design-description'>$design->Description</p>
                 </div>
-                <div class='design-info-btn-container'>
-                    <button>Accept</button>
-                    <button>Reject</button>
-                </div>
             </div>
         ";
 
         echo $stm;
     }
+
 }

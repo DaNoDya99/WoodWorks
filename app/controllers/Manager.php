@@ -25,6 +25,7 @@ class Manager extends Controller
         }
 
         $furniture = new Furnitures();
+        $categories = new Categories();
         $rows = $furniture->view_furniture_posts();
 
         foreach($rows as $row)
@@ -33,6 +34,7 @@ class Manager extends Controller
         }
 
         $data['furniture'] = $rows;
+        $data['categories'] = $categories->getCategories();
         $data['title']="POSTS";
 
         $this->view('manager/posts',$data);

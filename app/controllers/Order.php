@@ -288,6 +288,7 @@ class Order extends Controller
 
         $company_order = new CompanyOrderModel();
         $order_items = new Company_order_items();
+        $inventory = new Product_Inventory();
 
         $order_id = $company_order->generateOrderID();
 
@@ -308,6 +309,7 @@ class Order extends Controller
         $products = $_POST;
 
         foreach ($products as $key => $value) {
+            $inventory->updateLastOrderedDate($key);
             $order_items->insertItem($order_id, $key, $value);
         }
 
@@ -454,7 +456,7 @@ class Order extends Controller
                     <td>$order->Completed_date</td>
                     <td>
                         <div class='inv-table-btns manager-btns'>
-                            <button onclick='orderReceived(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/active-svgrepo-com(1).svg' alt=''></button>
+                            <button onclick='orderReceived(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/active-svgrepo-com.svg' alt=''></button>
                             <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
                         </div>   
                     </td>

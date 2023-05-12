@@ -1,4 +1,6 @@
 let designs_details_popup = document.getElementById('details-info-popup');
+let response = document.getElementById('response');
+let design_id = '';
 
 function downloadPdf(path){
     let xhr = new XMLHttpRequest();
@@ -70,4 +72,72 @@ function changeImage(image){
 function closeDesignInfoPopup()
 {
     document.getElementById('design-info-popup').classList.remove('open-popup');
+}
+
+function acceptDesign(id)
+{
+    design_id = id;
+
+    response.innerHTML = "<div class='cat-success'>\n" +
+        "        <h2>Do you want to accept the design?</h2>\n" +
+        "        <div class=\"cat-deletion-btns\">\n" +
+        "            <button style='background-color: #17c330' onclick=\"confirmAcceptDesign()\">Yes</button>\n" +
+        "            <button style='background-color: #17c330' onclick=\"closeAcceptDesignPopup()\">No</button>\n" +
+        "        </div>\n" +
+        "    </div>";
+
+}
+
+function rejectDesign(id)
+{
+    design_id = id;
+
+    response.innerHTML = "<div class='cat-success cat-deletion'>\n" +
+        "        <h2>Do you want to reject the design?</h2>\n" +
+        "        <div class=\"cat-deletion-btns\">\n" +
+        "            <button onclick=\"confirmRejectDesign()\">Yes</button>\n" +
+        "            <button onclick=\"closeRejectDesignPopup()\">No</button>\n" +
+        "        </div>\n" +
+        "    </div>";
+
+}
+
+function confirmAcceptDesign()
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost/WoodWorks/public/designer/acceptDesign/'+design_id, true);
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if (xhr.status === 200){
+                document.getElementById('design-info').innerHTML = xhr.response;
+            }
+        }
+    }
+    xhr.send();
+}
+
+function closeAcceptDesignPopup()
+{
+    document.getElementById('response').innerHTML = '';
+    design_id = '';
+}
+
+function closeRejectDesignPopup()
+{
+    document.getElementById('response').innerHTML = '';
+    design_id = '';
+}
+
+function confirmRejectDesign(id)
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost/WoodWorks/public/designer/rejectDesign/'+design_id, true);
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if (xhr.status === 200){
+                document.getElementById('design-info').innerHTML = xhr.response;
+            }
+        }
+    }
+    xhr.send();
 }

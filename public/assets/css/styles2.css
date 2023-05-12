@@ -317,10 +317,11 @@ h2 {
   background-color: #f9f9f9;
   border-radius: 15px;
   font-family: Poppins-SemiBold , sans-serif;
-  width: 85%;
+  width: 100%;
   padding: 1em;
   box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
   max-height: 80vh;
+  height: 80vh;
 }
 
 .post-heading{
@@ -2758,4 +2759,25 @@ max-height: 27vh;
 
 .design-info-btn-container button:last-child{
   background-color: #ce0014;
+}
+
+.posts-heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.posts-heading select,.posts-heading input{
+  height: 2.5em;
+  padding-left: 0.5em;
+  border: 2px #d4d4d4 solid;
+  width: 20em;
+  background-color: #f9f9f9;
+    border-radius: 7px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1rem;
+}
+
+.posts-heading input{
+
 }

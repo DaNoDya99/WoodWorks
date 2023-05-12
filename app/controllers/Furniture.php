@@ -43,7 +43,7 @@ class Furniture extends Controller
 
         $this->view("reg_customer/product", $data);
     }
-    
+
 
     public function details($id){
 
@@ -267,5 +267,101 @@ class Furniture extends Controller
 
 
     }
-    
+
+    public function filterPosts($category)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $furniture = new Furnitures();
+
+        $rows = '';
+
+        if ($category != "All") {
+            $rows = $furniture->filterFurniture($category);
+        } else {
+            $rows = $furniture->getInventory();
+        }
+
+        if (empty($rows)) {
+            echo "<tr><td colspan='6' style='text-align: center;'>No Products Found</td></tr>";
+            return;
+        }
+
+        foreach ($rows as $row) {
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
+
+        $str = '';
+
+        foreach ($rows as $row) {
+            if ($row->Visibility == 1) {
+                $visibility = "Visible";
+            } else {
+                $visibility = "Hidden";
+            }
+
+            $str .= "<tr>
+                        <td>" . $row->ProductID . "</td>
+                        <td><img src='" . ROOT . "/" . $row->Image . "' alt=''></td>
+                        <td>" . $row->Name . "</td>
+                        <td>" . $row->Quantity . "</td>
+                        <td>Rs." . $row->Cost . ".00</td>
+                        <td>
+                            <a style='text-decoration: none' href='" . ROOT . "/manager/change_visibility/$row->ProductID/$row->Visibility'>$visibility</a>
+                            <a style='text-decoration: none' href='" . ROOT . "/manager/reviews/$row->ProductID'>Reviews</a>
+                            <a>More</a>
+                       </td>
+                    </tr>";
+        }
+
+        echo $str;
+    }
+
+    public function searchPosts($value)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $furniture = new Furnitures();
+        $rows = $furniture->searchFurnitureByGivenID($value);
+
+
+        $stm = '';
+
+        if(empty($rows))
+        {
+            echo "<tr><td colspan='6' style='text-align: center;'>No Products Found</td></tr>";
+            return;
+        }
+
+        foreach ($rows as $row) {
+            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        }
+
+        foreach ($rows as $row) {
+            if ($row->Visibility == 1) {
+                $visibility = "Visible";
+            } else {
+                $visibility = "Hidden";
+            }
+
+            $stm  .= "<tr>
+                        <td>" . $row->ProductID . "</td>
+                        <td><img src='" . ROOT . "/" . $row->Image . "' alt=''></td>
+                        <td>" . $row->Name . "</td>
+                        <td>" . $row->Quantity . "</td>
+                        <td>Rs." . $row->Cost . ".00</td>
+                        <td>
+                            <a style='text-decoration: none' href='" . ROOT . "/manager/change_visibility/$row->ProductID/$row->Visibility'>$visibility</a>
+                            <a style='text-decoration: none' href='" . ROOT . "/manager/reviews/$row->ProductID'>Reviews</a>
+                            <a>More</a>
+                       </td>
+                    </tr>" ;
+        }
+
+        echo $stm;
+    }
 }

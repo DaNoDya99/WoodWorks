@@ -704,6 +704,7 @@ td {
     border-radius: 15px;
     max-height: 80vh;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    height: 85vh;
 }
 
 .sup-header {
@@ -2338,9 +2339,9 @@ h2 {
 }
 
 .sup-popup {
-    left: 50%;
-    width: 30%;
-    top: 150%;
+    /*left: 50%;*/
+    /*width: 30%;*/
+    /*top: 150%;*/
     font-family: 'Rubik', sans-serif;
 }
 
@@ -3737,6 +3738,10 @@ h2 {
 .delivery-orders-table{
     width: 100%;
     border-collapse: collapse;
+}
+
+.delivery-orders-table th{
+    border-bottom: 2px solid #d4d4d4;
 }
 
 .delivery-orders-table tr th:first-child{
