@@ -44,6 +44,7 @@
                 <th class="th">Order ID</th>
                 <th class="th">Payment Type</th>
                 <th class="th">Total Amount</th>
+                <th class="th">Delivery Fee</th>
                 <th class="th">Order Date</th>
                 <th class="th">Order Status</th>
                 <th class="th">Customer Address</th>
@@ -63,6 +64,7 @@
                         <td><?=esc($row->OrderID)?></td>
                         <td><?=esc($row->Payment_type)?></td>
                         <td>Rs. <?=esc($row->Total_amount)?>.00</td>
+                        <td>Rs. <?=esc($row->Shipping_cost)?>.00</td>
                         <?php
                             $date = $row->Date;
                             $newDate = date("d/m/Y", strtotime($date));
@@ -103,8 +105,10 @@
     <div id="popups">
         <div class="popups-heading">
             <img class="close-btn" onclick="closeDocumentPopups()" src="<?=ROOT?>/assets/images/driver/close.png" alt="close button">
-            <h2>MORE DETAILS</h2>
+            <h1>More Details</h1>
+            <h2 id="order_id"></h2>
         </div>
+
         <table class="details-table">
             <thead>
                 <tr>
@@ -115,19 +119,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
 
-                $order_items = new Order_Items();
-                $rows = $order_items->where('OrderID', $row->OrderID);
-                ?>
-                <?php foreach ($rows as $row) { ?>
-                    <tr>
-                        <td id="header1_<?=$row->ProductID?>"></td>
-                        <td id="header2_<?=$row->ProductID?>"></td>
-                        <td id="header3_<?=$row->ProductID?>"></td>
-                        <td><img id="edit-doc-img_<?=$row->ProductID?>" src="<?=ROOT?>/assets/images/driver/No_image.jpg" alt="No Image"></td>
-                    </tr>
-                <?php } ?>
             </tbody>
     </div>
 

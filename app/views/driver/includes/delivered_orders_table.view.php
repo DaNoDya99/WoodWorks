@@ -77,7 +77,6 @@
                             </tr>
                         </form>
                         <?php endforeach;?>
-
                     </tbody>
                 </table>
             </div>
@@ -115,7 +114,7 @@
 <!--                            <textarea id="doc-field" name="Reason" placeholder="Enter the Reason"></textarea>-->
 <!--                        </div>-->
                         <div class="submit-btn">
-                            <button id="doc-btn" type="submit">Submit</button>
+                            <button id="doc-btn" type="submit">Save</button>
                         </div>
                     </div>
                 </form>

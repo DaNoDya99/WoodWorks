@@ -54,7 +54,7 @@
                         </div>
                         <div class="edit-des-Dbtn-section" id="edit-design">
                             <label onclick="location.reload();">
-                                Delete Images & Pdf
+                                Reset
                             </label>
                         </div>
                     </div>

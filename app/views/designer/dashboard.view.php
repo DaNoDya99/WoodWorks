@@ -23,6 +23,11 @@
 
                         </thead>
                         <tbody>
+                        <?php if (empty($rows)):?>
+                            <tr class="designs-table-rows">
+                                <td colspan="4"><h1>No Designs to show.</h1></td>
+                            </tr>
+                        <?php else :?>
                         <?php foreach ($rows as $row):?>
 
                             <tr class="designs-table-rows">
@@ -37,6 +42,7 @@
                             </tr>
 
                         <?php endforeach;?>
+                        <?php endif;?>
                         </tbody>
                     </table>
                 </div>

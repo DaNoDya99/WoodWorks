@@ -93,7 +93,7 @@ form.onsubmit = (e) => {
 
 button.onclick = () => {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST","http://localhost/WoodWorks/public/message/sendMsgsToCustomer/"+user,true);
+    xhr.open("POST","http://localhost/WoodWorks/public/message/sendMsgsToCustomerByDesigner/"+user,true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE)
         {
@@ -131,7 +131,6 @@ search.onkeyup = () => {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("search="+search_value);
 }
-
 
 
 

@@ -347,7 +347,7 @@ body{
 
 .driver-tbox{
     width: 30%;
-    height: 580px;
+    height: auto;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
@@ -387,12 +387,11 @@ body{
     width: 75px;
     height: 30px;
     margin: 0;
-    border: solid 2px #e2dcc8;
     border-radius: 7px;
     font-family: 'Rubik';
     font-weight: bolder;
     font-size: 0.8vw;
-    background-color: #100F0F;
+    background-color: #0F3D3E;
     color: #ffffff;
     margin: 20px 0;
     cursor: pointer;
@@ -457,13 +456,16 @@ body{
 
 .cardBox{
     width: 100%;
-    height: 150px;
+    height: auto;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end; /* Align items to the bottom */
+    margin-top: auto; /* Push .cardBox to the bottom */
 }
 
 .cardBox .cards{
     width: 47%;
+    height: 160px;
     background: #f9f9f9;
     padding: 15px;
     border-radius: 20px;
@@ -478,22 +480,22 @@ body{
 
 .cardBox .cards .numbers{
     position: relative;
-    font-weight: 450;
-    font-size: 2.2em;
+    font-weight: 550;
+    font-size: 2.3em;
     font-family: 'Rubik', sans-serif;
 }
 
 .cardBox .cards .cardsName{
     position: relative;
-    margin-top: 5px;
-    font-size: 1.1em;
+    margin-top: 15px;
+    font-size: 1.3em;
     font-family: 'Rubik', sans-serif;
 }
 
 .iconBx img{
     margin-top: 10px;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
 }
 
@@ -1045,21 +1047,24 @@ body{
 
 #popups{
     width: 60%;
-    margin: 1em auto;
-    padding: 1em 2em;
-    top: 5%;
+    margin: 2em auto;
+    padding: 30px;
+    top: 0;
     left: 20%;
+    height: auto;
     background-color: #f9f9f9;
-    border-radius: 20px;
-    font-family: 'Rubik-SemiBold';
-    max-height: 80vh;
-    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    border-radius: 15px;
+    font-family: 'Rubik', sans-serif;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
     position: absolute;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
     border-collapse: collapse;
     visibility: hidden;
+    max-height: 85vh;
+
 }
 
 #popups::-webkit-scrollbar {
@@ -1073,11 +1078,16 @@ body{
     padding: 1em 0;
 }
 
+.popups-heading h1{
+    font-size: 35px;
+    font-weight: 650;
+    margin: 30px 0 10px;
+}
+
 .popups-heading h2{
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 500;
-    padding-left: 20px;
-    margin:0;
+    margin: 30px 0 10px;
 }
 
 .popups-heading img {
@@ -1092,11 +1102,14 @@ body{
 }
 
 .details-table{
-    margin: 0;
+    margin-top: 1em;
+    margin-right: 1em;
+    padding: 1em;
     width: 100%;
+    background-color: #d4d4d4;
     font-size: 0.9em;
     min-width: 400px;
-    border-radius: 5px 5px 0 0;
+    border-radius: 10px;
     overflow: hidden;
     overflow-y: scroll;
     max-height: 70vh;
@@ -1107,13 +1120,14 @@ body{
     color: black;
     text-align: center;
     font-weight: bold;
-    border-bottom: 2px solid #d2d2d2;
+    border-bottom: 1.5px solid #636363;
 }
 
 
 .details-table tbody tr td{
     width: 20%;
     word-break: break-word;
+    font-weight: 450;
 }
 
 .details-table th,
@@ -1266,6 +1280,9 @@ body{
     height: auto;
     margin: 20px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     cursor: pointer;
     max-height: 80vh;
     overflow-y: scroll;
@@ -1337,12 +1354,13 @@ body{
 
 .des-form-body{
     width: 70%;
+    height: 80vh;
     background-color: #f9f9f9;
     margin: 1em auto;
     padding: 1em 1.5em;
     border-radius: 15px;
     font-family: 'Rubik', sans-serif;
-    max-height: 80vh;
+    max-height: 85vh;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 
 }
@@ -1354,7 +1372,7 @@ body{
 
 .add-des-form{
     padding: 1em 0;
-    max-height: 70vh;
+    max-height: 75vh;
     width: 100%;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -1366,9 +1384,15 @@ body{
 }
 
 .des-img-upload-container{
+    width: 55%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin: auto;
+}
+
+.des-img{
+    width: 100%;
 }
 
 #designImage{
@@ -1380,6 +1404,7 @@ body{
     padding-top: 5px;
     justify-content: center;
     padding-bottom: 10px;
+    width: 100%;
 }
 
 #designPdf{
@@ -1405,19 +1430,15 @@ body{
     margin-top: 5px;
     text-align: center;
     font-family: 'Rubik', sans-serif;
-    /*font-weight: bold;*/
-    /*padding-left: 70px;*/
     justify-content: center;
 }
 
 #images{
     width: 100%;
     margin: auto;
-    /*position: relative;*/
     display: flex;
     object-fit: cover;
     justify-content: center;
-    /*flex-wrap: wrap;*/
     flex-direction: row;
 }
 
@@ -1448,11 +1469,11 @@ body{
 
 .des_Name label{
     font-weight: bold;
-    /*margin-right: 0.5em;*/
 }
 
 .des_Name select{
-    width: 20em;
+    width: 100%;
+    height: 40px;
     border: 2px solid #d2d2d2;
     border-radius: 3px;
     background-color: #f9f9f9;
@@ -1461,9 +1482,8 @@ body{
     font-family: 'Rubik-SemiBold', sans-serif;
     color: #787878;
     cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    margin-left: 5px;
+    margin-bottom: 20px;
+    margin-top: 5px;
 }
 
 .des_Name input{
@@ -1475,7 +1495,8 @@ body{
     font-family: 'Rubik', sans-serif;
     background-color: #f9f9f9;
     padding:0 10px;
-    margin-top: 0px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 figure{
@@ -1496,7 +1517,7 @@ figcaption{
 
 .but-img-upload-container{
     margin: auto;
-    width: 64%;
+    width: 55%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1504,13 +1525,13 @@ figcaption{
 
 .edit-des-Ubtn-section{
     height: 2.8em;
-    width: 27%;
+    width: 30%;
     cursor: pointer;
-    margin: auto;
+    /*margin: auto;*/
     padding: 5px;
     font-family: 'Rubik-SemiBold';
     font-size: 1.1rem;
-    background: #104f4a;
+    background: #100F0F;
     justify-content: center;
     border-radius: 7px;
     align-items: center;
@@ -1527,9 +1548,9 @@ figcaption{
 
 .edit-des-Dbtn-section{
     height: 2.8em;
-    width: 40%;
+    width: 27%;
     cursor: pointer;
-    margin: auto;
+    /*margin: auto;*/
     padding: 5px;
     font-family: 'Rubik-SemiBold';
     justify-content: center;
@@ -1569,6 +1590,7 @@ figcaption{
     padding: 10px;
     font-family: 'Rubik', sans-serif;
     background-color: #f9f9f9;
+    margin-top: 5px;
 }
 
 .add-des-btn{
@@ -1587,7 +1609,7 @@ figcaption{
     font-family: 'Rubik';
     font-weight: bolder;
     font-size: 1vw;
-    background-color: #100F0F;
+    background-color: #104f4a;
     color: #ffffff;
     cursor: pointer;
     margin-left: auto;
@@ -2269,6 +2291,7 @@ design-desc div button:hover{
     padding: 2em;
     border-radius: 15px;
     background-color: #f9f9f9;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     visibility: hidden;
 }
 
@@ -2514,8 +2537,8 @@ design-desc div button:hover{
 }
 
 .category-card {
-    width: 160px;
-    height: 200px;
+    width: 230px;
+    height: 270px;
     background-color: #f9f9f9;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     margin: 0 2em 2em 2em;
@@ -2536,7 +2559,7 @@ design-desc div button:hover{
 
 .category-card p {
     margin: 0;
-    padding-left: 40px;
+    text-align: center;
 }
 
 

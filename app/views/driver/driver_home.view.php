@@ -21,22 +21,22 @@
         </select>
     </form>
 
-    <form method="post" class="vehicle-form" action="/woodworks/public/driver_home/index" hidden>
-        <select name="vehicle" required onchange="this.form.submit()">
-            <option>----Vehicle Type ---</option>
-            <?php
-            $arr = array("CargoVan", "BoxTruck", "MovingTruck", "FlatbedTruck");
-
-            foreach ($arr as $value) {
-                if ($value == $_POST['vehicle']) {
-                    echo "<option value=$value >$value</option>";//selected
-                } else {
-                    echo "<option value=$value>$value</option>";
-                }
-            }
-            ?>
-        </select>
-    </form>
+<!--    <form method="post" class="vehicle-form" action="/woodworks/public/driver_home/index" hidden>-->
+<!--        <select name="vehicle" required onchange="this.form.submit()">-->
+<!--            <option>----Vehicle Type ---</option>-->
+<!--            --><?php
+//            $arr = array("CargoVan", "BoxTruck", "MovingTruck", "FlatbedTruck");
+//
+//            foreach ($arr as $value) {
+//                if ($value == $_POST['vehicle']) {
+//                    echo "<option value=$value >$value</option>";//selected
+//                } else {
+//                    echo "<option value=$value>$value</option>";
+//                }
+//            }
+//            ?>
+<!--        </select>-->
+<!--    </form>-->
 
     <div class="content dashboard">
 

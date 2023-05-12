@@ -90,7 +90,7 @@ class Orders extends Model
         $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
         $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
 
-        $query = "SELECT * FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` != 'Delivered' ORDER BY DATE DESC LIMIT 7";
+        $query = "SELECT * FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND (`Order_status` = 'Dispatched' OR `Order_status` = 'Processing') ORDER BY DATE DESC LIMIT 7";
 
         $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
 
@@ -139,26 +139,26 @@ class Orders extends Model
 
     public function displayOrders($column,$value)
     {
-        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` != 'Delivered' limit 15";
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value AND (`Order_status` = 'Dispatched' OR `Order_status` = 'Processing') limit 15";
         return $this->query($query,['value'=>$value]);
     }
 
     public function displayDeliveredOrders($column,$value)
     {
-        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` = 'Delivered' limit 15";
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value AND `Order_status` = 'Delivered' limit 15";
         return $this->query($query,['value'=>$value]);
     }
 
     public function searchOrdersDetails($column,$value,$orders_items)
     {
-        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or Address like '%$orders_items%' or Total_amount like '%$orders_items%' AND $column = :value LIMIT 15 ";
+        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or Address like '%$orders_items%' or Total_amount like '%$orders_items%' AND $column = :value AND (`Order_status` = 'Dispatched' OR `Order_status` = 'Processing') LIMIT 15 ";
         return $this->query($query,['value'=>$value]);
 
     }
 
     public function searchDeliveredOrdersDetails($column,$value,$orders_items)
     {
-        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or OrderID like '%$orders_items%' or DATE_FORMAT(Dispatched_date, '%d/%m/%Y') like '%$orders_items%' or DATE_FORMAT(Delivered_date, '%d/%m/%Y') like '%$orders_items%'or Firstname like '%$orders_items%' or Lastname like '%$orders_items%' AND $column = :value LIMIT 15 ";
+        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or OrderID like '%$orders_items%' or DATE_FORMAT(Dispatched_date, '%d/%m/%Y') like '%$orders_items%' or DATE_FORMAT(Delivered_date, '%d/%m/%Y') like '%$orders_items%'or Firstname like '%$orders_items%' or Lastname like '%$orders_items%' AND $column = :value  AND `Order_status` = 'Delivered' LIMIT 15 ";
         return $this->query($query,['value'=>$value]);
 
     }
@@ -171,7 +171,7 @@ class Orders extends Model
 
     public function filterDate($from_date,$to_date)
     {
-        $query = "select OrderID,Dispatched_date,Delivered_date,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && Delivered_date BETWEEN '$from_date' AND '$to_date' limit 15";
+        $query = "select OrderID,Dispatched_date,Delivered_date,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' AND `Order_status` = 'Delivered' AND Delivered_date BETWEEN '$from_date' AND '$to_date' limit 15";
         return $this->query($query);
     }
 
@@ -181,7 +181,12 @@ class Orders extends Model
         $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
         $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
 
-        $query = "SELECT count(OrderID) AS 'numOrders',Order_status FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value GROUP BY Order_status";
+        $query = "SELECT COUNT(OrderID) AS 'numOrders', Order_status 
+          FROM $this->table 
+          WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek 
+          AND $column = :value 
+          AND Order_status IN ('Delivered', 'Dispatched', 'Processing')
+          GROUP BY Order_status";
 
         $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
 
@@ -195,12 +200,11 @@ class Orders extends Model
 
         $query = "SELECT cast(Estimated_date as date) AS 'Date', count(OrderID) AS 'numOrders' 
               FROM $this->table 
-              WHERE Estimated_date >= :startOfWeek 
-              AND Estimated_date <= :endOfWeek 
+              WHERE cast(Estimated_date as date) >= :startOfWeek 
+              AND cast(Estimated_date as date) <= :endOfWeek 
               AND $column = :value 
-              AND Order_status != 'delivered' 
-            GROUP BY cast(Estimated_date as date)";
-
+              AND (Order_status = 'Dispatched' OR Order_status = 'Processing')
+              GROUP BY cast(Estimated_date as date)";
 
         $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
 
