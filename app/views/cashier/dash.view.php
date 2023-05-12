@@ -195,7 +195,8 @@
 
             </div>
             <div class="button">
-                <button class="proceed" onclick="openPaymentPopup('<?= $_SESSION['OrderID'] ?>')">Proceed to Payment</button>
+                <button class="proceed" onclick="openPaymentPopup('<?= $_SESSION['OrderID'] ?>')">Proceed to Payment
+                </button>
             </div>
         </div>
 
@@ -234,6 +235,12 @@
     </div>
 
 </div>
+<
+<div id="tpopup" class="tpopup">
+    <div class="popup-message"></div>
+    <div id="indicator" class="indicator"></div>
+</div>
+
 <script>
     document.getElementById('increment').addEventListener('click', function () {
         let quantity = document.getElementById('quantity');
@@ -311,7 +318,7 @@
     function openPaymentPopup(id) {
 
         popup2.classList.add("open-popup");
-        fetch("http://localhost/WoodWorks/public/cashier/getOrderSummary/"+id)
+        fetch("http://localhost/WoodWorks/public/cashier/getOrderSummary/" + id)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -490,6 +497,7 @@
                 console.log(data);
                 if (data.status === 'fail') {
                     errormsg();
+                    return;
                 }
 
                 makeTable();
@@ -497,9 +505,9 @@
                 getFinalTotal();
 
             })
-            .catch(error => {
-                console.error("Error fetching cart data:", error);
-            });
+        // .catch(error => {
+        //     console.error("Error fetching cart data:", error);
+        // });
 
 
         document.getElementById('blur-quantity').style.display = 'none';
