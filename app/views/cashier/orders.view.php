@@ -66,16 +66,16 @@
             </button>
             <div style="margin-top:20px;display: flex; flex-direction: row ">
                 <div style="width: 50%">
-                    <p>Customer Name: Nisura Indisa</p>
-                    <p>Customer ID:12121312312 </p>
-                    <p>Order Date: 2020-03-02</p>
-                    <p>Delivery Date: 2020-03-02</p>
+                    <p>Customer Name: <span id="custName"></span></p>
+                    <p>Customer ID:<span id="custID"></span></p>
+                    <p>Order Date: <span id="orderDate"></span></p>
+                    <p>Delivery Date: <span id="deldate"></span></p>
                 </div>
                 <div style="width: 50%;">
-                    <p>Delivery Method: Pickup</p>
-                    <p>Payment Type: Cash</p>
-                    <p>Order Status: Pending</p>
-                    <p>Total Amount: Rs. 1000.00</p>
+                    <p>Delivery Method: <span id="delMethod"></span></p>
+                    <p>Payment Type: <span id="payMethod"></span></p>
+                    <p>Order Status: <span id="ordStatus"></span></p>
+                    <p>Total Amount: <span id="total"></span></p>
 
                 </div>
             </div>
@@ -88,70 +88,15 @@
                     <thead style="width: 100%">
                         <tr>
                             <th>ProductID</th>
-                            <th>Product Name</th>
+                            <!-- <th>Product Name</th> -->
                             <th>Quantity</th>
                             <th>Unit Price</th>
                             <th>Sub Total</th>
                         </tr>
 
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Product 1</td>
-                            <td>2</td>
-                            <td>Rs. 500.00</td>
-                            <td>Rs. 1000.00</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Product 2</td>
-                            <td>2</td>
-                            <td>Rs. 500.00</td>
-                            <td>Rs. 1000.00</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Product 3</td>
-                            <td>2</td>
-                            <td>Rs. 500.00</td>
-                            <td>Rs. 1000.00</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Product 4</td>
-                            <td>2</td>
-                            <td>Rs. 500.00</td>
-                            <td>Rs. 1000.00</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Product 4</td>
-                            <td>2</td>
-                            <td>Rs. 500.00</td>
-                            <td>Rs. 1000.00</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Product 4</td>
-                            <td>2</td>
-                            <td>Rs. 500.00</td>
-                            <td>Rs. 1000.00</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Product 4</td>
-                            <td>2</td>
-                            <td>Rs. 500.00</td>
-                            <td>Rs. 1000.00</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Product 4</td>
-                            <td>2</td>
-                            <td>Rs. 500.00</td>
-                            <td>Rs. 1000.00</td>
-                        </tr>
+                    <tbody id="order-items-table">
+                        <!-- Rows generated via JS -->
                     </tbody>
                 </table>
 
@@ -192,12 +137,56 @@
         fetch('http://localhost/WoodWorks/public/cashier/getorderbyid/+' + orderid)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
+                let orderDetails = data.order[0];
+                document.getElementById('custName').innerHTML = orderDetails.Firstname + " " + orderDetails.Lastname;
+                document.getElementById('custID').innerHTML = orderDetails.CustomerID;
+                document.getElementById('orderDate').innerHTML = orderDetails.Date;
+                document.getElementById('delMethod').innerHTML = orderDetails.Deliver_method;
+                document.getElementById('payMethod').innerHTML = orderDetails.Payment_type;
+                document.getElementById('ordStatus').innerHTML = orderDetails.Order_status;
+                document.getElementById('total').innerHTML = "Rs. " + orderDetails.Total_amount;
+
+                // document.getElementById('deldate').innerHTML=orderDetails.CustomerID;
+
+                console.log(data.order_items);
+
+                let tbody = document.getElementById('order-items-table');
+
+                tbody.innerHTML='';
+
+                data.order_items.forEach(item => {
+                    console.log(item);
+                    var row = document.createElement("tr");
+                    var cell1 = document.createElement("td");
+                    var cell2 = document.createElement("td");
+                    var cell3 = document.createElement("td");
+                    var cell4 = document.createElement("td");
+
+
+                    cell1.innerHTML = item.ProductID;
+                    cell2.innerHTML = item.Quantity;
+                    cell3.innerHTML = "Rs. " + item.Cost;
+                    cell4.innerHTML = "Rs. " + item.Cost * item.Quantity
+
+                    row.appendChild(cell1);
+                    row.appendChild(cell2);
+                    row.appendChild(cell3);
+                    row.appendChild(cell4);
+
+
+                    tbody.appendChild(row);
+                })
+
+
+
 
             })
             .catch(error => console.error(error))
 
     }
+
+
 
     closePopupButton.addEventListener('click', function() {
         popup.classList.add('hidden');
