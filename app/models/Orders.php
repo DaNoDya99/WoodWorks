@@ -87,8 +87,64 @@ class Orders extends Model
 
     public function findOrders($column,$value)
     {
-        $query = "select * from $this->table where $column = :value order by DATE";
-        return $this->query($query, ['value' => $value]);
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT * FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` != 'Delivered' ORDER BY DATE DESC LIMIT 7";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+//        echo "Query: $query\n";
+//        echo "Params: " . json_encode($params) . "\n";
+
+        return $this->query($query, $params);
+    }
+
+    public function findThisWeekCompletedOrders($column,$value)
+    {
+        $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
+        $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
+
+        $query = "SELECT count(OrderID) AS 'NumOfCompletedOrdres' FROM $this->table WHERE DATE >= :startOfWeek AND DATE <= :endOfWeek AND $column = :value AND `Order_status` = 'Delivered'";
+
+        $params = ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'value' => $value];
+
+        return $this->query($query, $params);
+    }
+
+
+    public function findThisMonthDelayedOrders($column, $value)
+    {
+        $currentMonth = date('m');
+        $query = "SELECT COUNT(OrderID) AS 'NumOfDelayedOrders'FROM $this->table 
+              WHERE MONTH(Estimated_date) = :currentMonth 
+                AND $column = :value 
+                AND `Order_status` = 'Delivered' 
+                AND `Delivered_date` > `Estimated_date`";
+
+        $params = ['currentMonth' => $currentMonth, 'value' => $value];
+
+        return $this->query($query, $params);
+    }
+
+
+    public function getCustomerOrders($id)
+    {
+        $query = "select * from $this->table where CustomerID = :id && Is_preparing = :Is_preparing order by DATE desc";
+
+        return $this->query($query, ['id' => $id, 'Is_preparing' => 0]);
+    }
+
+    public function displayOrders($column, $value)
+    {
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` != 'Delivered' limit 15";
+        return $this->query($query,['value'=>$value]);
+    }
+
+    public function displayDeliveredOrders($column,$value)
+    {
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value && `Order_status` = 'Delivered' limit 15";
+        return $this->query($query,['value'=>$value]);
     }
 
     //function to return orders based on date range
@@ -99,10 +155,10 @@ class Orders extends Model
     }
     public function findOrdersSumByDate($date1, $date2)
     {
-        $query = "select SUM(Total_amount) as total,COUNT(OrderID) as OrderCount, CONVERT(Date, Date) AS DATE from $this->table WHERE Order_status = 'delivered' or is_preparing = 0 and Date between '$date1' and '$date2' group by DATE ORDER BY Date;";
+        $query = "select SUM(Total_amount) as total,COUNT(OrderID) as OrderCount, CONVERT(Date, Date) AS DATE from $this->table WHERE Order_status IN ('Paid', 'Dispatched', 'Delivered') or is_preparing = 0 and Date between '$date1' and '$date2' group by DATE ORDER BY Date;";
         return $this->query($query);
     }
-
+ 
     //get products sold
 
     public function findProductsSold($date1, $date2)
