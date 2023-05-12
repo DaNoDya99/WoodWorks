@@ -41,9 +41,11 @@
 @font-face {
     font-family: 'Rubik-ExtraBold';
     src: url("../fonts/Rubik/Rubik-ExtraBold.ttf");
-}   
+}
 
-
+body{
+    font-family: 'Rubik';
+}
 /*Login Page*/
 .login-body {
     display: flex;
@@ -314,7 +316,6 @@ form .name-details .field:last-child {
     flex-direction: column;
     align-items: center;
     margin-top: 10vh;
-    margin-bottom: 30vh;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
@@ -851,7 +852,7 @@ td {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
+
     padding: 0 10px;
     font-family: 'Rubik', sans-serif;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
@@ -922,7 +923,7 @@ td {
 }
 
 .intro-section {
- 
+
     height: 100vh;
     background-image: url(../images/customer/intro.png);
     background-size: cover;
@@ -1049,14 +1050,14 @@ h3 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;    
-    margin-bottom: 30px;
+    align-items: flex-start;
+
     margin-left: 10px;
     margin-right: 10px;
+}
 
-    
-
-
+.product-card-details h2, .product-card-details h3{
+    margin: 0;
 }
 
 .product-cost{
@@ -1074,10 +1075,20 @@ h3 {
 }
 
 .product-card-details h3 {
-    margin: 0;
+    margin-top: .5em;
     font-size: 1.4rem;
-    padding-bottom: 15px;
+    padding-bottom: 7px;
 
+}
+
+.product-card-details h4{
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.line-through{
+    text-decoration: line-through #d23542 2px solid;
+    opacity: 60%;
 }
 
 .product-card-details div {
@@ -1086,11 +1097,6 @@ h3 {
     padding-bottom: 10px;
 }
 
-.product-card-details .cost {
-    position: absolute;
-    bottom: 10px;
-    
-}
 
 .product-card-details .catergory{
     font-size: 1.0rem;
@@ -1125,10 +1131,9 @@ h3 {
     height: 30px;
     opacity: 0.5;
 
-
-
 }
-.product-card-buttons a {
+
+.product-btn-link{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1359,13 +1364,14 @@ h3 {
 .cus-chat{
     position: fixed;
     right: 15px;
-    top: 50%;
+    top: 40%;
     width: 25em;
     height: 28em;
     background-color: #d4d4d4;
     border-radius: 10px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     font-family: 'Poppins-Light', sans-serif;
+    visibility: hidden;
 }
 
 .chat-header{
@@ -1395,11 +1401,12 @@ h3 {
     overflow-y: auto;
 }
 
-.cus-send-msg-sec{
+.cus-send-msg-sec form{
     display: flex;
     padding:  .5em;
     justify-content: space-between;
 }
+
 
 .cus-send-msg-sec button{
     display: flex;
@@ -1595,9 +1602,9 @@ h3 {
     background: #f9f9f9;
     border-radius: 10px;
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(0.1);
     text-align: center;
     padding: 0 30px 30px;
     visibility: hidden;
@@ -1620,7 +1627,11 @@ h3 {
     border-radius: 5px;
 }
 
-.open-popup {visibility: visible;top: 50%;left: 50%;transform: translate(-50%, -50%) scale(1);}
+.open-popup {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
 
 .popup-heading {
     display: flex;
@@ -1697,7 +1708,8 @@ h3 {
 .product-view {
     background-color: #e2dcc8;
     font-family: 'Rubik', sans-serif;
-    padding: 2em 0;
+    padding-top: 10vh;
+    padding-bottom: 2em;
 }
 
 .product-desc-section {
@@ -1705,6 +1717,26 @@ h3 {
     width: 90%;
     display: flex;
     max-height: 600px;
+}
+
+.product-costs{
+    display: flex;
+}
+
+.product-costs h1:last-child{
+    margin-left: 1em;
+}
+
+.product-discount{
+    width: 40%;
+    background-color: #d4d4d4;
+    height: 2.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    color: #d23542;
+    margin: .5em 0;
 }
 
 .product-img {
@@ -1897,7 +1929,7 @@ h3 {
 .rate-info {
     display: flex;
     align-items: center;
-    margin: 0 auto;
+    margin: 1em auto;
 }
 
 .rate-info img {
@@ -2047,6 +2079,10 @@ h2 {
     background-color: #E2E2CF;
     display: flex;
     padding-top: 60px;
+}
+
+.reg-sub-cat{
+    padding-top: unset;
 }
 
 .sub-cat-sidebar {
@@ -2302,8 +2338,9 @@ h2 {
 }
 
 .sup-popup {
-    left: 60%;
+    left: 50%;
     width: 30%;
+    top: 150%;
     font-family: 'Rubik', sans-serif;
 }
 
@@ -3234,6 +3271,7 @@ h2 {
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     padding: .5em;
     font-family: 'Rubik', sans-serif;
+    overflow-y: scroll;
 }
 
 .selected-order{
@@ -3740,16 +3778,6 @@ h2 {
     margin: 0;
 }
 
-.delivery-orders-table tr td:last-child button{
-    width: 7em;
-    border: none;
-    border-radius: 5px;
-    background-color: #0F3D3E;
-    color: #f9f9f9;
-    font-weight: bolder;
-    padding: 1em;
-}
-
 .order-id{
     width: 10em;
     max-width: 10em;
@@ -4065,6 +4093,11 @@ h2 {
     top: -30px;
 }
 
+.product-card-stars-outer{
+    top: 8px;
+    left: 10px;
+}
+
 .stars-inner{
     position: absolute;
     top: 0;
@@ -4173,7 +4206,7 @@ h2 {
 }
 
 .invoice-details div{
-   text-align: center;
+    text-align: center;
 }
 
 .invoice-summary-container{
@@ -4452,4 +4485,66 @@ h2 {
     max-height: 10em;
     overflow-y: scroll;
     padding: 0 2em;
+}
+
+.rating{
+    display: flex;
+}
+
+.delivery-history-btn{
+    background-color: #0F3D3E;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 7px;
+    padding: .5em 1em;
+    font-size: 1.1rem;
+    margin-top: 1em;
+    height: 2.5em;
+}
+
+.delivery-history-popup{
+    width: 95%;
+    height: 85vh;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+
+}
+
+.order-selections{
+    display: flex;
+    justify-content: space-between;
+}
+
+.selector{
+    width: 19%;
+    padding: 0.5em 0;
+    border: 2px solid #d4d4d4;
+    cursor: pointer;
+}
+
+.order-select{
+    width: 33%
+}
+
+.order-table{
+    margin-top: 2em;
+}
+
+.order-table th{
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.order-table td{
+    text-align: center;
+}
+
+.selected{
+    background-color: #d4d4d4;
+}
+
+.select-driver{
+    width: 35%;
+    height: 2.5em;
+    border: 2px solid #d4d4d4;
+    background-color: #f9f9f9;
+    border-radius: 7px;
 }
