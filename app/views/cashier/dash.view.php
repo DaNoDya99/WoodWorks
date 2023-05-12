@@ -98,24 +98,32 @@
             <table style="font-size:14px; text-align:right; align-items:center; justify-content:center;" id="myTable">
 
                 <tbody style=" display:block; overflow:auto;">
-                    <?php foreach ($data['products'] as $product) : ?>
-                        <tr>
-                            <td class="col col-cost"><?= $product->ProductID ?></td>
-                            <td class="col col-cost"><img style="width: 70px; border-radius:5px;" src="<?= ROOT ?>/<?= $product->image ?>" alt=""></td>
-                            <td class="col col-cost"> <?= $product->Name ?></td>
+                <?php foreach ($data['products'] as $product) : ?>
+                    <tr>
+                        <td class="col col-cost"><?= $product->ProductID ?></td>
+                        <td class="col col-cost"><img style="width: 70px; border-radius:5px;"
+                                                      src="<?= ROOT ?>/<?= $product->image ?>" alt=""></td>
+                        <td class="col col-cost"> <?= $product->Name ?></td>
 
-                            <td class="col col-cost" style="font-weight:600;">Rs. <?= $product->Cost ?></td>
-                            <td class="col col-cost" style="font-weight:100; color:red;font-style:italic"><?= $product->Discount_percentage ?>%</td>
-                            <td class="col col-add" style="padding-right: 20px;"><img style="width: 16px;" src="<?= ROOT ?>/assets/images/cashier/add.svg" alt="" <?php if (isset($_SESSION["CustomerID"])) : ?> onclick="quantitypopup('<?= ROOT ?>/<?= $product->image ?>','<?= $product->Name ?>','<?= $product->ProductID ?>','<?= $product->Cost -  $product->Cost * $product->Discount_percentage / 100 ?>')" <?php endif; ?> </td>
-                        </tr>
-                    <?php endforeach; ?>
+                        <td class="col col-cost" style="font-weight:600;">Rs. <?= $product->Cost ?></td>
+                        <td class="col col-cost"
+                            style="font-weight:100; color:red;font-style:italic"><?= $product->Discount_percentage ?>%
+                        </td>
+                        <td class="col col-add" style="padding-right: 20px;"><img style="width: 16px;"
+                                                                                  src="<?= ROOT ?>/assets/images/cashier/add.svg"
+                                                                                  alt="" <?php if (isset($_SESSION["CustomerID"])) : ?>
+                                                                                  onclick="quantitypopup('<?= ROOT ?>/<?= $product->image ?>','<?= $product->Name ?>','<?= $product->ProductID ?>','<?= $product->Cost - $product->Cost * $product->Discount_percentage / 100 ?>')" <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
 
     </div>
     <div class="panel2">
-        <div class="info" style="padding:10px;width:100%; height:100px; background-color:#34524D; border-radius:10px; color:white;">
+        <div class="info"
+             style="padding:10px;width:100%; height:100px; background-color:#34524D; border-radius:10px; color:white;">
             <?php if (isset($_SESSION["CustomerID"])) : ?>
                 <P>Customer ID: <?= substr($_SESSION["CustomerDetails"][0]->CustomerID, 0, 10) ?> </P>
                 <P>Customer
@@ -130,18 +138,19 @@
 
         <table id="bill-table" class="bill-table">
             <thead class="thead" style="display:table;width: 100%">
-                <th class="">Product ID</th>
-                <th class="">Product Name</th>
-                <th class="">Quantity</th>
-                <th class="">Unit Price</th>
+            <th class="">Product ID</th>
+            <th class="">Product Name</th>
+            <th class="">Quantity</th>
+            <th class="">Unit Price</th>
 
-                <th>Total</th>
-                <th class=""><img style="width: 15px" src="<?= ROOT ?>/assets/images/cashier/trash-solid.svg" alt=""></th>
+            <th>Total</th>
+            <th class=""><img style="width: 15px" src="<?= ROOT ?>/assets/images/cashier/trash-solid.svg" alt=""></th>
             </thead>
 
         </table>
 
-        <div id="empty-cart-message" style="height:100%; width:100%;border:0.5px solid grey; margin-top:20px; margin-bottom:20px;border-radius:15px; display:flex; justify-content:center; align-items:center">
+        <div id="empty-cart-message"
+             style="height:100%; width:100%;border:0.5px solid grey; margin-top:20px; margin-bottom:20px;border-radius:15px; display:flex; justify-content:center; align-items:center">
             <p style="color:white; font-size:20px">Cart is empty</p>
         </div>
         <div>
@@ -163,9 +172,12 @@
                         <p onclick="discountpopup()" style="">00.00</p>
                     </div> -->
                     <div class="shippingcost-view">
-                        <div style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row">
+                        <div
+                            style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row">
                             <p>Shipping</p>
-                            <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt="" style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;" onclick="shippingpopup()">
+                            <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt=""
+                                 style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;"
+                                 onclick="shippingpopup()">
                         </div>
                         <p id="shippingcost-value">00.00</p>
 
@@ -183,14 +195,17 @@
 
             </div>
             <div class="button">
-                <button class="proceed" onclick="openPaymentPopup()">Proceed to Payment</button>
+                <button class="proceed" onclick="openPaymentPopup('<?= $_SESSION['OrderID'] ?>')">Proceed to Payment
+                </button>
             </div>
         </div>
 
 
     </div>
     <div id="blur-quantity">
-        <div style="display:flex; flex-direction:column; justify-content:center; position: absolute; height:auto; width:50%; z-index:99; padding:20px; background-color:white; box-shadow:0px 0px 15px black; border-radius:10px" id="quantitypopup">
+        <div
+            style="display:flex; flex-direction:column; justify-content:center; position: absolute; height:auto; width:50%; z-index:99; padding:20px; background-color:white; box-shadow:0px 0px 15px black; border-radius:10px"
+            id="quantitypopup">
             <div style="display:flex; justify-content:space-between;">
                 <h3>Add Item</h3>
                 <p onclick="closequantitypopup()">&times;</p>
@@ -220,13 +235,19 @@
     </div>
 
 </div>
+<
+<div id="tpopup" class="tpopup">
+    <div class="popup-message"></div>
+    <div id="indicator" class="indicator"></div>
+</div>
+
 <script>
-    document.getElementById('increment').addEventListener('click', function() {
+    document.getElementById('increment').addEventListener('click', function () {
         let quantity = document.getElementById('quantity');
         quantity.value = parseInt(quantity.value) + 1;
     });
 
-    document.getElementById('decrement').addEventListener('click', function() {
+    document.getElementById('decrement').addEventListener('click', function () {
         let quantity = document.getElementById('quantity');
         let currentValue = parseInt(quantity.value);
         if (currentValue > 1) {
@@ -234,7 +255,7 @@
         }
 
     });
-    document.getElementById('quantity').addEventListener('input', function() {
+    document.getElementById('quantity').addEventListener('input', function () {
         if (this.value === '') {
             this.value = '0';
         }
@@ -242,7 +263,8 @@
 </script>
 
 <div class="blur" id="blur-payment">
-    <div class="payment" id="popup2" style="display: flex; justify-content:center; align-items:center; flex-direction:column">
+    <div class="payment" id="popup2"
+         style="display: flex; justify-content:center; align-items:center; flex-direction:column">
         <span class="exit-payment">&times;</span>
         <h3>Please choose payment method</h3>
 
@@ -250,16 +272,16 @@
             <table style="width:60%;">
                 <tr>
                     <td>Order ID:</td>
-                    <td style="text-align:right;">123123_ORD</td>
+                    <td style="text-align:right;"><span id="popup-orderid"></span></td>
                 </tr>
 
                 <tr>
                     <td>Number of items:</td>
-                    <td style="text-align:right;">123</td>
+                    <td style="text-align:right;"><span id="popup-quanitity"></span></td>
                 </tr>
                 <tr>
                     <td>Total Amount:</td>
-                    <td style="text-align:right;">420,000</td>
+                    <td style="text-align:right;"><span id="total"></span></td>
                 </tr>
 
 
@@ -293,9 +315,18 @@
 
     }
 
-    function openPaymentPopup() {
+    function openPaymentPopup(id) {
 
         popup2.classList.add("open-popup");
+        fetch("http://localhost/WoodWorks/public/cashier/getOrderSummary/" + id)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+
+                document.getElementById('popup-orderid').innerText = id;
+                document.getElementById('popup-quanitity').innerText = data.OrderCount;
+                document.getElementById('total').innerText = "Rs. " + data.Total;
+            });
 
     }
 
@@ -305,7 +336,7 @@
 
     }
 
-    window.onload = function() {
+    window.onload = function () {
         makeTable();
         getCartTotal();
         getFinalTotal();
@@ -313,9 +344,9 @@
 
     function checkcustomerloaded() {
         fetch('<?= ROOT ?>/cashier/iscustomerset', {
-                method: 'POST',
+            method: 'POST',
 
-            }).then(response => response.json())
+        }).then(response => response.json())
             .then(data => {
                 // console.log(data);
                 if (data.status === 'true') {
@@ -347,7 +378,7 @@
         }
     }
 
-    function quantitypopup(img, name, id, cost, ) {
+    function quantitypopup(img, name, id, cost,) {
 
         document.getElementById("blur-quantity").style.display = "flex";
 
@@ -372,20 +403,20 @@
     function checkout(orderid) {
         //using vanilla js using fetch
         fetch('<?= ROOT ?>/cashier/checkout_card/' + orderid, {
-                method: 'POST',
-                body: JSON.stringify({
-                    orderid: orderid
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if (response.status === 200) {
-                    return response.text(); // or response.text() if the data is plain text
-                } else {
-                    throw new Error('Network response was not OK.');
-                }
-            })
+            method: 'POST',
+            body: JSON.stringify({
+                orderid: orderid
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.status === 200) {
+                return response.text(); // or response.text() if the data is plain text
+            } else {
+                throw new Error('Network response was not OK.');
+            }
+        })
             .then(data => {
                 // Do something with the data
                 console.log(data);
@@ -401,49 +432,49 @@
     const form = document.querySelector('#old-customer-form');
 
     <?php if (!isset($_SESSION['CustomerDetails'])) : ?>
-        form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', (event) => {
 
-            // Prevent the default form submission behavior
-            event.preventDefault();
-            document.querySelector('.error-box').style.display = 'none';
+        // Prevent the default form submission behavior
+        event.preventDefault();
+        document.querySelector('.error-box').style.display = 'none';
 
-            // Get the form data
-            const formData = new FormData(form);
+        // Get the form data
+        const formData = new FormData(form);
 
-            // Send the form data to the backend using Fetch
-            fetch('<?= ROOT ?>/cashier/oldcust', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    // Parse the response as JSON
-                    return response.json();
-                })
+        // Send the form data to the backend using Fetch
+        fetch('<?= ROOT ?>/cashier/oldcust', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                // Parse the response as JSON
+                return response.json();
+            })
 
-                .then(data => {
-                    console.log(data);
-                    if (data.status === 'success') {
-                        document.querySelector('.ok-box').style.display = 'block';
-                        document.querySelector('#old-cust-submit').innerHTML = 'Please wait...';
+            .then(data => {
+                console.log(data);
+                if (data.status === 'success') {
+                    document.querySelector('.ok-box').style.display = 'block';
+                    document.querySelector('#old-cust-submit').innerHTML = 'Please wait...';
 
-                        setTimeout(function() {
-                            window.location.reload();
-                        }, 3000);
-                    } else {
-                        document.querySelector('.error-box').style.display = 'block';
-
-
-                    }
-
-                    // Do something with the data
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 3000);
+                } else {
+                    document.querySelector('.error-box').style.display = 'block';
 
 
-                })
-                .catch(error => {
-                    // Handle any errors that occurred during the request
-                    console.error('Error submitting form:', error);
-                });
-        });
+                }
+
+                // Do something with the data
+
+
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error('Error submitting form:', error);
+            });
+    });
     <?php endif; ?>
 
     function addtocart(id, cost) {
@@ -454,18 +485,19 @@
         console.log(cost);
         fetch('<?= ROOT ?>/cashier/add_to_cart/' + id + '/' + cost + '/' + quantity, {
 
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                return response.json();
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            return response.json();
 
-            })
+        })
             .then(data => {
                 console.log(data);
                 if (data.status === 'fail') {
                     errormsg();
+                    return;
                 }
 
                 makeTable();
@@ -473,10 +505,9 @@
                 getFinalTotal();
 
             })
-            .catch(error => {
-                console.error("Error fetching cart data:", error);
-            });
-
+        // .catch(error => {
+        //     console.error("Error fetching cart data:", error);
+        // });
 
 
         document.getElementById('blur-quantity').style.display = 'none';
@@ -495,11 +526,11 @@
 
         // Fetch the cart data from the server
         fetch("<?= ROOT ?>/cashier/getcartitems", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
 
             .then(response => response.json())
             .then(data => {
@@ -548,7 +579,7 @@
                         removeIcon.classList.add("remove-item-icon");
                         removeIcon.src = `<?= ROOT ?>/assets/images/cashier/x.svg`;
                         removeIcon.alt = "";
-                        removeIcon.onclick = function() {
+                        removeIcon.onclick = function () {
                             removeitem(cart.ProductID, cart.Cost, cart.Quantity);
                             makeTable();
                         };
@@ -585,11 +616,11 @@
         // Fetch the cart data from the server
 
         fetch("<?= ROOT ?>/cashier/getcarttotal", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
 
             .then(response => response.json())
             .then(data => {
@@ -616,14 +647,14 @@
 
     function removeitem(productid, cost, quantity) {
         fetch('<?= ROOT ?>/cashier/removeitem/' + productid + '/' + cost + '/' + quantity, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                return response.text();
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            return response.text();
 
-            })
+        })
             .then(data => {
                 console.log(data);
                 makeTable();
@@ -664,7 +695,7 @@
         document.getElementById('blur').style.display = 'block';
 
         // exit if blur is clicked
-        document.getElementById('blur').addEventListener('click', function() {
+        document.getElementById('blur').addEventListener('click', function () {
             document.getElementsByClassName('discount-popup')[0].style.display = 'none';
             document.getElementById('blur').style.display = 'none';
         });

@@ -101,6 +101,7 @@ select {
 }
 
 .data tr {
+    min-height: 140px;
     border-radius: 5px;
     min-width: -webkit-fill-available;
     min-width: -moz-available;
@@ -1184,3 +1185,19 @@ body {
     align-items: center;
 }
 
+
+.name-pos{
+    color: white;
+}
+
+.headerprime{
+    position: relative;
+}
+
+.headerprime .profile{
+    bottom:100px;
+    left: 0;
+    top:0;
+}
+
+.name-pos{display: none !important;}
