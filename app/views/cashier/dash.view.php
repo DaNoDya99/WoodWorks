@@ -430,7 +430,7 @@
             delivery: deliveryMethod,
             addressLine1: addressLine1,
             addressLine2: addressLine2,
-            city: city
+            City: city
         };
         const formData = new URLSearchParams();
 
@@ -443,27 +443,25 @@
         fetch('<?= ROOT ?>/cashier/checkout_card/' + orderid, {
             method: 'POST',
             body: formData,
-        }),
-
-    }
-
-    ).then(response => {
-        if (response.status === 200) {
-            return response.text(); // or response.text() if the data is plain text
-        } else {
-            throw new Error('Network response was not OK.');
-        }
-    })
-        .then(data => {
-            // Do something with the data
-            console.log(data);
-            data = JSON.parse(data);
-            window.location.href = data;
         })
-        .catch(error => {
-            // Handle fetch error
-            console.log(error);
-        });
+
+            .then(response => {
+                if (response.status === 200) {
+                    return response.text(); // or response.text() if the data is plain text
+                } else {
+                    throw new Error('Network response was not OK.');
+                }
+            })
+            .then(data => {
+                // Do something with the data
+                console.log(data);
+                data = JSON.parse(data);
+                window.location.href = data;
+            })
+            .catch(error => {
+                // Handle fetch error
+                console.log(error);
+            });
     }
 
     const form = document.querySelector('#old-customer-form');

@@ -2,6 +2,9 @@
 
 require '../vendor/autoload.php';
 require_once 'PDF.php';
+require '../app/services/DistanceMatrixService.php';
+
+
 
 
 class cashier extends Controller
@@ -274,6 +277,9 @@ class cashier extends Controller
             $_POST['Payment_type'] = 'Card';
             $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
             $_POST['Delivery_method'] = 'Delivery';
+            $_POST['Shipping_cost'] = $deliveryCost;
+            $_POST['Address'] = $_POST['addressLine1'] . ', ' . $_POST['addressLine2'] . ', ' . $_POST['City'];
+
 
             $order->update_status($orderID, $_POST);
 
