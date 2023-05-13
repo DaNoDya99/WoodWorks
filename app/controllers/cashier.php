@@ -446,9 +446,11 @@ class cashier extends Controller
     {
         $cart = new Carts();
         $id = $_SESSION['CustomerID'];
+        $_SESSION['Final_Total'] = $cart->getTotalAmount($id)[0]->Total_amount + $_SESSION['shipping'];
 
-        $_SESSION['Final_Total'] = $cart->getTotalAmount($id)[0]->Total_amount;
-        echo json_encode($_SESSION['Final_Total']);
+        $data['total'] = $_SESSION['Final_Total'];
+        $data['shipping'] = $_SESSION['shipping'];
+        echo json_encode($data);
     }
 
     public function getOrderSummary($id)
@@ -530,12 +532,14 @@ class cashier extends Controller
         echo json_encode($data);
     }
 
-    public function getShipping($city)
+    public function getShipping()
     {
         $deliveries = new Deliveries();
         $distanceMatrix = new DistanceMatrixService();
-        $distance = $distanceMatrix->calculateDistance('Colombo', $city);
+        $distance = $distanceMatrix->calculateDistance('Colombo', $_POST['City']);
         $deliveryCost = $deliveries->getDeliveryRate(explode(' ', $distance['distance'])[0])[0]->Cost_per_km * explode(' ', $distance['distance'])[0];
+
+        $_SESSION['shipping'] = $deliveryCost;
 
         echo json_encode($deliveryCost);
 

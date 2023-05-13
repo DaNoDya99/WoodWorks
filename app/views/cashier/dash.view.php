@@ -158,7 +158,9 @@
                     <div class="subtotal_price">
                         <p>Subtotal </p>
 
-                        <p id="subtotal-value">0</p>
+                        <p>
+                            <span id="subtotal-value">0</span>
+                        </p>
 
 
                     </div>
@@ -178,14 +180,16 @@
                                  style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;"
                             >
                         </div>
-                        <p id="shippingcost-value">00.00</p>
+                        <p><span id="shippingcost-value"></span></p>
 
                     </div>
                     <hr width="100%">
                 </div>
                 <div class="total_price">
                     <p>Total</p>
-                    <span id="final_total"></span>
+                    <p>
+                        <span id="final_total"></span>
+                    </p>
 
                 </div>
                 <div>
@@ -314,7 +318,7 @@
         <input type="text" id="addressInput" placeholder="Address Line 1" style="display: none;">
         <input type="text" id="addressInput1" placeholder="Address Line 2" style="display: none;">
         <input type="text" id="addressInput2" placeholder="City" style="display: none;">
-        <button type="submit" id="submitBtn" onclick="updateShipping()">Submit</button>
+        <button type="submit" id="submitBtn">Submit</button>
     </form>
 </div>
 
@@ -659,7 +663,13 @@
 
             .then(response => response.json())
             .then(data => {
-                document.querySelector("#subtotal-value").innerHTML = data.total || 0;
+                document.querySelector("#subtotal-value").innerHTML = data.total.toLocaleString('en-LK', {
+                    style: 'currency',
+                    currency: 'LKR'
+                }) || '0'.toLocaleString('en-LK', {
+                    style: 'currency',
+                    currency: 'LKR'
+                });
             })
             .catch(error => {
                 console.error("Error fetching cart data:", error);
@@ -676,7 +686,15 @@
             })
             .then(data => {
                 console.log(data);
-                document.getElementById('final_total').innerHTML = data;
+                document.getElementById('shippingcost-value').innerHTML = data.shipping.toLocaleString('en-LK', {
+                    style: 'currency',
+                    currency: 'LKR'
+                });
+                document.getElementById('final_total').innerHTML = data.total.toLocaleString('en-LK', {
+                    style: 'currency',
+                    currency: 'LKR'
+                });
+
             })
     }
 
@@ -796,16 +814,23 @@
         }
 
 // Send the data to the server
-        fetch("<?=ROOT?>/cashier/updateShipping",{
-            
+        fetch("<?=ROOT?>/cashier/getShipping", {
+            method: "POST",
+            body: formData
         })
-        hidePopup();
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("shippingcost-value").innerHTML = data;
+                hidePopup();
+                getFinalTotal();
+            })
+            .catch(error => {
+                console.error("Location Not Supported", error);
+            });
     });
 
-//     add event listener to id submitBtn on click
 
-
-
+    //     add event listener to id submitBtn on click
 
 
 </script>
