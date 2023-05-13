@@ -37,7 +37,7 @@
                     <span>Rs <?=$order->Shipping_cost?></span>
                 </div>
                 <div class="invoice-detail item-list">
-                    <span>Discount (10% off)</span>
+                    <span>Discount Obtained</span>
                     <span>-Rs <?=$order->Discount_obtained?>.00</span>
                 </div>
                 <div class="invoice-detail">

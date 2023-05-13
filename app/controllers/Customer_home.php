@@ -289,7 +289,6 @@ class Customer_home extends Controller
                 $_ENV['STRIPE_API_KEY']
             );
 
-            $coupon = $stripe->coupons->create(['percent_off' => 10, 'duration' => 'once','currency' => 'lkr']);
 
             $items = $order_items->getOrderItems($orderID);
 
@@ -338,10 +337,6 @@ class Customer_home extends Controller
 
                 'line_items' => $line_items,
                 'mode' => 'payment',
-
-                'discounts' => [[
-                    'coupon' => $coupon->id,
-                ]],
 
                 'success_url' => 'http://localhost/WoodWorks/public/checkout/success?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => 'http://localhost:4242/cancel',

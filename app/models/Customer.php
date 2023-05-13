@@ -57,7 +57,9 @@ class Customer extends Model
 
         if(empty($post['Password'])){
             $this->errors['Password'] = "Password is required.";
-        }elseif ($post['Password'] !== $post['Password2']){
+        }elseif (strlen($post['Password']) < 8) {
+            $this->errors['Password'] = "Password must be at least 8 characters long.";
+        } elseif ($post['Password'] !== $post['Password2']){
             $this->errors['Password'] = "Passwords do not match.";
         }
 
@@ -75,7 +77,7 @@ class Customer extends Model
         return false;
     }
 
-    public function make_customer_id($DATA){
+    public function make_customer_id(){
 
         $customerID = $this->random_string(60);
         $result = $this->where('CustomerID',$customerID);
@@ -83,6 +85,7 @@ class Customer extends Model
             $result = $this->where('CustomerID',$customerID);
             $customerID = $this->random_string(60);
         }
+
 
         $DATA['CustomerID'] = $customerID;
 
@@ -93,6 +96,7 @@ class Customer extends Model
         $DATA['Password'] = password_hash($DATA['Password'],PASSWORD_DEFAULT);
         return $DATA;
     }
+
 
     public function random_string($length){
         $array = array(0,1,2,3,4,5,6,7,8,9,'A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
