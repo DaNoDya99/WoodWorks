@@ -45,7 +45,7 @@
                                     <td>Rs. <?= $row->Cost ?>.00</td>
                                     <td>
                                         <div>
-                                            <span onclick="openPopup('<?=$row->ProductID?>')">Edit</span>
+                                            <span onclick="openPopup('<?=$row->ProductID?>','<?= $row->Name ?>')">Edit</span>
                                         </div>
                                     </td>
                                 </tr>
@@ -58,7 +58,7 @@
             </div>
             <div class="popup edit-furniture-popup" id="popup">
                 <div class="popup-heading">
-                    <h2>Chorus Bed - P0001</h2>
+                    <h2 id="product">Chorus Bed - P0001</h2>
                     <img src="<?=ROOT?>/assets/images/customer/close.png" alt="Close" onclick="closePopup()">
                 </div>
 

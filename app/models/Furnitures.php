@@ -332,4 +332,11 @@ class Furnitures extends Model
     
 
 
+    public function updateImage($id,$image,$prev_image)
+    {
+        $query = "update furniture_image set Image = :Image where ProductID = :ProductID && Image: :Previous_image;";
+
+        return $this->query($query,['ProductID' => $id,'Image' => $image,'Previous_image' => $prev_image]);
+    }
+
 }
