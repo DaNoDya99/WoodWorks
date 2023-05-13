@@ -314,7 +314,7 @@
         <input type="text" id="addressInput" placeholder="Address Line 1" style="display: none;">
         <input type="text" id="addressInput1" placeholder="Address Line 2" style="display: none;">
         <input type="text" id="addressInput2" placeholder="City" style="display: none;">
-        <button type="submit" id="submitBtn">Submit</button>
+        <button type="submit" id="submitBtn" onclick="updateShipping()">Submit</button>
     </form>
 </div>
 
@@ -777,8 +777,35 @@
     submitBtn.addEventListener("click", function (e) {
         e.preventDefault(); // Prevent form submission
 
+        var deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
+        var addressLine1 = document.getElementById('addressInput').value;
+        var addressLine2 = document.getElementById('addressInput1').value;
+        var city = document.getElementById('addressInput2').value;
+
+        // Prepare data to send
+        var data = {
+            delivery: deliveryMethod,
+            addressLine1: addressLine1,
+            addressLine2: addressLine2,
+            City: city
+        };
+        const formData = new URLSearchParams();
+
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
+
+// Send the data to the server
+        fetch("<?=ROOT?>/cashier/updateShipping",{
+            
+        })
         hidePopup();
     });
+
+//     add event listener to id submitBtn on click
+
+
+
 
 
 </script>

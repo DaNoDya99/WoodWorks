@@ -637,6 +637,8 @@ class Manager extends Controller
             order_item i ON o.OrderID = i.OrderID
             WHERE
             o.Date BETWEEN '" . $_POST['date1'] . " 00:00:00' AND '" . $_POST['date2'] . " 23:59:59'
+            AND
+            o.Order_status NOT IN ('Unpaid', 'Pending')
             GROUP BY 
             o.OrderID
             ORDER BY 
@@ -666,8 +668,8 @@ LEFT JOIN
      FROM order_item oi
      JOIN orders o ON oi.OrderID = o.OrderID
      WHERE o.Order_status IN ('Delivered', 'Dispatched', 'paid')
-       AND o.Date >= '" . $date1 . "'
-       AND o.Date <  '" . $date2 . "'
+       AND o.Date >= '" . $date1 . " 00:00:00'
+       AND o.Date <  '" . $date2 . " 23:59:59'
     ) as sub ON f.ProductID = sub.ProductID
 GROUP BY
     c.CategoryID,

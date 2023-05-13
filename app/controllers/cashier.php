@@ -529,5 +529,15 @@ class cashier extends Controller
         $data['order_items'] = $order_items->getOrderItems($id);
         echo json_encode($data);
     }
-}
 
+    public function getShipping($city)
+    {
+        $deliveries = new Deliveries();
+        $distanceMatrix = new DistanceMatrixService();
+        $distance = $distanceMatrix->calculateDistance('Colombo', $city);
+        $deliveryCost = $deliveries->getDeliveryRate(explode(' ', $distance['distance'])[0])[0]->Cost_per_km * explode(' ', $distance['distance'])[0];
+
+        echo json_encode($deliveryCost);
+
+    }
+}
