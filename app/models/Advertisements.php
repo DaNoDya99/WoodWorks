@@ -95,6 +95,13 @@ class Advertisements extends model
         return $this->query($query,['AdvertisementID' => $id]);
     }
 
+    public function updateImages($id,$image,$prev_image)
+    {
+        $query = "UPDATE advertisements_image SET Image = :Image WHERE AdvertisementID = :AdvertisementID && Image = :Previous_image;";
+
+        return $this->query($query,['AdvertisementID' => $id,'Image' => $image,'Previous_image' => $prev_image]);
+    }
+
     public function getRefurnishedFurnityreById($id = null)
     {
         $query = "SELECT * FROM $this->table WHERE AdvertisementID = :AdvertisementID;";
