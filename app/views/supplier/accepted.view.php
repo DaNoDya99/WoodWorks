@@ -1,5 +1,4 @@
 <?php $this->view('supplier/includes/header') ?>
-
 <div class="inventory-body content">
     <div class="sec2">
         <div class="inventory-data" id="panel">
@@ -9,56 +8,36 @@
                 <input type="text" name="search" onkeyup="myFunction()" id="myInput" placeholder="Search Orders">
             </div>
 
-            <table id="company-order-table">
-                <thead>
+            <table id="myTable">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product SKU</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                    <th>Order Status</th>
+
+                </tr>
+
+                <?php foreach ($data['acceptedorders'] as $order) : ?>
                     <tr>
-                        <th>#</th>
-                        <th>Order ID</th>
-                        <th>Date Submitted</th>
-                        <th>ManagerID</th>
+                        <td><?= $order->OrderID ?></td>
+                        <td><?= $order->ProductID ?></td>
+                        <td><?= $order->Quantity ?></td>
+                        <td><?= $order->Date ?></td>
 
-                        <th>Accepted Date</th>
+                        <td><?= ucfirst($order->OrderStatus) ?></td>
+                        <td> <?php if ($order->OrderStatus != 'complete') : ?>
+                                <a href="<?= ROOT ?>/supplier/CompleteOrder/<?= $order->OrderID ?>"><button style="background-color: green;">
+                                        Complete
+                                    </button></a>
+                                <button style="background-color: red;">
+                                    Cancel
+                                </button>
 
-                        <th>Order Status</th>
-                        <th>Actions</th>
-
+                            <?php endif; ?>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 0; ?>
-                    <?php foreach ($data['acceptedorders'] as $order) : ?>
-                        <tr>
-                            <td><small><?= ++$i ?></small></td>
-                            <td><?= $order->OrderID ?></td>
-                            <td><?= $order->Date ?></td>
-                            <td><?= $order->ManagerID ?></td>
-                            <td><?= $order->Responded_date ?></td>
-
-                            <td><?= ucfirst($order->OrderStatus) ?></td>
-                            <!--                        <td> --><?php //if ($order->OrderStatus != 'complete') : 
-                                                                ?>
-                            <!--                                <a href="--><?php //= ROOT 
-                                                                            ?><!--/supplier/CompleteOrder/-->
-                            <?php //= $order->OrderID 
-                            ?><!--"><button style="background-color: green;">-->
-                            <!--                                        Complete-->
-                            <!--                                    </button></a>-->
-                            <!--                                <button style="background-color: red;">-->
-                            <!--                                    Cancel-->
-                            <!--                                </button>-->
-                            <!---->
-                            <!--                            --><?php //endif; 
-                                                                ?>
-                            <!--                        </td>-->
-                            <td>
-                                <div class="table-actions">
-                                    <button>Update Status</button><button>View Details</button>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-
-                </tbody>
+                <?php endforeach; ?>
             </table>
             <script>
                 function myFunction() {

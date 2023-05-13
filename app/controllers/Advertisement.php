@@ -2,8 +2,12 @@
 
 class Advertisement extends Controller{
 
-    
-
+    private function getUser()
+    {
+        $customer = new Customer();
+        $id = Auth::getCustomerID();
+        return $customer->where('CustomerID',$id);
+    }
     public function insertRefurnishedFurniture(){
         
         $advertisements = new Advertisements();
@@ -248,4 +252,71 @@ class Advertisement extends Controller{
             echo "error";
         }
     }
+
+    function viewAdvertisements()
+    {
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+        $limit = 8;
+
+        $pager = new Pager($limit);
+        $offset = $pager->offset;
+
+        $advertisements = new Advertisements();
+        $rows = $advertisements->getRefurbishedFurniture($limit,$offset);
+
+        foreach ($rows as $row) {
+            $row->ProductID = $row->AdvertisementID;
+            $row->Name = $row->Product_name;
+            $row->Cost = $row->Price;
+            $row->Discount_percentage = '';
+            $row->Active = '';
+            $row->Rate = 0;
+            $row->Image = $advertisements->getDisplayImage($row->AdvertisementID)[0]->Image;
+        }
+
+        $data['row'] = $this->getUser();
+        $data['furniture'] = $rows;
+        $data['sub_categories'] = 'Refurbished Furniture';
+        $data['pager'] = $pager;
+        $data['flag'] = 'rf';
+
+        $this->view('reg_customer/sub_category',$data);
+    }
+
+    public function view_product($id,$page)
+    {
+
+        $advertisement = new Advertisements();
+        $row = $advertisement->getRefurnishedFurnityreById($id);
+
+        if(!empty($row))
+        {
+            $row[0]->ProductID = $row[0]->AdvertisementID;
+            $row[0]->Name = $row[0]->Product_name;
+            $row[0]->Cost = $row[0]->Price;
+            $row[0]->Discount_percentage = '';
+            $row[0]->Active = '';
+            $row[0]->Rate = 0;
+            $row[0]->Warrenty_period = '';
+            $row[0]->Availability = 1;
+        }
+
+        $data['row'] = $this->getUser();
+        $data['furniture'] = $row;
+        $data['rating'] = 0;
+        $data['images'] = $advertisement->getRefurnishedFurnitureImages($id);
+        $data['reviews'] = [];
+        $data['flag'] = 'rf';
+
+        if($page === 'registered')
+        {
+            $this->view('reg_customer/advertisement',$data);
+        }else if($page === 'unregistered'){
+            $this->view('advertisement',$data);
+        }
+    }
+
 }

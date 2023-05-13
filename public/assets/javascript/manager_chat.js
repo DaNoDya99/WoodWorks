@@ -2,7 +2,8 @@ let contacts1 = document.getElementById("contacts-1");
 let contacts2 = document.getElementById("contacts-2");
 let button = document.getElementById("button");
 let form = document.getElementById("chat-manager-form");
-let select_contact = document.getElementById("select_contact");
+let select_contact = document.getElementById("select-contact");
+console.log(select_contact);
 let search = document.getElementById("search");
 let messages = document.getElementById("msgs");
 let field = document.getElementById("field");
@@ -23,7 +24,7 @@ setInterval(() => {
         }
     }
     xhr.send();
-},500)
+},500);
 
 function load_messages(id){
     user = id;
@@ -93,12 +94,13 @@ form.onsubmit = (e) => {
 
 button.onclick = () => {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST","http://localhost/WoodWorks/public/message/sendMsgsToCustomer/"+user,true);
+    xhr.open("POST","http://localhost/WoodWorks/public/message/sendMsgsToCustomerByManager/"+user,true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE)
         {
             if(xhr.status === 200)
             {
+                console.log(xhr.response)
                 field.value = "";
             }
         }

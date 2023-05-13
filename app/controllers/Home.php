@@ -4,6 +4,14 @@ require '../app/services/DistanceMatrixService.php';
 
 class Home extends Controller
 {
+
+    private function getUser()
+    {
+        $customer = new Customer();
+        $id = Auth::getCustomerID();
+        return $customer->where('CustomerID',$id);
+    }
+
     public function index(){
 
         if(Auth::logged_in())
@@ -15,6 +23,7 @@ class Home extends Controller
         $db->create_tables();
 
         $furniture =  new Furnitures();
+        $review = new Reviews();
 
         $data['furnitures'] = $rows = $furniture->getNewFurniture(['ProductID','Name','Cost','Sub_category_name']);
 
@@ -23,6 +32,8 @@ class Home extends Controller
             if(!empty($furniture->getDisplayImage($row->ProductID)[0]->Image))
             {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+                $row->Rate = round($review->getProductRating($row->ProductID)[0]->Average,1);
+                $row->Rating = (($row->Rate/5)*100).'%';
             }
         }
 
@@ -46,6 +57,7 @@ class Home extends Controller
 
         $data['furniture'] = $furniture->viewFurniture($id);
         $data['reviews'] = $review->getReview($allowedCols,$id);
+        $data['rating'] = round($review->getProductRating($id)[0]->Average,1);
         $data['images'] = $furniture->getAllImages($id);
 
         $this->view('product',$data);
@@ -68,6 +80,7 @@ class Home extends Controller
         $sub_cat = implode(" ",$sub_cat);
         $sub_category = new Sub_Categories();
         $furniture = new Furnitures();
+        $review = new Reviews();
 
         $limit = 8;
 
@@ -78,12 +91,15 @@ class Home extends Controller
         $data['id'] = $id;
         $data['pager'] = $pager;
         $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$limit,$offset);
+        $data['flag'] = 'f';
 
         if(!empty($data['furniture']))
         {
             foreach ($data['furniture'] as $row)
             {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+                $row->Rate = round($review->getProductRating($row->ProductID)[0]->Average,1);
+                $row->Rating = (($row->Rate/5)*100).'%';
             }
         }
 
@@ -93,6 +109,35 @@ class Home extends Controller
 
 
         $this->view("sub_category",$data);
+    }
+
+    public function viewAdvertisements()
+    {
+        $limit = 8;
+
+        $pager = new Pager($limit);
+        $offset = $pager->offset;
+
+        $advertisements = new Advertisements();
+        $rows = $advertisements->getRefurbishedFurniture($limit,$offset);
+
+        foreach ($rows as $row) {
+            $row->ProductID = $row->AdvertisementID;
+            $row->Name = $row->Product_name;
+            $row->Cost = $row->Price;
+            $row->Discount_percentage = '';
+            $row->Active = '';
+            $row->Rate = 0;
+            $row->Image = $advertisements->getDisplayImage($row->AdvertisementID)[0]->Image;
+        }
+
+        $data['row'] = $this->getUser();
+        $data['furniture'] = $rows;
+        $data['sub_categories'] = 'Refurbished Furniture';
+        $data['pager'] = $pager;
+        $data['flag'] = 'rf';
+
+        $this->view('sub_category',$data);
     }
 
     public function about()

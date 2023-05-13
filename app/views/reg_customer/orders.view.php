@@ -8,8 +8,8 @@
 
             <div id="first" class="order-details selected-order" onclick="getOrderDetails('<?= $orders[0]->OrderID?>')">
                 <div class="lhs-details">
-                    <h4 class="lhs-details-item">#<?= substr($orders[0]->OrderID,0,8)?></h4>
-                    <span class="lhs-details-item">Rs. <?=$orders[0]->Total_amount?>.00</span>
+                    <h4 class="lhs-details-item"><?= $orders[0]->OrderID?></h4>
+                    <span class="lhs-details-item">Rs. <?=($orders[0]->Total_amount + $orders[0]->Shipping_cost - $orders[0]->Discount_obtained)?>.00</span>
                     <span class="lhs-details-item"><?=$orders[0]->items?> Items</span>
                 </div>
                 <div class="rhs-details">
@@ -19,7 +19,7 @@
                         <span class="progress"><?= $orders[0]->Order_status?></span>
                     </div>
                     <div class="delivery-status-container">
-                        <?php if($orders[0]->Order_status == 'paid'): ?>
+                        <?php if($orders[0]->Order_status == 'Paid'): ?>
                         <div class="delivery-status"></div>
                         <?php elseif($orders[0]->Order_status == 'Processing'): ?>
                         <div class="delivery-status"></div>
@@ -44,7 +44,7 @@
             <?php foreach ($orders as $order): ?>
                 <div class="order-details selected-order" onclick="getOrderDetails('<?= $order->OrderID?>')">
                     <div class="lhs-details">
-                        <h4 class="lhs-details-item">#<?= substr($order->OrderID,0,8)?></h4>
+                        <h4 class="lhs-details-item"><?= $order->OrderID?></h4>
                         <span class="lhs-details-item">Rs. <?=$order->Total_amount +$order->Shipping_cost - $order->Discount_obtained?>.00</span>
                         <span class="lhs-details-item"><?=$order->items?> Items</span>
                     </div>

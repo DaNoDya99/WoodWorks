@@ -7,7 +7,7 @@
             <img class="image" src="<?= ROOT ?>/<?= Auth::getImage() ?>" alt="">
             <div class="name-pos">
                 <p class="name"><?= Auth::getFirstname() . " " . Auth::getLastname() ?></p>
-                <span class="position">Supplier</span>
+                <span class="position">Cashier</span>
             </div>
 
             <img class="carret" src="<?= ROOT ?>/assets/images/header/caret-down-solid.svg" alt="">

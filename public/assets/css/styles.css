@@ -41,7 +41,7 @@
 @font-face {
     font-family: 'Rubik-ExtraBold';
     src: url("../fonts/Rubik/Rubik-ExtraBold.ttf");
-}
+}   
 
 body{
     font-family: 'Rubik';
@@ -307,9 +307,6 @@ form .name-details .field:last-child {
 .dashboard-body {
     /* padding: 50px 15px 0; */
     display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
 }
 
 /*Profile page*/
@@ -318,10 +315,9 @@ form .name-details .field:last-child {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin-top: 10vh; */
-    height: 60%;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
+    margin-top: 10vh;
+    margin-left: auto;
+    margin-right: auto;
     width: 50%;
     border-radius: 10px;
     background-color: #f9f9f9;
@@ -857,7 +853,7 @@ td {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
+    
     padding: 0 10px;
     font-family: 'Rubik', sans-serif;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
@@ -928,7 +924,7 @@ td {
 }
 
 .intro-section {
-
+ 
     height: 100vh;
     background-image: url(../images/customer/intro.png);
     background-size: cover;
@@ -1055,7 +1051,7 @@ h3 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: flex-start;    
 
     margin-left: 10px;
     margin-right: 10px;
@@ -4215,7 +4211,7 @@ h2 {
 }
 
 .invoice-details div{
-    text-align: center;
+   text-align: center;
 }
 
 .invoice-summary-container{

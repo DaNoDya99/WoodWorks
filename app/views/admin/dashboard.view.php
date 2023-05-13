@@ -1,6 +1,7 @@
 <?php $this->view('admin/includes/header') ?>
-<script src="<?=ROOT?>/assets/javascript/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<!--<script src="--><?php //=ROOT?><!--/assets/javascript/chart.umd.js"></script>-->
+
 <body class="admin">
     <div class="admin-body">
         <?php $this->view('admin/includes/admin.header') ?>
@@ -40,7 +41,9 @@
 
                                             <?php endforeach;?>
                                         <?php else: ?>
-                                            <h1>No products to show.</h1>
+                                            <tr>
+                                                <td colspan="3">No Out of Stock Furniture</td>
+                                            </tr>
                                         <?php endif; ?>
 
                                     </table>

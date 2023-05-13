@@ -568,7 +568,7 @@ p {
 }
 
 .blur {
-    display: none;
+
     position: absolute;
     visibility: hidden;
     width: 100vw;
@@ -581,7 +581,7 @@ p {
     visibility: visible;
 }
 
-.paybutton {
+.paybutton{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -595,38 +595,4 @@ p {
     text-align: center;
     font-size: 18px;
     margin: 20px;
-}
-
-#blur-quantity {
-    backdrop-filter: brightness(0.5);
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-}
-
-.tpopup {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.popup-message {
-    color: #333;
-    font-size: 16px;
-}
-
-.indicator {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    width: 0;
-    background-color: #008000;
 }

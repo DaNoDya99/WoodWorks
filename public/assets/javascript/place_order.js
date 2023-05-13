@@ -54,11 +54,15 @@ function validate(data){
     let Lastname = data.get('Lastname');
     let Email = data.get('Email');
     let Contact = data.get('Contactno');
-    let Address = data.get('Address');
+    let Address1 = data.get('Address_line1');
+    let Address2 = data.get('Address_line2');
+    let City = data.get('City');
 
     const regex1 = /^[a-zA-Z]+$/;
     const regex2 = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const regex3 = /^[0-9]+$/;
+    const regex4 = /^[a-zA-Z0-9\s\/]+$/;
+    const regex5 = /^[a-zA-Z\s]+$/;
 
     if(Firstname === ""){
         valid = false;
@@ -98,9 +102,28 @@ function validate(data){
         document.getElementById('Contactno').innerHTML = "&nbsp* Please enter a valid contact number";
     }
 
-    if (Address === "") {
+    if (Address1 === "") {
         valid = false;
-        document.getElementById('Address').innerHTML = "&nbsp* Please enter your address";
+        document.getElementById('Address1').innerHTML = "&nbsp* Please enter your address";
+    }else if(regex4.test(Address1) === false){
+        valid = false;
+        document.getElementById('Address1').innerHTML = "&nbsp* Please enter a valid address";
+    }
+
+    if (Address2 === "") {
+        valid = false;
+        document.getElementById('Address2').innerHTML = "&nbsp* Please enter your address";
+    }else if(regex5.test(Address2) === false){
+        valid = false;
+        document.getElementById('Address2').innerHTML = "&nbsp* Please enter a valid address";
+    }
+
+    if (City === "") {
+        valid = false;
+        document.getElementById('City').innerHTML = "&nbsp* Please enter your city";
+    }else if(regex1.test(City) === false){
+        valid = false;
+        document.getElementById('City').innerHTML = "&nbsp* Please enter a valid city";
     }
 
     return valid;

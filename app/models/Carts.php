@@ -6,13 +6,12 @@ class Carts extends Model
     protected $table = 'cart';
 
     protected $allowedColumns = [
-        'CartID',
-        'Total_amount',
-        'CustomerID',
-    ];
+            'CartID',
+            'Total_amount',
+            'CustomerID',
+        ];
 
-    public function getCart($id)
-    {
+    public function getCart($id) {
         $query = "select CartID from cart where CustomerID = :CustomerID";
         return $this->query($query, ['CustomerID' => $id]);
     }
@@ -30,13 +29,12 @@ class Carts extends Model
         $this->insert($data);
     }
 
-    public function make_cart_id()
-    {
+    public function make_cart_id(){
 
         $cartID = $this->random_string(60);
-        $result = $this->where('CartID', $cartID);
-        while ($result) {
-            $result = $this->where('CartID', $cartID);
+        $result = $this->where('CartID',$cartID);
+        while ($result){
+            $result = $this->where('CartID',$cartID);
             $cartID = $this->random_string(60);
         }
 
@@ -57,19 +55,16 @@ class Carts extends Model
 
     public function updateTotalAmountToIncrease($cartID, $cost)
     {
-        
-        $query = "UPDATE `cart` SET Total_amount = Total_amount + :Cost WHERE CartID = :CartID;";
-//        show($query);
+         $query = "UPDATE `cart` SET Total_amount = (SELECT Total_amount FROM cart WHERE CartID = :CartID ) + :Cost WHERE CartID = :CartID;";
 
-        $this->query($query, ['CartID' => $cartID, 'Cost' => $cost]);
+         $this->query($query , ['CartID' => $cartID, 'Cost' => $cost]);
     }
 
     public function updateTotalAmountToDecrease($cartID, $cost)
     {
+         $query = "UPDATE `cart` SET Total_amount = (SELECT Total_amount FROM cart WHERE CartID = :CartID ) - :Cost WHERE CartID = :CartID;";
 
-        $query = "UPDATE `cart` SET Total_amount =  Total_amount - :Cost WHERE CartID = :CartID;";
-
-        $this->query($query, ['CartID' => $cartID, 'Cost' => $cost]);
+         $this->query($query , ['CartID' => $cartID, 'Cost' => $cost]);
     }
 
     public function resetCartTotal($cartId)

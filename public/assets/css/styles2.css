@@ -1294,22 +1294,22 @@ margin: 20px 0;
   padding: 40px
 }
 
-.report-form input {
+.report-form input{
   height: 40px;
-  border-radius: 5px;
+  border-radius:5px;
   padding: 20px;
   font-family: 'Rubik', serif;
   border: 1px solid #0F3D3E;
 }
 
-.report-date {
+.report-date{
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.report-type {
+.report-type{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1317,28 +1317,25 @@ margin: 20px 0;
   text-align: left;
 }
 
-.report-type div {
+.report-type div{
   width: 50%;
 }
-
 .report-type select {
   width: 100%;
   height: 40px;
-  border-radius: 5px;
+  border-radius:5px;
   padding: 10px;
   font-family: 'Rubik', serif;
   border: 1px solid #0F3D3E;
 
 }
-
-.form-fields {
+.form-fields{
   display: flex;
   width: 100%;
 
   flex-direction: column;
 }
-
-.report-date {
+.report-date{
   display: grid;
   height: 20vh;
   grid-template-columns: 1fr 1fr;
@@ -1353,16 +1350,16 @@ margin: 20px 0;
   align-items: flex-start;
   height: 100%;
 }
-
-.report-from input, .report-to input {
+.report-from input,.report-to input{
   width: 100%;
   height: 40px;
-  border-radius: 5px;
+  border-radius:5px;
   padding: 20px;
   font-family: 'Rubik', serif;
   border: 1px solid #0F3D3E;
 }
-.design-card-container{
+
+        .design-card-container{
           width: 98%;
           height: 80vh;
           max-height: 80vh;

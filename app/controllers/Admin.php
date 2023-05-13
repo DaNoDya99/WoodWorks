@@ -17,9 +17,11 @@ class Admin extends Controller
         $supplier = new Suppliers();
 
         $data['furniture'] = $rows = $furniture->getOutOfStockFurniture();
-        foreach ($rows as $row)
-        {
-            $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+        if(!empty($rows)){
+            foreach ($rows as $row)
+            {
+                $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
+            }
         }
 
         $data['row'] = $employee->where('EmployeeID',$id);
@@ -202,7 +204,7 @@ class Admin extends Controller
         }
 
         $inventory = new Product_Inventory();
-        $data['inventory'] = $inventory->findAll();
+        $data['inventory'] = $inventory->getAllFromInventory();
 
         $category = new Categories();
         $sub_category = new Sub_Categories();

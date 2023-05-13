@@ -91,7 +91,7 @@ class Product_Inventory extends Model
 
     public function getAllFromInventory(): false|array
     {
-        $query = "SELECT * FROM $this->table";
+        $query = "SELECT * FROM $this->table ORDER BY ProductID ASC;";
 
         return $this->query($query);
     }

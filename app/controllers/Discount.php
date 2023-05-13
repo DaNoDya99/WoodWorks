@@ -56,9 +56,9 @@ class Discount extends Controller
 
     public function getActiveDiscounts()
     {
-//        if(!Auth::logged_in()){
-//            $this->redirect('login');
-//        }
+        if(!Auth::logged_in()){
+            $this->redirect('login');
+        }
 
         $discounts = new Discounts();
         $discounts = $discounts->getUnExpiredDiscounts();

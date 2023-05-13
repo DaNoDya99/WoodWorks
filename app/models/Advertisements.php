@@ -122,5 +122,24 @@ class Advertisements extends model
         return $this->query($query,['AdvertisementID' => $id]);
     }
 
-    
+    public function getRefurbishedFurniture($limit,$offset)
+    {
+        $query = "SELECT * FROM $this->table LIMIT $limit OFFSET $offset;";
+
+        return $this->query($query);
+    }
+
+    public function updateQuantityToIncrease($id,$quantity)
+    {
+        $query = "UPDATE $this->table SET Quantity = Quantity - :Quantity WHERE AdvertisementID = :AdvertisementID;";
+
+        return $this->query($query,['AdvertisementID' => $id,'Quantity' => $quantity]);
+    }
+
+    public function updateQuantityToDecrese($id,$quantity)
+    {
+        $query = "UPDATE $this->table SET Quantity = Quantity + :Quantity WHERE AdvertisementID = :AdvertisementID;";
+
+        return $this->query($query,['AdvertisementID' => $id,'Quantity' => $quantity]);
+    }
 }
