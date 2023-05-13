@@ -29,26 +29,12 @@ class Message extends Controller
         echo $_POST['message'];
     }
 
-    public function sendMsgsToCustomerByManager($id= null)
-    {
-
-        $Message = new Messages();
-        $_POST['sender'] = 3;
-        $_POST['receiver'] = $Message->getChatID($id)[0]->chatID;
-
-        echo $id." ".$_POST['message'];
-
-        $Message->insert($_POST);
-    }
-
-    public function sendMsgsToCustomerByDesigner($id= null)
+    public function sendMsgsToCustomer($id= null)
     {
 
         $Message = new Messages();
         $_POST['sender'] = 4;
         $_POST['receiver'] = $Message->getChatID($id)[0]->chatID;
-
-        echo $id." ".$_POST['message'];
 
         $Message->insert($_POST);
     }

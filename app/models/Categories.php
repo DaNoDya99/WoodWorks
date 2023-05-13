@@ -67,8 +67,8 @@ class Categories extends Model
         return false;
     }
 
-    public function getDesignCategories($limit = 2) {
-        $query = "SELECT * FROM $this->table LIMIT $limit";
+    public function getDesignCategories($offset, $limit = 2) {
+        $query = "SELECT * FROM $this->table LIMIT $limit OFFSET $offset";
         return $this->query($query);
     }
 

@@ -17,13 +17,8 @@
                                 <div class="review">
                                     <div>
                                         <div class="rate">
-                                            <span style="font-size: 2rem"><?= $row->Rating ?></span>
-                                            <div>
-                                                <div class="stars-outer product-card-stars-outer">
-                                                    <div class="stars-inner" style="width: <?= (($row->Rating/5)*100).'%' ?>"></div>
-                                                </div>
-                                                <span class="number-rating"></span>
-                                            </div>
+                                            <h1><?= $row->Rating ?></h1>
+                                            <img src="<?= ROOT ?>/assets/images/customer/star.png" alt="Star">
                                         </div>
                                         <h2><?= $row->Date ?></h2>
                                     </div>
@@ -41,5 +36,5 @@
         </div>
     </div>
 </body>
-<script src="https://kit.fontawesome.com/acc5a4f516.js" crossorigin="anonymous"></script>
+
 </html>

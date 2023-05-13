@@ -41,7 +41,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php if(!empty($records2)) :?>
                     <?php foreach ($records2 as $row):?>
                         <tr>
                             <td><?=esc($row->OrderID)?></td>
@@ -82,9 +81,6 @@
                             <td><?=$deliveredDate?></td>
                         </tr>
                     <?php endforeach;?>
-                    <?php else:?>
-                        <tr><td>There are no delivered Orders</td></tr>
-                    <?php endif;?>
                     </tbody>
                 </table>
             </div>

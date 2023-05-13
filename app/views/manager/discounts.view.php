@@ -3,8 +3,7 @@
 <body class="manager">
 <?php $this->view('manager/includes/manager_header') ?>
     <div class="content manager-body ">
-
-
+           
         <div class="dis-form-container">
             <div class="dis-header">
                 <h2>Product Specific Discounts</h2>

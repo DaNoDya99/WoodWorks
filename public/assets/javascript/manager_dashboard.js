@@ -17,12 +17,12 @@ window.onload = () => {
     getSoldOutRefurnishedProducts();
 }
 
-function chart1(){
+function chart1() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/manager/getTopSellingProducts', true);
     xhr.onload = () => {
-        if(xhr.readyState === xhr.DONE){
-            if(xhr.status === 200){
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
                 console.log(xhr.response);
                 let res = JSON.parse(xhr.response);
                 let labels = [];
@@ -100,13 +100,13 @@ function chart1(){
 
 }
 
-function chart2(){
+function chart2() {
 
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/manager/getTop10Products', true);
     xhr.onload = () => {
-        if(xhr.readyState === xhr.DONE){
-            if(xhr.status === 200){
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
                 console.log(xhr.response);
                 let res = JSON.parse(xhr.response);
                 let labels = [];
@@ -116,81 +116,81 @@ function chart2(){
                     labels.push(element.ProductID);
                     values.push(element.Average);
                 });
-                    new Chart(ctx2, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Rating',
-                                data: values,
-                                backgroundColor: 'rgba(24,157,92,0.3)',
-                                borderColor: 'rgb(3,128,69)',
-                                borderWidth: 2,
-                                hoverBackgroundColor: 'rgba(2,198,106,0.3)',
-                                fontColor: '#000',
-                            }],
-                            tension:0,
+                new Chart(ctx2, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Rating',
+                            data: values,
+                            backgroundColor: 'rgba(24,157,92,0.3)',
+                            borderColor: 'rgb(3,128,69)',
+                            borderWidth: 2,
+                            hoverBackgroundColor: 'rgba(2,198,106,0.3)',
+                            fontColor: '#000',
+                        }],
+                        tension: 0,
 
-                        },
-                        options: {
-                            responsive: true,
-                            aspectRatio:1,
-                            maintainAspectRatio: false,
-                            scales: {
-                                y: {
-                                    ticks: {
-                                        color: '#000',
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Customer Rating',
-                                        font: {
-                                            size: 14,
-                                            weight: 'bold',
-                                        },
-                                        color: '#000',
-                                    }
+                    },
+                    options: {
+                        responsive: true,
+                        aspectRatio: 1,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                ticks: {
+                                    color: '#000',
                                 },
-                                x: {
-                                    ticks: {
-                                        color: '#000',
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Products',
-                                        font: {
-                                            size: 14,
-                                            weight: 'bold',
-                                        },
-                                        color: '#000',
-                                    }
-                                }
-                            },
-                            plugins: {
                                 title: {
                                     display: true,
-                                    text: 'Top Rated Products by the Customers From '+lastWeek.toLocaleDateString('en-GB')+' to '+today.toLocaleDateString('en-GB'),
+                                    text: 'Customer Rating',
                                     font: {
-                                        size: 16,
+                                        size: 14,
+                                        weight: 'bold',
+                                    },
+                                    color: '#000',
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: '#000',
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Products',
+                                    font: {
+                                        size: 14,
                                         weight: 'bold',
                                     },
                                     color: '#000',
                                 }
                             }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Top Rated Products by the Customers From ' + lastWeek.toLocaleDateString('en-GB') + ' to ' + today.toLocaleDateString('en-GB'),
+                                font: {
+                                    size: 16,
+                                    weight: 'bold',
+                                },
+                                color: '#000',
+                            }
                         }
-                    });
-                }
+                    }
+                });
             }
         }
+    }
     xhr.send();
 }
 
-function chart3(){
+function chart3() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/manager/getIncomeLastWeek', true);
     xhr.onload = () => {
-        if(xhr.readyState === xhr.DONE){
-            if(xhr.status === 200){
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
                 let res = JSON.parse(xhr.response);
                 let labels = [];
                 let values = [];
@@ -248,7 +248,7 @@ function chart3(){
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Total Income of the Company From '+lastWeek.toLocaleDateString('en-GB')+' to '+today.toLocaleDateString('en-GB'),
+                            text: 'Total Income of the Company From ' + lastWeek.toLocaleDateString('en-GB') + ' to ' + today.toLocaleDateString('en-GB'),
                             font: {
                                 size: 16,
                                 weight: 'bold',
@@ -263,7 +263,7 @@ function chart3(){
                 };
 
 
-            new Chart(ctx3, {
+                new Chart(ctx3, {
                     type: "line",
                     data: data,
                     options: options
@@ -277,9 +277,9 @@ function chart3(){
 function chart6() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/manager/getProductsReachedReorderLevel', true);
-    xhr.onload =  () => {
-        if(xhr.readyState === xhr.DONE){
-            if(xhr.status === 200) {
+    xhr.onload = () => {
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
                 let res = JSON.parse(xhr.response);
                 let labels = [];
                 let values1 = [];
@@ -365,12 +365,12 @@ function chart6() {
     xhr.send();
 }
 
-function getPendingIssues(){
+function getPendingIssues() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/manager/getPendingIssues', true);
     xhr.onload = () => {
-        if(xhr.readyState === xhr.DONE){
-            if(xhr.status === 200){
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
                 let res = JSON.parse(xhr.response);
                 document.getElementById('issues').innerHTML = res.Count;
             }
@@ -383,8 +383,8 @@ function getPendingDesigns() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/manager/getPendingDesigns', true);
     xhr.onload = () => {
-        if(xhr.readyState === xhr.DONE){
-            if(xhr.status === 200){
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
                 let res = JSON.parse(xhr.response);
                 document.getElementById('designs').innerHTML = res.Count;
             }
@@ -393,13 +393,12 @@ function getPendingDesigns() {
     xhr.send();
 }
 
-function getActiveDiscounts()
-{
+function getActiveDiscounts() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/manager/getActiveDiscounts', true);
     xhr.onload = () => {
-        if(xhr.readyState === xhr.DONE){
-            if(xhr.status === 200){
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
                 document.getElementById('active-discounts').innerHTML = xhr.response;
             }
         }
@@ -407,12 +406,12 @@ function getActiveDiscounts()
     xhr.send();
 }
 
-function getSoldOutRefurnishedProducts(){
+function getSoldOutRefurnishedProducts() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/manager/getSoldOutRefurnishedProducts', true);
     xhr.onload = () => {
-        if(xhr.readyState === xhr.DONE){
-            if(xhr.status === 200){
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
                 document.getElementById('sold-out').innerHTML = xhr.response;
             }
         }
@@ -420,11 +419,11 @@ function getSoldOutRefurnishedProducts(){
     xhr.send();
 }
 
-function loadDesignsPage(){
+function loadDesignsPage() {
     window.location.href = "http://localhost/WoodWorks/public/manager/designs";
 }
 
-function loadIssuesPage(){
+function loadIssuesPage() {
     window.location.href = "http://localhost/WoodWorks/public/manager/issues";
 }
 

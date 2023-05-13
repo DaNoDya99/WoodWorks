@@ -34,6 +34,9 @@ class Order_Items extends Model
             'OrderID' => $orderID
         ];
 
+
+
+
         $this->query($query, $data);
     }
 
@@ -44,11 +47,30 @@ class Order_Items extends Model
         $this->query($query,['CartID' => $cartID, 'ProductID' => $productID]);
     }
 
+    //delete all order items in a cart
+
+    public function deleteAllItems($cartID)
+    {
+        $query = "DELETE FROM `order_item` WHERE CartID = :CartID;";
+
+        $this->query($query,['CartID' => $cartID]);
+    }
+
+    //su of different models in the cart
     public function getOrderItemCount($orderID)
     {
         $query = "SELECT COUNT(ProductID) AS Count FROM `order_item` WHERE OrderID = :OrderID;";
 
         return $this->query($query,['OrderID' => $orderID]);
+    }
+
+
+    //sum of all items in the cart
+    public function getTotalOrderItemCount($orderID)
+    {
+        $query = "SELECT SUM(Quantity) AS Count FROM `order_item` WHERE OrderID = :OrderID;";
+
+        return $this->query($query, ['OrderID' => $orderID]);
     }
 
     public function getOrderItems($orderID)

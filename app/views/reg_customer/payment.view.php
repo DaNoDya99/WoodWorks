@@ -37,6 +37,13 @@
         </div>
         <div class="payment-details">
             <h1>Order Summary</h1>
+            <div class="promo-container">
+                <label>Enter Promo Code</label>
+                <div class="promo">
+                    <input type="text" name="PromoCode" placeholder="Promo Code">
+                    <button>Apply</button>
+                </div>
+            </div>
             <div>
                 <h3>Total</h3>
                 <?php if(!empty($items)) : ?>
@@ -83,30 +90,13 @@
                 <input type="text" name="Contactno" placeholder="Contact Number">
             </div>
 
-
-                <div class="field">
-                    <div class="header-error">
-                        <label>Address Line 1</label>
-                        <span class="error font-sm" id="Address1"></span>
-                    </div>
-                    <input type="text" name="Address_line1" placeholder="Address Line 1">
+            <div class="field">
+                <div class="header-error">
+                    <label>Address</label>
+                    <span class="error font-sm" id="Address"></span>
                 </div>
-                <div class="field">
-                    <div class="header-error">
-                        <label>Address Line 2</label>
-                        <span class="error font-sm" id="Address2"></span>
-                    </div>
-                    <input type="text" name="Address_line2" placeholder="Address Line 2">
-                </div>
-                <div class="field">
-                    <div class="header-error">
-                        <label>City</label>
-                        <span class="error font-sm" id="City"></span>
-                    </div>
-                    <input type="text" name="City" placeholder="City">
-                </div>
-
-
+                <input type="text" name="Address" placeholder="Address">
+            </div>
 
             <div class="checkout-btn-container">
                 <?php if(!empty($items)) : ?>

@@ -9,7 +9,7 @@ $(document).ready(function () {
             var colors = [];
 
             for (var i in data) {
-                Count.push(data[i].numOrders);
+                count.push(data[i].numOrders);
                 date.push(data[i].Date);
                 colors.push(color());
             }
@@ -20,7 +20,7 @@ $(document).ready(function () {
                 datasets: [{
                     label: "Number of Orders",
                     backgroundColor: colors,
-                    data:Count,
+                    data:count,
 
                 }]
             };
@@ -37,7 +37,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'Uncompleted Orders For This Week',
+                            text: 'Uncompleted Orders and Dates',
                             color:'black',
                             font: {
                                 size: 15,
@@ -71,7 +71,7 @@ $(document).ready(function () {
                         x: {
                             title: {
                                 display: true,
-                                text: 'Delivery Dates',
+                                text: 'Dates',
                                 color:'black',
                                 font: {
                                     size: 15,
@@ -84,7 +84,6 @@ $(document).ready(function () {
                                 },
                             },
                             grid: {
-                                display:true,
                                 borderColor: 'black'
                             }
                         },

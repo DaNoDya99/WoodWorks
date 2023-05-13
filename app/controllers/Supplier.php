@@ -9,25 +9,66 @@ class supplier extends Controller
             $this->redirect('Login');
         }
         $orders = new CompanyOrderModel();
-        $data['neworders']=$orders->getneworders();
+        $data['neworders'] = $orders->getneworders();
         $this->view('supplier/dash', $data);
     }
+
+    public function getneworders()
+    {
+        $orders = new CompanyOrderModel();
+
+        $furnitures = new Furnitures();
+
+        $order_item = new CompanyOrderItems();
+        $data['neworders'] = $orders->getneworders();
+        echo json_encode($data);
+    }
+
+    public function getItemsByOrderID($id)
+    {
+        $order_item = new CompanyOrderItems();
+        $furnitures = new Furnitures();
+
+        $data['items'] = $order_item->getItemsByOrderID($id);
+        if (count((array)$data['items']) == 0) {
+            echo json_encode(['status' => 'error', 'message' => 'No items found.']);
+            return;
+        } else {
+            for ($i = 0; $i < count((array)$data['items']); $i++) {
+                $data['items'][$i]->image = $furnitures->getDisplayImage($data['items'][$i]->ProductID)[0]->Image;
+            }
+            echo json_encode($data);
+        }
+
+    }
+
     public function accepted()
     {
         if (!Auth::logged_in()) {
             $this->redirect('Login');
         }
         $orders = new CompanyOrderModel();
-        $data['acceptedorders']=$orders->getacceptedorders();
+        $data['acceptedorders'] = $orders->getacceptedorders();
 
-        $this->view('supplier/accepted',$data);
+        $this->view('supplier/accepted', $data);
+    }
+
+    public function changeOrderStatus($id, $status)
+    {
+        $orders = new CompanyOrderModel();
+        if ($orders->findOrder($id)) {
+            $orders->changeOrderStatus($id, $status);
+            echo json_encode(['status' => 'success', 'message' => 'Order status changed successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Order does not exist.']);
+        }
     }
 
     public function acceptOrder($id)
     {
         $orders = new CompanyOrderModel();
         $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'accepted']);
-        $this->redirect('supplier/dash');
+        echo json_encode(['status' => 'success']);
     }
 
     public function CompleteOrder($id)
@@ -88,36 +129,31 @@ class supplier extends Controller
 
     public function add()
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $errors = [];
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $supplier = new Suppliers();
-            if($supplier->validate($_POST))
-            {
+            if ($supplier->validate($_POST)) {
                 $supplier->insert($_POST);
-            }else{
+            } else {
                 $errors = $supplier->errors;
             }
         }
 
-        if(empty($errors))
-        {
+        if (empty($errors)) {
             echo "Supplier Added Successfully";
-        }else{
+        } else {
             echo json_encode($errors);
         }
     }
 
     public function getSupplier($id)
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
@@ -125,31 +161,40 @@ class supplier extends Controller
 
         $row = $supplier->where('SupplierID', $id);
 
-        if($row)
-        {
+        if ($row) {
             echo json_encode($row[0]);
-        }else{
+        } else {
             echo "Supplier Not Found";
         }
     }
 
     public function delete($id)
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         $supplier = new Suppliers();
 
-        if(!$supplier->deleteSupplier($id))
-        {
+        if (!$supplier->deleteSupplier($id)) {
             echo "<div class='cat-success cat-deletion'>
                   <h3>Supplier Deleted Successfully!</h3>
               </div>";
-        }else{
+        } else {
             echo "Supplier Not Found";
         }
+    }
+
+    public function getAllOrders(){
+//        if (!Auth::logged_in()) {
+//            $this->redirect('login');
+//        }
+
+        $orders = new CompanyOrderModel();
+
+        $data['orders'] = $orders->getAllOrders();
+
+        echo json_encode($data);
     }
 
     public function save($id)
@@ -162,12 +207,11 @@ class supplier extends Controller
 
         $_POST['SupplierID'] = $id;
 
-        if(!$supplier->updateSupplier($_POST))
-        {
+        if (!$supplier->updateSupplier($_POST)) {
             echo "<div class='cat-success'>
                   <h3>Supplier Updated Successfully!</h3>
               </div>";
-        }else{
+        } else {
             echo "Supplier Not Found";
         }
 
