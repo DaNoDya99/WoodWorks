@@ -9,10 +9,8 @@ class Customer extends Model
         'CustomerID',
         'Firstname',
         'Lastname',
-        'Gender',
         'Email',
         'Password',
-        'Address',
         'Mobileno',
         'Image'
     ];
@@ -49,9 +47,6 @@ class Customer extends Model
             }
         }
 
-        if(!in_array($post['Gender'],$gender)){
-            $this->errors['Gender'] = "Gender is required.";
-        }
 
         if(!filter_var($post['Email'],FILTER_VALIDATE_EMAIL)){
 
