@@ -1,4 +1,4 @@
-<?php $this->view('manager/includes/header') ?>
+<?php $this->view('manager/includes/header2') ?>
 
 <body class="manager">
     <?php $this->view('manager/includes/manager_header') ?>

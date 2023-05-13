@@ -1,3 +1,53 @@
+@font-face {
+    font-family: 'Rubik';
+    src: url("../fonts/Rubik/Rubik-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-SemiBold';
+    src: url("../fonts/Rubik/Rubik-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Bold';
+    src: url("../fonts/Rubik/Rubik-Bold.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Black';
+    src: url("../fonts/Rubik/Rubik-Black.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Italic';
+    src: url("../fonts/Rubik/Rubik-Italic.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Medium';
+    src: url("../fonts/Rubik/Rubik-Medium.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Light';
+    src: url("../fonts/Rubik/Rubik-Light.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-Thin';
+    src: url("../fonts/Rubik/Rubik-Thin.ttf");
+}
+
+@font-face {
+    font-family: 'Rubik-ExtraBold';
+    src: url("../fonts/Rubik/Rubik-ExtraBold.ttf");
+}
+
+html {
+    background-color: #e2e2d1;
+    font-family: Rubik;
+}
+
 .performance-widget {
     background-color: white;
     height: 150px;
@@ -27,7 +77,7 @@
     column-gap: 20px;
     border-radius: 10px;
     /* height: 600px; */
-    /*width: 100%;*/
+    /* width: 100%; */
     /* padding: 30px; */
     transition: all 0.2s ease-in-out;
     /* box-shadow: 0px 10px 10px rgba(140, 140, 140, 0.282); */
@@ -35,7 +85,7 @@
 }
 
 .dashboard {
-    width: 90%;
+    width: 95%;
 }
 
 .chart-component,
@@ -211,7 +261,8 @@
     opacity: 0.5;
 }
 
-.overview-section {}
+.overview-section {
+}
 
 .overview-section h2 {
     margin-top: 40px;
@@ -237,8 +288,9 @@
 }
 
 .reports {
-    padding-left: 150px;
+    padding-left: 210px;
     width: 100% !important;
+    padding-right: 30px;
 }
 
 .list {
@@ -286,7 +338,8 @@
     background-color: #d9d9d9;
 }
 
-.list table tbody {}
+.list table tbody {
+}
 
 .pager-button {
     display: flex;
@@ -387,8 +440,7 @@
 }
 
 #exporttocsv {
-    color: rgb(85, 0, 255);
-    ;
+    color: rgb(85, 0, 255);;
 }
 
 #exporttocsv:hover {
@@ -502,6 +554,86 @@
 
 }
 
-.catergorydist{
+.catergorydist {
     height: 43vh;
+}
+
+
+.report-form {
+    background-color: #ffffff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 30px;
+    padding: 40px
+}
+
+.report-form input {
+    height: 40px;
+    border-radius: 5px;
+    padding: 20px;
+    font-family: 'Rubik', serif;
+    border: 1px solid #0F3D3E;
+}
+
+.report-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.report-type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+}
+
+.report-type div {
+    width: 50%;
+}
+
+.report-type select {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Rubik', serif;
+    border: 1px solid #0F3D3E;
+
+}
+
+.form-fields {
+    display: flex;
+    width: 100%;
+
+    flex-direction: column;
+}
+
+.report-date {
+    display: grid;
+    height: 20vh;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+.report-from, .report-to {
+    display: flex;
+    padding: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.report-from input, .report-to input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    padding: 20px;
+    font-family: 'Rubik', serif;
+    border: 1px solid #0F3D3E;
 }

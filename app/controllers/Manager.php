@@ -33,7 +33,7 @@ class Manager extends Controller
 
         $data['furniture'] = $rows;
         $data['categories'] = $categories->getCategories();
-        $data['title']="POSTS";
+        $data['title'] = "POSTS";
 
         $this->view('manager/posts', $data);
     }
@@ -343,7 +343,7 @@ class Manager extends Controller
     public function getOrdersChart($date1, $date2)
     {
 
-        
+
         $data['labels'] = $this->getDateLabels($date1, $date2);
         $labels = $data['labels'];
         $order = new Orders;
@@ -364,6 +364,20 @@ class Manager extends Controller
 
         $data['order'] = $s;
         echo json_encode($data);
+    }
+
+    public function getDateLabels($date1, $date2)
+    {
+        $startDate = new DateTime($date1); // start date
+        $endDate = new DateTime($date2); // end date
+        $labels = [];
+
+        while ($startDate <= $endDate) {
+            array_push($labels, $startDate->format('Y-m-d'));
+            $startDate->modify('+1 day');
+        }
+
+        return $labels;
     }
 
     public function chat()
@@ -605,44 +619,31 @@ class Manager extends Controller
         echo json_encode($data);
     }
 
-    public function getDateLabels($date1, $date2)
-    {
-        $startDate = new DateTime($date1); // start date
-        $endDate = new DateTime($date2); // end date
-        $labels = [];
-
-        while ($startDate <= $endDate) {
-            array_push($labels, $startDate->format('Y-m-d'));
-            $startDate->modify('+1 day');
-        }
-
-        return $labels;
-    }
-
     public function orderlists()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $q = "SELECT 
-    o.Date AS 'Date',
-    o.OrderID AS 'OrderID',
-    o.Order_status AS 'Status',
-    CONCAT(o.Firstname, ' ', o.Lastname) AS 'Customer',
-    GROUP_CONCAT(i.Name SEPARATOR ', ') AS 'Products',
-    SUM(i.Quantity) AS 'ItemsSold',
-    ROUND(SUM(i.Quantity * i.Cost),2) AS 'NetSales'
-FROM 
-    orders o
-INNER JOIN 
-    order_item i ON o.OrderID = i.OrderID
-WHERE
-    o.Date BETWEEN '" . $_POST['date1'] . "' AND '" . $_POST['date2'] . "'
-GROUP BY 
-    o.OrderID
-ORDER BY 
-    o.Date DESC;
+            o.Date AS 'Date',
+            o.OrderID AS 'OrderID',
+            o.Order_status AS 'Status',
+            CONCAT(o.Firstname, ' ', o.Lastname) AS 'Customer',
+            GROUP_CONCAT(i.Name SEPARATOR ', ') AS 'Products',
+            SUM(i.Quantity) AS 'ItemsSold',
+            ROUND(SUM(i.Quantity * i.Cost),2) AS 'NetSales'
+            FROM 
+            orders o
+            INNER JOIN 
+            order_item i ON o.OrderID = i.OrderID
+            WHERE
+            o.Date BETWEEN '" . $_POST['date1'] . " 00:00:00' AND '" . $_POST['date2'] . " 23:59:59'
+            GROUP BY 
+            o.OrderID
+            ORDER BY 
+            o.Date DESC;
 
 ";
+//            show($q);
             $orders = new Orders();
             echo json_encode($orders->query($q, []));
         }

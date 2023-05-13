@@ -162,7 +162,6 @@ document.getElementById('form').addEventListener('submit', function (e) {
             SalesChart2.options.scales.x.time.unit = 'year';
         }
         //update chart
-        getorderchart();
 
 
         var dropdownContent = document.querySelector(".dropdown-content");
@@ -170,8 +169,12 @@ document.getElementById('form').addEventListener('submit', function (e) {
 
         var data1 = document.querySelector("input[name='date1']").value;
         var data2 = document.querySelector("input[name='date2']").value;
-
-
+        console.log("POSt");
+        getorderchart();
+        console.log(data1);
+        getOrderDescription();
+        getTopRatings();
+        console.log(data2);
         document.getElementById('date-range-label').innerText = data1 + " to " + data2;
         products(data1, data2, 'Paid');
         getCatergoryDescription(data1, data2);
@@ -323,7 +326,6 @@ function inventory() {
         })
         .catch(error => console.error(error));
 }
-
 
 
 function toggleDropdown() {
@@ -626,6 +628,7 @@ function getOrderDescription() {
     const perPage = 6; // Number of items to display per page
     let currentPage = 1; // Current page
 
+
     fetch("http://localhost/WoodWorks/public/manager/orderlists", {
         method: 'POST', body: new FormData(document.getElementById('form'))
     })
@@ -641,7 +644,7 @@ function getOrderDescription() {
                     const row = document.createElement('tr');
                     row.innerHTML = `
                     <td>${data[i].Date}</td>
-                    <td>123456</td>
+                    <td>${data[i].OrderID}</td>
                     <td>${data[i].Status}</td>
                     <td>${data[i].Customer}</td>
                     <td>${data[i].Products}</td>
@@ -657,7 +660,7 @@ function getOrderDescription() {
                 console.log(totalPages);
                 pagination.innerHTML = '';
                 for (let i = 1; i <= totalPages; i++) {
-                    console.log(i);
+
                     const button = document.createElement('button');
                     button.textContent = i;
                     if (i === currentPage) {
@@ -671,10 +674,7 @@ function getOrderDescription() {
                     pagination.appendChild(button);
                 }
             };
-            console.log("Test-> " + data[0].Date);
-
             renderTableRows(0, perPage - 1);
-
             renderPaginationButtons();
         })
 
@@ -742,48 +742,48 @@ function getCatergoryDescription($date1, $date2) {
 
 var SalesChart2 = new Chart(
     document.getElementById('SalesChart2'), {
-    type: 'line',
-    data: {},
-    options: {
-        aspectRatio: 1.5,
-        maintainAspectRatio: false,
-        responsive: true,
-        animation: {},
-        scales: {
-            x: {
-                type: 'time',
-                time: {
-                    unit: 'day',
+        type: 'line',
+        data: {},
+        options: {
+            aspectRatio: 1.5,
+            maintainAspectRatio: false,
+            responsive: true,
+            animation: {},
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Rupees',
+                        font: {
+                            size: 15,
+                        }
+                    }
                 }
             },
-            y: {
-                display: true,
+            tooltips: {
+                enabled: true
+            },
+            plugins: {
                 title: {
                     display: true,
-                    text: 'Rupees',
+                    text: 'Sales',
+                    align: 'start',
                     font: {
-                        size: 15,
+                        size: 20,
+                        weight: 'bold'
                     }
                 }
             }
-        },
-        tooltips: {
-            enabled: true
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Sales',
-                align: 'start',
-                font: {
-                    size: 20,
-                    weight: 'bold'
-                }
-            }
-        }
 
+        }
     }
-}
 );
 
 

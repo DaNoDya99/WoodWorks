@@ -436,7 +436,7 @@ class Orders extends Model
 
     public function getOrderByDateRange($date1, $date2)
     {
-        $q = "SELECT DATE(Date) AS order_date, COUNT(*) AS order_count FROM orders WHERE Date BETWEEN '" . $date1 . "' AND '" . $date2 . "'GROUP BY DATE(Date) ORDER BY order_date ASC";
+        $q = "SELECT DATE(Date) AS order_date, COUNT(*) AS order_count FROM orders WHERE Date BETWEEN '" . $date1 . " 00:00:00' AND '" . $date2 . " 23:59:59' GROUP BY DATE(Date) ORDER BY order_date ASC";
         return $this->query($q, []);
     }
 
