@@ -132,34 +132,72 @@ class Orders extends Model
 
     public function displayOrders($column, $value)
     {
-        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value AND (`Order_status` = 'Dispatched' OR `Order_status` = 'Processing') limit 15";
-        return $this->query($query, ['value' => $value]);
+
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value AND (`Order_status` = 'Dispatched' OR `Order_status` = 'Processing') limit 25";
+        return $this->query($query,['value'=>$value]);
     }
 
     public function displayDeliveredOrders($column, $value)
     {
-        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value AND `Order_status` = 'Delivered' limit 15";
-        return $this->query($query, ['value' => $value]);
+
+        $query = "select * from $this->table WHERE `Deliver_method` = 'Delivery' && $column = :value AND `Order_status` = 'Delivered' limit 25";
+        return $this->query($query,['value'=>$value]);
+
     }
 
     public function searchOrdersDetails($column, $value, $orders_items)
     {
-        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or Payment_type like '%$orders_items%' or Address like '%$orders_items%' or Total_amount like '%$orders_items%' AND $column = :value AND (`Order_status` = 'Dispatched' OR `Order_status` = 'Processing') LIMIT 15 ";
-        return $this->query($query, ['value' => $value]);
+
+        $query = "SELECT * FROM $this->table  
+                    WHERE 
+                    (`Order_status` = 'Dispatched' OR `Order_status` = 'Processing') AND 
+                    $column = :value AND 
+                    ( 
+                        DATE_FORMAT(Date, '%d/%m/%Y') LIKE '%$orders_items%' OR
+                        CONCAT(Firstname, ' ', Lastname) LIKE '%$orders_items%' OR
+                        Payment_type LIKE '%$orders_items%' OR 
+                        Address LIKE '%$orders_items%' OR 
+                        Total_amount LIKE '%$orders_items%' OR 
+                        Contactno LIKE '%$orders_items%' OR
+                        Shipping_cost LIKE '%$orders_items%' OR 
+                        Firstname LIKE '%$orders_items%' OR 
+                        Lastname LIKE '%$orders_items%' OR 
+                        Order_status LIKE '%$orders_items%' OR 
+                        OrderID LIKE '%$orders_items%' 
+                    ) 
+                    LIMIT 25";
+        return $this->query($query,['value'=>$value]);
 
     }
 
     public function searchDeliveredOrdersDetails($column, $value, $orders_items)
     {
-        $query = "select * from $this->table  WHERE DATE_FORMAT(Date, '%d/%m/%Y') like '%$orders_items%'  or OrderID like '%$orders_items%' or DATE_FORMAT(Dispatched_date, '%d/%m/%Y') like '%$orders_items%' or DATE_FORMAT(Delivered_date, '%d/%m/%Y') like '%$orders_items%'or Firstname like '%$orders_items%' or Lastname like '%$orders_items%' AND $column = :value  AND `Order_status` = 'Delivered' LIMIT 15 ";
-        return $this->query($query, ['value' => $value]);
+
+
+        $query = "SELECT * FROM $this->table  
+          WHERE 
+            (`Order_status` = 'Delivered') AND 
+            $column = :value AND 
+            (
+                DATE_FORMAT(Date, '%d/%m/%Y') LIKE '%$orders_items%' OR 
+                DATE_FORMAT(Dispatched_date, '%d/%m/%Y') LIKE '%$orders_items%' OR 
+                DATE_FORMAT(Delivered_date, '%d/%m/%Y') LIKE '%$orders_items%' OR 
+                CONCAT(Firstname, ' ', Lastname) LIKE '%$orders_items%' OR
+                Firstname LIKE '%$orders_items%' OR 
+                Lastname LIKE '%$orders_items%' OR
+                OrderID LIKE '%$orders_items%' 
+            ) 
+          LIMIT 25";
+
+        return $this->query($query,['value'=>$value]);
 
     }
 
     public function filterStatus($column, $value, $id)
     {
-        $query = "select OrderID,Payment_type,Total_amount,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' && $column = :value  && `DriverID` = '$id' limit 15";
-        return $this->query($query, ['value' => $value]);
+
+        $query = "select * from $this->table  WHERE `Deliver_method` = 'Delivery' && $column = :value  && `DriverID` = '$id' limit 15";
+        return $this->query($query,['value'=>$value]);
     }
 
     public function filterDate($from_date, $to_date)

@@ -84,6 +84,7 @@ class Designer extends Controller
                         $employee->errors['image'] = "Could not upload image.";
                     }
                 }
+                $_POST['EmployeeID'] = $id;
                 $employee->update($id,$_POST);
                 $this->redirect('designer/profile/'.$id);
             }
@@ -133,10 +134,9 @@ class Designer extends Controller
             $this->redirect('login1');
         }
 
-        $limit = 10;
         $categories = new Categories();
         $data['row'] = $this->getUser();
-        $data['categories'] = $categories->getDesignCategories($limit);
+        $data['categories'] = $categories->getDesignCategories();
 
         $this->view("designer/design_category",$data);
     }

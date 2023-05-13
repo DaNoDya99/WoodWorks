@@ -1381,6 +1381,7 @@ body{
 #design-chart-container3{
     width:45%;
     height: auto;
+    margin: auto;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -1500,7 +1501,7 @@ body{
     border-radius: 10px;
     max-height: 210px;
     max-width: 210px;
-    object-fit: cover;
+    object-fit: contain;
     margin-left: auto;
     margin-right: auto;
     display: flex;

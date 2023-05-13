@@ -176,18 +176,18 @@ class Driver_home extends Controller
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
-        if(isset($_GET['orders_items']))
+        $data['records1'] = $order->displayDeliveredOrders('DriverID',$id);
+
+        if(isset($_GET['delivered_items']))
         {
-            $orders_items = $_GET['orders_items'];// don't care at the end
-            $data['row'] = $result = $order->searchDeliveredOrdersDetails('DriverID',$id,$orders_items);
+            $orders_items = $_GET['delivered_items'];
+            $data['records1'] = $result = $order->searchDeliveredOrdersDetails('DriverID',$id,$orders_items);
             if(empty($result))
             {
-                $this->redirect('driver_home/order');
+                $this->redirect('driver_home/delivered_orders'.$id);
             }
 
         }
-
-        $data['records1'] = $order->displayDeliveredOrders('DriverID',$id);
 
         $this->view('driver/includes/delivered_orders_table',$data);
 

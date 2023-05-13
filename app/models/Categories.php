@@ -68,7 +68,7 @@ class Categories extends Model
     }
 
     public function getDesignCategories($limit = 2) {
-        $query = "SELECT * FROM $this->table LIMIT $limit";
+        $query = "SELECT * FROM $this->table where `CategoryID` != 'C008'";
         return $this->query($query);
     }
 
