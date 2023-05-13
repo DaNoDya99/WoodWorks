@@ -190,7 +190,7 @@ class cashier extends Controller
         }
     }
 
-
+//jhvhjvjhvvhjvhvhjvjhvhjvhvjvjvhvhvj
     public function removeItem($productID, $cost, $quantity)
     {
 
