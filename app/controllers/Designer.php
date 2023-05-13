@@ -21,12 +21,12 @@ class Designer extends Controller
         $id = Auth::getEmployeeID();
 
         $design = new Design();
-        $employee = new Employees();
-        $data['row'] = $employee->where("EmployeeID",$id);
 
-        $limit = 8;
+        $limit = 7;
 
-        $data['rows'] = $design->getDesign($limit);
+        $data['rows'] = $design->getDesign("DesignerID",$id,$limit);
+        $data['numberOfDesigns']= $design->findNumberOfDesigns('DesignerID',$id);
+        $data['numberOfAcceptedDesigns']= $design->FindNumberOfAcceptedDesigns('DesignerID',$id);
 
         if(!empty($data['rows'])) {
 
@@ -103,7 +103,7 @@ class Designer extends Controller
             $this->redirect('login');
         }
 
-        $limit = 3;
+        $limit = 5;
         $pager = new Pager($limit);
         $offset = $pager->offset;
         $data['pager'] = $pager;
@@ -133,14 +133,10 @@ class Designer extends Controller
             $this->redirect('login1');
         }
 
-        $limit = 8;
-        $pager = new Pager($limit);
-        $offset = $pager->offset;
-        $data['pager'] = $pager;
-
+        $limit = 10;
         $categories = new Categories();
         $data['row'] = $this->getUser();
-        $data['categories'] = $categories->getDesignCategories($offset,$limit);
+        $data['categories'] = $categories->getDesignCategories($limit);
 
         $this->view("designer/design_category",$data);
     }
@@ -447,15 +443,16 @@ class Designer extends Controller
         }
 
         $design = new Design();
-        $design_images = new Design_image();
 
-        if(isset($_POST['delete_btn'])){
-            $design->deleteDesign($id);
-            $design_images->deleteImage($id);
-            $this->redirect('designer/design');
+        if(empty($design->deleteDesign($id)))
+        {
+            echo "success";
+        }
+        else
+        {
+            echo "failed";
         }
 
-        $this->redirect('designer/design');
     }
 
     public function chat()
@@ -484,10 +481,11 @@ class Designer extends Controller
 
         header('Content-Type: application/json');
 
-        $order = new Order();
+        $design = new Design();
 
-        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(DesignID) AS numDesigns FROM `design` WHERE DesignerID = '$id' GROUP BY cast(Date as date) ORDER BY Date ASC");
+        $id = $id ?? Auth::getEmployeeID();
 
+        $rows =  $design->barGraph('DesignerID',$id);
         $data = array();
 
         foreach ($rows as $row){
@@ -495,6 +493,7 @@ class Designer extends Controller
         }
 
         print json_encode($data);
+
 
     }
 

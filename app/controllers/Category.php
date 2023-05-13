@@ -34,10 +34,9 @@ class Category extends Controller
         unset($sub_cat[0]);
         $sub_cat = implode(" ",$sub_cat);
         $data['row'] = $this->getUser();
-
         $sub_category = new Sub_Categories();
         $furniture = new Furnitures();
-        $review = new Reviews();
+
 
         $limit = 8;
 
@@ -47,19 +46,14 @@ class Category extends Controller
         $data['sub_categories'] =$rows= $sub_category->where('CategoryID',$id);
         $data['id'] = $id;
         $data['pager'] = $pager;
-        $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$limit,$offset);
-        $data['flag'] = 'f';
-
+        $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$offset,$limit);
         if(!empty($data['furniture']))
         {
             foreach ($data['furniture'] as $row)
             {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
-                $row->Rate = round($review->getProductRating($row->ProductID)[0]->Average,1);
-                $row->Rating = (($row->Rate/5)*100).'%';
             }
         }
-
 
         if(empty($sub_cat)){
             $this->redirect('category/sub_category/'.$id."/".$rows[0]->Sub_category_name);

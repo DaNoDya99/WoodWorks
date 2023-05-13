@@ -6,7 +6,7 @@
     <div class="content dashboard">
 
             <div class="category-body">
-                <h1>New Design Categories</h1>
+                <h1>Design Categories</h1>
                 <div class="categories">
                     <?php if(!empty($categories)): ?>
                     <?php foreach ($categories as $category) :?>

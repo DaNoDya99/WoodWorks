@@ -1,18 +1,23 @@
 let doc_id = '';
 
-function openDocumentPopups(id,event)//name,quantity,cost,image,event
-{
+function openDocumentPopups(id,event) {
     event.preventDefault();
 
     let popup = document.getElementById("popups");
-
     popup.style.visibility = "visible";
+    var header = document.getElementById("order_id");
+    header.innerHTML = id;
     doc_id = id;
 
     $.ajax({
         url: 'http://localhost/WoodWorks/public/driver_home/details/' + doc_id,
         dataType: 'json',
         success: function(data) {
+            console.log(data[0].ProductID);
+
+            var tbody = document.querySelector(".details-table tbody");
+            tbody.innerHTML = "";
+
             for (var i = 0; i < data.length; i++) {
                 var name = data[i].Name;
                 var cost = data[i].Cost;
@@ -20,24 +25,33 @@ function openDocumentPopups(id,event)//name,quantity,cost,image,event
                 var quantity = data[i].Quantity;
                 var pid = data[i].ProductID;
 
-                var header1 = document.getElementById('header1_' + pid);
-                var header2 = document.getElementById('header2_' + pid);
-                var header3 = document.getElementById('header3_' + pid);
-                var img = document.getElementById('edit-doc-img_' + pid);
+                var row = document.createElement("tr");
+                var nameCell = document.createElement("td");
+                var quantityCell = document.createElement("td");
+                var costCell = document.createElement("td");
+                var imageCell = document.createElement("td");
 
-                header1.innerHTML = name;
-                header2.innerHTML = quantity;
-                header3.innerHTML = "Rs. "+cost+".00";
-
-                if(image != null) {
-                    img.setAttribute('src', 'http://localhost/WoodWorks/public/' + image);
+                if (image == '' || name == null || cost == null || quantity == null) {
+                    nameCell.textContent = "No Data";
+                    quantityCell.textContent = "No Data";
+                    costCell.textContent = "No Data";
+                    imageCell.innerHTML = '<img src="http://localhost/WoodWorks/public/assets/images/driver/No_image.jpg" alt="No Image">';
+                } else {
+                    nameCell.textContent = name;
+                    quantityCell.textContent = quantity;
+                    costCell.textContent = "Rs. " + cost + ".00";
+                    if (image != null) {
+                        imageCell.innerHTML = '<img src="http://localhost/WoodWorks/public/' + image + '" alt="' + name + '">';
+                    }
                 }
-                if(image == ''){
-                    img.setAttribute('src', 'http://localhost/WoodWorks/public/assets/images/driver/No_image.jpg');
-                }
 
-                // Do something with the Cost and Image values, for example:
-                console.log('ProductName: ' + name + ', Cost: ' + cost+', Quantity: ' + quantity + ', Image: ' + image);
+                row.appendChild(nameCell);
+                row.appendChild(quantityCell);
+                row.appendChild(costCell);
+                row.appendChild(imageCell);
+                tbody.appendChild(row);
+
+                console.log('ProductName: ' + name + ', Cost: ' + cost + ', Quantity: ' + quantity + ', Image: ' + image);
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -45,8 +59,8 @@ function openDocumentPopups(id,event)//name,quantity,cost,image,event
             console.error(errorThrown);
         }
     });
-
 }
+
 
 function closeDocumentPopups()
 {

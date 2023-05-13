@@ -48,13 +48,12 @@
                             <label for="file-input"> Upload Images</label>
                         </div>
                         <div class="edit-des-Ubtn-section" id="edit-design">
-
                             <input type="file" onchange="showPdfPreview()" style="display: none" name="pdfFile-input" id="pdfFile-input">
                             <label for="pdfFile-input">Upload Pdf</label>
                         </div>
                         <div class="edit-des-Dbtn-section" id="edit-design">
                             <label onclick="location.reload();">
-                                Delete Images & Pdf
+                                Reset
                             </label>
                         </div>
                     </div>

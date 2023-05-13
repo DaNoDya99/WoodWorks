@@ -1,41 +1,85 @@
 <?php $this->view('designer/includes/header') ?>
 
 <body class="designer">
+<div class="designer-body">
     <?php $this->view('designer/includes/designer_header') ?>
+    <div class="content dashboard">
 
-<div class="content designer-body">
-    <div class="dashboard">
+        <div class="containers-designer-chart ">
 
+            <div class="designer-tbox">
+                <div class="recentOrders">
+                    <div class="driver-tbox-header">
+                        <h1>Recent Designs</h1>
+                        <button onclick="location.href='<?=ROOT?>/designer/view_design_categories';">View All</button>
+                    </div>
+                    <table class="designer-content-table">
+                        <thead>
 
-        <div class="containers-designer-chart " >
+                        <th class="th">Design Name</th>
+                        <th class="th">Image</th>
+                        <th class="th">Type Of Category</th>
+                        <th class="th">Added Date</th>
 
-            <div class="designer-box" id="chart-designer-container" onclick="location.href='<?=ROOT?>/designer/design';">
-                <canvas id="designerBar" width="300" height="400"></canvas>
+                        </thead>
+                        <tbody>
+                        <?php if (empty($rows)):?>
+                            <tr class="designs-table-rows">
+                                <td colspan="4"><h1>No Designs to show.</h1></td>
+                            </tr>
+                        <?php else :?>
+                        <?php foreach ($rows as $row):?>
+
+                            <tr class="designs-table-rows">
+                                <td><?=esc($row->Name)?></td>
+                                <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Design Image"></td>
+                                <?php
+                                $categories = new Categories();
+                                $categoryDetail = $categories->getCategoryByID($row->CategoryID);
+                                ?>
+                                <td><?=$categoryDetail[0]->Category_name?></td>
+                                <?php
+                                    $newDate = date("d/m/Y", strtotime($row->Date));
+                                ?>
+                                <td><?=$newDate?></td>
+                            </tr>
+
+                        <?php endforeach;?>
+                        <?php endif;?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div class="designer-tbox" onclick="location.href='<?=ROOT?>/designer/design';">
-                <h1>Newly Added Designs</h1>
+            <div id="design-chart-container3">
 
-                <table class="designer-content-table">
-                    <thead>
+                <div class="designer-box" id="chart-designer-container" onclick="location.href='<?=ROOT?>/designer/view_design_categories';">
+                    <canvas id="designerBar" width="340" height="207"></canvas>
+                </div>
 
-                    <th class="th">Name</th>
-                    <th class="th">Image</th>
-                    <th class="th">Date</th>
+                <div class="designer-cardBox">
+                    <div class="cards" onclick="location.href='<?=ROOT?>/designer/view_design_categories';">
+                        <div>
+                            <div class="numbers"><?=$data['numberOfDesigns'][0]->NumOfDesigns?></div>
+                            <div class="cardsName">Total Number of Designs Added</div>
+                        </div>
 
-                    </thead>
-                    <tbody>
-                    <?php foreach ($rows as $row):?>
+                        <div class="design-iconBx" >
+                            <img src="<?= ROOT ?>/assets/images/designer/thisMonth.png">
+                        </div>
+                    </div>
 
-                        <tr class="designs-table-rows">
-                            <td><?=esc($row->Name)?></td>
-                            <td><img src="<?=ROOT?>/<?=$row->Image?>" alt="Design Image"></td>
-                            <td><?=$row->Date?></td>
-                        </tr>
+                    <div class="cards" onclick="location.href='<?=ROOT?>/designer/view_design_categories';">
+                        <div>
+                            <div class="numbers"><?=$data['numberOfAcceptedDesigns'][0]->NumOfAcceptedDesigns?></div>
+                            <div class="cardsName">Total Number Of Accepted Designs</div>
+                        </div>
 
-                    <?php endforeach;?>
-                    </tbody>
-                </table>
+                        <div class="design-iconBx">
+                            <img src="<?= ROOT ?>/assets/images/designer/numberDesigns.png">
+                        </div>
+                    </div>
+                </div>
 
             </div>
 

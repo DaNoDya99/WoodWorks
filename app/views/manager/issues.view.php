@@ -29,7 +29,7 @@
                                 <?php foreach($issues as $issue): ?>
                                     <tr>
                                         <td><?=$issue->IssueID?></td>
-                                        <td><?=$issue->OrderID,0,8?></td>
+                                        <td><?=substr($issue->OrderID,0,8)?></td>
                                         <td><?=$issue->First_name?> <?=$issue->Last_name?></td>
                                         <td><?=$issue->Contact_number?></td>
                                         <td><?=$issue->Email?></td>

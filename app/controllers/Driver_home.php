@@ -29,7 +29,6 @@ class Driver_home extends Controller
         if(empty($row[0]))
         {
             $driver->insert(['DriverID'=>$id,'Availability'=>"Not Available"]);
-            //$row = $driver->query("INSERT INTO driver (DriverID,Availability) VALUES ('$id','Not Available');");
             $this->redirect('driver_home');
 
         }
@@ -407,15 +406,10 @@ class Driver_home extends Controller
         $driver = new Driver();
         $rows = $driver->availableDrivers();
 
-        foreach ($rows as $row){
-            $row->Fullname = $row->Firstname." ".$row->Lastname;
-            $row->Order_count = $driver->getAssignedOrderCount($row->DriverID)[0]->Count;
-        }
-
         $str = "<option selected>-- Assign Driver --</option>";
 
         foreach ($rows as $row){
-            $str .= "<option value='".$row->DriverID."'>".$row->DriverID." - ".$row->Fullname." - ".$row->Order_count." Orders Assigned.</option>";
+            $str .= "<option value='".$row->DriverID."'>".$row->DriverID." - ".$row->Availability."</option>";
         }
 
         echo $str;
@@ -430,8 +424,6 @@ class Driver_home extends Controller
 
         $order = new Orders();
         $order->assignDriver($orderId,$driverId);
-
-        echo 'success';
         
     }
 

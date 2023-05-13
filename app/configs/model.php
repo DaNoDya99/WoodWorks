@@ -6,12 +6,12 @@ class Model extends Database
 
     public function insert($data)
     {
-
         if(!empty($this->allowedColumns))
         {
             foreach ($data as $key => $value){
                 if(!in_array($key,$this->allowedColumns))
                 {
+
                     unset($data[$key]);
                 }
             }
@@ -30,7 +30,6 @@ class Model extends Database
 
         $query = "insert into ".$this->table;
         $query .= " (".implode(",",$keys) .") values (:".implode(",:",$keys) .")";
-
         $this->query($query,$data);
     }
 

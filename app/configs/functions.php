@@ -1,5 +1,7 @@
 <?php
 
+
+
 function show($stuff)
 {
     echo "<pre>";
@@ -125,3 +127,16 @@ function resize_image($filename,$max_size = 700)
 
     return $filename;
 }
+function exportToCsv($data,$filename)
+{
+    // show($data);
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="' . $filename . '";');
+    $file = fopen('php://output', 'w');
+    foreach ($data as $row) {
+        $row = (array)$row;
+        fputcsv($file, (array)$row);
+    }
+    fclose($file);
+}
+

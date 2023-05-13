@@ -2,7 +2,6 @@
 
 
 require '../vendor/autoload.php';
-require '../app/services/DistanceMatrixService.php';
 
 class Customer_home extends Controller
 {
@@ -10,12 +9,10 @@ class Customer_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login1');
+            $this->redirect('login');
         }
-
         $furniture = new Furnitures();
         $customer = new Customer();
-        $review = new Reviews();
         $id = Auth::getCustomerID();
         $data['row'] = $customer->where('CustomerID',$id);
         $data['furnitures'] =$rows= $furniture->getNewFurniture(['ProductID','Name','Cost','Sub_category_name']);
@@ -25,8 +22,6 @@ class Customer_home extends Controller
             if(!empty($furniture->getDisplayImage($row->ProductID)[0]->Image))
             {
                 $row->Image = $furniture->getDisplayImage($row->ProductID)[0]->Image;
-                $row->Rate = round($review->getProductRating($row->ProductID)[0]->Average,1);
-                $row->Rating = (($row->Rate/5)*100).'%';
             }
         }
         
@@ -263,12 +258,6 @@ class Customer_home extends Controller
             $this->redirect('login');
         }
 
-        $deliveries = new Deliveries();
-
-        $distanceMatrix = new DistanceMatrixService();
-        $distance = $distanceMatrix->calculateDistance('Colombo',$_POST['City']);
-        $deliveryCost = $deliveries->getDeliveryRate(explode(' ',$distance['distance'])[0])[0]->Cost_per_km*explode(' ',$distance['distance'])[0];
-
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $order = new Orders();
@@ -322,11 +311,14 @@ class Customer_home extends Controller
             }
 
             $checkout_session = $stripe->checkout->sessions->create([
+
+                'shipping_address_collection' => ['allowed_countries' => ['LK']],
+
                 'shipping_options' => [
                   [
                     'shipping_rate_data' => [
                       'type' => 'fixed_amount',
-                      'fixed_amount' => ['amount' => $deliveryCost*100, 'currency' => 'lkr'],
+                      'fixed_amount' => ['amount' => 1500, 'currency' => 'lkr'],
                       'display_name' => 'Home Delivery',
                       'delivery_estimate' => [
                         'minimum' => ['unit' => 'business_day', 'value' => 1],
@@ -403,7 +395,7 @@ class Customer_home extends Controller
 
         switch ($details->Order_status)
         {
-            case 'Paid':
+            case 'paid':
                 $str .= "
                     <div class='prog-status-container'>
                     <img src='http://localhost/WoodWorks/public/assets/images/customer/dollar-circle-svgrepo-com(1).svg' alt='paid'>
@@ -578,7 +570,7 @@ class Customer_home extends Controller
                 </div>
                 <div class='order-detail '>
                     <h4>Invoice Number</h4>
-                    <span>" .$details->OrderID . "</span>
+                    <span>#" . substr($details->OrderID, 0, 8) . "</span>
                 </div>
                 <div class='order-detail'>
                     <h4>Sub Total</h4>
@@ -586,7 +578,7 @@ class Customer_home extends Controller
                 </div> 
                 <div class='order-detail'>
                     <h4>Shipping Cost</h4>
-                    <span>Rs. " . $details->Shipping_cost . "</span>
+                    <span>Rs. " . $details->Shipping_cost . ".00</span>
                 </div>
                 <div class='order-detail order-final-detail'>
                     <h4>Discount Obtained</h4>

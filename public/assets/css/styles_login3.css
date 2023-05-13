@@ -347,7 +347,7 @@ body{
 
 .driver-tbox{
     width: 30%;
-    height: 410px;
+    height: auto;
     margin: 1em auto;
     padding: 1em 2em;
     background-color: #f9f9f9;
@@ -362,57 +362,56 @@ body{
     -ms-overflow-style: none;
     scrollbar-width: none;
     position: relative;/* added */
+
 }
 
 .driver-tbox::-webkit-scrollbar{
     display: none;
 }
 
-.driver-tbox hr{
+.recentOrders .driver-tbox-header{
     width: 100%;
-    margin: 5px;
-    padding: 5px;
-    border-left: none;
-    border-top: none;
-    border-right: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     border-bottom: 2px solid #cacaca;
 }
 
-.driver-tbox p{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding-bottom: 15px;
-    padding-right: 10px;
-    font-size: 1rem;
+.driver-tbox-header h1{
     font-family: 'Rubik-SemiBold';
-    cursor: pointer;
-    text-underline-mode: none;
+    font-weight: 600;
 }
 
-.driver-tbox p a{
+.driver-tbox-header button{
+    position: relative;
+    width: 75px;
+    height: 30px;
+    margin: 0;
+    border-radius: 7px;
+    font-family: 'Rubik';
+    font-weight: bolder;
+    font-size: 0.8vw;
+    background-color: #0F3D3E;
+    color: #ffffff;
+    margin: 20px 0;
+    cursor: pointer;
     text-decoration: none;
 }
 
-.driver-tbox table{
-    width: 100%;
-    border-collapse: collapse;
-}
-
 .driver-content-table{
-    font-size: 0.9em;
     width: 100%;
+    font-size: 0.9em;
+    margin-top: 10px;
     border-radius: 5px 5px 0 0;
     max-height: 70vh;
 }
 
-.driver-content-table thead tr{
+.driver-content-table table tr{
     color: black;
     text-align: center;
     font-weight: bold;
     margin-top: 5px;
     border-bottom: 1px solid #d2d2d2;
-
 }
 
 .driver-content-table th,
@@ -441,25 +440,91 @@ body{
     border-radius: 5px;
 }
 
+#statusCircle{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
 .orders-table-rows td{
     text-align: center;
     padding: 1em 0 0 0 ;
     vertical-align: middle;
 }
 
+.cardBox{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align items to the bottom */
+    margin-top: auto; /* Push .cardBox to the bottom */
+}
+
+.cardBox .cards{
+    width: 47%;
+    height: 160px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+    margin: 5px 0px 0 0;
+}
+
+.cardBox .cards:hover {
+    transform: scale(1.05);
+    transition: .4s ease-in;
+}
+
+.cardBox .cards .numbers{
+    position: relative;
+    font-weight: 550;
+    font-size: 2.3em;
+    font-family: 'Rubik', sans-serif;
+}
+
+.cardBox .cards .cardsName{
+    position: relative;
+    margin-top: 15px;
+    font-size: 1.3em;
+    font-family: 'Rubik', sans-serif;
+}
+
+.iconBx img{
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
 /* Designer Dashboard*/
 .designer-tbox{
-    width: 55%;
-    margin: 1em auto;
+    width: 45%;
+    height:auto;
+    margin-top: 20px ;
     padding: 1em 2em;
     background-color: #f9f9f9;
     border-radius: 20px;
-    font-family: 'Rubik';
+    font-family: 'Rubik-SemiBold';
     max-height: 80vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     float: right;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.designer-tbox:hover{
+    transform: scale(1.05);
+    transition: .4s ease-in;
+}
+
+.designer-tbox::-webkit-scrollbar{
+    display: none;
 }
 
 .designer-tbox table{
@@ -472,13 +537,6 @@ body{
     width: 100%;
     border-radius: 5px 5px 0 0;
     max-height: 70vh;
-    cursor: pointer;
-
-}
-
-.designer-content-table:hover{
-    transform: scale(1.05);
-    transition: .4s ease-in;
 }
 
 .designer-content-table thead tr{
@@ -486,7 +544,6 @@ body{
     text-align: center;
     font-weight: bold;
     margin-top: 5px;
-    border-bottom: 1px solid #d2d2d2;
 
 }
 
@@ -508,7 +565,7 @@ body{
 .designs-table-rows img{
     width: 4.5em;
     height: 4.5em;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 5px;
 }
 
@@ -516,6 +573,56 @@ body{
     text-align: center;
     padding: 1em 0 0 0 ;
     vertical-align: middle;
+}
+
+.designer-cardBox{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align items to the bottom */
+    margin-top: auto; /* Push .cardBox to the bottom */
+}
+
+.designer-cardBox .cards{
+    width: 47%;
+    height: 160px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+    margin: 5px 0px 0 0;
+}
+
+.designer-cardBox .cards:hover {
+    transform: scale(1.05);
+    transition: .4s ease-in;
+}
+
+.designer-cardBox .cards .numbers{
+    position: relative;
+    font-weight: 650;
+    font-size: 2.4em;
+    font-family: 'Rubik', sans-serif;
+}
+
+.designer-cardBox .cards .cardsName{
+    position: relative;
+    margin-top: 15px;
+    font-size: 1.4em;
+    font-family: 'Rubik', sans-serif;
+}
+
+.design-iconBx {
+    align-self: flex-end; /* Align the image to the bottom */
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.design-iconBx img{
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -988,21 +1095,24 @@ body{
 
 #popups{
     width: 60%;
-    margin: 1em auto;
-    padding: 1em 2em;
-    top: 5%;
+    margin: 2em auto;
+    padding: 30px;
+    top: 0;
     left: 20%;
+    height: auto;
     background-color: #f9f9f9;
-    border-radius: 20px;
-    font-family: 'Rubik-SemiBold';
-    max-height: 80vh;
-    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
+    border-radius: 15px;
+    font-family: 'Rubik', sans-serif;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
     position: absolute;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
     border-collapse: collapse;
     visibility: hidden;
+    max-height: 85vh;
+
 }
 
 #popups::-webkit-scrollbar {
@@ -1016,11 +1126,16 @@ body{
     padding: 1em 0;
 }
 
+.popups-heading h1{
+    font-size: 35px;
+    font-weight: 650;
+    margin: 30px 0 10px;
+}
+
 .popups-heading h2{
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 500;
-    padding-left: 20px;
-    margin:0;
+    margin: 30px 0 10px;
 }
 
 .popups-heading img {
@@ -1035,11 +1150,14 @@ body{
 }
 
 .details-table{
-    margin: 0;
+    margin-top: 1em;
+    margin-right: 1em;
+    padding: 1em;
     width: 100%;
+    background-color: #d4d4d4;
     font-size: 0.9em;
     min-width: 400px;
-    border-radius: 5px 5px 0 0;
+    border-radius: 10px;
     overflow: hidden;
     overflow-y: scroll;
     max-height: 70vh;
@@ -1050,13 +1168,14 @@ body{
     color: black;
     text-align: center;
     font-weight: bold;
-    border-bottom: 2px solid #d2d2d2;
+    border-bottom: 1.5px solid #636363;
 }
 
 
 .details-table tbody tr td{
     width: 20%;
     word-break: break-word;
+    font-weight: 450;
 }
 
 .details-table th,
@@ -1156,23 +1275,23 @@ body{
     flex-direction: row;
     justify-content: space-around;
     flex-flow: wrap;
+    position: relative;
+    max-height: 850px;
 }
 
 .box{
+    position: relative;
     margin: 20px;
-    width: 30%;
+    width: 80%;
     height: auto;
     box-sizing: border-box;
 
 }
 #chart-container {
-    /*width: 300px;*/
-    /*height: auto;*/
-    width: 400px;
-    height: 410px;
-    float: right;
+    width: 100%;
+    height: auto;
     background-color:#f9f9f9;
-    margin: 20px;
+    margin: 0 ;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -1182,13 +1301,14 @@ body{
 }
 
 #chart-container2{
-    /*width: 500px;*/
-    height: 410px;
-    float: left;
+    width:30%;
+    height: auto;
     background-color:#f9f9f9;
-    margin: 20px;
+    margin:20px;
     border-radius: 10px;
     cursor: pointer;
+    max-height: 80vh;
+    flex-direction: column;
 }
 
 #chart-container2:hover {
@@ -1196,20 +1316,24 @@ body{
     transition: .4s ease-in;
 }
 
+
 #chart-container3{
-    /*width: 500px;*/
+    width:30%;
     height: auto;
-    float: left;
-    /*background-color:#E0E0CE;*/
-    background-color:#f9f9f9;
     margin: 20px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     cursor: pointer;
+    max-height: 80vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-#chart-container3:hover {
-    transform: scale(1.05);
-    transition: .4s ease-in;
+#chart-container3::-webkit-scrollbar{
+    display: none;
 }
 
 @media screen and (max-width: 1200px){
@@ -1231,12 +1355,13 @@ body{
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
-
+    justify-content: space-between;
 }
 
 .designer-box{
+    position: relative;
     margin: 20px;
-    width: 33%;
+    width: 100%;
     height: auto;
     box-sizing: border-box;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
@@ -1244,25 +1369,34 @@ body{
 }
 
 #chart-designer-container{
-    height: auto;
-    float: left;
+    width:100%;
+    height: 500px;
     background-color:#f9f9f9;
-    margin: 20px;
     border-radius: 10px;
+    cursor: pointer;
+    max-height: 80vh;
+    flex-direction: column;
 }
 
-#chart-designer-container:hover {
-    transform: scale(1.05);
-    transition: .4s ease-in;
+#design-chart-container3{
+    width:45%;
+    height: auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    max-height: 80vh;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1200px){
-    .box{
+    .designer-box{
         width: 40%;
     }
 }
 @media screen and (max-width: 600px){
-    .box{
+    .designer-box{
         width: 90%;
     }
 }
@@ -1272,12 +1406,13 @@ body{
 
 .des-form-body{
     width: 70%;
+    height: 85vh;
     background-color: #f9f9f9;
     margin: 1em auto;
     padding: 1em 1.5em;
     border-radius: 15px;
     font-family: 'Rubik', sans-serif;
-    max-height: 80vh;
+    max-height: 90vh;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
 
 }
@@ -1289,7 +1424,7 @@ body{
 
 .add-des-form{
     padding: 1em 0;
-    max-height: 70vh;
+    max-height: 75vh;
     width: 100%;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -1301,9 +1436,15 @@ body{
 }
 
 .des-img-upload-container{
+    width: 55%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin: auto;
+}
+
+.des-img{
+    width: 100%;
 }
 
 #designImage{
@@ -1315,6 +1456,7 @@ body{
     padding-top: 5px;
     justify-content: center;
     padding-bottom: 10px;
+    width: 100%;
 }
 
 #designPdf{
@@ -1340,19 +1482,15 @@ body{
     margin-top: 5px;
     text-align: center;
     font-family: 'Rubik', sans-serif;
-    /*font-weight: bold;*/
-    /*padding-left: 70px;*/
     justify-content: center;
 }
 
 #images{
     width: 100%;
     margin: auto;
-    /*position: relative;*/
     display: flex;
     object-fit: cover;
     justify-content: center;
-    /*flex-wrap: wrap;*/
     flex-direction: row;
 }
 
@@ -1383,11 +1521,11 @@ body{
 
 .des_Name label{
     font-weight: bold;
-    /*margin-right: 0.5em;*/
 }
 
 .des_Name select{
-    width: 20em;
+    width: 100%;
+    height: 40px;
     border: 2px solid #d2d2d2;
     border-radius: 3px;
     background-color: #f9f9f9;
@@ -1396,9 +1534,8 @@ body{
     font-family: 'Rubik-SemiBold', sans-serif;
     color: #787878;
     cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    margin-left: 5px;
+    margin-bottom: 20px;
+    margin-top: 5px;
 }
 
 .des_Name input{
@@ -1410,7 +1547,8 @@ body{
     font-family: 'Rubik', sans-serif;
     background-color: #f9f9f9;
     padding:0 10px;
-    margin-top: 0px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 figure{
@@ -1431,7 +1569,7 @@ figcaption{
 
 .but-img-upload-container{
     margin: auto;
-    width: 64%;
+    width: 55%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1439,13 +1577,13 @@ figcaption{
 
 .edit-des-Ubtn-section{
     height: 2.8em;
-    width: 27%;
+    width: 30%;
     cursor: pointer;
-    margin: auto;
+    /*margin: auto;*/
     padding: 5px;
     font-family: 'Rubik-SemiBold';
     font-size: 1.1rem;
-    background: #104f4a;
+    background: #100F0F;
     justify-content: center;
     border-radius: 7px;
     align-items: center;
@@ -1462,9 +1600,9 @@ figcaption{
 
 .edit-des-Dbtn-section{
     height: 2.8em;
-    width: 40%;
+    width: 27%;
     cursor: pointer;
-    margin: auto;
+    /*margin: auto;*/
     padding: 5px;
     font-family: 'Rubik-SemiBold';
     justify-content: center;
@@ -1504,6 +1642,7 @@ figcaption{
     padding: 10px;
     font-family: 'Rubik', sans-serif;
     background-color: #f9f9f9;
+    margin-top: 5px;
 }
 
 .add-des-btn{
@@ -1522,7 +1661,7 @@ figcaption{
     font-family: 'Rubik';
     font-weight: bolder;
     font-size: 1vw;
-    background-color: #100F0F;
+    background-color: #104f4a;
     color: #ffffff;
     cursor: pointer;
     margin-left: auto;
@@ -1621,13 +1760,12 @@ figcaption{
 }
 
 .des_category-card{
-    width: 250px;
-    height: 260px;
+    width: 280px;
+    height: 330px;
     background-color: #f9f9f9;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     margin: 0 2em 2em 2em;
     border-radius: 10px;
-    /*padding-bottom: 10px;*/
 }
 
 .des_category-card:hover {
@@ -1637,8 +1775,8 @@ figcaption{
 
 .des_category-card img{
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 240px;
+    object-fit: contain;
     border-radius: 10px 10px 0px 0px;
 }
 
@@ -1693,6 +1831,8 @@ figcaption{
 
 .design-view {
     background-color: #E2E2CF;
+    height: 80vh;
+    max-height: 85vh;
     font-family: 'Rubik';
     padding: 2em 0;
     display: flex;
@@ -1702,13 +1842,15 @@ figcaption{
 .design-desc-section {
     margin: 0 auto;
     width: 90%;
+    height: auto;
     display: flex;
-    max-height: 540px;
+    max-height: 80vh;
     flex-direction: row;
 }
 
 .design-img{
     width: 55%;
+    height: 680px;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
 }
 
@@ -1722,8 +1864,8 @@ figcaption{
     position: relative;
     vertical-align: middle;
     width: 100%;
-    height: 540px;
-    object-fit: cover;
+    height: 680px;
+    object-fit: contain;
     top: -23px;
     border-radius: 7px;
 }
@@ -1790,11 +1932,14 @@ figcaption{
 
 .design-desc {
     margin-left: 1%;
+    height: auto;
     width: 45%;
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .design-desc div{
@@ -1802,32 +1947,28 @@ figcaption{
 }
 
 .design-detail table{
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
     align-self: center;
     margin-top: 20px;
     width: 100%;
-
+    height: 100%;
 }
 
 .design-detail th,.design-detail td{
     text-align: left;
-    /*border: 1px solid black;*/
     background: #f9f9f9;
-    /*border-radius: 3px;*/
-    padding-top: .8em;
-    padding-bottom: .8em;
+    padding: 15px;
 }
 
 .design-detail th{
     padding-right: 3em;
+    font-size: 1.35em;
     width:38%;
 }
 
 .design-detail td{
-    /*font-family: 'Rubik';*/
     word-break: break-word;
     padding-bottom: 5px;
+    font-size: 1.2em;
     width:62%;
 }
 
@@ -1917,33 +2058,29 @@ design-desc div button:hover{
     cursor: pointer;
 }
 
-.design-btns input{
-    border-radius: 6px;
-    border: unset;
-    font-family: 'Rubik';
-    font-weight: bold;
-    color: white;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.design-btns input:last-child{
-    background: #E64848;
-    width: 70px;
-    height: 40px;
-}
-
 .design-btns button:first-child{
     background: #5ba49e;
-    width: 70px;
+    width: 100px;
     height: 40px;
     float: left;
 }
 
+.design-btns button:first-child:hover{
+    background: #5ba49e;
+    transform: scale(0.97);
+    transition: .4s ease-in;
+}
+
 .design-btns button:last-child{
     background: #E64848;
-    width: 70px;
+    width: 100px;
     height: 40px;
+}
+
+.design-btns button:last-child:hover{
+    background: #E64848;
+    transform: scale(0.97);
+    transition: .4s ease-in;
 }
 
 /* Chat */
@@ -2182,16 +2319,17 @@ design-desc div button:hover{
     visibility: visible;
 }
 
-/*Edit sub category*/
+/*popup in delivered Order table*/
 
 #upl-doc{
     width: 40%;
     position: absolute;
-    top: 5%;
+    top: 4%;
     left: 30%;
     padding: 2em;
     border-radius: 15px;
     background-color: #f9f9f9;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5 );
     visibility: hidden;
 }
 
@@ -2327,6 +2465,35 @@ design-desc div button:hover{
     text-align: center;
 }
 
+.cat-deletion{
+    background-color: #ae1c1c;
+}
+
+.cat-deletion-btns{
+    display: flex;
+    justify-content: center;
+    gap: 40%;
+    margin-top: 1em;
+}
+
+.cat-deletion-btns button{
+    width: 20%;
+    padding: .5em;
+    background-color: black;
+    border-radius: 5px;
+    color: #f9f9f9;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.cat-deletion-btns button:hover{
+    background-color: #0F3D3E;
+    transform: scale(0.97);
+    transition: .4s ease-in;
+}
+
 .cat-errors{
     background-color: #e6b2b2;
     color: #940b0b;
@@ -2360,7 +2527,7 @@ design-desc div button:hover{
     padding: 5px;
     font-family: 'Rubik-SemiBold';
     font-size: 1.1rem;
-    background: #104f4a;
+    background: #100F0F;
     justify-content: center;
     border-radius: 7px;
     align-items: center;
@@ -2408,8 +2575,8 @@ design-desc div button:hover{
 }
 
 .category-card {
-    width: 160px;
-    height: 200px;
+    width: 230px;
+    height: 270px;
     background-color: #f9f9f9;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
     margin: 0 2em 2em 2em;
@@ -2430,7 +2597,7 @@ design-desc div button:hover{
 
 .category-card p {
     margin: 0;
-    padding-left: 40px;
+    text-align: center;
 }
 
 

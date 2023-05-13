@@ -79,12 +79,17 @@ class Design extends Model
     }
 
 
-    public function getDesign($limit = 5){
-
-        $query = "SELECT DesignID,Name,DATE_FORMAT(Date,'%d / %m / %Y') AS Date FROM $this->table ORDER BY DesignID desc limit $limit; ";
-
-        return $this->query($query);
+    public function getDesign($column, $value, $limit = 5) {
+        $query = "SELECT `DesignID`, `Name`, `Date`, `CategoryID`
+              FROM `$this->table`
+              WHERE $column = :value
+              ORDER BY `Date` DESC
+              LIMIT $limit";
+        $params = ['value' => $value];
+        return $this->query($query, $params);
     }
+
+
 
     public function viewDesign($id = null)
     {
@@ -181,6 +186,40 @@ class Design extends Model
         $data['DesignID'] = $id;
 
         $this->query($query, $data);
+    }
+
+    public function findNumberOfDesigns($column, $value)
+    {
+
+        $query = "SELECT COUNT(DesignID) AS 'NumOfDesigns'FROM $this->table WHERE $column = :value ";
+
+        $params = ['value' => $value];
+
+        return $this->query($query, $params);
+    }
+
+    public function FindNumberOfAcceptedDesigns($column, $value)
+    {
+
+        $query = "SELECT COUNT(DesignID) AS 'NumOfAcceptedDesigns' FROM $this->table WHERE $column = :value AND `Status` = 'Accepted'";
+
+        $params = ['value' => $value];
+
+        return $this->query($query, $params);
+    }
+
+    public function barGraph($column, $value)
+    {
+
+        $query = "SELECT COUNT(d.CategoryID) AS 'numDesigns', c.Category_name AS 'category'
+                    FROM `design` d
+                    JOIN `categories` c ON d.CategoryID = c.CategoryID
+                    WHERE d.$column = :value
+                    GROUP BY d.CategoryID";
+
+        $params = ['value' => $value];
+
+        return $this->query($query, $params);
     }
 
 

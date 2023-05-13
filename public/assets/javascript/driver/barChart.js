@@ -3,8 +3,8 @@ $(document).ready(function () {
         url: "http://localhost/woodworks/public/driver_home/barData",
         method: "GET",
         success: function (data) {
-            console.log(data);
-            var count = [];
+            // console.log(data);
+            var Count = [];
             var date = [];
             var colors = [];
 
@@ -14,7 +14,7 @@ $(document).ready(function () {
                 colors.push(color());
             }
             // console.log(Count);
-            // console.log(Status);
+            // console.log(date);
             var chartdata = {
                 labels: date,
                 datasets: [{
