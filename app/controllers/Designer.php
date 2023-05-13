@@ -25,6 +25,8 @@ class Designer extends Controller
         $limit = 7;
 
         $data['rows'] = $design->getDesign("DesignerID",$id,$limit);
+        $data['numberOfDesigns']= $design->findNumberOfDesigns('DesignerID',$id);
+        $data['numberOfAcceptedDesigns']= $design->FindNumberOfAcceptedDesigns('DesignerID',$id);
 
         if(!empty($data['rows'])) {
 
@@ -479,10 +481,11 @@ class Designer extends Controller
 
         header('Content-Type: application/json');
 
-        $order = new Order();
+        $design = new Design();
 
-        $rows =  $order->query("SELECT cast(Date as date) AS Date, count(DesignID) AS numDesigns FROM `design` WHERE DesignerID = '$id' GROUP BY cast(Date as date) ORDER BY Date ASC");
+        $id = $id ?? Auth::getEmployeeID();
 
+        $rows =  $design->barGraph('DesignerID',$id);
         $data = array();
 
         foreach ($rows as $row){
@@ -490,6 +493,7 @@ class Designer extends Controller
         }
 
         print json_encode($data);
+
 
     }
 
