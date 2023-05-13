@@ -147,7 +147,7 @@ class Driver_home extends Controller
 
         if(isset($_POST['Status'])){
             $status =$_POST['Status'];
-            if($status=="-- Filter --"){
+            if($status=="All"){
                 $this->redirect('driver_home/order');
             }
             else
@@ -211,9 +211,13 @@ class Driver_home extends Controller
         $data['records2'] = $order->displayDeliveredOrders('DriverID',$id);
 
         if(isset($_POST['dateFilter'])){
+            $status = $_POST['Status'];
             $from_date = $_POST['from_date'];
             $to_date = $_POST['to_date'];
-            $data['records2'] = $order->filterDate($from_date,$to_date);
+            $data['records2'] = $order->filterRecords($status, $from_date, $to_date);
+            if (empty($data['records2'])) {
+                $this->redirect('driver_home/orders_records');
+            }
         }
 
         $this->view('driver/includes/delivered_history_table',$data);

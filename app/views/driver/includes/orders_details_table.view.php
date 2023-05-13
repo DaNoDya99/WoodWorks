@@ -11,7 +11,7 @@
         <h1> ORDERS DETAILS</h1>
         <form method="post" class="order-form" action="<?=ROOT?>/driver_home/order" hidden>
             <select onchange="this.form.submit()" name="Status">
-                <option>-- Filter --</option>
+                <option>All</option>
                 <?php
                     $arr = array("Processing", "Dispatched");
 

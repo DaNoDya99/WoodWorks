@@ -26,7 +26,7 @@ if (doc_btn) {
                     setTimeout(() => {
                         response.innerHTML = "";
                         location.reload();
-                    }, 1000);
+                    }, 3000);
 
                 }
             }

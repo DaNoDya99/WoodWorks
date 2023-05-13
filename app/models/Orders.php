@@ -19,7 +19,6 @@ class Orders extends Model
         'Deliver_method',
         'Estimated_date',
         'Image',
-        'Reasons',
         'Order_status',
         'Vehicle_type',
         'Address',
@@ -56,31 +55,8 @@ class Orders extends Model
         $this->query($query, $data);
     }
 
-    public function update_Reason($where, $data)
-    {
-        if (!empty($this->allowedColumns)) {
-            foreach ($data as $key => $value) {
-                if (!in_array($key, $this->allowedColumns)) {
-                    unset($data[$key]);
-                }
-            }
-        }
 
-        $keys = array_keys($data);
-        $id = array_search($where['OrderID'], $where);
-
-        $query = "update " . $this->table . " set ";
-        foreach ($keys as $key) {
-            $query .= $key . "=:" . $key . ",";
-        }
-        $query = trim($query, ",");
-        $query .= " where OrderID = :id";
-
-        $data['id'] = $where['OrderID'];
-        $this->query($query, $data);
-    }
-
-    public function findThisWeekOrders($column, $value)
+    public function findThisWeekOrders($column,$value)
     {
         $startOfWeek = date('Y-m-d', strtotime('this week Monday'));
         $endOfWeek = date('Y-m-d', strtotime('this week Sunday'));
@@ -200,9 +176,16 @@ class Orders extends Model
         return $this->query($query,['value'=>$value]);
     }
 
-    public function filterDate($from_date, $to_date)
-    {
-        $query = "select OrderID,Dispatched_date,Delivered_date,Order_status,Address,Firstname,Lastname,Contactno,Date from $this->table  WHERE `Deliver_method` = 'Delivery' AND `Order_status` = 'Delivered' AND Delivered_date BETWEEN '$from_date' AND '$to_date' limit 15";
+
+    public function filterRecords($status, $from_date, $to_date) {
+        $query = "SELECT OrderID, Dispatched_date, Delivered_date,Estimated_date, Order_status, Address, Firstname, Lastname, Contactno, Date FROM $this->table WHERE Deliver_method = 'Delivery'";
+
+        if($status != 'All') {
+            $query .= " AND $status BETWEEN '$from_date' AND '$to_date'";
+        }
+
+        $query .= " ORDER BY $status DESC LIMIT 15";
+
         return $this->query($query);
     }
 
