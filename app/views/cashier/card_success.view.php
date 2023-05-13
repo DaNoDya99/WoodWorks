@@ -44,7 +44,7 @@
             letter-spacing: 2px;
         }
 
-        .checkmark img{
+        .checkmark img {
             height: 25vh;
         }
 
@@ -80,22 +80,23 @@
 <div class="container">
     <div class="checkmark"><img src="circle-check-solid.svg" alt=""></div>
     <h1>Transaction Successful!</h1>
-    <h2><?= show($data) ?></h2>
+    <h3><?= $data['order']->OrderID ?></h3>
     <p>Thank you for your purchase. Your transaction was successful, and your bill is ready.</p>
     <div>
-        <button class="btn" id="print-bill">Print Bill</button>
+        <button class="btn" id="print-bill" onclick="bill('<?= $data['order']->OrderID ?>')">Print Bill</button>
         <button class="btn" id="back-to-pos">Go Back to POS</button>
     </div>
 
 </div>
 
 <script>
-    document.getElementById('print-bill').addEventListener('click', function () {
-        window.print();
-    });
+
+    function bill(orderID) {
+        window.location.href = '<?= ROOT ?>/cashier/bill/' + orderID;
+    }
 
     document.getElementById('back-to-pos').addEventListener('click', function () {
-        window.location.href = 'your-pos-url-here';
+        window.location.href = '<?= ROOT ?>/cashier/resetCustomer';
     });
 </script>
 </body>

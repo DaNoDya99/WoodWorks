@@ -777,19 +777,6 @@
     submitBtn.addEventListener("click", function (e) {
         e.preventDefault(); // Prevent form submission
 
-        // Get form data
-
-        // Send a fetch request
-        fetch('http://localhost/woodworks/public/cashier/updateShipping', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => {
-                return response.text();
-            })
-            .then(data => {
-                console.log(data);
-            });
         hidePopup();
     });
 

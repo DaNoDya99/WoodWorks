@@ -5,8 +5,6 @@ require_once 'PDF.php';
 require '../app/services/DistanceMatrixService.php';
 
 
-
-
 class cashier extends Controller
 {
     public function index(): void
@@ -251,6 +249,7 @@ class cashier extends Controller
         $_SESSION['CustomerID'] = null;
         $_SESSION['CustomerDetails'] = null;
         $_SESSION['CartID'] = null;
+        $_SESSION['cart'] = null;
         $_SESSION['OrderID'] = null;
         $this->redirect('cashier/dash');
     }
@@ -310,13 +309,12 @@ class cashier extends Controller
 
             $checkout_session = $stripe->checkout->sessions->create([
 
-                'shipping_address_collection' => ['allowed_countries' => ['LK']],
 
                 'shipping_options' => [
                     [
                         'shipping_rate_data' => [
                             'type' => 'fixed_amount',
-                            'fixed_amount' => ['amount' => 1500, 'currency' => 'lkr'],
+                            'fixed_amount' => ['amount' => $deliveryCost * 100, 'currency' => 'lkr'],
                             'display_name' => 'Next day air',
                             'delivery_estimate' => [
                                 'minimum' => ['unit' => 'business_day', 'value' => 1],
@@ -449,7 +447,7 @@ class cashier extends Controller
         $cart = new Carts();
         $id = $_SESSION['CustomerID'];
 
-        $_SESSION['Final_Total'] = $cart->getTotalAmount($id)[0]->Total_amount + $_SESSION['shipping'];
+        $_SESSION['Final_Total'] = $cart->getTotalAmount($id)[0]->Total_amount;
         echo json_encode($_SESSION['Final_Total']);
     }
 
@@ -478,7 +476,6 @@ class cashier extends Controller
         $session_id = $_GET['session_id'];
         $order_id = $order->checkIsPreparing($id)[0]->OrderID;
 
-        show($id);
         $stripe = new \Stripe\StripeClient(
             $_ENV['STRIPE_API_KEY']
         );
@@ -488,16 +485,13 @@ class cashier extends Controller
 
 
             if (!$session) {
-                // $this->redirect('_404');
-                show("x");
-                die;
+                $this->redirect('_404');
+
             }
 
             $customer = $session->customer_details;
             $cus_order = $order->getOrderByTheOrderID($order_id)[0];
 
-            show($session->id);
-            show($cus_order->SessionID);
 
             if ($session->id === $cus_order->SessionID) {
                 $order->updateSessionID($cus_order->OrderID, $session->id, 'paid');
@@ -507,9 +501,7 @@ class cashier extends Controller
 
                 unset($_SESSION['cart']);
             } else {
-                show('F');
-                die;
-                // $this->redirect('_404');
+                $this->redirect('_404');
             }
 
             $data['customer'] = $customer['name'];
@@ -519,10 +511,7 @@ class cashier extends Controller
 
             $this->view('cashier/card_success', $data);
         } catch (Exception $e) {
-            show($e);
-            Show('FF');
-            die;
-            // $this->redirect('_404');
+            $this->redirect('_404');
         }
     }
 
@@ -540,21 +529,5 @@ class cashier extends Controller
         $data['order_items'] = $order_items->getOrderItems($id);
         echo json_encode($data);
     }
-
-
-    public function updateShipping()
-    {
-        // Get JSON as a string
-//        $json_str = file_get_contents('php://input');
-//        $data = json_decode($json_str, true);
-//
-//        if($data['option'] == 'home_delivery'){
-//            show($data['option']);
-//        }else if ($data['option'] == 'pickup'){
-//            show($data['option']);
-//        }
-
-        show($_POST);
-
-    }
 }
+

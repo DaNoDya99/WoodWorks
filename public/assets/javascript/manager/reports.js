@@ -113,37 +113,14 @@ function getTopProducts() {
 //onclick
 window.onload = function (e) {
     e.preventDefault();
-    //ajax using fetch to send to php
-    //
-    //
+
     const date1 = new Date(document.getElementById('date1-input').value);
     const date2 = new Date(document.getElementById('date2-input').value);
-    //
-    // const diffInDays = Math.floor((date2.getTime() - date1.getTime()) / 86400000);
-    //
-    // if (diffInDays < 30) {
-    //     SalesChart2.options.scales.x.time.unit = 'day';
-    //     orderchart.options.scales.x.time.unit = 'day';
-    //
-    // } else if (diffInDays < 365) {
-    //     SalesChart2.options.scales.x.time.unit = 'month';
-    //     orderchart.options.scales.x.time.unit = 'month';
-    // } else {
-    //     SalesChart2.options.scales.x.time.unit = 'year';
-    //     orderchart.options.scales.x.time.unit = 'year';
-    // }
-    // //update chart
-    // SalesChart2.data.labels = data.labels;
-    // SalesChart2.data.datasets[0].data = data.test;
-    //
+
     getorderchart();
     getTopRatings();
     getOrderDescription();
     getTopProducts();
-
-
-    // document.getElementById("page-no").innerHTML = 1;
-
 
     var data1 = document.querySelector("input[name='date1']").value;
     var data2 = document.querySelector("input[name='date2']").value;
@@ -156,7 +133,7 @@ window.onload = function (e) {
     getCatergoryDist()
     salesChart2(data1, data2);
 
-    exportTableToCSV('apple');
+
     // getorderchart();
 
 }

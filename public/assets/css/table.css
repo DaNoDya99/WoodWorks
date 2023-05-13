@@ -5,6 +5,7 @@
 }
 
 .inventory-data {
+    height: 85vh;
     background-color: white;
     width: 100%;
     border-radius: 12px;
@@ -13,16 +14,18 @@
     padding: 30px;
     padding-top: 30px;
     transition: all 0.2s ease;
+    /* overflow: scroll; */
 }
 .inventory-data table{
     width: 100%;
     border-collapse: collapse;
+    overflow: scroll;
 }
 .inventory-data table,tr,th,td {
     text-align: center;
     padding: 10px;
     text-align: center;
-    overflow: visible;
+    /* overflow: scroll; */
 }
 
  .inventory-data thead {

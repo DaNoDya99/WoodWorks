@@ -159,7 +159,6 @@
 .select-reports {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
     width: 15%;
     position: fixed;
     padding: 30px;
