@@ -20,6 +20,7 @@ class Furnitures extends Model
         'Discount_percentage',
         'SupplierID',
         'Discount_given_by',
+        'DiscountID',
         'Date'
     ];
 
@@ -32,19 +33,6 @@ class Furnitures extends Model
     {
         $query = "select ";
 
-        $fields = [
-            'ProductID',
-            'furniture.Name',
-            'Description',
-            'Quantity',
-            'Cost',
-            'Availability',
-            'Warrenty_period',
-            'Wood_type ',
-            'discounts.Discount_percentage',
-            'discounts.Active',
-        ];
-
         if (!empty($fields)) {
             foreach ($fields as $field) {
                 $query .= $field . ", ";
@@ -52,7 +40,8 @@ class Furnitures extends Model
         }
 
         $query = trim($query, ", ");
-        $query .= " from " . $this->table . " left join discounts on furniture.DiscountID = discounts.DiscountID ORDER BY DATE $order LIMIT $limit";
+
+        $query .= " from " . $this->table . " order by date $order limit $limit";
 
         return $this->query($query);
     }
@@ -70,8 +59,7 @@ class Furnitures extends Model
             'Availability',
             'Warrenty_period',
             'Wood_type ',
-            'discounts.Discount_percentage',
-            'discounts.Active',
+            'discounts.Discount_percentage'
         ];
 
         if (!empty($fields)) {
@@ -86,11 +74,11 @@ class Furnitures extends Model
         return $this->query($query);
     }
 
-    public function getFurnitures($category ,$sub_cat,$limit = 2,$offset)
+    public function getFurnitures($category ,$sub_cat,$offset,$limit = 2)
     {
-        $query = "SELECT furniture.ProductID, furniture.Name, furniture.Cost, discounts.Discount_percentage, discounts.Active FROM furniture LEFT JOIN discounts ON furniture.DiscountID = discounts.DiscountID WHERE furniture.CategoryID = '$category' && furniture.Sub_category_name = '$sub_cat' && Visibility = :Visibility limit $limit offset $offset; ";
+        $query = "SELECT furniture.ProductID, furniture.Name, furniture.Cost, discounts.Discount_percentage FROM furniture LEFT JOIN discounts ON furniture.DiscountID = discounts.DiscountID WHERE furniture.CategoryID = '$category' && furniture.Sub_category_name = '$sub_cat' limit $limit offset $offset; ";
 
-        return $this->query($query,['Visibility' => 1]);
+        return $this->query($query);
     }
 
     public function getFurniture($id)
@@ -124,6 +112,12 @@ class Furnitures extends Model
     public function getInventory()
     {
         $query = "select ProductID , Name , Quantity , Cost, CategoryID,Visibility from furniture;";
+
+        return $this->query($query);
+    }
+    public function getInventorywithDiscounts()
+    {
+        $query = "select ProductID , furniture.Name , Quantity , Cost, CategoryID, discounts.Discount_percentage FROM furniture LEFT JOIN discounts ON furniture.DiscountID = discounts.DiscountID";
 
         return $this->query($query);
     }
@@ -333,6 +327,10 @@ class Furnitures extends Model
 
         return $this->query($query, ['SupplierID' => $id]);
     }
+    
+
+    
+
 
     public function updateImage($id,$image,$prev_image)
     {

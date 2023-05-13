@@ -230,7 +230,7 @@ class cashier extends Controller
         $inventory = new Product_Inventory();
         $_POST['Payment_type'] = 'Cash';
         $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
-        $_POST['Delivery_method'] = 'Home Delivery';
+        $_POST['Delivery_method'] = 'Delivery';
         $order_items->updateIsPurchased($orderID);
         $cus_order_items = $order_items->getOrderItems($orderID);
 

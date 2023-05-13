@@ -2,9 +2,8 @@
 
 class CompanyOrderModel extends Model
 {
-    protected $table = "company_order";
     public $errors = [];
-
+    protected $table = "company_order";
     protected $allowedColumns = [
         'OrderID',
         'OrderStatus',
@@ -28,17 +27,19 @@ class CompanyOrderModel extends Model
         ];
         return $this->query($query, $data);
     }
+
     public function getneworders()
     {
         $query = "select * from $this->table where OrderStatus = :OrderStatus and SupplierID = :SupplierID";
         $data = [
             'OrderStatus' => 'pending',
-            'SupplierID' => Auth::getSupplierID(),
+//            'SupplierID' => Auth::getSupplierID(),
+            'SupplierID' => 'S0001',
         ];
         return $this->query($query, $data);
     }
     public function generateOrderID() {
-        $prefix = 'COM-ORD';
+        $prefix = 'COM-ODR';
         $unique_id = mt_rand(1000, 9999);
         $timestamp = substr(date('YmdHis'), 8, 6);
         return $prefix . '-' . $unique_id . '-' . $timestamp;
@@ -94,6 +95,47 @@ class CompanyOrderModel extends Model
             'OrderID' => $id,
             'Comments' => $comment,
         ];
+    }
+
+    public function getAllOrders()
+    {
+        $query = "select * from $this->table where SupplierID = :SupplierID";
+        $data = [
+            'SupplierID' => 'S0001'
+        ];
+        return $this->query($query, $data);
+    }
+
+    public function findOrder($id)
+    {
+        $query = "select * from $this->table where OrderID = :OrderID";
+        $data = [
+            'OrderID' => $id,
+        ];
+        if ($this->query($query, $data)) {
+            return $this->query($query, $data)[0];
+        } else {
+            return false;
+        }
+    }
+
+    public function changeOrderStatus($id, $status)
+    {
+        if ($status == 'accepted') {
+            $query = "update $this->table set OrderStatus = :OrderStatus, Responded_date = :Responded_date where OrderID = :OrderID";
+            $data = [
+                'OrderStatus' => $status,
+                'OrderID' => $id,
+                'Responded_date' => date('Y-m-d'),
+
+            ];
+        } else {
+            $query = "update $this->table set OrderStatus = :OrderStatus where OrderID = :OrderID";
+            $data = [
+                'OrderStatus' => $status,
+                'OrderID' => $id,
+            ];
+        }
 
         return $this->query($query, $data);
     }
