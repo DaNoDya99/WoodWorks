@@ -28,7 +28,8 @@ class Orders extends Model
         'Is_preparing',
         'Shipping_cost',
         'Discount_obtained',
-        'SessionID'
+        'SessionID',
+        'in_store'
     ];
 
     public function update_Image($where, $data)
@@ -420,5 +421,7 @@ class Orders extends Model
         $query = "select * from $this->table WHERE Order_status NOT IN ('Unpaid', 'Pending') order by DATE desc";
         return $this->query($query);
     }
+
+
 //    test
 }

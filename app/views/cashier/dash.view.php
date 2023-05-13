@@ -171,12 +171,12 @@
                         <p onclick="discountpopup()" style="">00.00</p>
                     </div> -->
                     <div class="shippingcost-view">
-                        <div
-                            style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row">
+                        <div id="openPopupButton"
+                             style="border: 0.1px solid grey; padding: 5px; border-radius: 5px; display: flex; flex-direction: row">
                             <p>Shipping</p>
                             <img src="<?= ROOT ?>/assets/images/cashier/angle-right-solid.svg" alt=""
                                  style="width: 15px; height: 15px; margin-top: 3px; margin-left: 5px;"
-                                 onclick="shippingpopup()">
+                            >
                         </div>
                         <p id="shippingcost-value">00.00</p>
 
@@ -298,7 +298,25 @@
         </div>
     </div>
 </div>
+<div id="overlay" class="overlay"></div>
 
+<div id="deliveryPopup" class="delivery-popup">
+    <h2>Delivery Options</h2>
+    <form id="shipping-details">
+        <label>
+            <input type="radio" name="delivery" value="pickup" checked>
+            Pickup
+        </label>
+        <label>
+            <input type="radio" name="delivery" value="home_delivery">
+            Home Delivery
+        </label>
+        <input type="text" id="addressInput" placeholder="Address Line 1" style="display: none;">
+        <input type="text" id="addressInput1" placeholder="Address Line 2" style="display: none;">
+        <input type="text" id="addressInput2" placeholder="City" style="display: none;">
+        <button type="submit" id="submitBtn">Submit</button>
+    </form>
+</div>
 
 <script>
     let popup1 = document.getElementById('popup');
@@ -401,31 +419,51 @@
 
     function checkout(orderid) {
         //using vanilla js using fetch
+
+        var deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
+        var addressLine1 = document.getElementById('addressInput').value;
+        var addressLine2 = document.getElementById('addressInput1').value;
+        var city = document.getElementById('addressInput2').value;
+
+        // Prepare data to send
+        var data = {
+            delivery: deliveryMethod,
+            addressLine1: addressLine1,
+            addressLine2: addressLine2,
+            city: city
+        };
+        const formData = new URLSearchParams();
+
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
+        console.log(formData);
+
+
         fetch('<?= ROOT ?>/cashier/checkout_card/' + orderid, {
             method: 'POST',
-            body: JSON.stringify({
-                orderid: orderid
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            if (response.status === 200) {
-                return response.text(); // or response.text() if the data is plain text
-            } else {
-                throw new Error('Network response was not OK.');
-            }
+            body: formData,
+        }),
+
+    }
+
+    ).then(response => {
+        if (response.status === 200) {
+            return response.text(); // or response.text() if the data is plain text
+        } else {
+            throw new Error('Network response was not OK.');
+        }
+    })
+        .then(data => {
+            // Do something with the data
+            console.log(data);
+            data = JSON.parse(data);
+            window.location.href = data;
         })
-            .then(data => {
-                // Do something with the data
-                console.log(data);
-                data = JSON.parse(data);
-                window.location.href = data;
-            })
-            .catch(error => {
-                // Handle fetch error
-                console.log(error);
-            });
+        .catch(error => {
+            // Handle fetch error
+            console.log(error);
+        });
     }
 
     const form = document.querySelector('#old-customer-form');
@@ -699,6 +737,65 @@
             document.getElementById('blur').style.display = 'none';
         });
     }
+
+    const overlay = document.getElementById("overlay");
+
+    const openPopupButton = document.getElementById("openPopupButton");
+    const deliveryPopup = document.getElementById("deliveryPopup");
+    const deliveryRadios = document.getElementsByName("delivery");
+    const addressInput = document.getElementById("addressInput");
+    const addressInput1 = document.getElementById("addressInput1");
+    const addressInput2 = document.getElementById("addressInput2");
+
+    // Show the delivery options popup when the button is pressed
+    openPopupButton.addEventListener("click", function () {
+        overlay.style.display = "block";
+
+        deliveryPopup.style.display = "block";
+    });
+
+    function hidePopup() {
+        overlay.style.display = "none";
+        deliveryPopup.style.display = "none";
+    }
+
+    // Show address input box when home delivery is selected
+    deliveryRadios.forEach(radio => {
+        radio.addEventListener("change", function () {
+            if (this.value === "home_delivery") {
+                addressInput.style.display = "block";
+                addressInput1.style.display = "block";
+                addressInput2.style.display = "block";
+            } else {
+                addressInput.style.display = "none";
+                addressInput1.style.display = "none";
+                addressInput2.style.display = "none";
+            }
+        });
+    });
+
+    const submitBtn = document.getElementById("submitBtn");
+
+    submitBtn.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent form submission
+
+        // Get form data
+
+        // Send a fetch request
+        fetch('http://localhost/woodworks/public/cashier/updateShipping', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                return response.text();
+            })
+            .then(data => {
+                console.log(data);
+            });
+        hidePopup();
+    });
+
+
 </script>
 </body>
 
