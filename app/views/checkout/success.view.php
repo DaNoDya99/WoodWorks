@@ -10,7 +10,7 @@
         <div class="invoice-details">
             <div>
                 <h4>Amount Paid</h4>
-                <span>Rs <?=$order->Total_amount + $order->Shipping_cost - $order->Discount_obtained?>.00</span>
+                <span>Rs <?=$order->Total_amount?>.00</span>
             </div>
             <div>
                 <h4>Date Paid</h4>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="invoice-detail">
                     <span>Shipping (Normal home delivery)</span>
-                    <span>Rs <?=$order->Shipping_cost?></span>
+                    <span>Rs <?=$order->Shipping_cost?>.00</span>
                 </div>
                 <div class="invoice-detail item-list">
                     <span>Discount (10% off)</span>
