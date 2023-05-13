@@ -103,6 +103,22 @@ function save()
             if(xhr.readyState === XMLHttpRequest.DONE){
                 if(xhr.status === 200){
                     console.log(xhr.response);
+                    if(xhr.response === "success"){
+                        response.innerHTML ="<div class='cat-success'>\n" +
+                            "        <h2>Advertisement Updated Successfully.</h2>\n" +
+                            "    </div>";
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    }else {
+                        response.innerHTML = "<div class='cat-success cat-deletion'>\n" +
+                            "        <h2>Updating Advertisement Failed.</h2>\n" +
+                            "    </div>";
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    }
                 }
             }
         }
