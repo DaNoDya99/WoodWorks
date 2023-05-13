@@ -320,7 +320,7 @@ function chart2(){
                 });
 
                 let config = {
-                    type: 'horizontalBar',
+                    type: 'bar',
                     data: {
                         labels: labels,
                         datasets: [{
@@ -364,7 +364,6 @@ function chart2(){
                             }],
                             yAxes: [{
                                 ticks: {
-                                    reverse: true,
                                     fontSize: 14, // set font size for y-axis labels
                                     fontColor: 'rgb(0,0,0)',// black
                                 },
@@ -394,6 +393,7 @@ function chart3()
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 let response = JSON.parse(xhr.response);
+                // console.log(response);
                 let labels = [];
                 let dataset = [];
 

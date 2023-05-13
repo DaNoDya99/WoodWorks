@@ -104,12 +104,16 @@ function rejectDesign(id)
 
 function confirmAcceptDesign()
 {
+    document.getElementById('response').innerHTML = '';
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/designer/acceptDesign/'+design_id, true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if (xhr.status === 200){
-                document.getElementById('design-info').innerHTML = xhr.response;
+                document.getElementById('response').innerHTML = xhr.response;
+                setTimeout(function () {
+                    window.location.reload();
+                },1500);
             }
         }
     }
@@ -128,14 +132,18 @@ function closeRejectDesignPopup()
     design_id = '';
 }
 
-function confirmRejectDesign(id)
+function confirmRejectDesign()
 {
+    document.getElementById('response').innerHTML = '';
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost/WoodWorks/public/designer/rejectDesign/'+design_id, true);
     xhr.onload = () => {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if (xhr.status === 200){
-                document.getElementById('design-info').innerHTML = xhr.response;
+                document.getElementById('response').innerHTML = xhr.response;
+                setTimeout(function () {
+                    window.location.reload();
+                },1500);
             }
         }
     }

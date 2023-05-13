@@ -508,11 +508,11 @@ class Designer extends Controller
         $emp_id = Auth::getEmployeeID();
 
         if(!$design->acceptDesign($id,$emp_id)){
-            echo "<div class='design-response'>
+            echo "<div class='cat-success'>
                         <h2>Design Accepted Successfully!</h2>
                     </div>";
         }else{
-            echo "<div class='design-response error'>
+            echo "<div class='cat-deletion'>
                         <h2>Error Occured!</h2>
                     </div>";
         }
@@ -528,11 +528,11 @@ class Designer extends Controller
         $emp_id = Auth::getEmployeeID();
 
         if(!$design->rejectDesign($id,$emp_id)){
-            echo "<div class='design-response'>
+            echo "<div class='cat-success'>
                     <h2>Design Rejected Successfully!</h2>
                 </div>";
         }else{
-            echo "<div class='design-response error'>
+            echo "<div class='cat-deletion'>
                     <h2>Error Occured!</h2>
                   </div>";
         }

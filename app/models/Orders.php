@@ -186,6 +186,13 @@ class Orders extends Model
         return $this->query($query, $params);
     }
 
+    public function getOrdersCountsByStatus()
+    {
+        $query = "SELECT COUNT(OrderID) AS numOrders,Order_status FROM $this->table GROUP BY Order_status ";
+
+        return $this->query($query);
+    }
+
     public function barGraph($column, $value)
     {
         $startOfWeek = date('Y-m-d', strtotime('this week Monday'));

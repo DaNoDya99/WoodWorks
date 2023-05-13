@@ -90,7 +90,7 @@ class Home extends Controller
         $data['sub_categories'] =$rows= $sub_category->where('CategoryID',$id);
         $data['id'] = $id;
         $data['pager'] = $pager;
-        $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$limit,$offset);
+        $data['furniture'] = $furniture->getFurnitures($id,$sub_cat,$offset,$limit);
         $data['flag'] = 'f';
 
         if(!empty($data['furniture']))

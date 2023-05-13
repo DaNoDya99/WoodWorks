@@ -342,7 +342,7 @@ class Admin extends Controller
         }
 
         $orders = new Orders();
-        $rows = $orders->pieGraph();
+        $rows = $orders->getOrdersCountsByStatus();
 
         if(!empty($rows)) {
             echo json_encode($rows);

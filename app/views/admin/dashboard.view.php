@@ -51,7 +51,6 @@
                             </div>
 
                             <div class="pie-chart-container">
-                                <span id="pie-title"></span>
                                 <canvas id="myChart3" ></canvas>
                             </div>
                         </div>
