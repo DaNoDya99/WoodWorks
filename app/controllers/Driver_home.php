@@ -29,7 +29,6 @@ class Driver_home extends Controller
         if(empty($row[0]))
         {
             $driver->insert(['DriverID'=>$id,'Availability'=>"Not Available"]);
-            //$row = $driver->query("INSERT INTO driver (DriverID,Availability) VALUES ('$id','Not Available');");
             $this->redirect('driver_home');
 
         }

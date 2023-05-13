@@ -51,8 +51,36 @@
                 </div>
             </div>
 
-            <div class="designer-box" id="chart-designer-container" onclick="location.href='<?=ROOT?>/designer/design';">
-                <canvas id="designerBar" width="300" height="400"></canvas>
+            <div id="design-chart-container3">
+
+                <div class="designer-box" id="chart-designer-container" onclick="location.href='<?=ROOT?>/designer/view_design_categories';">
+                    <canvas id="designerBar" width="340" height="207"></canvas>
+                </div>
+
+                <div class="designer-cardBox">
+                    <div class="cards" onclick="location.href='<?=ROOT?>/designer/view_design_categories';">
+                        <div>
+                            <div class="numbers"><?=$data['numberOfDesigns'][0]->NumOfDesigns?></div>
+                            <div class="cardsName">Total Number of Designs Added</div>
+                        </div>
+
+                        <div class="design-iconBx" >
+                            <img src="<?= ROOT ?>/assets/images/designer/thisMonth.png">
+                        </div>
+                    </div>
+
+                    <div class="cards" onclick="location.href='<?=ROOT?>/designer/view_design_categories';">
+                        <div>
+                            <div class="numbers"><?=$data['numberOfAcceptedDesigns'][0]->NumOfAcceptedDesigns?></div>
+                            <div class="cardsName">Total Number Of Accepted Designs</div>
+                        </div>
+
+                        <div class="design-iconBx">
+                            <img src="<?= ROOT ?>/assets/images/designer/numberDesigns.png">
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
