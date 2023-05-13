@@ -86,11 +86,11 @@ class Furniture extends Controller
                         <input type='text' name='ProductID' placeholder='SKU' value='".$fur[0]->ProductID."' disabled>
                     </div>
                     <div class='add-fur-field edit-fur'>
-                        <label>Name</label>
+                        <label>Name<span class='dis-err' style='color: red;font-size: small' id='name-error'></span></label>
                         <input type='text' name='Name' placeholder='Name' value='".$fur[0]->Name."'>
                     </div>
                     <div class='add-fur-field edit-fur'>
-                        <label>Category</label>
+                        <label>Category<span class='dis-err' style='color: red;font-size: small' id='category-error'></span></label>
                         <select name='CategoryID'>
                             <option value='".$fur[0]->CategoryID."' selected>".$fur[0]->CategoryID." - ".$categories->getCategoryByID($fur[0]->CategoryID)[0]->Category_name."</option>";
 
@@ -101,7 +101,7 @@ class Furniture extends Controller
         $stm .=   "</select>
                     </div>
                     <div class='add-fur-field edit-fur'>
-                        <label>Sub Category</label>
+                        <label>Sub Category<span class='dis-err' style='color: red;font-size: small' id='sub-category-error'></span></label>
                         <select name='Sub_category_name'>
                             <option value='".$fur[0]->Sub_category_name."' selected>".$fur[0]->Sub_category_name."</option>";
 
@@ -119,28 +119,28 @@ class Furniture extends Controller
                 <div class='add-fur-field-set set-two'>
                     <div class='add-fur-field edit-fur'>
                         <label>Cost</label>
-                        <input type='text' name='Cost' placeholder='Cost' value='".$fur[0]->Cost."'>
+                        <input type='text' name='Cost' placeholder='Cost' value='".$fur[0]->Cost."' disabled>
                     </div>
                     <div class='add-fur-field edit-fur'>
-                        <label>Warrenty Period</label>
+                        <label>Warrenty Period (Format: 2 Years)<span class='dis-err' style='color: red;font-size: small' id='warrenty-error'></label>
                         <input type='text' name='Warrenty_period' placeholder='Warrenty Period' value='".$fur[0]->Warrenty_period."'>
                     </div>
                     <div class='add-fur-field edit-fur'>
-                        <label>Wood Type</label>
+                        <label>Wood Type<span class='dis-err' style='color: red;font-size: small' id='wood-type-error'></label>
                         <input type='text' name='Wood_type' placeholder='Wood Type' value='".$fur[0]->Wood_type."'>
                     </div>
                     <div class='add-fur-field edit-fur'>
                         <label>Supplier ID</label>
-                        <input type='text' name='SupplierID' placeholder='Supplier' value='".$fur[0]->SupplierID."'>
+                        <input type='text' name='SupplierID' placeholder='Supplier' value='".$fur[0]->SupplierID."' disabled>
                     </div>
                 </div>
             </div>
             <div class='add-fur-field edit-fur'>
-                <label>Description</label>
+                <label>Description<span class='dis-err' style='color: red;font-size: small' id='description-error'></label>
                 <textarea name='Description' placeholder='Description' >".$fur[0]->Description."</textarea>
             </div>
             <div class='add-fur-btn'>
-                <button id='edit-fur-save' type='submit'>Save</button>
+                <button id='edit-fur-save' onclick='save(`".$id."`)' type='submit'>Save</button>
             </div>
         ";
 
@@ -363,5 +363,39 @@ class Furniture extends Controller
         }
 
         echo $stm;
+    }
+
+    public function save($id)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $furniture = new Furnitures();
+        $_POST['ProductID'] = $id;
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $furniture->update($id, $_POST);
+            $allowedFileType = ['image/jpeg', 'image/png'];
+            $folder = "uploads/images/";
+
+            if(!empty($_FILES['PrimaryImage']['name']))
+            {
+                if($_FILES['PrimaryImage']['error'] == 0){
+                    if(in_array($_FILES['PrimaryImage']['type'], $allowedFileType))
+                    {
+                        $destination = $folder . time() . 'primary' . $_FILES['PrimaryImage']['name'];
+
+                        $existing_primary_image = $furniture->getDisplayImage($id)[0]->Image;
+                        $furniture->updateImage($id,$destination,$existing_primary_image);
+                        move_uploaded_file($_FILES['PrimaryImage']['tmp_name'], $destination);
+                        unlink($existing_primary_image);
+                    }
+                }
+            }
+
+        }
+
+        echo 'success';
     }
 }

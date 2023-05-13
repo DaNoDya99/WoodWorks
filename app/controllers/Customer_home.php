@@ -273,6 +273,7 @@ class Customer_home extends Controller
         {
             $order = new Orders();
             $order_items = new Order_Items();
+            $furniture = new Furnitures();
             $cart = new Carts();
             $id = Auth::getCustomerID();
 
@@ -281,8 +282,8 @@ class Customer_home extends Controller
             $_POST['Delivery_method'] = 'Delivery';
             $_POST['Shipping_cost'] = $deliveryCost;
             $_POST['Address'] = $_POST['Address_line1'].', '.$_POST['Address_line2'].', '.$_POST['City'];
+            $_POST['Distance'] = $distance['distance'];
 
-            $order->update_status($orderID,$_POST);
 
             $stripe =  new \Stripe\StripeClient(
                 $_ENV['STRIPE_API_KEY']
@@ -291,6 +292,18 @@ class Customer_home extends Controller
             $coupon = $stripe->coupons->create(['percent_off' => 10, 'duration' => 'once','currency' => 'lkr']);
 
             $items = $order_items->getOrderItems($orderID);
+
+            $item_total = 0;
+
+            foreach ($items as $item)
+            {
+                $item_total += $furniture->getFurniture($item->ProductID)[0]->Cost*$item->Quantity;
+            }
+
+            $_POST['Discount_obtained'] = $item_total - $_POST['Total_amount'];
+            $_POST['Item_total'] = $item_total;
+//            echo json_encode($_POST);die;
+            $order->update_status($orderID,$_POST);
 
             $line_items = [];
 
