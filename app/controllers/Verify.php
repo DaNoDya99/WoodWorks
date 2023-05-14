@@ -3,6 +3,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
+require_once 'Email.php';
+
 require '../vendor/autoload.php';
 
 
@@ -10,23 +12,21 @@ class Verify extends Controller
 {
     public function index()
     {
-            $otp = new Otp();
-        if (1) {
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                if ($otp->validateOTP($_SESSION['email'],$_POST['otp'])) {
-                    $customer = new Customer;
-                    $customer->activate_profile();
-                    $errors = ['msg' => 'success'];
-                    $this->redirect('login');
-                } else {
-                    echo ("failed");
-                }
+        $otp = new Otp();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($otp->validateOTP($_SESSION['Email'], $_POST['otp'])) {
+                $customer = new Customer;
+                $customer->activate_profile();
+                $errors = ['msg' => 'success'];
+                $this->redirect('login');
+            } else {
+                echo("failed");
             }
-        } else {
-            $this->redirect('signup');
         }
+
         $this->view('verify');
     }
+
 //    public function resendOTP()
 //    {
 //        $errors = [];
@@ -72,33 +72,18 @@ class Verify extends Controller
 //        $this->view('resendotp', $errors);
 //    }
 
-    public function sendOTP(){
-            $otp = new Otp();
-            show($_SESSION['Email']);
-            $otp = $otp->setOTP($_SESSION['Email']);
-            
-            $_SESSION['email'] = $_SESSION['Email'];
-            $mail = new PHPMailer();
+    public
+    function sendOTP()
+    {
+        $otp = new Otp();
+        show($_SESSION['Email']);
+        $otp = $otp->setOTP($_SESSION['Email']);
 
-            $mail->isSMTP();
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-            $mail->Host = 'smtp.gmail.com';
-            $mail->Port = 465;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->SMTPAuth = true;
-            $mail->Username = 'woodworks.cs07@gmail.com';
-            $mail->Password = 'hqhwbabdlbyduclq';
-            $mail->setFrom('woodworks.cs07@gmail.com', 'WoodWorks Mail Service');
-            $mail->addReplyTo('woodworks.cs07@gmail.com', 'WoodWorks Mail Service');
-            $mail->addAddress($_SESSION['Email'], 'John Doe');
-            $mail->Subject = 'Your verification code';
-            $mail->Body= 'Your verification code is: ' . $otp;
-            if (!$mail->send()) {
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
-            } else {
-                echo 'Message sent!';
-            }
+        $mail = new Email();
 
-            $this->redirect('verify');
+        #send otp to email
+        $mail->otp($otp, $_SESSION['Email']);
+
+        $this->redirect('verify');
     }
 }

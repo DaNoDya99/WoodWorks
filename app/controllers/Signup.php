@@ -32,13 +32,13 @@ class Signup extends Controller
                 }
 
                 $_POST['Image'] = $destination;
-                $chat = [
-                    'username' => $_POST['Firstname'] . " " . $_POST['Lastname'],
-                    'customerID' => $_POST['CustomerID'],
-                    'status' => 'offline'
-                ];
+//                $chat = [
+//                    'username' => $_POST['Firstname'] . " " . $_POST['Lastname'],
+//                    'customerID' => $_POST['CustomerID'],
+//                    'status' => 'offline'
+//                ];
                 $customer->insert($_POST);
-                $chats->createChatAccount($chat);
+//                $chats->createChatAccount($chat);
                 $_SESSION['Email'] = $_POST['Email'];
                 $this->redirect('Verify');
             }

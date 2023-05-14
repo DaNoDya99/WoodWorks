@@ -198,8 +198,7 @@
 
             </div>
             <div class="button">
-                <button class="proceed" onclick="openPaymentPopup('<?= $_SESSION['OrderID'] ?>')">Proceed to Payment
-                </button>
+                <button class="proceed" id="proceedBtn">Proceed to Payment</button>
             </div>
         </div>
 
@@ -517,20 +516,14 @@
     <?php endif; ?>
 
     function addtocart(id, cost) {
-        console.log(id);
         let quantity = document.getElementsByClassName('quantity-input')[0].value;
-        console.log(quantity);
-        console.log(id);
-        console.log(cost);
         fetch('<?= ROOT ?>/cashier/add_to_cart/' + id + '/' + cost + '/' + quantity, {
-
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
             return response.json();
-
         })
             .then(data => {
                 console.log(data);
@@ -542,18 +535,31 @@
                 makeTable();
                 getCartTotal();
                 getFinalTotal();
+                updateButtonOrderID(data.orderID);
+
 
             })
-        // .catch(error => {
-        //     console.error("Error fetching cart data:", error);
-        // });
 
 
         document.getElementById('blur-quantity').style.display = 'none';
     }
 
+    function updateButtonOrderID(orderID) {
+
+        let button = document.getElementById('proceedBtn');
+
+        console.log('updateButtonOrderID');
+        if (!button.hasAttribute("onclick")) {
+            button.setAttribute("onclick", "alert('lol')");
+        }
+
+
+    }
+
     // Get the table element
     // Get the table element
+
+
     function makeTable() {
 
         const table = document.querySelector("#bill-table");

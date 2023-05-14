@@ -115,11 +115,6 @@ class cashier extends Controller
         }
         $_SESSION['CartID'] = $cart->getCart($cus_id)[0]->CartID;
 
-//        if (empty($order->checkIsPreparing($cus_id))) {
-//            $orderID = $order->setBillOrder($cus_id);
-//        } else {
-//            $orderID = $order->checkIsPreparingInStore($cus_id)[0]->OrderID;
-//        }
         if (empty($order->checkIsPreparingInStore($cus_id))) {
             $orderID = $order->setBillOrder($cus_id);
         } else {
@@ -183,7 +178,7 @@ class cashier extends Controller
 
                 $_SESSION['cart'][] = $details;
 
-                echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.']);
+                echo json_encode(['status' => 'success', 'success' => 'Item added to cart successfully.', 'orderID' => $orderID]);
             }
         } else {
             echo json_encode(['status' => 'fail', 'error' => 'Item is out of stock.']);

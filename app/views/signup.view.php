@@ -145,8 +145,7 @@
                     <!--                        </div>-->
                                             <div class="input-field">
                                                 <label for="Mobileno"><small>Contact Number</small></label><br>
-                                                <input style="padding-left:10px;" type="tel" value="
-                    <?= set_value('Mobileno') ?>" name="Mobileno" id="phone" placeholder="Enter Contact Number" required><br>
+                                                <input style="padding-left:10px;" type="tel"  name="Mobileno" id="phone" placeholder="Enter Contact Number" required><br>
                                             </div>
 
                     <p>Already have an account? <a href="<?=ROOT?>/login">Log in</a></p>
