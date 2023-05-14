@@ -2,7 +2,7 @@
 
 <div class="issues-container">
     <div class="order-item-list">
-        <h2>Order Item List - <?= substr($order_id,0,8)?></h2>
+        <h2>Order Item List - <?= $order_id?></h2>
         <table class="item-list-table">
             <thead>
                 <tr>

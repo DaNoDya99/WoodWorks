@@ -26,7 +26,7 @@
                 <img src="<?=ROOT?>/<?= $orderItems[0]->Image ?>" alt="">
                 <div class="current-rating">
                     <h2>Current Ratings</h2>
-                    <span><?= $orderItems[0]->Rate ?></span>
+                    <span><?= number_format($orderItems[0]->Rate,2) ?></span>
                     <div>
                         <div class="stars-outer">
                             <div class="stars-inner" style="width: <?= $orderItems[0]->Rating ?>"></div>
@@ -70,7 +70,7 @@
                 <img src="<?=ROOT?>/<?= $orderItems[0]->Image ?>" alt="">
                 <div class="current-rating">
                     <h2>Current Ratings</h2>
-                    <span><?= $orderItems[0]->Rate ?></span>
+                    <span><?= number_format($orderItems[0]->Rate,2) ?></span>
                     <div>
                         <div class="stars-outer">
                             <div class="stars-inner" style="width :<?= $orderItems[0]->Rating ?>"></div>

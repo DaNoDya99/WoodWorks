@@ -11,7 +11,7 @@
             <?php else: ?>
                 <?php foreach ($sub_categories as $sub_category): ?>
                     <div class="sub-cat">
-                        <a href="<?=ROOT?>/category/sub_category/<?=$id?>/<?=$sub_category->Sub_category_name?>" >
+                        <a href="<?=ROOT?>/home/sub_category/<?=$id?>/<?=$sub_category->Sub_category_name?>" >
                             <p><?=$sub_category->Sub_category_name?></p>
                         </a>
                     </div>
