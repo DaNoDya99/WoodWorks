@@ -18,10 +18,17 @@
                 <h1> DELIVERED HISTORY </h1>
 
                 <form method="post" action="<?=ROOT?>/driver_home/orders_records" class="filterDate">
+                    <select onchange="this.form.submit()" name="Status">
+                        <option value="All" <?= !isset($_POST['Status']) || $_POST['Status'] == 'All' ? 'selected' : '' ?>>All</option>
+                        <option value="Dispatched_date" <?= isset($_POST['Status']) && $_POST['Status'] == 'Dispatched_date' ? 'selected' : '' ?>>Dispatched Date</option>
+                        <option value="Delivered_date" <?= isset($_POST['Status']) && $_POST['Status'] == 'Delivered_date' ? 'selected' : '' ?>>Delivered Date</option>
+                        <option value="Estimated_date" <?= isset($_POST['Status']) && $_POST['Status'] == 'Estimated_date' ? 'selected' : '' ?>>Estimated Date</option>
+                    </select>
+
                     <label for="from-date">From:</label>
-                    <input type="date" id="from-date" name="from_date">
+                    <input type="date" id="from-date" name="from_date" value="<?= $_POST['from_date'] ?? '' ?>">
                     <label for="to-date">To:</label>
-                    <input type="date" id="to-date" name="to_date">
+                    <input type="date" id="to-date" name="to_date" value="<?= $_POST['to_date'] ?? '' ?>">
                     <button type="submit" name="dateFilter">Filter</button>
                 </form>
 
@@ -53,11 +60,11 @@
                                 $date4 = $row->Estimated_date;
 
                                 $orderDate = date("d/m/Y", strtotime($date1));
-                                $newDate4 = date("d/m/Y", strtotime($date4));
 
-                                $dateObject = DateTime::createFromFormat('d/m/Y', $orderDate);
-                                $dateObject->add(new DateInterval('P7D'));
-                                $estimatedDeliveryDate = $dateObject->format('d/m/Y');
+
+//                                $dateObject = DateTime::createFromFormat('d/m/Y', $orderDate);
+//                                $dateObject->add(new DateInterval('P7D'));
+//                                $estimatedDeliveryDate = $dateObject->format('d/m/Y');
 
                                 if(!empty($date2))
                                 {
@@ -75,9 +82,16 @@
                                     $deliveredDate = "Not Delivered";
                                 }
 
+                                if(!empty($date4))
+                                {
+                                    $estimatedDate = date("d/m/Y", strtotime($date4));
+                                }else{
+                                    $estimatedDate = "Not exist";
+                                }
+
                                 ?>
                             <td><?=$orderDate?></td>
-                            <td><?=$estimatedDeliveryDate?></td>
+                            <td><?=$estimatedDate?></td>
                             <td><?=$dispatchedDate?></td>
                             <td><?=$deliveredDate?></td>
                         </tr>

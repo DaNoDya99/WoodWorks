@@ -3,7 +3,7 @@ $(document).ready(function () {
         url: "http://localhost/woodworks/public/driver_home/barData",
         method: "GET",
         success: function (data) {
-            // console.log(data);
+            console.log(data);
             var Count = [];
             var date = [];
             var colors = [];
@@ -13,8 +13,8 @@ $(document).ready(function () {
                 date.push(data[i].Date);
                 colors.push(color());
             }
-            // console.log(Count);
-            // console.log(date);
+            console.log(Count);
+            console.log(date);
             var chartdata = {
                 labels: date,
                 datasets: [{
@@ -97,11 +97,10 @@ $(document).ready(function () {
         }
     });
 
-    function color()
-    {
-        var r = Math.floor(Math.random() * 256);
-        var g = Math.floor(Math.random() * 256);
-        var b = Math.floor(Math.random() * 256);
+    function color() {
+        var r = Math.floor(Math.random() * 106) + 150;
+        var g = Math.floor(Math.random() * 106) + 150;
+        var b = Math.floor(Math.random() * 106) + 150;
 
         var rgba = 'rgba(' + r + ',' + g + ',' + b + ',1.0)';
         return rgba;

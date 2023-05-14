@@ -52,7 +52,7 @@
                             <label for="pdfFile-input">Upload Pdf</label>
                         </div>
                         <div class="edit-des-Dbtn-section" id="edit-design">
-                            <label onclick="location.reload();">
+                            <label onclick="location.href='<?=ROOT?>/designer/add_design';">
                                 Reset
                             </label>
                         </div>

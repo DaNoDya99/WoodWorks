@@ -21,4 +21,5 @@
 </body>
 <script src="<?=ROOT?>/assets/javascript/driver/orders_tabs.js"></script>
 <script src="<?=ROOT?>/assets/javascript/driver/moreDetails.js"></script>
+<script src="<?=ROOT?>/assets/javascript/driver/change_status.js"></script>
 </html>

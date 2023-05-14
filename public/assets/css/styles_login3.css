@@ -1091,6 +1091,18 @@ body{
     font-size: 1rem;
     cursor: pointer;
 }
+
+.filterDate select{
+    width: 15em;
+    border: 2px solid #d2d2d2;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    padding: 0 0 0 1em;
+    font-family: 'Rubik-SemiBold', sans-serif;
+    color: #787878;
+    cursor: pointer;
+}
 /* Order Details View */
 
 #popups{
@@ -1381,6 +1393,7 @@ body{
 #design-chart-container3{
     width:45%;
     height: auto;
+    margin: auto;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -1500,7 +1513,7 @@ body{
     border-radius: 10px;
     max-height: 210px;
     max-width: 210px;
-    object-fit: cover;
+    object-fit: contain;
     margin-left: auto;
     margin-right: auto;
     display: flex;

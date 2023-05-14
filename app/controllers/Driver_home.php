@@ -147,7 +147,7 @@ class Driver_home extends Controller
 
         if(isset($_POST['Status'])){
             $status =$_POST['Status'];
-            if($status=="-- Filter --"){
+            if($status=="All"){
                 $this->redirect('driver_home/order');
             }
             else
@@ -176,18 +176,18 @@ class Driver_home extends Controller
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
-        if(isset($_GET['orders_items']))
+        $data['records1'] = $order->displayDeliveredOrders('DriverID',$id);
+
+        if(isset($_GET['delivered_items']))
         {
-            $orders_items = $_GET['orders_items'];// don't care at the end
-            $data['row'] = $result = $order->searchDeliveredOrdersDetails('DriverID',$id,$orders_items);
+            $orders_items = $_GET['delivered_items'];
+            $data['records1'] = $result = $order->searchDeliveredOrdersDetails('DriverID',$id,$orders_items);
             if(empty($result))
             {
-                $this->redirect('driver_home/order');
+                $this->redirect('driver_home/delivered_orders'.$id);
             }
 
         }
-
-        $data['records1'] = $order->displayDeliveredOrders('DriverID',$id);
 
         $this->view('driver/includes/delivered_orders_table',$data);
 
@@ -211,9 +211,13 @@ class Driver_home extends Controller
         $data['records2'] = $order->displayDeliveredOrders('DriverID',$id);
 
         if(isset($_POST['dateFilter'])){
+            $status = $_POST['Status'];
             $from_date = $_POST['from_date'];
             $to_date = $_POST['to_date'];
-            $data['records2'] = $order->filterDate($from_date,$to_date);
+            $data['records2'] = $order->filterRecords($status, $from_date, $to_date);
+            if (empty($data['records2'])) {
+                $this->redirect('driver_home/orders_records');
+            }
         }
 
         $this->view('driver/includes/delivered_history_table',$data);
@@ -366,6 +370,7 @@ class Driver_home extends Controller
         $order = new Orders();
         $id = $id ?? Auth::getEmployeeID();
         $rows =  $order->barGraph('DriverID',$id);
+
         $data = array();
 
         foreach ($rows as $row){

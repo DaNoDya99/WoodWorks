@@ -69,14 +69,13 @@ $(document).ready(function () {
         }
     });
 
-    function color()
-    {
-        var r = Math.floor(Math.random() * 256);
-        var g = Math.floor(Math.random() * 256);
-        var b = Math.floor(Math.random() * 256);
+    function color() {
+        var r = Math.floor(Math.random() * 106) + 150;
+        var g = Math.floor(Math.random() * 106) + 150;
+        var b = Math.floor(Math.random() * 106) + 150;
 
         var rgba = 'rgba(' + r + ',' + g + ',' + b + ',1.0)';
         return rgba;
-
     }
+
 });
