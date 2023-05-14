@@ -84,7 +84,7 @@
         </div>
     </div>
     <div class="popup-reject-comment"
-         style="position: absolute; padding: 40px; width: 50vw; height: auto; background-color: white; top:0; z-index: 99; top: 50%;left: 50%; transform: translate(-50%,-50%); box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.75); border-radius: 10px; display: none">
+         style="position: absolute; padding: 40px; width: 50vw; height: auto; background-color: white; top: 0; z-index: 99; top: 50%;left: 50%; transform: translate(-50%,-50%); box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.75); border-radius: 10px; display: none">
         <span>Enter Reason for Rejection</span><br><br>
         <textarea id="reason" style="width: 100%; height: 50%; border-radius: 5px; padding: 5px"
                   rows="4"></textarea><br><br>
@@ -92,11 +92,21 @@
                 style="padding: 10px 25px; border-radius: 8px; border: 0px; background-color: #d8000c; color: white">
             Reject
         </button>
-
+        <button id="close-btn"
+                style="position: absolute; top: 10px; right: 10px; padding: 5px; border: none; background-color: transparent; font-size: 18px; cursor: pointer"
+                onclick="closePopup()">X
+        </button>
     </div>
+
+
 </div>
 
 <script>
+
+    function closePopup() {
+        var popup = document.querySelector('.popup-reject-comment');
+        popup.style.display = 'none';
+    }
 
     function filterAndSortOrders(orders, sort) {
         let filteredOrders = orders;
@@ -204,7 +214,6 @@
 
 
     // Call updateOrderList() initially to render the list with default filters
-
 
 
     function addEventListenersToOrderListItems() {

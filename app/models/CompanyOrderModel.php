@@ -21,8 +21,8 @@ class CompanyOrderModel extends Model
     {
         $query = "select * from $this->table where OrderStatus = :OrderStatus1 OR OrderStatus= :OrderStatus2 and SupplierID = :SupplierID ORDER by Date DESC";
         $data = [
-            'OrderStatus1' => 'accepted',
-            'OrderStatus2' => 'complete',
+            'OrderStatus1' => 'Accepted',
+            'OrderStatus2' => 'Completed',
             'SupplierID' => Auth::getSupplierID(),
         ];
         return $this->query($query, $data);
@@ -33,7 +33,7 @@ class CompanyOrderModel extends Model
         $query = "select * from $this->table where OrderStatus = :OrderStatus1 OR OrderStatus= :OrderStatus2 OR OrderStatus= :OrderStatus3 OR OrderStatus= :OrderStatus4 and SupplierID = :SupplierID ORDER by Responded_date DESC";
         $data = [
             'OrderStatus1' => 'Accepted',
-            'OrderStatus2' => 'Recieved',
+            'OrderStatus2' => 'Received',
             'OrderStatus3' => 'Rejected',
             'OrderStatus4' => 'Completed',
             'SupplierID' => Auth::getSupplierID(),

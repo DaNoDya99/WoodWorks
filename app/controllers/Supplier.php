@@ -56,7 +56,7 @@ class supplier extends Controller
     public function acceptOrder($id)
     {
         $orders = new CompanyOrderModel();
-        $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'accepted']);
+        $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'Accepted']);
         echo json_encode(['status' => 'success']);
     }
 
