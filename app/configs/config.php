@@ -6,7 +6,7 @@ define('APPNAME','WoodWorks');
 if($_SERVER['SERVER_NAME'] == 'localhost')
 {
     define('DBHOST','localhost');
-    define('DBNAME','woodworks1');
+    define('DBNAME','woodworks');
     define('DBUSER','root');
     define('DBPASS','');
     define('DBDRIVER','mysql');

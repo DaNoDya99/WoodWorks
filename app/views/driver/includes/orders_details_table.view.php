@@ -46,6 +46,7 @@
                 <th class="th">Total Amount</th>
                 <th class="th">Delivery Fee</th>
                 <th class="th">Order Date</th>
+                <th class="th">Estimated Date</th>
                 <th class="th">Order Status</th>
                 <th class="th">Customer Address</th>
                 <th class="th">Customer Name</th>
@@ -68,8 +69,10 @@
                         <?php
                             $date = $row->Date;
                             $newDate = date("d/m/Y", strtotime($date));
+                            $newDate2 = date("d/m/Y", strtotime($row->Estimated_date));
                             ?>
                         <td><?=$newDate?></td>
+                        <td><?=$newDate2?></td>
 
                         <td>
                             <select name="status" required onchange="this.form.submit()" class="select">
@@ -100,6 +103,9 @@
             <?php endforeach;?>
             </tbody>
         </table>
+        <div class="response">
+
+        </div>
     </div>
 
     <div id="popups">

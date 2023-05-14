@@ -370,6 +370,7 @@ class Driver_home extends Controller
         $order = new Orders();
         $id = $id ?? Auth::getEmployeeID();
         $rows =  $order->barGraph('DriverID',$id);
+
         $data = array();
 
         foreach ($rows as $row){
