@@ -24,26 +24,6 @@ class supplier extends Controller
         echo json_encode($data);
     }
 
-    public function getItemsByOrderID($id)
-    {
-        $orderinfo = new CompanyOrderModel();
-        $order_item = new CompanyOrderItems();
-        $furnitures = new Furnitures();
-
-        $data['order'] = $orderinfo->getOrder($id);
-        $data['items'] = $order_item->getItemsByOrderID($id);
-        if (count((array)$data['items']) == 0) {
-            echo json_encode(['status' => 'error', 'message' => 'No items found.']);
-            return;
-        } else {
-            for ($i = 0; $i < count((array)$data['items']); $i++) {
-                $data['items'][$i]->image = $furnitures->getDisplayImage($data['items'][$i]->ProductID)[0]->Image;
-            }
-            echo json_encode($data);
-        }
-
-    }
-
     public function accepted()
     {
         if (!Auth::logged_in()) {
@@ -53,19 +33,20 @@ class supplier extends Controller
         $data['acceptedorders'] = $orders->getAllRespondedOrders();
 
 
-
         $this->view('supplier/accepted', $data);
     }
 
     public function changeOrderStatus($id, $status)
     {
 //        get reason from post
-        if ($_POST['reason']) {
-            $reason = $_POST['reason'];
-        }
+        $reason = [];
+
+        //get reason from json stringify post
+
+        $reason = json_decode(file_get_contents('php://input'), true);
         $orders = new CompanyOrderModel();
         if ($orders->findOrder($id)) {
-            $orders->changeOrderStatus($id, $status);
+            $orders->changeOrderStatus($id, $status, $reason);
             echo json_encode(['status' => 'success', 'message' => 'Order status changed successfully.']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Order does not exist.']);
@@ -75,7 +56,7 @@ class supplier extends Controller
     public function acceptOrder($id)
     {
         $orders = new CompanyOrderModel();
-        $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'accepted']);
+        $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'Accepted']);
         echo json_encode(['status' => 'success']);
     }
 
@@ -193,7 +174,8 @@ class supplier extends Controller
         }
     }
 
-    public function getAllOrders(){
+    public function getAllOrders()
+    {
 //        if (!Auth::logged_in()) {
 //            $this->redirect('login');
 //        }
@@ -225,17 +207,37 @@ class supplier extends Controller
 
     }
 
-    public function getProductsByID($ordID){
+    public function getProductsByID($ordID)
+    {
         $order_item = new CompanyOrderItems();
         $data['orderitems'] = $order_item->getItemsByOrderID($ordID);
 
         echo json_encode($data);
     }
 
+    public function getItemsByOrderID($id)
+    {
+        $orderinfo = new CompanyOrderModel();
+        $order_item = new CompanyOrderItems();
+        $furnitures = new Furnitures();
+
+        $data['order'] = $orderinfo->getOrder($id);
+        $data['items'] = $order_item->getItemsByOrderID($id);
+        if (count((array)$data['items']) == 0) {
+            echo json_encode(['status' => 'error', 'message' => 'No items found.']);
+            return;
+        } else {
+            for ($i = 0; $i < count((array)$data['items']); $i++) {
+                $data['items'][$i]->image = $furnitures->getDisplayImage($data['items'][$i]->ProductID)[0]->Image;
+            }
+            echo json_encode($data);
+        }
+
+    }
+
     public function getSupplierProdcuts($id)
     {
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
@@ -244,15 +246,14 @@ class supplier extends Controller
 
         $row = $furniture->getProductsBySupplier($id);
 
-        if(empty($row))
-        {
+        if (empty($row)) {
             echo "<tr>
                     <td colspan='7' class='text-center'>No Products Found</td>
                   </tr>";
             return;
         }
 
-        foreach ($row as $value){
+        foreach ($row as $value) {
             $value->Image = $furniture->getDisplayImage($value->ProductID)[0]->Image;
             $value->Category = $category->getCategoryByID($value->CategoryID)[0]->Category_name;
         }
@@ -275,7 +276,7 @@ class supplier extends Controller
                         <td>$value->Sub_category_name</td>
                     </tr>
                 ";
-            }else{
+            } else {
                 $stm .= "
                     <tr>
                         <td><input type='checkbox' name='product' value='" . $value->ProductID . "'></td>

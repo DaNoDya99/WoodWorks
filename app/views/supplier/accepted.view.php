@@ -28,26 +28,29 @@
                     <tr>
                         <td colspan="7" style="text-align: center">No orders found</td>
                     </tr>
-                <?php else:?>
-                <?php $i = 0; ?>
-                <?php foreach ($data['acceptedorders'] as $order) : ?>
-                    <tr>
-                        <td><small><?= ++$i ?></small></td>
-                        <td><?= $order->OrderID ?></td>
-                        <td><?= $order->Date ?></td>
-                        <td><?= $order->ManagerID ?></td>
-                        <td><?= $order->Responded_date ?></td>
+                <?php else: ?>
+                    <?php $i = 0; ?>
+                    <?php foreach ($data['acceptedorders'] as $order) : ?>
+                        <tr>
+                            <td><small><?= ++$i ?></small></td>
+                            <td><?= $order->OrderID ?></td>
+                            <td><?= $order->Date ?></td>
+                            <td><?= $order->ManagerID ?></td>
+                            <td><?= $order->Responded_date ?></td>
 
-                        <td><?= ucfirst($order->OrderStatus) ?></td>
-                        <td>
-                            <div class="table-actions">
-                                <button>Update Status</button>
-                                <button onclick="viewCompOrder('<?= $order->OrderID ?>')">View Details</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                <?php endif;?>
+                            <td><?= ucfirst($order->OrderStatus) ?></td>
+                            <td>
+                                <div class="table-actions">
+                                    <?php if ($order->OrderStatus == 'Accepted') : ?>
+                                        <button onclick="openChangeStatus('<?= $order->OrderID ?>')">Update Status
+                                        </button>
+                                    <?php endif; ?>
+                                    <button onclick="viewCompOrder('<?= $order->OrderID ?>')">View Details</button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
                 </tbody>
             </table>
 
@@ -56,7 +59,6 @@
     </div>
 
 
-    </div>
     <div id="popup3" class="popup3 hidden">
         <div class="popup3-content">
             <span id="close-popup3" class="close">&times;</span>
@@ -73,7 +75,8 @@
                     <p>Responded Date: <span id="respDate"></span></p>
                     <p id="order-blank">Reason for rejection: <span id="rejReason"></span></p>
                     <p id="order-rdate">Date Goods Received: <span id="receivedDate"></span></p>
-                    <textarea disabled style="padding: 5px" id="comments" name="comments" rows="4" cols="50" placeholder="Comments"></textarea>
+                    <textarea disabled style="padding: 5px" id="comments" name="comments" rows="4" cols="50"
+                              placeholder="Comments"></textarea>
                 </div>
             </div>
             <div>
@@ -100,17 +103,41 @@
             </div>
         </div>
     </div>
+
+    <div class="update-status-pop"
+         style="display:none;position: absolute; width: 50vw; z-index: 99;box-shadow: 0 0 30px 0 rgba(0,0,0,0.51); border-radius: 10px; background-color: white; padding: 40px">
+        <h3>Update Order Status</h3>
+        <br>
+        <p>
+            Set Order Status to 'Completed'?
+        </p>
+
+        <button id="update-yes"
+                style="margin-right: 20px; padding:10px 20px; border-radius: 8px; border:0px; background-color: #0064ff;
+            color: white;">
+            Yes
+        </button>
+        <button id="update-no"
+                style="margin-top: 20px; padding:10px 20px; border-radius: 8px; border:0px; background-color: rgba(21,21,21,0.8); color: white;">
+            No
+        </button>
+    </div>
+
 </div>
-<!--<script src="--><?php //= ROOT ?><!--/assets/javascript/header/header.js"></script>-->
+
+</div>
+
 <script>
+
+    //search table
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
+        table = document.getElementById("company-order-table");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
+            td = tr[i].getElementsByTagName("td")[1];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -122,6 +149,33 @@
         }
     }
 
+
+    //function to change order status
+    function openChangeStatus(orderid) {
+        document.getElementsByClassName('update-status-pop')[0].style.display = "block";
+        //set attribute of #update yes to onclick
+        document.getElementById('update-yes').setAttribute('onclick', 'changeOrderStatus("' + orderid + '", "Completed")');
+    }
+
+    //event listener to close popup when user clicks update no
+
+    document.getElementById('update-no').addEventListener('click', function () {
+        document.getElementsByClassName('update-status-pop')[0].style.display = "none";
+        window.location.reload();
+    });
+
+    //function to change order status
+    function changeOrderStatus(orderID, status) {
+        console.log(orderID);
+
+        fetch('http://localhost/woodworks/public/supplier/changeOrderStatus/' + orderID + '/' + status)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
+    }
+
+    //event listener to close popup when user clicks x
     function viewCompOrder(orderid) {
         popup.classList.remove('hidden');
         document.getElementsByClassName('order-title')[0].innerHTML = orderid;
@@ -166,7 +220,7 @@
                     //
                     tbody.innerHTML = '';
                     //
-                    data.items.forEach(item => {
+                    data.items.foreach(item => {
                         console.log(item);
                         var row = document.createElement("tr");
                         var cell1 = document.createElement("td");
