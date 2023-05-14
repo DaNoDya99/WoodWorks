@@ -455,6 +455,52 @@ class Designer extends Controller
 
     }
 
+    public function viewDesignStatus($status)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $design = new Design();
+        $employee = new Employees();
+        $categories = new Categories();
+
+        $rows = $design->getDesignsByStatus($status);
+
+        if (empty($rows)){
+            echo "<tr>
+                    <td colspan='8' style='text-align: center'>No Designs Available</td>
+                </tr>";
+            return;
+        }
+
+        $stm = "";
+
+        foreach ($rows as $row){
+            $designer = $employee->getEmployeeByID($row->DesignerID)[0];
+            $category = $categories->getCategoryByID($row->CategoryID)[0];
+
+            $row->Category = $category->Category_name;
+            $row->Desinger = $designer->Firstname." ".$designer->Lastname;
+            $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
+
+            $stm .= "
+                <tr>
+                    <td>$row->DesignID</td>
+                    <td><img class='table-image' src='http://localhost/WoodWorks/public/".$row->Image. "' alt=''></td>
+                    <td>$row->Name</td>
+                    <td>$row->Desinger</td>
+                    <td>$row->Status</td>
+                    <td>$row->Category</td>
+                    <td>$row->Date</td>
+                
+                </tr>
+            ";
+        }
+
+        echo $stm;
+    }
+
     public function chat()
     {
         if (!Auth::logged_in()) {

@@ -7,7 +7,10 @@
 
             <div class="des-form-body">
 
-                <h1>Add New Designs</h1>
+                <div class="design_header">
+                    <h1>Add New Designs</h1>
+                    <button onclick="openDesignDetailsPopup()">Designs Status</button>
+                </div>
 
                 <form class="add-des-form" action="/woodworks/public/designer/add_new_design" method="post" enctype="multipart/form-data">
 
@@ -90,10 +93,44 @@
 
             </div>
 
+            <div class="popup details-info-popup" id="details-info-popup">
+                <div class="popup-heading">
+                    <h2 id="design-id"></h2>
+                    <img src="<?= ROOT ?>/assets/images/designer/close.png" alt="Close" onclick="closeDesignDetailsPopup()">
+                </div>
+
+                <div class="order-selections">
+                    <div class="selector designs-selector" name="selector" id="accepted" onclick="getDesignsByStatus('Accepted')">Accepted Designs</div>
+                    <div class="selector designs-selector" name="selector" id="rejected" onclick="getDesignsByStatus('Rejected')">Rejected Designs</div>
+                </div>
+
+                <table class="designs-details-table">
+                    <thead>
+                    <tr>
+                        <th>Design ID</th>
+                        <th>Image</th>
+                        <th>Design Name</th>
+                        <th>Designer</th>
+                        <th>Status</th>
+                        <th>Furniture Category</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody id="t-body">
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="cat-response" id="response">
+
+            </div>
+
         </div>
     </div>
 </body>
 <script src="<?= ROOT ?>/assets/javascript/script.js"></script>
 <script src="<?= ROOT ?>/assets/javascript/designer/add_designs.js"></script>
 <script src="<?= ROOT ?>/assets/javascript/designer/add_pdf.js"></script>
+<script src="<?= ROOT ?>/assets/javascript/designer/design_status.js"></script>
 </html>

@@ -36,6 +36,7 @@
                     </thead>
                     <tbody>
 
+                    <?php if(!empty($records1)) :?>
                     <?php foreach ($records1 as $row):?>
                         <form method="post" action="<?=ROOT?>/driver_home/order" hidden>
                             <input type="text" name="OrderID" value="<?=$row->OrderID?>" hidden>
@@ -77,6 +78,9 @@
                             </tr>
                         </form>
                         <?php endforeach;?>
+                    <?php else:?>
+                        <tr><td colspan="8" style="text-align: center">There are no delivered Orders</td></tr>
+                    <?php endif;?>
                     </tbody>
                 </table>
             </div>
