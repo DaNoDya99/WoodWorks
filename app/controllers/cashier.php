@@ -90,6 +90,14 @@ class cashier extends Controller
         }
     }
 
+    public function newCust(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //open json stringified data
+        $data = json_decode(file_get_contents("php://input"));
+        echo json_encode($data);
+        }
+    }
+
     public function isCustomerSet()
     {
         if (isset($_SESSION['CustomerID']) && isset($_SESSION['CustomerDetails'])) {

@@ -379,6 +379,8 @@
             })
     }
 
+    //POS System table search
+
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
@@ -386,7 +388,7 @@
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
+            td = tr[i].getElementsByTagName("td")[0];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -397,6 +399,8 @@
             }
         }
     }
+
+    // Handles the pop up to select quantity
 
     function quantitypopup(img, name, id, cost,) {
 
@@ -839,6 +843,25 @@
 
     //     add event listener to id submitBtn on click
 
+
+    const form2 = document.getElementById("new-customer-form");
+
+    form2.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const formObj = Object.fromEntries(formData.entries());
+
+        fetch("<?=ROOT?>/cashier/newCust", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formObj),
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error(error));
+    });
 
 </script>
 </body>

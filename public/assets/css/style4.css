@@ -1194,6 +1194,7 @@ body {
 
 .headerprime {
     position: relative;
+    bottom: 0px;
 }
 
 .headerprime .profile {

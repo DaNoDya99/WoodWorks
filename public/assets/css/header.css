@@ -377,7 +377,7 @@ p {
 .headerprime .profile {
     position: absolute;
     z-index: 10;
-    top: 10px;
+    /* bottom: 10px; */
     right: 35px;
     display: flex;
     align-items: center;

@@ -77,7 +77,7 @@ class Login extends Controller
 
                 if (password_verify($_POST['Password'], $result_cus[0]->Password)) {
                     if ($result_cus[0]->status == '0') {
-                        $data['errors']['otp'] = 'Your account is not activated yet. <a href="/resend_otp">Activate Now</a>';
+                        $data['errors']['otp'] = 'Your account is not activated yet. <a href="'.ROOT.'/verify/resend_otp">Activate Now</a>';
                     } else {
                         Auth::authenticate($result_cus[0]);
                         $this->redirect('/customer_home');
