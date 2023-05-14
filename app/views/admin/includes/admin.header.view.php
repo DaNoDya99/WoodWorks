@@ -15,7 +15,7 @@
                 <li><a href="<?= ROOT ?>/logout">Logout</a></li>
             </div>
         </div>
-       
+
     </div>
     <div class="sidebar">
         <div class="logo-content">

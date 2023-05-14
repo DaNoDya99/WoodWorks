@@ -267,14 +267,12 @@
         <h3>Please choose payment method</h3>
 
 
-    </div>
-    <div style="display:flex;">
-            <div class="paybutton" onclick="checkoutCash('<?= $_SESSION['OrderID'] ?>')">Cash</div>
+        <div style="display:flex;">
 
-        <div class="paybutton" onclick="checkout('<?= $_SESSION['OrderID'] ?>')">Card</div>
+            <div class="paybutton" onclick="checkout('<?= $_SESSION['OrderID'] ?>')">Card</div>
 
+        </div>
     </div>
-</div>
 </div>
 <div id="overlay" class="overlay"></div>
 
@@ -900,7 +898,7 @@
 
     document.getElementsByClassName('exit-payment')[0].addEventListener('click', function () {
         document.getElementById('popup2').style.display = 'none';
-        document.getElementById('blur').style.display = 'none';
+        document.getElementById('blur-payment').style.display = 'none';
     });
 
 
