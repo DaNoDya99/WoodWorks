@@ -30,11 +30,12 @@ class CompanyOrderModel extends Model
 
     public function getAllRespondedOrders()
     {
-        $query = "select * from $this->table where OrderStatus = :OrderStatus1 OR OrderStatus= :OrderStatus2 OR OrderStatus= :OrderStatus3 and SupplierID = :SupplierID ORDER by Date DESC";
+        $query = "select * from $this->table where OrderStatus = :OrderStatus1 OR OrderStatus= :OrderStatus2 OR OrderStatus= :OrderStatus3 OR OrderStatus= :OrderStatus4 and SupplierID = :SupplierID ORDER by Responded_date DESC";
         $data = [
             'OrderStatus1' => 'Accepted',
             'OrderStatus2' => 'Recieved',
             'OrderStatus3' => 'Rejected',
+            'OrderStatus4' => 'Completed',
             'SupplierID' => Auth::getSupplierID(),
         ];
 
@@ -141,16 +142,16 @@ class CompanyOrderModel extends Model
             $data = [
                 'OrderStatus' => $status,
                 'OrderID' => $id,
-                'Responded_date' => date('Y-m-d'),
+                'Responded_date' => date('Y-m-d H:i:s'),
 
             ];
         } else if ($status == 'Rejected') {
-            $query = "update $this->table set OrderStatus = :OrderStatus, Responded_date = :Responded_date, Reason_for_rejection: Reason where OrderID = :OrderID";
+            $query = "update $this->table set OrderStatus = :OrderStatus, Responded_date = :Responded_date, Reason_for_rejection= :Reason where OrderID = :OrderID";
             $data = [
                 'OrderStatus' => $status,
                 'OrderID' => $id,
-                'Responded_date' => date('Y-m-d'),
-                'Reason' => $reason,
+                'Responded_date' => date('Y-m-d H:i:s'),
+                'Reason' => $reason['reason'],
 
             ];
         } else if ($status == 'Completed') {
@@ -158,16 +159,9 @@ class CompanyOrderModel extends Model
             $data = [
                 'OrderStatus' => $status,
                 'OrderID' => $id,
-                'Completed_date' => date('Y-m-d'),
-            ];
-        } else {
-            $query = "update $this->table set OrderStatus = :OrderStatus where OrderID = :OrderID";
-            $data = [
-                'OrderStatus' => $status,
-                'OrderID' => $id,
+                'Completed_date' => date('Y-m-d H:i:s'),
             ];
         }
-
         return $this->query($query, $data);
     }
 }
