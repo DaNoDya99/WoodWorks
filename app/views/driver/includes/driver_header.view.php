@@ -18,13 +18,7 @@
         </div>
     </div>
 
-    <div class="noti">
-        <div class="img">
-            <img class="image" style="" src="<?= ROOT ?>/assets/images/header/bell.svg" alt="">
 
-        </div>
-
-    </div>
 </div>
 <div class="sidebar">
     <div class="logo-content">

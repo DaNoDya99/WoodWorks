@@ -15,6 +15,10 @@ class supplier extends Controller
 
     public function getneworders()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $orders = new CompanyOrderModel();
 
         $furnitures = new Furnitures();
@@ -38,6 +42,10 @@ class supplier extends Controller
 
     public function changeOrderStatus($id, $status)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
 //        get reason from post
         $reason = [];
 
@@ -55,6 +63,10 @@ class supplier extends Controller
 
     public function acceptOrder($id)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $orders = new CompanyOrderModel();
         $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'Accepted']);
         echo json_encode(['status' => 'success']);
@@ -62,6 +74,10 @@ class supplier extends Controller
 
     public function CompleteOrder($id)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $orders = new CompanyOrderModel();
         $orders->update($id, ['OrderID' => $id, 'OrderStatus' => 'complete']);
         $this->redirect('supplier/accepted');
@@ -176,9 +192,9 @@ class supplier extends Controller
 
     public function getAllOrders()
     {
-//        if (!Auth::logged_in()) {
-//            $this->redirect('login');
-//        }
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
 
         $orders = new CompanyOrderModel();
 
@@ -209,6 +225,10 @@ class supplier extends Controller
 
     public function getProductsByID($ordID)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $order_item = new CompanyOrderItems();
         $data['orderitems'] = $order_item->getItemsByOrderID($ordID);
 
@@ -217,6 +237,10 @@ class supplier extends Controller
 
     public function getItemsByOrderID($id)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $orderinfo = new CompanyOrderModel();
         $order_item = new CompanyOrderItems();
         $furnitures = new Furnitures();

@@ -13,8 +13,6 @@ class pw_reset extends Controller
             $customer = new Customer();
             $_SESSION['Email'] = $_POST['Email'];
             $result_cus = $customer->where('Email', $_POST['Email']);
-            show($result_cus);
-
             if (empty($result_cus)) {
                 $errors = ['msg' => 'Account Does Not Exist'];
             } else {
@@ -35,7 +33,6 @@ class pw_reset extends Controller
     public
     function verify()
     {
-        show($_SESSION);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['otp'] == $_SESSION['otp']) {
                 $this->redirect('pw_reset/reset');

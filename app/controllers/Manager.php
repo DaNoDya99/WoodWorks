@@ -215,7 +215,7 @@ class Manager extends Controller
                 $category = $categories->getCategoryByID($row->CategoryID)[0];
 
                 $row->Category = $category->Category_name;
-                $row->Desinger = $designer->Firstname." ".$designer->Lastname;
+                $row->Desinger = $designer->Firstname . " " . $designer->Lastname;
 
                 $row->Date = explode(" ", $row->Date)[0];
                 $row->Image = $design->getDisplayImage($row->DesignID)[0]->Image;
@@ -241,98 +241,13 @@ class Manager extends Controller
         $this->view('manager/reports');
     }
 
-    public function reportCsv($reportType, $date1, $date2, $status)
-    {
-        // exportToCsv();
-        echo $reportType;
-        echo $date1;
-        echo $date2;
-        if ($reportType == 'product_sold') {
-
-            $order = new Orders();
-            $data = $order->getDetailedProductReport($date1, $date2, $status);
-            $filename = 'products_sold.csv';
-            exportToCsv($data, $filename);
-        }
-    }
-
-    //    public function getReport()
-    //    {
-    //        // if (!Auth::logged_in()) {
-    //        //     $this->redirect('login');
-    //        // }
-    //        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //            header('Content-Type: application/json');
-    //            $data['date1'] = $_POST['date1'];
-    //            $data['date2'] = $_POST['date2'];
-    //
-    //            $data['labels'] = $this->getDateLabels($_POST['date1'], $_POST['date2']);
-    //            $labels = $data['labels'];
-    //
-    //            $order = new Orders();
-    //
-    //
-    //            $a = $order->findOrdersSumByDate($_POST['date1'], $_POST['date2']);
-    //            if (empty($a)) {
-    //                $a = [];
-    //            }
-    //
-    //            $s = [];
-    //            for ($i = 0; $i < count($labels); $i++) {
-    //                $s[$i] = 0;
-    //                for ($j = 0; $j < count($a); $j++) {
-    //                    if ($labels[$i] == $a[$j]->DATE) {
-    //                        $s[$i] = $a[$j]->total;
-    //                        break;
-    //                    }
-    //                }
-    //            }
-    //            $data['test'] = $s;
-    //            $ordercount = [];
-    //            for ($i = 0; $i < count($labels); $i++) {
-    //                $ordercount[$i] = 0;
-    //                for ($j = 0; $j < count($a); $j++) {
-    //                    if ($labels[$i] == $a[$j]->DATE) {
-    //                        $ordercount[$i] = $a[$j]->OrderCount;
-    //                        break;
-    //                    }
-    //                }
-    //            }
-    //            $data['test'] = $s;
-    //            $data['ordercount'] = $ordercount;
-    //
-    //
-    //            $data['orders'] = $order->findOrdersByDate($_POST['date1'], $_POST['date2']);
-    //            if (empty($data['orders'])) {
-    //                $data['orders'] = [];
-    //            }
-    //
-    //
-    //            $data['total'] = 0;
-    //            foreach ($data['orders'] as $row) {
-    //                //round off to 2 decimal places
-    //                if ($row->Order_status == 'paid' || $row->Order_status == 'Delivered'|| $row->Order_status == 'Dispatched') {
-    ////                    show($row->Order_status);
-    //                    $row->Total_amount = round($row->Total_amount, 2);
-    //                    $data['total'] += $row->Total_amount;
-    //
-    //                }
-    //
-    //            }
-    ////            show($data['total']);
-    //
-    //            //     //get count of completed orders
-    //            $data['completed'] = $order->getCompletedOrders($_POST['date1'], $_POST['date2']);
-    //            echo json_encode($data);
-    //
-    //        }
-    //    }
-
-
-    //reply to ajax call
 
     public function productinfo($date1, $date2)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $order = new Orders();
         $furniture = new Furnitures();
         //get furniture count
@@ -344,6 +259,10 @@ class Manager extends Controller
 
     public function inventoryinfo()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $inventory = new Product_Inventory();
         $data['inventory'] = $inventory->getAllFromInventory();
         echo json_encode($data);
@@ -351,7 +270,9 @@ class Manager extends Controller
 
     public function getOrdersChart($date1, $date2)
     {
-
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
 
         $data['labels'] = $this->getDateLabels($date1, $date2);
         $labels = $data['labels'];
@@ -377,6 +298,10 @@ class Manager extends Controller
 
     public function getDateLabels($date1, $date2)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $startDate = new DateTime($date1); // start date
         $endDate = new DateTime($date2); // end date
         $labels = [];
@@ -498,9 +423,9 @@ class Manager extends Controller
 
     public function getProductsReachedReorderLevel()
     {
-        //        if(!Auth::logged_in()){
-        //            $this->redirect('login');
-        //        }
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
 
         $inventory = new Product_Inventory();
         $rows = $inventory->getItemsReachedReorderLevel();
@@ -602,6 +527,10 @@ class Manager extends Controller
 
     public function getOrdersForDateRange()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
 
         $data['date1'] = $_POST['date1'];
         $data['date2'] = $_POST['date2'];
@@ -630,6 +559,10 @@ class Manager extends Controller
 
     public function orderlists()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $q = "SELECT 
@@ -662,6 +595,10 @@ class Manager extends Controller
 
     public function catergoryDetails($date1, $date2)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $q = "SELECT 
     c.CategoryID AS `CatergoryID`,
     c.Category_name AS `Catergory`,

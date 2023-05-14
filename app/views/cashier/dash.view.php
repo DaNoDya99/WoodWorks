@@ -42,17 +42,13 @@
                     <div>
                         <input type="hidden" name="type" value="newcust">
                         <label for="Firstname">First Name</label>
-                        <input type="text" id="name" name="Firstname">
+                        <input type="text" id="fname" name="Firstname">
                         <label for="Lastname">Last Name</label>
-                        <input type="text" id="name" name="Lastname">
+                        <input type="text" id="lname" name="Lastname">
                         <label for="Email">E-Mail</label>
-                        <input type="email" id="contact" name="Email">
+                        <input type="email" id="email" name="Email">
                         <label for="contact">Contact Number</label>
-                        <input type="tel" id="contact" name="contact">
-                    </div>
-                    <div>
-                        <label for="address">Address</label><br>
-                        <textarea type="textarea" id="address" height="200px" name="Address"></textarea>
+                        <input type="tel" id="contact" name="Mobileno">
                     </div>
                     <div style="display:flex; grid-column-gap:10px;">
                         <button type="submit" class="exit">Submit</button>
@@ -270,36 +266,15 @@
         <span class="exit-payment">&times;</span>
         <h3>Please choose payment method</h3>
 
-        <div class="transaction-info">
-            <table style="width:70%;">
-                <tr>
-                    <td>Order ID:</td>
-                    <td style="text-align:right;"><span id="popup-orderid"></span></td>
-                </tr>
 
-                <tr>
-                    <td>Number of items:</td>
-                    <td style="text-align:right;"><span id="popup-quanitity"></span></td>
-                </tr>
-                <tr>
-                    <td>Total Amount:</td>
-                    <td style="text-align:right;"><span id="total"></span></td>
-                </tr>
-
-
-            </table>
-
-
-        </div>
-        <div style="display:flex;">
-            <a href="<?= ROOT ?>/cashier/checkout_cash">
-                <div class="paybutton">Cash</div>
-            </a>
-
-            <div class="paybutton" onclick="checkout('<?= $_SESSION['OrderID'] ?>')">Card</div>
-
-        </div>
     </div>
+    <div style="display:flex;">
+            <div class="paybutton" onclick="checkoutCash('<?= $_SESSION['OrderID'] ?>')">Cash</div>
+
+        <div class="paybutton" onclick="checkout('<?= $_SESSION['OrderID'] ?>')">Card</div>
+
+    </div>
+</div>
 </div>
 <div id="overlay" class="overlay"></div>
 
@@ -338,15 +313,7 @@
     function openPaymentPopup(id) {
 
         popup2.classList.add("open-popup2");
-        fetch("http://localhost/WoodWorks/public/cashier/getOrderSummary/" + id)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
 
-                document.getElementById('popup-orderid').innerText = id;
-                document.getElementById('popup-quanitity').innerText = data.OrderCount;
-                document.getElementById('total').innerText = "Rs. " + data.Total;
-            });
 
     }
 
@@ -421,6 +388,46 @@
         document.getElementById("blur-quantity").style.display = "none";
         //enable visibility
 
+    }
+
+    function checkoutCash(orderid) {
+        var deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
+
+        if (deliveryMethod === 'pickup') {
+            var data = {
+                delivery: deliveryMethod
+            };
+        } else {
+            var addressLine1 = document.getElementById('addressInput').value;
+            var addressLine2 = document.getElementById('addressInput1').value;
+            var city = document.getElementById('addressInput2').value;
+            var data = {
+                delivery: deliveryMethod,
+                addressLine1: addressLine1,
+                addressLine2: addressLine2,
+                City: city
+            };
+        }
+        const formData = new URLSearchParams();
+
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
+        console.log(formData);
+
+
+        fetch('<?= ROOT ?>/cashier/checkoutcash/' + orderid, {
+            method: 'POST',
+            body: formData,
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.status === 'success') {
+                    window.location.href = '<?= ROOT ?>/cashier/checkout_success';
+                } else if (data.status === 'error') {
+                    alert(data.msg);
+                }
+            })
     }
 
 
@@ -513,19 +520,55 @@
                     }, 3000);
                 } else {
                     document.querySelector('.error-box').style.display = 'block';
-
-
                 }
-
-                // Do something with the data
-
-
             })
             .catch(error => {
                 // Handle any errors that occurred during the request
                 console.error('Error submitting form:', error);
             });
     });
+
+    const form2 = document.getElementById("new-customer-form");
+
+    form2.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const urlSearchParams = new URLSearchParams();
+
+        for (const pair of formData) {
+            urlSearchParams.append(pair[0], pair[1]);
+        }
+
+        fetch("<?=ROOT?>/cashier/newCust", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: urlSearchParams.toString(),
+        })
+            .then((response) => response.json())
+            .then(data => {
+
+                let email = data.email;
+                //convert it into form data
+                const formData = new FormData();
+                formData.append('Email', email);
+
+                fetch('<?= ROOT ?>/cashier/oldcust', {
+                    method: 'POST',
+                    body: formData
+                })
+                //     reload page
+
+                setTimeout(function () {
+                    window.location.reload();
+                }, 3000);
+
+
+            })
+            .catch((error) => console.error(error));
+    });
+
     <?php endif; ?>
 
     function addtocart(id, cost) {
@@ -855,28 +898,11 @@
             });
     });
 
+    document.getElementsByClassName('exit-payment')[0].addEventListener('click', function () {
+        document.getElementById('popup2').style.display = 'none';
+        document.getElementById('blur').style.display = 'none';
+    });
 
-    //     add event listener to id submitBtn on click
-
-
-    //const form2 = document.getElementById("new-customer-form");
-    //
-    //form2.addEventListener("submit", (event) => {
-    //    event.preventDefault();
-    //    const formData = new FormData(event.target);
-    //    const formObj = Object.fromEntries(formData.entries());
-    //
-    //    fetch("<?php //=ROOT?>///cashier/newCust", {
-    //        method: "POST",
-    //        headers: {
-    //            "Content-Type": "application/json",
-    //        },
-    //        body: JSON.stringify(formObj),
-    //    })
-    //        .then((response) => response.json())
-    //        .then((data) => console.log(data))
-    //        .catch((error) => console.error(error));
-    //});
 
 </script>
 </body>

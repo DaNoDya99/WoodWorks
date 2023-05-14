@@ -6,49 +6,50 @@
             <div style="display:flex; justify-content:space-between">
                 <h3 style="font-weight:500;">Orders</h3>
 
-                <input type="text" name="search" onkeyup="myFunction()" id="myInput" placeholder="Search Orders">
+                <input style="width: 30%" type="text" name="search" onkeyup="myFunction()" id="myInput"
+                       placeholder="Search Orders">
 
 
             </div>
             <br>
             <table id="myTable">
                 <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>OrderID</th>
-                        <th>Customer Name</th>
-                        <th>Total Amount</th>
-                        <th>Date Order Submitted</th>
-                        <!-- <th>Delivery Method</th> -->
-                        <!-- <th>Payment Type</th> -->
-                        <th>Order Status</th>
-                    </tr>
+                <tr>
+                    <th>#</th>
+                    <th>OrderID</th>
+                    <th>Customer Name</th>
+                    <th>Total Amount</th>
+                    <th>Date Order Submitted</th>
+                    <!-- <th>Delivery Method</th> -->
+                    <!-- <th>Payment Type</th> -->
+                    <th>Order Status</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($data['orders'] as $order) : ?>
+                <?php $i = 1; ?>
+                <?php foreach ($data['orders'] as $order) : ?>
 
-                       
-                        <tr onclick="orderdetailpopup(<?= "'" . $order->OrderID . "'" ?>)">
-                            <td style="color: grey"><?= $i ?></td>
-                            <td><?= $order->OrderID ?></td>
-                            <td><?= $order->Firstname . " " . $order->Lastname ?></td>
-                            <td><?= "Rs. " . number_format($order->Total_amount, 2, '.', ',') ?></td>
-                            <td><?= $order->Date ?></td>
-                            <!-- <td><?= $order->Deliver_method ?></td> -->
-                            <!-- <td style="text-align: center"><?= $order->Payment_type ?></td> -->
-                            <td style="text-align: center;">
+
+                    <tr onclick="orderdetailpopup(<?= "'" . $order->OrderID . "'" ?>)">
+                        <td style="color: grey"><?= $i ?></td>
+                        <td><?= $order->OrderID ?></td>
+                        <td><?= $order->Firstname . " " . $order->Lastname ?></td>
+                        <td><?= "Rs. " . number_format($order->Total_amount, 2, '.', ',') ?></td>
+                        <td><?= $order->Date ?></td>
+                        <!-- <td><?= $order->Deliver_method ?></td> -->
+                        <!-- <td style="text-align: center"><?= $order->Payment_type ?></td> -->
+                        <td style="text-align: center;">
                                 <span style="width:90px; padding: 5px 10px; border-radius: 5px;
                             <?= $order->Order_status == 'unpaid' ? 'background-color: #f99;' : ($order->Order_status == 'pending' ? 'background-color: #FFAE42;' : 'background-color: #98FF98;') ?>">
                                     <?= ucwords($order->Order_status) ?>
                                 </span>
-                            </td>
+                        </td>
 
 
-                        </tr>
-                        <?php $i = $i + 1 ?>
+                    </tr>
+                    <?php $i = $i + 1 ?>
 
-                    <?php endforeach; ?>
+                <?php endforeach; ?>
                 </tbody>
 
 
@@ -60,7 +61,8 @@
         <div class="popup3-content">
             <span id="close-popup3" class="close">&times;</span>
             <h2 class="order-title">Order No:</h2>
-            <button id="downloadBill" style="border:0px; border-radius:10px;display:block;margin-top:10px;padding: 15px 30px; font-weight:500; color: #0076e1; background-color: #bbe3ff; width: fit-content;">
+            <button id="downloadBill"
+                    style="border:0px; border-radius:10px;display:block;margin-top:10px;padding: 15px 30px; font-weight:500; color: #0076e1; background-color: #bbe3ff; width: fit-content;">
                 Download bill as PDF
             </button>
             <div style="margin-top:20px;display: flex; flex-direction: row ">
@@ -85,17 +87,17 @@
                 <!--            create dummy table with a list of order items-->
                 <table class="order-items-table">
                     <thead style="width: 100%">
-                        <tr>
-                            <th>ProductID</th>
-                            <!-- <th>Product Name</th> -->
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Sub Total</th>
-                        </tr>
+                    <tr>
+                        <th>ProductID</th>
+                        <!-- <th>Product Name</th> -->
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Sub Total</th>
+                    </tr>
 
                     </thead>
                     <tbody id="order-items-table">
-                        <!-- Rows generated via JS -->
+                    <!-- Rows generated via JS -->
                     </tbody>
                 </table>
 
@@ -153,7 +155,7 @@
 
                 let tbody = document.getElementById('order-items-table');
 
-                tbody.innerHTML='';
+                tbody.innerHTML = '';
 
                 data.order_items.forEach(item => {
                     console.log(item);
@@ -179,20 +181,17 @@
                 })
 
 
-
-
             })
             .catch(error => console.error(error))
 
     }
 
 
-
-    closePopupButton.addEventListener('click', function() {
+    closePopupButton.addEventListener('click', function () {
         popup.classList.add('hidden');
     });
 
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function (event) {
         if (event.target === popup) {
             popup.classList.add('hidden');
         }

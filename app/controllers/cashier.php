@@ -1,7 +1,11 @@
 <?php
 
+ini_set('display_errors', 0);
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
+
 require '../vendor/autoload.php';
 require_once 'PDF.php';
+require_once 'Email.php';
 require '../app/services/DistanceMatrixService.php';
 
 
@@ -22,36 +26,43 @@ class cashier extends Controller
                 $product->Discount_percentage = 0;
             }
         }
-
-
         $customer = new Customer();
 
-        // show($data);
 
         $this->view('cashier/dash', $data);
     }
 
     private function getUser()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $employee = new Employees();
         $id = Auth::getEmployeeID();
         return $employee->where('EmployeeID', $id);
     }
 
+
+    //get orders
     public function orders()
     {
-        //        if(!Auth::logged_in())
-        //        {
-        //            $this->redirect('login');
-        //        }
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
 
         $orders = new Orders();
         $data['orders'] = $orders->viewAllOrders();
         $this->view('cashier/orders', $data);
     }
 
+
+    //load existing customer
     public function oldcust()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
 
         $customer = new Customer();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -90,17 +101,62 @@ class cashier extends Controller
         }
     }
 
+
+    //load new customer
     public function newCust()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
             //open json stringified data
-            $data = json_decode(file_get_contents("php://input"));
-            echo json_encode($data);
+            $customer = new Customer();
+
+
+            $folder = "uploads/images/";
+
+            if ($customer->validateCashierSignups($_POST)) {
+
+                $destination = $folder . "user.png";
+
+                if (!file_exists(ROOT . "/assets/images/admin/user.png")) {
+                    if (copy(ROOT . "/assets/images/admin/user.png", $destination)) {
+                        $this->message = "Image cannot be copied.";
+                    } else {
+                        $this->message = "Image copied successfully.";
+                    }
+                }
+
+                $_POST['Image'] = $destination;
+
+                $_POST['Password'] = password_hash(rand(10000000, 99999999), PASSWORD_DEFAULT);
+                $customer->insert($_POST);
+                $_SESSION['Email'] = $_POST['Email'];
+
+                $data['errors'] = [];
+                echo json_encode(['status' => 'success', 'email' => $_POST['Email'], 'success' => 'Customer added successfully.']);
+//                $email = new Email();
+//                $email->cashiersignup($_SESSION['Email']);
+
+            } else {
+                $data['errors'] = $_SESSION['errors'];
+                echo json_encode($data);
+            }
+
         }
     }
 
-    public function isCustomerSet()
+    //check if customer is set
+    public
+    function isCustomerSet()
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         if (isset($_SESSION['CustomerID']) && isset($_SESSION['CustomerDetails'])) {
             echo json_encode(['status' => 'true', 'success' => 'Customer loaded successfully.']);
         } else {
@@ -109,8 +165,15 @@ class cashier extends Controller
     }
 
 
-    public function add_to_cart($id, $cost, $quantity = 1): void
+    //add to cart
+    public
+    function add_to_cart($id, $cost, $quantity = 1): void
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $order = new Orders();
         $furniture = new Furnitures();
         $cart = new Carts();
@@ -194,9 +257,15 @@ class cashier extends Controller
         }
     }
 
-
-    public function removeItem($productID, $cost, $quantity)
+//remove item from cart
+    public
+    function removeItem($productID, $cost, $quantity)
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
 
         foreach ($_SESSION['cart'] as $key => $value) {
             if ($value['ProductID'] == $productID) {
@@ -225,8 +294,17 @@ class cashier extends Controller
         echo json_encode(['status' => 'success', 'success' => 'Item removed from cart successfully.']);
     }
 
-    public function checkoutCash($orderID)
+
+    //checkout cash
+    public
+    function checkoutCash($orderID)
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+
         $order = new Orders();
         $order_items = new Order_Items();
         $cart = new Carts();
@@ -234,13 +312,26 @@ class cashier extends Controller
         $inventory = new Product_Inventory();
         $_POST['Payment_type'] = 'Cash';
         $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
-        $_POST['Delivery_method'] = 'Delivery';
+        $_POST['Shipping_cost'] = $_SESSION['shipping'];
+        if (isset($_POST['delivery'])) {
+            if ($_POST['delivery'] == 'delivery') {
+                $_POST['Delivery_method'] = 'Delivery';
+                $_POST['Shipping_cost'] = $_SESSION['shipping'];
+                $_POST['Address'] = $_POST['addressLine1'] . ', ' . $_POST['addressLine2'] . ', ' . $_POST['City'];
+            } else {
+                $_POST['Delivery_method'] = 'Pickup';
+                $_POST['Shipping_cost'] = 0;
+                $_POST['Address'] = 'N/A';
+            }
+        }
+
         $order_items->updateIsPurchased($orderID);
         $cus_order_items = $order_items->getOrderItems($orderID);
 
         foreach ($cus_order_items as $item) {
             $inventory->updateQuantityToDecrease($item->ProductID, $item->Quantity);
         }
+
         $order->update_status($orderID, $_POST);
         $order->updateIsPreparing($orderID);
         $cart->resetCartTotal($cart->getCart($id)[0]->CartID);
@@ -248,8 +339,15 @@ class cashier extends Controller
         $this->redirect('cashier/dash');
     }
 
-    public function resetCustomer()
+    //reset customer
+    public
+    function resetCustomer()
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $_SESSION['CustomerID'] = null;
         $_SESSION['CustomerDetails'] = null;
         $_SESSION['CartID'] = null;
@@ -258,8 +356,15 @@ class cashier extends Controller
         $this->redirect('cashier/dash');
     }
 
-    public function checkout_card()
+    //checkout card
+    public
+    function checkout_card()
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
 
         $orderID = $_SESSION['OrderID'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -347,8 +452,14 @@ class cashier extends Controller
 
     //return cart total amount
 
-    public function getCartTotal()
+    public
+    function getCartTotal()
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $cart = new Carts();
         if (isset($_SESSION['CustomerID'])) {
             $id = $_SESSION['CustomerID'];
@@ -362,8 +473,14 @@ class cashier extends Controller
 
     //get cart items of cart
 
-    public function getCartItems()
+    public
+    function getCartItems()
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $cart_id = $_SESSION['CartID'];
         $cart = new Carts();
 
@@ -385,8 +502,10 @@ class cashier extends Controller
         }
     }
 
-    public function Profile($id = null)
+    public
+    function Profile($id = null)
     {
+
 
         if (!Auth::logged_in()) {
             $this->redirect('login1');
@@ -435,8 +554,14 @@ class cashier extends Controller
         $this->view('cashier/profile', $data);
     }
 
-    public function getDiscount($id)
+    public
+    function getDiscount($id)
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $discounts = new Discounts();
         $discount = $discounts->getDiscount($id);
 
@@ -446,8 +571,14 @@ class cashier extends Controller
         return $discount[0]->Discount_percentage;
     }
 
-    public function updateFinalTotal()
+    public
+    function updateFinalTotal()
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $cart = new Carts();
         $id = $_SESSION['CustomerID'];
         $_SESSION['Final_Total'] = $cart->getTotalAmount($id)[0]->Total_amount + $_SESSION['shipping'];
@@ -457,8 +588,15 @@ class cashier extends Controller
         echo json_encode($data);
     }
 
-    public function getOrderSummary()
+    public
+    function getOrderSummary()
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+
         $id = $_SESSION['CustomerID'];
         $orderitem = new Order_Items();
 
@@ -468,11 +606,15 @@ class cashier extends Controller
         echo json_encode($data);
     }
 
-    public function card_success()
+
+    public
+    function card_success()
     {
-//        if (!Auth::logged_in()) {
-//            $this->redirect('login');
-//        }
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $customer = new Customer();
         $order = new Orders();
         $order_items = new Order_items();
@@ -522,14 +664,24 @@ class cashier extends Controller
         }
     }
 
-    public function bill($id)
+    public
+    function bill($id)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $pdf = new PDF();
         $pdf->generateBill($id);
     }
 
-    public function getOrderByID($id)
+    public
+    function getOrderByID($id)
     {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $order = new Orders();
         $order_items = new Order_Items();
         $data['order'] = $order->getOrderByID($id);
@@ -537,8 +689,14 @@ class cashier extends Controller
         echo json_encode($data);
     }
 
-    public function getShipping()
+    public
+    function getShipping()
     {
+
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         if ($_POST['delivery'] == 'delivery') {
             $deliveries = new Deliveries();
             $distanceMatrix = new DistanceMatrixService();

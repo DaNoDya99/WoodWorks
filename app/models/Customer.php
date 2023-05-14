@@ -69,6 +69,45 @@ class Customer extends Model
 
         return false;
     }
+public function validateCashierSignups($post)
+    {
+        $this->errors = [];
+
+
+        if (empty($post['Firstname'])) {
+            $this->errors['Firstname'] = "A first name is required.";
+        } elseif (!preg_match("/^[a-zA-Z]+$/", trim($post['Firstname']))) {
+            $this->errors['Firstname'] = "First name can only have letters.";
+        }
+
+        if (empty($post['Lastname'])) {
+            $this->errors['Lastname'] = "A last name is required.";
+        } elseif (!preg_match("/^[a-zA-Z]+$/", trim($post['Lastname']))) {
+            $this->errors['Lastname'] = "Last name can only have letters.";
+        }
+        if (!filter_var($post['Email'], FILTER_VALIDATE_EMAIL)) {
+            $this->errors['Email'] = "Email is not valid.";
+        }
+
+        if (!filter_var($post['Email'], FILTER_VALIDATE_EMAIL)) {
+
+            $this->errors['Email'] = "Email is not valid.";
+        } elseif ($this->where('Email', $post['Email'])) {
+            $this->errors['Email'] = "Email already exist.";
+        }
+
+        if (empty($post['Mobileno'])) {
+            $this->errors['Mobileno'] = "Contact number required.";
+        } elseif (!preg_match("/^[0-9]+$/", trim($post['Mobileno']))) {
+            $this->errors['Mobileno'] = "Contact number can only have numbers.";
+        }
+
+        if (empty($this->errors)) {
+            return true;
+        }
+        $_SESSION['errors'] = $this->errors;
+        return false;
+    }
 
     public function make_customer_id($data)
     {

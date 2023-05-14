@@ -18,6 +18,15 @@ class Email extends Controller
         $content = ob_get_clean(); // Get the buffered contents and clean the buffer
 
         $this->send($email, 'Sign-up Verification', $content);
+    }function cashiersignup($email)
+    {
+        ob_start();
+
+        include('../public/assets/templates/cashierAccountCreate.php');
+
+        $content = ob_get_clean(); // Get the buffered contents and clean the buffer
+
+        $this->send($email, 'WoodWorks Account has been created!', $content);
     }
 
     function send($emailTo, $subject, $body): void

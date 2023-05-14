@@ -145,6 +145,7 @@
                     <input style="padding-left:10px ;" type="password" name="Password" id="Password" value="<?= set_value('Password') ?>" required>
 
                     <p>Don't have an account? <a href="<?=ROOT?>/signup">Sign up</a></p>
+                    <p>Forgot Password? <a href="<?=ROOT?>/pw_reset">Reset here</a></p>
                     <button class="loginbutton" type="submit">Login</button>
                 </form>
             </div>
