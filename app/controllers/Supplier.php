@@ -26,9 +26,11 @@ class supplier extends Controller
 
     public function getItemsByOrderID($id)
     {
+        $orderinfo = new CompanyOrderModel();
         $order_item = new CompanyOrderItems();
         $furnitures = new Furnitures();
 
+        $data['order'] = $orderinfo->getOrder($id);
         $data['items'] = $order_item->getItemsByOrderID($id);
         if (count((array)$data['items']) == 0) {
             echo json_encode(['status' => 'error', 'message' => 'No items found.']);
@@ -48,13 +50,19 @@ class supplier extends Controller
             $this->redirect('Login');
         }
         $orders = new CompanyOrderModel();
-        $data['acceptedorders'] = $orders->getacceptedorders();
+        $data['acceptedorders'] = $orders->getAllRespondedOrders();
+
+
 
         $this->view('supplier/accepted', $data);
     }
 
     public function changeOrderStatus($id, $status)
     {
+//        get reason from post
+        if ($_POST['reason']) {
+            $reason = $_POST['reason'];
+        }
         $orders = new CompanyOrderModel();
         if ($orders->findOrder($id)) {
             $orders->changeOrderStatus($id, $status);
@@ -215,6 +223,13 @@ class supplier extends Controller
             echo "Supplier Not Found";
         }
 
+    }
+
+    public function getProductsByID($ordID){
+        $order_item = new CompanyOrderItems();
+        $data['orderitems'] = $order_item->getItemsByOrderID($ordID);
+
+        echo json_encode($data);
     }
 
     public function getSupplierProdcuts($id)

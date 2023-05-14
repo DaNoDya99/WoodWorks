@@ -20,15 +20,6 @@ class Email extends Controller
         $this->send($email, 'Sign-up Verification', $content);
     }
 
-    function bill($email)
-    {
-        ob_start();
-
-        include('../public/assets/templates/bill.php');
-        $content =  ob_get_clean();
-        $this->send($email, 'Sign-up Verification', $content);
-    }
-
     function send($emailTo, $subject, $body): void
     {
         $mail = new PHPMailer();
@@ -51,5 +42,29 @@ class Email extends Controller
         } else {
             echo 'Message sent!';
         }
+    }
+
+    function bill($email, $orderID)
+    {
+        ob_start();
+
+        $order_items = new Order_Items();
+        $orders = new Orders();
+
+        $data['order_details'] = $orders->getOrderByID($orderID);
+        $data['order_items'] = $order_items->getOrderItems($orderID);
+
+        include('../public/assets/templates/bill.php');
+        $content = ob_get_clean();
+        $this->send($email, 'Invoice for '.$orderID , $content);
+    }
+
+    function issueResponse($email)
+    {
+        ob_start();
+
+        include('../public/assets/templates/bill.php');
+        $content = ob_get_clean();
+        $this->send($email, 'Sign-up Verification', $content);
     }
 }

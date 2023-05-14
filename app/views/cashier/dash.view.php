@@ -550,7 +550,7 @@
 
         console.log('updateButtonOrderID');
         if (!button.hasAttribute("onclick")) {
-            button.setAttribute("onclick", "alert('lol')");
+            button.setAttribute("onclick", "openPaymentPopup('" + orderID + "')");
         }
 
 
@@ -827,6 +827,7 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementById("shippingcost-value").innerHTML = data;
+                console.log(data);
                 hidePopup();
                 getFinalTotal();
             })

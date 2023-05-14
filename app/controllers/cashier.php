@@ -249,18 +249,19 @@ class cashier extends Controller
         $this->redirect('cashier/dash');
     }
 
-    public function checkout_card($orderID)
+    public function checkout_card()
     {
         // if(!Auth::logged_in())
         // {
         //     $this->redirect('login');
         // }
-        $deliveries = new Deliveries();
-
-        $distanceMatrix = new DistanceMatrixService();
-        $distance = $distanceMatrix->calculateDistance('Colombo', $_POST['City']);
-        $deliveryCost = $deliveries->getDeliveryRate(explode(' ', $distance['distance'])[0])[0]->Cost_per_km * explode(' ', $distance['distance'])[0];
-
+//        $deliveries = new Deliveries();
+//
+//        $distanceMatrix = new DistanceMatrixService();
+//        $distance = $distanceMatrix->calculateDistance('Colombo', $_POST['City']);
+//        $deliveryCost = $deliveries->getDeliveryRate(explode(' ', $distance['distance'])[0])[0]->Cost_per_km * explode(' ', $distance['distance'])[0];
+//
+        $orderID = $_SESSION['OrderID'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $order = new Orders();
             $order_items = new Order_Items();
@@ -271,7 +272,7 @@ class cashier extends Controller
             $_POST['Payment_type'] = 'Card';
             $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
             $_POST['Delivery_method'] = 'Delivery';
-            $_POST['Shipping_cost'] = $deliveryCost;
+            $_POST['Shipping_cost'] = $_SESSION['shipping'];
             $_POST['Address'] = $_POST['addressLine1'] . ', ' . $_POST['addressLine2'] . ', ' . $_POST['City'];
 
 
@@ -309,7 +310,7 @@ class cashier extends Controller
                     [
                         'shipping_rate_data' => [
                             'type' => 'fixed_amount',
-                            'fixed_amount' => ['amount' => $deliveryCost * 100, 'currency' => 'lkr'],
+                            'fixed_amount' => ['amount' => $_SESSION['shipping'] * 100, 'currency' => 'lkr'],
                             'display_name' => 'Next day air',
                             'delivery_estimate' => [
                                 'minimum' => ['unit' => 'business_day', 'value' => 1],
@@ -448,8 +449,9 @@ class cashier extends Controller
         echo json_encode($data);
     }
 
-    public function getOrderSummary($id)
+    public function getOrderSummary()
     {
+        $id = $_SESSION['CustomerID'];
         $orderitem = new Order_Items();
 
         $orderCount = $orderitem->getTotalOrderItemCount($id);

@@ -60,7 +60,7 @@
         <div class="popup3-content">
             <span id="close-popup3" class="close">&times;</span>
             <h2 class="order-title">Order No:</h2>
-            <button style="border:0px; border-radius:10px;display:block;margin-top:10px;padding: 15px 30px; font-weight:500; color: #0076e1; background-color: #bbe3ff; width: fit-content;">
+            <button id="downloadBill" style="border:0px; border-radius:10px;display:block;margin-top:10px;padding: 15px 30px; font-weight:500; color: #0076e1; background-color: #bbe3ff; width: fit-content;">
                 Download bill as PDF
             </button>
             <div style="margin-top:20px;display: flex; flex-direction: row ">
@@ -132,6 +132,7 @@
     function orderdetailpopup(orderid) {
         popup.classList.remove('hidden');
         document.getElementsByClassName('order-title')[0].innerHTML = 'Order No: ' + orderid;
+        document.getElementById('downloadBill').setAttribute('onclick', 'downloadBill("' + orderid + '")');
         //     fetch data from db via fetch
         fetch('http://localhost/WoodWorks/public/cashier/getorderbyid/+' + orderid)
             .then(response => response.json())
@@ -196,6 +197,10 @@
             popup.classList.add('hidden');
         }
     });
+
+    function downloadBill(orderid) {
+        window.open('http://localhost/WoodWorks/public/cashier/bill/' + orderid);
+    }
 </script>
 </body>
 

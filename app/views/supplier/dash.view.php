@@ -4,9 +4,9 @@
         <div class="order-section">
             <h3>Restocking Orders</h3>
             <br>
-            <div style="display: flex; flex-direction: row; column-gap: 20px">
+            <div style="display: flex; flex-direction: column; column-gap: 20px">
 
-
+                <label for="sortFilter">Sort By:</label>
                 <select id="sortFilter">
                     <option value="date-descending">Date (Newest First)</option>
 
@@ -83,7 +83,20 @@
             </div>
         </div>
     </div>
+    <div class="popup-reject-comment"
+         style="position: absolute; padding: 40px; width: 50vw; height: auto; background-color: white; top:0; z-index: 99; top: 50%;left: 50%; transform: translate(-50%,-50%); box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.75); border-radius: 10px; display: block">
+        <span>Enter Reason for Rejection</span><br><br>
+        <textarea id="reject-comment" style="width: 100%; height: 50%; border-radius: 5px; padding: 5px"
+                  rows="4"></textarea><br><br>
+        <button id="reject"
+                style="padding: 10px 25px; border-radius: 8px; border: 0px; background-color: #d8000c; color: white">
+            Reject
+        </button>
+
+    </div>
 </div>
+
+
 <!--confirmation box-->
 <!--<div class="bg-dark">-->
 <!--    <div class="confirmation">-->
@@ -205,101 +218,11 @@
     // Call updateOrderList() initially to render the list with default filters
     updateOrderList();
 
-    function filterAndSortOrders(orders, sort) {
-        let filteredOrders = orders;
-
-        // Apply filters
-
-
-        // Apply sorting
-        if (sort === 'date-ascending') {
-            filteredOrders.sort((a, b) => {
-                const dateA = new Date(a.Date).getTime();
-                const dateB = new Date(b.Date).getTime();
-                return dateA - dateB;
-            });
-        } else if (sort === 'date-descending') {
-            filteredOrders.sort((a, b) => {
-                const dateA = new Date(a.Date).getTime();
-                const dateB = new Date(b.Date).getTime();
-                return dateB - dateA;
-            });
-        }
-        return filteredOrders;
-    }
-
 
     document.getElementById('sortFilter').addEventListener('change', function () {
         updateOrderList();
     });
 
-
-    function updateOrderList() {
-        const sortFilterValue = document.getElementById('sortFilter').value;
-
-        fetch('http://localhost/woodworks/public/supplier/getneworders')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                if (data.neworders !== false) {
-                    const filteredAndSortedOrders = filterAndSortOrders(data.neworders, sortFilterValue);
-
-                    const orderListElement = document.getElementsByClassName("order-list")[0];
-                    orderListElement.innerHTML = ''; // Clear existing order list items
-
-                    filteredAndSortedOrders.forEach(order => {
-                        const orderListItem = document.createElement("div");
-                        orderListItem.className = "order-list-item";
-                        const orderInfo = document.createElement("div");
-
-                        const orderHeading = document.createElement("h4");
-                        orderHeading.innerHTML = `<span>#${order.OrderID}</span>`;
-
-                        const orderDateQuantity = document.createElement("div");
-                        orderDateQuantity.style.display = "flex";
-
-                        const orderDate = document.createElement("p");
-                        orderDate.className = "date";
-                        orderDate.textContent = "Date Sent: " + order.Date;
-
-                        // const orderQuantity = document.createElement("p");
-                        // orderQuantity.className = "quantity";
-                        // orderQuantity.textContent = `Date Submitted: ${order.Date}`;
-
-                        orderDateQuantity.appendChild(orderDate);
-                        // orderDateQuantity.appendChild(orderQuantity);
-
-                        orderInfo.appendChild(orderHeading);
-                        orderInfo.appendChild(orderDateQuantity);
-
-                        // const orderStatus = document.createElement("div");
-                        // const statusSpan = document.createElement("span");
-                        // statusSpan.className = "status";
-                        // orderStatus.style.display = "flex";
-                        // orderStatus.style.justifyContent = "center";
-                        // orderStatus.style.alignItems = "center";
-                        // statusSpan.style.color = "white";
-                        // statusSpan.style.backgroundColor = "#e79e00";
-                        // statusSpan.textContent = order.OrderStatus;
-                        // orderStatus.appendChild(statusSpan);
-
-                        orderListItem.appendChild(orderInfo);
-                        // orderListItem.appendChild(orderStatus);
-                        orderListItem.orderData = order; // Store the order object as a property on the element
-                        orderListElement.appendChild(orderListItem);
-                    });
-
-                    addEventListenersToOrderListItems();
-                    handleClick(document.getElementsByClassName("order-list")[0].firstChild.orderData)
-                    document.getElementsByClassName("order-list")[0].firstChild.classList.add("selected");
-                } else {
-                    document.getElementsByClassName("order-list")[0].innerHTML = "<h1>No New Orders</h1>";
-                    handleClick('none');
-
-                }
-
-            });
-    }
 
     // Call updateOrderList() initially to render the list with default filters
 
@@ -431,113 +354,43 @@
         document.getElementsByClassName('managerno-span')[0].value = itemId.ManagerID;
         document.getElementsByClassName('orderstatus')[0].innerHTML = itemId.OrderStatus;
 
-        document.getElementById('accept').setAttribute('onclick', 'changeOrderStatus("' + itemId.OrderID + '", "accepted")');
-        document.getElementById('reject').setAttribute('onclick', 'changeOrderStatus("' + itemId.OrderID + '", "rejected")');
+        document.getElementById('accept').setAttribute('onclick', 'changeOrderStatus("' + itemId.OrderID + '", "Accepted")');
+        document.getElementById('reject').setAttribute('onclick', 'changeOrderStatus("' + itemId.OrderID + '", "Rejected")');
         getOrderItems(itemId.OrderID);
 
     }
 
-    function changeOrderStatus(orderID, status) {
+    function changeOrderStatus(orderID, status, reason = null) {
         console.log(orderID);
 
-        fetch('http://localhost/woodworks/public/supplier/changeOrderStatus/' + orderID + '/' + status)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                updateOrderList();
-            });
-    }
+        // send a reason in post request if the status is rejected
 
-
-    function addEventListenersToOrderListItems() {
-        const orderListItems = document.querySelectorAll('.order-list-item');
-
-        orderListItems.forEach(item => {
-            item.addEventListener('click', function () {
-                const itemId = item.id;
-
-                // Deselect all other items
-                orderListItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('selected');
-                    }
+        if (status === 'Rejected') {
+            const reason = document.getElementById('reason').value;
+            console.log(reason);
+            fetch('http://localhost/woodworks/public/supplier/changeOrderStatus/' + orderID + '/' + status, {
+                method: 'POST',
+                body: JSON.stringify({
+                    reason: reason
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    updateOrderList();
                 });
 
-                const order = item.orderData; // Get the order object from the element
-                handleClick(order); // Call the function with the order object as a parameter
-                item.classList.toggle('selected');
-            });
-        });
-    }
-
-
-    function getOrderItems(orderID) {
-        fetch('http://localhost/woodworks/public/supplier/getItemsByOrderID/' + orderID)
-            .then(response => response.json())
-            .then(data => {
-                    console.log(data);
-                    const orderItemListElement = document.getElementsByClassName("order-item-list")[0];
-                    orderItemListElement.innerHTML = "";
-                    data.items.forEach(item => {
-                            console.log(item);
-                            const row = document.createElement('tr');
-
-                            const idCell = document.createElement('td');
-                            idCell.textContent = item.ProductID;
-                            row.appendChild(idCell);
-
-                            const imageCell = document.createElement('td');
-                            const image = document.createElement('img');
-                            image.className = "img-thumbnail";
-                            image.src = "<?=ROOT?>/" + item.image;
-                            image.alt = '';
-                            image.style.width = '100px';
-                            image.style.height = '100px';
-                            image.style.objectFit = 'cover';
-                            imageCell.appendChild(image);
-                            row.appendChild(imageCell);
-
-                            const quantityCell = document.createElement('td');
-                            quantityCell.textContent = item.Quantity;
-                            row.appendChild(quantityCell);
-                            orderItemListElement.appendChild(row);
-
-                        }
-                    )
-
-                }
-            );
-    }
-
-
-    function handleClick(itemId) {
-        if (itemId === 'none') {
-            document.getElementsByClassName('detail-box')[0].innerHTML = "<h1>No Order Selected</h1>"
-            return;
         }
-        //     update supply order detail
-        document.getElementsByClassName('orderid-span')[0].innerHTML = itemId.OrderID;
-        document.getElementsByClassName('comment-area')[0].innerHTML = itemId.Comments;
-        document.getElementsByClassName('dateSent-span')[0].innerHTML = itemId.Date;
-        document.getElementsByClassName('managerno-span')[0].value = itemId.ManagerID;
-        document.getElementsByClassName('orderstatus')[0].innerHTML = itemId.OrderStatus;
+        else {
+            fetch('http://localhost/woodworks/public/supplier/changeOrderStatus/' + orderID + '/' + status)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    updateOrderList();
+                });
+        }
 
-        document.getElementById('accept').setAttribute('onclick', 'changeOrderStatus("' + itemId.OrderID + '", "accepted")');
-        document.getElementById('reject').setAttribute('onclick', 'changeOrderStatus("' + itemId.OrderID + '", "rejected")');
-        getOrderItems(itemId.OrderID);
 
-    }
-
-    function changeOrderStatus(orderID, status) {
-        console.log(orderID);
-
-        fetch('http://localhost/woodworks/public/supplier/changeOrderStatus/' + orderID + '/' + status)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                updateOrderList();
-            });
-    }
 </script>
 
 </body>
