@@ -311,7 +311,7 @@
             Pickup
         </label>
         <label>
-            <input type="radio" name="delivery" value="home_delivery">
+            <input type="radio" name="delivery" value="delivery">
             Home Delivery
         </label>
         <input type="text" id="addressInput" placeholder="Address Line 1" style="display: none;">
@@ -379,6 +379,8 @@
             })
     }
 
+    //POS System table search
+
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
@@ -386,7 +388,7 @@
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
+            td = tr[i].getElementsByTagName("td")[0];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -397,6 +399,8 @@
             }
         }
     }
+
+    // Handles the pop up to select quantity
 
     function quantitypopup(img, name, id, cost,) {
 
@@ -424,17 +428,26 @@
         //using vanilla js using fetch
 
         var deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
-        var addressLine1 = document.getElementById('addressInput').value;
-        var addressLine2 = document.getElementById('addressInput1').value;
-        var city = document.getElementById('addressInput2').value;
+
+        if (deliveryMethod === 'pickup') {
+            var data = {
+                delivery: deliveryMethod
+            };
+        } else {
+            var addressLine1 = document.getElementById('addressInput').value;
+            var addressLine2 = document.getElementById('addressInput1').value;
+            var city = document.getElementById('addressInput2').value;
+            var data = {
+                delivery: deliveryMethod,
+                addressLine1: addressLine1,
+                addressLine2: addressLine2,
+                City: city
+            };
+        }
+
 
         // Prepare data to send
-        var data = {
-            delivery: deliveryMethod,
-            addressLine1: addressLine1,
-            addressLine2: addressLine2,
-            City: city
-        };
+
         const formData = new URLSearchParams();
 
         for (const key in data) {
@@ -784,7 +797,7 @@
     // Show address input box when home delivery is selected
     deliveryRadios.forEach(radio => {
         radio.addEventListener("change", function () {
-            if (this.value === "home_delivery") {
+            if (this.value === "delivery") {
                 addressInput.style.display = "block";
                 addressInput1.style.display = "block";
                 addressInput2.style.display = "block";
@@ -802,17 +815,23 @@
         e.preventDefault(); // Prevent form submission
 
         var deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
-        var addressLine1 = document.getElementById('addressInput').value;
-        var addressLine2 = document.getElementById('addressInput1').value;
-        var city = document.getElementById('addressInput2').value;
 
-        // Prepare data to send
-        var data = {
-            delivery: deliveryMethod,
-            addressLine1: addressLine1,
-            addressLine2: addressLine2,
-            City: city
-        };
+        if (deliveryMethod === 'pickup') {
+            var data = {
+                delivery: deliveryMethod
+            };
+        } else {
+            var addressLine1 = document.getElementById('addressInput').value;
+            var addressLine2 = document.getElementById('addressInput1').value;
+            var city = document.getElementById('addressInput2').value;
+            var data = {
+                delivery: deliveryMethod,
+                addressLine1: addressLine1,
+                addressLine2: addressLine2,
+                City: city
+            };
+        }
+
         const formData = new URLSearchParams();
 
         for (const key in data) {
@@ -839,6 +858,25 @@
 
     //     add event listener to id submitBtn on click
 
+
+    //const form2 = document.getElementById("new-customer-form");
+    //
+    //form2.addEventListener("submit", (event) => {
+    //    event.preventDefault();
+    //    const formData = new FormData(event.target);
+    //    const formObj = Object.fromEntries(formData.entries());
+    //
+    //    fetch("<?php //=ROOT?>///cashier/newCust", {
+    //        method: "POST",
+    //        headers: {
+    //            "Content-Type": "application/json",
+    //        },
+    //        body: JSON.stringify(formObj),
+    //    })
+    //        .then((response) => response.json())
+    //        .then((data) => console.log(data))
+    //        .catch((error) => console.error(error));
+    //});
 
 </script>
 </body>

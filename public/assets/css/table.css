@@ -14,7 +14,7 @@
     padding: 30px;
     padding-top: 30px;
     transition: all 0.2s ease;
-    /* overflow: scroll; */
+    overflow: scroll;
 }
 .inventory-data table{
     width: 100%;

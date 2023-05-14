@@ -154,8 +154,6 @@ class CompanyOrderModel extends Model
 
             ];
         } else if ($status == 'Completed') {
-
-            %
             $query = "update $this->table set OrderStatus = :OrderStatus, Completed_date = :Completed_date where OrderID = :OrderID";
             $data = [
                 'OrderStatus' => $status,

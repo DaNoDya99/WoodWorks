@@ -30,7 +30,6 @@
                             <br><br>
                             <div class="submit-reset-buttons">
                                 <input type="submit" value="Submit">
-                                <input type="reset" value="Reset">
                             </div>
 
                         </form>

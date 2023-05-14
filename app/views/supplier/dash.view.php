@@ -96,27 +96,6 @@
     </div>
 </div>
 
-
-<!--confirmation box-->
-<!--<div class="bg-dark">-->
-<!--    <div class="confirmation">-->
-<!--        <div class="confirmation-box">-->
-<!--            <div class="confirmation-box-header">-->
-<!--                <h3>Confirmation</h3>-->
-<!--                <span>&times;</span>-->
-<!--            </div>-->
-<!--            <div class="confirmation-box-body">-->
-<!--                <p>Are you sure you want to accept this order?</p>-->
-<!--                <div class="confirmation-buttons">-->
-<!--                    <button id="accept">Yes</button>-->
-<!--                    <button id="reject">No</button>-->
-<!---->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
 <script>
 
     function filterAndSortOrders(orders, sort) {
@@ -380,8 +359,7 @@
                     updateOrderList();
                 });
 
-        }
-        else {
+        } else {
             fetch('http://localhost/woodworks/public/supplier/changeOrderStatus/' + orderID + '/' + status)
                 .then(response => response.json())
                 .then(data => {
@@ -389,6 +367,7 @@
                     updateOrderList();
                 });
         }
+    }
 
 
 </script>

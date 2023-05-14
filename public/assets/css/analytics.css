@@ -196,6 +196,7 @@ html {
 .show {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 #dropdown-icon {
@@ -637,3 +638,33 @@ html {
     font-family: 'Rubik', serif;
     border: 1px solid #0F3D3E;
 }
+
+.date-overlay input[type="date"] {
+    height: 40px;
+    width: 250px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgb(151, 151, 151);
+}
+
+.date-overlay form {
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+.submit-reset-buttons{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.submit-reset-buttons input {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+    font-family: 'Rubik', serif;
+    border: 1px solid #0F3D3E;
+}
+

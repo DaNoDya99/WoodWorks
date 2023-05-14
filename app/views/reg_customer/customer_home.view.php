@@ -14,9 +14,7 @@
                     <button>Shop now</button>
                 </a>
             </div>
-            <div class="intro-img">
-                <img src="<?=ROOT?>/assets/images/customer/intro.jpg" alt="Intro Image">
-            </div>
+
         </div>
     </section>
     <section class="latest-section">
