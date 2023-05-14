@@ -135,11 +135,11 @@
     <img class="chat-btn" id="chat-btn" src="<?=ROOT?>/assets/images/customer/chat-circle-svgrepo-com.svg" alt="" onclick="openChat()">
 
     <div class="manager-chat-selector" id="manager-chat-selector" onclick="openManagerChat()">
-        <h3>Manager</h3>
+        <h3>Contact Woodworks</h3>
     </div>
 
     <div class="designer-chat-selector" id="designer-chat-selector" onclick="openDesignerChat()">
-        <h3>Designer</h3>
+        <h3>Contact Designer</h3>
     </div>
 
     <script src="<?=ROOT?>/assets/javascript/customer_chat.js"></script>
