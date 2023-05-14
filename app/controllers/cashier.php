@@ -90,11 +90,12 @@ class cashier extends Controller
         }
     }
 
-    public function newCust(){
+    public function newCust()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //open json stringified data
-        $data = json_decode(file_get_contents("php://input"));
-        echo json_encode($data);
+            //open json stringified data
+            $data = json_decode(file_get_contents("php://input"));
+            echo json_encode($data);
         }
     }
 
@@ -259,16 +260,7 @@ class cashier extends Controller
 
     public function checkout_card()
     {
-        // if(!Auth::logged_in())
-        // {
-        //     $this->redirect('login');
-        // }
-//        $deliveries = new Deliveries();
-//
-//        $distanceMatrix = new DistanceMatrixService();
-//        $distance = $distanceMatrix->calculateDistance('Colombo', $_POST['City']);
-//        $deliveryCost = $deliveries->getDeliveryRate(explode(' ', $distance['distance'])[0])[0]->Cost_per_km * explode(' ', $distance['distance'])[0];
-//
+
         $orderID = $_SESSION['OrderID'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $order = new Orders();
@@ -279,9 +271,17 @@ class cashier extends Controller
 
             $_POST['Payment_type'] = 'Card';
             $_POST['Total_amount'] = $cart->getTotalAmount($id)[0]->Total_amount;
-            $_POST['Delivery_method'] = 'Delivery';
-            $_POST['Shipping_cost'] = $_SESSION['shipping'];
-            $_POST['Address'] = $_POST['addressLine1'] . ', ' . $_POST['addressLine2'] . ', ' . $_POST['City'];
+            if (isset($_POST['delivery'])) {
+                if ($_POST['delivery'] == 'delivery') {
+                    $_POST['Delivery_method'] = 'Delivery';
+                    $_POST['Shipping_cost'] = $_SESSION['shipping'];
+                    $_POST['Address'] = $_POST['addressLine1'] . ', ' . $_POST['addressLine2'] . ', ' . $_POST['City'];
+                } else {
+                    $_POST['Delivery_method'] = 'Pickup';
+                    $_POST['Shipping_cost'] = 0;
+                    $_POST['Address'] = 'N/A';
+                }
+            }
 
 
             $order->update_status($orderID, $_POST);
@@ -318,7 +318,7 @@ class cashier extends Controller
                     [
                         'shipping_rate_data' => [
                             'type' => 'fixed_amount',
-                            'fixed_amount' => ['amount' => $_SESSION['shipping'] * 100, 'currency' => 'lkr'],
+                            'fixed_amount' => ['amount' => $_POST['Shipping_cost'] * 100, 'currency' => 'lkr'],
                             'display_name' => 'Next day air',
                             'delivery_estimate' => [
                                 'minimum' => ['unit' => 'business_day', 'value' => 1],
@@ -336,7 +336,7 @@ class cashier extends Controller
                 ]],
 
                 'success_url' => 'http://localhost/WoodWorks/public/cashier/card_success?session_id={CHECKOUT_SESSION_ID}',
-                'cancel_url' => 'http://localhost:4242/cancel',
+                'cancel_url' => 'http://localhost/WoodWorks/public/cashier/dash'
             ]);
 
             $order->updateSessionID($orderID, $checkout_session->id, 'unpaid');
@@ -539,10 +539,15 @@ class cashier extends Controller
 
     public function getShipping()
     {
-        $deliveries = new Deliveries();
-        $distanceMatrix = new DistanceMatrixService();
-        $distance = $distanceMatrix->calculateDistance('Colombo', $_POST['City']);
-        $deliveryCost = $deliveries->getDeliveryRate(explode(' ', $distance['distance'])[0])[0]->Cost_per_km * explode(' ', $distance['distance'])[0];
+        if ($_POST['delivery'] == 'delivery') {
+            $deliveries = new Deliveries();
+            $distanceMatrix = new DistanceMatrixService();
+            $distance = $distanceMatrix->calculateDistance('Colombo', $_POST['City']);
+            $deliveryCost = $deliveries->getDeliveryRate(explode(' ', $distance['distance'])[0])[0]->Cost_per_km * explode(' ', $distance['distance'])[0];
+
+        } else {
+            $deliveryCost = 0;
+        }
 
         $_SESSION['shipping'] = $deliveryCost;
 

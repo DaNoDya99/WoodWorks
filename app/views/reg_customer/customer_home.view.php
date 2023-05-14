@@ -14,7 +14,7 @@
                     <button>Shop now</button>
                 </a>
             </div>
-           
+
         </div>
     </section>
     <section class="latest-section">

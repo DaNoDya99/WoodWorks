@@ -367,6 +367,7 @@
                     updateOrderList();
                 });
         }
+    }
 
 
 </script>
