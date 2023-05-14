@@ -26,9 +26,6 @@ class Model extends Database
         $query = "insert into " . $this->table;
         $query .= " (" . implode(",", $keys) . ") values (:" . implode(",:", $keys) . ")";
 
-        show($query);
-        show($data);
-
         $this->query($query, $data);
     }
 
@@ -46,12 +43,6 @@ class Model extends Database
                 if (!in_array($key, $this->allowedColumns)) {
                     unset($data[$key]);
                 }
-            }
-        }
-
-        if (property_exists($this, 'beforeInsert')) {
-            foreach ($this->beforeInsert as $func) {
-                $data = $this->$func($data);
             }
         }
 

@@ -13,8 +13,6 @@
                 <hr>
                 <table>
                     <tr><th>Email : </th><td><?=$row[0]->Email?></td></tr>
-                    <tr><th>Gender : </th><td><?=$row[0]->Gender?></td></tr>
-                    <tr><th>Address : </th><td><?=$row[0]->Address?></td></tr>
                     <tr><th>Contact no : </th><td><?=$row[0]->Mobileno?></td></tr>
                 </table>
                 <hr>
@@ -49,17 +47,6 @@
                             <label>Email</label>
                             <input type="email" name="Email" value="<?=$row[0]->Email?>">
                         </div>
-                        <div class="edit-cus-field">
-                            <label>Gender</label>
-                            <select name="Gender" >
-                                <option value="<?=$row[0]->Gender?>" selected><?=$row[0]->Gender?></option>
-                                <option value="<?=$row[0]->Gender != "Male" ? "Male":"Female"?> ?>"><?=$row[0]->Gender != "Male" ? "Male":"Female"?></option>
-                            </select>
-                        </div>
-                        <div class="edit-cus-field">
-                            <label>Address</label>
-                            <input type="text" name="Address" value="<?=$row[0]->Address?>">
-                        </div class="edit-cus-field">
                         <div class="edit-cus-field">
                             <label>Contact no</label>
                             <input type="text" name="Mobileno" value="<?=$row[0]->Mobileno?>">

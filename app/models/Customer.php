@@ -39,12 +39,6 @@ class Customer extends Model
         }
         if (!filter_var($post['Email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['Email'] = "Email is not valid.";
-        } elseif ($results = $this->where('Email', $post['Email'])) {
-            foreach ($results as $result) {
-                if ($post['CustomerID'] != $result->CustomerID) {
-                    $this->errors['Email'] = "That email already exists.";
-                }
-            }
         }
 
         if (!filter_var($post['Email'], FILTER_VALIDATE_EMAIL)) {
@@ -120,7 +114,6 @@ class Customer extends Model
     public function edit_validate($post)
     {
         $this->errors = [];
-        $gender = ['Male', 'Female'];
 
         if (empty($post['Firstname'])) {
             $this->errors['Firstname'] = "A first name is required.";
@@ -132,10 +125,6 @@ class Customer extends Model
             $this->errors['Lastname'] = "A last name is required.";
         } elseif (!preg_match("/^[a-zA-Z]+$/", trim($post['Lastname']))) {
             $this->errors['Lastname'] = "Last name can only have letters.";
-        }
-
-        if (!in_array($post['Gender'], $gender)) {
-            $this->errors['Gender'] = "Gender is required.";
         }
 
         if (empty($post['Mobileno'])) {

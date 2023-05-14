@@ -23,7 +23,7 @@ class Otp extends Model
         if ($res) { // if otp has been sent previously , generate new otp and send to email
             $email = $res[0]->Email;
             $otp =  rand(100000, 999999);
-            $this->update($email, ['Email' => $email, 'otpCode' => $otp, 'TimeCreated' => date('Y-m-d H:i:s')]);
+            $this->update($email, ['Email' => $email, 'otpCode' => password_hash($otp,PASSWORD_DEFAULT), 'TimeCreated' => date('Y-m-d H:i:s')]);
         } else { // else generate new otp and add to table
             $email = $id;
             $otp = rand(100000, 999999);
