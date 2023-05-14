@@ -1,34 +1,39 @@
-let doc_form = document.getElementById('edit-doc-form');
 let response = document.getElementById('response');
 let order_id = '';
 
-function changeStatus(id)
-{
-    design_id = id;
+function changeStatus(id) {
 
-    response.innerHTML = "<div class='cat-success'>\n" +
+    order_id = id;
+
+    response.innerHTML = "<div class='cat-successful'>\n" +
         "        <h2>Do you want to change the order status?</h2>\n" +
-        "        <div class=\"cat-deletion-btns\">\n" +
+        "        <div class=\"cat-success-btns\">\n" +
         "            <button onclick=\"confirmChangeStatus()\">Yes</button>\n" +
         "            <button onclick=\"closeChangeStatusPopup()\">No</button>\n" +
         "        </div>\n" +
         "    </div>";
 }
 
-function confirmChangeStatus()
-{
+
+function confirmChangeStatus() {
+    let select = document.getElementsByName("status")[0];
+    let status = select.value;
+
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost/WoodWorks/public/driver_home/change_order_status/'+design_id, true);
+    xhr.open('POST', 'http://localhost/WoodWorks/public/driver_home/change_order_status/'+order_id, true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+
     xhr.onload = () => {
-        if (xhr.readyState === 4 )
-        {
+        if (xhr.readyState === 4) {
             if (xhr.status === 200) {
+                console.log(xhr.response);
                 if(xhr.response === 'success'){
-                    response.innerHTML = "<div class='cat-success'>\n" +
-                        "        <h2>Order Status Changed.</h2>\n" +
+                    response.innerHTML = "<div class='cat-successful'>\n" +
+                        "        <h2>Order Status Changed Successfully.</h2>\n" +
                         "    </div>";
                     setTimeout(() => {
-                        window.location.href = 'http://localhost/WoodWorks/public/driver_home/index';
+                        window.location.href = 'http://localhost/WoodWorks/public/driver_home/order';
                     }, 2000);
                 }else
                 {
@@ -39,18 +44,19 @@ function confirmChangeStatus()
                         window.location.reload();
                     }, 2000);
                 }
-
             }
         }
-    }
-    xhr.send();
+    };
+    xhr.send('status=' + status); // send status value to server
 }
 
-function closeChangeStatusPopup()
-{
+
+function closeChangeStatusPopup() {
     response.innerHTML = '';
-    order_id = null;
+    design_id = ''; // reset design_id variable
+    window.location.href = 'http://localhost/WoodWorks/public/driver_home/order';
 }
+
 
 
 

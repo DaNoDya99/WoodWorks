@@ -6,10 +6,15 @@
         <a href="<?=ROOT?>/driver_home/orders_records"><button class="tab_btn" id="tab3">Delivered History</button></a>
         <div class="line"></div>
     </div>
+    <div id="response">
+
+    </div>
+
 
     <div class="orders_view_header">
         <h1> ORDERS DETAILS</h1>
         <form method="post" class="order-form" action="<?=ROOT?>/driver_home/order" hidden>
+
             <select onchange="this.form.submit()" name="Status">
                 <option>All</option>
                 <?php
@@ -75,8 +80,8 @@
                         <td><?=$newDate2?></td>
 
                         <td>
-                            <select name="status" required onchange="this.form.submit()" class="select">
-                                <?php
+                            <select name="status" required onchange="changeStatus('<?=$row->OrderID?>')" class="select">
+                            <?php
                                     $arr = array("Processing", "Dispatched", "Delivered");
 
                                     foreach ($arr as $value) {
@@ -103,10 +108,9 @@
             <?php endforeach;?>
             </tbody>
         </table>
-        <div class="response">
-
-        </div>
     </div>
+
+
 
     <div id="popups">
         <div class="popups-heading">

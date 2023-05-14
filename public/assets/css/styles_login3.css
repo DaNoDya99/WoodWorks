@@ -2478,8 +2478,44 @@ design-desc div button:hover{
     text-align: center;
 }
 
+.cat-successful{
+    margin: 0 auto; /* center the div horizontally */
+    background-color: #17c330;
+    align-items: center;
+    width: 30%;
+    color: #f9f9f9;
+    padding: 1em;
+    border-radius: 7px;
+    text-align: center;
+}
+
 .cat-deletion{
     background-color: #ae1c1c;
+}
+
+.cat-success-btns{
+    display: flex;
+    justify-content: center;
+    gap: 40%;
+    margin-top: 1em;
+}
+
+.cat-success-btns button{
+    width: 20%;
+    padding: .5em;
+    background-color: black;
+    border-radius: 5px;
+    color: #f9f9f9;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.cat-success-btns button:hover{
+    background-color: #0F3D3E;
+    transform: scale(0.97);
+    transition: .4s ease-in;
 }
 
 .cat-deletion-btns{
@@ -2492,19 +2528,12 @@ design-desc div button:hover{
 .cat-deletion-btns button{
     width: 20%;
     padding: .5em;
-    background-color: black;
-    border-radius: 5px;
+    background-color: #ae1c1c;
     color: #f9f9f9;
     border: none;
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
-}
-
-.cat-deletion-btns button:hover{
-    background-color: #0F3D3E;
-    transform: scale(0.97);
-    transition: .4s ease-in;
 }
 
 .cat-errors{

@@ -114,7 +114,7 @@
             </div>
 
             <div class="box" id="chart-container2" onclick="location.href='<?=ROOT?>/driver_home/order';">
-                <canvas id="myBar" width="340" height="470"> </canvas>
+                <canvas id="myBar" width="340" height="440"> </canvas>
             </div>
 
         </div>

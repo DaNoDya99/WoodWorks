@@ -124,12 +124,12 @@ class Driver_home extends Controller
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
-        if(isset($_POST['status'])){//$_SERVER['REQUEST_METHOD'] == "POST"
-            $OrderID =$_POST['OrderID'];
-            $status =$_POST['status'];
-            //$data['row'] = $order->query("UPDATE `orders` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
-            $data['row'] = $order->update_status($OrderID,['Order_status'=>$status]);
-        }
+//        if(isset($_POST['status'])){//$_SERVER['REQUEST_METHOD'] == "POST"
+//            $OrderID =$_POST['OrderID'];
+//            $status =$_POST['status'];
+//            //$data['row'] = $order->query("UPDATE `orders` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
+//            $data['row'] = $order->update_status($OrderID,['Order_status'=>$status]);
+//        }
 
         $data['row'] = $order->displayOrders('DriverID',$id);
 
@@ -333,6 +333,31 @@ class Driver_home extends Controller
 //            $this->redirect('driver_home');
         }
         $this->redirect('driver_home');
+    }
+
+    public function change_order_status($order_id)
+    {
+
+        $orderStatus = $_POST['status'];
+
+        // Update the order status in the database
+        $order = new Orders();
+        $orderData = $order->where('OrderID',$order_id);
+
+        if (!empty($orderData)) {
+
+            $order->update($order_id,['OrderID'=>$order_id,'Order_status'=>$orderStatus]);
+
+            echo "success";
+
+        }
+        else{
+
+            echo "failed";
+
+        }
+
+
     }
 
     public function pieData()
