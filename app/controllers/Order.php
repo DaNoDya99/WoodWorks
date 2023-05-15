@@ -2,7 +2,8 @@
 
 class Order extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
     }
 
@@ -48,7 +49,7 @@ class Order extends Controller
                         <h2>Order Details</h2>
                         <div class='order-detail'>
                             <h4>Order ID</h4>
-                            <span>" . substr($order->OrderID,0,8) . "</span>
+                            <span>" . substr($order->OrderID, 0, 8) . "</span>
                         </div>
                         <div class='order-detail'>
                             <h4>Phone Number</h4>
@@ -70,7 +71,7 @@ class Order extends Controller
         echo $str;
     }
 
-    public function getOrderItem($orderID,$productId)
+    public function getOrderItem($orderID, $productId)
     {
         if (!Auth::logged_in()) {
             $this->redirect('login');
@@ -79,34 +80,34 @@ class Order extends Controller
         $order_item = new Order_Items();
         $reviews = new Reviews();
         $id = Auth::getCustomerID();
-        $row = $order_item->getOrderItem($orderID,$productId)[0];
+        $row = $order_item->getOrderItem($orderID, $productId)[0];
 
         $rate = $reviews->getProductRating($productId)[0]->Average;
 
-        if($rate == null){
+        if ($rate == null) {
             $rate = 0;
             $rating = '0.0%';
-        }else{
-            $rating = round($rate/5*100);
-            $rating = $rating.'%';
+        } else {
+            $rating = round($rate / 5 * 100);
+            $rating = $rating . '%';
         }
 
 
         $str = '';
 
-        if($reviews->getProductReviews($productId,$id)){
-            $review = $reviews->getProductReviews($productId,$id)[0];
+        if ($reviews->getProductReviews($productId, $id)) {
+            $review = $reviews->getProductReviews($productId, $id)[0];
 
             $str = "
-            <h2>".$row->Name." - ".$row->ProductID."</h2>
+            <h2>" . $row->Name . " - " . $row->ProductID . "</h2>
             <div class='review-fur-img'>
-                <img src='http://localhost/WoodWorks/public/".$row->Image."' alt=''>
+                <img src='http://localhost/WoodWorks/public/" . $row->Image . "' alt=''>
             <div class='current-rating'>
                 <h2>Current Ratings</h2>
-                <span>".$rate."</span>
+                <span>" . $rate . "</span>
                 <div>
                     <div class='stars-outer'>
-                        <div class='stars-inner' style='width: ".$rating."'></div>
+                        <div class='stars-inner' style='width: " . $rating . "'></div>
                     </div>
                     <span class='number-rating'></span>
                 </div>
@@ -116,8 +117,8 @@ class Order extends Controller
             
                 <div class='star-widget'>";
 
-                if($review->Rating == 5){
-                    $str .= "
+            if ($review->Rating == 5) {
+                $str .= "
                     <input type='radio' name='rate' id='rate-5' value='5' checked>
                     <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
                     <input type='radio' name='rate' id='rate-4' value='4' >
@@ -128,8 +129,8 @@ class Order extends Controller
                     <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
                     <input type='radio' name='rate' id='rate-1' value='1'>
                     <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
-                }else if($review->Rating == 4){
-                    $str .= "
+            } else if ($review->Rating == 4) {
+                $str .= "
                     <input type='radio' name='rate' id='rate-5' value='5'>
                     <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
                     <input type='radio' name='rate' id='rate-4' value='4' checked>
@@ -140,8 +141,8 @@ class Order extends Controller
                     <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
                     <input type='radio' name='rate' id='rate-1' value='1'>
                     <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
-                }else if($review->Rating == 3){
-                    $str .= "
+            } else if ($review->Rating == 3) {
+                $str .= "
                     <input type='radio' name='rate' id='rate-5' value='5'>
                     <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
                     <input type='radio' name='rate' id='rate-4' value='4' >
@@ -152,8 +153,8 @@ class Order extends Controller
                     <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
                     <input type='radio' name='rate' id='rate-1' value='1'>
                     <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
-                }else if($review->Rating == 2){
-                    $str .= "
+            } else if ($review->Rating == 2) {
+                $str .= "
                     <input type='radio' name='rate' id='rate-5' value='5'>
                     <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
                     <input type='radio' name='rate' id='rate-4' value='4' >
@@ -164,8 +165,8 @@ class Order extends Controller
                     <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
                     <input type='radio' name='rate' id='rate-1' value='1'>
                     <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
-                }else if($review->Rating == 1){
-                    $str .= "
+            } else if ($review->Rating == 1) {
+                $str .= "
                     <input type='radio' name='rate' id='rate-5' value='5'>
                     <label for='rate-5' class='fas fa-star' onclick='setRate(5)'></label>
                     <input type='radio' name='rate' id='rate-4' value='4' >
@@ -176,8 +177,8 @@ class Order extends Controller
                     <label for='rate-2' class='fas fa-star' onclick='setRate(2)'></label>
                     <input type='radio' name='rate' id='rate-1' value='1' checked>
                     <label for='rate-1' class='fas fa-star' onclick='setRate(1)'></label>";
-                }
-                $str .= "
+            }
+            $str .= "
                         </div>
                         <span class='error' id='error-rate'></span>
                     </div>
@@ -187,14 +188,14 @@ class Order extends Controller
                         <h2>Write a review</h2>
                             <span class='error' id='error-review'></span>
                         </div>
-                        <textarea id='review' cols='30' rows='10' maxlength='1024' placeholder='Describe Your Experience...'>".$review->Reviews."</textarea>
+                        <textarea id='review' cols='30' rows='10' maxlength='1024' placeholder='Describe Your Experience...'>" . $review->Reviews . "</textarea>
                     </div>
                     <div class='review-btn-container'>
-                        <button class='review-btn' onclick='saveReview(`".$row->ProductID."`)'>Post Review</button>
+                        <button class='review-btn' onclick='saveReview(`" . $row->ProductID . "`)'>Post Review</button>
                     </div>
                 ";
-        }else {
-                $str = "
+        } else {
+            $str = "
                 <h2>" . $row->Name . " - " . $row->ProductID . "</h2>
                 <div class='review-fur-img'>
                     <img src='http://localhost/WoodWorks/public/" . $row->Image . "' alt=''>
@@ -203,7 +204,7 @@ class Order extends Controller
                     <span>$rate</span>
                     <div>
                         <div class='stars-outer'>
-                            <div class='stars-inner' style='width: ".$rating."'></div>
+                            <div class='stars-inner' style='width: " . $rating . "'></div>
                         </div>
                         <span class='number-rating'></span>
                     </div>
@@ -244,7 +245,7 @@ class Order extends Controller
 
     public function getSelectedProducts()
     {
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
@@ -260,9 +261,9 @@ class Order extends Controller
             $stm .= "
                 <tr>
                     <td>$value</td>
-                    <td><img src='http://localhost/WoodWorks/public/".$row->Image."' alt=''></td>
+                    <td><img src='http://localhost/WoodWorks/public/" . $row->Image . "' alt=''></td>
                     <td>$row->Name</td>
-                    <td><input type='number' name='".$value."' id='quantity' min='1' value='1'></td>
+                    <td><input type='number' name='" . $value . "' id='quantity' min='1' value='1'></td>
                 </tr>
             ";
         }
@@ -272,7 +273,7 @@ class Order extends Controller
 
     public function placeCompanyOrder()
     {
-        if(!Auth::logged_in()){
+        if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
@@ -332,8 +333,7 @@ class Order extends Controller
                 <tbody>
         ";
 
-        if(empty($orders))
-        {
+        if (empty($orders)) {
             $stm .= "
                 <tr>
                     <td colspan='6'>No Pending Orders Yet</td>
@@ -367,9 +367,9 @@ class Order extends Controller
                     <td>$order->Date</td>
                     <td>
                         <div class='inv-table-btns manager-btns'>
-                            <button onclick='editCompanyOrder(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/edit-4-svgrepo-com.svg' alt=''></button>
-                            <button onclick='deleteCompanyOrder(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
-                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                            <button onclick='editCompanyOrder(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/edit-4-svgrepo-com.svg' alt=''></button>
+                            <button onclick='deleteCompanyOrder(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
+                            <button onclick='getCompanyOrderInfo(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
                         </div>   
                     </td>
                 </tr>
@@ -409,8 +409,7 @@ class Order extends Controller
                 </thead>
                 <tbody>";
 
-        if(empty($orders))
-        {
+        if (empty($orders)) {
             $stm .= "
                 <tr>
                     <td colspan='8'>No Completed Orders Yet</td>
@@ -446,8 +445,8 @@ class Order extends Controller
                     <td>$order->Completed_date</td>
                     <td>
                         <div class='inv-table-btns manager-btns'>
-                            <button onclick='orderReceived(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/active-svgrepo-com.svg' alt=''></button>
-                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                            <button onclick='orderReceived(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/active-svgrepo-com.svg' alt=''></button>
+                            <button onclick='getCompanyOrderInfo(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
                         </div>   
                     </td>
                 </tr>
@@ -486,8 +485,7 @@ class Order extends Controller
                 </thead>
                 <tbody>";
 
-        if(empty($orders))
-        {
+        if (empty($orders)) {
             $stm .= "
                 <tr>
                     <td colspan='7'>No Rejected Orders Yet</td>
@@ -522,8 +520,8 @@ class Order extends Controller
                     <td>$order->Responded_date</td>
                     <td>
                         <div class='inv-table-btns manager-btns'>
-                            <button class='deletion-btn' onclick='deleteCompanyOrder(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
-                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                            <button class='deletion-btn' onclick='deleteCompanyOrder(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
+                            <button onclick='getCompanyOrderInfo(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
                         </div>   
                     </td>
                 </tr>
@@ -563,8 +561,7 @@ class Order extends Controller
                 <tbody>
         ";
 
-        if(empty($orders))
-        {
+        if (empty($orders)) {
             $stm .= "
                 <tr>
                     <td colspan='7'>No Accepted Orders Yet</td>
@@ -599,7 +596,7 @@ class Order extends Controller
                     <td>$order->Responded_date</td>
                     <td>
                         <div class='inv-table-btns manager-btns'>
-                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                            <button onclick='getCompanyOrderInfo(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
                         </div>   
                     </td>
                 </tr>
@@ -642,8 +639,7 @@ class Order extends Controller
                 <tbody>
         ";
 
-        if(empty($orders))
-        {
+        if (empty($orders)) {
             $stm .= "
                 <tr>
                     <td colspan='9'>No Received Orders Yet</td>
@@ -680,8 +676,8 @@ class Order extends Controller
                     <td>$order->Received_date</td>
                     <td>
                         <div class='inv-table-btns manager-btns'>
-                            <button class='deletion-btn' onclick='deleteCompanyOrder(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
-                            <button onclick='getCompanyOrderInfo(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                            <button class='deletion-btn' onclick='deleteCompanyOrder(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/admin/delete-svgrepo-com.svg' alt=''></button>
+                            <button onclick='getCompanyOrderInfo(`" . $order->OrderID . "`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
                         </div>   
                     </td>
                 </tr>
@@ -703,12 +699,9 @@ class Order extends Controller
 
         $company_order = new CompanyOrderModel();
 
-        if(empty($company_order->deleteOrder($id)))
-        {
+        if (empty($company_order->deleteOrder($id))) {
             echo "success";
-        }
-        else
-        {
+        } else {
             echo "failed";
         }
 
@@ -722,12 +715,9 @@ class Order extends Controller
 
         $company_order = new CompanyOrderModel();
 
-        if(empty($company_order->orderReceived($id)))
-        {
+        if (empty($company_order->orderReceived($id))) {
             echo "success";
-        }
-        else
-        {
+        } else {
             echo "failed";
         }
     }
@@ -876,4 +866,92 @@ class Order extends Controller
 
         echo $stm;
     }
+
+    public function getOrdersByStatus($status)
+    {
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $orders = new Orders();
+        $employees = new Employees();
+        $ordersList = $orders->getOrdersByStatus($status);
+
+        if (empty($ordersList)) {
+            echo "
+                <table class='delivery-orders-table order-table'>
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Contact No</th>
+                    <th>Order Date</th>
+                    <th>Order Total</th>
+                    <th>Assigned Driver</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan='9'>No Orders Found</td>
+                </tr>
+                </tbody>
+            ";
+            return;
+        }
+
+        foreach ($ordersList as $order) {
+            $driver = $employees->getEmployeeByID($order->DriverID)[0];
+
+            $order->DriverName = $driver->Firstname . " " . $driver->Lastname;
+        }
+
+        $stm = "
+            <table class='delivery-orders-table order-table'>
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Contact No</th>
+                    <th>Order Date</th>
+                    <th>Order Total</th>
+                    <th>Assigned Driver</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+        ";
+
+        foreach ($ordersList as $order) {
+            $stm .= "
+                <tr>
+                    <td>$order->OrderID</td>
+                    <td>$order->Firstname $order->Lastname</td>
+                    <td>$order->Email</td>
+                    <td>$order->Address</td>
+                    <td>$order->Contactno</td>
+                    <td>$order->Date</td>
+                    <td>Rs ".$order->Total_amount + $order->Shipping_cost - $order->Discount_obtained.".00</td>
+                    <td>$order->DriverName</td>
+                    <td>
+                        <div class='inv-table-btns'>
+                             <button style='background-color: #2e69c4; margin-top: 0;' onclick='getOrderDetails(`".$order->OrderID."`)'><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
+                        </div>
+                    </td>
+                </tr>
+            ";
+        }
+
+        $stm .= "
+                </tbody>
+            </table>";
+
+        echo $stm;
+
+    }
+
 }
