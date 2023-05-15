@@ -107,7 +107,6 @@ function getOrders(status)
         if(xhr.readyState === xhr.DONE){
             if(xhr.status === 200){
                 document.getElementById("delivery-orders-table").innerHTML = xhr.response;
-                // console.log(xhr.response)
             }
         }
     }
