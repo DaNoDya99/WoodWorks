@@ -12,7 +12,7 @@ class Driver_home extends Controller
 //            die;
 //
 //        }
-//        $this->redirect('login3');
+//        $this->redirect('login');
 
         if(!Auth::logged_in())
         {
@@ -313,7 +313,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -364,7 +364,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         header('Content-Type: application/json');
@@ -387,7 +387,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         header('Content-Type: application/json');
@@ -409,7 +409,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         header('Content-Type: application/json');
