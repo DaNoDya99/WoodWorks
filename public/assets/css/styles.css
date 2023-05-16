@@ -3811,11 +3811,18 @@ h2 {
     width: 100%;
     background-color: #f9f9f9;
     margin: 1em auto;
+    max-height: 85vh;
     height: 85vh;
     border-radius: 15px;
     padding: 1em;
     font-family: 'Rubik', sans-serif;
 }
+
+.table-container{
+    max-height: 74vh;
+    overflow-y: scroll;
+}
+
 
 .inv-table{
     width: 100%;

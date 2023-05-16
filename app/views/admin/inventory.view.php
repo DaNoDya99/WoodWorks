@@ -16,47 +16,50 @@
                 </form>
                 <button onclick="openAddFurPopup()" id="add-furniture-btn">Add Furniture</button>
             </div>
-            <table id="inv-table" class="inv-table">
-                <tr>
-                    <th>SKU</th>
-                    <th>Quantity</th>
-                    <th>Reorder Point</th>
-                    <th>Last Ordered</th>
-                    <th>Last Received</th>
-                    <th>Cost</th>
-                    <th>Retail Price</th>
-                    <th>Status</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Actions</th>
-                </tr>
-                <?php if (!empty($inventory)) : ?>
-                    <?php foreach ($inventory as $row) : ?>
-                        <tr>
-                            <td><?= $row->ProductID ?></td>
-                            <td><?= $row->Quantity ?></td>
-                            <td><?= $row->Reorder_point ?></td>
-                            <td><?= $row->Last_ordered ?></td>
-                            <td><?= $row->Last_received ?></td>
-                            <td>Rs. <?= $row->Cost ?></td>
-                            <td>Rs. <?= $row->Retail_price ?></td>
-                            <td><?= $row->Status ?></td>
-                            <td><?= $row->Created_at ?></td>
-                            <td><?= $row->Updated_at ?></td>
-                            <td>
-                                <div class="inv-table-btns">
-                                    <button onclick="openEditInvPopup('<?=$row->ProductID?>')"><img src="<?=ROOT?>/assets/images/admin/edit-4-svgrepo-com.svg" alt=""></button>
-                                    <button onclick="deleteProduct('<?=$row->ProductID?>')"><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else : ?>
+            <div class="table-container">
+                <table id="inv-table" class="inv-table">
                     <tr>
-                        <td colspan="11" style="text-align: center;">No Products Found</td>
+                        <th>SKU</th>
+                        <th>Quantity</th>
+                        <th>Reorder Point</th>
+                        <th>Last Ordered</th>
+                        <th>Last Received</th>
+                        <th>Cost</th>
+                        <th>Retail Price</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Actions</th>
                     </tr>
-                <?php endif; ?>
-            </table>
+                    <?php if (!empty($inventory)) : ?>
+                        <?php foreach ($inventory as $row) : ?>
+                            <tr>
+                                <td><?= $row->ProductID ?></td>
+                                <td><?= $row->Quantity ?></td>
+                                <td><?= $row->Reorder_point ?></td>
+                                <td><?= $row->Last_ordered ?></td>
+                                <td><?= $row->Last_received ?></td>
+                                <td>Rs. <?= $row->Cost ?></td>
+                                <td>Rs. <?= $row->Retail_price ?></td>
+                                <td><?= $row->Status ?></td>
+                                <td><?= $row->Created_at ?></td>
+                                <td><?= $row->Updated_at ?></td>
+                                <td>
+                                    <div class="inv-table-btns">
+                                        <button onclick="openEditInvPopup('<?=$row->ProductID?>')"><img src="<?=ROOT?>/assets/images/admin/edit-4-svgrepo-com.svg" alt=""></button>
+                                        <button onclick="deleteProduct('<?=$row->ProductID?>')"><img src="<?=ROOT?>/assets/images/admin/delete-svgrepo-com.svg" alt=""></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td colspan="11" style="text-align: center;">No Products Found</td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </div>
+
         </div>
 
         <div class="popup add-fur-inv-popup" id="popup">

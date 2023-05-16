@@ -112,7 +112,7 @@ function confirmDeleteCategory(){
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
-                }, 9000);
+                }, 1500);
             }
         }
     }
@@ -151,7 +151,7 @@ edit_cat_btn.onclick = () => {
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
-                }, 3000);
+                }, 1500);
             }
         }
     }
@@ -188,11 +188,10 @@ edit_sub_cat_btn.onclick = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 response.innerHTML = xhr.response;
-                console.log(xhr.response);
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
-                }, 3000);
+                }, 1500);
             }
         }
     }
@@ -222,7 +221,7 @@ function confirmDeleteSubCategory(){
                 setTimeout(() => {
                     response.innerHTML = "";
                     location.reload();
-                }, 3000);
+                }, 1500);
             }
         }
     }

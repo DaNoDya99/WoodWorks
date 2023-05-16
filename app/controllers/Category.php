@@ -170,7 +170,6 @@ class Category extends Controller
                             move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
 
                             $_POST['Image'] = $destination;
-                            echo json_encode($_POST);
                             $sub_category->insert($_POST);
                         }else{
                             $sub_category->errors['image'] = "This file type is not allowed.";

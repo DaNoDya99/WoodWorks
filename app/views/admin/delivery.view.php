@@ -40,7 +40,7 @@
                                     <button style="background-color: #2e69c4;" onclick="openPopupDelivery('<?= $order->OrderID ?>')"><img src='http://localhost/WoodWorks/public/assets/images/manager/info-svgrepo-com.svg' alt=''></button>
                                 </div>
                             </td>
-                        </tr>-
+                        </tr>
                     <?php endforeach;?>
                 <?php else: ?>
                    <tr><td>No newly added orders.</td></tr>
