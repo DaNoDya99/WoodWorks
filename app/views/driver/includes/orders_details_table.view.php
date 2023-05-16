@@ -1,5 +1,6 @@
 <div class="tbox">
 
+    <!-- Tab buttons to switch between different views -->
     <div class="tab_box">
         <a href="<?=ROOT?>/driver_home/order"><button class="tab_btn" id="tab1">Orders Details</button></a>
         <a href="<?=ROOT?>/driver_home/delivered_orders"><button class="tab_btn" id="tab2">Delivered Orders</button></a>
@@ -10,9 +11,10 @@
 
     </div>
 
-
+    <!-- Order details header section -->
     <div class="orders_view_header">
         <h1> ORDERS DETAILS</h1>
+        <!-- Form to filter order by status -->
         <form method="post" class="order-form" action="<?=ROOT?>/driver_home/order" hidden>
 
             <select onchange="this.form.submit()" name="Status">
@@ -34,6 +36,7 @@
             </button>
         </form>
 
+        <!-- Form to search  -->
         <form class="order-form">
             <input type="search" name="orders_items"  id="myInput" placeholder="Orders details">
             <button type="submit" name="order_date">
@@ -42,6 +45,7 @@
         </form>
     </div>
 
+    <!-- Order details table -->
     <div class="order-details-tbl">
         <table class="content-table" id="myTable">
             <thead>
@@ -62,7 +66,7 @@
 
             <tbody>
             <?php foreach ($rows as $row):?>
-
+                <!-- Form for each order with hidden fields and onclick event to display popup -->
                 <form method="post" action="<?=ROOT?>/driver_home/order" hidden>
                     <input type="text" name="OrderID" value="<?=$row->OrderID?>" hidden>
                     <tr>
@@ -80,6 +84,7 @@
                         <td><?=$newDate2?></td>
 
                         <td>
+                            <!--  change the order Status -->
                             <select name="status" required onchange="changeStatus('<?=$row->OrderID?>')" class="select">
                             <?php
                                     $arr = array("Processing", "Dispatched", "Delivered");
@@ -111,7 +116,7 @@
     </div>
 
 
-
+    <!-- Popup to display order details -->
     <div id="popups">
         <div class="popups-heading">
             <img class="close-btn" onclick="closeDocumentPopups()" src="<?=ROOT?>/assets/images/driver/close.png" alt="close button">

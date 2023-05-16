@@ -80,7 +80,7 @@ class Design extends Model
 
 
     public function getDesign($column, $value, $limit = 5) {
-        $query = "SELECT `DesignID`, `Name`, `Date`, `CategoryID`
+        $query = "SELECT `DesignID`, `Name`, `Date`, `CategoryID`, `Status`
               FROM `$this->table`
               WHERE $column = :value
               ORDER BY `Date` DESC

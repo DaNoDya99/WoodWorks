@@ -7,6 +7,7 @@
 
         <div class="tbox">
 
+            <!-- Tab buttons to switch between different views -->
             <div class="tab_box">
                 <a href="<?=ROOT?>/driver_home/order"><button class="tab_btn" id="tab1">Orders Details</button></a>
                 <a href="<?=ROOT?>/driver_home/delivered_orders"><button class="tab_btn" id="tab2">Delivered Orders</button></a>
@@ -14,9 +15,11 @@
                 <div class="line"></div>
             </div>
 
+            <!-- Delivered History Header -->
             <div class="orders_view_header">
                 <h1> DELIVERED HISTORY </h1>
 
+                <!-- Form for filtering the date range -->
                 <form method="post" action="<?=ROOT?>/driver_home/orders_records" class="filterDate">
                     <select onchange="this.form.submit()" name="Status">
                         <option value="All" <?= !isset($_POST['Status']) || $_POST['Status'] == 'All' ? 'selected' : '' ?>>All</option>
@@ -34,6 +37,7 @@
 
             </div>
 
+            <!-- Table containing the delivered orders records -->
             <div class="order-details-tbl">
                 <table class="content-table" id="myTable">
                     <thead>

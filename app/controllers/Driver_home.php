@@ -12,43 +12,59 @@ class Driver_home extends Controller
 //            die;
 //
 //        }
-//        $this->redirect('login3');
+//        $this->redirect('login');
 
         if(!Auth::logged_in())
         {
             $this->redirect('login');
         }
 
+        // If no ID is passed as a parameter, use the ID of the log ed in user
         $id = $id ?? Auth::getEmployeeID();
 
+        // Instantiate the Driver and Employees models
         $driver = new Driver();
         $employee = new Employees();
+
+        // Get the details of the employee with the specified ID
         $data['details'] = $employee->where('EmployeeID',$id);
+        // Get the row for the driver with the specified ID
         $data['row']=$row = $driver->where("DriverID",$id);
 
+        // If the driver row is empty, insert a new row and redirect to the home page
         if(empty($row[0]))
         {
             $driver->insert(['DriverID'=>$id,'Availability'=>"Not Available"]);
             $this->redirect('driver_home');
 
         }
+
+        // Instantiate the Orders model
         $order = new Orders();
 
+        // Get the orders for the current week for the driver with the specified ID
         $data['rows']= $rows = $order->findThisWeekOrders('DriverID',$id);
+        // Get the completed orders for the current week for the driver with the specified ID
         $data['completedOrders']= $order->findThisWeekCompletedOrders('DriverID',$id);
+        // Get the delayed orders for the current month for the driver with the specified ID
         $data['delayedOrders']= $order->findThisMonthDelayedOrders('DriverID',$id);
+
+        // If there are no orders for the current week, display a message
         if (empty($rows[0]))
         {
             echo "No orders";
         }
 
+        // If the vehicle form is submitted, update the driver's vehicle type
         if(isset($_POST['vehicle'])){
             $vehicle =$_POST['vehicle'];
             $driver->update_type($id,['Vehicle_type'=>$vehicle]);
         }
 
+        // Set the title of the page
         $data['title'] = "DASHBOARD";
 
+        // Load the driver home page view with the data
         $this->view('driver/driver_home',$data);
 
 
@@ -60,12 +76,15 @@ class Driver_home extends Controller
             $this->redirect('login');
         }
 
+        // If no ID is passed as a parameter, use the ID of the logg ed in user
         $id = $id ?? Auth::getEmployeeID();
+        // Instantiate the Driver and Employees models
         $employee = new Employees();
         $data['row'] = $row = $employee->where('EmployeeID',$id);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && $row)
         {
+            // Create the uploads/images folder if it doesn't exist
             $folder = "uploads/images/";
             if(!file_exists($folder)){
                 mkdir($folder,0777,true);
@@ -73,20 +92,26 @@ class Driver_home extends Controller
                 file_put_contents("uploads/index.php","<?php Access Denied.");
             }
 
+            // Validate the form input.
             if($employee->edit_validate($_POST,$id)){
                 $allowedFileType = ['image/jpeg','image/png'];
 
-
+                // If a new image has been uploaded.
                 if(!empty($_FILES['Image']['name']))
                 {
+                    // Check if there was an error uploading the file.
                     if($_FILES['Image']['error'] == 0)
                     {
+                        // Check if the file type is allowed.
                         if(in_array($_FILES['Image']['type'],$allowedFileType))
                         {
                             $destination = $folder.time().$_FILES['Image']['name'];
+                            // Move the uploaded file to the uploads/images folder.
                             move_uploaded_file($_FILES['Image']['tmp_name'],$destination);
 
                             $_POST['Image'] = $destination;
+
+                            // If the user already had a profile image, delete it.
                             if(file_exists($row[0]->Image))
                             {
                                 unlink($row[0]->Image);
@@ -112,28 +137,26 @@ class Driver_home extends Controller
     public function order($id = null)
     {
 
+        // Check if user is logged in, if not then redirect to login page
         if(!Auth::logged_in())
         {
             $this->redirect('login');
         }
 
+        // Initialize the Orders class and get the employee ID
         $order = new Orders();
 
         $id = Auth::getEmployeeID();
         $employee = new Employees();
+
+        // Get the employee details and set the page title
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
-//        if(isset($_POST['status'])){//$_SERVER['REQUEST_METHOD'] == "POST"
-//            $OrderID =$_POST['OrderID'];
-//            $status =$_POST['status'];
-//            //$data['row'] = $order->query("UPDATE `orders` SET Order_status = '$status' WHERE OrderID = '$OrderID';");
-//            $data['row'] = $order->update_status($OrderID,['Order_status'=>$status]);
-//        }
-
+        // Get the orders for the driver and display them
         $data['row'] = $order->displayOrders('DriverID',$id);
 
-
+        // If the user searched for an order, show the results
         if(isset($_GET['orders_items']))
         {
                 $orders_items = $_GET['orders_items'];// don't care at the end
@@ -145,6 +168,7 @@ class Driver_home extends Controller
 
         }
 
+        // If the user selected a status filter, apply the filter and show the results
         if(isset($_POST['Status'])){
             $status =$_POST['Status'];
             if($status=="All"){
@@ -157,6 +181,7 @@ class Driver_home extends Controller
 
         }
 
+        // Load the view for the order page with the data
         $this->view('driver/order',$data);
 
     }
@@ -164,24 +189,31 @@ class Driver_home extends Controller
     public function delivered_orders($id = null)
     {
 
+        // Check if the user is logged in.
         if(!Auth::logged_in())
         {
             $this->redirect('login');
         }
-
+        // Create a new instance of the employee model.
         $order = new Orders();
-
+        // Get the ID of the driver.
         $id = Auth::getEmployeeID();
+        // Create a new instance of the employee model.
         $employee = new Employees();
         $data['details'] = $row = $employee->where('EmployeeID',$id);
+        // Set the page title.
         $data['title'] = "ORDERS";
 
+        // Display the delivered orders of the driver.
         $data['records1'] = $order->displayDeliveredOrders('DriverID',$id);
 
+        // Search for delivered orders with specific details.
         if(isset($_GET['delivered_items']))
         {
             $orders_items = $_GET['delivered_items'];
             $data['records1'] = $result = $order->searchDeliveredOrdersDetails('DriverID',$id,$orders_items);
+
+            // If no results were found, redirect to the delivered orders page.
             if(empty($result))
             {
                 $this->redirect('driver_home/delivered_orders'.$id);
@@ -189,6 +221,7 @@ class Driver_home extends Controller
 
         }
 
+        // Load the view that displays the delivered orders table.
         $this->view('driver/includes/delivered_orders_table',$data);
 
     }
@@ -196,11 +229,13 @@ class Driver_home extends Controller
     public function orders_records($id = null)
     {
 
+        // Redirects to login page if not logged in
         if(!Auth::logged_in())
         {
             $this->redirect('login');
         }
 
+        // Initializes necessary variables
         $order = new Orders();
 
         $id = Auth::getEmployeeID();
@@ -208,8 +243,10 @@ class Driver_home extends Controller
         $data['details'] = $row = $employee->where('EmployeeID',$id);
         $data['title'] = "ORDERS";
 
+        // Displays the delivered orders of the logged-in driver
         $data['records2'] = $order->displayDeliveredOrders('DriverID',$id);
 
+        // Filters the displayed delivered orders by date range and/or status
         if(isset($_POST['dateFilter'])){
             $status = $_POST['Status'];
             $from_date = $_POST['from_date'];
@@ -220,6 +257,7 @@ class Driver_home extends Controller
             }
         }
 
+        // Loads the view to display the delivered orders history table
         $this->view('driver/includes/delivered_history_table',$data);
 
     }
@@ -238,8 +276,11 @@ class Driver_home extends Controller
 
             //$order->update_Reason(['OrderID' => $id], ['Reasons' => $_POST['Reason']]);
 
+            // Check if an image file was selected
             if(!empty($_FILES["Image"]['name']))
             {
+
+                // Create upload directory if it doesn't exist
                 $folder = "uploads/driver/";
                 if(!file_exists($folder)){
                     mkdir($folder,0777,true);
@@ -249,14 +290,18 @@ class Driver_home extends Controller
 
                 $allowedFileType = ['image/jpeg','image/png'];
 
+                // Check if selected file type is allowed
                 if(in_array($_FILES['Image']['type'],$allowedFileType))
                 {
 
+                    // Check if no errors occurred during file upload
                     if($_FILES['Image']['error'] == 0)
                     {
                         $destination = $folder.time().$_FILES['Image']['name'];
+                        // Move uploaded file to specified directory
                         if(move_uploaded_file($_FILES['Image']['tmp_name'],$destination))
                         {
+
                             $order->update_Image(['OrderID' => $id], ['Image' => $destination]);
 
                         }else{
@@ -273,6 +318,7 @@ class Driver_home extends Controller
             }
         }
 
+        // Display success message or error messages
         if(empty($order->errors))
         {
             echo "<div class='cat-success'>
@@ -313,7 +359,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $id = $id ?? Auth::getEmployeeID();
@@ -330,7 +376,7 @@ class Driver_home extends Controller
                 //$driver->query("UPDATE driver SET Availability='Available'WHERE DriverID = '$id';");
                 $driver->update($id,['DriverID'=>$id,'Availability'=>"Available"]);
             }
-//            $this->redirect('driver_home');
+
         }
         $this->redirect('driver_home');
     }
@@ -364,7 +410,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         header('Content-Type: application/json');
@@ -387,7 +433,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         header('Content-Type: application/json');
@@ -409,7 +455,7 @@ class Driver_home extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         header('Content-Type: application/json');

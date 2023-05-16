@@ -102,6 +102,7 @@
                 <div class="order-selections">
                     <div class="selector designs-selector" name="selector" id="accepted" onclick="getDesignsByStatus('Accepted')">Accepted Designs</div>
                     <div class="selector designs-selector" name="selector" id="rejected" onclick="getDesignsByStatus('Rejected')">Rejected Designs</div>
+                    <div class="selector designs-selector" name="selector" id="pending" onclick="getDesignsByStatus('Pending')">Pending Designs</div>
                 </div>
 
                 <table class="designs-details-table">

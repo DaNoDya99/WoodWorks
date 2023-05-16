@@ -520,7 +520,7 @@ class Designer extends Controller
     {
         if(!Auth::logged_in())
         {
-            $this->redirect('login3');
+            $this->redirect('login');
         }
 
         $id = Auth::getEmployeeID();

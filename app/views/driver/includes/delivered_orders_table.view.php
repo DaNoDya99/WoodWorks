@@ -6,6 +6,7 @@
     <div class="content dashboard">
         <div class="tbox">
 
+            <!-- Tab buttons to switch between different views -->
             <div class="tab_box">
                 <a href="<?=ROOT?>/driver_home/order"><button class="tab_btn" id="tab1">Orders Details</button></a>
                 <a href="<?=ROOT?>/driver_home/delivered_orders"><button class="tab_btn" id="tab2">Delivered Orders</button></a>
@@ -13,6 +14,7 @@
                 <div class="line"></div>
             </div>
 
+            <!-- Header for the "Delivered Orders" view, including a search bar -->
             <div class="orders_view_header">
                 <h1> DELIVERED ORDERS </h1>
                 <form class="order-form">
@@ -23,6 +25,7 @@
                 </form>
             </div>
 
+            <!-- Table displaying information about delivered orders -->
             <div class="order-details-tbl">
                 <table class="content-table" id="myTable">
                     <thead>
@@ -38,12 +41,14 @@
 
                     <?php if(!empty($records1)) :?>
                     <?php foreach ($records1 as $row):?>
-                        <form method="post" action="<?=ROOT?>/driver_home/order" hidden>
+                            <!-- Hidden form used to submit information about a specific order -->
+                            <form method="post" action="<?=ROOT?>/driver_home/order" hidden>
                             <input type="text" name="OrderID" value="<?=$row->OrderID?>" hidden>
                             <tr>
                                 <td><?=esc($row->OrderID)?></td>
                                 <td><?=esc($row->Firstname)?> <?=esc($row->Lastname)?></td>
                                 <?php
+                                // Format the order date and calculate the estimated delivery date
                                     $date1 = $row->Date;
                                     $date2 = $row->Dispatched_date;
                                     $date3 = $row->Delivered_date;
@@ -53,6 +58,7 @@
                                     $dateObject->add(new DateInterval('P7D'));
                                     $estimatedDeliveryDate = $dateObject->format('d/m/Y');
 
+                                // Format the dispatched date and delivered date, or display a message if they are empty
                                     if(!empty($date2))
                                     {
                                         $dispatchedDate = date("d/m/Y", strtotime($date2));
@@ -85,6 +91,7 @@
                 </table>
             </div>
 
+            <!-- Popup to display the confirmation image of a delivered order -->
             <div id="upl-doc" class="upload-document">
                 <img class="close-btn" onclick="closeDocumentPopup()" src="<?=ROOT?>/assets/images/driver/close.png" alt="close button">
                 <h2>Upload Confirmation Image</h2>

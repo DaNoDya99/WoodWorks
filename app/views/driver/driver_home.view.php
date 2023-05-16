@@ -3,12 +3,12 @@
 <body class="driver">
 <div class="driver-body">
     <?php $this->view('driver/includes/driver_header') ?>
-
+    <!-- This form allows the driver to change their availability status. -->
     <form method="post" action="<?=ROOT?>/driver_home/availability">
         <select name="Availability" required onchange="this.form.submit()" class="select-available">
             <?php
             $arr = array("Available", "Not Available");
-
+            // The availability options are displayed in a dropdown list.
             foreach ($arr as $value) {
                 if ($value == esc($row[0]->Availability)) {
                     echo "<option value='$value' selected>$value</option>";
@@ -38,14 +38,17 @@
 <!--        </select>-->
 <!--    </form>-->
 
+    <!-- The following div contains the content of the dashboard. -->
     <div class="content dashboard">
 
         <div class="containers">
 
             <div class="driver-tbox">
+                <!-- This div displays a table with the driver's recent orders. -->
                 <div class="recentOrders">
                     <div class="driver-tbox-header">
                         <h1>Recent Orders</h1>
+                        <!-- A button is displayed to view all orders. -->
                         <button onclick="location.href='<?=ROOT?>/driver_home/order';">View All</button>
                     </div>
                     <table class="driver-content-table">
@@ -56,6 +59,7 @@
 
                         </thead>
                         <tbody>
+                        <!-- The recent orders are displayed in the table. -->
                         <?php foreach ($rows as $row):?>
                             <tr class="orders-table-rows">
 
@@ -65,6 +69,7 @@
                                     <td><img src="<?=ROOT?>/assets/images/driver/greencircle.png" alt="Dispatched" id="statusCircle"><?=esc($row->Order_status)?></td>
                                 <?php endif;?>
                                 <?php
+                                // The order and estimated delivery dates are formatted.
                                 $date = $row->Date;
                                 $newDate1 = date("d/m/Y", strtotime($date));
                                 $newDate2 = date("d/m/Y", strtotime($row->Estimated_date));
@@ -82,6 +87,7 @@
                 </div>
             </div>
 
+            <!-- The following div contains charts displaying the driver's completed orders and delayed deliveries. -->
             <div id="chart-container3">
 
                 <div class="box" id="chart-container" onclick="location.href='<?=ROOT?>/driver_home/order';">
@@ -113,6 +119,7 @@
 
             </div>
 
+            <!--   This bar chart display the orders within the estimated date -->
             <div class="box" id="chart-container2" onclick="location.href='<?=ROOT?>/driver_home/order';">
                 <canvas id="myBar" width="340" height="440"> </canvas>
             </div>

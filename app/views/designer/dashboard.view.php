@@ -20,6 +20,7 @@
                         <th class="th">Image</th>
                         <th class="th">Type Of Category</th>
                         <th class="th">Added Date</th>
+                        <th class="th">Status</th>
 
                         </thead>
                         <tbody>
@@ -42,6 +43,7 @@
                                     $newDate = date("d/m/Y", strtotime($row->Date));
                                 ?>
                                 <td><?=$newDate?></td>
+                                <td><?=$row->Status?></td>
                             </tr>
 
                         <?php endforeach;?>
